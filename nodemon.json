@@ -1,0 +1,7 @@
+{
+  "quiet": true,
+  "delay": 3,
+  "exitcrash": true,
+  "watch": "siteConfig.js",
+  "exec": "docusaurus-start"
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Page <%= status %></title>
+    <style>
+      body {
+        margin: 0;
+        padding: 5% 10%;
+        color: #777;
+        background-color: #d7e9ea;
+      }
+
+      button {
+        font-size: 1.25em;
+        margin: 2em 0;
+        padding: 0.5em 0.75em;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        border-radius: 0.25em;
+        outline: none;
+        background-color: #fff;
+      }
+
+      button:hover {
+        opacity: 0.75;
+      }
+
+      button:active {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1><%= error %></h1>
+    <div>Best-Shot Dev Server</div>
+    <button onclick="history.back()">Go Back</button>
+  </body>
+</html>

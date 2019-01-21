@@ -1,0 +1,37 @@
+{
+  "name": "@best-shot/preset-babel",
+  "description": "Best-shot preset for Babel compiler",
+  "version": "0.0.3",
+  "license": "MIT",
+  "main": "index.js",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "keywords": [
+    "babel",
+    "best-shot",
+    "compiler",
+    "core-js",
+    "env",
+    "script",
+    "webpack"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.4",
+    "babel-loader": "^8.0.5",
+    "core-js": "^2.6.5",
+    "ext-to-regexp": "^0.0.3",
+    "regenerator-runtime": "^0.13.1"
+  }
+}

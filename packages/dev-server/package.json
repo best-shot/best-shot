@@ -1,0 +1,30 @@
+{
+  "name": "best-shot-dev-server",
+  "version": "0.0.20",
+  "license": "MIT",
+  "main": "index.js",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "dependencies": {
+    "@best-shot/preset-serve": "^0.0.1",
+    "chalk": "^2.4.2",
+    "connect-history-api-fallback": "^1.6.0",
+    "http-proxy-middleware": "^0.19.1",
+    "koa-connect": "^2.0.1",
+    "koa-error": "^3.2.0",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
+    "lodash": "^4.17.11",
+    "webpack": "^4.29.6",
+    "webpack-hot-client": "^4.1.1",
+    "webpack-log": "^2.0.0",
+    "webpack-serve": "^2.0.3",
+    "webpack-serve-overlay": "^0.3.0",
+    "webpack-serve-waitpage": "^1.0.2"
+  }
+}

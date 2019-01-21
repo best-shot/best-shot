@@ -1,0 +1,27 @@
+{
+  "name": "@best-shot/preset-vue",
+  "description": "Best-shot preset for Vue project",
+  "version": "0.0.4",
+  "license": "MIT",
+  "main": "index.js",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "keywords": [
+    "vue",
+    "webpack",
+    "best-shot",
+    "template",
+    "sfc"
+  ],
+  "dependencies": {
+    "ext-to-regexp": "^0.0.3",
+    "vue-loader": "^15.7.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.7"
+  }
+}

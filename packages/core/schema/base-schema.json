@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "best-shot config",
+  "type": "object",
+  "properties": {
+    "publicPath": {
+      "default": "/",
+      "description": "Same as output.publicPath，But also used in other places",
+      "type": "string",
+      "minLength": 1
+    },
+    "outputPath": {
+      "default": "build",
+      "description": "Prefix for output path",
+      "type": "string",
+      "minLength": 3
+    }
+  },
+  "required": [
+    "outputPath",
+    "publicPath"
+  ]
+}

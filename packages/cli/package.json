@@ -1,0 +1,35 @@
+{
+  "name": "@best-shot/cli",
+  "version": "0.0.4",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "main": "bin/cli.js",
+  "bin": {
+    "best-shot": "bin/cli.js"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "keywords": [
+    "best-shot",
+    "cli",
+    "bundler",
+    "scaffold",
+    "webpack"
+  ],
+  "dependencies": {
+    "@best-shot/core": "^0.0.4",
+    "browserslist": "^4.4.2",
+    "chalk": "^2.4.2",
+    "fs-extra": "^7.0.1",
+    "lodash": "^4.17.11",
+    "prettier": "^1.16.4",
+    "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.0.4",
+    "webpackbar": "^3.1.5",
+    "yargs": "^13.2.1"
+  }
+}

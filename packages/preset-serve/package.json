@@ -1,0 +1,25 @@
+{
+  "name": "@best-shot/preset-serve",
+  "description": "A best-shot preset for dev server",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "index.js",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "keywords": [
+    "serve",
+    "webpack",
+    "dev-server",
+    "hmr",
+    "best-shot"
+  ],
+  "dependencies": {
+    "internal-ip": "^4.2.0",
+    "lodash": "^4.17.11"
+  }
+}

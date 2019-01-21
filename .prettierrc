@@ -1,0 +1,15 @@
+{
+  "singleQuote": true,
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": [
+        ".*rc",
+        "*.json"
+      ],
+      "options": {
+        "parser": "json-stringify"
+      }
+    }
+  ]
+}

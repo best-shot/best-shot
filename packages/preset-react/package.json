@@ -1,0 +1,29 @@
+{
+  "name": "@best-shot/preset-react",
+  "description": "Best-shot preset for React project",
+  "version": "0.0.6",
+  "license": "MIT",
+  "main": "index.js",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "keywords": [
+    "react",
+    "jsx",
+    "webpack",
+    "babel",
+    "hmr",
+    "hot",
+    "best-shot"
+  ],
+  "dependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "@hot-loader/react-dom": "^16.8.3",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "react-hot-loader": "^4.7.1"
+  }
+}

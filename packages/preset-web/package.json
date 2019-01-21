@@ -1,0 +1,31 @@
+{
+  "name": "@best-shot/preset-web",
+  "description": "Best-shot preset for web project",
+  "version": "0.0.8",
+  "license": "MIT",
+  "main": "index.js",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "keywords": [
+    "app",
+    "html",
+    "html5",
+    "spa",
+    "web",
+    "webpack",
+    "best-shot"
+  ],
+  "dependencies": {
+    "deepmerge": "^3.2.0",
+    "ext-to-regexp": "^0.0.3",
+    "html-webpack-plugin": "^3.2.0",
+    "micro-tpl-loader": "^0.0.1",
+    "script-ext-html-webpack-plugin": "^2.1.3",
+    "suffix": "^1.0.0"
+  }
+}

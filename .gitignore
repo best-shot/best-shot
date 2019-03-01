@@ -120,3 +120,4 @@ yarn-error.log*
 
 website/build/
 .best-shot
+.npmrc

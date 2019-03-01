@@ -22,7 +22,8 @@ module.exports = function action({
     const { webpackChain, presets, ...config } = configFunc({
       command,
       custom,
-      platform
+      platform,
+      analyze
     });
 
     if (command === 'serve') {

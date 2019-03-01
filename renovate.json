@@ -1,5 +1,10 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    "group:allNonMajor",
+    "schedule:weekdays",
+    ":unpublishSafe",
+    ":prNotPending"
+  ],
+  "rangeStrategy": "bump"
 }

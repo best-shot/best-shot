@@ -1,34 +1,15 @@
 {
   "extends": [
-    "eslint:recommended",
-    "plugin:node/recommended",
-    "plugin:promise/recommended",
-    "airbnb-base"
+    "@nice-move/eslint-config-base",
+    "plugin:node/recommended"
   ],
   "parserOptions": {
-    "ecmaVersion": 2018,
     "parser": "babel-eslint"
   },
-  "plugins": [
-    "promise"
-  ],
   "rules": {
-    "arrow-parens": [
-      "warn",
-      "as-needed"
-    ],
     "camelcase": "off",
-    "comma-dangle": [
-      "warn",
-      "never"
-    ],
     "function-paren-newline": "off",
     "implicit-arrow-linebreak": "off",
-    "no-console": "off",
-    "no-nested-ternary": "off",
-    "promise/always-return": "off",
-    "promise/avoid-new": "off",
-    "promise/catch-or-return": "off",
     "node/no-extraneous-require": [
       "error",
       {
@@ -42,7 +23,6 @@
           "best-shot-dev-server"
         ]
       }
-    ],
-    "template-curly-spacing": "off"
+    ]
   }
 }

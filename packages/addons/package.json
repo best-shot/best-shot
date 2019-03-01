@@ -1,7 +1,7 @@
 {
   "name": "best-shot-addons",
   "description": "Tool set for Best-shot",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -9,12 +9,6 @@
     "email": "airkro@qq.com"
   },
   "engines": {
-    "node": ">=8.3.0"
-  },
-  "dependencies": {
-    "@iarna/toml": "^2.2.3",
-    "chalk": "^2.4.2",
-    "lodash": "^4.17.11",
-    "suffix": "^1.0.0"
+    "node": ">=8.10.0"
   }
 }

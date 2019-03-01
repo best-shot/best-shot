@@ -1,8 +1,8 @@
-declare const srcAlias: (
+declare function srcAlias(
   options: {
     /** 匹配需要应用 srcAlias 的文件 */
-    include?: string | RegExp | (RegExp | string)[];
+    include?: string | RegExp | (string | RegExp)[];
   } = {}
-) => ApplyBatch;
+): (chain: any) => any;
 
 export = srcAlias;

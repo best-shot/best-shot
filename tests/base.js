@@ -1,13 +1,14 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const BestShot = require('@best-shot/core');
 
 const baseSchema = require('../packages/core/schema/base-schema.json');
 
 const {
   schema: properties1
-} = require('../packages/core/built-in/before/apply-entry');
+} = require('../packages/core/built-in/apply-entry');
 const {
   schema: properties2
-} = require('../packages/core/built-in/after/apply-define');
+} = require('../packages/core/built-in/apply-define');
 
 const example = {
   name: 'best-shot.config',

@@ -11,9 +11,9 @@
     "website"
   ],
   "devDependencies": {
-    "docusaurus-init": "^1.0.2",
-    "jest": "^24.1.0",
-    "nodemon": "^1.18.10"
+    "docusaurus-init": "1.0.2",
+    "jest": "24.1.0",
+    "nodemon": "1.18.10"
   },
   "optionalDependencies": {
     "babel-eslint": "^10.0.1",

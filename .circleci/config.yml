@@ -17,7 +17,7 @@ unit_tests: &unit_tests
 
     - run:
         name: Install Dependencies
-        command: yarn install --frozen-lockfile
+        command: yarn install
 
     - save_cache:
         name: Save Yarn Package Cache

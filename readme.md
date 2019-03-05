@@ -1,5 +1,7 @@
 # best-shot
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f8a1db94820242248971e891fa1e2b34)](https://app.codacy.com/app/Airkro_2/best-shot?utm_source=github.com&utm_medium=referral&utm_content=Airkro/best-shot&utm_campaign=Badge_Grade_Dashboard)
+
 A webpack config wrapper.
 
 [npm-link]: https://www.npmjs.com/org/best-shot

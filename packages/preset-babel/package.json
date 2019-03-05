@@ -9,7 +9,7 @@
     "email": "airkro@qq.com"
   },
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=8.10.0"
   },
   "keywords": [
     "babel",

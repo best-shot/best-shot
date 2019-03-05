@@ -22,9 +22,9 @@ unit_tests: &unit_tests
     - save_cache:
         name: Save Yarn Package Cache
         key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-            - node_modules
+        paths:
+          - ~/.cache/yarn
+          - node_modules
 
     # run tests!
     - run: yarn test

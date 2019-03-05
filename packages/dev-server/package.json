@@ -8,7 +8,7 @@
     "email": "airkro@qq.com"
   },
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=8.10.0"
   },
   "dependencies": {
     "@best-shot/preset-serve": "^0.0.1",

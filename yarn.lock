@@ -783,12 +783,13 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nice-move/eslint-config-base@^0.0.0":
-  version "0.0.0"
-  resolved "http://registry.npm.taobao.org/@nice-move/eslint-config-base/download/@nice-move/eslint-config-base-0.0.0.tgz#4c0ca363ab14cf69248518a86006e42f70b984d0"
-  integrity sha1-TAyjY6sUz2kkhRioYAbkL3C5hNA=
+"@nice-move/eslint-config-base@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@nice-move/eslint-config-base/-/eslint-config-base-0.0.2.tgz#f1d16e1366e00269fa8bcf3349a62f288f3c53af"
+  integrity sha512-wL99jXD0TYzOZZnUvx5b7y9don8uhTZzcckqIYdIo0xw7P/1MtR5VwhzuGfNTeWTB8kih5jgt6163vPk2a8KVg==
   dependencies:
     eslint-config-airbnb-base "^13.1.0"
+    eslint-import-resolver-alias "^1.1.2"
     eslint-plugin-import "^2.16.0"
     eslint-plugin-promise "^4.0.1"
 
@@ -3852,6 +3853,11 @@ eslint-config-airbnb-base@^13.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
+eslint-import-resolver-alias@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-alias/-/eslint-import-resolver-alias-1.1.2.tgz#297062890e31e4d6651eb5eba9534e1f6e68fc97"
+  integrity sha512-WdviM1Eu834zsfjHtcGHtGfcu+F30Od3V7I9Fi57uhBEwPkjDcii7/yW8jAT+gOhn4P/vOxxNAXbFAKsrrc15w==
+
 eslint-import-resolver-node@^0.3.2:
   version "0.3.2"
   resolved "http://registry.npm.taobao.org/eslint-import-resolver-node/download/eslint-import-resolver-node-0.3.2.tgz#58f15fb839b8d0576ca980413476aab2472db66a"
@@ -3945,10 +3951,10 @@ eslint-visitor-keys@^1.0.0:
   resolved "http://registry.npm.taobao.org/eslint-visitor-keys/download/eslint-visitor-keys-1.0.0.tgz#3f3180fb2e291017716acb4c9d6d5b5c34a6a81d"
   integrity sha1-PzGA+y4pEBdxastMnW1bXDSmqB0=
 
-eslint@^5.14.1:
+eslint@^5.15.1:
   version "5.15.1"
-  resolved "http://registry.npm.taobao.org/eslint/download/eslint-5.15.1.tgz#8266b089fd5391e0009a047050795b1d73664524"
-  integrity sha1-gmawif1TkeAAmgRwUHlbHXNmRSQ=
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-5.15.1.tgz#8266b089fd5391e0009a047050795b1d73664524"
+  integrity sha512-NTcm6vQ+PTgN3UBsALw5BMhgO6i5EpIjQF/Xb5tIh3sk9QhrFafujUOczGz4J24JBlzWclSB9Vmx8d+9Z6bFCg==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     ajv "^6.9.1"
@@ -6960,10 +6966,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@^8.1.4:
+lint-staged@^8.1.5:
   version "8.1.5"
-  resolved "http://registry.npm.taobao.org/lint-staged/download/lint-staged-8.1.5.tgz#372476fe1a58b8834eb562ed4c99126bd60bdd79"
-  integrity sha1-NyR2/hpYuINOtWLtTJkSa9YL3Xk=
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.1.5.tgz#372476fe1a58b8834eb562ed4c99126bd60bdd79"
+  integrity sha512-e5ZavfnSLcBJE1BTzRTqw6ly8OkqVyO3GL2M6teSmTBYQ/2BuueD5GIt2RPsP31u/vjKdexUyDCxSyK75q4BDA==
   dependencies:
     chalk "^2.3.1"
     commander "^2.14.1"

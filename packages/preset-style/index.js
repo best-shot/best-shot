@@ -1,12 +1,11 @@
 const { relative, resolve } = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { currentPath } = require('@best-shot/core/lib/common');
+
 const applyFont = require('./apply-font');
 const applyImage = require('./apply-image');
 const applyScssLess = require('./apply-scss-less');
 const applyStylesheet = require('./apply-stylesheet');
-
-function currentPath(src = '') {
-  return resolve(process.cwd(), src);
-}
 
 const childNodeModules = relative(
   currentPath(),

@@ -10,7 +10,6 @@
     "camelcase": "off",
     "function-paren-newline": "off",
     "implicit-arrow-linebreak": "off",
-    "promise/avoid-new": "off",
     "node/no-extraneous-require": [
       "error",
       {

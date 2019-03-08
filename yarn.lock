@@ -928,12 +928,13 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nice-move/eslint-config-base@^0.0.0":
-  version "0.0.0"
-  resolved "http://registry.npm.taobao.org/@nice-move/eslint-config-base/download/@nice-move/eslint-config-base-0.0.0.tgz#4c0ca363ab14cf69248518a86006e42f70b984d0"
-  integrity sha1-TAyjY6sUz2kkhRioYAbkL3C5hNA=
+"@nice-move/eslint-config-base@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@nice-move/eslint-config-base/-/eslint-config-base-0.0.2.tgz#f1d16e1366e00269fa8bcf3349a62f288f3c53af"
+  integrity sha512-wL99jXD0TYzOZZnUvx5b7y9don8uhTZzcckqIYdIo0xw7P/1MtR5VwhzuGfNTeWTB8kih5jgt6163vPk2a8KVg==
   dependencies:
     eslint-config-airbnb-base "^13.1.0"
+    eslint-import-resolver-alias "^1.1.2"
     eslint-plugin-import "^2.16.0"
     eslint-plugin-promise "^4.0.1"
 
@@ -4049,6 +4050,11 @@ eslint-config-airbnb-base@^13.1.0:
     eslint-restricted-globals "^0.1.1"
     object.assign "^4.1.0"
     object.entries "^1.0.4"
+
+eslint-import-resolver-alias@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-alias/-/eslint-import-resolver-alias-1.1.2.tgz#297062890e31e4d6651eb5eba9534e1f6e68fc97"
+  integrity sha512-WdviM1Eu834zsfjHtcGHtGfcu+F30Od3V7I9Fi57uhBEwPkjDcii7/yW8jAT+gOhn4P/vOxxNAXbFAKsrrc15w==
 
 eslint-import-resolver-node@^0.3.2:
   version "0.3.2"

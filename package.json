@@ -16,10 +16,9 @@
     "nodemon": "1.18.10"
   },
   "optionalDependencies": {
-    "@nice-move/eslint-config-base": "^0.0.0",
+    "@nice-move/eslint-config-base": "^0.0.2",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.15.1",
-    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jest": "^22.3.0",
     "eslint-plugin-node": "^8.0.1",
     "lint-staged": "^8.1.5",

@@ -1,16 +1,15 @@
 const { join } = require('path');
-const { outputFile } = require('fs-extra');
+const { outputFileSync } = require('fs-extra');
 
-module.exports = async function writeFile({
-  rootPath, name, stamp, data
-}) {
-  const fileName = join(rootPath, '.best-shot', `inspect-${stamp}`, name);
+module.exports = function makeWriteFile(rootPath, stamp) {
+  return function writeFile({ name, data }) {
+    const fileName = join(rootPath, '.best-shot', `inspect-${stamp}`, name);
 
-  await outputFile(fileName, data)
-    .then(() => {
+    try {
+      outputFileSync(fileName, data);
       console.log('-', name);
-    })
-    .catch(err => {
+    } catch (err) {
       console.error(err);
-    });
+    }
+  };
 };

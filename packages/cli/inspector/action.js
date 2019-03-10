@@ -1,15 +1,16 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, node/no-extraneous-require
 const Chain = require('webpack-chain');
 const BestShot = require('@best-shot/core');
+const cloneDeep = require('lodash/cloneDeep');
 const { commandEnv, logRedError } = require('@best-shot/core/lib/common');
 const { applyProgress, applyAnalyzer } = require('../apply');
 const { reachDependencies, reachConfig, reachBrowsers } = require('../reach');
 const { concatStr, formatJs } = require('./concat-str');
-const writeFile = require('./write-file');
+const makeWriteFile = require('./write-file');
 
 const commands = ['serve', 'watch', 'dev', 'prod'];
 
-module.exports = async function inspector({
+module.exports = function inspector({
   platforms = [],
   stamp = 'none',
   config: configPath
@@ -17,6 +18,7 @@ module.exports = async function inspector({
   const rootPath = process.cwd();
   const configFunc = reachConfig(rootPath, configPath);
   const dependencies = reachDependencies(rootPath);
+  const writeFile = makeWriteFile(rootPath, stamp);
 
   console.log('Output files ...');
 
@@ -26,10 +28,12 @@ module.exports = async function inspector({
         const mode = commandEnv(command);
         const browsers = reachBrowsers(rootPath)[mode];
 
-        const { webpackChain, presets, ...config } = configFunc({
-          command,
-          platform
-        });
+        const { webpackChain, presets, ...config } = cloneDeep(
+          configFunc({
+            command,
+            platform
+          })
+        );
 
         if (command === 'serve') {
           presets.unshift('serve');
@@ -39,9 +43,7 @@ module.exports = async function inspector({
 
         const schema = io.schema.toString();
 
-        await writeFile({
-          rootPath,
-          stamp,
+        writeFile({
           name: `${platform}-${command}.schema.json`,
           data: schema
         });
@@ -62,9 +64,7 @@ module.exports = async function inspector({
           .when(typeof webpackChain === 'function', webpackChain);
 
         if (result) {
-          await writeFile({
-            rootPath,
-            stamp,
+          writeFile({
             name: `${platform}-${command}.config.js`,
             data: concatStr({
               stamp,
@@ -89,23 +89,19 @@ module.exports = async function inspector({
     });
   });
 
-  await writeFile({
-    rootPath,
-    stamp,
+  writeFile({
     name: 'progress-analyze.config.js',
     data: formatJs(
       `// $ best-shot dist --progress --analyze
 
 exports.sample = ${new Chain()
-        .batch(applyProgress)
-        .batch(applyAnalyzer)
-        .toString()}`
+    .batch(applyProgress)
+    .batch(applyAnalyzer)
+    .toString()}`
     )
   });
 
-  await writeFile({
-    rootPath,
-    stamp,
+  writeFile({
     name: 'dependencies.json',
     data: JSON.stringify(dependencies, null, '  ')
   });

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -28,8 +28,8 @@
     "lodash": "^4.17.11",
     "prettier": "^1.16.4",
     "webpack": "^4.29.6",
-    "webpack-bundle-analyzer": "^3.0.4",
+    "webpack-bundle-analyzer": "^3.1.0",
     "webpackbar": "^3.1.5",
-    "yargs": "^13.2.1"
+    "yargs": "^13.2.2"
   }
 }

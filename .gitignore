@@ -111,13 +111,8 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/node,windows
 
-npm-debug.log*
-yarn-error.log*
-
-/*/**/yarn.lock
-
 # docusaurus
-
 website/build/
+
+# best-shot
 .best-shot
-.npmrc

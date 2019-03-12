@@ -12061,7 +12061,7 @@ webpack-bundle-analyzer@^3.1.0:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-chain@^5.2.0:
+webpack-chain@^5.2.1:
   version "5.2.1"
   resolved "https://registry.npmjs.org/webpack-chain/-/webpack-chain-5.2.1.tgz#0e8f5e5ddba35d263ac357cf5ae7ec84138d57c5"
   integrity sha512-G/0peIXMxDTtFRf9dnrhvMdiJZfkzSXkabhlnF+jRJKu73Sn/xohT1EvcH0CDg1F3aPNa5SRNdMup8Fgqa3LcQ==

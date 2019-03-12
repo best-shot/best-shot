@@ -15,10 +15,10 @@ exports.apply = function applyDevServer({
         .when(port, conf => conf.port(port))
         .end()
         .when(devServer.overlay && devServer.hot, conf => {
-          const entry = mapValues(chain.entryPoints.entries(), data =>
+          const entry = mapValues(conf.entryPoints.entries(), data =>
             data.values()
           );
-          return conf.entryPoints
+          conf.entryPoints
             .clear()
             .end()
             .merge({

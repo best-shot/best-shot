@@ -1,5 +1,9 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    ":maintainLockFilesWeekly",
+    ":automergeMinor",
+    ":unpublishSafe"
+  ],
+  "rangeStrategy": "bump"
 }

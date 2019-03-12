@@ -11,9 +11,8 @@
     "website"
   ],
   "devDependencies": {
-    "docusaurus-init": "1.0.2",
-    "jest": "24.4.0",
-    "nodemon": "1.18.10"
+    "jest": "^24.4.0",
+    "nodemon": "^1.18.10"
   },
   "optionalDependencies": {
     "@nice-move/eslint-config-base": "^0.0.2",

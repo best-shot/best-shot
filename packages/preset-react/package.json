@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
-    "@hot-loader/react-dom": "^16.8.3",
+    "@hot-loader/react-dom": "^16.8.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "react-hot-loader": "^4.7.1"
   }

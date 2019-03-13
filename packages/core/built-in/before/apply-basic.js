@@ -1,4 +1,3 @@
-const { HashedModuleIdsPlugin } = require('webpack');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const os = require('os');
 const { currentPath } = require('../../lib/common');
@@ -21,15 +20,13 @@ exports.apply = function applyBasic({
       .mode(mode)
       .context(currentPath())
       .optimization.minimize(mode === 'production')
+      .set('moduleIds', mode === 'production' ? 'hashed' : 'named')
       .end()
       .batch(config =>
         config.output
           .path(currentPath(outputPath, `${platform}-${shorthand[mode]}`))
           .publicPath(publicPath)
           .filename('[name].js')
-      )
-      .when(mode === 'production', config =>
-        config.plugin('hashed-module-ids').use(HashedModuleIdsPlugin)
       )
       .when(mode === 'development' && os.type() !== 'Linux', config =>
         config.plugin('case-sensitive-paths').use(CaseSensitivePathsPlugin)

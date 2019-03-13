@@ -116,3 +116,6 @@ website/build/
 
 # best-shot
 .best-shot
+/build/
+
+/src/

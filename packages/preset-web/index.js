@@ -18,7 +18,9 @@ exports.name = 'preset-web';
 exports.apply = function applySinglePage({
   mode,
   options: { serve },
-  config: { html, polyfill, vendors }
+  config: {
+    html, polyfill, vendors, define
+  }
 }) {
   return chain => {
     const useHot = chain.devServer.get('hot');
@@ -42,7 +44,7 @@ exports.apply = function applySinglePage({
       )
       .when(polyfill, config => addPolyfill(config, { polyfill }))
       .batch(config => splitChunks(config, { serve, vendors }))
-      .batch(config => setHtml(config, { html, minimize }));
+      .batch(config => setHtml(config, { html, define, minimize }));
   };
 };
 

@@ -1,3 +1,4 @@
+const deepmerge = require('deepmerge');
 const validator = require('./validator');
 const baseSchema = require('./base-schema.json');
 
@@ -8,7 +9,7 @@ module.exports = class Schema {
   }
 
   merge(properties) {
-    Object.assign(this.schema.properties, properties);
+    this.schema = deepmerge(this.schema, { properties });
   }
 
   toObject() {

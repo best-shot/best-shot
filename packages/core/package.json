@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/core",
   "description": "Core api for create 'best-shot' config chain",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.js",
   "license": "MIT",
   "author": {
@@ -25,8 +25,8 @@
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^5.0.1",
+    "deepmerge": "^3.2.0",
     "ext-to-regexp": "^0.0.3",
-    "extra-watch-webpack-plugin": "^1.0.3",
     "lodash": "^4.17.11",
     "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.29.6",

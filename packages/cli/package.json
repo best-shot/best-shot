@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -21,7 +21,7 @@
     "webpack"
   ],
   "dependencies": {
-    "@best-shot/core": "^0.0.4",
+    "@best-shot/core": "^0.0.5",
     "browserslist": "^4.4.2",
     "chalk": "^2.4.2",
     "fs-extra": "^7.0.1",

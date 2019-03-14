@@ -13,7 +13,8 @@ const commands = ['serve', 'watch', 'dev', 'prod'];
 module.exports = function inspector({
   platforms = [],
   stamp = 'none',
-  config: configPath
+  config: configPath,
+  analyze
 }) {
   const rootPath = process.cwd();
   const configFunc = reachConfig(rootPath, configPath);
@@ -31,7 +32,8 @@ module.exports = function inspector({
         const { webpackChain, presets, ...config } = cloneDeep(
           configFunc({
             command,
-            platform
+            platform,
+            analyze
           })
         );
 

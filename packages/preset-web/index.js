@@ -27,8 +27,8 @@ exports.apply = function applySinglePage({
         mode === 'production'
           ? false
           : serve
-            ? 'cheap-module-eval-source-map'
-            : 'cheap-module-source-map'
+          ? 'cheap-module-eval-source-map'
+          : 'cheap-module-source-map'
       )
       .when(minimize, config => setOutputName(config, { both: addMin }))
       .when(!useHot, config => setOutputName(config, { both: addHash }))
@@ -47,7 +47,7 @@ const string = { type: 'string', minLength: 1 };
 
 exports.schema = {
   html: {
-    description: '单入口 HtmlPlugin 设置，会与预设合并',
+    title: 'Options of HtmlWebpackPlugin',
     type: 'object'
   },
   polyfill: {

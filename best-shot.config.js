@@ -4,12 +4,13 @@ const { srcAlias } = require('best-shot-addons');
 
 module.exports = {
   presets: ['babel', 'style', 'vue', 'web'],
-  html: {
-    template: './src/index.tpl',
-    templateParameters: {
-      title: 'App Title'
-    }
-  },
+  html: [
+    {
+      title: 'App Title 1',
+      template: './src/index.tpl'
+    },
+    {}
+  ],
   devServer: {
     port: 80,
     proxy: {

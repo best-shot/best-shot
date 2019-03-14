@@ -27,8 +27,8 @@ exports.apply = function applySinglePage({
         mode === 'production'
           ? false
           : serve
-          ? 'cheap-module-eval-source-map'
-          : 'cheap-module-source-map'
+            ? 'cheap-module-eval-source-map'
+            : 'cheap-module-source-map'
       )
       .when(minimize, config => setOutputName(config, { both: addMin }))
       .when(!useHot, config => setOutputName(config, { both: addHash }))
@@ -43,27 +43,38 @@ exports.apply = function applySinglePage({
   };
 };
 
-const string = { type: 'string', minLength: 1 };
+const stringFormat = { type: 'string', minLength: 1 };
 
 exports.schema = {
+  polyfill: { default: 'usage' },
   html: {
     title: 'Options of HtmlWebpackPlugin',
-    type: 'object'
-  },
-  polyfill: {
-    default: 'usage'
+    oneOf: [
+      {
+        title: 'Single Page Application',
+        type: 'object'
+      },
+      {
+        title: 'Multiple Page Application',
+        type: 'array',
+        minItems: 1,
+        item: {
+          type: 'object'
+        }
+      }
+    ]
   },
   vendors: {
     type: 'object',
     minProperties: 1,
     additionalProperties: {
       oneOf: [
-        string,
+        stringFormat,
         {
           type: 'array',
           minItems: 1,
           uniqueItems: true,
-          item: string
+          item: stringFormat
         }
       ]
     }

@@ -1,16 +1,22 @@
-const merge = require('deepmerge');
+const deepmerge = require('deepmerge');
 const extToRegexp = require('ext-to-regexp');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { currentPath } = require('@best-shot/core/lib/common');
+const { currentPath, objectFilter } = require('@best-shot/core/lib/common');
 
 function getPkg(path) {
   try {
     // eslint-disable-next-line import/no-dynamic-require, global-require
-    return require(path);
+    const {
+      name,
+      version,
+      description
+      // TODO more
+    } = require(path);
+    return objectFilter({ name, version, description });
   } catch (error) {
     return {};
   }
@@ -18,42 +24,39 @@ function getPkg(path) {
 
 module.exports = function setHtml(
   chain,
-  {
-    html: { title = 'BEST-SHOT Project', ...html } = {},
-    define = {},
-    minimize = false
-  }
+  { html = {}, define, minimize = false }
 ) {
-  const {
-    name, version, description, author
-  } = getPkg(
-    currentPath('package.json')
-  );
-
-  const htmlOptions = {
+  const defaultOptions = {
     inject: 'head',
     minify: {
       removeComments: minimize,
       collapseWhitespace: minimize
     },
+    filename: 'index.html',
     template: currentPath('./src/index.html'),
-    templateParameters: {
-      title,
+    templateParameters: objectFilter({
       define,
-      package: {
-        name,
-        version,
-        description,
-        author
-        // TODO more
-      }
-    }
+      package: getPkg(currentPath('package.json'))
+    })
   };
 
-  chain
-    .plugin('html-single-page')
-    .use(HtmlWebpackPlugin, [merge(htmlOptions, html)])
-    .end();
+  const htmlOptions = Array.isArray(html) ? html : [html];
+
+  htmlOptions.forEach(({ title = 'BEST-SHOT Project', ...options }, index) => {
+    const { title: _, ...extend } = index > 0 ? htmlOptions[0] : {};
+
+    chain
+      .plugin(`html-multiple-page-${index}`)
+      .use(HtmlWebpackPlugin, [
+        deepmerge.all([
+          defaultOptions,
+          extend,
+          options,
+          { templateParameters: { title } }
+        ])
+      ])
+      .end();
+  });
 
   chain
     .plugin('script-ext-html')

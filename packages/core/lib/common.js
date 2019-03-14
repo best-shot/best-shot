@@ -2,6 +2,7 @@ const { resolve } = require('path');
 const { red, supportsColor } = require('chalk');
 const { EOL } = require('os');
 const { inspect } = require('util');
+const pickBy = require('lodash/pickBy');
 
 class ExError extends Error {
   constructor(message, extra) {
@@ -12,6 +13,14 @@ class ExError extends Error {
 
 function uselessFilter(item) {
   return item !== undefined;
+}
+
+function objectFilter(object) {
+  return pickBy(object, uselessFilter);
+}
+
+function arrayFilter(array) {
+  return array.filter(uselessFilter);
 }
 
 function currentPath(...args) {
@@ -53,5 +62,7 @@ module.exports = {
   logRedError,
   pick,
   pretty,
-  uselessFilter
+  uselessFilter,
+  objectFilter,
+  arrayFilter
 };

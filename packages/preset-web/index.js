@@ -1,6 +1,5 @@
 const suffix = require('suffix');
 
-const addPolyfill = require('./batch--add-polyfill');
 const setOutputName = require('./batch--set-output-name');
 const splitChunks = require('./batch--split-chunks');
 const setHtml = require('./batch--set-html');
@@ -18,9 +17,7 @@ exports.name = 'preset-web';
 exports.apply = function applySinglePage({
   mode,
   options: { serve },
-  config: {
-    html, polyfill, vendors, define
-  }
+  config: { html, vendors, define }
 }) {
   return chain => {
     const useHot = chain.devServer.get('hot');
@@ -33,16 +30,14 @@ exports.apply = function applySinglePage({
             ? 'cheap-module-eval-source-map'
             : 'cheap-module-source-map'
       )
-      .when(minimize, config => setOutputName(config, { both: addMin, useHot }))
-      .when(!useHot, config => setOutputName(config, { both: addHash, useHot }))
+      .when(minimize, config => setOutputName(config, { both: addMin }))
+      .when(!useHot, config => setOutputName(config, { both: addHash }))
       .batch(config =>
         setOutputName(config, {
           script: filename => `script/${filename}`,
-          style: filename => `style/${filename}`,
-          useHot
+          style: filename => `style/${filename}`
         })
       )
-      .when(polyfill, config => addPolyfill(config, { polyfill }))
       .batch(config => splitChunks(config, { serve, vendors }))
       .batch(config => setHtml(config, { html, define, minimize }));
   };
@@ -56,9 +51,7 @@ exports.schema = {
     type: 'object'
   },
   polyfill: {
-    default: 'entry',
-    description: '导入 Babel-Polyfill 方式',
-    enum: ['entry', 'usage', false]
+    default: 'usage'
   },
   vendors: {
     type: 'object',

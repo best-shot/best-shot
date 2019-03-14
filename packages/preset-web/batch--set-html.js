@@ -19,7 +19,7 @@ function getPkg(path) {
 module.exports = function setHtml(
   chain,
   {
-    html: { title = 'BEST-SHOT Project', ...html },
+    html: { title = 'BEST-SHOT Project', ...html } = {},
     define = {},
     minimize = false
   }

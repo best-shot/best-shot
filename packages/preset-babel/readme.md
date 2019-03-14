@@ -2,17 +2,19 @@
 
 Best-shot preset for Babel compiler.
 
-[url]: https://www.npmjs.com/package/@best-shot/preset-babel
+[npm-url]: https://www.npmjs.com/package/@best-shot/preset-babel
+[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-babel.svg?style=flat-square&logo=npm
+[node-badge]: https://img.shields.io/node/v/@best-shot/preset-babel.svg?style=flat-square&colorB=green&logo=node.js
 
-[![npm version](https://img.shields.io/npm/v/@best-shot/preset-babel.svg?style=flat-square&logo=npm)][url]
-![node](https://img.shields.io/node/v/@best-shot/preset-babel.svg?style=flat-square&colorB=green)
-![license](https://img.shields.io/npm/l/@best-shot/preset-babel.svg?style=flat-square&colorB=blue)
+[![npm][npm-badge]][npm-url]
+![node][node-badge]
+![license](https://img.shields.io/npm/l/@best-shot/preset-babel.svg?style=flat-square&colorB=blue&logo=github)
 
 This preset includes the following packages:
 
 - @babel/core
-- @babel/preset-env
 - @babel/polyfill
+- @babel/preset-env
 - @babel/plugin-proposal-class-properties
 - @babel/plugin-proposal-decorators
 - @babel/plugin-proposal-export-namespace-from
@@ -22,10 +24,10 @@ This preset includes the following packages:
 - regenerator-runtime
 - babel-loader
 
-## Install
+## Installation
 
 ```bash
-npm install @best-shot/cli @best-shot/preset-babel --save-dev
+npm install @best-shot/preset-babel --save-dev
 ```
 
 ## Usage
@@ -36,8 +38,4 @@ module.exports = {
   presets: [..., 'babel'],
   ...
 };
-```
-
-```bash
-best-shot <command> [options]
 ```

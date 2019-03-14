@@ -4,7 +4,11 @@ const displayName = 'babel';
 
 exports.name = displayName;
 
-exports.apply = function applyBabel({ mode = 'production', browsers }) {
+exports.apply = function applyBabel({
+  browsers,
+  mode = 'production',
+  config: { polyfill = false }
+}) {
   return chain => {
     chain.module
       .rule(displayName)
@@ -23,6 +27,7 @@ exports.apply = function applyBabel({ mode = 'production', browsers }) {
             '@babel/env',
             {
               modules: false,
+              useBuiltIns: polyfill,
               targets: { browsers }
             }
           ]
@@ -36,4 +41,14 @@ exports.apply = function applyBabel({ mode = 'production', browsers }) {
         ]
       });
   };
+};
+
+exports.schema = {
+  polyfill: {
+    default: false,
+    title: '@babel/preset-env options: `useBuiltIns`',
+    description:
+      'To know how babel handles polyfills, See <https://babeljs.io/docs/en/babel-preset-env#usebuiltins>.',
+    enum: ['entry', 'usage', false]
+  }
 };

@@ -1,12 +1,17 @@
 {
   "name": "@best-shot/preset-babel",
   "description": "Best-shot preset for Babel compiler",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-babel"
   },
   "engines": {
     "node": ">=8.10.0"

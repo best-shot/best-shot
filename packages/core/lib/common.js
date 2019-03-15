@@ -62,7 +62,6 @@ module.exports = {
   logRedError,
   pick,
   pretty,
-  uselessFilter,
   objectFilter,
   arrayFilter
 };

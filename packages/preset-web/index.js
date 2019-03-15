@@ -1,8 +1,8 @@
 const suffix = require('suffix');
 
-const setOutputName = require('./batch--set-output-name');
-const splitChunks = require('./batch--split-chunks');
-const setHtml = require('./batch--set-html');
+const setOutputName = require('./batch-set-output-name');
+const splitChunks = require('./batch-split-chunks');
+const setHtml = require('./batch-set-html');
 
 function addHash(filename) {
   return suffix(filename, '.[contenthash:8]');
@@ -10,6 +10,14 @@ function addHash(filename) {
 
 function addMin(filename) {
   return suffix(filename, '.min');
+}
+
+function sourceMap(mode = 'development', serve = false) {
+  return mode === 'production'
+    ? false
+    : serve
+    ? 'cheap-module-eval-source-map'
+    : 'cheap-module-source-map';
 }
 
 exports.name = 'preset-web';
@@ -23,13 +31,7 @@ exports.apply = function applySinglePage({
     const useHot = chain.devServer.get('hot');
     const minimize = chain.optimization.get('minimize');
     return chain
-      .devtool(
-        mode === 'production'
-          ? false
-          : serve
-            ? 'cheap-module-eval-source-map'
-            : 'cheap-module-source-map'
-      )
+      .devtool(sourceMap(mode, serve))
       .when(minimize, config => setOutputName(config, { both: addMin }))
       .when(!useHot, config => setOutputName(config, { both: addHash }))
       .batch(config =>
@@ -39,44 +41,52 @@ exports.apply = function applySinglePage({
         })
       )
       .batch(config => splitChunks(config, { serve, vendors }))
-      .batch(config => setHtml(config, { html, define, minimize }));
+      .batch(config => setHtml(config, { html, define }));
   };
 };
 
-const stringFormat = { type: 'string', minLength: 1 };
+const regexpFormat = {
+  format: 'regex',
+  minLength: 1,
+  type: 'string'
+};
+
+const htmlOptionsFormat = {
+  type: 'object',
+  minProperties: 1
+};
 
 exports.schema = {
-  polyfill: { default: 'usage' },
   html: {
-    title: 'Options of HtmlWebpackPlugin',
     oneOf: [
       {
         title: 'Single Page Application',
-        type: 'object'
+        ...htmlOptionsFormat
       },
       {
+        item: htmlOptionsFormat,
+        minItems: 2,
         title: 'Multiple Page Application',
-        type: 'array',
-        minItems: 1,
-        item: {
-          type: 'object'
-        }
+        type: 'array'
       }
-    ]
+    ],
+    title: 'Options of HtmlWebpackPlugin'
+  },
+  polyfill: {
+    default: 'usage'
   },
   vendors: {
-    type: 'object',
-    minProperties: 1,
     additionalProperties: {
       oneOf: [
-        stringFormat,
+        regexpFormat,
         {
-          type: 'array',
+          item: regexpFormat,
           minItems: 1,
-          uniqueItems: true,
-          item: stringFormat
+          type: 'array',
+          uniqueItems: true
         }
       ]
-    }
+    },
+    type: 'object'
   }
 };

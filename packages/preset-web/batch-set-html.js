@@ -9,12 +9,12 @@ const { currentPath, objectFilter } = require('@best-shot/core/lib/common');
 
 function getPkg(path) {
   try {
-    // eslint-disable-next-line import/no-dynamic-require, global-require
     const {
       name,
       version,
       description
       // TODO more
+      // eslint-disable-next-line import/no-dynamic-require, global-require
     } = require(path);
     return objectFilter({ name, version, description });
   } catch (error) {
@@ -22,17 +22,9 @@ function getPkg(path) {
   }
 }
 
-module.exports = function setHtml(
-  chain,
-  { html = {}, define, minimize = false }
-) {
+module.exports = function setHtml(chain, { html = {}, define }) {
   const defaultOptions = {
-    inject: 'head',
-    minify: {
-      removeComments: minimize,
-      collapseWhitespace: minimize
-    },
-    filename: 'index.html',
+    inject: true,
     template: currentPath('./src/index.html'),
     templateParameters: objectFilter({
       define,

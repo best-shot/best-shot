@@ -11,7 +11,7 @@ function mapValues(obj = {}, func) {
 
 module.exports = function splitChunks(chain, { vendors }) {
   const settings = mapValues(vendors, (value, key, index, length) => {
-    const mod = Array.isArray(value) ? `(${ value.join('|') })` : value;
+    const mod = Array.isArray(value) ? `(${value.join('|')})` : value;
     const regexp = new RegExp(`[\\\\/]node_modules[\\\\/]${mod}[\\\\/]`);
     return {
       test: regexp,

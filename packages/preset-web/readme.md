@@ -5,16 +5,17 @@ Best-shot preset for web project.
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-web
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-web.svg?style=flat-square&logo=npm
 [node-badge]: https://img.shields.io/node/v/@best-shot/preset-web.svg?style=flat-square&colorB=green&logo=node.js
+[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-web.svg?style=flat-square&colorB=blue&logo=github
 
 [![npm][npm-badge]][npm-url]
+![license][license-badge]
 ![node][node-badge]
-![license](https://img.shields.io/npm/l/@best-shot/preset-web.svg?style=flat-square&colorB=blue&logo=github)
 
 This preset includes the following packages:
 
+- micro-tpl-loader
 - html-webpack-plugin
 - script-ext-html-webpack-plugin
-- micro-tpl-loader
 
 ## Installation
 

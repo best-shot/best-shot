@@ -1,24 +1,31 @@
 {
   "name": "@best-shot/preset-web",
   "description": "Best-shot preset for web project",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-web"
+  },
   "engines": {
     "node": ">=8.10.0"
   },
   "keywords": [
     "app",
+    "best-shot",
     "html",
-    "html5",
+    "mpa",
+    "page",
     "spa",
+    "template",
     "web",
-    "webpack",
-    "best-shot"
+    "webpack"
   ],
   "dependencies": {
     "deepmerge": "^3.2.0",

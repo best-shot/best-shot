@@ -10,6 +10,7 @@ function formatJs(code) {
 function concatStr({
   input: { webpackChain, ...input },
   output = '{}',
+  schema,
   stamp
 }) {
   const chain = webpackChain ? webpackChain.toString() : undefined;
@@ -25,6 +26,8 @@ function concatStr({
 // Generate by best-shot
 // website: https://www.npmjs.com/package/best-shot
 // stamp: ${stamp}
+
+exports.schema = ${schema}
 
 exports.input = ${result}
 

@@ -1,10 +1,17 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, node/no-extraneous-require
+const cloneDeep = require('lodash/cloneDeep');
+/* eslint-disable import/no-extraneous-dependencies */
+// eslint-disable-next-line node/no-extraneous-require
 const Chain = require('webpack-chain');
 const BestShot = require('@best-shot/core');
-const cloneDeep = require('lodash/cloneDeep');
 const { commandEnv, logRedError } = require('@best-shot/core/lib/common');
-const { applyProgress, applyAnalyzer } = require('../apply');
-const { reachDependencies, reachConfig, reachBrowsers } = require('../reach');
+/* eslint-enable */
+
+const { applyProgress, applyAnalyzer } = require('@best-shot/cli/apply');
+const {
+  reachDependencies,
+  reachConfig,
+  reachBrowsers
+} = require('@best-shot/cli/reach');
 const { concatStr, formatJs } = require('./concat-str');
 const makeWriteFile = require('./write-file');
 
@@ -45,11 +52,6 @@ module.exports = function inspector({
 
         const schema = io.schema.toString();
 
-        writeFile({
-          name: `${platform}-${command}.schema.json`,
-          data: schema
-        });
-
         const result = io
           .load({
             options: {
@@ -67,7 +69,7 @@ module.exports = function inspector({
 
         if (result) {
           writeFile({
-            name: `${platform}-${command}.config.js`,
+            name: `${platform}-${command}.js`,
             data: concatStr({
               stamp,
               input: {
@@ -80,19 +82,21 @@ module.exports = function inspector({
                 config,
                 webpackChain
               },
+              schema,
               output: result.toString()
             })
           });
         }
       } catch (err) {
         logRedError(err.message, err.extra);
+        // eslint-disable-next-line no-process-exit
         process.exit(1);
       }
     });
   });
 
   writeFile({
-    name: 'progress-analyze.config.js',
+    name: 'progress-analyze.js',
     data: formatJs(
       `// $ best-shot dist --progress --analyze
 

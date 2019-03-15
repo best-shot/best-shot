@@ -30,6 +30,7 @@ const app = yargs
   .fail((msg, err, cli) => {
     console.log(cli.help(), EOL);
     logRedError(msg || err);
+    // eslint-disable-next-line no-process-exit
     process.exit(1);
   })
   .check(({ _: commands }) => {
@@ -87,7 +88,7 @@ const app = yargs
     }
   ]);
 
-installPkg(app, '../inspector/index');
+installPkg(app);
 
 // eslint-disable-next-line no-unused-expressions
 app.argv;

@@ -1,18 +1,14 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { srcAlias } = require('best-shot-addons');
-// eslint-disable-next-line import/no-extraneous-dependencies
 
 module.exports = {
   presets: ['babel', 'style', 'vue', 'web'],
-  html: [
-    {},
-    {
-      title: 'App Title 1',
-      templateParameters: {
-        abc: 0
-      }
+  html: {
+    title: 'App Title',
+    templateParameters: {
+      abc: 0
     }
-  ],
+  },
   devServer: {
     port: 80,
     proxy: {

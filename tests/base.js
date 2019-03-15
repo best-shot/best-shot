@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const BestShot = require('@best-shot/core');
 
 const baseSchema = require('../packages/core/schema/base-schema.json');

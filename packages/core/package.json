@@ -1,12 +1,17 @@
 {
   "name": "@best-shot/core",
   "description": "Core api for create 'best-shot' config chain",
-  "version": "0.0.5",
-  "main": "index.js",
+  "version": "0.0.6",
   "license": "MIT",
+  "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/core"
   },
   "engines": {
     "node": ">=8.10.0"
@@ -23,13 +28,13 @@
     "ajv": "^6.10.0",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "chalk": "^2.4.2",
-    "clean-webpack-plugin": "^2.0.0",
+    "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^5.0.1",
     "deepmerge": "^3.2.0",
     "ext-to-regexp": "^0.0.3",
     "lodash": "^4.17.11",
     "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.29.6",
-    "webpack-chain": "^5.2.1"
+    "webpack-chain": "^5.2.2"
   }
 }

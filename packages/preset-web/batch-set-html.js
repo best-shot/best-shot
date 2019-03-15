@@ -16,9 +16,11 @@ function getPkg(path) {
       // TODO more
       // eslint-disable-next-line import/no-dynamic-require, global-require
     } = require(path);
-    return objectFilter({ name, version, description });
+    return name || version || description
+      ? objectFilter({ name, version, description })
+      : undefined;
   } catch (error) {
-    return {};
+    return undefined;
   }
 }
 
@@ -27,24 +29,35 @@ module.exports = function setHtml(chain, { html = {}, define }) {
     inject: true,
     template: currentPath('./src/index.html'),
     templateParameters: objectFilter({
+      title: 'BEST-SHOT Project',
       define,
       package: getPkg(currentPath('package.json'))
     })
   };
 
-  const htmlOptions = Array.isArray(html) ? html : [html];
+  const htmlOptions = (Array.isArray(html)
+    ? html.length
+      ? html
+      : [{}]
+    : [html]
+  ).map(({ title, templateParameters, ...options }) =>
+    objectFilter({
+      ...options,
+      templateParameters:
+        title || templateParameters
+          ? objectFilter({ title, ...templateParameters })
+          : undefined
+    })
+  );
 
-  htmlOptions.forEach(({ title = 'BEST-SHOT Project', ...options }, index) => {
-    const { title: _, ...extend } = index > 0 ? htmlOptions[0] : {};
-
+  htmlOptions.forEach((options, index) => {
     chain
-      .plugin(`html-multiple-page-${index}`)
+      .plugin(`html-page-${index}`)
       .use(HtmlWebpackPlugin, [
         deepmerge.all([
           defaultOptions,
-          extend,
-          options,
-          { templateParameters: { title } }
+          index > 0 ? htmlOptions[0] : {},
+          options
         ])
       ])
       .end();

@@ -16,8 +16,8 @@ function sourceMap(mode = 'development', serve = false) {
   return mode === 'production'
     ? false
     : serve
-    ? 'cheap-module-eval-source-map'
-    : 'cheap-module-source-map';
+      ? 'cheap-module-eval-source-map'
+      : 'cheap-module-source-map';
 }
 
 exports.name = 'preset-web';
@@ -51,23 +51,26 @@ const regexpFormat = {
   type: 'string'
 };
 
-const htmlOptionsFormat = {
-  type: 'object',
-  minProperties: 1
-};
-
 exports.schema = {
   html: {
     oneOf: [
       {
-        title: 'Single Page Application',
-        ...htmlOptionsFormat
+        additionalItems: {
+          required: ['filename'],
+          type: 'object'
+        },
+        items: [
+          {
+            type: 'object'
+          }
+        ],
+        title: 'Multiple Page Application',
+        type: 'array',
+        uniqueItems: true
       },
       {
-        item: htmlOptionsFormat,
-        minItems: 2,
-        title: 'Multiple Page Application',
-        type: 'array'
+        title: 'Single Page Application',
+        type: 'object'
       }
     ],
     title: 'Options of HtmlWebpackPlugin'
@@ -80,7 +83,7 @@ exports.schema = {
       oneOf: [
         regexpFormat,
         {
-          item: regexpFormat,
+          items: regexpFormat,
           minItems: 1,
           type: 'array',
           uniqueItems: true

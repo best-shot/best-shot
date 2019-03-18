@@ -2,8 +2,7 @@
   "extends": [
     "config:base",
     "group:allNonMajor",
-    "schedule:weekly",
-    ":maintainLockFilesWeekly",
+    "schedule:weekdays",
     ":automergeMinor",
     ":unpublishSafe"
   ],

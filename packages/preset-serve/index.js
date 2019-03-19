@@ -8,7 +8,7 @@ exports.apply = function applyDevServer({
   return chain =>
     chain.when(serve, config =>
       config.devServer
-        .contentBase(staticPath)
+        .contentBase([staticPath])
         .publicPath(publicPath)
         .merge(devServer)
         .stats(config.get('stats'))

@@ -1,4 +1,3 @@
-const { relative, resolve } = require('path');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { currentPath } = require('@best-shot/core/lib/common');
 
@@ -7,17 +6,16 @@ const applyImage = require('./apply-image');
 const applyScssLess = require('./apply-scss-less');
 const applyStylesheet = require('./apply-stylesheet');
 
-const childNodeModules = relative(
-  currentPath(),
-  resolve(__dirname, './node_modules')
-);
+const childNodeModules = currentPath.relative(module.paths[0]);
 
 exports.apply = function apply(...args) {
-  return chain =>
+  return chain => {
     chain
       .batch(applyStylesheet(...args))
       .batch(applyScssLess(...args))
       .batch(applyImage(...args))
-      .batch(applyFont(...args))
-      .batch(config => config.resolveLoader.modules.add(childNodeModules));
+      .batch(applyFont(...args));
+
+    chain.resolveLoader.modules.add(childNodeModules);
+  };
 };

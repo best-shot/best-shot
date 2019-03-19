@@ -2,17 +2,23 @@
 
 Best-shot preset for Vue project
 
-[url]: https://www.npmjs.com/package/@best-shot/preset-vue
+[npm-url]: https://www.npmjs.com/package/@best-shot/preset-vue
+[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-vue.svg?style=flat-square&logo=npm
+[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-vue
+[node-badge]: https://img.shields.io/node/v/@best-shot/preset-vue.svg?style=flat-square&colorB=green&logo=node.js
+[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-vue.svg?style=flat-square&colorB=blue&logo=github
 
-[![npm version](https://img.shields.io/npm/v/@best-shot/preset-vue.svg?style=flat-square)][url]
-![node](https://img.shields.io/node/v/@best-shot/preset-vue.svg?style=flat-square&colorB=green)
-![license](https://img.shields.io/npm/l/@best-shot/preset-vue.svg?style=flat-square&colorB=blue)
+[![npm][npm-badge]][npm-url]
+[![license][license-badge]][github-url]
+![node][node-badge]
 
 This preset includes the following packages:
 
-- vue-loader / vue-style-loader / vue-template-compiler
+- vue-loader
+- vue-style-loader
+- vue-template-compiler
 
-## Install
+## Installation
 
 ```bash
 npm install @best-shot/preset-vue --save-dev
@@ -26,8 +32,4 @@ module.exports = {
   presets: [..., 'vue'],
   ...
 };
-```
-
-```bash
-best-shot <command> [options]
 ```

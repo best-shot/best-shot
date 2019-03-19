@@ -26,12 +26,12 @@ function getPkg(path) {
 
 module.exports = function setHtml(chain, { html = {}, define }) {
   const defaultOptions = {
-    inject: true,
-    template: currentPath('./src/index.html'),
+    inject: 'head',
+    template: currentPath.relative('src/index.html'),
     templateParameters: objectFilter({
       title: 'BEST-SHOT Project',
       define,
-      package: getPkg(currentPath('package.json'))
+      package: getPkg(currentPath.resolve('package.json'))
     })
   };
 

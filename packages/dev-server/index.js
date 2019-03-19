@@ -117,7 +117,7 @@ module.exports = function server({
         app.use(historyFallback({ publicPath }));
         app.use(
           koaError({
-            template: resolve(__dirname, './error-page.ejs')
+            template: resolve(__dirname, 'error-page.ejs')
           })
         );
         middleware.content();

@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { resolve, relative } = require('path');
 const { red, supportsColor } = require('chalk');
 const { EOL } = require('os');
 const { inspect } = require('util');
@@ -23,9 +23,20 @@ function arrayFilter(array) {
   return array.filter(uselessFilter);
 }
 
-function currentPath(...args) {
-  return resolve(process.cwd(), ...args);
-}
+const pwd = process.cwd();
+
+const currentPath = Object.defineProperties(() => pwd, {
+  resolve: {
+    value: (...args) => resolve(pwd, ...args),
+    configurable: false,
+    writable: false
+  },
+  relative: {
+    value: (...args) => relative(pwd, ...args),
+    configurable: false,
+    writable: false
+  }
+});
 
 function pick(condition) {
   return item => (condition ? item : undefined);

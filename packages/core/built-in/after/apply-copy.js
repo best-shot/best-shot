@@ -1,7 +1,6 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { currentPath } = require('../../lib/common');
 
-const displayName = 'copy-static';
+const displayName = 'copy';
 
 exports.name = displayName;
 
@@ -10,12 +9,12 @@ exports.apply = function applyCopy({
   config: { staticPath }
 }) {
   return chain =>
-    chain.when(staticPath && staticPath.length && !serve, config =>
+    chain.when(staticPath && !serve, config =>
       config.plugin(displayName).use(CopyWebpackPlugin, [
-        staticPath.map(dir => ({
-          from: currentPath(dir),
+        {
+          from: staticPath,
           to: './'
-        })),
+        },
         {
           ignore: ['.gitkeep'],
           copyUnmodified: true
@@ -26,16 +25,12 @@ exports.apply = function applyCopy({
 
 exports.schema = {
   staticPath: {
-    description: '静态文件目录',
-    default: ['./static'],
+    title: 'Path to serve static file',
+    default: 'static',
     oneOf: [
       {
-        items: {
-          minLength: 1,
-          type: 'string'
-        },
-        type: 'array',
-        uniqueItems: true
+        minLength: 1,
+        type: 'string'
       },
       {
         const: false

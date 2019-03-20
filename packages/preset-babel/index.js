@@ -28,12 +28,14 @@ exports.apply = function applyBabel({
             {
               modules: false,
               useBuiltIns: polyfill,
+              corejs: 3,
               targets: { browsers }
             }
           ]
         ],
         plugins: [
           '@babel/syntax-dynamic-import',
+          '@babel/syntax-import-meta',
           '@babel/proposal-export-namespace-from',
           '@babel/proposal-numeric-separator',
           ['@babel/proposal-decorators', { legacy: true }],

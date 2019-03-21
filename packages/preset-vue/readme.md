@@ -1,6 +1,6 @@
 # @best-shot/preset-vue
 
-Best-shot preset for Vue project
+Best-shot preset for Vue project.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-vue
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-vue.svg?style=flat-square&logo=npm
@@ -30,6 +30,28 @@ npm install @best-shot/preset-vue --save-dev
 // best-shot.config.js
 module.exports = {
   presets: [..., 'vue'],
+  ...
+};
+```
+
+## Tips
+
+Add `JSX` support, use `@vue/babel-preset-jsx` ( [github](https://github.com/vuejs/jsx) | [npm](https://www.npmjs.com/package/@vue/babel-preset-jsx) )
+
+```bash
+npm install @best-shot/preset-babel @vue/babel-preset-jsx --save-dev
+```
+
+```js
+// best-shot.config.js
+module.exports = {
+  presets: [..., 'babel', 'vue'],
+  ...
+};
+
+// babel.config.js
+module.exports = {
+  presets: [..., '@vue/babel-preset-jsx'],
   ...
 };
 ```

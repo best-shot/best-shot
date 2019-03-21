@@ -1,8 +1,8 @@
 declare function imageAvatar(
   options: {
-  /** 头像图片目录 */
-  avatarPath?: string;
+    /** 头像图片目录 */
+    avatarPath?: string;
   } = {}
-): ApplyBatch;
+): (chain: any) => any;
 
 export = imageAvatar;

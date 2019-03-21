@@ -1,8 +1,8 @@
-declare const cherryMap: (
+declare function cherryMap(
   options: {
     /** 匹配需要生成 sourceMap 的文件 */
-    include?: string | RegExp | (RegExp | string)[];
+    include?: string | RegExp | (string | RegExp)[];
   } = {}
-) => ApplyBatch;
+): (chain: any) => any;
 
 export = cherryMap;

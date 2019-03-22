@@ -8,7 +8,7 @@ exports.apply = function applyDevServer({
   return chain =>
     chain.when(serve, config =>
       config.devServer
-        .contentBase([staticPath])
+        .contentBase(staticPath)
         .publicPath(publicPath)
         .merge(devServer)
         .stats(config.get('stats'))
@@ -43,6 +43,7 @@ exports.schema = {
         type: 'string'
       },
       host: {
+        // @ts-ignore
         default: internalIp.v4.sync(),
         type: 'string'
       },

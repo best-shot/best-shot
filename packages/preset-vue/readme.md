@@ -39,12 +39,13 @@ module.exports = {
 Add `JSX` support, use `@vue/babel-preset-jsx` ( [github](https://github.com/vuejs/jsx) | [npm](https://www.npmjs.com/package/@vue/babel-preset-jsx) )
 
 ```bash
-npm install @best-shot/preset-babel @vue/babel-preset-jsx --save-dev
+npm install @vue/babel-preset-jsx --save-dev
 ```
 
 ```js
 // best-shot.config.js
 module.exports = {
+  // add @best-shot/preset-babel
   presets: [..., 'babel', 'vue'],
   ...
 };

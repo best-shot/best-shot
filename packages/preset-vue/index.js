@@ -8,8 +8,10 @@ const childNodeModules = currentPath.relative(module.paths[0]);
 
 exports.apply = function apply() {
   return chain => {
-    const uses = chain.module.rule('style').uses.has('style-loader');
-    if (uses) {
+    const useStyle = chain.module.rule('style').uses.has('style-loader');
+    const useHot = chain.devServer.get('hot');
+
+    if (useStyle) {
       chain.module
         .rule('style')
         .use('style-loader')
@@ -22,7 +24,9 @@ exports.apply = function apply() {
       .loader('vue-loader')
       .options({
         compilerOptions: {
-          preserveWhitespace: false
+          outputSourceRange: true,
+          whitespace: 'condense',
+          hotReload: useHot
         }
       });
     chain.resolveLoader.modules.add(childNodeModules);

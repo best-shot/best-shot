@@ -9,12 +9,12 @@ exports.apply = function applyCopy({
   config: { staticPath }
 }) {
   return chain =>
-    chain.when(staticPath && !serve, config =>
+    chain.when(staticPath && staticPath.length && !serve, config =>
       config.plugin(displayName).use(CopyWebpackPlugin, [
-        {
-          from: staticPath,
+        staticPath.map(dir => ({
+          from: dir,
           to: './'
-        },
+        })),
         {
           ignore: ['.gitkeep'],
           copyUnmodified: true
@@ -26,11 +26,15 @@ exports.apply = function applyCopy({
 exports.schema = {
   staticPath: {
     title: 'Path to serve static file',
-    default: 'static',
+    default: ['static'],
     oneOf: [
       {
-        minLength: 1,
-        type: 'string'
+        items: {
+          minLength: 1,
+          type: 'string'
+        },
+        type: 'array',
+        uniqueItems: true
       },
       {
         const: false

@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/preset-style",
   "description": "Best-shot preset for stylesheet",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "MIT",
   "main": "index.js",
   "author": {

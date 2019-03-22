@@ -3,7 +3,6 @@
     "config:base",
     "group:allNonMajor",
     "schedule:weekdays",
-    ":automergeMinor",
     ":unpublishSafe",
     ":prNotPending"
   ],

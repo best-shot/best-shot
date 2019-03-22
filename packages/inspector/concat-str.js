@@ -24,7 +24,7 @@ function concatStr({
   const text = `// eslint-disable
 
 // Generate by best-shot
-// website: https://www.npmjs.com/package/best-shot
+// website: https://www.npmjs.com/org/best-shot
 // stamp: ${stamp}
 
 exports.schema = ${schema}

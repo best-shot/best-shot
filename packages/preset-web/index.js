@@ -24,7 +24,7 @@ exports.name = 'preset-web';
 
 exports.apply = function applySinglePage({
   mode,
-  options: { serve },
+  options: { serve = false },
   config: { html, vendors, define }
 }) {
   return chain => {

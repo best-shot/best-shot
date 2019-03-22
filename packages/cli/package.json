@@ -1,14 +1,20 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.0.7",
+  "description": "Command-Line Interface for `@best-shot/core`",
+  "version": "0.0.8",
   "license": "MIT",
+  "main": "bin/cli.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
   },
-  "main": "bin/cli.js",
   "bin": {
     "best-shot": "bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/cli"
   },
   "engines": {
     "node": ">=8.10.0"
@@ -18,11 +24,12 @@
     "cli",
     "bundler",
     "scaffold",
+    "terminal",
     "webpack"
   ],
   "dependencies": {
-    "@best-shot/core": "^0.0.6",
-    "browserslist": "^4.5.1",
+    "@best-shot/core": "^0.0.7",
+    "browserslist": "^4.5.2",
     "chalk": "^2.4.2",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.1.0",

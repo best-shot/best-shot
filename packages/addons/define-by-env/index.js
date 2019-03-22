@@ -1,4 +1,5 @@
 const mapKeys = require('lodash/mapKeys');
+// @ts-ignore
 const { cyan } = require('chalk');
 const { parse } = require('@iarna/toml');
 const { readFileSync } = require('fs');
@@ -20,7 +21,11 @@ function parser(path, name) {
   const data = read(path);
   try {
     const {
-      development = {}, production = {}, serve = {}, watch = {}, ...basic
+      development = {},
+      production = {},
+      serve = {},
+      watch = {},
+      ...basic
     } = parse(data);
     return {
       development,
@@ -31,6 +36,7 @@ function parser(path, name) {
     };
   } catch (err) {
     logRedError(`Parse \`${name}\` fail`, err.message);
+    // eslint-disable-next-line no-process-exit
     process.exit(1);
   }
 }
@@ -63,7 +69,9 @@ module.exports = function defineByEnv({
     ...(command === 'serve' ? serve : {})
   };
 
-  const result = inject ? mapKeys(env, (value, key) => `process.env.${key}`) : env;
+  const result = inject
+    ? mapKeys(env, (value, key) => `process.env.${key}`)
+    : env;
 
   console.log(cyan`DEFINE-BY-ENV:`, command, pretty(result));
   return result;

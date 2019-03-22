@@ -43,6 +43,7 @@ exports.schema = {
         type: 'string'
       },
       host: {
+        // @ts-ignore
         default: internalIp.v4.sync(),
         type: 'string'
       },

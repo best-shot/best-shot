@@ -25,7 +25,7 @@ exports.apply = function applyBasic({
       .end();
 
     chain.output
-      .path(currentPath(outputPath, `${platform}-${shorthand[mode]}`))
+      .path(currentPath.resolve(outputPath, `${platform}-${shorthand[mode]}`))
       .publicPath(publicPath)
       .filename('[name].js')
       .end();

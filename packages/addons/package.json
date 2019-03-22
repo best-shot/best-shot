@@ -1,7 +1,7 @@
 {
   "name": "best-shot-addons",
   "description": "Tool set for Best-shot",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "license": "MIT",
   "main": "index.js",
   "author": {

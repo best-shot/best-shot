@@ -27,7 +27,7 @@ function getPkg(path) {
 module.exports = function setHtml(chain, { html = {}, define }) {
   const defaultOptions = {
     inject: 'head',
-    template: currentPath.relative('src/index.html'),
+    template: currentPath.relative('src', 'index.html'),
     templateParameters: objectFilter({
       title: 'BEST-SHOT Project',
       define,

@@ -36,7 +36,9 @@ module.exports = {
 
 ## Tips
 
-Add `JSX` support, use `@vue/babel-preset-jsx` ( [github](https://github.com/vuejs/jsx) | [npm](https://www.npmjs.com/package/@vue/babel-preset-jsx) )
+### Add `JSX` support
+
+Use `@vue/babel-preset-jsx` ( [github](https://github.com/vuejs/jsx) | [npm](https://www.npmjs.com/package/@vue/babel-preset-jsx) )
 
 ```bash
 npm install @vue/babel-preset-jsx --save-dev
@@ -56,3 +58,9 @@ module.exports = {
   ...
 };
 ```
+
+### Whitespace options override
+
+`compilerOptions.whitespace` of `vue-loader` is set to `condense`.
+
+See: <https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler#options>

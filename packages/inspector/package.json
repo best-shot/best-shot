@@ -1,19 +1,27 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.0.0",
+  "description": "Inspect support for `@best-shot/cli`",
+  "version": "0.0.1",
   "license": "MIT",
+  "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
   },
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/inspector"
+  },
   "engines": {
     "node": ">=8.10.0"
   },
   "keywords": [
     "best-shot",
     "cli",
+    "generate",
     "inspector",
+    "terminal",
     "webpack"
   ],
   "dependencies": {
@@ -22,6 +30,6 @@
     "prettier": "^1.16.4"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.0.6"
+    "@best-shot/cli": ">=0.0.8"
   }
 }

@@ -2933,10 +2933,10 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.npmjs.org/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
-copy-webpack-plugin@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.npmjs.org/copy-webpack-plugin/-/copy-webpack-plugin-5.0.1.tgz#97997989cc5bc69976bf64f660bd19663481f089"
-  integrity sha512-yMTURAkYZO/6h6pGMbHQl2jpKtRNC+0Cy/4kRRP6qUHmpbGGAzNnyMecE6aHgGFCb4ksrL3YcDqYGb8ds3J9cw==
+copy-webpack-plugin@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.npmjs.org/copy-webpack-plugin/-/copy-webpack-plugin-5.0.2.tgz#56186dfddbf9aa1b29c97fa4c796c1be98870da4"
+  integrity sha512-7nC7EynPrnBTtBwwbG1aTqrfNS1aTb9eEjSmQDqFtKAsJrR3uDb+pCDIFT2LzhW+SgGJxQcYzThrmXzzZ720uw==
   dependencies:
     cacache "^11.3.1"
     find-cache-dir "^2.0.0"
@@ -3728,7 +3728,7 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-docusaurus@^1.7.2:
+docusaurus@^1.7.3:
   version "1.7.3"
   resolved "https://registry.npmjs.org/docusaurus/-/docusaurus-1.7.3.tgz#c3546ec83ca83f5840c46b529e54f12b8f6fb565"
   integrity sha512-FiMtqdX2ytp176ahp+F3epqe0KyTZ12jx2xw2NLmgxCd7d9rbZ6bWHHHGjevi77VhXnM1ZUZQZkmsh3Hl+TlGA==
@@ -4531,10 +4531,10 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-css-chunks-webpack-plugin@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.npmjs.org/extract-css-chunks-webpack-plugin/-/extract-css-chunks-webpack-plugin-4.0.1.tgz#8a25ecf89e4a31d74351e487e616ecc79e873052"
-  integrity sha512-axin0Qz65T4ZQl8FEGW1ZN31kwUJOO7CoiWv0aTupYjmmQdtr56qsW061MuLglzTNwDKTcSe7KbtuzMZ5uc3Cw==
+extract-css-chunks-webpack-plugin@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.npmjs.org/extract-css-chunks-webpack-plugin/-/extract-css-chunks-webpack-plugin-4.0.2.tgz#67c1de090079247b9eb4f9d179cd2717ca43c361"
+  integrity sha512-svwrtf8iENEm5DRhzJp2qpfvapEsVEkrElqUqz8/ZtyfvKA8uT6y4GneOgKBCKK6oh+iVPSHZ+FrI89sxG6EOQ==
   dependencies:
     loader-utils "^1.1.0"
     lodash "^4.17.11"
@@ -12114,10 +12114,10 @@ webpack-bundle-analyzer@^3.1.0:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-chain@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.npmjs.org/webpack-chain/-/webpack-chain-5.2.2.tgz#5018d49b0d41cedb5609ed63a4d5c5d2f88fff1a"
-  integrity sha512-543uSulIfWmJWPPFkt334U2EjMkCojEsaBj4KXn9+RbR4ST+FKSk7JpMYal6YiTzcuB0xj4uXKB8P5iTmP98uQ==
+webpack-chain@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.npmjs.org/webpack-chain/-/webpack-chain-5.2.3.tgz#dbe782b1ae3c8a3658600dbb85be0cc8c6eee94d"
+  integrity sha512-4s4X02RiiPKz3v9LwSCTNUyieY8EOfj0DflUC2ySUvtj2/IWH+ai9Orz07uYiQ4l/knR5U88Q9Nty3Oay6OGGw==
   dependencies:
     deepmerge "^1.5.2"
     javascript-stringify "^2.0.0"

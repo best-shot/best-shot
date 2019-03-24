@@ -5,7 +5,7 @@
   "devDependencies": {
     "diff": "^4.0.1",
     "diff2html": "^2.7.0",
-    "docusaurus": "^1.7.2"
+    "docusaurus": "^1.7.3"
   },
   "scripts": {
     "examples": "docusaurus-examples",

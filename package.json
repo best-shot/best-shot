@@ -10,10 +10,19 @@
     "packages/*",
     "website"
   ],
+  "dependencies": {
+    "core-js": "^3.0.0",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "vue": "^2.6.10"
+  },
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "docsify-cli": "^4.3.0",
     "jest": "^24.5.0",
     "nodemon": "^1.18.10",
-    "source-map": "^0.7.3"
+    "source-map": "^0.7.3",
+    "webpack": "^4.29.6"
   },
   "optionalDependencies": {
     "@nice-move/eslint-config-base": "^0.0.2",
@@ -28,7 +37,7 @@
   },
   "scripts": {
     "inspect": "best-shot inspect --stamp test",
-    "docs": "cd website && nodemon --config ../nodemon.json",
+    "docs": "nodemon",
     "format": "lint-staged",
     "test": "jest"
   },

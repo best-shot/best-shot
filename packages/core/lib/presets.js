@@ -6,7 +6,8 @@ const allowPresets = [
   'vue',
   'web',
   'megalo',
-  'airkro'
+  'airkro',
+  'env'
 ];
 
 function sortPresets([...data]) {

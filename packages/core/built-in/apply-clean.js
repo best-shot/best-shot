@@ -1,6 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const displayName = 'clean-output';
+const displayName = 'clean';
 
 exports.name = displayName;
 

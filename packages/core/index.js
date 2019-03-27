@@ -4,7 +4,7 @@ const builtIn = require('./built-in/index');
 const Schema = require('./schema/index');
 const Stack = require('./stack');
 
-const types = ['before', 'presets', 'after'];
+const types = ['built-in', 'additional'];
 
 const defaultOptions = {
   watch: false,
@@ -18,17 +18,14 @@ module.exports = class BestShot {
     this.stack = new Stack();
     this.locked = false;
 
-    builtIn.before.forEach(plugin => {
-      this.use(plugin, 'before');
+    builtIn.forEach(preset => {
+      this.use(preset, types[0]);
     });
     if (presets.length) {
       importPresets(presets).forEach(preset => {
-        this.use(preset, 'presets');
+        this.use(preset, types[1]);
       });
     }
-    builtIn.after.forEach(plugin => {
-      this.use(plugin, 'after');
-    });
 
     return this;
   }
@@ -41,7 +38,7 @@ module.exports = class BestShot {
 
   use({ apply, schema, name = 'Unnamed' } = {}, type) {
     if (!types.includes(type)) {
-      throw Error(`Can't use [${name}]`);
+      throw Error(`Can't use ${type} presets: [${name}]`);
     }
 
     if (typeof apply === 'function') {

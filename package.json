@@ -26,6 +26,7 @@
   },
   "optionalDependencies": {
     "@nice-move/eslint-config-base": "^0.0.2",
+    "@types/jest": "^24.0.11",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.15.3",
     "eslint-plugin-jest": "^22.4.1",

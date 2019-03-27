@@ -73,4 +73,10 @@ module.exports = function setHtml(chain, { html = {}, define }) {
     .test(extToRegexp('tpl'))
     .use('micro-tpl-loader')
     .loader('micro-tpl-loader');
+
+  if (chain.module.rules.has('babel')) {
+    chain.module
+      .rule('babel')
+      .exclude.add(/[\\/]node_modules[\\/]micromustache[\\/]/);
+  }
 };

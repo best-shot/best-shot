@@ -30,8 +30,9 @@ exports.apply = function applySinglePage({
   return chain => {
     const useHot = chain.devServer.get('hot');
     const minimize = chain.optimization.get('minimize');
-    return chain
-      .devtool(sourceMap(mode, serve))
+    chain.devtool(sourceMap(mode, serve));
+
+    chain
       .when(minimize, config => setOutputName(config, { both: addMin }))
       .when(!useHot, config => setOutputName(config, { both: addHash }))
       .batch(config =>
@@ -39,9 +40,10 @@ exports.apply = function applySinglePage({
           script: filename => `script/${filename}`,
           style: filename => `style/${filename}`
         })
-      )
-      .batch(config => splitChunks(config, { serve, vendors }))
-      .batch(config => setHtml(config, { html, define }));
+      );
+
+    chain.batch(config => splitChunks(config, { serve, vendors }));
+    chain.batch(config => setHtml(config, { html, define }));
   };
 };
 

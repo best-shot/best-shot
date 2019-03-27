@@ -6,7 +6,7 @@
   "*.{json,html,md,toml}": [
     "prettier --write"
   ],
-  ".*rc": [
+  ".{prettier,eslint}rc": [
     "prettier --write"
   ]
 }

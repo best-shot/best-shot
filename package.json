@@ -3,12 +3,19 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git"
+  },
   "engines": {
     "node": ">=8.10.0"
   },
   "workspaces": [
-    "packages/*",
-    "website"
+    "packages/*"
   ],
   "dependencies": {
     "core-js": "^3.0.0",

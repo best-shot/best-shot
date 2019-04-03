@@ -67,7 +67,8 @@ module.exports = function server({
     contentBase,
     headers,
     publicPath,
-    clientLogLevel
+    clientLogLevel,
+    writeToDisk
   } = {},
   stats,
   ...webpackConfig
@@ -84,7 +85,8 @@ module.exports = function server({
         publicPath,
         logLevel: clientLogLevel,
         headers,
-        stats
+        stats,
+        writeToDisk
       },
       hotClient: hot
         ? {

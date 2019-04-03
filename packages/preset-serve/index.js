@@ -3,13 +3,13 @@ const mapValues = require('lodash/mapValues');
 
 exports.apply = function applyDevServer({
   options: { serve, port },
-  config: { devServer = {}, staticPath, publicPath }
+  config: { devServer = {}, staticPath, publicPath = '' }
 }) {
   return chain =>
     chain.when(serve, config =>
       config.devServer
         .contentBase(staticPath)
-        .publicPath(publicPath)
+        .publicPath(publicPath[0] === '/' ? publicPath : '/')
         .merge(devServer)
         .stats(config.get('stats'))
         .when(port, conf => conf.port(port))

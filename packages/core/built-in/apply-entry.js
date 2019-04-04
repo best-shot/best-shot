@@ -1,3 +1,5 @@
+exports.name = 'entry';
+
 exports.apply = function applyEntry({ config: { entry } }) {
   return config =>
     config.merge({

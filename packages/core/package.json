@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/core",
-  "description": "Core api for create 'best-shot' config chain",
-  "version": "0.0.7",
+  "description": "Create 'best-shot' config chain",
+  "version": "0.0.8",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -35,6 +35,6 @@
     "lodash": "^4.17.11",
     "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.29.6",
-    "webpack-chain": "^5.2.3"
+    "webpack-chain": "^5.2.4"
   }
 }

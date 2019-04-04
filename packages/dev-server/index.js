@@ -67,7 +67,8 @@ module.exports = function server({
     contentBase,
     headers,
     publicPath,
-    clientLogLevel
+    clientLogLevel,
+    writeToDisk
   } = {},
   stats,
   ...webpackConfig
@@ -84,7 +85,8 @@ module.exports = function server({
         publicPath,
         logLevel: clientLogLevel,
         headers,
-        stats
+        stats,
+        writeToDisk
       },
       hotClient: hot
         ? {
@@ -102,7 +104,7 @@ module.exports = function server({
           )}`
         );
         if (contentBase) {
-          contentBase.forEach(dir => {
+          (Array.isArray ? contentBase : [contentBase]).forEach(dir => {
             app.use(wrapStatic(publicPath, dir));
           });
           log.info(

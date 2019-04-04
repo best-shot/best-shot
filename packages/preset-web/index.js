@@ -12,6 +12,11 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
+const addFold = {
+  script: filename => `script/${filename}`,
+  style: filename => `style/${filename}`
+};
+
 function sourceMap(mode = 'development', serve = false) {
   return mode === 'production'
     ? false
@@ -30,18 +35,15 @@ exports.apply = function applySinglePage({
   return chain => {
     const useHot = chain.devServer.get('hot');
     const minimize = chain.optimization.get('minimize');
-    return chain
-      .devtool(sourceMap(mode, serve))
+    chain.devtool(sourceMap(mode, serve));
+
+    chain
       .when(minimize, config => setOutputName(config, { both: addMin }))
       .when(!useHot, config => setOutputName(config, { both: addHash }))
-      .batch(config =>
-        setOutputName(config, {
-          script: filename => `script/${filename}`,
-          style: filename => `style/${filename}`
-        })
-      )
-      .batch(config => splitChunks(config, { serve, vendors }))
-      .batch(config => setHtml(config, { html, define }));
+      .batch(config => setOutputName(config, addFold));
+
+    chain.batch(config => splitChunks(config, { vendors }));
+    chain.batch(config => setHtml(config, { html, define }));
   };
 };
 

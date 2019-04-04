@@ -1,12 +1,15 @@
 {
   "*.js": [
     "prettier --write",
-    "eslint --fix"
+    "eslint --fix",
+    "git add"
   ],
   "*.{json,html,md,toml}": [
-    "prettier --write"
+    "prettier --write",
+    "git add"
   ],
-  ".*rc": [
-    "prettier --write"
+  ".{prettier,eslint}rc": [
+    "prettier --write",
+    "git add"
   ]
 }

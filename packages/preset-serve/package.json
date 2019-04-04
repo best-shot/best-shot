@@ -1,12 +1,17 @@
 {
   "name": "@best-shot/preset-serve",
-  "description": "A best-shot preset for dev server",
-  "version": "0.0.1",
+  "description": "BestShot preset for development server",
+  "version": "0.0.3",
   "license": "MIT",
   "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-serve"
   },
   "engines": {
     "node": ">=8.10.0"

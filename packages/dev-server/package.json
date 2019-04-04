@@ -1,17 +1,32 @@
 {
   "name": "best-shot-dev-server",
-  "version": "0.0.20",
+  "version": "0.0.22",
   "license": "MIT",
   "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/dev-server"
+  },
   "engines": {
     "node": ">=8.10.0"
   },
+  "keywords": [
+    "best-shot",
+    "bundler",
+    "dev-server",
+    "hmr",
+    "packager",
+    "scaffold",
+    "serve",
+    "webpack"
+  ],
   "dependencies": {
-    "@best-shot/preset-serve": "^0.0.1",
+    "@best-shot/preset-serve": "^0.0.3",
     "chalk": "^2.4.2",
     "connect-history-api-fallback": "^1.6.0",
     "http-proxy-middleware": "^0.19.1",

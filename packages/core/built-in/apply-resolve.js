@@ -1,22 +1,14 @@
 exports.name = 'resolve';
 
-exports.apply = function applyResolve({ options: { serve } }) {
+exports.apply = function applyResolve() {
   return chain => {
-    chain
-      .batch(config =>
-        config.resolve.merge({
-          symlinks: false,
-          extensions: ['.mjs', '.js', '.json'],
-          modules: ['node_modules'],
-          mainFields: serve
-            ? ['browser', 'main', 'module']
-            : ['module', 'browser', 'main']
-        })
-      )
-      .batch(config =>
-        config.resolveLoader.merge({
-          modules: ['node_modules']
-        })
-      );
+    chain.resolve.merge({
+      symlinks: false,
+      extensions: ['.mjs', '.js', '.json'],
+      modules: ['node_modules'],
+      mainFields: ['module', 'browser', 'main']
+    });
+
+    chain.resolveLoader.modules.prepend('node_modules');
   };
 };

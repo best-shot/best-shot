@@ -4,28 +4,22 @@ const displayName = 'copy';
 
 exports.name = displayName;
 
-exports.apply = function applyCopy({
-  options: { serve },
-  config: { staticPath }
-}) {
-  return chain =>
-    chain.when(staticPath && staticPath.length && !serve, config =>
-      config.plugin(displayName).use(CopyWebpackPlugin, [
-        staticPath.map(dir => ({
-          from: dir,
-          to: './'
-        })),
-        {
-          ignore: ['.gitkeep'],
-          copyUnmodified: true
-        }
-      ])
-    );
+exports.apply = function applyCopy({ config: { staticPath } }) {
+  return chain => {
+    chain.when(staticPath && staticPath.length, config => {
+      config
+        .plugin(displayName)
+        .use(CopyWebpackPlugin, [
+          staticPath.map(dir => ({ from: dir, to: './' })),
+          { ignore: ['.gitkeep'] }
+        ]);
+    });
+  };
 };
 
 exports.schema = {
   staticPath: {
-    title: 'Path to serve static file',
+    title: 'Paths to place static file without compile',
     default: ['static'],
     oneOf: [
       {

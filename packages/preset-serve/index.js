@@ -3,12 +3,11 @@ const mapValues = require('lodash/mapValues');
 
 exports.apply = function applyDevServer({
   options: { serve, port },
-  config: { devServer = {}, staticPath, publicPath = '' }
+  config: { devServer = {}, publicPath = '' }
 }) {
   return chain =>
     chain.when(serve, config =>
       config.devServer
-        .contentBase(staticPath)
         .publicPath(publicPath[0] === '/' ? publicPath : '/')
         .merge(devServer)
         .stats(config.get('stats'))
@@ -33,7 +32,7 @@ exports.apply = function applyDevServer({
 
 exports.schema = {
   devServer: {
-    description: '自定义 DevServer 配置，会与预设合并',
+    description: 'Options of devServer',
     type: 'object',
     default: {},
     properties: {

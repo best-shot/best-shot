@@ -739,6 +739,23 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@best-shot/core@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.npmjs.org/@best-shot/core/-/core-0.0.7.tgz#368fd5a4de50f1a43f57041e8f490bbe45fb01bd"
+  integrity sha512-MPNZCNuSPdVfgW513nwy8sWt+T0aJh3uDzshBrvc5P1wM3bSb5mzn22o3VxbJhMORFt9wApzhrSFLxoNgUmVIg==
+  dependencies:
+    ajv "^6.10.0"
+    case-sensitive-paths-webpack-plugin "^2.2.0"
+    chalk "^2.4.2"
+    clean-webpack-plugin "^2.0.1"
+    copy-webpack-plugin "^5.0.1"
+    deepmerge "^3.2.0"
+    ext-to-regexp "^0.0.3"
+    lodash "^4.17.11"
+    terser-webpack-plugin "^1.2.3"
+    webpack "^4.29.6"
+    webpack-chain "^5.2.2"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.npmjs.org/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
@@ -2779,7 +2796,7 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.npmjs.org/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
-copy-webpack-plugin@^5.0.2:
+copy-webpack-plugin@^5.0.1, copy-webpack-plugin@^5.0.2:
   version "5.0.2"
   resolved "https://registry.npmjs.org/copy-webpack-plugin/-/copy-webpack-plugin-5.0.2.tgz#56186dfddbf9aa1b29c97fa4c796c1be98870da4"
   integrity sha512-7nC7EynPrnBTtBwwbG1aTqrfNS1aTb9eEjSmQDqFtKAsJrR3uDb+pCDIFT2LzhW+SgGJxQcYzThrmXzzZ720uw==
@@ -11280,7 +11297,7 @@ webpack-bundle-analyzer@^3.1.0:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-chain@^5.2.4:
+webpack-chain@^5.2.2, webpack-chain@^5.2.4:
   version "5.2.4"
   resolved "https://registry.npmjs.org/webpack-chain/-/webpack-chain-5.2.4.tgz#cc3665a296a6edcda738324599103ac6e215dda3"
   integrity sha512-3g0uIbzM/EWnmf52bYhB5IZeBZiw5g9vNqF4iTBEqabpxGxcv+Aj9oL4Cvr19ujOsv/HPvpRFRPLZ/aylv10Wg==

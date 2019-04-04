@@ -104,7 +104,7 @@ module.exports = function server({
           )}`
         );
         if (contentBase) {
-          contentBase.forEach(dir => {
+          (Array.isArray ? contentBase : [contentBase]).forEach(dir => {
             app.use(wrapStatic(publicPath, dir));
           });
           log.info(

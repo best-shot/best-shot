@@ -1,6 +1,6 @@
 # @best-shot/core
 
-Core api for `best-shot`.
+Create 'best-shot' config chain.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/core
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/core.svg?style=flat-square&logo=npm
@@ -18,6 +18,7 @@ This preset includes the following packages:
 - clean-webpack-plugin
 - copy-webpack-plugin
 - terser-webpack-plugin
+- webpack-chain
 
 ## Installation
 
@@ -30,5 +31,5 @@ npm install @best-shot/core --save-dev
 ```js
 const BestShot = require('@best-shot/core');
 
-const config = new BestShot().load();
+const chain = new BestShot().load();
 ```

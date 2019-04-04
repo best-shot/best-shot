@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/core",
-  "description": "Core api for create 'best-shot' config chain",
-  "version": "0.0.7",
+  "description": "Create 'best-shot' config chain",
+  "version": "0.0.8",
   "license": "MIT",
   "main": "index.js",
   "author": {

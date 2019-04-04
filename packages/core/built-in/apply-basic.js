@@ -1,5 +1,5 @@
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const { currentPath } = require('../../lib/common');
+const { currentPath } = require('../lib/common');
 
 exports.name = 'basic';
 

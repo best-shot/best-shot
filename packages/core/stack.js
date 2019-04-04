@@ -1,6 +1,9 @@
 module.exports = class Stack {
   constructor() {
-    this.store = Object.freeze({ before: [], presets: [], after: [] });
+    this.store = Object.freeze({
+      'built-in': [],
+      additional: []
+    });
     return this;
   }
 
@@ -9,7 +12,7 @@ module.exports = class Stack {
   }
 
   setup(params) {
-    const { before, after, presets } = this.store;
-    return [...before, ...presets, ...after].map(apply => apply(params));
+    const { additional, 'built-in': builtIn } = this.store;
+    return [...builtIn, ...additional].map(apply => apply(params));
   }
 };

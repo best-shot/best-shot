@@ -4,7 +4,7 @@ const BestShot = require('@best-shot/core');
 describe('Add Presets', () => {
   test('Right presets enum', () => {
     const io = new BestShot({ presets: ['babel'] });
-    expect(io.stack.store.presets.length).toBe(1);
+    expect(io.stack.store.additional.length).toBe(1);
   });
 
   test('Wrong presets enum', () => {
@@ -25,6 +25,7 @@ describe('Add Presets', () => {
     const io = new BestShot({
       presets: ['babel', 'style', 'vue', 'web']
     });
+    expect(io.stack.store.additional.length).toBe(4);
     const { rules } = io.load().module;
     expect(rules.has('babel')).toBe(true);
     expect(rules.has('style')).toBe(true);

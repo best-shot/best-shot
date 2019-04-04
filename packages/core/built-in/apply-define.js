@@ -7,7 +7,8 @@ exports.name = displayName;
 
 exports.apply = function applyDefine({
   config: { define },
-  mode,
+  mode: NODE_ENV,
+  platform: PLATFORM,
   options: { serve, watch }
 }) {
   return chain => {
@@ -20,7 +21,8 @@ exports.apply = function applyDefine({
       .plugin('environment')
       .use(EnvironmentPlugin, [
         {
-          NODE_ENV: mode,
+          NODE_ENV,
+          PLATFORM,
           DEBUG: serve || watch
         }
       ])

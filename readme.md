@@ -20,6 +20,7 @@ A webpack config wrapper.
 - [@best-shot/preset-serve](./packages/preset-serve/)
 - [@best-shot/preset-style](./packages/preset-style/)
 - [@best-shot/preset-vue](./packages/preset-vue/)
+- [@best-shot/preset-env](./packages/preset-env/)
 - [@best-shot/preset-web](./packages/preset-web/)
 - [best-shot-dev-server](./packages/best-shot-dev-server/)
 

@@ -1,28 +1,8 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-const { defineByEnv } = require('best-shot-addons/tool');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const { srcAlias } = require('best-shot-addons');
-
-module.exports = ({ command }) => ({
-  presets: ['babel', 'style', 'vue', 'web'],
-  html: {
-    title: 'App Title',
-    templateParameters: {
-      abc: 0
-    }
-  },
-  define: defineByEnv({ command }),
-  devServer: {
-    port: 80,
-    proxy: {
-      '/proxy/': {
-        changeOrigin: true,
-        target: 'http://192.168.1.238:8048/',
-        pathRewrite: {
-          '^/proxy/': '/'
-        }
-      }
-    }
-  },
-  webpackChain: chain => chain.batch(srcAlias())
-});
+module.exports = {
+  presets: ['env'],
+  staticPath: false,
+  define: {
+    a: 1,
+    abc: 100
+  }
+};

@@ -22,4 +22,9 @@ npm install @best-shot/cli --save-dev
 
 ```bash
 best-shot <command> [options]
+
+# examples:
+best-shot watch
+best-shot dev
+best-shot prod
 ```

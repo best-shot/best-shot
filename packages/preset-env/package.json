@@ -1,0 +1,25 @@
+{
+  "name": "@best-shot/preset-env",
+  "description": "Best-shot preset for env config",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-env"
+  },
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.3",
+    "chalk": "^2.4.2",
+    "lodash": "^4.17.11",
+    "suffix": "^1.0.0"
+  }
+}

@@ -22,7 +22,8 @@ module.exports = function action({
     const { webpackChain, presets, ...config } = configFunc({
       command,
       custom,
-      platform
+      platform,
+      analyze
     });
 
     if (command === 'serve') {
@@ -52,6 +53,7 @@ module.exports = function action({
     handle(command, io);
   } catch (err) {
     logRedError(err.message, err.extra);
+    // eslint-disable-next-line no-process-exit
     process.exit(1);
   }
 };

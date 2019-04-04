@@ -1,42 +1,34 @@
-const { relative, resolve } = require('path');
 const extToRegexp = require('ext-to-regexp');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-function currentPath(src = '') {
-  return resolve(process.cwd(), src);
-}
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { currentPath } = require('@best-shot/core/lib/common');
 
-const childNodeModules = relative(
-  currentPath(),
-  resolve(__dirname, './node_modules')
-);
+const childNodeModules = currentPath.relative(module.paths[0]);
 
 exports.apply = function apply() {
   return chain => {
-    const useHot = chain.devServer.get('hot');
-    return (
-      chain
-        .when(useHot && chain.module.rules.has('style'), config =>
-          config.module
-            .rule('style')
-            .use('style-loader')
-            .loader('vue-style-loader')
-        )
-        .batch(config =>
-          config.module
-            .rule('vue')
-            .test(extToRegexp('vue'))
-            .use('vue-loader')
-            .loader('vue-loader')
-            .options({
-              compilerOptions: {
-                preserveWhitespace: false
-              }
-            })
-        )
-        // .batch(config => config.resolve.extensions.prepend('.vue'))
-        .batch(config => config.resolveLoader.modules.add(childNodeModules))
-        .batch(config => config.plugin('vue').use(VueLoaderPlugin))
-    );
+    const useStyle = chain.module.rule('style').uses.has('style-loader');
+    const useHot = chain.devServer.get('hot') || false;
+
+    if (useStyle) {
+      chain.module
+        .rule('style')
+        .use('style-loader')
+        .loader('vue-style-loader');
+    }
+    chain.module
+      .rule('vue')
+      .test(extToRegexp('vue'))
+      .use('vue-loader')
+      .loader('vue-loader')
+      .options({
+        compilerOptions: {
+          whitespace: 'condense',
+          hotReload: useHot
+        }
+      });
+    chain.resolveLoader.modules.add(childNodeModules);
+    chain.plugin('vue').use(VueLoaderPlugin);
   };
 };

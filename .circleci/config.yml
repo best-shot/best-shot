@@ -1,0 +1,53 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+
+unit_tests: &unit_tests
+  steps:
+    - checkout
+
+    # Download and cache dependencies
+    - restore_cache:
+        name: Restore Yarn Package Cache
+        keys:
+          - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - yarn-packages-v1-{{ .Branch }}-
+          - yarn-packages-v1-
+
+    - run:
+        name: Install Dependencies
+        command: yarn install
+
+    - save_cache:
+        name: Save Yarn Package Cache
+        key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        paths:
+          - ~/.cache/yarn
+          - node_modules
+
+    # run tests!
+    - run: yarn test
+
+version: 2
+jobs:
+  node-8:
+    docker:
+      - image: circleci/node:8.15.1
+    <<: *unit_tests
+  node-10:
+    docker:
+      - image: circleci/node:10
+    <<: *unit_tests
+  node-latest:
+    docker:
+      - image: circleci/node:latest
+    <<: *unit_tests
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - node-8
+      - node-10
+      - node-latest

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "target": "es2018",
+    "checkJs": false
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

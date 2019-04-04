@@ -1,14 +1,14 @@
-function findPkg(name) {
+function findPkg() {
   try {
-    // eslint-disable-next-line global-require, import/no-dynamic-require
-    return require(name);
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    return require('@best-shot/inspector');
   } catch (err) {
     return undefined;
   }
 }
 
-module.exports = function installPkg(app, name) {
-  const inspector = findPkg(name);
+module.exports = function installPkg(app) {
+  const inspector = findPkg();
   if (inspector) {
     app.command(inspector);
   }

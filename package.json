@@ -3,34 +3,54 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git"
+  },
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=8.10.0"
   },
   "workspaces": [
-    "packages/*",
-    "website"
+    "packages/*"
   ],
+  "dependencies": {
+    "core-js": "^3.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "vue": "^2.6.10"
+  },
   "devDependencies": {
-    "docusaurus-init": "1.0.2",
-    "jest": "24.1.0",
-    "nodemon": "1.18.10"
+    "@babel/core": "^7.4.3",
+    "docsify-cli": "^4.3.0",
+    "jest": "^24.7.1",
+    "nodemon": "^1.18.10",
+    "webpack": "^4.29.6"
   },
   "optionalDependencies": {
+    "@nice-move/eslint-config-base": "^0.0.2",
+    "@types/jest": "^24.0.11",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.14.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.3.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-jest": "^22.4.1",
     "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "lint-staged": "^8.1.4",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
     "prettier": "^1.16.4",
     "prettier-plugin-toml": "^0.3.1"
   },
   "scripts": {
     "inspect": "best-shot inspect --stamp test",
-    "docs": "cd website && nodemon --config ../nodemon.json",
+    "docs": "nodemon",
     "format": "lint-staged",
     "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && jest"
+    }
   }
 }

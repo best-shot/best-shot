@@ -3,9 +3,6 @@
     "@nice-move/eslint-config-base",
     "plugin:node/recommended"
   ],
-  "parserOptions": {
-    "parser": "babel-eslint"
-  },
   "rules": {
     "camelcase": "off",
     "function-paren-newline": "off",
@@ -15,7 +12,6 @@
       {
         "allowModules": [
           "webpack",
-          "@babel/polyfill",
           "@best-shot/core",
           "@best-shot/cli",
           "@best-shot/inspector",

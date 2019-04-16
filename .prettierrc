@@ -1,6 +1,4 @@
 {
-  "singleQuote": true,
-  "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "ignore",
   "overrides": [
     {

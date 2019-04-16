@@ -7,43 +7,50 @@ module.exports = function applyStylesheet({ browsers, mode }) {
   return chain => {
     const useHot = chain.devServer.get('hot');
     const minimize = chain.optimization.get('minimize');
-    return chain
-      .batch(config => config.resolve.extensions.add('.css'))
-      .when(!useHot, conf =>
-        conf
-          .plugin('extract-css')
-          .use(ExtractCssChunksPlugin, [{ filename: '[name].css' }])
-      )
-      .when(minimize, config =>
-        config.optimization
-          .minimizer('optimize-css')
-          .use(OptimizeCssnanoPlugin, [
-            {
-              sourceMap: false,
-              cssnanoOptions: {
-                preset: [
-                  'default',
-                  {
-                    // mergeLonghand: false,
-                    discardComments: {
-                      removeAll: true
-                    }
-                  }
-                ]
+
+    chain.resolve.extensions.add('.css');
+
+    if (!useHot) {
+      chain.plugin('extract-css').use(ExtractCssChunksPlugin, [
+        {
+          filename: '[name].css'
+        }
+      ]);
+    }
+
+    if (minimize) {
+      chain.optimization.minimizer('optimize-css').use(OptimizeCssnanoPlugin, [
+        {
+          sourceMap: false,
+          cssnanoOptions: {
+            preset: [
+              'default',
+              {
+                // mergeLonghand: false,
+                discardComments: {
+                  removeAll: true
+                }
               }
-            }
-          ])
-      )
-      .module.rule('style')
+            ]
+          }
+        }
+      ]);
+    }
+
+    chain.module
+      .rule('style')
       .test(extToRegexp('css'))
       .when(
         useHot,
-        rule =>
+        rule => {
           rule
             .use('style-loader')
             .loader('style-loader')
-            .options({ sourceMap: mode === 'development' }),
-        rule => rule.use('extract-css').loader(ExtractCssChunksPlugin.loader)
+            .options({ sourceMap: mode === 'development' });
+        },
+        rule => {
+          rule.use('extract-css').loader(ExtractCssChunksPlugin.loader);
+        }
       )
       .use('css-loader')
       .loader('css-loader')
@@ -52,12 +59,18 @@ module.exports = function applyStylesheet({ browsers, mode }) {
         importLoaders: 3
       })
       .end()
-      .use('postcss')
+      .use('postcss-loader')
       .loader('postcss-loader')
       .options({
         ident: 'postcss',
         sourceMap: mode === 'development',
         plugins: [Autoprefixer({ browsers })]
       });
+
+    if (chain.module.rules.has('babel')) {
+      chain.module
+        .rule('babel')
+        .exclude.add(/[\\/]node_modules[\\/]css-loader[\\/]/);
+    }
   };
 };

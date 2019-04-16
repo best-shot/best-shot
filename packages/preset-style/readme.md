@@ -1,6 +1,6 @@
 # @best-shot/preset-style
 
-Best-shot preset for stylesheet.
+A `best-shot` preset for stylesheet.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-style
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-style.svg?style=flat-square&logo=npm

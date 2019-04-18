@@ -1,5 +1,10 @@
 const extToRegexp = require('ext-to-regexp');
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { currentPath } = require('@best-shot/core/lib/common');
+
+const childNodeModules = currentPath.relative(module.paths[0]);
+
 const displayName = 'babel';
 
 exports.name = displayName;
@@ -7,7 +12,9 @@ exports.name = displayName;
 exports.apply = function applyBabel({
   browsers,
   mode = 'production',
-  config: { polyfill = false }
+  config: {
+    polyfill: { useBuiltIns, corejs }
+  }
 }) {
   return chain => {
     chain.module
@@ -27,8 +34,8 @@ exports.apply = function applyBabel({
             '@babel/env',
             {
               modules: false,
-              useBuiltIns: polyfill,
-              corejs: 3,
+              useBuiltIns,
+              corejs,
               targets: { browsers }
             }
           ]
@@ -42,15 +49,31 @@ exports.apply = function applyBabel({
           '@babel/proposal-class-properties'
         ]
       });
+
+    chain.resolveLoader.modules.add(childNodeModules);
   };
 };
 
 exports.schema = {
   polyfill: {
-    default: false,
-    title: '@babel/preset-env options: `useBuiltIns`',
+    default: {},
     description:
-      'To know how babel handles polyfills, See <https://babeljs.io/docs/en/babel-preset-env#usebuiltins>.',
-    enum: ['entry', 'usage', false]
+      'How @babel/preset-env handles polyfills, See <https://babeljs.io/docs/en/babel-preset-env>.',
+    properties: {
+      corejs: {
+        default: 3,
+        description:
+          '`options.corejs` of @babel/preset-env, but `options.corejs.proposals` always be false',
+        enum: [2, 3]
+      },
+      useBuiltIns: {
+        default: false,
+        description: '`options.useBuiltIns` of @babel/preset-env.',
+        enum: ['entry', 'usage', false]
+      }
+    },
+    required: ['useBuiltIns', 'corejs'],
+    title: 'Two options of @babel/preset-env',
+    type: 'object'
   }
 };

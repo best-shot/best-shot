@@ -78,7 +78,11 @@ exports.schema = {
     title: 'Options of HtmlWebpackPlugin'
   },
   polyfill: {
-    default: 'usage'
+    properties: {
+      useBuiltIns: {
+        default: 'usage'
+      }
+    }
   },
   vendors: {
     additionalProperties: {

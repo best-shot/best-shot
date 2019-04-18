@@ -1,6 +1,6 @@
 # @best-shot/preset-babel
 
-Best-shot preset for Babel compiler.
+A `best-shot` preset for Babel compiler.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-babel
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-babel.svg?style=flat-square&logo=npm
@@ -12,18 +12,13 @@ Best-shot preset for Babel compiler.
 [![license][license-badge]][github-url]
 ![node][node-badge]
 
-This preset includes the following packages:
+This preset can transform:
 
-- @babel/core
-- @babel/preset-env
-- @babel/plugin-proposal-class-properties
-- @babel/plugin-proposal-decorators
-- @babel/plugin-proposal-export-namespace-from
-- @babel/plugin-proposal-numeric-separator
-- @babel/plugin-syntax-dynamic-import
-- @babel/plugin-syntax-import-meta
-- regenerator-runtime
-- babel-loader
+- ECMAScript 2018 syntax
+- Class static properties
+- Decorators
+- Dynamic Import
+- Numeric Separator
 
 ## Installation
 
@@ -31,7 +26,7 @@ This preset includes the following packages:
 npm install @best-shot/preset-babel --save-dev
 ```
 
-Then specify core-js@3 as a top level dependency.
+Then specify `core-js@3` or `core-js@2` as a top level dependency.
 
 ```bash
 npm install core-js@3 --save
@@ -40,10 +35,12 @@ npm install core-js@3 --save
 ## Usage
 
 ```js
-// best-shot.config.js
+// example: best-shot.config.js
 module.exports = {
   presets: [..., 'babel'],
-  polyfill: 'usage'
+  polyfill: {
+    ...
+  }
   ...
 };
 ```
@@ -52,4 +49,16 @@ module.exports = {
 
 ### polyfill
 
-Same as [options.useBuiltIns](https://babeljs.io/docs/en/babel-preset-env#usebuiltins) of `@babel/preset-env`.
+- type: `object`
+
+### polyfill.useBuiltIns
+
+- default: false
+
+Same as [options.useBuiltIns](https://babeljs.io/docs/en/next/babel-preset-env#usebuiltins) of `@babel/preset-env`.
+
+### polyfill.corejs
+
+- default: 3
+
+Same as [options.corejs](https://babeljs.io/docs/en/next/babel-preset-env#corejs) of `@babel/preset-env`, but `options.corejs.proposals` always be false.

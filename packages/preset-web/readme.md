@@ -1,6 +1,6 @@
 # @best-shot/preset-web
 
-Best-shot preset for web project.
+A `best-shot` preset for web project.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-web
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-web.svg?style=flat-square&logo=npm
@@ -27,13 +27,16 @@ npm install @best-shot/preset-web --save-dev
 ## Usage
 
 ```js
-// best-shot.config.js
+// example: best-shot.config.js
 module.exports = {
   presets: [..., 'web'],
+  vendors: {
+    common: ['lodash', 'axios']
+  },
   ...
 };
 ```
 
 ## Tips
 
-This preset will change the default value of `options.polyfill` to `usage`.
+This preset will change the default value of `options.polyfill.useBuiltIns` to `usage`.

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-env",
-  "description": "Best-shot preset for env config",
+  "description": "A `best-shot` preset for env variables",
   "version": "0.0.0",
   "license": "MIT",
   "main": "index.js",
@@ -16,10 +16,23 @@
   "engines": {
     "node": ">=8.10.0"
   },
+  "keywords": [
+    "best-shot",
+    "conf",
+    "config",
+    "configuration",
+    "define",
+    "env",
+    "environment",
+    "settings",
+    "variables"
+  ],
   "dependencies": {
     "@iarna/toml": "^2.2.3",
+    "builtin-modules": "^3.1.0",
     "chalk": "^2.4.2",
-    "lodash": "^4.17.11",
-    "suffix": "^1.0.0"
+    "is-builtin-module": "^3.0.0",
+    "js-yaml": "^3.13.1",
+    "lodash": "^4.17.11"
   }
 }

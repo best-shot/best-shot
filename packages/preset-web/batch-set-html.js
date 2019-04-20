@@ -24,6 +24,8 @@ function getPkg(path) {
   }
 }
 
+const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
+
 module.exports = function setHtml(chain, { html = {}, define }) {
   const defaultOptions = {
     inject: 'head',
@@ -36,7 +38,7 @@ module.exports = function setHtml(chain, { html = {}, define }) {
   };
 
   const htmlOptions = (Array.isArray(html)
-    ? html.length
+    ? html.length > 0
       ? html
       : [{}]
     : [html]
@@ -54,22 +56,20 @@ module.exports = function setHtml(chain, { html = {}, define }) {
     chain
       .plugin(`html-page-${index}`)
       .use(HtmlWebpackPlugin, [
-        deepmerge.all([
-          defaultOptions,
-          index > 0 ? htmlOptions[0] : {},
-          options
-        ])
+        deepmerge.all(
+          [defaultOptions, index > 0 ? htmlOptions[0] : {}, options],
+          { arrayMerge: overwriteMerge }
+        )
       ])
       .end();
   });
 
   chain
     .plugin('script-ext-html')
-    .use(ScriptExtHtmlWebpackPlugin, [{ defaultAttribute: 'defer' }])
-    .end();
+    .use(ScriptExtHtmlWebpackPlugin, [{ defaultAttribute: 'defer' }]);
 
   chain.module
-    .rule('mustache')
+    .rule('micro-tpl')
     .test(extToRegexp('tpl'))
     .use('micro-tpl-loader')
     .loader('micro-tpl-loader');

@@ -1,19 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "description": "best-shot config",
+  "description": "Configuration of best-shot",
   "type": "object",
   "properties": {
-    "publicPath": {
-      "default": "/",
-      "description": "Same as output.publicPath，But also used in other places",
-      "type": "string",
-      "minLength": 1
-    },
     "outputPath": {
       "default": "build",
       "description": "Prefix for output path",
-      "type": "string",
-      "minLength": 3
+      "minLength": 3,
+      "type": "string"
+    },
+    "publicPath": {
+      "default": "/",
+      "description": "Same as output.publicPath，But also used in other places",
+      "minLength": 1,
+      "type": "string"
     }
   },
   "required": [

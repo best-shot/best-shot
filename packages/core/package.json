@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/core",
   "description": "Create 'best-shot' config chain",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -31,10 +31,10 @@
     "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^5.0.2",
     "deepmerge": "^3.2.0",
-    "ext-to-regexp": "^0.0.3",
+    "ext-to-regexp": "^0.0.6",
     "lodash": "^4.17.11",
     "terser-webpack-plugin": "^1.2.3",
-    "webpack": "^4.29.6",
+    "webpack": "^4.30.0",
     "webpack-chain": "^5.2.4"
   }
 }

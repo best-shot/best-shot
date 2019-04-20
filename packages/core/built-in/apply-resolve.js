@@ -4,9 +4,9 @@ exports.apply = function applyResolve() {
   return chain => {
     chain.resolve.merge({
       symlinks: false,
-      extensions: ['.mjs', '.js', '.json'],
+      extensions: ['.js', '.mjs', '.json'],
       modules: ['node_modules'],
-      mainFields: ['module', 'browser', 'main']
+      mainFields: ['browser', 'module', 'main']
     });
 
     chain.resolveLoader.modules.prepend('node_modules');

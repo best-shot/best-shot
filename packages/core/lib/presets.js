@@ -1,4 +1,5 @@
 const allowPresets = [
+  'env',
   'serve',
   'babel',
   'style',
@@ -6,8 +7,7 @@ const allowPresets = [
   'vue',
   'web',
   'megalo',
-  'airkro',
-  'env'
+  'airkro'
 ];
 
 function sortPresets([...data]) {
@@ -18,10 +18,10 @@ function sortPresets([...data]) {
 function checkPresets(presets) {
   if (!presets.every(item => allowPresets.includes(item))) {
     const message = `[${allowPresets.join(',')}]`;
-    throw Error(`Presets only allow ${message}`);
+    throw new Error(`Presets only allow ${message}`);
   }
   if (presets.includes('vue') && presets.includes('react')) {
-    throw Error("Don't use React and Vue at the same time");
+    throw new Error("Don't use React and Vue at the same time");
   }
 }
 
@@ -34,9 +34,9 @@ function importPresets(presets) {
       // eslint-disable-next-line global-require, import/no-dynamic-require
       .map(name => require(name));
     return io;
-  } catch (err) {
-    console.error(err);
-    throw Error('Import presets fail.');
+  } catch (error) {
+    console.error(error);
+    throw new Error('Import presets fail.');
   }
 }
 

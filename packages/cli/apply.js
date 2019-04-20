@@ -5,7 +5,7 @@ const { join } = require('path');
 function applyAnalyzer(chain) {
   const rootPath = process.cwd();
   const reportPath = '.best-shot';
-  chain.optimization.concatenateModules(false).end();
+  chain.optimization.concatenateModules(false);
   chain.plugin('bundle-analyzer').use(BundleAnalyzerPlugin, [
     {
       analyzerMode: 'static',

@@ -43,7 +43,7 @@
     "file-loader": "^3.0.1",
     "imagemin-webpack-plugin": "^2.4.2",
     "less": "^3.9.0",
-    "less-loader": "^4.1.0",
+    "less-loader": "^5.0.0",
     "node-sass": "^4.11.0",
     "postcss": "^7.0.14",
     "postcss-loader": "^3.0.0",

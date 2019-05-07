@@ -33,7 +33,7 @@ version: 2
 jobs:
   node-8:
     docker:
-      - image: circleci/node:8.15.1
+      - image: circleci/node:8.16.0
     <<: *unit_tests
   node-10:
     docker:

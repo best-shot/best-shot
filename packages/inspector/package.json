@@ -27,7 +27,7 @@
   "dependencies": {
     "fs-extra": "^7.0.1",
     "lodash": "^4.17.11",
-    "prettier": "^1.16.4"
+    "prettier": "^1.17.0"
   },
   "peerDependencies": {
     "@best-shot/cli": ">=0.0.8"

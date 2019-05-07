@@ -24,7 +24,7 @@
     "best-shot"
   ],
   "dependencies": {
-    "internal-ip": "^4.2.0",
+    "internal-ip": "^4.3.0",
     "lodash": "^4.17.11"
   }
 }

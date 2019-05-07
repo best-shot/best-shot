@@ -25,7 +25,7 @@
     "webpack"
   ],
   "dependencies": {
-    "ext-to-regexp": "^0.0.3",
+    "ext-to-regexp": "^0.0.6",
     "vue-loader": "^15.7.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10"

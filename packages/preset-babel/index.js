@@ -1,4 +1,7 @@
+'use strict';
+
 const extToRegexp = require('ext-to-regexp');
+const slashToRegexp = require('slash-to-regexp');
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { currentPath } = require('@best-shot/core/lib/common');
@@ -20,7 +23,7 @@ exports.apply = function applyBabel({
     chain.module
       .rule(displayName)
       .test(extToRegexp('js', 'mjs'))
-      .exclude.add(/[\\/]node_modules[\\/]core-js[\\/]/)
+      .exclude.add(slashToRegexp('/node_modules/core-js/'))
       .end()
       .use('babel-loader')
       .loader('babel-loader')

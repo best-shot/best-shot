@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/preset-babel",
   "description": "A `best-shot` preset for Babel compiler",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -13,8 +13,9 @@
     "url": "https://github.com/airkro/best-shot.git",
     "directory": "packages/preset-babel"
   },
+  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/preset-babel",
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=8.16.0"
   },
   "keywords": [
     "babel",
@@ -29,19 +30,20 @@
     "webpack"
   ],
   "dependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
     "@babel/plugin-proposal-numeric-separator": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
-    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-env": "^7.4.4",
     "babel-loader": "^8.0.5",
-    "ext-to-regexp": "^0.0.4",
-    "regenerator-runtime": "^0.13.2"
+    "ext-to-regexp": "^0.0.6",
+    "regenerator-runtime": "^0.13.2",
+    "slash-to-regexp": "^0.0.0"
   },
   "peerDependencies": {
-    "core-js": ">=2.6.5"
+    "core-js": ">=2.6.5 < 3 || >=3.0.1"
   }
 }

@@ -12,7 +12,7 @@
     "url": "https://github.com/airkro/best-shot.git"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=8.16.0"
   },
   "workspaces": [
     "packages/*"
@@ -24,22 +24,22 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
+    "@babel/core": "^7.4.4",
     "docsify-cli": "^4.3.0",
-    "jest": "^24.7.1",
-    "nodemon": "^1.18.11",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.0",
     "webpack": "^4.30.0"
   },
   "optionalDependencies": {
     "@nice-move/eslint-config-base": "^0.0.3",
-    "@types/jest": "^24.0.11",
+    "@nice-move/prettier-config": "^0.0.0",
+    "@types/jest": "^24.0.12",
     "eslint": "^5.16.0",
-    "eslint-plugin-jest": "^22.4.1",
-    "eslint-plugin-node": "^8.0.1",
-    "husky": "^2.1.0",
-    "lint-staged": "^8.1.5",
-    "prettier": "^1.17.0",
-    "prettier-plugin-toml": "^0.3.1"
+    "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-node": "^9.0.1",
+    "husky": "^2.2.0",
+    "lint-staged": "^8.1.6",
+    "prettier": "^1.17.0"
   },
   "scripts": {
     "inspect": "best-shot inspect --stamp test",
@@ -47,6 +47,7 @@
     "format": "lint-staged",
     "test": "jest"
   },
+  "prettier": "@nice-move/prettier-config",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged && jest"

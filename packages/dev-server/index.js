@@ -1,3 +1,5 @@
+'use strict';
+
 const connectHistoryApiFallback = require('connect-history-api-fallback');
 const convert = require('koa-connect');
 const foreach = require('lodash/forEach');
@@ -68,6 +70,7 @@ module.exports = function server({
     headers,
     publicPath,
     clientLogLevel,
+    https,
     writeToDisk
   } = {},
   stats,
@@ -80,6 +83,7 @@ module.exports = function server({
       clipboard: false,
       host,
       port,
+      https,
       content: resolve(__dirname, '../empty'),
       devMiddleware: {
         publicPath,

@@ -4,11 +4,11 @@
     "eslint --fix",
     "git add"
   ],
-  "*.{json,html,md,toml}": [
+  "*.{json,html,md,yaml,toml}": [
     "prettier --write",
     "git add"
   ],
-  ".{prettier,eslint}rc": [
+  ".{prettier,eslint,lintstaged}rc": [
     "prettier --write",
     "git add"
   ]

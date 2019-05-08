@@ -1,6 +1,6 @@
 {
   "name": "best-shot-dev-server",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -13,7 +13,7 @@
     "directory": "packages/dev-server"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=8.16.0"
   },
   "keywords": [
     "best-shot",
@@ -35,7 +35,7 @@
     "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
     "lodash": "^4.17.11",
-    "webpack": "^4.29.6",
+    "webpack": "^4.30.0",
     "webpack-hot-client": "^4.1.1",
     "webpack-log": "^2.0.0",
     "webpack-serve": "^2.0.3",

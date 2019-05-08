@@ -1,7 +1,10 @@
+'use strict';
+
 const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 const Autoprefixer = require('autoprefixer');
 const extToRegexp = require('ext-to-regexp');
+const slashToRegexp = require('slash-to-regexp');
 
 module.exports = function applyStylesheet({ browsers, mode }) {
   return chain => {
@@ -11,11 +14,9 @@ module.exports = function applyStylesheet({ browsers, mode }) {
     chain.resolve.extensions.add('.css');
 
     if (!useHot) {
-      chain.plugin('extract-css').use(ExtractCssChunksPlugin, [
-        {
-          filename: '[name].css'
-        }
-      ]);
+      chain
+        .plugin('extract-css')
+        .use(ExtractCssChunksPlugin, [{ filename: '[name].css' }]);
     }
 
     if (minimize) {
@@ -27,15 +28,20 @@ module.exports = function applyStylesheet({ browsers, mode }) {
               'default',
               {
                 // mergeLonghand: false,
-                discardComments: {
-                  removeAll: true
-                }
+                discardComments: { removeAll: true }
               }
             ]
           }
         }
       ]);
     }
+
+    const autoprefixer = Autoprefixer({ browsers });
+
+    // eslint-disable-next-line no-underscore-dangle
+    autoprefixer.__expression = `require('autoprefixer')(${JSON.stringify({
+      browsers
+    })})`;
 
     chain.module
       .rule('style')
@@ -64,13 +70,13 @@ module.exports = function applyStylesheet({ browsers, mode }) {
       .options({
         ident: 'postcss',
         sourceMap: mode === 'development',
-        plugins: [Autoprefixer({ browsers })]
+        plugins: [autoprefixer]
       });
 
     if (chain.module.rules.has('babel')) {
       chain.module
         .rule('babel')
-        .exclude.add(/[\\/]node_modules[\\/]css-loader[\\/]/);
+        .exclude.add(slashToRegexp('/node_modules/css-loader/'));
     }
   };
 };

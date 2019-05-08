@@ -1,3 +1,5 @@
+'use strict';
+
 const extToRegexp = require('ext-to-regexp');
 
 // eslint-disable-next-line import/no-extraneous-dependencies

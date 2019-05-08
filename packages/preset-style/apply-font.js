@@ -1,3 +1,5 @@
+'use strict';
+
 const extToRegexp = require('ext-to-regexp');
 
 module.exports = function applyFont() {

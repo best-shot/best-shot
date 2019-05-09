@@ -1,3 +1,7 @@
+'use strict';
+
+const slashToRegexp = require('slash-to-regexp');
+
 function mapValues(obj = {}, func) {
   const arr = Object.entries(obj);
   return arr.reduce(
@@ -12,7 +16,7 @@ function mapValues(obj = {}, func) {
 module.exports = function splitChunks(chain, { vendors }) {
   const settings = mapValues(vendors, (value, key, index, length) => {
     const mod = Array.isArray(value) ? `(${value.join('|')})` : value;
-    const regexp = new RegExp(`[\\\\/]node_modules[\\\\/]${mod}[\\\\/]`);
+    const regexp = slashToRegexp(`/node_modules/${mod}/`);
     return {
       test: regexp,
       name: key,
@@ -30,9 +34,9 @@ module.exports = function splitChunks(chain, { vendors }) {
         ? {}
         : {
           vendor: {
-            test: /[\\/]node_modules[\\/]/,
+            test: slashToRegexp('/node_modules/'),
             name: 'vendors',
-            chunks: 'all',
+            chunks: 'initial',
             enforce: true,
             priority: 10,
             reuseExistingChunk: true
@@ -43,7 +47,6 @@ module.exports = function splitChunks(chain, { vendors }) {
         : {
           async: {
             chunks: 'async',
-            name: 'async',
             priority: 0
           }
         })

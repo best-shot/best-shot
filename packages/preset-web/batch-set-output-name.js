@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function setOutputName(
   chain,
   { both, script = both, style = both }

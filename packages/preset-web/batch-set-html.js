@@ -1,5 +1,8 @@
+'use strict';
+
 const deepmerge = require('deepmerge');
 const extToRegexp = require('ext-to-regexp');
+const slashToRegexp = require('slash-to-regexp');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
@@ -77,6 +80,6 @@ module.exports = function setHtml(chain, { html = {}, define }) {
   if (chain.module.rules.has('babel')) {
     chain.module
       .rule('babel')
-      .exclude.add(/[\\/]node_modules[\\/]micromustache[\\/]/);
+      .exclude.add(slashToRegexp('/node_modules/micromustache/'));
   }
 };

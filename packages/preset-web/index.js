@@ -1,3 +1,5 @@
+'use strict';
+
 const suffix = require('suffix');
 
 const setOutputName = require('./batch-set-output-name');

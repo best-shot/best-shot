@@ -1,3 +1,5 @@
+'use strict';
+
 const { readFileSync } = require('fs');
 const pickBy = require('lodash/pickBy');
 const isBuiltinModule = require('is-builtin-module');
@@ -35,6 +37,7 @@ function mergeParams(
     ...(mode === 'production'
       ? production
       : {
+        ...production,
         ...development,
         ...(isWatch || isServe ? watch : {}),
         ...(isServe ? serve : {})

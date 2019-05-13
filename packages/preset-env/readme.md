@@ -32,17 +32,21 @@ npm install @best-shot/preset-env --save-dev
 // example: best-shot.config.js
 module.exports = {
   presets: [..., 'env'],
+  define: {
+    WHATEVER: 'abc'
+  },
   ...
 };
 ```
 
 ```yaml
 # example: best-shot.env.yaml
-development:
-  SERVICE_URL: http://sample.dev/api
+production:
+  SERVICE_URL: http://sample.org/api
   APPID: 123456789
 
-production:
+development:
+  SERVICE_URL: http://sample.dev/api
   APPID: 987654321
 
 serve:
@@ -51,15 +55,36 @@ serve:
 
 ```toml
 # example: best-shot.env.toml
-[development]
-SERVICE_URL = "http://sample.dev/api"
+[production]
+SERVICE_URL = "http://sample.org/api"
 APPID = 123456789
 
-[production]
+[development]
+SERVICE_URL = "http://sample.dev/api"
 APPID = 987654321
 
 [serve]
 SERVICE_URL = "http://mock.dev/api"
+```
+
+```js
+// output: production mode
+module.exports = {
+  new DefinePlugin({
+    WHATEVER: '"abc"',
+    SERVICE_URL: '"http://sample.org/api"',
+    APPID: '123456789'
+  })
+};
+
+// output: development mode
+module.exports = {
+  new DefinePlugin({
+    WHATEVER: '"abc"',
+    SERVICE_URL: '"http://sample.dev/api"',
+    APPID: '987654321'
+  })
+};
 ```
 
 ## Tips

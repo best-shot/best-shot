@@ -1,3 +1,5 @@
+'use strict';
+
 function wrap(cli, progress = true) {
   return cli.options({
     platform: {

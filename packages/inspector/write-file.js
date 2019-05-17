@@ -1,3 +1,5 @@
+'use strict';
+
 const { join } = require('path');
 const { outputFileSync } = require('fs-extra');
 
@@ -8,8 +10,8 @@ module.exports = function makeWriteFile(rootPath, stamp) {
     try {
       outputFileSync(fileName, data);
       console.log('-', name);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
     }
   };
 };

@@ -1,6 +1,6 @@
 # @best-shot/inspector
 
-Command-Line Interface for BestShot.
+Inspect support for `@best-shot/cli`.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/inspector
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/inspector.svg?style=flat-square&logo=npm

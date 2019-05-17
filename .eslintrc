@@ -7,6 +7,7 @@
     "camelcase": "off",
     "function-paren-newline": "off",
     "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
     "node/no-extraneous-require": [
       "error",
       {

@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/cli",
   "description": "Command-Line Interface of BestShot",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "main": "bin/cli.js",
   "author": {
@@ -16,6 +16,7 @@
     "url": "https://github.com/airkro/best-shot.git",
     "directory": "packages/cli"
   },
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/cli",
   "engines": {
     "node": ">=8.10.0"
   },
@@ -29,11 +30,11 @@
   ],
   "dependencies": {
     "@best-shot/core": "^0.0.9",
-    "browserslist": "^4.5.5",
+    "browserslist": "^4.6.0",
     "chalk": "^2.4.2",
-    "webpack": "^4.30.0",
+    "webpack": "^4.31.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpackbar": "^3.2.0",
-    "yargs": "^13.2.2"
+    "yargs": "^13.2.4"
   }
 }

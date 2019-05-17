@@ -1,3 +1,5 @@
+'use strict';
+
 const webpack = require('webpack');
 
 function getServer() {
@@ -11,7 +13,11 @@ function getServer() {
 
 module.exports = function handle(command, chain) {
   const {
-    watch, watchOptions, stats: statsConfig, devServer, ...config
+    watch,
+    watchOptions,
+    stats: statsConfig,
+    devServer,
+    ...config
   } = chain.toConfig();
 
   function showStats(err, stats) {

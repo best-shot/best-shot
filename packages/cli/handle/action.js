@@ -1,12 +1,13 @@
+'use strict';
+
 const BestShot = require('@best-shot/core');
-const { commandEnv, logRedError } = require('@best-shot/core/lib/common');
+const { commandEnv } = require('@best-shot/core/lib/common');
 const { applyProgress, applyAnalyzer } = require('../apply');
-const handle = require('./index');
+const handle = require('.');
 const { reachConfig, reachBrowsers, reachDependencies } = require('../reach');
 
 module.exports = function action({
   _: [command],
-  config: configPath,
   platform,
   custom,
   progress,
@@ -14,12 +15,12 @@ module.exports = function action({
 }) {
   const rootPath = process.cwd();
   const mode = commandEnv(command);
-  const configFunc = reachConfig(rootPath, configPath);
+  const configFunc = reachConfig(rootPath, 'best-shot.config.js');
   const dependencies = reachDependencies(rootPath);
   const browsers = reachBrowsers(rootPath)[mode];
 
   try {
-    const { webpackChain, presets, ...config } = configFunc({
+    const { webpackChain, presets = [], ...config } = configFunc({
       command,
       custom,
       platform,
@@ -51,9 +52,7 @@ module.exports = function action({
       .when(analyze, applyAnalyzer);
 
     handle(command, io);
-  } catch (err) {
-    logRedError(err.message, err.extra);
-    // eslint-disable-next-line no-process-exit
-    process.exit(1);
+  } catch (error) {
+    throw error;
   }
 };

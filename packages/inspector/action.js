@@ -1,9 +1,11 @@
+'use strict';
+
 const cloneDeep = require('lodash/cloneDeep');
 /* eslint-disable import/no-extraneous-dependencies */
 // eslint-disable-next-line node/no-extraneous-require
 const Chain = require('webpack-chain');
 const BestShot = require('@best-shot/core');
-const { commandEnv, logRedError } = require('@best-shot/core/lib/common');
+const { commandEnv } = require('@best-shot/core/lib/common');
 /* eslint-enable */
 
 const { applyProgress, applyAnalyzer } = require('@best-shot/cli/apply');
@@ -20,11 +22,10 @@ const commands = ['serve', 'watch', 'dev', 'prod'];
 module.exports = function inspector({
   platforms = [],
   stamp = 'none',
-  config: configPath,
   analyze
 }) {
   const rootPath = process.cwd();
-  const configFunc = reachConfig(rootPath, configPath);
+  const configFunc = reachConfig(rootPath, 'best-shot.config.js');
   const dependencies = reachDependencies(rootPath);
   const writeFile = makeWriteFile(rootPath, stamp);
 
@@ -73,7 +74,6 @@ module.exports = function inspector({
             data: concatStr({
               stamp,
               input: {
-                configPath,
                 platform,
                 mode,
                 browsers,
@@ -87,10 +87,8 @@ module.exports = function inspector({
             })
           });
         }
-      } catch (err) {
-        logRedError(err.message, err.extra);
-        // eslint-disable-next-line no-process-exit
-        process.exit(1);
+      } catch (error) {
+        throw error;
       }
     });
   });

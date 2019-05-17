@@ -1,3 +1,5 @@
+'use strict';
+
 const { resolve } = require('path');
 const { findConfig } = require('browserslist');
 
@@ -10,15 +12,16 @@ function reachConfig(rootPath, configPath) {
       if (typeof config === 'object') {
         return config;
       }
-      throw Error('Config should be an Object');
+      throw new TypeError('Config should be an Object');
     };
-  } catch (err) {
-    throw Error(err.message);
+  } catch (error) {
+    throw error;
   }
 }
 
 function reachBrowsers(rootPath) {
-  const { production = [], development = [] } = findConfig(rootPath) || {};
+  const { defaults = [], production = defaults, development = defaults } =
+    findConfig(rootPath) || {};
   return { production, development };
 }
 

@@ -1,8 +1,10 @@
+'use strict';
+
 function findPkg() {
   try {
     // eslint-disable-next-line global-require, import/no-extraneous-dependencies
     return require('@best-shot/inspector');
-  } catch (err) {
+  } catch (error) {
     return undefined;
   }
 }

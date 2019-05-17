@@ -1,3 +1,5 @@
+'use strict';
+
 const inspector = require('./action');
 
 exports.command = 'inspect';
@@ -8,10 +10,10 @@ exports.builder = {
   platforms: {
     coerce: arr => {
       if (!Array.isArray(arr)) {
-        throw Error('Argument platforms should be an Array');
+        throw new TypeError('Argument platforms should be an Array');
       }
       if (arr.length === 0) {
-        throw Error('Not enough arguments following: platforms');
+        throw new Error('Not enough arguments following: platforms');
       }
       return arr;
     },

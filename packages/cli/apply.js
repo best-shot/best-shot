@@ -1,3 +1,5 @@
+'use strict';
+
 const WebpackBar = require('webpackbar');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { join } = require('path');

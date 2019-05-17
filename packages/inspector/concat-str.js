@@ -1,3 +1,5 @@
+'use strict';
+
 const prettier = require('prettier');
 
 function formatJs(code) {

@@ -1,6 +1,6 @@
 {
   "name": "best-shot-dev-server",
-  "version": "0.0.23",
+  "version": "0.0.26",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -12,8 +12,9 @@
     "url": "https://github.com/airkro/best-shot.git",
     "directory": "packages/dev-server"
   },
+  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/dev-server",
   "engines": {
-    "node": ">=8.16.0"
+    "node": ">=8.10.0"
   },
   "keywords": [
     "best-shot",
@@ -23,19 +24,21 @@
     "packager",
     "scaffold",
     "serve",
+    "server",
     "webpack"
   ],
   "dependencies": {
-    "@best-shot/preset-serve": "^0.0.3",
+    "@best-shot/preset-serve": "^0.0.6",
     "chalk": "^2.4.2",
-    "connect-history-api-fallback": "^1.6.0",
+    "koa-history-api-fallback": "^1.0.0",
     "http-proxy-middleware": "^0.19.1",
     "koa-connect": "^2.0.1",
     "koa-error": "^3.2.0",
     "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
+    "koa-router": "^7.4.0",
     "lodash": "^4.17.11",
-    "webpack": "^4.30.0",
+    "webpack": "^4.31.0",
     "webpack-hot-client": "^4.1.1",
     "webpack-log": "^2.0.0",
     "webpack-serve": "^2.0.3",

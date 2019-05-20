@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/preset-serve",
   "description": "BestShot preset for development server",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -13,18 +13,19 @@
     "url": "https://github.com/airkro/best-shot.git",
     "directory": "packages/preset-serve"
   },
+  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/preset-serve",
   "engines": {
     "node": ">=8.10.0"
   },
   "keywords": [
-    "serve",
-    "webpack",
+    "best-shot",
     "dev-server",
     "hmr",
-    "best-shot"
+    "serve",
+    "server",
+    "webpack"
   ],
   "dependencies": {
-    "internal-ip": "^4.2.0",
     "lodash": "^4.17.11"
   }
 }

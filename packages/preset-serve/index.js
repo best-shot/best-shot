@@ -1,9 +1,10 @@
-const internalIp = require('internal-ip');
+'use strict';
+
 const mapValues = require('lodash/mapValues');
 
 exports.apply = function applyDevServer({
   options: { serve, port },
-  config: { devServer = {}, publicPath = '' }
+  config: { devServer = {}, publicPath = '', historyApiFallback = true }
 }) {
   return chain =>
     chain.when(serve, config =>
@@ -11,6 +12,7 @@ exports.apply = function applyDevServer({
         .publicPath(publicPath[0] === '/' ? publicPath : '/')
         .merge(devServer)
         .stats(config.get('stats'))
+        .historyApiFallback(historyApiFallback)
         .when(port, conf => conf.port(port))
         .end()
         .when(devServer.overlay && devServer.hot, conf => {
@@ -42,8 +44,7 @@ exports.schema = {
         type: 'string'
       },
       host: {
-        // @ts-ignore
-        default: internalIp.v4.sync(),
+        default: '0.0.0.0',
         type: 'string'
       },
       hot: {
@@ -61,6 +62,17 @@ exports.schema = {
       port: {
         default: 1234,
         type: 'number'
+      },
+      historyApiFallback: {
+        default: true,
+        oneOf: [
+          {
+            type: 'boolean'
+          },
+          {
+            type: 'object'
+          }
+        ]
       }
     }
   }

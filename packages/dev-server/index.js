@@ -1,6 +1,6 @@
 'use strict';
 
-const connectHistoryApiFallback = require('connect-history-api-fallback');
+const koaHistoryApiFallback = require('koa-history-api-fallback');
 const convert = require('koa-connect');
 const foreach = require('lodash/forEach');
 const httpProxyMiddleware = require('http-proxy-middleware');
@@ -12,6 +12,8 @@ const webpackServe = require('webpack-serve');
 const webpackServeWaitPage = require('webpack-serve-waitpage');
 const { resolve } = require('path');
 const { green } = require('chalk');
+
+const Router = require('koa-router');
 
 const log = weblog({ name: 'serve' });
 
@@ -36,20 +38,15 @@ function wrapProxy(context, options) {
   );
 }
 
-function historyFallback({ publicPath }) {
+function historyFallback(publicPath, options) {
   log.info('History api fallback is enable');
-  return convert(
-    connectHistoryApiFallback({
-      htmlAcceptHeaders: ['text/html'],
-      rewrites: [
-        {
-          from: new RegExp(`${publicPath}.*`),
-          to: ({ parsedUrl: { pathname } }) =>
-            (/\.[0-9a-z]+$/.test(pathname) ? pathname : `${publicPath}index.html`)
-        }
-      ]
-    })
+  const router = new Router();
+  router.get(
+    `${publicPath}*`,
+    koaHistoryApiFallback(options === true ? {} : options)
   );
+
+  return router.routes();
 }
 
 function wrapStatic(publicPath, content) {
@@ -61,16 +58,17 @@ function wrapStatic(publicPath, content) {
 
 module.exports = function server({
   devServer: {
-    host,
-    port,
-    hotOnly,
-    hot,
-    proxy,
+    clientLogLevel,
     contentBase,
     headers,
-    publicPath,
-    clientLogLevel,
+    historyApiFallback,
+    host,
+    hot,
+    hotOnly,
     https,
+    port,
+    proxy,
+    publicPath,
     writeToDisk
   } = {},
   stats,
@@ -120,7 +118,11 @@ module.exports = function server({
             app.use(wrapProxy(root, option));
           });
         }
-        app.use(historyFallback({ publicPath }));
+
+        if (historyApiFallback) {
+          app.use(historyFallback(publicPath, historyApiFallback));
+        }
+
         app.use(
           koaError({
             template: resolve(__dirname, 'error-page.ejs')

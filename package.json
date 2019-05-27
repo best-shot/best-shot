@@ -12,23 +12,23 @@
     "url": "https://github.com/airkro/best-shot.git"
   },
   "engines": {
-    "node": ">=8.16.0"
+    "node": ">=8.10.0"
   },
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {
-    "core-js": "^3.1.0",
+    "core-js": "3.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
+    "@babel/core": "^7.4.5",
     "docsify-cli": "^4.3.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.0",
-    "webpack": "^4.31.0"
+    "webpack": "^4.32.0"
   },
   "optionalDependencies": {
     "@nice-move/eslint-config-base": "^0.0.3",

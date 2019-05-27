@@ -22,7 +22,7 @@ A webpack config wrapper.
 - [@best-shot/preset-vue](./packages/preset-vue/)
 - [@best-shot/preset-env](./packages/preset-env/)
 - [@best-shot/preset-web](./packages/preset-web/)
-- [best-shot-dev-server](./packages/best-shot-dev-server/)
+- [best-shot-dev-server](./packages/dev-server/)
 
 [codebeat-badge]: https://img.shields.io/badge/codebeat-A-brightgreen.svg?style=flat-square
 [codebeat-link]: https://codebeat.co/projects/github-com-airkro-best-shot-master

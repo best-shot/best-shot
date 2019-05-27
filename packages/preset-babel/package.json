@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/preset-babel",
-  "description": "A `best-shot` preset for Babel compiler",
-  "version": "0.0.10",
+  "description": "A `best-shot` preset for babel compiler",
+  "version": "0.0.12",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/preset-babel",
   "engines": {
-    "node": ">=8.16.0"
+    "node": ">=8.10.0"
   },
   "keywords": [
     "babel",
@@ -30,20 +30,20 @@
     "webpack"
   ],
   "dependencies": {
-    "@babel/core": "^7.4.4",
+    "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
     "@babel/plugin-proposal-numeric-separator": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
-    "@babel/preset-env": "^7.4.4",
-    "babel-loader": "^8.0.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
     "ext-to-regexp": "^0.0.6",
     "regenerator-runtime": "^0.13.2",
     "slash-to-regexp": "^0.0.0"
   },
   "peerDependencies": {
-    "core-js": ">=2.6.5 < 3 || >=3.0.1"
+    "core-js": ">=2.6.5 < 3 || >=3.0 < 3.1"
   }
 }

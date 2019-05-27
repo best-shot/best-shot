@@ -1,6 +1,6 @@
 # @best-shot/preset-babel
 
-A `best-shot` preset for Babel compiler.
+A `best-shot` preset for babel compiler.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-babel
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-babel.svg?style=flat-square&logo=npm

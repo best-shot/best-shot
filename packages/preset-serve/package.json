@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/preset-serve",
-  "description": "BestShot preset for development server",
-  "version": "0.0.6",
+  "description": "A `best-shot` preset for development server",
+  "version": "0.0.7",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -26,6 +26,7 @@
     "webpack"
   ],
   "dependencies": {
+    "internal-ip": "^4.3.0",
     "lodash": "^4.17.11"
   }
 }

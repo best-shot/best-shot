@@ -1,5 +1,6 @@
 'use strict';
 
+const internalIp = require('internal-ip');
 const mapValues = require('lodash/mapValues');
 
 exports.apply = function applyDevServer({
@@ -44,7 +45,7 @@ exports.schema = {
         type: 'string'
       },
       host: {
-        default: '0.0.0.0',
+        default: internalIp.v4.sync(),
         type: 'string'
       },
       hot: {

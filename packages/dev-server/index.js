@@ -13,8 +13,6 @@ const webpackServeWaitPage = require('webpack-serve-waitpage');
 const { resolve } = require('path');
 const { green } = require('chalk');
 
-const Router = require('koa-router');
-
 const log = weblog({ name: 'serve' });
 
 function proxyLogProvider(provider) {
@@ -40,13 +38,13 @@ function wrapProxy(context, options) {
 
 function historyFallback(publicPath, options) {
   log.info('History api fallback is enable');
-  const router = new Router();
-  router.get(
-    `${publicPath}*`,
-    koaHistoryApiFallback(options === true ? {} : options)
-  );
-
-  return router.routes();
+  const opts =
+    options === true
+      ? {
+        index: publicPath === '/' ? undefined : `${publicPath}index.html`
+      }
+      : options;
+  return koaHistoryApiFallback(opts);
 }
 
 function wrapStatic(publicPath, content) {

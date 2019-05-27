@@ -1,6 +1,6 @@
 {
   "name": "best-shot-dev-server",
-  "version": "0.0.26",
+  "version": "0.0.28",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -28,15 +28,14 @@
     "webpack"
   ],
   "dependencies": {
-    "@best-shot/preset-serve": "^0.0.6",
+    "@best-shot/preset-serve": "^0.0.7",
     "chalk": "^2.4.2",
-    "koa-history-api-fallback": "^1.0.0",
     "http-proxy-middleware": "^0.19.1",
     "koa-connect": "^2.0.1",
     "koa-error": "^3.2.0",
+    "koa-history-api-fallback": "^1.0.0",
     "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
-    "koa-router": "^7.4.0",
     "lodash": "^4.17.11",
     "webpack": "^4.31.0",
     "webpack-hot-client": "^4.1.1",

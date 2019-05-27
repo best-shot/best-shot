@@ -1,6 +1,6 @@
 # @best-shot/preset-serve
 
-BestShot preset for development server.
+A `best-shot` preset for development server.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-serve
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-serve.svg?style=flat-square&logo=npm
@@ -21,7 +21,7 @@ npm install @best-shot/preset-serve --save-dev
 ## Usage
 
 ```js
-// best-shot.config.js
+// example: best-shot.config.js
 module.exports = {
   presets: [..., 'serve'],
   ...

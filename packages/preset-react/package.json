@@ -1,29 +1,42 @@
 {
   "name": "@best-shot/preset-react",
-  "description": "Best-shot preset for React project",
-  "version": "0.0.6",
+  "description": "A `best-shot` preset for react project",
+  "version": "0.0.8",
   "license": "MIT",
   "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-react"
+  },
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-react",
   "engines": {
     "node": ">=8.10.0"
   },
   "keywords": [
-    "react",
-    "jsx",
-    "webpack",
     "babel",
+    "best-shot",
     "hmr",
     "hot",
-    "best-shot"
+    "jsx",
+    "patch",
+    "prop-types",
+    "react",
+    "webpack"
   ],
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
-    "@hot-loader/react-dom": "^16.8.4",
+    "@hot-loader/react-dom": "^16.8.6",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "react-hot-loader": "^4.8.0"
+    "react-hot-loader": "^4.8.8"
+  },
+  "peerDependencies": {
+    "@best-shot/preset-babel": ">=0.0.12",
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
   }
 }

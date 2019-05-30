@@ -1,6 +1,6 @@
 'use strict';
 
-const koaHistoryApiFallback = require('koa-history-api-fallback');
+const connectHistoryApiFallback = require('connect-history-api-fallback');
 const convert = require('koa-connect');
 const foreach = require('lodash/forEach');
 const httpProxyMiddleware = require('http-proxy-middleware');
@@ -38,13 +38,23 @@ function wrapProxy(context, options) {
 
 function historyFallback(publicPath, options) {
   log.info('History api fallback is enable');
-  const opts =
-    options === true
-      ? {
-        index: publicPath === '/' ? undefined : `${publicPath}index.html`
-      }
-      : options;
-  return koaHistoryApiFallback(opts);
+  const opts = options && options === true ? {} : options;
+  return convert(
+    connectHistoryApiFallback({
+      ...opts,
+      rewrites: [
+        ...(publicPath
+          ? [
+            {
+              from: new RegExp(`^${publicPath}`),
+              to: `${publicPath}index.html`
+            }
+          ]
+          : []),
+        ...(opts.rewrites || [])
+      ]
+    })
+  );
 }
 
 function wrapStatic(publicPath, content) {

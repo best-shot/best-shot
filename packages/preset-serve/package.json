@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/preset-serve",
   "description": "A `best-shot` preset for development server",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "main": "index.js",
   "author": {

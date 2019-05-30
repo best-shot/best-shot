@@ -5,15 +5,15 @@ const mapValues = require('lodash/mapValues');
 
 exports.apply = function applyDevServer({
   options: { serve, port },
-  config: { devServer = {}, publicPath = '', historyApiFallback = true }
+  config: { devServer = {}, publicPath = '' }
 }) {
-  return chain =>
+  return chain => {
     chain.when(serve, config =>
       config.devServer
         .publicPath(publicPath[0] === '/' ? publicPath : '/')
         .merge(devServer)
         .stats(config.get('stats'))
-        .historyApiFallback(historyApiFallback)
+        .historyApiFallback(devServer.historyApiFallback)
         .when(port, conf => conf.port(port))
         .end()
         .when(devServer.overlay && devServer.hot, conf => {
@@ -31,6 +31,7 @@ exports.apply = function applyDevServer({
             });
         })
     );
+  };
 };
 
 exports.schema = {

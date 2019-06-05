@@ -19,7 +19,6 @@ This preset includes the following packages:
 - less-loader
 - sass-loader
 - postcss-loader
-- autoprefixer
 - extract-css-chunks-webpack-plugin
 - optimize-cssnano-plugin
 - imagemin-webpack-plugin
@@ -33,9 +32,24 @@ npm install @best-shot/preset-style --save-dev
 ## Usage
 
 ```js
-// best-shot.config.js
+// example: best-shot.config.js
 module.exports = {
   presets: [..., 'style'],
   ...
+};
+```
+
+## Tips
+
+### How to load postcss config
+
+See <https://github.com/michael-ciniawsky/postcss-load-config>
+
+```js
+// example: postcss.config.js
+module.exports = {
+  plugins: {
+    autoprefixer: {}
+  }
 };
 ```

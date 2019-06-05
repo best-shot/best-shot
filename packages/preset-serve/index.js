@@ -4,7 +4,7 @@ const internalIp = require('internal-ip');
 const mapValues = require('lodash/mapValues');
 
 exports.apply = function applyDevServer({
-  options: { serve, port },
+  options: { serve },
   config: { devServer = {}, publicPath = '' }
 }) {
   return chain => {
@@ -14,7 +14,6 @@ exports.apply = function applyDevServer({
         .merge(devServer)
         .stats(config.get('stats'))
         .historyApiFallback(devServer.historyApiFallback)
-        .when(port, conf => conf.port(port))
         .end()
         .when(devServer.overlay && devServer.hot, conf => {
           const entry = mapValues(conf.entryPoints.entries(), data =>

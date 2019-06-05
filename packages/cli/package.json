@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/cli",
-  "description": "Command-Line Interface of BestShot",
-  "version": "0.0.11",
+  "description": "Command-Line Interface of `best-shot`",
+  "version": "0.0.12",
   "license": "MIT",
   "main": "bin/cli.js",
   "author": {
@@ -30,11 +30,13 @@
   ],
   "dependencies": {
     "@best-shot/core": "^0.0.9",
-    "browserslist": "^4.6.0",
+    "browserslist": "^4.6.1",
     "chalk": "^2.4.2",
-    "webpack": "^4.31.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpackbar": "^3.2.0",
     "yargs": "^13.2.4"
+  },
+  "peerDependencies": {
+    "webpack": ">=4.33.0"
   }
 }

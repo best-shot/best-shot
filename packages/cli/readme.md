@@ -1,6 +1,6 @@
 # @best-shot/cli
 
-Command-Line Interface for BestShot.
+Command-Line Interface of `best-shot`.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/cli
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/cli.svg?style=flat-square&logo=npm

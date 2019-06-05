@@ -25,12 +25,7 @@ function wrap(cli, progress = true) {
 module.exports = {
   watch: cli => wrap(cli),
   dev: cli => wrap(cli),
-  serve: cli =>
-    wrap(cli, false).option('port', {
-      describe: 'Specify a port number',
-      requiresArg: true,
-      type: 'number'
-    }),
+  serve: cli => wrap(cli),
   prod: cli =>
     wrap(cli).option('analyze', {
       describe: 'Generate bundle analyze',

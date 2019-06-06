@@ -1,6 +1,7 @@
 'use strict';
 
 const suffix = require('suffix');
+const SubresourceIntegrityPlugin = require('webpack-subresource-integrity');
 
 const setOutputName = require('./batch-set-output-name');
 const splitChunks = require('./batch-split-chunks');
@@ -31,6 +32,7 @@ exports.name = 'preset-web';
 
 exports.apply = function applySinglePage({
   mode,
+  rootPath,
   options: { serve = false },
   config: { html, vendors, define }
 }) {
@@ -45,7 +47,22 @@ exports.apply = function applySinglePage({
       .batch(config => setOutputName(config, addFold));
 
     chain.batch(config => splitChunks(config, { vendors }));
-    chain.batch(config => setHtml(config, { html, define, minimize }));
+    chain.batch(config =>
+      setHtml(config, {
+        html,
+        define,
+        minimize,
+        rootPath
+      })
+    );
+
+    if (mode === 'production') {
+      chain.plugin('subresource-integrity').use(SubresourceIntegrityPlugin, [
+        {
+          hashFuncNames: ['sha512', 'sha384', 'sha256']
+        }
+      ]);
+    }
   };
 };
 

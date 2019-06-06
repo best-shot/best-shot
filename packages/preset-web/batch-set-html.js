@@ -1,5 +1,6 @@
 'use strict';
 
+const { join, relative } = require('path');
 const deepmerge = require('deepmerge');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
@@ -8,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { currentPath, objectFilter } = require('@best-shot/core/lib/common');
+const { objectFilter } = require('@best-shot/core/lib/common');
 
 function getPkg(path) {
   try {
@@ -31,21 +32,26 @@ const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
 const htmlMinifier = {
   collapseWhitespace: true,
-  removeAttributeQuotes: true,
+  removeEmptyAttributes: true,
   removeComments: true,
   minifyCSS: true,
   minifyJS: true
 };
 
-module.exports = function setHtml(chain, { html = {}, define, minimize }) {
+module.exports = function setHtml(
+  chain,
+  {
+    html = {}, define, minimize, rootPath
+  }
+) {
   const defaultOptions = {
     inject: 'head',
     minify: minimize ? htmlMinifier : false,
-    template: currentPath.relative('src', 'index.html'),
+    template: relative(rootPath, 'src/index.html'),
     templateParameters: objectFilter({
       title: 'BEST-SHOT Project',
       define,
-      package: getPkg(currentPath.resolve('package.json'))
+      package: getPkg(join(rootPath, 'package.json'))
     })
   };
 
@@ -72,8 +78,7 @@ module.exports = function setHtml(chain, { html = {}, define, minimize }) {
           [defaultOptions, index > 0 ? htmlOptions[0] : {}, options],
           { arrayMerge: overwriteMerge }
         )
-      ])
-      .end();
+      ]);
   });
 
   chain

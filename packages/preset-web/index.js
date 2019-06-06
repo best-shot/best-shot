@@ -45,7 +45,7 @@ exports.apply = function applySinglePage({
       .batch(config => setOutputName(config, addFold));
 
     chain.batch(config => splitChunks(config, { vendors }));
-    chain.batch(config => setHtml(config, { html, define }));
+    chain.batch(config => setHtml(config, { html, define, minimize }));
   };
 };
 

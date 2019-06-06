@@ -29,9 +29,18 @@ function getPkg(path) {
 
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
-module.exports = function setHtml(chain, { html = {}, define }) {
+const htmlMinifier = {
+  collapseWhitespace: true,
+  removeAttributeQuotes: true,
+  removeComments: true,
+  minifyCSS: true,
+  minifyJS: true
+};
+
+module.exports = function setHtml(chain, { html = {}, define, minimize }) {
   const defaultOptions = {
     inject: 'head',
+    minify: minimize ? htmlMinifier : false,
     template: currentPath.relative('src', 'index.html'),
     templateParameters: objectFilter({
       title: 'BEST-SHOT Project',

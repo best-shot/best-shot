@@ -1,7 +1,9 @@
+'use strict';
+
 const WebpackChain = require('webpack-chain');
 const { importPresets } = require('./lib/presets');
-const builtIn = require('./built-in/index');
-const Schema = require('./schema/index');
+const builtIn = require('./built-in');
+const Schema = require('./schema');
 const Stack = require('./stack');
 
 const types = ['built-in', 'additional'];
@@ -21,7 +23,7 @@ module.exports = class BestShot {
     builtIn.forEach(preset => {
       this.use(preset, types[0]);
     });
-    if (presets.length) {
+    if (presets.length > 0) {
       importPresets(presets).forEach(preset => {
         this.use(preset, types[1]);
       });
@@ -32,13 +34,13 @@ module.exports = class BestShot {
 
   check() {
     if (this.locked) {
-      throw Error('Configuration has been loaded');
+      throw new Error('Configuration has been loaded');
     }
   }
 
   use({ apply, schema, name = 'Unnamed' } = {}, type) {
     if (!types.includes(type)) {
-      throw Error(`Can't use ${type} presets: [${name}]`);
+      throw new Error(`Can't use ${type} presets: [${name}]`);
     }
 
     if (typeof apply === 'function') {
@@ -56,13 +58,13 @@ module.exports = class BestShot {
     dependencies = {},
     mode = 'production',
     options = { ...defaultOptions },
-    platform = 'webview',
+    platform,
     rootPath = process.cwd()
   } = {}) {
     this.check();
 
     if (!rootPath) {
-      throw Error('rootPath is required');
+      throw new Error('rootPath is required');
     }
 
     const params = {

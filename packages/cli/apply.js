@@ -6,15 +6,15 @@ const { join } = require('path');
 
 function applyAnalyzer(chain) {
   const rootPath = process.cwd();
-  const reportPath = '.best-shot';
+  const reportPath = '.best-shot/stats';
   chain.optimization.concatenateModules(false);
   chain.plugin('bundle-analyzer').use(BundleAnalyzerPlugin, [
     {
       analyzerMode: 'static',
       generateStatsFile: true,
       openAnalyzer: false,
-      reportFilename: join(rootPath, reportPath, 'stats.html'),
-      statsFilename: join(rootPath, reportPath, 'stats.json')
+      reportFilename: join(rootPath, reportPath, 'index.html'),
+      statsFilename: join(rootPath, reportPath, 'data.json')
     }
   ]);
 }

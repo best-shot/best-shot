@@ -1,4 +1,6 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+'use strict';
+
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const displayName = 'clean';
 

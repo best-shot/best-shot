@@ -20,7 +20,7 @@ const makeWriteFile = require('./write-file');
 const commands = ['serve', 'watch', 'dev', 'prod'];
 
 module.exports = function inspector({
-  platforms = [],
+  platforms = [''],
   stamp = 'none',
   analyze
 }) {
@@ -31,7 +31,7 @@ module.exports = function inspector({
 
   console.log('Output files ...');
 
-  platforms.forEach(async platform => {
+  platforms.forEach(async (_, platform = _ || undefined) => {
     commands.forEach(async command => {
       try {
         const mode = commandEnv(command);
@@ -70,7 +70,7 @@ module.exports = function inspector({
 
         if (result) {
           writeFile({
-            name: `${platform}-${command}.js`,
+            name: `${platform ? `${platform}-` : ''}${command}.js`,
             data: concatStr({
               stamp,
               input: {

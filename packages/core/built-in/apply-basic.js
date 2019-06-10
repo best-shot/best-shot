@@ -1,5 +1,7 @@
+'use strict';
+
+const { resolve } = require('path');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const { currentPath } = require('../lib/common');
 
 exports.name = 'basic';
 
@@ -9,26 +11,33 @@ const shorthand = {
 };
 
 exports.apply = function applyBasic({
-  platform,
+  config: { publicPath, outputPath },
   mode,
-  config: { publicPath, outputPath }
+  platform = '',
+  rootPath
 }) {
   return chain => {
     chain
       .target('web')
       .mode(mode)
-      .context(currentPath());
+      .context(rootPath);
 
     chain.optimization
       .minimize(mode === 'production')
-      .set('moduleIds', mode === 'production' ? 'hashed' : 'named')
-      .end();
+      .set('moduleIds', mode === 'production' ? 'hashed' : 'named');
 
     chain.output
-      .path(currentPath.resolve(outputPath, `${platform}-${shorthand[mode]}`))
+      .path(
+        resolve(
+          rootPath,
+          outputPath
+            .replace(/\[platform\]/g, platform)
+            .replace(/\[mode\]/g, mode)
+            .replace(/\[mode:shorthand\]/g, shorthand[mode])
+        )
+      )
       .publicPath(publicPath)
-      .filename('[name].js')
-      .end();
+      .filename('[name].js');
 
     chain.plugin('case-sensitive-paths').use(CaseSensitivePathsPlugin);
   };

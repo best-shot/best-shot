@@ -1,3 +1,5 @@
+'use strict';
+
 const allowPresets = [
   'env',
   'serve',
@@ -7,6 +9,7 @@ const allowPresets = [
   'vue',
   'web',
   'megalo',
+  'mpx',
   'airkro'
 ];
 
@@ -20,8 +23,13 @@ function checkPresets(presets) {
     const message = `[${allowPresets.join(',')}]`;
     throw new Error(`Presets only allow ${message}`);
   }
+
   if (presets.includes('vue') && presets.includes('react')) {
     throw new Error("Don't use React and Vue at the same time");
+  }
+
+  if (presets.includes('megalo') && presets.includes('mpx')) {
+    throw new Error("Don't use Megalo and Mpx at the same time");
   }
 }
 

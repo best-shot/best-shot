@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/cli",
   "description": "Command-Line Interface of `best-shot`",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "license": "MIT",
   "main": "bin/cli.js",
   "author": {
@@ -29,8 +29,8 @@
     "webpack"
   ],
   "dependencies": {
-    "@best-shot/core": "^0.0.9",
-    "browserslist": "^4.6.1",
+    "@best-shot/core": "^0.0.11",
+    "browserslist": "^4.6.2",
     "chalk": "^2.4.2",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpackbar": "^3.2.0",

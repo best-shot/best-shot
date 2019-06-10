@@ -1,3 +1,5 @@
+'use strict';
+
 const { resolve, relative } = require('path');
 const { red, supportsColor } = require('chalk');
 const { EOL } = require('os');

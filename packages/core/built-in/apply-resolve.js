@@ -1,3 +1,5 @@
+'use strict';
+
 exports.name = 'resolve';
 
 exports.apply = function applyResolve() {

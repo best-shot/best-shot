@@ -8,7 +8,6 @@ A webpack config wrapper.
 [![appveyor][appveyor-badge]][appveyor-link]
 [![lgtm][lgtm-badge]][lgtm-link]
 [![codebeat][codebeat-badge]][codebeat-link]
-![node version][node-badge]
 
 ## packages
 
@@ -34,6 +33,5 @@ A webpack config wrapper.
 [github-link]: https://github.com/Airkro/best-shot
 [lgtm-badge]: https://img.shields.io/lgtm/alerts/g/Airkro/best-shot.svg?logo=lgtm&style=flat-square
 [lgtm-link]: https://lgtm.com/projects/g/Airkro/best-shot/alerts/
-[node-badge]: https://img.shields.io/node/v/@best-shot/core.svg?logo=node.js&style=flat-square&colorB=green
 [npm-badge]: https://img.shields.io/badge/npm-best--shot-orange.svg?style=flat-square&logo=npm
 [npm-link]: https://www.npmjs.com/org/best-shot

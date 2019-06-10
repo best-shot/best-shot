@@ -18,14 +18,13 @@ exports.builder = {
       return arr;
     },
     describe: 'Applicable platforms',
-    default: ['webview'],
-    defaultDescription: '[webview]',
+    requiresArg: true,
     type: 'array'
   },
   stamp: {
-    coerce: value => value || new Date().getTime().toString(),
+    coerce: value =>
+      (value === 'auto' ? new Date().getTime().toString() : value),
     default: '',
-    defaultDescription: 'timestamp',
     describe: 'Markup of output files',
     requiresArg: true,
     type: 'string'

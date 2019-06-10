@@ -1,3 +1,5 @@
+'use strict';
+
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const displayName = 'copy';

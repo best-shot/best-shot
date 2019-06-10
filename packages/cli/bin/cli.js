@@ -12,7 +12,7 @@ const installPkg = require('./install-pkg');
 
 const app = yargs
   .scriptName('best-shot')
-  // .epilogue('Website: https://airko.github.io/best-shot/')
+  .epilogue('Website: https://github.com/airkro/best-shot')
   .usage(`Usage: ${green`$0`} <command> [options]`)
   .describe('help', 'Show help information')
   .alias('help', 'h')

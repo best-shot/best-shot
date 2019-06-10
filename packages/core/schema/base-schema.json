@@ -4,7 +4,7 @@
   "type": "object",
   "properties": {
     "outputPath": {
-      "default": "build",
+      "default": ".best-shot/build/[mode:shorthand]",
       "description": "Prefix for output path",
       "minLength": 3,
       "type": "string"

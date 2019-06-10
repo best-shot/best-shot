@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/inspector",
-  "description": "Inspect support for `@best-shot/cli`",
-  "version": "0.0.2",
+  "description": "Inspector of `@best-shot/cli`",
+  "version": "0.0.3",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -28,9 +28,9 @@
   "dependencies": {
     "fs-extra": "^8.0.1",
     "lodash": "^4.17.11",
-    "prettier": "^1.17.1"
+    "prettier": "^1.18.2"
   },
   "peerDependencies": {
-    "@best-shot/cli": ">=0.0.11"
+    "@best-shot/cli": ">=0.0.13"
   }
 }

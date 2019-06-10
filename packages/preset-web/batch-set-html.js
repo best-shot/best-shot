@@ -4,7 +4,7 @@ const { join, relative } = require('path');
 const deepmerge = require('deepmerge');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
-
+// const SubresourceIntegrityPlugin = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
@@ -41,7 +41,7 @@ const htmlMinifier = {
 module.exports = function setHtml(
   chain,
   {
-    html = {}, define, minimize, rootPath
+    html = {}, publicPath, define, minimize, rootPath
   }
 ) {
   const defaultOptions = {
@@ -65,7 +65,7 @@ module.exports = function setHtml(
       ...options,
       templateParameters:
         title || templateParameters
-          ? objectFilter({ title, ...templateParameters })
+          ? objectFilter({ publicPath, title, ...templateParameters })
           : undefined
     })
   );
@@ -84,6 +84,14 @@ module.exports = function setHtml(
   chain
     .plugin('script-ext-html')
     .use(ScriptExtHtmlWebpackPlugin, [{ defaultAttribute: 'defer' }]);
+
+  // if (mode === 'production') {
+  //   chain.plugin('subresource-integrity').use(SubresourceIntegrityPlugin, [
+  //     {
+  //       hashFuncNames: ['sha512', 'sha384', 'sha256']
+  //     }
+  //   ]);
+  // }
 
   chain.module
     .rule('micro-tpl')

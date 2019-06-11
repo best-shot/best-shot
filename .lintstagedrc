@@ -8,7 +8,7 @@
     "prettier --write",
     "git add"
   ],
-  ".{prettier,eslint,lintstaged}rc": [
+  ".lintstagedrc": [
     "prettier --write",
     "git add"
   ]

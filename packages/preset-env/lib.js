@@ -8,7 +8,7 @@ const yaml = require('js-yaml');
 
 function ensureConfig(type, rootPath) {
   try {
-    const filename = `best-shot.env.${type}`;
+    const filename = `.best-shot/env.${type}`;
     return {
       type,
       name: filename,
@@ -21,9 +21,9 @@ function ensureConfig(type, rootPath) {
 
 function findConfig(rootPath) {
   return (
-    ensureConfig('toml', rootPath)
-    || ensureConfig('yaml', rootPath)
-    || ensureConfig('json', rootPath)
+    ensureConfig('toml', rootPath) ||
+    ensureConfig('yaml', rootPath) ||
+    ensureConfig('json', rootPath)
   );
 }
 
@@ -62,10 +62,11 @@ function parseConfig({ path, name, type } = {}) {
 }
 
 function filterData(data) {
-  return pickBy(
+  const result = pickBy(
     data,
     (value, key) => !isBuiltinModule(key.split('.')[0].toLowerCase())
   );
+  return Object.values(result).length > 0 ? result : undefined;
 }
 
 module.exports = {

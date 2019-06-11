@@ -15,7 +15,7 @@ module.exports = function action({
 }) {
   const rootPath = process.cwd();
   const mode = commandEnv(command);
-  const configFunc = reachConfig(rootPath, 'best-shot.config.js');
+  const configFunc = reachConfig(rootPath);
   const dependencies = reachDependencies(rootPath);
   const browsers = reachBrowsers(rootPath)[mode];
 

@@ -14,9 +14,9 @@ A `best-shot` preset for env variables.
 
 The package will select the configuration file from `process.cwd()` according to the following priority.
 
-- best-shot.env.toml
-- best-shot.env.yaml
-- best-shot.env.json
+- ./best-shot/env.toml
+- ./best-shot/env.yaml
+- ./best-shot/env.json
 
 Then parse your env variable with `JSON.stringify` and pass it to `webpack.DefinePlugin`.
 
@@ -29,7 +29,7 @@ npm install @best-shot/preset-env --save-dev
 ## Usage
 
 ```js
-// example: best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'env'],
   define: {
@@ -40,7 +40,7 @@ module.exports = {
 ```
 
 ```yaml
-# example: best-shot.env.yaml
+# example: .best-shot/env.yaml
 production:
   SERVICE_URL: http://sample.org/api
   APPID: 123456789
@@ -54,7 +54,7 @@ serve:
 ```
 
 ```toml
-# example: best-shot.env.toml
+# example: .best-shot/env.toml
 [production]
 SERVICE_URL = "http://sample.org/api"
 APPID = 123456789

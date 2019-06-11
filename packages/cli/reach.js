@@ -3,10 +3,10 @@
 const { resolve } = require('path');
 const { findConfig } = require('browserslist');
 
-function reachConfig(rootPath, configPath) {
+function reachConfig(rootPath) {
   try {
     // eslint-disable-next-line import/no-dynamic-require, global-require
-    const io = require(resolve(rootPath, configPath));
+    const io = require(resolve(rootPath, '.best-shot/config.js'));
     return function func(params) {
       const config = typeof io === 'function' ? io(params) : io;
       if (typeof config === 'object') {

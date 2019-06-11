@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/preset-env",
   "description": "A `best-shot` preset for env variables",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -13,7 +13,7 @@
     "url": "https://github.com/airkro/best-shot.git",
     "directory": "packages/preset-env"
   },
-  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/preset-env",
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-env",
   "engines": {
     "node": ">=8.10.0"
   },

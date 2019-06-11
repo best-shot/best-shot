@@ -18,7 +18,6 @@ exports.builder = {
       return arr;
     },
     describe: 'Applicable platforms',
-    requiresArg: true,
     type: 'array'
   },
   stamp: {

@@ -32,6 +32,7 @@
     "@best-shot/core": "^0.0.11",
     "browserslist": "^4.6.2",
     "chalk": "^2.4.2",
+    "fs-extra": "^8.0.1",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpackbar": "^3.2.0",
     "yargs": "^13.2.4"

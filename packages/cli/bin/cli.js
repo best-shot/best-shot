@@ -7,6 +7,7 @@ const { green, cyan, supportsColor } = require('chalk');
 const { EOL } = require('os');
 const { commandEnv, logRedError } = require('@best-shot/core/lib/common');
 const action = require('../handle/action');
+const addIgnore = require('../handle/add-ignore');
 const setOptions = require('./set-options');
 const installPkg = require('./install-pkg');
 
@@ -57,6 +58,12 @@ const app = yargs
     `Bundle files in ${cyan`Production mode`}, with minification`,
     setOptions.prod,
     action
+  )
+  .command(
+    'ignore',
+    'add .best-shot temporary directory to ignore files',
+    {},
+    addIgnore
   )
   .options({
     color: {

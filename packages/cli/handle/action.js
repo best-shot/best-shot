@@ -19,40 +19,34 @@ module.exports = function action({
   const dependencies = reachDependencies(rootPath);
   const browsers = reachBrowsers(rootPath)[mode];
 
-  try {
-    const { webpackChain, presets = [], ...config } = configFunc({
-      command,
-      custom,
-      platform,
-      analyze
-    });
+  const { webpackChain, presets = [], ...config } = configFunc({
+    command,
+    custom,
+    platform,
+    analyze
+  });
 
-    if (command === 'serve') {
-      presets.unshift('serve');
-    }
-
-    const io = new BestShot({ presets })
-      .load({
-        options: {
-          watch: command === 'watch',
-          serve: command === 'serve'
-        },
-        rootPath,
-        dependencies,
-        mode,
-        config,
-        platform,
-        browsers
-      })
-      .when(typeof webpackChain === 'function', webpackChain)
-      .when(command === 'watch' || command === 'serve', conf =>
-        conf.watch(true)
-      )
-      .when(progress, applyProgress)
-      .when(analyze, applyAnalyzer);
-
-    handle(command, io);
-  } catch (error) {
-    throw error;
+  if (command === 'serve') {
+    presets.unshift('serve');
   }
+
+  const io = new BestShot({ presets })
+    .load({
+      options: {
+        watch: command === 'watch',
+        serve: command === 'serve'
+      },
+      rootPath,
+      dependencies,
+      mode,
+      config,
+      platform,
+      browsers
+    })
+    .when(typeof webpackChain === 'function', webpackChain)
+    .when(command === 'watch' || command === 'serve', conf => conf.watch(true))
+    .when(progress, applyProgress)
+    .when(analyze, applyAnalyzer);
+
+  handle(command, io);
 };

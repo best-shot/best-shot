@@ -10,6 +10,8 @@ function reachConfig(rootPath) {
     return function func(params) {
       const config = typeof io === 'function' ? io(params) : io;
       if (typeof config === 'object') {
+        config.outputPath =
+          config.outputPath || '.best-shot/build/[platform]/[mode:shorthand]';
         return config;
       }
       throw new TypeError('Config should be an Object');

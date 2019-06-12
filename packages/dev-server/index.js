@@ -5,13 +5,10 @@ const convert = require('koa-connect');
 const foreach = require('lodash/forEach');
 const httpProxyMiddleware = require('http-proxy-middleware');
 const koaError = require('koa-error');
-const koaMount = require('koa-mount');
-const koaStatic = require('koa-static');
 const weblog = require('webpack-log');
 const webpackServe = require('webpack-serve');
 const webpackServeWaitPage = require('webpack-serve-waitpage');
 const { resolve } = require('path');
-const { green } = require('chalk');
 
 const log = weblog({ name: 'serve' });
 
@@ -36,32 +33,10 @@ function wrapProxy(context, options) {
   );
 }
 
-function historyFallback(publicPath, options) {
+function historyFallback(options) {
   log.info('History api fallback is enable');
-  const opts = options && options === true ? {} : options;
-  return convert(
-    connectHistoryApiFallback({
-      ...opts,
-      rewrites: [
-        ...(publicPath
-          ? [
-            {
-              from: new RegExp(`^${publicPath}`),
-              to: `${publicPath}index.html`
-            }
-          ]
-          : []),
-        ...(opts.rewrites || [])
-      ]
-    })
-  );
-}
-
-function wrapStatic(publicPath, content) {
-  if (publicPath !== '/') {
-    return koaMount(publicPath, koaStatic(content));
-  }
-  return koaStatic(content);
+  const opts = options === true ? undefined : options;
+  return convert(connectHistoryApiFallback(opts));
 }
 
 module.exports = function server({
@@ -90,7 +65,10 @@ module.exports = function server({
       host,
       port,
       https,
-      content: resolve(__dirname, '../empty'),
+      content:
+        Array.isArray(contentBase) && contentBase.length > 0
+          ? contentBase
+          : contentBase || resolve(__dirname, '../empty'),
       devMiddleware: {
         publicPath,
         logLevel: clientLogLevel,
@@ -98,45 +76,25 @@ module.exports = function server({
         stats,
         writeToDisk
       },
-      hotClient: hot
-        ? {
-          logLevel: clientLogLevel,
-          reload: !hotOnly
-          // allEntries: true
-        }
-        : false,
+      hotClient: hot ? { logLevel: clientLogLevel, reload: !hotOnly } : false,
       add: (app, middleware, options) => {
-        app.use(webpackServeWaitPage(options, { title: 'Please wait' }));
-        middleware.webpack();
-        log.info(
-          `Webpack output is served from ${green(
-            publicPath.replace(/\/$/, '')
-          )}`
-        );
-        if (contentBase) {
-          (Array.isArray ? contentBase : [contentBase]).forEach(dir => {
-            app.use(wrapStatic(publicPath, dir));
-          });
-          log.info(
-            `Serving static content from: ${green(contentBase.join(','))}`
-          );
-        }
+        middleware.content();
         if (proxy) {
           foreach(proxy, (option, root) => {
             app.use(wrapProxy(root, option));
           });
         }
-
+        app.use(webpackServeWaitPage(options, { title: 'Please wait' }));
+        log.info(`Webpack output is served from ${publicPath}`);
+        middleware.webpack();
         if (historyApiFallback) {
-          app.use(historyFallback(publicPath, historyApiFallback));
+          app.use(historyFallback(historyApiFallback));
         }
-
         app.use(
           koaError({
             template: resolve(__dirname, 'error-page.ejs')
           })
         );
-        middleware.content();
       }
     }
   );

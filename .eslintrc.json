@@ -1,5 +1,9 @@
 {
-  "extends": ["@nice-move/eslint-config-base", "plugin:node/recommended"],
+  "extends": [
+    "@nice-move/eslint-config-base",
+    "plugin:node/recommended",
+    "./node_modules/@best-shot/preset-env/eslint.js"
+  ],
   "rules": {
     "camelcase": "off",
     "function-paren-newline": "off",

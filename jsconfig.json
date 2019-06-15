@@ -3,7 +3,7 @@
     "module": "commonjs",
     "resolveJsonModule": true,
     "target": "es2018",
-    "checkJs": false
+    "checkJs": true
   },
   "exclude": [
     "node_modules"

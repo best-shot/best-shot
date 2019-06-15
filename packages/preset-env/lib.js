@@ -51,7 +51,7 @@ const parser = {
   toml: str => tomlParser(str)
 };
 
-function parseConfig({ path, name, type } = {}) {
+function parseConfig({ path, name, type }) {
   try {
     const data = readFileSync(path, 'utf8');
     return parser[type](data);

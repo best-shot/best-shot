@@ -7,9 +7,5 @@
   "*.{json,html,md,yaml,toml}": [
     "prettier --write",
     "git add"
-  ],
-  ".lintstagedrc": [
-    "prettier --write",
-    "git add"
   ]
 }

@@ -2,6 +2,7 @@
 
 const mapValues = require('lodash/mapValues');
 
+// @ts-ignore
 const { cyan } = require('chalk');
 /* eslint-disable import/no-extraneous-dependencies */
 const { DefinePlugin } = require('webpack');
@@ -19,10 +20,9 @@ exports.apply = function apply({
   options: { serve = false, watch = false },
   rootPath
 }) {
-  const env = { mode, serve, watch };
-  const configPath = findConfig(rootPath);
-  const configObject = parseConfig(configPath);
-  const data = mergeParams(env, configObject);
+  const configFile = findConfig(rootPath);
+  const configObject = parseConfig(configFile);
+  const data = mergeParams({ mode, serve, watch }, configObject);
   const filtered = filterData(data);
   if (filtered) {
     console.log(cyan`PRESET-ENV`, pretty(filtered));

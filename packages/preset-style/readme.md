@@ -16,7 +16,9 @@ This preset includes the following packages:
 
 - style-loader
 - css-loader
+- less
 - less-loader
+- sass
 - sass-loader
 - postcss-loader
 - extract-css-chunks-webpack-plugin
@@ -52,4 +54,14 @@ module.exports = {
     autoprefixer: {}
   }
 };
+```
+
+### Use `node-sass` instead `dart-sass`
+
+`@best-shot/preset-style` use `dart-sass` by default. Because `node-sass` has [many issues](https://github.com/webpack-contrib/sass-loader/issues/435).
+
+You can speed up sass compile by installing `node-sass`.
+
+```bash
+npm install node-sass --save-dev
 ```

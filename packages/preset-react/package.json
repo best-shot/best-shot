@@ -32,11 +32,17 @@
     "@babel/preset-react": "^7.0.0",
     "@hot-loader/react-dom": "^16.8.6",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "react-hot-loader": "^4.8.8"
+    "react-hot-loader": "^4.8.8",
+    "snyk": "^1.189.0"
   },
   "peerDependencies": {
     "@best-shot/preset-babel": ">=0.0.12",
     "react": ">=16.8.6",
     "react-dom": ">=16.8.6"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }

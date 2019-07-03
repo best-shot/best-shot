@@ -35,9 +35,15 @@
     "fs-extra": "^8.0.1",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpackbar": "^3.2.0",
-    "yargs": "^13.2.4"
+    "yargs": "^13.2.4",
+    "snyk": "^1.189.0"
   },
   "peerDependencies": {
     "webpack": ">=4.33.0"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }

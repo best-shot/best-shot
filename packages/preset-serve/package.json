@@ -27,6 +27,12 @@
   ],
   "dependencies": {
     "internal-ip": "^4.3.0",
-    "lodash": "^4.17.11"
-  }
+    "lodash": "^4.17.11",
+    "snyk": "^*"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }

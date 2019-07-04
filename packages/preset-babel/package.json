@@ -41,9 +41,15 @@
     "babel-loader": "^8.0.6",
     "ext-to-regexp": "^0.0.6",
     "regenerator-runtime": "^0.13.2",
-    "slash-to-regexp": "^0.0.0"
+    "slash-to-regexp": "^0.0.0",
+    "snyk": "^1.189.0"
   },
   "peerDependencies": {
     "core-js": ">=2.6.9 < 3 || > 3.0.1"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }

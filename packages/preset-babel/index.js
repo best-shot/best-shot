@@ -13,7 +13,7 @@ const displayName = 'babel';
 exports.name = displayName;
 
 exports.apply = function applyBabel({
-  browsers,
+  browsers = 'defaults',
   mode = 'production',
   config: {
     polyfill: { useBuiltIns, corejs }
@@ -44,7 +44,6 @@ exports.apply = function applyBabel({
           ]
         ],
         plugins: [
-          '@babel/syntax-dynamic-import',
           '@babel/syntax-import-meta',
           '@babel/proposal-export-namespace-from',
           '@babel/proposal-numeric-separator',

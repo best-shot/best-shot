@@ -32,7 +32,7 @@ exports.apply = function apply({
       chain.plugin('define').when(
         hasPlugin,
         plugin => {
-          plugin.tap(([options]) => [{ ...options, ...result }]);
+          plugin.tap(([options]) => [{ ...result, ...options }]);
         },
         plugin => {
           plugin.use(DefinePlugin, [result]);

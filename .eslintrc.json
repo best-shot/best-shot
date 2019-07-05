@@ -5,7 +5,6 @@
     "./node_modules/@best-shot/preset-env/eslint.js"
   ],
   "rules": {
-    "camelcase": "off",
     "function-paren-newline": "off",
     "implicit-arrow-linebreak": "off",
     "no-underscore-dangle": "off",

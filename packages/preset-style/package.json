@@ -49,6 +49,12 @@
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "slash-to-regexp": "^0.0.0",
-    "style-loader": "^0.23.1"
-  }
+    "style-loader": "^0.23.1",
+    "snyk": "^1.192.3"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }

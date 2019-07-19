@@ -39,7 +39,7 @@
     "@babel/preset-env": "^7.5.4",
     "babel-loader": "^8.0.6",
     "ext-to-regexp": "^0.0.6",
-    "regenerator-runtime": "^0.13.2",
+    "regenerator-runtime": "^0.13.3",
     "slash-to-regexp": "^0.0.0"
   },
   "peerDependencies": {

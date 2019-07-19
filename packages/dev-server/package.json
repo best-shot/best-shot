@@ -34,7 +34,7 @@
     "koa-connect": "^2.0.1",
     "koa-error": "^3.2.0",
     "lodash": "^4.17.14",
-    "webpack": "^4.35.3",
+    "webpack": "^4.36.1",
     "webpack-hot-client": "^4.1.2",
     "webpack-log": "^2.0.0",
     "webpack-serve": "^2.0.3",

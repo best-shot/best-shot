@@ -28,7 +28,7 @@
     "docsify-cli": "^4.3.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
-    "webpack": "^4.35.3"
+    "webpack": "^4.36.1"
   },
   "optionalDependencies": {
     "@nice-move/eslint-config-base": "^0.0.4",

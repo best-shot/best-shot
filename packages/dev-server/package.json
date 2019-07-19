@@ -37,7 +37,7 @@
     "webpack": "^4.35.3",
     "webpack-hot-client": "^4.1.2",
     "webpack-log": "^2.0.0",
-    "webpack-serve": "^2.0.3",
+    "webpack-serve": "^3.1.0",
     "webpack-serve-overlay": "^0.3.0",
     "webpack-serve-waitpage": "^1.0.2"
   }

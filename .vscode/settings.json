@@ -13,6 +13,7 @@
     "polyfills",
     "repo",
     "shellscape",
+    "subresource",
     "tersor",
     "waitpage",
     "webpackbar"

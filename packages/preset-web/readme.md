@@ -17,7 +17,7 @@ This preset includes the following packages:
 - micro-tpl-loader
 - html-webpack-plugin
 - script-ext-html-webpack-plugin
-  <!-- - webpack-subresource-integrity -->
+- webpack-subresource-integrity
 
 ## Installation
 
@@ -39,7 +39,7 @@ module.exports = {
 
 ### Polyfill
 
-This preset will change the default value of `options.polyfill.useBuiltIns` to `usage`.
+This preset will change the default value of `options.polyfill` to `usage`.
 
 See Options in [@best-shot/preset-babel](../preset-babel)
 

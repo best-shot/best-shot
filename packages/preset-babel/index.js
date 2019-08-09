@@ -15,9 +15,7 @@ exports.name = displayName;
 exports.apply = function applyBabel({
   browsers = 'defaults',
   mode = 'production',
-  config: {
-    polyfill: { useBuiltIns, corejs }
-  }
+  config: { polyfill = false }
 }) {
   return chain => {
     chain.module
@@ -37,8 +35,8 @@ exports.apply = function applyBabel({
             '@babel/env',
             {
               modules: false,
-              useBuiltIns,
-              corejs,
+              useBuiltIns: polyfill,
+              corejs: 3,
               targets: { browsers }
             }
           ]
@@ -58,24 +56,10 @@ exports.apply = function applyBabel({
 
 exports.schema = {
   polyfill: {
-    default: {},
+    default: false,
     description:
       'How @babel/preset-env handles polyfills, See <https://babeljs.io/docs/en/babel-preset-env>.',
-    properties: {
-      corejs: {
-        default: 3,
-        description:
-          '`options.corejs` of @babel/preset-env, but `options.corejs.proposals` always be false',
-        enum: [2, 3]
-      },
-      useBuiltIns: {
-        default: false,
-        description: '`options.useBuiltIns` of @babel/preset-env.',
-        enum: ['entry', 'usage', false]
-      }
-    },
-    required: ['useBuiltIns', 'corejs'],
-    title: 'Two options of @babel/preset-env',
-    type: 'object'
+    title: '`options.useBuiltIns` of @babel/preset-env',
+    enum: ['entry', 'usage', false]
   }
 };

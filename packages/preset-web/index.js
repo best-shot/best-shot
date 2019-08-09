@@ -33,9 +33,7 @@ exports.apply = function applySinglePage({
   mode,
   rootPath,
   options: { serve = false },
-  config: {
-    html, vendors, define, publicPath
-  }
+  config: { html, vendors, define, publicPath, sri }
 }) {
   return chain => {
     const useHot = chain.devServer.get('hot');
@@ -50,6 +48,7 @@ exports.apply = function applySinglePage({
     chain.batch(config => splitChunks(config, { vendors }));
     chain.batch(config =>
       setHtml(config, {
+        sri,
         mode,
         html,
         define,
@@ -92,11 +91,11 @@ exports.schema = {
     title: 'Options of HtmlWebpackPlugin'
   },
   polyfill: {
-    properties: {
-      useBuiltIns: {
-        default: 'usage'
-      }
-    }
+    default: 'usage'
+  },
+  sri: {
+    default: false,
+    type: 'boolean'
   },
   vendors: {
     additionalProperties: {

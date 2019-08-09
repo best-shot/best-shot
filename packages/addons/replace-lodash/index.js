@@ -1,3 +1,5 @@
+'use strict';
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { NormalModuleReplacementPlugin } = require('webpack');
 

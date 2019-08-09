@@ -1,21 +1,11 @@
 {
   "name": "@best-shot/preset-babel",
+  "version": "0.0.14",
   "description": "A `best-shot` preset for babel compiler",
-  "version": "0.0.13",
   "license": "MIT",
-  "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
-    "directory": "packages/preset-babel"
-  },
-  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/preset-babel",
-  "engines": {
-    "node": ">=8.10.0"
   },
   "keywords": [
     "babel",
@@ -24,25 +14,38 @@
     "core-js",
     "env",
     "polyfill",
+    "preset",
     "script",
     "shim",
     "transform",
+    "usage",
+    "useBuiltIns",
     "webpack"
   ],
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-babel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-babel"
+  },
+  "main": "index.js",
   "dependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/plugin-proposal-export-namespace-from": "^7.5.2",
     "@babel/plugin-proposal-numeric-separator": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
-    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-env": "^7.5.5",
     "babel-loader": "^8.0.6",
     "ext-to-regexp": "^0.0.6",
-    "regenerator-runtime": "^0.13.2",
+    "regenerator-runtime": "^0.13.3",
     "slash-to-regexp": "^0.0.0"
   },
   "peerDependencies": {
-    "core-js": ">=2.6.9"
+    "core-js": ">=3.0.0 <4"
+  },
+  "engines": {
+    "node": ">=8.10.0"
   }
 }

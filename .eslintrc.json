@@ -8,6 +8,7 @@
     "function-paren-newline": "off",
     "implicit-arrow-linebreak": "off",
     "no-underscore-dangle": "off",
+    "object-curly-newline": "off",
     "operator-linebreak": "off",
     "node/no-extraneous-require": [
       "error",

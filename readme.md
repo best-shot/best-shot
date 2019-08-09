@@ -8,7 +8,6 @@ A webpack config wrapper.
 [![appveyor][appveyor-badge]][appveyor-link]
 [![lgtm][lgtm-badge]][lgtm-link]
 [![codebeat][codebeat-badge]][codebeat-link]
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot?ref=badge_shield)
 
 ## packages
 
@@ -24,6 +23,12 @@ A webpack config wrapper.
 - [@best-shot/preset-web](./packages/preset-web/)
 - [best-shot-dev-server](./packages/dev-server/)
 
+## License
+
+[![fossa status][fossa-badge]][fossa-link]
+
+[fossa-badge]: https://app.fossa.io/api/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot.svg?type=large
+[fossa-link]: https://app.fossa.io/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot?ref=badge_large
 [codebeat-badge]: https://img.shields.io/badge/codebeat-A-brightgreen.svg?style=flat-square
 [codebeat-link]: https://codebeat.co/projects/github-com-airkro-best-shot-master
 [appveyor-badge]: https://img.shields.io/appveyor/ci/Airkro/best-shot.svg?label=appveyor&logo=appveyor&style=flat-square
@@ -36,7 +41,3 @@ A webpack config wrapper.
 [lgtm-link]: https://lgtm.com/projects/g/Airkro/best-shot/alerts/
 [npm-badge]: https://img.shields.io/badge/npm-best--shot-orange.svg?style=flat-square&logo=npm
 [npm-link]: https://www.npmjs.com/org/best-shot
-
-
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot?ref=badge_large)

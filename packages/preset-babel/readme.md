@@ -14,7 +14,7 @@ A `best-shot` preset for babel compiler.
 
 This preset can transform:
 
-- ECMAScript 2018 syntax
+- ECMAScript 2019 syntax
 - Class static properties
 - Decorators
 - Dynamic Import
@@ -26,7 +26,7 @@ This preset can transform:
 npm install @best-shot/preset-babel --save-dev
 ```
 
-Then specify `core-js@3` or `core-js@2` as a top level dependency.
+Then specify `core-js@3` as a top level dependency.
 
 ```bash
 npm install core-js@3 --save
@@ -38,9 +38,7 @@ npm install core-js@3 --save
 // example: best-shot.config.js
 module.exports = {
   presets: [..., 'babel'],
-  polyfill: {
-    ...
-  },
+  polyfill: 'usage',
   ...
 };
 ```
@@ -49,16 +47,7 @@ module.exports = {
 
 ### polyfill
 
-- type: `object`
-
-### polyfill.useBuiltIns
-
+- enum: [ false, 'entry', 'usage' ]
 - default: false
 
 Same as [options.useBuiltIns](https://babeljs.io/docs/en/next/babel-preset-env#usebuiltins) of `@babel/preset-env`.
-
-### polyfill.corejs
-
-- default: 3
-
-Same as [options.corejs](https://babeljs.io/docs/en/next/babel-preset-env#corejs) of `@babel/preset-env`, but `options.corejs.proposals` always be false.

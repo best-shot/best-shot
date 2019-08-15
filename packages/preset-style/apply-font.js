@@ -10,7 +10,8 @@ module.exports = function applyFont() {
       .use('file-loader')
       .loader('file-loader')
       .options({
-        name: 'font/[name].[hash:8].[ext]'
+        name: '[name].[contenthash:8].[ext]',
+        outputPath: 'font'
       });
   };
 };

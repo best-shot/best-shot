@@ -1,21 +1,11 @@
 {
   "name": "@best-shot/preset-style",
+  "version": "0.0.14",
   "description": "A `best-shot` preset for stylesheet",
-  "version": "0.0.13",
   "license": "MIT",
-  "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
-    "directory": "packages/preset-style"
-  },
-  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/preset-style",
-  "engines": {
-    "node": ">=8.10.0"
   },
   "keywords": [
     "autoprefixer",
@@ -34,21 +24,31 @@
     "svgo",
     "webpack"
   ],
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-style",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-style"
+  },
+  "main": "index.js",
   "dependencies": {
     "@intervolga/optimize-cssnano-plugin": "^1.0.6",
-    "css-loader": "^3.0.0",
+    "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
     "ext-to-regexp": "^0.0.6",
-    "extract-css-chunks-webpack-plugin": "^4.5.5",
-    "file-loader": "^4.0.0",
+    "extract-css-chunks-webpack-plugin": "^4.6.0",
+    "file-loader": "^4.2.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "sass": "^1.22.3",
     "postcss": "^7.0.17",
     "postcss-loader": "^3.0.0",
-    "sass-loader": "^7.1.0",
+    "sass": "^1.22.9",
+    "sass-loader": "^7.2.0",
     "slash-to-regexp": "^0.0.0",
-    "style-loader": "^0.23.1"
+    "style-loader": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=8.10.0"
   }
 }

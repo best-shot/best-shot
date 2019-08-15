@@ -15,8 +15,8 @@ exports.apply = function apply(...args) {
     chain
       .batch(applyStylesheet(...args))
       .batch(applyScssLess(...args))
-      .batch(applyImage(...args))
-      .batch(applyFont(...args));
+      .batch(applyImage())
+      .batch(applyFont());
 
     chain.resolveLoader.modules.add(childNodeModules);
   };

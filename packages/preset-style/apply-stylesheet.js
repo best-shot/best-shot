@@ -41,10 +41,7 @@ module.exports = function applyStylesheet({ mode }) {
       .when(
         useHot,
         rule => {
-          rule
-            .use('style-loader')
-            .loader('style-loader')
-            .options({ sourceMap: mode === 'development' });
+          rule.use('style-loader').loader('style-loader');
         },
         rule => {
           rule.use('extract-css').loader(ExtractCssChunksPlugin.loader);

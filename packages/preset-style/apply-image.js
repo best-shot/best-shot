@@ -15,7 +15,8 @@ module.exports = function applyImage() {
       .use('file-loader')
       .loader('file-loader')
       .options({
-        name: 'image/[name].[hash:8].[ext]'
+        name: '[name].[contenthash:8].[ext]',
+        outputPath: 'image'
       });
 
     if (minimize) {

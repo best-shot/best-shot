@@ -1,6 +1,6 @@
 {
   "name": "best-shot-addons",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Tool set for Best-shot",
   "license": "MIT",
   "author": {
@@ -8,6 +8,9 @@
     "email": "airkro@qq.com"
   },
   "main": "index.js",
+  "dependencies": {
+    "slash-to-regexp": "^0.0.0"
+  },
   "engines": {
     "node": ">=8.10.0"
   }

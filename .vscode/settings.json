@@ -13,6 +13,7 @@
     "polyfills",
     "repo",
     "shellscape",
+    "stringify",
     "subresource",
     "tersor",
     "waitpage",

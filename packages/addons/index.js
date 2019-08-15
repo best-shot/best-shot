@@ -1,10 +1,10 @@
-const cherryMap = require('./cherry-map');
+'use strict';
+
 const imageAvatar = require('./image-avatar');
 const replaceLodash = require('./replace-lodash');
 const srcAlias = require('./src-alias');
 
 module.exports = {
-  cherryMap,
   imageAvatar,
   replaceLodash,
   srcAlias

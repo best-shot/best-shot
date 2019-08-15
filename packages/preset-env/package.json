@@ -1,21 +1,11 @@
 {
   "name": "@best-shot/preset-env",
-  "description": "A `best-shot` preset for env variables",
   "version": "0.0.3",
+  "description": "A `best-shot` preset for env variables",
   "license": "MIT",
-  "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
-    "directory": "packages/preset-env"
-  },
-  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-env",
-  "engines": {
-    "node": ">=8.10.0"
   },
   "keywords": [
     "best-shot",
@@ -28,12 +18,22 @@
     "settings",
     "variables"
   ],
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-env",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-env"
+  },
+  "main": "index.js",
   "dependencies": {
     "@iarna/toml": "^2.2.3",
     "builtin-modules": "^3.1.0",
     "chalk": "^2.4.2",
     "is-builtin-module": "^3.0.0",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.14"
+    "lodash": "^4.17.15"
+  },
+  "engines": {
+    "node": ">=8.10.0"
   }
 }

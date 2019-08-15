@@ -1,20 +1,10 @@
 {
   "name": "best-shot-dev-server",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "license": "MIT",
-  "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
-    "directory": "packages/dev-server"
-  },
-  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/dev-server",
-  "engines": {
-    "node": ">=8.10.0"
   },
   "keywords": [
     "best-shot",
@@ -27,18 +17,30 @@
     "server",
     "webpack"
   ],
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/dev-server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/dev-server"
+  },
+  "main": "index.js",
   "dependencies": {
     "@best-shot/preset-serve": "^0.0.8",
     "connect-history-api-fallback": "^1.6.0",
     "http-proxy-middleware": "^0.19.1",
     "koa-connect": "^2.0.1",
     "koa-error": "^3.2.0",
-    "lodash": "^4.17.14",
-    "webpack": "^4.35.3",
+    "lodash": "^4.17.15",
     "webpack-hot-client": "^4.1.2",
     "webpack-log": "^2.0.0",
     "webpack-serve": "^2.0.3",
     "webpack-serve-overlay": "^0.3.0",
     "webpack-serve-waitpage": "^1.0.2"
+  },
+  "peerDependencies": {
+    "webpack": ">=4.39.2 <5"
+  },
+  "engines": {
+    "node": ">=8.10.0"
   }
 }

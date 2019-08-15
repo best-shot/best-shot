@@ -1,21 +1,11 @@
 {
   "name": "@best-shot/preset-serve",
-  "description": "A `best-shot` preset for development server",
   "version": "0.0.8",
+  "description": "A `best-shot` preset for development server",
   "license": "MIT",
-  "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
-    "directory": "packages/preset-serve"
-  },
-  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/preset-serve",
-  "engines": {
-    "node": ">=8.10.0"
   },
   "keywords": [
     "best-shot",
@@ -25,8 +15,18 @@
     "server",
     "webpack"
   ],
+  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/preset-serve",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-serve"
+  },
+  "main": "index.js",
   "dependencies": {
     "internal-ip": "^4.3.0",
-    "lodash": "^4.17.14"
+    "lodash": "^4.17.15"
+  },
+  "engines": {
+    "node": ">=8.10.0"
   }
 }

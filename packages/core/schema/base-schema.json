@@ -4,9 +4,9 @@
   "type": "object",
   "properties": {
     "outputPath": {
-      "default": "build",
+      "default": ".best-shot/build/[mode:shorthand]",
       "description": "Same as output.path, support [mode]/[mode:shorthand]/[platform]",
-      "minLength": 1,
+      "minLength": 3,
       "type": "string"
     },
     "publicPath": {

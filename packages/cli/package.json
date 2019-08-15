@@ -1,43 +1,43 @@
 {
   "name": "@best-shot/cli",
-  "description": "Command-Line Interface of `best-shot`",
   "version": "0.0.16",
+  "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
-  "main": "bin/cli.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
   },
-  "bin": {
-    "best-shot": "bin/cli.js"
-  },
+  "keywords": [
+    "best-shot",
+    "bundler",
+    "cli",
+    "scaffold",
+    "terminal",
+    "webpack"
+  ],
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/cli",
   "repository": {
     "type": "git",
     "url": "https://github.com/airkro/best-shot.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/cli",
-  "engines": {
-    "node": ">=8.10.0"
+  "bin": {
+    "best-shot": "bin/cli.js"
   },
-  "keywords": [
-    "best-shot",
-    "cli",
-    "bundler",
-    "scaffold",
-    "terminal",
-    "webpack"
-  ],
+  "main": "bin/cli.js",
   "dependencies": {
     "@best-shot/core": "^0.0.11",
-    "browserslist": "^4.6.4",
+    "browserslist": "^4.6.6",
     "chalk": "^2.4.2",
     "fs-extra": "^8.1.0",
-    "webpack-bundle-analyzer": "^3.3.2",
-    "webpackbar": "^3.2.0",
-    "yargs": "^13.2.4"
+    "webpack-bundle-analyzer": "^3.4.1",
+    "webpackbar": "^4.0.0",
+    "yargs": "^13.3.0"
   },
   "peerDependencies": {
-    "webpack": ">=4.35.2"
+    "webpack": ">=4.39.2 <5"
+  },
+  "engines": {
+    "node": ">=8.10.0"
   }
 }

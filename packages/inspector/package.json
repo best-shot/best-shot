@@ -1,21 +1,11 @@
 {
   "name": "@best-shot/inspector",
-  "description": "Inspector of `@best-shot/cli`",
   "version": "0.0.4",
+  "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
-  "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
-    "directory": "packages/inspector"
-  },
-  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/inspector",
-  "engines": {
-    "node": ">=8.10.0"
   },
   "keywords": [
     "best-shot",
@@ -25,12 +15,22 @@
     "terminal",
     "webpack"
   ],
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/inspector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/inspector"
+  },
+  "main": "index.js",
   "dependencies": {
     "fs-extra": "^8.1.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "prettier": "^1.18.2"
   },
   "peerDependencies": {
-    "@best-shot/cli": ">=0.0.15"
+    "@best-shot/cli": ">=0.0.16"
+  },
+  "engines": {
+    "node": ">=8.10.0"
   }
 }

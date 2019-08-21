@@ -4,6 +4,7 @@ const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
+const autoprefixer = require('autoprefixer');
 
 module.exports = function applyStylesheet({ mode }) {
   return chain => {
@@ -35,6 +36,11 @@ module.exports = function applyStylesheet({ mode }) {
       ]);
     }
 
+    const Autoprefixer = autoprefixer();
+
+    // @ts-ignore
+    Autoprefixer.__expression = "require('autoprefixer')";
+
     chain.module
       .rule('style')
       .test(extToRegexp('css'))
@@ -57,8 +63,8 @@ module.exports = function applyStylesheet({ mode }) {
       .use('postcss-loader')
       .loader('postcss-loader')
       .options({
-        ident: 'postcss',
-        sourceMap: mode === 'development'
+        sourceMap: mode === 'development',
+        plugins: [Autoprefixer]
       });
 
     if (chain.module.rules.has('babel')) {

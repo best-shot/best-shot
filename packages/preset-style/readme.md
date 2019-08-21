@@ -16,11 +16,9 @@ This preset includes the following packages:
 
 - style-loader
 - css-loader
-- less
-- less-loader
-- sass
-- sass-loader
-- postcss-loader
+- less / less-loader
+- sass / sass-loader
+- postcss / postcss-loader / autoprefixer
 - extract-css-chunks-webpack-plugin
 - optimize-cssnano-plugin
 - imagemin-webpack-plugin
@@ -43,24 +41,39 @@ module.exports = {
 
 ## Tips
 
-### How to load postcss config
+### How to load custom `postcss` config
 
-See <https://github.com/michael-ciniawsky/postcss-load-config>
+Disable internal `autoprefixer` first.
+
+```js
+// example: .best-shot/config.js
+module.exports = {
+  webpackChain: config => {
+    config.module
+      .rule('style')
+      .use('postcss-loader')
+      .tap(options => ({
+        ...options,
+        plugins: []
+      }));
+  }
+};
+```
+
+Write your config in any way. See <https://github.com/michael-ciniawsky/postcss-load-config>
 
 ```js
 // example: postcss.config.js
 module.exports = {
   plugins: {
-    autoprefixer: {}
+    'postcss-preset-env': {}
   }
 };
 ```
 
-### Use `node-sass` instead `dart-sass`
+### Speed up `sass` compile
 
-`@best-shot/preset-style` use `dart-sass` by default. Because `node-sass` has [many issues](https://github.com/webpack-contrib/sass-loader/issues/435).
-
-You can speed up sass compile by installing `node-sass`.
+`@best-shot/preset-style` use `dart-sass` by default. Because `node-sass` has [many issues](https://github.com/webpack-contrib/sass-loader/issues/435). But you still can speed up sass compile by installing `node-sass`.
 
 ```bash
 npm install node-sass --save-dev

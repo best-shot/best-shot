@@ -12,7 +12,7 @@ A `best-shot` preset for env variables.
 [![license][license-badge]][github-url]
 ![node][node-badge]
 
-The package will select the configuration file from `process.cwd()` according to the following priority.
+The package will find the configuration from `process.cwd()` according to the following priority:
 
 - ./best-shot/env.toml
 - ./best-shot/env.yaml
@@ -39,29 +39,15 @@ module.exports = {
 };
 ```
 
-```yaml
-# example: .best-shot/env.yaml
-production:
-  SERVICE_URL: http://sample.org/api
-  APPID: 123456789
-
-development:
-  SERVICE_URL: http://sample.dev/api
-  APPID: 987654321
-
-serve:
-  SERVICE_URL: http://mock.dev/api
-```
-
 ```toml
 # example: .best-shot/env.toml
 [production]
-SERVICE_URL = "http://sample.org/api"
-APPID = 123456789
+SERVICE_URL = "https://sample.org/api"
+APPID = "123456789"
 
 [development]
 SERVICE_URL = "http://sample.dev/api"
-APPID = 987654321
+APPID = "987654321"
 
 [serve]
 SERVICE_URL = "http://mock.dev/api"
@@ -71,22 +57,51 @@ SERVICE_URL = "http://mock.dev/api"
 // output: production mode
 module.exports = {
   new DefinePlugin({
-    WHATEVER: '"abc"',
-    SERVICE_URL: '"http://sample.org/api"',
-    APPID: '123456789'
+    APPID: '"123456789"',
+    SERVICE_URL: '"https://sample.org/api"',
+    WHATEVER: '"abc"'
   })
 };
 
 // output: development mode
 module.exports = {
   new DefinePlugin({
-    WHATEVER: '"abc"',
+    APPID: '"987654321"',
     SERVICE_URL: '"http://sample.dev/api"',
-    APPID: '987654321'
+    WHATEVER: '"abc"',
+  })
+};
+
+// output: serve command
+module.exports = {
+  new DefinePlugin({
+    APPID: '"987654321"',
+    SERVICE_URL: '"http://mock.dev/api"',
+    WHATEVER: '"abc"',
   })
 };
 ```
 
 ## Tips
 
-Variables with the same name as the Node.js built-in module will be removed.
+### Namespace safety
+
+Don't use built-in module name like:
+
+```toml
+__dirname = 123456
+console = "xyz"
+```
+
+### Git info inject
+
+If a `process.cwd()` is a git repository, `GIT_BRANCH`, `GIT_HASH` will be injected to your config.
+
+```js
+module.exports = {
+  new DefinePlugin({
+    GIT_BRANCH: '"master"',
+    GIT_HASH: '"66ed46c"'
+  })
+};
+```

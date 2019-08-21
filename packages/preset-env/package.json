@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-env",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A `best-shot` preset for env variables",
   "license": "MIT",
   "author": {
@@ -9,12 +9,15 @@
   },
   "keywords": [
     "best-shot",
+    "branch",
+    "commithash",
     "conf",
     "config",
     "configuration",
     "define",
     "env",
     "environment",
+    "git",
     "settings",
     "variables"
   ],
@@ -27,11 +30,12 @@
   "main": "index.js",
   "dependencies": {
     "@iarna/toml": "^2.2.3",
-    "builtin-modules": "^3.1.0",
     "chalk": "^2.4.2",
-    "is-builtin-module": "^3.0.0",
+    "git-rev-webpack-plugin": "^0.2.2",
+    "is-git-repository": "^1.1.1",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "sort-keys": "^4.0.0"
   },
   "engines": {
     "node": ">=8.10.0"

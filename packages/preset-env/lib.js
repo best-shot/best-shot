@@ -2,7 +2,6 @@
 
 const { readFileSync } = require('fs');
 const pickBy = require('lodash/pickBy');
-const isBuiltinModule = require('is-builtin-module');
 const tomlParser = require('@iarna/toml/parse');
 const yaml = require('js-yaml');
 
@@ -27,22 +26,24 @@ function findConfig(rootPath) {
   );
 }
 
+function filterData(data) {
+  return pickBy(data, item => item !== undefined);
+}
+
 function mergeParams(
   { mode, watch: isWatch, serve: isServe },
-  {
-    development, production, watch, serve
-  }
+  { development, production, watch, serve }
 ) {
-  return {
-    ...(mode === 'production'
+  return filterData(
+    mode === 'production'
       ? production
       : {
         ...production,
         ...development,
         ...(isWatch || isServe ? watch : {}),
         ...(isServe ? serve : {})
-      })
-  };
+      }
+  );
 }
 
 const parser = {
@@ -59,14 +60,6 @@ function parseConfig({ path, name, type }) {
     console.error(error);
     throw new Error(`Parse \`${name}\` fail`);
   }
-}
-
-function filterData(data) {
-  const result = pickBy(
-    data,
-    (value, key) => !isBuiltinModule(key.split('.')[0].toLowerCase())
-  );
-  return Object.values(result).length > 0 ? result : undefined;
 }
 
 module.exports = {

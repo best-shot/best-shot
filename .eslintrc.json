@@ -10,6 +10,7 @@
     "no-underscore-dangle": "off",
     "object-curly-newline": "off",
     "operator-linebreak": "off",
+    "indent": "off",
     "node/no-extraneous-require": [
       "error",
       {

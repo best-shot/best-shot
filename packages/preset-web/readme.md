@@ -28,7 +28,7 @@ npm install @best-shot/preset-web --save-dev
 ## Usage
 
 ```js
-// example: best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'web'],
   ...
@@ -46,7 +46,7 @@ See Options in [@best-shot/preset-babel](../preset-babel)
 ### Split Chunks
 
 ```js
-// example: best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'web'],
   vendors: {
@@ -59,7 +59,7 @@ module.exports = {
 ### Single Page Application
 
 ```js
-// example: best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'web'],
   html: {
@@ -72,7 +72,7 @@ module.exports = {
 ### Multiple Page Application
 
 ```js
-// example: best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'web'],
   html: [

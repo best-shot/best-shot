@@ -23,8 +23,8 @@ function sourceMap(mode = 'development', serve = false) {
   return mode === 'production'
     ? false
     : serve
-      ? 'cheap-module-eval-source-map'
-      : 'cheap-module-source-map';
+    ? 'cheap-module-eval-source-map'
+    : 'cheap-module-source-map';
 }
 
 exports.name = 'preset-web';

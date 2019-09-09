@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "best-shot-dev",
+  "name": "best-shot",
   "version": "0.0.0",
   "license": "MIT",
   "author": {
@@ -13,7 +13,7 @@
   },
   "scripts": {
     "docs": "nodemon",
-    "format": "lint-staged",
+    "format": "nice-move",
     "inspect": "best-shot inspect --stamp test",
     "test": "jest"
   },
@@ -27,29 +27,30 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.6.0",
+    "chokidar": "^3.0.2",
     "docsify-cli": "^4.3.0",
     "jest": "^24.9.0",
-    "nodemon": "^1.19.1",
-    "webpack": "^4.39.2"
+    "nodemon": "^1.19.2",
+    "webpack": "^4.39.3"
   },
   "optionalDependencies": {
+    "@nice-move/cli": "^0.0.0",
     "@nice-move/eslint-config-base": "^0.0.4",
     "@nice-move/prettier-config": "^0.0.3",
     "@types/jest": "^24.0.18",
     "eslint": "^5.16.0",
-    "eslint-plugin-jest": "^22.15.1",
-    "eslint-plugin-node": "^9.1.0",
-    "husky": "^3.0.4",
-    "lint-staged": "^9.2.3",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-node": "^10.0.0",
+    "husky": "^3.0.5",
     "prettier": "^1.18.2"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": "^8.10 || ^10 || ^12"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && jest"
+      "pre-commit": "nice-move && jest"
     }
   },
   "prettier": "@nice-move/prettier-config"

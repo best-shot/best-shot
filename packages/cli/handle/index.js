@@ -4,10 +4,16 @@ const webpack = require('webpack');
 
 function getServer() {
   try {
-    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
-    return require('best-shot-dev-server');
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies, import/no-unresolved, node/no-missing-require
+    return require('@best-shot/dev-server');
   } catch (error) {
-    return undefined;
+    try {
+      // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+      return require('best-shot-dev-server');
+    } catch (_error) {
+      return undefined;
+    }
   }
 }
 

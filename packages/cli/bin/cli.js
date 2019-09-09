@@ -2,6 +2,8 @@
 
 'use strict';
 
+require('v8-compile-cache');
+
 const yargs = require('yargs');
 const { green, cyan, supportsColor } = require('chalk');
 const { commandEnv } = require('@best-shot/core/lib/common');

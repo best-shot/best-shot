@@ -21,8 +21,6 @@ exports.apply = function applyBabel({
     chain.module
       .rule(displayName)
       .test(extToRegexp('js', 'mjs'))
-      .exclude.add(slashToRegexp('/node_modules/core-js/'))
-      .end()
       .use('babel-loader')
       .loader('babel-loader')
       .options({
@@ -42,13 +40,18 @@ exports.apply = function applyBabel({
           ]
         ],
         plugins: [
-          '@babel/syntax-import-meta',
           '@babel/proposal-export-namespace-from',
           '@babel/proposal-numeric-separator',
           ['@babel/proposal-decorators', { legacy: true }],
           '@babel/proposal-class-properties'
         ]
       });
+
+    if (polyfill) {
+      chain.module
+        .rule(displayName)
+        .exclude.add(slashToRegexp('/node_modules/core-js/'));
+    }
 
     chain.resolveLoader.modules.add(childNodeModules);
   };

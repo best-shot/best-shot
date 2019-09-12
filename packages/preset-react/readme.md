@@ -27,7 +27,7 @@ npm install @best-shot/preset-react --save-dev
 ## Usage
 
 ```js
-// example: best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'babel', 'react'],
   ...

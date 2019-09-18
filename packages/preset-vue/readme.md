@@ -1,6 +1,6 @@
 # @best-shot/preset-vue
 
-Best-shot preset for Vue project.
+A `best-shot` preset for Vue project.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-vue
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-vue.svg?style=flat-square&logo=npm
@@ -27,7 +27,7 @@ npm install @best-shot/preset-vue --save-dev
 ## Usage
 
 ```js
-// best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'vue'],
   ...
@@ -45,14 +45,14 @@ npm install @vue/babel-preset-jsx --save-dev
 ```
 
 ```js
-// best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   // add @best-shot/preset-babel
   presets: [..., 'babel', 'vue'],
   ...
 };
 
-// babel.config.js
+// example: babel.config.js
 module.exports = {
   presets: [..., '@vue/babel-preset-jsx'],
   ...
@@ -61,6 +61,6 @@ module.exports = {
 
 ### Whitespace options override
 
-`compilerOptions.whitespace` of `vue-loader` is set to `condense`.
+Options `compilerOptions.whitespace` of `vue-loader` is set to `condense` by default.
 
 See: <https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler#options>

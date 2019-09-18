@@ -1,20 +1,11 @@
 {
   "name": "@best-shot/preset-vue",
-  "description": "Best-shot preset for Vue project",
-  "version": "0.0.5",
+  "version": "0.0.6",
+  "description": "A `best-shot` preset for Vue project",
   "license": "MIT",
-  "main": "index.js",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
-    "directory": "packages/preset-vue"
-  },
-  "engines": {
-    "node": ">=8.10.0"
   },
   "keywords": [
     "best-shot",
@@ -24,10 +15,24 @@
     "vue",
     "webpack"
   ],
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-vue",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/best-shot.git",
+    "directory": "packages/preset-vue"
+  },
+  "main": "index.js",
   "dependencies": {
+    "css-loader": "^3.2.0",
     "ext-to-regexp": "^0.0.6",
-    "vue-loader": "^15.7.0",
+    "vue-loader": "^15.7.1",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.10"
+  },
+  "engines": {
+    "node": "^8.10 || ^10 || ^12"
   }
 }

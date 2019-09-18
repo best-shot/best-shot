@@ -10601,6 +10601,11 @@ slash-to-regexp@^0.0.0:
   resolved "https://registry.npmjs.org/slash-to-regexp/-/slash-to-regexp-0.0.0.tgz#6cb2cc905bc06cc9e816e6f8a88fdfe80ce6b110"
   integrity sha512-QaB6fspBczMHjk+tErjoRYvWoVd5mQVQEpJCbWp4922v9Lmf353nwDOU0lqe7kXsmK7zK4Hv5Pur28WCsOduAg==
 
+slash-to-regexp@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/slash-to-regexp/-/slash-to-regexp-0.0.1.tgz#f671b981ed5d5b2d16110fd73075e08da81eba9a"
+  integrity sha512-2jdupx/uybc02imw5o5Qr3Q3T9Wp1iGBqT6BzZEeK4oiG2h41qlO1169L1xbsr9fH0APJD1EvWM36d6QqdxIZA==
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
@@ -11959,10 +11964,10 @@ webpack-sources@^1.3.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack-subresource-integrity@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.npmjs.org/webpack-subresource-integrity/-/webpack-subresource-integrity-1.3.2.tgz#38fdcbdd9b90b224500626efa1e6d17fc650800f"
-  integrity sha512-VpBtk0Ha1W0GebTzPj3Y8UqbmPDp+HqGlegRv+hS8g8/x818dw9NuEfJEOp5CF6zTPs3KF6aqknVu52Bh5h1eQ==
+webpack-subresource-integrity@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.npmjs.org/webpack-subresource-integrity/-/webpack-subresource-integrity-1.3.3.tgz#8a320457a93ef480707884443d886f7f677ccbf7"
+  integrity sha512-t668hZNc/fZCgt2u83A4Tp9l5sDEwAhEC5XQ2QugshEr9WkNNDQC6551pB/JUfy5DwqTa/MJzAjeG5QQ9vxCEA==
   dependencies:
     webpack-sources "^1.3.0"
 

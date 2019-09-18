@@ -24,7 +24,7 @@ module.exports = function splitChunks(chain, { vendors = {} }) {
       test: regexp,
       name: key,
       chunks: 'initial',
-      priority: (length - index + 2) * 10,
+      priority: (length - index + 1) * 10,
       enforce: true,
       reuseExistingChunk: true
     };
@@ -34,24 +34,17 @@ module.exports = function splitChunks(chain, { vendors = {} }) {
     maxAsyncRequests: 5,
     cacheGroups: {
       ...settings,
-      'initial-vendors': {
+      initial: {
         chunks: 'initial',
         enforce: true,
-        name: 'initial-vendors',
-        priority: 20,
+        name: 'initial',
+        priority: 10,
         reuseExistingChunk: true,
         test: slashToRegexp('/node_modules/')
       },
-      'async-vendors': {
-        chunks: 'async',
-        enforce: true,
-        minChunks: 2,
-        name: 'async-vendors',
-        priority: 10,
-        reuseExistingChunk: true
-      },
       async: {
         chunks: 'async',
+        enforce: true,
         reuseExistingChunk: true
       }
     }
@@ -59,5 +52,5 @@ module.exports = function splitChunks(chain, { vendors = {} }) {
 
   chain
     .plugin('min-chunk-size')
-    .use(MinChunkSizePlugin, [{ minChunkSize: 4096 }]);
+    .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
 };

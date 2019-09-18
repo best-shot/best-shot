@@ -1,9 +1,6 @@
 'use strict';
 
-module.exports = function setOutputName(
-  chain,
-  { both, script = both, style = both }
-) {
+module.exports = function setOutputName(chain, { script, style }) {
   const jsFilename = chain.output.get('filename');
 
   chain.output.filename(script(jsFilename));

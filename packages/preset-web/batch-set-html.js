@@ -4,7 +4,7 @@ const { join, relative } = require('path');
 const deepmerge = require('deepmerge');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
-const SubresourceIntegrityPlugin = require('webpack-subresource-integrity');
+const SubResourceIntegrityPlugin = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
@@ -84,9 +84,11 @@ module.exports = function setHtml(
     .use(ScriptExtHtmlWebpackPlugin, [{ defaultAttribute: 'defer' }]);
 
   if (mode === 'production' && sri) {
+    chain.output.crossOriginLoading('anonymous');
+
     chain
-      .plugin('subresource-integrity')
-      .use(SubresourceIntegrityPlugin, [
+      .plugin('sub-resource-integrity')
+      .use(SubResourceIntegrityPlugin, [
         { hashFuncNames: ['sha512', 'sha384', 'sha256'] }
       ]);
   }

@@ -1,7 +1,7 @@
 'use strict';
 
 const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
-const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 const autoprefixer = require('autoprefixer');
@@ -20,20 +20,22 @@ module.exports = function applyStylesheet({ mode }) {
     }
 
     if (minimize) {
-      chain.optimization.minimizer('optimize-css').use(OptimizeCssnanoPlugin, [
-        {
-          sourceMap: false,
-          cssnanoOptions: {
-            preset: [
-              'default',
-              {
-                // mergeLonghand: false,
-                discardComments: { removeAll: true }
-              }
-            ]
+      chain.optimization
+        .minimizer('optimize-css-assets')
+        .use(OptimizeCssAssetsPlugin, [
+          {
+            sourceMap: false,
+            cssProcessorPluginOptions: {
+              preset: [
+                'default',
+                {
+                  // mergeLonghand: false,
+                  discardComments: { removeAll: true }
+                }
+              ]
+            }
           }
-        }
-      ]);
+        ]);
     }
 
     const Autoprefixer = autoprefixer();

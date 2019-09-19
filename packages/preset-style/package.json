@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-style",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A `best-shot` preset for stylesheet",
   "license": "MIT",
   "author": {
@@ -32,7 +32,6 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@intervolga/optimize-cssnano-plugin": "^1.0.6",
     "autoprefixer": "^9.6.1",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
@@ -40,16 +39,17 @@
     "extract-css-chunks-webpack-plugin": "^4.6.0",
     "file-loader": "^4.2.0",
     "imagemin-webpack-plugin": "^2.4.2",
-    "less": "^3.10.2",
+    "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "postcss": "^7.0.17",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss": "^7.0.18",
     "postcss-loader": "^3.0.0",
-    "sass": "^1.22.10",
+    "sass": "^1.22.12",
     "sass-loader": "^7.3.1",
-    "slash-to-regexp": "^0.0.0",
+    "slash-to-regexp": "^0.0.2",
     "style-loader": "^1.0.0"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": "^8.10 || ^10 || ^12"
   }
 }

@@ -20,7 +20,7 @@ This preset includes the following packages:
 - sass / sass-loader
 - postcss / postcss-loader / autoprefixer
 - extract-css-chunks-webpack-plugin
-- optimize-cssnano-plugin
+- optimize-css-assets-webpack-plugin
 - imagemin-webpack-plugin
 
 ## Installation
@@ -32,7 +32,7 @@ npm install @best-shot/preset-style --save-dev
 ## Usage
 
 ```js
-// example: best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'style'],
   ...

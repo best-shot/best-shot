@@ -34,7 +34,7 @@ module.exports = function splitChunks(chain, { vendors = {} }) {
     maxAsyncRequests: 5,
     cacheGroups: {
       ...settings,
-      initial: {
+      vendor: {
         chunks: 'initial',
         enforce: true,
         name: 'initial',

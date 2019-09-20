@@ -5722,15 +5722,15 @@ http-errors@~1.6.2:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
-http-proxy-middleware@^0.19.1:
-  version "0.19.1"
-  resolved "https://registry.npmjs.org/http-proxy-middleware/-/http-proxy-middleware-0.19.1.tgz#183c7dc4aa1479150306498c210cdaf96080a43a"
-  integrity sha512-yHYTgWMQO8VvwNS22eLLloAkvungsKdKTLO8AJlftYIKNfJr3GK3zK0ZCfzDDGUBttdGc8xFy1mCitvNKQtC3Q==
+http-proxy-middleware@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.npmjs.org/http-proxy-middleware/-/http-proxy-middleware-0.20.0.tgz#5b128f7207985c4ea91b53fab8ad897a48c690d6"
+  integrity sha512-dNJAk71nEJhPiAczQH9hGvE/MT9kEs+zn2Dh+Hi94PGZe1GluQirC7mw5rdREUtWx6qGS1Gu0bZd4qEAg+REgw==
   dependencies:
     http-proxy "^1.17.0"
-    is-glob "^4.0.0"
-    lodash "^4.17.11"
-    micromatch "^3.1.10"
+    is-glob "^4.0.1"
+    lodash "^4.17.14"
+    micromatch "^4.0.2"
 
 http-proxy@^1.17.0:
   version "1.17.0"
@@ -10621,6 +10621,11 @@ slash-to-regexp@^0.0.2:
   version "0.0.2"
   resolved "https://registry.npmjs.org/slash-to-regexp/-/slash-to-regexp-0.0.2.tgz#2d3e17a6dc8eb811d667f82ef3ab23c60626670c"
   integrity sha512-t2BMNbdUMVuL6TTRunsySQrgTjGwRJst1fT4supbVFB6zZoCiTRqvnWI7wW/suYDrigeuoUO2gh8G0xW4O/K4g==
+
+slash-to-regexp@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/slash-to-regexp/-/slash-to-regexp-0.0.4.tgz#c40044eb5941e0b5c016a08a7ec23c4cf98e92c3"
+  integrity sha512-ytHd0haDIWhv799XlWyCSaS0iPg0D+l/bcm0vXrpH5ncciNWCKopt76sYNZs6yYRbid36HJhvFk32ss9b3dXQA==
 
 slash@^1.0.0:
   version "1.0.0"

@@ -1,6 +1,6 @@
 {
   "name": "best-shot-dev-server",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -27,7 +27,7 @@
   "dependencies": {
     "@best-shot/preset-serve": "^0.0.8",
     "connect-history-api-fallback": "^1.6.0",
-    "http-proxy-middleware": "^0.19.1",
+    "http-proxy-middleware": "^0.20.0",
     "koa-connect": "^2.0.1",
     "koa-error": "^3.2.0",
     "lodash": "^4.17.15",
@@ -38,9 +38,9 @@
     "webpack-serve-waitpage": "^1.0.2"
   },
   "peerDependencies": {
-    "webpack": ">=4.39.2 <5"
+    "webpack": "^4.40.2"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": "^8.10 || ^10 || ^12"
   }
 }

@@ -5,15 +5,15 @@ const convert = require('koa-connect');
 const foreach = require('lodash/forEach');
 const httpProxyMiddleware = require('http-proxy-middleware');
 const koaError = require('koa-error');
-const weblog = require('webpack-log');
+const getLogger = require('webpack-log');
 const webpackServe = require('webpack-serve');
 const webpackServeWaitPage = require('webpack-serve-waitpage');
 const { resolve } = require('path');
 
-const log = weblog({ name: 'serve' });
+const log = getLogger({ name: 'serve' });
 
 function proxyLogProvider(provider) {
-  const logger = weblog({ name: 'proxy' });
+  const logger = getLogger({ name: 'proxy' });
   return Object.keys(provider).reduce(
     (io, key) => ({
       ...io,

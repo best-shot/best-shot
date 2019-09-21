@@ -1,24 +1,21 @@
 'use strict';
 
 const { resolve } = require('path');
+// @ts-ignore
 const { findConfig } = require('browserslist');
 
 function reachConfig(rootPath) {
-  try {
-    // eslint-disable-next-line import/no-dynamic-require, global-require
-    const io = require(resolve(rootPath, '.best-shot/config.js'));
-    return function func(params) {
-      const config = typeof io === 'function' ? io(params) : io;
-      if (typeof config === 'object') {
-        config.outputPath =
-          config.outputPath || '.best-shot/build/[platform]/[mode:shorthand]';
-        return config;
-      }
-      throw new TypeError('Config should be an Object');
-    };
-  } catch (error) {
-    throw error;
-  }
+  // eslint-disable-next-line import/no-dynamic-require, global-require
+  const io = require(resolve(rootPath, '.best-shot/config.js'));
+  return function func(params) {
+    const config = typeof io === 'function' ? io(params) : io;
+    if (typeof config === 'object') {
+      config.outputPath =
+        config.outputPath || '.best-shot/build/[platform]/[mode:shorthand]';
+      return config;
+    }
+    throw new TypeError('Config should be an Object');
+  };
 }
 
 function reachBrowsers(rootPath) {

@@ -4,6 +4,7 @@ const webpack = require('webpack');
 
 function getServer() {
   try {
+    // @ts-ignore
     // eslint-disable-next-line max-len
     // eslint-disable-next-line global-require, import/no-extraneous-dependencies, import/no-unresolved, node/no-missing-require
     return require('@best-shot/dev-server');

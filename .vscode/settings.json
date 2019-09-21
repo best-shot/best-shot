@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "appid",
+    "browserslistrc",
     "circleci",
     "codebeat",
     "corejs",
@@ -12,6 +13,7 @@
     "micromustache",
     "minification",
     "polyfills",
+    "postcssrc",
     "repo",
     "shellscape",
     "stringify",

@@ -28,11 +28,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
-    "chokidar": "^3.0.2",
     "docsify-cli": "^4.3.0",
     "jest": "^24.9.0",
     "nodemon": "^1.19.2",
-    "webpack": "^4.39.3"
+    "webpack": "^4.40.2"
   },
   "optionalDependencies": {
     "@nice-move/cli": "^0.0.0",

@@ -32,14 +32,14 @@
     "chalk": "^2.4.2",
     "fs-extra": "^8.1.0",
     "v8-compile-cache": "^2.1.0",
-    "webpack-bundle-analyzer": "^3.4.1",
+    "webpack-bundle-analyzer": "^3.5.1",
     "webpackbar": "^4.0.0",
-    "yargs": "^14.1.0"
+    "yargs": "^14.0.0"
   },
   "peerDependencies": {
-    "webpack": ">=4.39.3 <5"
+    "webpack": "^4.40.2"
   },
   "engines": {
-    "node": "^8.10.0 || ^10 || ^12"
+    "node": "^8.10 || ^10 || ^12"
   }
 }

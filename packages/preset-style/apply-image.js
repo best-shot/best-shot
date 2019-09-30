@@ -1,43 +1,41 @@
 'use strict';
 
 const extToRegexp = require('ext-to-regexp');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 
 const imageRegexp = extToRegexp('jpg', 'jpeg', 'png', 'gif', 'svg');
 
-module.exports = function applyImage() {
-  return chain => {
-    const minimize = chain.optimization.get('minimize');
+module.exports = function applyImage(chain) {
+  const minimize = chain.optimization.get('minimize');
 
-    chain.module
-      .rule('image')
-      .test(imageRegexp)
-      .use('file-loader')
-      .loader('file-loader')
-      .options({
-        name: '[name].[contenthash:8].[ext]',
-        outputPath: 'image'
-      });
+  chain.module
+    .rule('image')
+    .test(imageRegexp)
+    .use('file-loader')
+    .loader('file-loader')
+    .options({
+      name: '[name].[contenthash:8].[ext]',
+      outputPath: 'image'
+    });
 
-    if (minimize) {
-      chain.optimization.minimizer('imagemin').use(ImageminPlugin, [
-        {
-          test: imageRegexp,
-          jpegtran: { progressive: true },
-          svgo: {
-            plugins: [
-              { removeAttrs: { attrs: 'data-*' } },
-              { removeAttrs: { attrs: 'data.*' } },
-              { removeAttrs: { value: 'null' } },
-              { removeDimensions: true },
-              { removeScriptElement: true },
-              { removeTitle: true },
-              { removeUselessStrokeAndFill: true },
-              { removeViewBox: true }
-            ]
-          }
+  if (minimize) {
+    chain.optimization.minimizer('imagemin').use(ImageminPlugin, [
+      {
+        test: imageRegexp,
+        jpegtran: { progressive: true },
+        svgo: {
+          plugins: [
+            { removeAttrs: { attrs: 'data-*' } },
+            { removeAttrs: { attrs: 'data.*' } },
+            { removeAttrs: { value: 'null' } },
+            { removeDimensions: true },
+            { removeScriptElement: true },
+            { removeTitle: true },
+            { removeUselessStrokeAndFill: true },
+            { removeViewBox: true }
+          ]
         }
-      ]);
-    }
-  };
+      }
+    ]);
+  }
 };

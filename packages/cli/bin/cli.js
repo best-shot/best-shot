@@ -4,7 +4,10 @@
 
 require('v8-compile-cache');
 
+process.title = 'best-shot';
+
 const yargs = require('yargs');
+// @ts-ignore
 const { green, cyan, supportsColor } = require('chalk');
 const { commandEnv } = require('@best-shot/core/lib/common');
 const action = require('../handle/action');
@@ -23,48 +26,37 @@ const app = yargs
   .locale('en')
   .strict()
   .parserConfiguration({ 'duplicate-arguments-array': true })
-  .check(({ _: commands }) => {
-    if (commands.length > 1) {
-      throw new Error("Won't work when more than 1 command");
-    }
-    return true;
-  })
   .demandCommand(1, "Won't work without a command")
   .command(
     'serve',
-    'Same as `dev` command, and starts a local dev server',
+    'Same as `dev` command with dev server',
     setOptions.serve,
     action
   )
   .command(
     'watch',
-    'Same as `dev` command, and watch source code changes',
+    'Same as `dev` command in watch mode',
     setOptions.watch,
     action
   )
   .command(
     'dev',
-    `Bundle files in ${cyan`Development mode`}, with sourcemaps`,
+    `Bundle files in ${cyan`Development mode`}`,
     setOptions.dev,
     action
   )
   .command(
     'prod',
-    `Bundle files in ${cyan`Production mode`}, with minification`,
+    `Bundle files in ${cyan`Production mode`}`,
     setOptions.prod,
     action
   )
-  .command(
-    'ignore',
-    'add .best-shot temporary directory to ignore files',
-    {},
-    addIgnore
-  )
+  .command('ignore', 'Add temporary directories to .*ignore', {}, addIgnore)
   .options({
     color: {
       default: Boolean(supportsColor.level),
       defaultDescription: 'supportsColor',
-      describe: 'Print colorful output',
+      describe: 'Colorful output',
       type: 'boolean'
     }
   })

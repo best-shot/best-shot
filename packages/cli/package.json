@@ -32,7 +32,7 @@
     "chalk": "^2.4.2",
     "fs-extra": "^8.1.0",
     "v8-compile-cache": "^2.1.0",
-    "webpack-bundle-analyzer": "^3.5.1",
+    "webpack-bundle-analyzer": "^3.5.2",
     "webpackbar": "^4.0.0",
     "yargs": "^14.0.0"
   },

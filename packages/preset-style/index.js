@@ -10,13 +10,13 @@ const applyStylesheet = require('./apply-stylesheet');
 
 const childNodeModules = currentPath.relative(module.paths[0]);
 
-exports.apply = function apply(...args) {
+exports.apply = function apply() {
   return chain => {
     chain
-      .batch(applyStylesheet(...args))
-      .batch(applyScssLess(...args))
-      .batch(applyImage())
-      .batch(applyFont());
+      .batch(applyStylesheet)
+      .batch(applyScssLess)
+      .batch(applyImage)
+      .batch(applyFont);
 
     chain.resolveLoader.modules.add(childNodeModules);
   };

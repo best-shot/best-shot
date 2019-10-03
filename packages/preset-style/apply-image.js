@@ -3,7 +3,9 @@
 const extToRegexp = require('ext-to-regexp');
 const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 
-const imageRegexp = extToRegexp('jpg', 'jpeg', 'png', 'gif', 'svg');
+const imageRegexp = extToRegexp({
+  extname: ['jpg', 'jpeg', 'png', 'gif', 'svg']
+});
 
 module.exports = function applyImage(chain) {
   const minimize = chain.optimization.get('minimize');

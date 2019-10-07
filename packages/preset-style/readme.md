@@ -1,6 +1,6 @@
 # @best-shot/preset-style
 
-A `best-shot` preset for stylesheet.
+A `best-shot` preset for stylesheets.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-style
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-style.svg?style=flat-square&logo=npm
@@ -12,16 +12,13 @@ A `best-shot` preset for stylesheet.
 [![license][license-badge]][github-url]
 ![node][node-badge]
 
-This preset includes the following packages:
+This preset offer the following features:
 
-- style-loader
-- css-loader
-- less / less-loader
-- sass / sass-loader
-- postcss / postcss-loader / autoprefixer
-- extract-css-chunks-webpack-plugin
-- optimize-css-assets-webpack-plugin
-- imagemin-webpack-plugin
+- CSS import and CSS extract
+- `less` syntax support
+- `sass` syntax support
+- Use `autoprefixer` by default
+- `imagemin` and `cssnano` support
 
 ## Installation
 
@@ -41,7 +38,26 @@ module.exports = {
 
 ## Tips
 
-### How to load custom `postcss` config
+### CSS Modules support
+
+Use `[name].module.[extname]` as filename. [Learn more](https://github.com/css-modules/css-modules)
+
+```js
+// example.js
+import foo from './foo.module.css';
+import bar from './bar.module.css';
+```
+
+Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-modules.html)
+
+```vue
+<!-- example.vue -->
+<style lang="css" module></style>
+<style lang="scss" module></style>
+<style lang="less" module></style>
+```
+
+### Load custom `postcss` config
 
 Disable internal `autoprefixer` first.
 
@@ -50,12 +66,9 @@ Disable internal `autoprefixer` first.
 module.exports = {
   webpackChain: config => {
     config.module
-      .rule('style')
+      .rule('postcss')
       .use('postcss-loader')
-      .tap(options => ({
-        ...options,
-        plugins: []
-      }));
+      .delete('options');
   }
 };
 ```
@@ -67,6 +80,19 @@ Write your config in any way. See <https://github.com/michael-ciniawsky/postcss-
 module.exports = {
   plugins: {
     'postcss-preset-env': {}
+  }
+};
+```
+
+### Add `stylus` support
+
+This preset didn't offering `stylus` syntax support by default. But you still can add by your self:
+
+```js
+module.exports = {
+  webpackChain: config => {
+    config.module.rule('stylus');
+    ...
   }
 };
 ```

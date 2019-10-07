@@ -16,29 +16,22 @@ module.exports = function applyScssLess(chain) {
 
   chain.module
     .rule('sass')
-    .test(
-      extToRegexp({
-        extname: ['scss', 'sass']
-      })
-    )
+    .test(extToRegexp({ extname: ['scss', 'sass'] }))
     .use('sass-loader')
     .loader('sass-loader')
-    .options({
-      sourceMap: isDevelopment,
-      ...(isDevelopment
-        ? {
-            sassOptions: { outputStyle: 'expanded' }
-          }
-        : undefined)
-    });
+    .options({ sourceMap: isDevelopment })
+    .when(isDevelopment, io =>
+      io.tap(options => ({
+        ...options,
+        sassOptions: {
+          outputStyle: 'expanded'
+        }
+      }))
+    );
 
   chain.module
     .rule('less')
-    .test(
-      extToRegexp({
-        extname: ['less']
-      })
-    )
+    .test(extToRegexp({ extname: ['less'] }))
     .use('less-loader')
     .loader('less-loader')
     .options({

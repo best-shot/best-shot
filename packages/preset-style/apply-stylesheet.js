@@ -3,13 +3,6 @@
 const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const extToRegexp = require('ext-to-regexp');
-const slashToRegexp = require('slash-to-regexp');
-const autoprefixer = require('autoprefixer');
-
-const Autoprefixer = autoprefixer();
-
-// @ts-ignore
-Autoprefixer.__expression = "require('autoprefixer')";
 
 function applyOneOf({ cssModules = false, mode }) {
   return rule => {
@@ -23,17 +16,13 @@ function applyOneOf({ cssModules = false, mode }) {
       .when(cssModules, io =>
         io.tap(options => ({
           ...options,
-          ...(cssModules
-            ? {
-                localsConvention: 'camelCaseOnly',
-                modules: {
-                  localIdentName: {
-                    development: '[path][name]__[local]',
-                    production: '[local]_[hash:base64:8]'
-                  }[mode]
-                }
-              }
-            : {})
+          localsConvention: 'camelCaseOnly',
+          modules: {
+            localIdentName: {
+              development: '[path][name]__[local]',
+              production: '[local]_[hash:base64:8]'
+            }[mode]
+          }
         }))
       );
   };
@@ -84,21 +73,15 @@ module.exports = function applyStylesheet(chain) {
     .oneOf('normal-css')
     .batch(applyOneOf({ mode }));
 
-  chain.module
-    .rule('postcss')
-    .test(extToRegexp({ extname: ['css'] }))
-    .use('postcss-loader')
-    .loader('postcss-loader')
-    .options({
-      sourceMap: mode === 'development',
-      plugins: [Autoprefixer]
-    });
-
   const useHot = chain.devServer.get('hot');
   if (!useHot) {
-    chain
-      .plugin('extract-css')
-      .use(ExtractCssChunksPlugin, [{ filename: '[name].css' }]);
+    chain.plugin('extract-css').use(ExtractCssChunksPlugin, [
+      {
+        filename: '[name].css',
+        // chunkFilename: '[id].css',
+        ignoreOrder: false
+      }
+    ]);
   }
 
   chain.module.rule('style').when(
@@ -107,13 +90,12 @@ module.exports = function applyStylesheet(chain) {
       io.use('style-loader').loader('style-loader');
     },
     io => {
-      io.use('extract-css').loader(ExtractCssChunksPlugin.loader);
+      io.use('extract-css')
+        .loader(ExtractCssChunksPlugin.loader)
+        .options({
+          // hot: chain.devServer.get('hot'),
+          // reloadAll: false
+        });
     }
   );
-
-  if (chain.module.rules.has('babel')) {
-    chain.module
-      .rule('babel')
-      .exclude.add(slashToRegexp('/node_modules/css-loader/'));
-  }
 };

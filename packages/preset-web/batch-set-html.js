@@ -95,7 +95,7 @@ module.exports = function setHtml(
 
   chain.module
     .rule('micro-tpl')
-    .test(extToRegexp('tpl'))
+    .test(extToRegexp({ extname: ['tpl'] }))
     .use('micro-tpl-loader')
     .loader('micro-tpl-loader');
 

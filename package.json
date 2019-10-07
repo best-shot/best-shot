@@ -22,8 +22,8 @@
   ],
   "dependencies": {
     "core-js": "3.2.1",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {

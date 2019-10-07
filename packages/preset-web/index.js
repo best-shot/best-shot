@@ -36,20 +36,10 @@ exports.apply = function applySinglePage({
     chain.devtool(sourceMap(mode, serve));
 
     chain
-      .when(minimize, config =>
-        setOutputName(config, {
-          style: addMin,
-          script: addMin
-        })
-      )
-      .when(!useHot, config =>
-        setOutputName(config, {
-          style: addHash,
-          script: addHash
-        })
-      )
-      .batch(config =>
-        setOutputName(config, {
+      .when(minimize, setOutputName({ style: addMin, script: addMin }))
+      .when(!useHot, setOutputName({ style: addHash, script: addHash }))
+      .batch(
+        setOutputName({
           script: filename => `script/${filename}`,
           style: filename => `style/${filename}`
         })

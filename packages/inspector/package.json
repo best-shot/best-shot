@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -12,7 +12,7 @@
     "cli",
     "generate",
     "inspector",
-    "terminal",
+    "stringify",
     "webpack"
   ],
   "homepage": "https://github.com/airkro/best-shot/tree/master/packages/inspector",
@@ -24,13 +24,14 @@
   "main": "index.js",
   "dependencies": {
     "fs-extra": "^8.1.0",
+    "javascript-stringify": "^2.0.0",
     "lodash": "^4.17.15",
     "prettier": "^1.18.2"
   },
   "peerDependencies": {
-    "@best-shot/cli": ">=0.0.16"
+    "@best-shot/cli": ">=0.0.17"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": "^8.10 || ^10 || ^12"
   }
 }

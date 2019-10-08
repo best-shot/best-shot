@@ -1,28 +1,26 @@
 'use strict';
 
-const inspector = require('./action');
+const inspector = require('./lib/action');
 
 exports.command = 'inspect';
 
-exports.describe = 'Output all webpack configuration files for inspection';
+exports.describe = 'Output all configuration for inspection';
 
 exports.builder = {
   platforms: {
-    coerce: arr => {
-      if (!Array.isArray(arr)) {
-        throw new TypeError('Argument platforms should be an Array');
+    coerce(values) {
+      if (values.length === 0) {
+        throw new Error('Not enough platforms arguments');
       }
-      if (arr.length === 0) {
-        throw new Error('Not enough arguments following: platforms');
-      }
-      return arr;
+      return values;
     },
     describe: 'Applicable platforms',
     type: 'array'
   },
   stamp: {
-    coerce: value =>
-      (value === 'auto' ? new Date().getTime().toString() : value),
+    coerce(value) {
+      return value === 'auto' ? new Date().getTime().toString() : value;
+    },
     default: '',
     describe: 'Markup of output files',
     requiresArg: true,

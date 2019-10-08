@@ -1,7 +1,6 @@
 'use strict';
 
 const mapValues = require('lodash/mapValues');
-const isGit = require('is-git-repository');
 const GitRevPlugin = require('git-rev-webpack-plugin');
 const sortKeys = require('sort-keys');
 
@@ -25,18 +24,18 @@ exports.apply = function apply({
   const configObject = parseConfig(configFile);
   const data = mergeParams({ mode, serve, watch }, configObject);
 
-  if (isGit()) {
-    const gitRevPlugin = new GitRevPlugin();
-    data.GIT_HASH = gitRevPlugin.hash();
+  const gitRevPlugin = new GitRevPlugin();
+  if (gitRevPlugin.hash()) {
     data.GIT_BRANCH = gitRevPlugin.branch();
+    data.GIT_HASH = gitRevPlugin.hash();
   }
 
-  if (Object.values(data).length > 0) {
-    const sorted = sortKeys(data);
+  return chain => {
+    if (Object.values(data).length > 0) {
+      const sorted = sortKeys(data);
 
-    console.log(cyan`PRESET-ENV`, pretty(sorted));
+      console.log(cyan`PRESET-ENV`, pretty(sorted));
 
-    return chain => {
       const result = mapValues(sorted, JSON.stringify);
       if (chain.plugins.has('define')) {
         chain
@@ -45,8 +44,6 @@ exports.apply = function apply({
       } else {
         chain.plugin('define').use(DefinePlugin, [result]);
       }
-    };
-  }
-
-  return undefined;
+    }
+  };
 };

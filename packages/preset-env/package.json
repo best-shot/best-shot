@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-env",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A `best-shot` preset for env variables",
   "license": "MIT",
   "author": {
@@ -38,6 +38,6 @@
     "sort-keys": "^4.0.0"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": "^8.10 || ^10 || ^12"
   }
 }

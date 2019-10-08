@@ -38,11 +38,11 @@ function mergeParams(
     mode === 'production'
       ? production
       : {
-        ...production,
-        ...development,
-        ...(isWatch || isServe ? watch : {}),
-        ...(isServe ? serve : {})
-      }
+          ...production,
+          ...development,
+          ...(isWatch || isServe ? watch : {}),
+          ...(isServe ? serve : {})
+        }
   );
 }
 
@@ -52,7 +52,11 @@ const parser = {
   toml: str => tomlParser(str)
 };
 
-function parseConfig({ path, name, type }) {
+function parseConfig({ path, name, type } = {}) {
+  if (!path) {
+    return {};
+  }
+
   try {
     const data = readFileSync(path, 'utf8');
     return parser[type](data);

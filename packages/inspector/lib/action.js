@@ -10,7 +10,7 @@ const {
   reachDependencies,
   reachConfig,
   reachBrowsers
-} = require('@best-shot/cli/reach');
+} = require('@best-shot/cli/lib/reach');
 const concatStr = require('./concat-str');
 const makeWriteFile = require('./write-file');
 

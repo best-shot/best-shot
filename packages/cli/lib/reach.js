@@ -6,7 +6,7 @@ const { findConfig } = require('browserslist');
 
 function reachConfig(rootPath) {
   // eslint-disable-next-line import/no-dynamic-require, global-require
-  const io = require(resolve(rootPath, '.best-shot/config.js'));
+  const io = require(resolve(rootPath, '.best-shot', 'config.js'));
   return function func(params) {
     const config = typeof io === 'function' ? io(params) : io;
     if (typeof config === 'object') {

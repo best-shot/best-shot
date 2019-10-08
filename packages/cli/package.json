@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -23,9 +23,9 @@
     "directory": "packages/cli"
   },
   "bin": {
-    "best-shot": "bin/cli.js"
+    "best-shot": "index.js"
   },
-  "main": "bin/cli.js",
+  "main": "index.js",
   "dependencies": {
     "@best-shot/core": "^0.0.11",
     "browserslist": "^4.7.0",
@@ -34,10 +34,10 @@
     "v8-compile-cache": "^2.1.0",
     "webpack-bundle-analyzer": "^3.5.2",
     "webpackbar": "^4.0.0",
-    "yargs": "^14.0.0"
+    "yargs": "^14.2.0"
   },
   "peerDependencies": {
-    "webpack": "^4.40.2"
+    "webpack": "^4.41.0"
   },
   "engines": {
     "node": "^8.10 || ^10 || ^12"

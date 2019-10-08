@@ -2,9 +2,9 @@
 
 const BestShot = require('@best-shot/core');
 const { commandEnv } = require('@best-shot/core/lib/common');
-const { applyProgress, applyAnalyzer } = require('../apply');
-const handle = require('.');
-const { reachConfig, reachBrowsers, reachDependencies } = require('../reach');
+const { applyProgress, applyAnalyzer } = require('./apply');
+const handle = require('./handle');
+const { reachConfig, reachBrowsers, reachDependencies } = require('./reach');
 
 module.exports = function action({
   _: [command],

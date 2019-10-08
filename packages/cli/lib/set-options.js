@@ -9,12 +9,12 @@ function wrap(cli, progress = true) {
     },
     ...(progress
       ? {
-        progress: {
-          describe: 'Show progress bar',
-          default: true,
-          type: 'boolean'
+          progress: {
+            describe: 'Show progress bar',
+            default: true,
+            type: 'boolean'
+          }
         }
-      }
       : {}),
     custom: {
       describe: 'Object of custom arguments',

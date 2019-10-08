@@ -10,22 +10,29 @@ const yargs = require('yargs');
 // @ts-ignore
 const { green, cyan, supportsColor } = require('chalk');
 const { commandEnv } = require('@best-shot/core/lib/common');
-const action = require('../handle/action');
-const addIgnore = require('./add-ignore');
-const setOptions = require('./set-options');
-const installPkg = require('./install-pkg');
+const action = require('./lib/action');
+const setOptions = require('./lib/set-options');
 
-const app = yargs
+function findPkg(pkg) {
+  try {
+    // eslint-disable-next-line global-require, import/no-dynamic-require
+    return require(pkg);
+  } catch (error) {
+    return { command: '' };
+  }
+}
+
+// eslint-disable-next-line no-unused-expressions
+yargs
   .scriptName('best-shot')
-  .epilogue('Website: https://github.com/airkro/best-shot')
+  .epilogue('Repository: https://github.com/airkro/best-shot')
+  .epilogue('Website: https://www.npmjs.com/org/best-shot')
   .usage(`Usage: ${green`$0`} <command> [options]`)
-  .describe('help', 'Show help information')
   .alias('help', 'h')
   .version(false)
-  .wrap(75)
-  .locale('en')
+  .wrap(60)
+  .detectLocale(false)
   .strict()
-  .parserConfiguration({ 'duplicate-arguments-array': true })
   .demandCommand(1, "Won't work without a command")
   .command(
     'serve',
@@ -41,21 +48,23 @@ const app = yargs
   )
   .command(
     'dev',
-    `Bundle files in ${cyan`Development mode`}`,
+    `Bundle files in ${cyan`development`} mode`,
     setOptions.dev,
     action
   )
   .command(
     'prod',
-    `Bundle files in ${cyan`Production mode`}`,
+    `Bundle files in ${cyan`production`} mode`,
     setOptions.prod,
     action
   )
-  .command('ignore', 'Add temporary directories to .*ignore', {}, addIgnore)
+  .command(findPkg('@best-shot/inspector'))
+  .command(findPkg('./lib/add-ignore'))
   .options({
     color: {
-      default: Boolean(supportsColor.level),
-      defaultDescription: 'supportsColor',
+      coerce() {
+        return Boolean(supportsColor.level);
+      },
       describe: 'Colorful output',
       type: 'boolean'
     }
@@ -64,12 +73,8 @@ const app = yargs
     function setEnv({ _: [command] }) {
       if (['dev', 'prod', 'watch', 'serve'].includes(command)) {
         process.env.NODE_ENV = commandEnv(command);
+
         console.log(cyan`NODE_ENV:`, process.env.NODE_ENV);
       }
     }
-  ]);
-
-installPkg(app);
-
-// eslint-disable-next-line no-unused-expressions
-app.argv;
+  ]).argv;

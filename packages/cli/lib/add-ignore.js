@@ -3,10 +3,6 @@
 const { stat, appendFile } = require('fs-extra');
 const { join } = require('path');
 
-function getPath(filename) {
-  return join(process.cwd(), filename);
-}
-
 const files = [
   '.gitignore',
   '.eslintignore',
@@ -14,15 +10,13 @@ const files = [
   '.stylelintignore'
 ];
 
-const ignore = '.best-shot/*[build,inspect,stats]/';
-
 const text = `
 # best-shot
-${ignore}
+.best-shot/*[build,inspect,stats]/
 `;
 
 async function append(filename) {
-  const filePath = getPath(filename);
+  const filePath = join(process.cwd(), filename);
   const exist = await stat(filePath)
     .then(() => true)
     .catch(() => false);
@@ -37,7 +31,11 @@ async function append(filename) {
   }
 }
 
-module.exports = function addIgnore() {
+exports.command = 'ignore';
+
+exports.describe = 'Add temporary directories to .*ignore';
+
+exports.handler = function addIgnore() {
   Promise.all(files.map(append)).catch(error => {
     console.error(error);
   });

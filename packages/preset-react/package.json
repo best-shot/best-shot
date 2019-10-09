@@ -26,16 +26,16 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@babel/preset-react": "^7.0.0",
-    "@hot-loader/react-dom": "^16.8.6",
+    "@babel/preset-react": "^7.6.3",
+    "@hot-loader/react-dom": "^16.10.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "react-hot-loader": "^4.12.12",
-    "slash-to-regexp": "^0.0.0"
+    "react-hot-loader": "^4.12.15",
+    "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
     "@best-shot/preset-babel": ">=0.0.14 || <0.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   },
   "engines": {
     "node": "^8.10 || ^10 || ^12"

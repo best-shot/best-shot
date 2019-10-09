@@ -32,13 +32,13 @@
     "koa-error": "^3.2.0",
     "lodash": "^4.17.15",
     "webpack-hot-client": "^4.1.2",
-    "webpack-log": "^2.0.0",
-    "webpack-serve": "^2.0.3",
+    "webpack-log": "^3.0.1",
+    "webpack-serve": "^3.2.0",
     "webpack-serve-overlay": "^0.3.0",
     "webpack-serve-waitpage": "^1.0.2"
   },
   "peerDependencies": {
-    "webpack": "^4.40.2"
+    "webpack": "^4.41.0"
   },
   "engines": {
     "node": "^8.10 || ^10 || ^12"

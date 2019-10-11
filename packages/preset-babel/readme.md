@@ -18,7 +18,6 @@ This preset can transform:
 - Class static properties
 - Decorators
 - Dynamic Import
-- Numeric Separator
 
 ## Installation
 
@@ -26,16 +25,10 @@ This preset can transform:
 npm install @best-shot/preset-babel --save-dev
 ```
 
-Then specify `core-js@3` as a top level dependency.
-
-```bash
-npm install core-js@3 --save
-```
-
 ## Usage
 
 ```js
-// example: best-shot.config.js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'babel'],
   polyfill: 'usage',
@@ -47,7 +40,15 @@ module.exports = {
 
 ### polyfill
 
-- enum: [ false, 'entry', 'usage' ]
+- type: [ false, 'usage' ]
 - default: false
 
-Same as [options.useBuiltIns](https://babeljs.io/docs/en/next/babel-preset-env#usebuiltins) of `@babel/preset-env`.
+Same as [options.useBuiltIns](https://babeljs.io/docs/en/babel-preset-env#usebuiltins) of `@babel/preset-env`.
+
+Install `core-js@3` as a top-level dependency when specifying 'usage'.
+
+```bash
+npm install core-js@3 --save
+```
+
+It will use [@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime) to prevent global scope pollution.

@@ -27,11 +27,12 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
     "docsify-cli": "^4.3.0",
     "jest": "^24.9.0",
     "nodemon": "^1.19.3",
-    "webpack": "^4.41.0"
+    "webpack": "^4.41.1"
   },
   "optionalDependencies": {
     "@nice-move/cli": "^0.0.1",

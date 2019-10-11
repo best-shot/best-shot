@@ -8,19 +8,18 @@ const { currentPath } = require('@best-shot/core/lib/common');
 
 const childNodeModules = currentPath.relative(module.paths[0]);
 
-const displayName = 'babel';
-
-exports.name = displayName;
+exports.name = 'preset-babel';
 
 exports.apply = function applyBabel({
   browsers = 'defaults',
-  mode = 'production',
   config: { polyfill = false }
 }) {
   return chain => {
+    const mode = chain.get('mode');
+
     chain.module
-      .rule(displayName)
-      .test(extToRegexp('js', 'mjs'))
+      .rule('babel')
+      .test(extToRegexp({ extname: ['js', 'mjs'] }))
       .use('babel-loader')
       .loader('babel-loader')
       .options({
@@ -35,21 +34,30 @@ exports.apply = function applyBabel({
               modules: false,
               useBuiltIns: polyfill,
               corejs: 3,
+              spec: true,
               targets: { browsers }
             }
           ]
         ],
         plugins: [
+          polyfill
+            ? [
+                '@babel/transform-runtime',
+                {
+                  corejs: 3,
+                  useESModules: true
+                }
+              ]
+            : false,
           '@babel/proposal-export-namespace-from',
-          '@babel/proposal-numeric-separator',
           ['@babel/proposal-decorators', { legacy: true }],
           '@babel/proposal-class-properties'
-        ]
+        ].filter(Boolean)
       });
 
     if (polyfill) {
       chain.module
-        .rule(displayName)
+        .rule('babel')
         .exclude.add(slashToRegexp('/node_modules/core-js/'));
     }
 
@@ -63,6 +71,6 @@ exports.schema = {
     description:
       'How @babel/preset-env handles polyfills, See <https://babeljs.io/docs/en/babel-preset-env>.',
     title: '`options.useBuiltIns` of @babel/preset-env',
-    enum: ['entry', 'usage', false]
+    enum: ['usage', false]
   }
 };

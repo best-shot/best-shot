@@ -32,15 +32,18 @@ exports.apply = function applyBabel({
             '@babel/env',
             {
               modules: false,
-              useBuiltIns: polyfill,
-              corejs: 3,
+              // @ts-ignore
+              useBuiltIns: polyfill === 'pure' ? false : polyfill,
+              // @ts-ignore
+              corejs: polyfill === 'usage' ? 3 : undefined,
               spec: true,
               targets: { browsers }
             }
           ]
         ],
         plugins: [
-          polyfill
+          // @ts-ignore
+          polyfill === 'pure'
             ? [
                 '@babel/transform-runtime',
                 {
@@ -68,9 +71,8 @@ exports.apply = function applyBabel({
 exports.schema = {
   polyfill: {
     default: false,
-    description:
-      'How @babel/preset-env handles polyfills, See <https://babeljs.io/docs/en/babel-preset-env>.',
-    title: '`options.useBuiltIns` of @babel/preset-env',
-    enum: ['usage', false]
+    description: 'See <https://github.com/babel/babel/issues/10008>.',
+    enum: [false, 'usage', 'pure'],
+    title: 'How `@babel/preset-env` handles polyfills'
   }
 };

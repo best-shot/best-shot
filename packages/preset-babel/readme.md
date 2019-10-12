@@ -40,15 +40,13 @@ module.exports = {
 
 ### polyfill
 
-- type: [ false, 'usage' ]
+- type: [ false, 'usage', 'pure' ]
 - default: false
 
-Same as [options.useBuiltIns](https://babeljs.io/docs/en/babel-preset-env#usebuiltins) of `@babel/preset-env`.
+How `@babel/preset-env` handles polyfills. See <https://github.com/babel/babel/issues/10008>.
 
-Install `core-js@3` as a top-level dependency when specifying 'usage'.
+Install `core-js@3` as a top-level dependency when specifying 'usage' or 'pure'.
 
 ```bash
 npm install core-js@3 --save
 ```
-
-It will use [@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime) to prevent global scope pollution.

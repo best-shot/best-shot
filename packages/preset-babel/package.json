@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-babel",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -38,7 +38,6 @@
     "@babel/runtime-corejs3": "^7.6.3",
     "babel-loader": "^8.0.6",
     "ext-to-regexp": "^0.0.8",
-    "regenerator-runtime": "^0.13.3",
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {

@@ -43,7 +43,9 @@ module.exports = {
 - type: [ false, 'usage', 'pure' ]
 - default: false
 
-How `@babel/preset-env` handles polyfills. See <https://github.com/babel/babel/issues/10008>.
+How `babel` handles polyfills.
+
+References: <https://github.com/babel/babel/issues/10008>
 
 Install `core-js@3` as a top-level dependency when specifying 'usage' or 'pure'.
 

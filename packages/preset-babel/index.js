@@ -42,6 +42,8 @@ exports.apply = function applyBabel({
           ]
         ],
         plugins: [
+          ['@babel/proposal-decorators', { decoratorsBeforeExport: true }],
+          '@babel/proposal-class-properties',
           // @ts-ignore
           polyfill === 'pure'
             ? [
@@ -51,17 +53,15 @@ exports.apply = function applyBabel({
                   useESModules: true
                 }
               ]
-            : false,
-          '@babel/proposal-export-namespace-from',
-          ['@babel/proposal-decorators', { legacy: true }],
-          '@babel/proposal-class-properties'
+            : false
         ].filter(Boolean)
       });
 
     if (polyfill) {
       chain.module
         .rule('babel')
-        .exclude.add(slashToRegexp('/node_modules/core-js/'));
+        .exclude.add(slashToRegexp('/node_modules/core-js/'))
+        .add(slashToRegexp('/node_modules/core-js-pure/'));
     }
 
     chain.resolveLoader.modules.add(childNodeModules);
@@ -71,8 +71,8 @@ exports.apply = function applyBabel({
 exports.schema = {
   polyfill: {
     default: false,
-    description: 'See <https://github.com/babel/babel/issues/10008>.',
+    description: 'References: <https://github.com/babel/babel/issues/10008>',
     enum: [false, 'usage', 'pure'],
-    title: 'How `@babel/preset-env` handles polyfills'
+    title: 'How `babel` handles polyfills'
   }
 };

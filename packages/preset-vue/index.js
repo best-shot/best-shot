@@ -2,16 +2,14 @@
 
 const extToRegexp = require('ext-to-regexp');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { currentPath } = require('@best-shot/core/lib/common');
-
-const childNodeModules = currentPath.relative(module.paths[0]);
 
 exports.name = 'preset-vue';
 
-exports.apply = function apply({ mode }) {
+exports.apply = function applyVue() {
   return chain => {
+    const mode = chain.get('mode');
+
     const useStyle = chain.module.rule('style').uses.has('style-loader');
 
     if (useStyle) {
@@ -26,16 +24,20 @@ exports.apply = function apply({ mode }) {
 
     chain.module
       .rule('vue')
-      .test(extToRegexp('vue'))
+      .test(extToRegexp({ extname: ['vue'] }))
       .use('vue-loader')
       .loader('vue-loader')
       .options({
         compilerOptions: {
           whitespace: 'condense'
-        }
+        },
+        hotReload: chain.devServer.get('hot') || false
       });
 
+    const childNodeModules = currentPath.relative(module.paths[0]);
+
     chain.resolveLoader.modules.add(childNodeModules);
-    chain.plugin('vue').use(VueLoaderPlugin);
+
+    chain.plugin('vue-loader').use(VueLoaderPlugin);
   };
 };

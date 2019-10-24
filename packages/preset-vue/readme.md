@@ -47,14 +47,14 @@ npm install @vue/babel-preset-jsx --save-dev
 ```js
 // example: .best-shot/config.js
 module.exports = {
-  // add @best-shot/preset-babel
+  // install @best-shot/preset-babel
   presets: [..., 'babel', 'vue'],
   ...
 };
 
 // example: babel.config.js
 module.exports = {
-  presets: [..., '@vue/babel-preset-jsx'],
+  presets: [..., '@vue/jsx'],
   ...
 };
 ```

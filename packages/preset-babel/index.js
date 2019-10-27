@@ -1,12 +1,9 @@
 'use strict';
 
+const slash = require('slash');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
-
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { currentPath } = require('@best-shot/core/lib/common');
-
-const childNodeModules = currentPath.relative(module.paths[0]);
 
 exports.name = 'preset-babel';
 
@@ -29,32 +26,13 @@ exports.apply = function applyBabel({
         compact: mode === 'production',
         presets: [
           [
-            '@babel/env',
+            slash(`module:.\\${currentPath.relative(__dirname, 'preset')}`),
             {
-              modules: false,
-              // @ts-ignore
-              useBuiltIns: polyfill === 'pure' ? false : polyfill,
-              // @ts-ignore
-              corejs: polyfill === 'usage' ? 3 : undefined,
-              spec: true,
+              polyfill,
               targets: { browsers }
             }
           ]
-        ],
-        plugins: [
-          ['@babel/proposal-decorators', { decoratorsBeforeExport: true }],
-          '@babel/proposal-class-properties',
-          // @ts-ignore
-          polyfill === 'pure'
-            ? [
-                '@babel/transform-runtime',
-                {
-                  corejs: 3,
-                  useESModules: true
-                }
-              ]
-            : false
-        ].filter(Boolean)
+        ]
       });
 
     if (polyfill) {
@@ -63,6 +41,8 @@ exports.apply = function applyBabel({
         .exclude.add(slashToRegexp('/node_modules/core-js/'))
         .add(slashToRegexp('/node_modules/core-js-pure/'));
     }
+
+    const childNodeModules = currentPath.relative(module.paths[0]);
 
     chain.resolveLoader.modules.add(childNodeModules);
   };

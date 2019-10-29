@@ -22,15 +22,19 @@ exports.apply = function applyBasic({
       .mode(mode)
       .context(rootPath)
       .watch(watch)
-      .watchOptions({
-        ignore: /node_modules/
-      });
+      .when(watch, config =>
+        config.watchOptions({
+          ignore: /node_modules/
+        })
+      );
 
     chain.optimization
       .minimize(mode === 'production')
       .set('moduleIds', mode === 'production' ? 'hashed' : 'named');
 
     chain.output
+      .publicPath(publicPath)
+      .filename('[name].js')
       .path(
         resolve(
           rootPath,
@@ -39,8 +43,6 @@ exports.apply = function applyBasic({
             .replace(/\[mode\]/g, mode)
             .replace(/\[mode:shorthand\]/g, shorthand[mode])
         )
-      )
-      .publicPath(publicPath)
-      .filename('[name].js');
+      );
   };
 };

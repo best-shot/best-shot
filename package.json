@@ -21,9 +21,9 @@
     "packages/*"
   ],
   "dependencies": {
-    "core-js": "3.2.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "core-js": "3.3.5",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -31,18 +31,18 @@
     "@babel/core": "^7.6.4",
     "docsify-cli": "^4.3.0",
     "jest": "^24.9.0",
-    "nodemon": "^1.19.3",
-    "webpack": "^4.41.1"
+    "nodemon": "^1.19.4",
+    "webpack": "^4.41.2"
   },
   "optionalDependencies": {
     "@nice-move/cli": "^0.0.1",
     "@nice-move/eslint-config-base": "^0.0.4",
     "@nice-move/prettier-config": "^0.0.3",
-    "@types/jest": "^24.0.18",
+    "@types/jest": "^24.0.20",
     "eslint": "^5.16.0",
-    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-jest": "^23.0.2",
     "eslint-plugin-node": "^10.0.0",
-    "husky": "^3.0.8",
+    "husky": "^3.0.9",
     "prettier": "^1.18.2"
   },
   "engines": {

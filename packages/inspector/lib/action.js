@@ -28,7 +28,7 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
     const platform = _ || undefined;
     commands.forEach(async command => {
       const mode = commandEnv(command);
-      const browsers = reachBrowsers(rootPath)[mode];
+      const browsers = reachBrowsers(rootPath, mode);
 
       const { webpackChain, presets, ...config } = cloneDeep(
         configFunc({

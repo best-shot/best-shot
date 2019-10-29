@@ -1,5 +1,6 @@
 'use strict';
 
+const pick = require('lodash/pick');
 const { resolve } = require('path');
 // @ts-ignore
 const { findConfig } = require('browserslist');
@@ -18,24 +19,29 @@ function reachConfig(rootPath) {
   };
 }
 
-function reachBrowsers(rootPath) {
-  const { defaults = [], production = defaults, development = defaults } =
-    findConfig(rootPath) || {};
-  return { production, development };
+function reachBrowsers(rootPath, mode) {
+  const config = findConfig(rootPath) || {};
+  const { defaults = 'defaults', [mode]: browsers = defaults } = config;
+  if (Array.isArray(browsers) && browsers.length === 0) {
+    return 'defaults';
+  }
+  return browsers;
 }
 
 function reachDependencies(rootPath) {
   const fileName = resolve(rootPath, 'package.json');
   try {
-    const {
-      dependencies,
-      devDependencies,
-      optionalDependencies
-      // eslint-disable-next-line global-require, import/no-dynamic-require
-    } = require(fileName);
-    return { dependencies, devDependencies, optionalDependencies };
+    // eslint-disable-next-line global-require, import/no-dynamic-require
+    return pick(require(fileName), [
+      'resolutions',
+      'dependencies',
+      'devDependencies',
+      'optionalDependencies'
+    ]);
   } catch (error) {
-    return { note: 'Fail to list all dependencies' };
+    return {
+      error: 'Fail to list all dependencies'
+    };
   }
 }
 

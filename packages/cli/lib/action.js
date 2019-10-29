@@ -17,7 +17,7 @@ module.exports = function action({
   const mode = commandEnv(command);
   const configFunc = reachConfig(rootPath);
   const dependencies = reachDependencies(rootPath);
-  const browsers = reachBrowsers(rootPath)[mode];
+  const browsers = reachBrowsers(rootPath, mode);
 
   const { webpackChain, presets = [], ...config } = configFunc({
     command,

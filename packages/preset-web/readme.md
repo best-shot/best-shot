@@ -39,9 +39,20 @@ module.exports = {
 
 ### Polyfill
 
-This preset will change the default value of `options.polyfill` to `usage`.
+This preset use `usage` as `options.polyfill`.
 
 See Options in [@best-shot/preset-babel](../preset-babel)
+
+### Subresource Integrity
+
+Subresource Integrity (SRI) is enable by default.
+
+```js
+module.exports = {
+  presets: [..., 'web'],
+  sri: false // To disable it
+};
+```
 
 ### Split Chunks
 

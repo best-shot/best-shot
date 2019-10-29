@@ -4,7 +4,7 @@ const { join, relative } = require('path');
 const deepmerge = require('deepmerge');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
-const SubResourceIntegrityPlugin = require('webpack-subresource-integrity');
+const SubresourceIntegrityPlugin = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const { objectFilter } = require('@best-shot/core/lib/common');
@@ -40,7 +40,7 @@ module.exports = function setHtml({ html = {}, define, sri }) {
   return chain => {
     const mode = chain.get('mode');
     const context = chain.get('context');
-    const publicPath = chain.get('publicPath');
+    const publicPath = chain.output.get('publicPath');
     const minimize = chain.optimization.get('minimize');
 
     const defaultOptions = {
@@ -88,8 +88,8 @@ module.exports = function setHtml({ html = {}, define, sri }) {
       chain.output.crossOriginLoading('anonymous');
 
       chain
-        .plugin('sub-resource-integrity')
-        .use(SubResourceIntegrityPlugin, [
+        .plugin('subresource-integrity')
+        .use(SubresourceIntegrityPlugin, [
           { hashFuncNames: ['sha512', 'sha384', 'sha256'] }
         ]);
     }

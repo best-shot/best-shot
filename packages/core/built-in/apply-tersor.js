@@ -9,7 +9,8 @@ exports.name = displayName;
 exports.apply = function applyTersor() {
   return chain => {
     const minimize = chain.optimization.get('minimize');
-    return chain.when(minimize, config =>
+
+    return chain.when(minimize, config => {
       config.optimization.minimizer('terser').use(TerserPlugin, [
         {
           parallel: true,
@@ -26,7 +27,7 @@ exports.apply = function applyTersor() {
             }
           }
         }
-      ])
-    );
+      ]);
+    });
   };
 };

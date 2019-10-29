@@ -11,11 +11,12 @@ exports.name = displayName;
 
 exports.apply = function applyDefine({
   config: { define },
-  mode: NODE_ENV,
   platform: PLATFORM,
   options: { serve, watch }
 }) {
   return chain => {
+    const NODE_ENV = chain.get('mode');
+
     if (define && Object.keys(define).length > 0) {
       chain
         .plugin('define')

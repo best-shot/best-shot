@@ -1,7 +1,6 @@
 'use strict';
 
 const { resolve } = require('path');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 exports.name = 'basic';
 
@@ -12,6 +11,7 @@ const shorthand = {
 
 exports.apply = function applyBasic({
   config: { publicPath, outputPath },
+  options: { watch },
   mode,
   platform = '',
   rootPath
@@ -20,7 +20,11 @@ exports.apply = function applyBasic({
     chain
       .target('web')
       .mode(mode)
-      .context(rootPath);
+      .context(rootPath)
+      .watch(watch)
+      .watchOptions({
+        ignore: /node_modules/
+      });
 
     chain.optimization
       .minimize(mode === 'production')
@@ -38,7 +42,5 @@ exports.apply = function applyBasic({
       )
       .publicPath(publicPath)
       .filename('[name].js');
-
-    chain.plugin('case-sensitive-paths').use(CaseSensitivePathsPlugin);
   };
 };

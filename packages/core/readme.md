@@ -12,7 +12,7 @@ Create 'best-shot' config chain.
 [![license][license-badge]][github-url]
 ![node][node-badge]
 
-This preset includes the following packages:
+This tool includes the following packages:
 
 - case-sensitive-paths-webpack-plugin
 - clean-webpack-plugin
@@ -31,5 +31,5 @@ npm install @best-shot/core --save-dev
 ```js
 const BestShot = require('@best-shot/core');
 
-const chain = new BestShot().load();
+new BestShot({ presets: ['babel'] }).load({ mode: 'production' });
 ```

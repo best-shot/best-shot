@@ -1,6 +1,7 @@
 'use strict';
 
-const { resolve, relative } = require('path');
+const { resolve, relative, join } = require('path');
+// @ts-ignore
 const { red, supportsColor } = require('chalk');
 const { EOL } = require('os');
 const { inspect } = require('util');
@@ -34,7 +35,7 @@ const currentPath = Object.defineProperties(() => pwd, {
     writable: false
   },
   relative: {
-    value: (...args) => relative(pwd, ...args),
+    value: (...args) => relative(pwd, join(...args)),
     configurable: false,
     writable: false
   }

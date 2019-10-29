@@ -14,49 +14,36 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
-function sourceMap(mode = 'development', serve = false) {
-  return mode === 'production'
-    ? false
-    : serve
-    ? 'cheap-module-eval-source-map'
-    : 'cheap-module-source-map';
-}
-
 exports.name = 'preset-web';
 
 exports.apply = function applySinglePage({
-  mode,
-  rootPath,
-  options: { serve = false },
-  config: { html, vendors, define, publicPath, sri }
+  config: { html, vendors, define, sri }
 }) {
   return chain => {
-    const useHot = chain.devServer.get('hot');
+    const mode = chain.get('mode');
+    const hot = chain.devServer.get('hot');
     const minimize = chain.optimization.get('minimize');
-    chain.devtool(sourceMap(mode, serve));
+    const serve = chain.devServer.entries();
+
+    chain.devtool(
+      mode === 'production'
+        ? false
+        : serve
+        ? 'cheap-module-eval-source-map'
+        : 'cheap-module-source-map'
+    );
 
     chain
       .when(minimize, setOutputName({ style: addMin, script: addMin }))
-      .when(!useHot, setOutputName({ style: addHash, script: addHash }))
+      .when(!hot, setOutputName({ style: addHash, script: addHash }))
       .batch(
         setOutputName({
           script: filename => `script/${filename}`,
           style: filename => `style/${filename}`
         })
-      );
-
-    chain.batch(config => splitChunks(config, { vendors }));
-    chain.batch(config =>
-      setHtml(config, {
-        sri,
-        mode,
-        html,
-        define,
-        minimize,
-        rootPath,
-        publicPath
-      })
-    );
+      )
+      .batch(splitChunks({ vendors }))
+      .batch(setHtml({ sri, html, define }));
   };
 };
 
@@ -94,7 +81,7 @@ exports.schema = {
     default: 'usage'
   },
   sri: {
-    default: false,
+    default: true,
     type: 'boolean'
   },
   vendors: {

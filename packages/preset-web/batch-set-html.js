@@ -7,8 +7,6 @@ const slashToRegexp = require('slash-to-regexp');
 const SubResourceIntegrityPlugin = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { objectFilter } = require('@best-shot/core/lib/common');
 
 function getPkg(path) {
@@ -38,70 +36,74 @@ const htmlMinifier = {
   minifyJS: true
 };
 
-module.exports = function setHtml(
-  chain,
-  { html = {}, publicPath, define, minimize, rootPath, mode, sri }
-) {
-  const defaultOptions = {
-    inject: 'head',
-    minify: minimize ? htmlMinifier : false,
-    template: relative(rootPath, 'src/index.html'),
-    templateParameters: objectFilter({
-      title: 'BEST-SHOT Project',
-      define,
-      package: getPkg(join(rootPath, 'package.json'))
-    })
-  };
+module.exports = function setHtml({ html = {}, define, sri }) {
+  return chain => {
+    const mode = chain.get('mode');
+    const context = chain.get('context');
+    const publicPath = chain.get('publicPath');
+    const minimize = chain.optimization.get('minimize');
 
-  const htmlOptions = (Array.isArray(html)
-    ? html.length > 0
-      ? html
-      : [{}]
-    : [html]
-  ).map(({ title, templateParameters, ...options }) =>
-    objectFilter({
-      ...options,
-      templateParameters:
-        title || templateParameters
-          ? objectFilter({ publicPath, title, ...templateParameters })
-          : undefined
-    })
-  );
+    const defaultOptions = {
+      inject: 'head',
+      minify: minimize ? htmlMinifier : false,
+      template: relative(context, 'src/index.html'),
+      templateParameters: objectFilter({
+        title: 'BEST-SHOT Project',
+        define,
+        package: getPkg(join(context, 'package.json'))
+      })
+    };
 
-  htmlOptions.forEach((options, index) => {
-    chain
-      .plugin(`html-page-${index}`)
-      .use(HtmlWebpackPlugin, [
-        deepmerge.all(
-          [defaultOptions, index > 0 ? htmlOptions[0] : {}, options],
-          { arrayMerge: overwriteMerge }
-        )
-      ]);
-  });
+    const htmlOptions = (Array.isArray(html)
+      ? html.length > 0
+        ? html
+        : [{}]
+      : [html]
+    ).map(({ title, templateParameters, ...options }) =>
+      objectFilter({
+        ...options,
+        templateParameters:
+          title || templateParameters
+            ? objectFilter({ publicPath, title, ...templateParameters })
+            : undefined
+      })
+    );
 
-  chain
-    .plugin('script-ext-html')
-    .use(ScriptExtHtmlWebpackPlugin, [{ defaultAttribute: 'defer' }]);
-
-  if (mode === 'production' && sri) {
-    chain.output.crossOriginLoading('anonymous');
+    htmlOptions.forEach((options, index) => {
+      chain
+        .plugin(`html-page-${index}`)
+        .use(HtmlWebpackPlugin, [
+          deepmerge.all(
+            [defaultOptions, index > 0 ? htmlOptions[0] : {}, options],
+            { arrayMerge: overwriteMerge }
+          )
+        ]);
+    });
 
     chain
-      .plugin('sub-resource-integrity')
-      .use(SubResourceIntegrityPlugin, [
-        { hashFuncNames: ['sha512', 'sha384', 'sha256'] }
-      ]);
-  }
+      .plugin('script-ext-html')
+      .use(ScriptExtHtmlWebpackPlugin, [{ defaultAttribute: 'defer' }]);
 
-  chain.module
-    .rule('micro-tpl')
-    .test(extToRegexp({ extname: ['tpl'] }))
-    .use('micro-tpl-loader')
-    .loader('micro-tpl-loader');
+    if (mode === 'production' && sri) {
+      chain.output.crossOriginLoading('anonymous');
 
-  if (chain.module.rules.has('babel')) {
+      chain
+        .plugin('sub-resource-integrity')
+        .use(SubResourceIntegrityPlugin, [
+          { hashFuncNames: ['sha512', 'sha384', 'sha256'] }
+        ]);
+    }
+
     chain.module
-      .rule('babel')
-      .exclude.add(slashToRegexp('/node_modules/micromustache/'));
-  }
+      .rule('micro-tpl')
+      .test(extToRegexp({ extname: ['tpl'] }))
+      .use('micro-tpl-loader')
+      .loader('micro-tpl-loader');
+
+    if (chain.module.rules.has('babel')) {
+      chain.module
+        .rule('babel')
+        .exclude.add(slashToRegexp('/node_modules/micromustache/'));
+    }
+  };
 };

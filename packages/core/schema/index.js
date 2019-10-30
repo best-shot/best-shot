@@ -1,4 +1,7 @@
+'use strict';
+
 const deepmerge = require('deepmerge');
+
 const validator = require('./validator');
 const baseSchema = require('./base-schema.json');
 
@@ -14,10 +17,6 @@ module.exports = class Schema {
 
   toObject() {
     return this.schema;
-  }
-
-  toString() {
-    return JSON.stringify(this.schema, null, '  ');
   }
 
   validate(data) {

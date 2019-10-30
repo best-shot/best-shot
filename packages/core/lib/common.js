@@ -7,13 +7,6 @@ const { EOL } = require('os');
 const { inspect } = require('util');
 const pickBy = require('lodash/pickBy');
 
-class ExError extends Error {
-  constructor(message, extra) {
-    super(message);
-    this.extra = extra;
-  }
-}
-
 function uselessFilter(item) {
   return item !== undefined;
 }
@@ -45,17 +38,6 @@ function pick(condition) {
   return item => (condition ? item : undefined);
 }
 
-function commandEnv(command) {
-  return (
-    {
-      dev: 'development',
-      serve: 'development',
-      watch: 'development',
-      prod: 'production'
-    }[command] || 'development'
-  );
-}
-
 function logRedError(message, extra) {
   console.log(red`Error:`, message, extra ? EOL + extra + EOL : EOL);
 }
@@ -70,8 +52,6 @@ function pretty(data) {
 }
 
 module.exports = {
-  ExError,
-  commandEnv,
   currentPath,
   logRedError,
   pick,

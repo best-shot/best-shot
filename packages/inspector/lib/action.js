@@ -1,10 +1,9 @@
 'use strict';
 
 const cloneDeep = require('lodash/cloneDeep');
-/* eslint-disable import/no-extraneous-dependencies */
+const sortObject = require('sort-object');
 const BestShot = require('@best-shot/core');
-const { commandEnv } = require('@best-shot/core/lib/common');
-/* eslint-enable */
+const { commandEnv } = require('@best-shot/cli/lib/utils');
 
 const {
   reachDependencies,
@@ -24,9 +23,9 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
 
   console.log('Output files ...');
 
-  platforms.forEach(async _ => {
+  platforms.forEach(_ => {
     const platform = _ || undefined;
-    commands.forEach(async command => {
+    commands.forEach(command => {
       const mode = commandEnv(command);
       const browsers = reachBrowsers(rootPath, mode);
 
@@ -47,7 +46,7 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
         name: `${platform ? `${platform}/` : ''}${command}.js`,
         data: concatStr({
           stamp,
-          input: {
+          input: sortObject({
             platform,
             mode,
             browsers,
@@ -55,7 +54,7 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
             presets,
             config,
             webpackChain
-          },
+          }),
           schema: io.schema,
           output: io
             .load({

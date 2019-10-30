@@ -9,7 +9,8 @@ process.title = 'best-shot';
 const yargs = require('yargs');
 // @ts-ignore
 const { green, cyan, supportsColor } = require('chalk');
-const { commandEnv } = require('@best-shot/core/lib/common');
+
+const { commandEnv } = require('./lib/utils');
 const action = require('./lib/action');
 const setOptions = require('./lib/set-options');
 

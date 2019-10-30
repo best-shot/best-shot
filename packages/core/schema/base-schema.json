@@ -4,8 +4,8 @@
   "type": "object",
   "properties": {
     "outputPath": {
-      "default": ".best-shot/build",
-      "description": "Additional placeholder: [mode]/[mode:shorthand]/[platform]",
+      "default": "dist",
+      "description": "It can be a relative path. Additional placeholder: [mode]/[mode:shorthand]/[platform]",
       "minLength": 3,
       "title": "Same as `output.path` of `webpack`",
       "type": "string"

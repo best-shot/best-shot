@@ -1,6 +1,7 @@
 'use strict';
 
 const { format } = require('prettier');
+const sortObject = require('sort-object');
 const { stringify } = require('javascript-stringify');
 
 function formatJs(code) {
@@ -10,16 +11,19 @@ function formatJs(code) {
   });
 }
 
+function formatJson(json) {
+  return JSON.stringify(sortObject(json), null, '  ');
+}
+
 module.exports = function concatStr({ input, output, schema, stamp }) {
   return formatJs(`
-// eslint-disable
-
 // Generate by \`best-shot\`
 // repository: https://github.com/airkro/best-shot
 // website: https://www.npmjs.com/org/best-shot
 // stamp: ${stamp}
 
-exports.schema = ${schema.toString()}
+/* eslint-disable */
+exports.schema = ${formatJson(schema)}
 
 exports.input = ${stringify(input)}
 

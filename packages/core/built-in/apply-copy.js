@@ -8,11 +8,13 @@ exports.name = displayName;
 
 exports.apply = function applyCopy({ config: { staticPath } }) {
   return chain => {
-    chain.when(staticPath && staticPath.length, config => {
+    chain.when(staticPath && staticPath.length > 0, config => {
       config
         .plugin(displayName)
         .use(CopyWebpackPlugin, [
-          staticPath.map(dir => ({ from: dir, to: './' })),
+          staticPath.map(item =>
+            (typeof item === 'string' ? { from: item, to: './' } : item)
+          ),
           { ignore: ['.gitkeep'] }
         ]);
     });
@@ -26,8 +28,16 @@ exports.schema = {
     oneOf: [
       {
         items: {
-          minLength: 1,
-          type: 'string'
+          oneOf: [
+            {
+              minProperties: 1,
+              type: 'object'
+            },
+            {
+              minLength: 1,
+              type: 'string'
+            }
+          ]
         },
         type: 'array',
         uniqueItems: true

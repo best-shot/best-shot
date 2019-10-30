@@ -1,7 +1,8 @@
 'use strict';
 
 const BestShot = require('@best-shot/core');
-const { commandEnv } = require('@best-shot/core/lib/common');
+
+const { commandEnv } = require('./utils');
 const { applyProgress, applyAnalyzer } = require('./apply');
 const handle = require('./handle');
 const { reachConfig, reachBrowsers, reachDependencies } = require('./reach');

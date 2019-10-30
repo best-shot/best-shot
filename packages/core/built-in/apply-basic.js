@@ -24,7 +24,7 @@ exports.apply = function applyBasic({
       .watch(watch)
       .when(watch, config =>
         config.watchOptions({
-          ignore: /node_modules/
+          ignored: /node_modules/
         })
       );
 

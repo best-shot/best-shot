@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  presets: ['babel'],
+  presets: ['babel', 'style'],
   staticPath: false,
   polyfill: 'usage',
   webpackChain(chain) {

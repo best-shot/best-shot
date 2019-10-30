@@ -38,7 +38,7 @@
     "@nice-move/cli": "^0.0.1",
     "@nice-move/eslint-config-base": "^0.0.4",
     "@nice-move/prettier-config": "^0.0.3",
-    "@types/jest": "^24.0.20",
+    "@types/jest": "^24.0.21",
     "eslint": "^5.16.0",
     "eslint-plugin-jest": "^23.0.2",
     "eslint-plugin-node": "^10.0.0",

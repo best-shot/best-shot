@@ -29,7 +29,6 @@ module.exports = function applyImage(chain) {
           plugins: [
             { removeAttrs: { attrs: 'data-*' } },
             { removeAttrs: { attrs: 'data.*' } },
-            { removeAttrs: { value: 'null' } },
             { removeDimensions: true },
             { removeScriptElement: true },
             { removeTitle: true },

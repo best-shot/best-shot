@@ -86,14 +86,15 @@ module.exports = function applyStylesheet(chain) {
 
   chain.module.rule('style').when(
     useHot,
-    io => {
-      io.use('style-loader').loader('style-loader');
+    rule => {
+      rule.use('style-loader').loader('style-loader');
     },
-    io => {
-      io.use('extract-css')
+    rule => {
+      rule
+        .use('extract-css')
         .loader(ExtractCssChunksPlugin.loader)
         .options({
-          // hot: chain.devServer.get('hot'),
+          hot: chain.devServer.get('hot') || false
           // reloadAll: false
         });
     }

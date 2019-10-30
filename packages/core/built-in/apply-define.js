@@ -1,6 +1,6 @@
 'use strict';
 
-const { DefinePlugin, EnvironmentPlugin } = require('webpack');
+const { DefinePlugin } = require('webpack');
 const mapValues = require('lodash/mapValues');
 
 const { objectFilter } = require('../lib/common');
@@ -17,17 +17,16 @@ exports.apply = function applyDefine({
   return chain => {
     const NODE_ENV = chain.get('mode');
 
-    if (define && Object.keys(define).length > 0) {
-      chain
-        .plugin('define')
-        .use(DefinePlugin, [mapValues(define, JSON.stringify)]);
-    }
-    chain.plugin('environment').use(EnvironmentPlugin, [
-      objectFilter({
-        NODE_ENV,
-        PLATFORM,
-        DEBUG: serve || watch
-      })
+    chain.plugin('define').use(DefinePlugin, [
+      mapValues(
+        objectFilter({
+          'process.env.NODE_ENV': NODE_ENV,
+          'process.env.PLATFORM': PLATFORM,
+          'process.env.DEBUG': serve || watch,
+          ...define
+        }),
+        JSON.stringify
+      )
     ]);
   };
 };

@@ -2,9 +2,9 @@
 
 const suffix = require('suffix');
 
-const { setOutputName } = require('./lib/batch-set-output-name');
-const { splitChunks } = require('./lib/batch-split-chunks');
-const { setHtml } = require('./lib/batch-set-html');
+const { setOutputName } = require('./lib/apply-set-output-name');
+const { splitChunks } = require('./lib/apply-split-chunks');
+const { setHtml } = require('./lib/apply-set-html');
 
 function addHash(filename) {
   return suffix(filename, '.[contenthash:8]');

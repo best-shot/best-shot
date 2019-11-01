@@ -1,6 +1,6 @@
 'use strict';
 
-const { resolve } = require('../lib/path');
+const { resolve } = require('path');
 
 exports.name = 'basic';
 

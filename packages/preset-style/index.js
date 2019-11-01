@@ -3,13 +3,13 @@
 const slashToRegexp = require('slash-to-regexp');
 const { relative } = require('@best-shot/core/lib/path');
 
-const applyFont = require('./apply-font');
-const applyImage = require('./apply-image');
-const applyPostcss = require('./apply-postcss');
-const applyScssLess = require('./apply-scss-less');
-const applyStylesheet = require('./apply-stylesheet');
+const applyFont = require('./lib/apply-font');
+const applyImage = require('./lib/apply-image');
+const applyPostcss = require('./lib/apply-postcss');
+const applyScssLess = require('./lib/apply-scss-less');
+const applyStylesheet = require('./lib/apply-stylesheet');
 
-exports.apply = function apply() {
+exports.apply = function applyStyle() {
   return chain => {
     const context = chain.get('context');
 

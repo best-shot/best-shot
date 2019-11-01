@@ -7,7 +7,7 @@ const Autoprefixer = autoprefixer();
 // @ts-ignore
 Autoprefixer.__expression = "require('autoprefixer')";
 
-module.exports = function applyStylesheet(chain) {
+module.exports = function applyPostcss(chain) {
   const mode = chain.get('mode');
 
   const fileRegexp = chain.module.rule('style').get('test');

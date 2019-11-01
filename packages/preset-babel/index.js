@@ -16,7 +16,7 @@ exports.apply = function applyBabel({
 
     chain.module
       .rule('babel')
-      .test(extToRegexp({ extname: ['js', 'mjs'] }))
+      .test(extToRegexp({ extname: ['js', 'mjs', 'cjs'] }))
       .use('babel-loader')
       .loader('babel-loader')
       .options({

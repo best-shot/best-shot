@@ -30,6 +30,7 @@
     "copy-webpack-plugin": "^5.0.4",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.15",
+    "slash": "^3.0.0",
     "terser-webpack-plugin": "^1.4.1",
     "webpack-chain": "^6.0.0"
   },

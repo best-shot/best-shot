@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function setOutputName({ script, style }) {
+exports.setOutputName = function setOutputName({ script, style }) {
   return chain => {
     const jsFilename = chain.output.get('filename');
 

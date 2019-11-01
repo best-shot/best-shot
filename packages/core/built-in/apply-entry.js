@@ -3,13 +3,14 @@
 exports.name = 'entry';
 
 exports.apply = function applyEntry({ config: { entry } }) {
-  return config =>
+  return config => {
     config.merge({
       entry:
         typeof entry === 'string' || Array.isArray(entry)
           ? { main: entry }
           : entry
     });
+  };
 };
 
 const oneOfSchema = [
@@ -24,7 +25,7 @@ const oneOfSchema = [
 
 exports.schema = {
   entry: {
-    default: '.\\src\\index.js',
+    default: './src/index',
     oneOf: [
       ...oneOfSchema,
       {

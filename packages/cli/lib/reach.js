@@ -2,6 +2,7 @@
 
 const pick = require('lodash/pick');
 const { resolve } = require('path');
+const slash = require('slash');
 // @ts-ignore
 const { findConfig } = require('browserslist');
 
@@ -12,7 +13,7 @@ function reachConfig(rootPath) {
     const config = typeof io === 'function' ? io(params) : io;
     if (typeof config === 'object') {
       config.outputPath =
-        config.outputPath || '.best-shot/build/[platform]/[mode:shorthand]';
+        config.outputPath || slash('.best-shot/build/[platform]');
       return config;
     }
     throw new TypeError('Config should be an Object');

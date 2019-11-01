@@ -1,6 +1,5 @@
 'use strict';
 
-const { join, relative } = require('path');
 const deepmerge = require('deepmerge');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
@@ -8,16 +7,17 @@ const SubresourceIntegrityPlugin = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const { objectFilter } = require('@best-shot/core/lib/common');
+const { resolve, relative } = require('@best-shot/core/lib/path');
 
-function getPkg(path) {
+function getPkg(context) {
   try {
+    // TODO: more
     const {
       name,
       version,
       description
-      // TODO more
       // eslint-disable-next-line import/no-dynamic-require, global-require
-    } = require(path);
+    } = require(resolve(context, 'package.json'));
     return name || version || description
       ? objectFilter({ name, version, description })
       : undefined;
@@ -36,7 +36,7 @@ const htmlMinifier = {
   minifyJS: true
 };
 
-module.exports = function setHtml({ html = {}, define, sri }) {
+exports.setHtml = function setHtml({ html = {}, define, sri }) {
   return chain => {
     const mode = chain.get('mode');
     const context = chain.get('context');
@@ -50,7 +50,7 @@ module.exports = function setHtml({ html = {}, define, sri }) {
       templateParameters: objectFilter({
         title: 'BEST-SHOT Project',
         define,
-        package: getPkg(join(context, 'package.json'))
+        package: getPkg(context)
       })
     };
 
@@ -99,6 +99,8 @@ module.exports = function setHtml({ html = {}, define, sri }) {
       .test(extToRegexp({ extname: ['tpl'] }))
       .use('micro-tpl-loader')
       .loader('micro-tpl-loader');
+
+    chain.resolveLoader.modules.prepend(relative(context, module.paths[1]));
 
     if (chain.module.rules.has('babel')) {
       chain.module

@@ -2,13 +2,15 @@
 
 const extToRegexp = require('ext-to-regexp');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const { currentPath } = require('@best-shot/core/lib/common');
+
+const { relative } = require('@best-shot/core/lib/path');
 
 exports.name = 'preset-vue';
 
 exports.apply = function applyVue() {
   return chain => {
     const mode = chain.get('mode');
+    const context = chain.get('context');
 
     const useStyle = chain.module.rule('style').uses.has('style-loader');
 
@@ -34,9 +36,7 @@ exports.apply = function applyVue() {
         hotReload: chain.devServer.get('hot') || false
       });
 
-    const childNodeModules = currentPath.relative(module.paths[0]);
-
-    chain.resolveLoader.modules.add(childNodeModules);
+    chain.resolveLoader.modules.prepend(relative(context, module.paths[0]));
 
     chain.plugin('vue-loader').use(VueLoaderPlugin);
   };

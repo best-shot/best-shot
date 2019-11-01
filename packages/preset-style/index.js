@@ -1,7 +1,7 @@
 'use strict';
 
 const slashToRegexp = require('slash-to-regexp');
-const { currentPath } = require('@best-shot/core/lib/common');
+const { relative } = require('@best-shot/core/lib/path');
 
 const applyFont = require('./apply-font');
 const applyImage = require('./apply-image');
@@ -11,6 +11,8 @@ const applyStylesheet = require('./apply-stylesheet');
 
 exports.apply = function apply() {
   return chain => {
+    const context = chain.get('context');
+
     chain
       .batch(applyStylesheet)
       .batch(applyPostcss)
@@ -18,8 +20,7 @@ exports.apply = function apply() {
       .batch(applyImage)
       .batch(applyFont);
 
-    const childNodeModules = currentPath.relative(module.paths[0]);
-    chain.resolveLoader.modules.add(childNodeModules);
+    chain.resolveLoader.modules.prepend(relative(context, module.paths[0]));
 
     if (chain.module.rules.has('babel')) {
       chain.module

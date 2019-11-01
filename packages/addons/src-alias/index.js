@@ -1,18 +1,15 @@
 'use strict';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-const { currentPath } = require('@best-shot/core/lib/common');
+const { resolve } = require('@best-shot/core/lib/path');
 
-module.exports = function srcAlias({
-  include = currentPath.resolve('src')
-} = {}) {
+module.exports = function srcAlias({ include = resolve('src') } = {}) {
   return chain => {
     chain.module
       .rule('src-alias')
       .set('resolve', {
         alias: {
           ...chain.resolve.alias.entries(),
-          '@': currentPath.resolve('src')
+          '@': resolve('src')
         }
       })
       .include.when(

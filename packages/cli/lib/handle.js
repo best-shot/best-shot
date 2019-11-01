@@ -27,11 +27,13 @@ module.exports = function handle(command, chain) {
     ...config
   } = chain.toConfig();
 
-  function showStats(err, stats) {
-    if (err) {
-      console.error(err);
+  function showStats(error, stats) {
+    if (error) {
+      console.error(error);
     }
-    console.log(stats.toString(statsConfig));
+    if (stats) {
+      console.log(stats.toString(statsConfig));
+    }
   }
 
   if (command === 'serve') {

@@ -1,9 +1,9 @@
 'use strict';
 
-const slash = require('slash');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
-const { currentPath } = require('@best-shot/core/lib/common');
+
+const { relative, child } = require('@best-shot/core/lib/path');
 
 exports.name = 'preset-babel';
 
@@ -13,6 +13,7 @@ exports.apply = function applyBabel({
 }) {
   return chain => {
     const mode = chain.get('mode');
+    const context = chain.get('context');
 
     chain.module
       .rule('babel')
@@ -26,7 +27,7 @@ exports.apply = function applyBabel({
         compact: mode === 'production',
         presets: [
           [
-            slash(`module:.\\${currentPath.relative(__dirname, 'preset')}`),
+            `module:${child(context, __dirname, 'preset')}`,
             {
               polyfill,
               targets: { browsers }
@@ -42,9 +43,7 @@ exports.apply = function applyBabel({
         .add(slashToRegexp('/node_modules/core-js-pure/'));
     }
 
-    const childNodeModules = currentPath.relative(module.paths[0]);
-
-    chain.resolveLoader.modules.add(childNodeModules);
+    chain.resolveLoader.modules.prepend(relative(context, module.paths[0]));
   };
 };
 

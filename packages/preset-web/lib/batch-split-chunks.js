@@ -14,7 +14,7 @@ function mapValues(obj, func) {
   );
 }
 
-module.exports = function splitChunks({ vendors = {} }) {
+exports.splitChunks = function splitChunks({ vendors = {} }) {
   return chain => {
     const settings = mapValues(vendors, (value, key, index, length) => {
       const mod = Array.isArray(value) ? `(${value.join('|')})` : value;

@@ -1,6 +1,5 @@
 'use strict';
 
-const { resolve, relative, join } = require('path');
 // @ts-ignore
 const { red, supportsColor } = require('chalk');
 const { EOL } = require('os');
@@ -18,21 +17,6 @@ function objectFilter(object) {
 function arrayFilter(array) {
   return array.filter(uselessFilter);
 }
-
-const pwd = process.cwd();
-
-const currentPath = Object.defineProperties(() => pwd, {
-  resolve: {
-    value: (...args) => resolve(pwd, ...args),
-    configurable: false,
-    writable: false
-  },
-  relative: {
-    value: (...args) => relative(pwd, join(...args)),
-    configurable: false,
-    writable: false
-  }
-});
 
 function pick(condition) {
   return item => (condition ? item : undefined);
@@ -52,7 +36,6 @@ function pretty(data) {
 }
 
 module.exports = {
-  currentPath,
   logRedError,
   pick,
   pretty,

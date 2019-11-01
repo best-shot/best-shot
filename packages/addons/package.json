@@ -11,6 +11,9 @@
   "dependencies": {
     "slash-to-regexp": "^0.0.4"
   },
+  "peerDependencies": {
+    "@best-shot/core": ">=0.0.14 <0.1"
+  },
   "engines": {
     "node": ">=8.10.0"
   }

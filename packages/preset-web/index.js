@@ -55,27 +55,30 @@ const regexpFormat = {
 
 exports.schema = {
   html: {
-    oneOf: [
-      {
-        additionalItems: {
-          required: ['filename'],
-          type: 'object'
+    default: [{}],
+    items: {
+      type: 'object',
+      properties: {
+        title: {
+          minLength: 1,
+          type: 'string',
+          default: 'BEST-SHOT Project'
         },
-        items: [
-          {
-            type: 'object'
-          }
-        ],
-        title: 'Multiple Page Application',
-        type: 'array',
-        uniqueItems: true
-      },
-      {
-        title: 'Single Page Application',
-        type: 'object'
+        filename: {
+          minLength: 1,
+          type: 'string'
+        },
+        template: {
+          minLength: 1,
+          type: 'string',
+          default: './src/index.html'
+        }
       }
-    ],
-    title: 'Options of HtmlWebpackPlugin'
+    },
+    minItems: 1,
+    type: 'array',
+    uniqueItems: true,
+    title: 'Options group of HtmlWebpackPlugin'
   },
   polyfill: {
     default: 'usage'

@@ -43,41 +43,28 @@ exports.setHtml = function setHtml({ html = {}, define, sri }) {
     const publicPath = chain.output.get('publicPath');
     const minimize = chain.optimization.get('minimize');
 
-    const defaultOptions = {
-      inject: 'head',
-      minify: minimize ? htmlMinifier : false,
-      template: relative(context, 'src/index.html'),
-      templateParameters: objectFilter({
-        title: 'BEST-SHOT Project',
-        define,
-        package: getPkg(context)
-      })
-    };
+    const pkg = getPkg(context);
 
-    const htmlOptions = (Array.isArray(html)
-      ? html.length > 0
-        ? html
-        : [{}]
-      : [html]
-    ).map(({ title, templateParameters, ...options }) =>
-      objectFilter({
-        ...options,
-        templateParameters:
-          title || templateParameters
-            ? objectFilter({ publicPath, title, ...templateParameters })
-            : undefined
-      })
-    );
-
-    htmlOptions.forEach((options, index) => {
-      chain
-        .plugin(`html-page-${index}`)
-        .use(HtmlWebpackPlugin, [
-          deepmerge.all(
-            [defaultOptions, index > 0 ? htmlOptions[0] : {}, options],
-            { arrayMerge: overwriteMerge }
-          )
-        ]);
+    html.forEach((options, index) => {
+      chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
+        deepmerge.all(
+          [
+            index > 0 ? html[0] : {},
+            options,
+            {
+              templateParameters: {
+                publicPath,
+                title: options.title,
+                package: pkg,
+                ...(define && { define })
+              },
+              inject: 'head',
+              minify: minimize ? htmlMinifier : false
+            }
+          ],
+          { arrayMerge: overwriteMerge }
+        )
+      ]);
     });
 
     chain

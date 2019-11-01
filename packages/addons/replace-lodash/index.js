@@ -3,8 +3,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { NormalModuleReplacementPlugin } = require('webpack');
 
-module.exports = function replaceLodash(config) {
-  return config
+module.exports = function replaceLodash(chain) {
+  return chain
     .batch(conf => conf.resolve.alias.set('lodash-es', 'lodash'))
     .plugin('replace-lodash-dot')
     .use(NormalModuleReplacementPlugin, [

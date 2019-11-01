@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
-  presets: ['babel', 'style'],
-  staticPath: false
+  presets: ['web'],
+  staticPath: false,
+  html: [{}, { filename: '4' }]
 };

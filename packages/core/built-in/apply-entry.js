@@ -25,7 +25,7 @@ const oneOfSchema = [
 
 exports.schema = {
   entry: {
-    default: './src/index',
+    default: './src/index.js',
     oneOf: [
       ...oneOfSchema,
       {

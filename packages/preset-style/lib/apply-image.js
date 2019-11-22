@@ -17,7 +17,8 @@ module.exports = function applyImage(chain) {
     .loader('file-loader')
     .options({
       name: '[name].[contenthash:8].[ext]',
-      outputPath: 'image'
+      outputPath: 'image',
+      esModules: true
     });
 
   if (minimize) {

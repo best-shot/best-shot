@@ -43,7 +43,7 @@ module.exports = {
 - type: [ false, 'usage', 'pure' ]
 - default: false
 
-How `babel` handles polyfills.
+How `babel` handles polyfills. `pure` is an experimental option.
 
 References: <https://github.com/babel/babel/issues/10008>
 

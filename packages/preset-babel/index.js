@@ -14,6 +14,7 @@ exports.apply = function applyBabel({
   return chain => {
     const mode = chain.get('mode');
     const context = chain.get('context');
+    const UseCache = chain.get('watch');
 
     chain.module
       .rule('babel')
@@ -23,7 +24,7 @@ exports.apply = function applyBabel({
       .options({
         babelrc: false,
         sourceType: 'unambiguous',
-        cacheDirectory: mode === 'development',
+        cacheDirectory: UseCache,
         compact: mode === 'production',
         presets: [
           [

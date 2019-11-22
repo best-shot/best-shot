@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
@@ -26,16 +26,17 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@babel/preset-react": "^7.0.0",
-    "@hot-loader/react-dom": "^16.8.6",
+    "@babel/preset-react": "^7.7.0",
+    "@hot-loader/react-dom": "^16.11.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "react-hot-loader": "^4.12.12",
-    "slash-to-regexp": "^0.0.0"
+    "react-hot-loader": "^4.12.18",
+    "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@best-shot/preset-babel": ">=0.0.14 || <0.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "@best-shot/core": "^0.0.15",
+    "@best-shot/preset-babel": "^0.0.22",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "engines": {
     "node": "^8.10 || ^10 || ^12"

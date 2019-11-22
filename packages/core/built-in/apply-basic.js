@@ -12,15 +12,14 @@ const shorthand = {
 exports.apply = function applyBasic({
   config: { publicPath, outputPath },
   options: { watch },
-  mode,
-  platform = '',
-  rootPath
+  platform = ''
 }) {
   return chain => {
+    const mode = chain.get('mode');
+    const context = chain.get('context');
+
     chain
       .target('web')
-      .mode(mode)
-      .context(rootPath)
       .watch(watch)
       .when(watch, config =>
         config.watchOptions({
@@ -37,7 +36,7 @@ exports.apply = function applyBasic({
       .filename('[name].js')
       .path(
         resolve(
-          rootPath,
+          context,
           outputPath
             .replace(/\[platform\]/g, platform)
             .replace(/\[mode\]/g, mode)

@@ -58,7 +58,7 @@ module.exports = class BestShot {
     dependencies = {},
     mode = 'production',
     options = { ...defaultOptions },
-    platform,
+    platform = 'web',
     rootPath = process.cwd()
   } = {}) {
     this.check();
@@ -71,11 +71,11 @@ module.exports = class BestShot {
       browsers,
       config: this.schema.validate(config),
       dependencies,
-      mode,
       options: mode === 'development' ? options : defaultOptions,
-      platform,
-      rootPath
+      platform
     };
+
+    this.chain.mode(mode).context(rootPath);
 
     this.stack.setup(params).forEach(apply => {
       this.chain.batch(apply);

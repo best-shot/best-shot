@@ -1,7 +1,7 @@
 {
   "extends": [
     "config:base",
-    "group:all",
+    "group:allNonMajor",
     "schedule:daily",
     ":unpublishSafe",
     ":prNotPending"

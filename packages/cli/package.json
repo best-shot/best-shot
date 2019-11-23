@@ -28,7 +28,7 @@
   "main": "index.js",
   "dependencies": {
     "browserslist": "^4.7.2",
-    "chalk": "^2.4.2",
+    "chalk": "^3.0.0",
     "fs-extra": "^8.1.0",
     "lodash": "^4.17.15",
     "slash": "^3.0.0",

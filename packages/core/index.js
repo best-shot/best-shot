@@ -8,11 +8,6 @@ const Schema = require('./schema');
 
 const types = ['built-in', 'additional'];
 
-const defaultOptions = {
-  watch: false,
-  serve: false
-};
-
 module.exports = class BestShot {
   constructor({ name = 'best-shot.config', presets = [] } = {}) {
     this.chain = new WebpackChain().name(name);
@@ -55,10 +50,10 @@ module.exports = class BestShot {
   load({
     browsers = [],
     config = {},
-    dependencies = {},
+    dependencies: packages = {},
     mode = 'production',
-    options = { ...defaultOptions },
-    platform = 'web',
+    options: { watch = false } = {},
+    platform = '',
     rootPath = process.cwd()
   } = {}) {
     this.check();
@@ -67,15 +62,17 @@ module.exports = class BestShot {
       throw new Error('rootPath is required');
     }
 
+    this.chain
+      .context(rootPath)
+      .mode(mode)
+      .watch(mode === 'development' && watch);
+
     const params = {
       browsers,
       config: this.schema.validate(config),
-      dependencies,
-      options: mode === 'development' ? options : defaultOptions,
+      packages,
       platform
     };
-
-    this.chain.mode(mode).context(rootPath);
 
     this.stack.setup(params).forEach(apply => {
       this.chain.batch(apply);

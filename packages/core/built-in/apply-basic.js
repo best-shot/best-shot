@@ -11,21 +11,20 @@ const shorthand = {
 
 exports.apply = function applyBasic({
   config: { publicPath, outputPath },
-  options: { watch },
   platform = ''
 }) {
   return chain => {
-    const mode = chain.get('mode');
-    const context = chain.get('context');
+    chain.amd(false).target('web');
 
-    chain
-      .target('web')
-      .watch(watch)
-      .when(watch, config =>
-        config.watchOptions({
-          ignored: /node_modules/
-        })
-      );
+    const context = chain.get('context');
+    const mode = chain.get('mode');
+    const watch = chain.get('watch');
+
+    chain.when(watch, config =>
+      config.watchOptions({
+        ignored: /node_modules/
+      })
+    );
 
     chain.optimization
       .minimize(mode === 'production')

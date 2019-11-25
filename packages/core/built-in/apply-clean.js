@@ -6,9 +6,11 @@ const displayName = 'clean';
 
 exports.name = displayName;
 
-exports.apply = function applyClean({ options: { serve, watch } }) {
+exports.apply = function applyClean() {
   return chain => {
-    if (!(serve || watch)) {
+    const watch = chain.get('watch');
+
+    if (!watch) {
       chain.plugin(displayName).use(CleanWebpackPlugin);
     }
   };

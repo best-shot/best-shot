@@ -9,23 +9,20 @@ const displayName = 'define';
 
 exports.name = displayName;
 
-exports.apply = function applyDefine({
-  config: { define },
-  platform: PLATFORM,
-  options: { serve, watch }
-}) {
+exports.apply = function applyDefine({ config: { define }, platform }) {
   return chain => {
-    const NODE_ENV = chain.get('mode');
+    const mode = chain.get('mode');
+    const watch = chain.get('watch');
 
-    chain.plugin('define').use(DefinePlugin, [
+    chain.plugin(displayName).use(DefinePlugin, [
       mapValues(
         objectFilter({
-          'process.env.NODE_ENV': NODE_ENV,
-          'process.env.PLATFORM': PLATFORM,
-          'process.env.DEBUG': serve || watch,
+          'process.env.NODE_ENV': mode,
+          'process.env.PLATFORM': platform,
+          'process.env.LOCAL': watch,
           ...define
         }),
-        JSON.stringify
+        value => JSON.stringify(value)
       )
     ]);
   };

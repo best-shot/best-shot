@@ -55,7 +55,7 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
             config,
             webpackChain
           }),
-          schema: io.schema.toObject(),
+          schema: io.schema.schema.toObject(),
           output: io
             .load({
               options: {

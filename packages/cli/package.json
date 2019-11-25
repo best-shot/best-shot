@@ -29,6 +29,7 @@
   "dependencies": {
     "browserslist": "^4.7.3",
     "chalk": "^3.0.0",
+    "fs-extra": "^8.1.0",
     "lodash": "^4.17.15",
     "slash": "^3.0.0",
     "v8-compile-cache": "^2.1.0",
@@ -37,7 +38,7 @@
     "yargs": "^15.0.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.0",
+    "@best-shot/core": "^0.1.1",
     "webpack": "^4.41.2"
   },
   "engines": {

@@ -29,6 +29,7 @@
   "devDependencies": {
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
+    "@types/react": "^16.9.13",
     "docsify": "^4.9.4",
     "docsify-cli": "^4.4.0",
     "jest": "^24.9.0",

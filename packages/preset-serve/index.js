@@ -12,15 +12,14 @@ exports.apply = function applyServe({
     chain.devServer
       .publicPath(publicPath[0] === '/' ? publicPath : '/')
       .merge(devServer)
-      .stats(devServer.stats || chain.get('stats'))
-      .end();
+      .stats(devServer.stats || chain.get('stats'));
 
-    chain.devServer.when(devServer.overlay && devServer.hot, conf => {
-      const entry = mapValues(conf.entryPoints.entries(), data =>
+    if (devServer.overlay && devServer.hot) {
+      const entry = mapValues(chain.entryPoints.entries(), data =>
         data.values()
       );
 
-      conf.entryPoints
+      chain.entryPoints
         .clear()
         .end()
         .merge({
@@ -29,7 +28,7 @@ exports.apply = function applyServe({
             ...entry
           }
         });
-    });
+    }
   };
 };
 

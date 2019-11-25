@@ -29,7 +29,7 @@ function reachBrowsers(rootPath, mode) {
   return browsers;
 }
 
-function reachDependencies(rootPath) {
+function reachPackages(rootPath) {
   const fileName = resolve(rootPath, 'package.json');
   try {
     // eslint-disable-next-line global-require, import/no-dynamic-require
@@ -49,5 +49,5 @@ function reachDependencies(rootPath) {
 module.exports = {
   reachConfig,
   reachBrowsers,
-  reachDependencies
+  reachPackages
 };

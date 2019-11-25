@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.0.8",
-  "description": "Inspector of `@best-shot/cli`",
+  "version": "0.1.0",
+  "description": "Inspector of `best-shot`",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -24,14 +24,14 @@
   "main": "index.js",
   "dependencies": {
     "fs-extra": "^8.1.0",
-    "javascript-stringify": "^2.0.0",
+    "javascript-stringify": "^2.0.1",
     "lodash": "^4.17.15",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "sort-object": "^3.0.3"
   },
   "peerDependencies": {
-    "@best-shot/cli": ">=0.0.20 <0.1",
-    "@best-shot/core": ">=0.0.13 <0.1"
+    "@best-shot/cli": "^0.1.0",
+    "@best-shot/core": "^0.1.1"
   },
   "engines": {
     "node": "^8.10 || ^10 || ^12"

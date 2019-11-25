@@ -64,7 +64,7 @@ yargs
   .options({
     color: {
       coerce() {
-        return Boolean(supportsColor.level);
+        return supportsColor.level > 0;
       },
       describe: 'Colorful output',
       type: 'boolean'

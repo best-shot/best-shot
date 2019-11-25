@@ -5,7 +5,7 @@ const BestShot = require('@best-shot/core');
 const { commandEnv } = require('./utils');
 const { applyProgress, applyAnalyzer } = require('./apply');
 const handle = require('./handle');
-const { reachConfig, reachBrowsers, reachDependencies } = require('./reach');
+const { reachConfig, reachBrowsers, reachPackages } = require('./reach');
 
 module.exports = function action({
   _: [command],
@@ -17,7 +17,7 @@ module.exports = function action({
   const rootPath = process.cwd();
   const mode = commandEnv(command);
   const configFunc = reachConfig(rootPath);
-  const dependencies = reachDependencies(rootPath);
+  const packages = reachPackages(rootPath);
   const browsers = reachBrowsers(rootPath, mode);
 
   const { webpackChain, presets = [], ...config } = configFunc({
@@ -34,15 +34,13 @@ module.exports = function action({
   const io = new BestShot({ presets })
     .load({
       options: {
-        watch: command === 'watch',
-        serve: command === 'serve'
+        watch: ['watch', 'serve'].includes(command)
       },
-      rootPath,
-      dependencies,
-      mode,
+      browsers,
       config,
+      packages,
       platform,
-      browsers
+      rootPath
     })
     .when(typeof webpackChain === 'function', webpackChain)
     .when(command === 'watch' || command === 'serve', conf => conf.watch(true))

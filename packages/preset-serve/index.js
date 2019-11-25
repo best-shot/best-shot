@@ -3,33 +3,33 @@
 const internalIp = require('internal-ip');
 const mapValues = require('lodash/mapValues');
 
-exports.apply = function applyDevServer({
-  options: { serve },
+exports.name = 'preset-serve';
+
+exports.apply = function applyServe({
   config: { devServer = {}, publicPath = '' }
 }) {
   return chain => {
-    chain.when(serve, config =>
-      config.devServer
-        .publicPath(publicPath[0] === '/' ? publicPath : '/')
-        .merge(devServer)
-        .stats(config.get('stats'))
-        .historyApiFallback(devServer.historyApiFallback)
+    chain.devServer
+      .publicPath(publicPath[0] === '/' ? publicPath : '/')
+      .merge(devServer)
+      .stats(devServer.stats || chain.get('stats'))
+      .end();
+
+    chain.devServer.when(devServer.overlay && devServer.hot, conf => {
+      const entry = mapValues(conf.entryPoints.entries(), data =>
+        data.values()
+      );
+
+      conf.entryPoints
+        .clear()
         .end()
-        .when(devServer.overlay && devServer.hot, conf => {
-          const entry = mapValues(conf.entryPoints.entries(), data =>
-            data.values()
-          );
-          conf.entryPoints
-            .clear()
-            .end()
-            .merge({
-              entry: {
-                overlay: 'webpack-serve-overlay',
-                ...entry
-              }
-            });
-        })
-    );
+        .merge({
+          entry: {
+            overlay: 'webpack-serve-overlay',
+            ...entry
+          }
+        });
+    });
   };
 };
 
@@ -45,7 +45,7 @@ exports.schema = {
         type: 'string'
       },
       host: {
-        default: internalIp.v4.sync(),
+        default: internalIp.v4.sync() || 'localhost',
         type: 'string'
       },
       hot: {

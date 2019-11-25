@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-serve",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "A `best-shot` preset for development server",
   "license": "MIT",
   "author": {
@@ -15,7 +15,7 @@
     "server",
     "webpack"
   ],
-  "homepage": "https://github.com/Airkro/best-shot/tree/master/packages/preset-serve",
+  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-serve",
   "repository": {
     "type": "git",
     "url": "https://github.com/airkro/best-shot.git",
@@ -23,10 +23,13 @@
   },
   "main": "index.js",
   "dependencies": {
-    "internal-ip": "^4.3.0",
+    "internal-ip": "^5.0.0",
     "lodash": "^4.17.15"
   },
+  "peerDependencies": {
+    "@best-shot/core": "^0.1.1"
+  },
   "engines": {
-    "node": ">=8.10.0"
+    "node": "^8.10 || ^10 || ^12"
   }
 }

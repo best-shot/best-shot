@@ -6,7 +6,7 @@ const BestShot = require('@best-shot/core');
 const { commandEnv } = require('@best-shot/cli/lib/utils');
 
 const {
-  reachDependencies,
+  reachPackages,
   reachConfig,
   reachBrowsers
 } = require('@best-shot/cli/lib/reach');
@@ -18,7 +18,7 @@ const commands = ['serve', 'watch', 'dev', 'prod'];
 module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
   const rootPath = process.cwd();
   const configFunc = reachConfig(rootPath);
-  const dependencies = reachDependencies(rootPath);
+  const packages = reachPackages(rootPath);
   const writeFile = makeWriteFile(rootPath, stamp);
 
   console.log('Output files ...');
@@ -59,15 +59,13 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
           output: io
             .load({
               options: {
-                watch: command === 'watch',
-                serve: command === 'serve'
+                watch: ['watch', 'serve'].includes(command)
               },
-              rootPath,
-              dependencies,
-              mode,
+              browsers,
               config,
+              packages,
               platform,
-              browsers
+              rootPath
             })
             .when(typeof webpackChain === 'function', webpackChain)
         })
@@ -76,7 +74,7 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
   });
 
   writeFile({
-    name: 'dependencies.json',
-    data: JSON.stringify(dependencies, null, '  ')
+    name: 'packages.json',
+    data: JSON.stringify(packages, null, '  ')
   });
 };

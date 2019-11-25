@@ -50,10 +50,10 @@ module.exports = class BestShot {
   load({
     browsers = [],
     config = {},
-    dependencies: packages = {},
     mode = 'production',
     options: { watch = false } = {},
-    platform = '',
+    packages = {},
+    platform,
     rootPath = process.cwd()
   } = {}) {
     this.check();

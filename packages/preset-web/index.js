@@ -16,14 +16,12 @@ function addMin(filename) {
 
 exports.name = 'preset-web';
 
-exports.apply = function applySinglePage({
-  config: { html, vendors, define, sri }
-}) {
+exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
   return chain => {
     const mode = chain.get('mode');
     const hot = chain.devServer.get('hot');
     const minimize = chain.optimization.get('minimize');
-    const serve = chain.devServer.entries();
+    const serve = chain.devServer.entries() !== undefined;
 
     chain.devtool(
       mode === 'production'

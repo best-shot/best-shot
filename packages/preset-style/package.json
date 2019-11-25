@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-style",
-  "version": "0.0.21",
+  "version": "0.1.0",
   "description": "A `best-shot` preset for stylesheets",
   "license": "MIT",
   "author": {
@@ -38,7 +38,7 @@
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
     "ext-to-regexp": "^0.0.8",
-    "extract-css-chunks-webpack-plugin": "^4.6.0",
+    "extract-css-chunks-webpack-plugin": "^4.7.0",
     "file-loader": "^4.3.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "less": "^3.10.3",
@@ -52,7 +52,7 @@
     "style-loader": "^1.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.0.15"
+    "@best-shot/core": "^0.1.0"
   },
   "engines": {
     "node": "^8.10 || ^10 || ^12"

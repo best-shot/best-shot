@@ -23,6 +23,7 @@ exports.apply = function applyBabel({
       .loader('babel-loader')
       .options({
         babelrc: false,
+        envName: mode,
         sourceType: 'unambiguous',
         cacheDirectory: UseCache,
         compact: mode === 'production',

@@ -27,12 +27,20 @@ exports.apply = function applyReact() {
       .use('babel-loader')
       .tap(({ presets = [], plugins = [], ...options }) => ({
         ...options,
-        presets: [...presets, '@babel/react'],
+        presets: [
+          ...presets,
+          [
+            '@babel/react',
+            {
+              useBuiltIns: true,
+              useSpread: true
+            }
+          ]
+        ],
         plugins: [
           ...plugins,
-          'react-hot-loader/babel',
           ...(mode === 'production'
-            ? ['transform-react-remove-prop-types']
+            ? ['react-hot-loader/babel', 'transform-react-remove-prop-types']
             : [])
         ]
       }));

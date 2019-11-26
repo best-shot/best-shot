@@ -6,12 +6,13 @@ exports.name = 'preset-react';
 
 exports.apply = function applyReact() {
   return chain => {
-    const mode = chain.get('mode');
+    const isProd = chain.get('mode') === 'production';
     const useHot = chain.devServer.get('hot');
 
     if (useHot) {
-      const first = Object.keys(chain.entryPoints.entries())[0];
-      chain.entry(first).prepend('react-hot-loader/patch');
+      Object.entries(chain.entryPoints.entries()).forEach(([key]) => {
+        chain.entry(key).prepend('react-hot-loader/patch');
+      });
       chain.resolve.alias.set('react-dom', '@hot-loader/react-dom');
     }
 
@@ -27,21 +28,11 @@ exports.apply = function applyReact() {
       .use('babel-loader')
       .tap(({ presets = [], plugins = [], ...options }) => ({
         ...options,
-        presets: [
-          ...presets,
-          [
-            '@babel/react',
-            {
-              useBuiltIns: true,
-              useSpread: true
-            }
-          ]
-        ],
+        presets: [...presets, ['@babel/react', { useSpread: true }]],
         plugins: [
           ...plugins,
-          ...(mode === 'production'
-            ? ['react-hot-loader/babel', 'transform-react-remove-prop-types']
-            : [])
+          ...(isProd ? ['transform-react-remove-prop-types'] : []),
+          ...(useHot ? ['react-hot-loader/babel'] : [])
         ]
       }));
   };

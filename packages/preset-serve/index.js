@@ -1,7 +1,6 @@
 'use strict';
 
 const internalIp = require('internal-ip');
-const mapValues = require('lodash/mapValues');
 
 exports.name = 'preset-serve';
 
@@ -15,19 +14,9 @@ exports.apply = function applyServe({
       .stats(devServer.stats || chain.get('stats'));
 
     if (devServer.overlay && devServer.hot) {
-      const entry = mapValues(chain.entryPoints.entries(), data =>
-        data.values()
-      );
-
-      chain.entryPoints
-        .clear()
-        .end()
-        .merge({
-          entry: {
-            overlay: 'webpack-serve-overlay',
-            ...entry
-          }
-        });
+      Object.entries(chain.entryPoints.entries()).forEach(([key]) => {
+        chain.entry(key).prepend('webpack-serve-overlay');
+      });
     }
   };
 };

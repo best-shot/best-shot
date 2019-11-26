@@ -1,6 +1,6 @@
 {
   "name": "best-shot-dev-server",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -25,7 +25,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@best-shot/preset-serve": "^0.1.0",
+    "@best-shot/preset-serve": "^0.1.1",
     "connect-history-api-fallback": "^1.6.0",
     "http-proxy-middleware": "^0.20.0",
     "koa-connect": "^2.0.1",

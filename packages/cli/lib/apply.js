@@ -3,9 +3,11 @@
 const WebpackBar = require('webpackbar');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const { relative } = require('@best-shot/core/lib/path');
+const { resolve } = require('@best-shot/core/lib/path');
 
-const reportPath = '.best-shot/stats';
+function getReportPath(rootPath, filename) {
+  return resolve(rootPath, '.best-shot/stats', filename);
+}
 
 module.exports = {
   applyProgress(chain) {
@@ -26,8 +28,8 @@ module.exports = {
         analyzerMode: 'static',
         generateStatsFile: true,
         openAnalyzer: false,
-        reportFilename: relative(rootPath, reportPath, 'index.html'),
-        statsFilename: relative(rootPath, reportPath, 'data.json')
+        reportFilename: getReportPath(rootPath, 'index.html'),
+        statsFilename: getReportPath(rootPath, 'data.json')
       }
     ]);
   }

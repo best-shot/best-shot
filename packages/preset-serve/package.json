@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-serve",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A `best-shot` preset for development server",
   "license": "MIT",
   "author": {
@@ -23,11 +23,10 @@
   },
   "main": "index.js",
   "dependencies": {
-    "internal-ip": "^5.0.0",
-    "lodash": "^4.17.15"
+    "internal-ip": "^5.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.1"
+    "@best-shot/core": "^0.1.2"
   },
   "engines": {
     "node": "^8.10 || ^10 || ^12"

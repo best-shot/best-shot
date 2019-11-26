@@ -55,12 +55,13 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
             config,
             webpackChain
           }),
-          schema: io.schema.schema.toObject(),
+          schema: io.schema.toObject(),
           output: io
             .load({
               options: {
                 watch: ['watch', 'serve'].includes(command)
               },
+              mode,
               browsers,
               config,
               packages,

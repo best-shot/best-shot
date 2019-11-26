@@ -50,17 +50,13 @@ module.exports = class BestShot {
   load({
     browsers = [],
     config = {},
-    mode = 'production',
+    mode = 'development',
     options: { watch = false } = {},
     packages = {},
     platform,
     rootPath = process.cwd()
   } = {}) {
     this.check();
-
-    if (!rootPath) {
-      throw new Error('rootPath is required');
-    }
 
     this.chain
       .context(rootPath)

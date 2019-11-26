@@ -36,6 +36,7 @@ module.exports = function action({
       options: {
         watch: ['watch', 'serve'].includes(command)
       },
+      mode,
       browsers,
       config,
       packages,

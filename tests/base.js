@@ -15,7 +15,7 @@ const {
 const example = {
   name: 'best-shot.config',
   target: 'web',
-  mode: 'production',
+  mode: 'development',
   output: {
     publicPath: '/',
     filename: '[name].js'

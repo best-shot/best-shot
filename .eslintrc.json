@@ -1,16 +1,9 @@
 {
   "extends": [
     "@nice-move/eslint-config-base",
-    "plugin:node/recommended",
     "./node_modules/@best-shot/preset-env/eslint.js"
   ],
   "rules": {
-    "function-paren-newline": "off",
-    "implicit-arrow-linebreak": "off",
-    "no-underscore-dangle": "off",
-    "object-curly-newline": "off",
-    "operator-linebreak": "off",
-    "indent": "off",
     "node/no-extraneous-require": [
       "error",
       {

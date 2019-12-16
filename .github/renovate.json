@@ -4,7 +4,8 @@
     "group:allNonMajor",
     "schedule:daily",
     ":unpublishSafe",
-    ":prNotPending"
+    ":prNotPending",
+    ":disableMajorUpdates"
   ],
   "rangeStrategy": "bump"
 }

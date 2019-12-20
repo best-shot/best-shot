@@ -1,13 +1,15 @@
-'use strict';
-
 const deepmerge = require('deepmerge');
 
 const validator = require('./validator');
-const baseSchema = require('./base-schema.json');
 
 module.exports = class Schema {
   constructor() {
-    this.schema = baseSchema;
+    this.schema = {
+      $schema: 'http://json-schema.org/draft-07/schema#',
+      description: 'Configuration of best-shot',
+      type: 'object',
+      properties: {}
+    };
     return this;
   }
 

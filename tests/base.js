@@ -1,9 +1,7 @@
-'use strict';
-
 // eslint-disable-next-line import/no-extraneous-dependencies
 const BestShot = require('@best-shot/core');
 
-const baseSchema = require('../packages/core/schema/base-schema.json');
+const Schema = require('../packages/core/lib/schema');
 
 const {
   schema: properties1
@@ -30,13 +28,13 @@ describe('Base Config', () => {
 
   test('toString', () => {
     const config = new BestShot().load().toString();
-    expect(config).toMatch(/^\{/);
-    expect(config).toMatch(/\}$/);
+    expect(config).toMatch(/^{/);
+    expect(config).toMatch(/}$/);
   });
 
   test('toSchema', () => {
     const schema = new BestShot().schema.toObject();
-
+    const baseSchema = new Schema().schema;
     Object.assign(baseSchema.properties, properties1, properties2);
     expect(schema).toMatchObject(baseSchema);
   });

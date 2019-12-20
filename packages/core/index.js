@@ -1,10 +1,8 @@
-'use strict';
-
 const WebpackChain = require('webpack-chain');
 const { importPresets } = require('./lib/presets');
 const Stack = require('./lib/stack');
+const Schema = require('./lib/schema');
 const builtIn = require('./built-in');
-const Schema = require('./schema');
 
 const types = ['built-in', 'additional'];
 

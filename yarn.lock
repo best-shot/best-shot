@@ -1231,10 +1231,10 @@
     commander "^4.0.1"
     lint-staged "^9.5.0"
 
-"@nice-move/eslint-config-base@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.npmjs.org/@nice-move/eslint-config-base/-/eslint-config-base-0.2.4.tgz#d80c2a73d77b3714766dfbe4762ab6c692a766da"
-  integrity sha512-4MHPT4T82SBB42IUsqA0e7Ub3GwHq7emC/0Yqt6/xERHwLNZQX/dBVUe9p465g61QMUotgSjNi3G1dzXRLqRLQ==
+"@nice-move/eslint-config-base@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.npmjs.org/@nice-move/eslint-config-base/-/eslint-config-base-0.2.5.tgz#7131ece96a2b1c37ef578c725839196f5781c638"
+  integrity sha512-qCs3yE78F1HAbrvaT2ps/F63Lg4912QPs3uMwJukWbSkepZHvLqL5g+nG/zmeyUTCyp/zdyR8/McRC9FIjrx/w==
   dependencies:
     eslint-config-airbnb-base "^14.0.0"
     eslint-config-prettier "^6.7.0"
@@ -1467,9 +1467,9 @@
     "@types/istanbul-lib-report" "*"
 
 "@types/jest@^24.0.23":
-  version "24.0.23"
-  resolved "https://registry.npmjs.org/@types/jest/-/jest-24.0.23.tgz#046f8e2ade026fe831623e361a36b6fb9a4463e4"
-  integrity sha512-L7MBvwfNpe7yVPTXLn32df/EK+AMBFAFvZrRuArGs7npEWnlziUXK+5GMIUTI4NIuwok3XibsjXCs5HxviYXjg==
+  version "24.0.24"
+  resolved "https://registry.npmjs.org/@types/jest/-/jest-24.0.24.tgz#0f2f523dc77cc1bc6bef34eaf287ede887a73f05"
+  integrity sha512-vgaG968EDPSJPMunEDdZvZgvxYSmeH8wKqBlHSkBt1pV2XlLEVDzsj1ZhLuI4iG4Pv841tES61txSBF0obh4CQ==
   dependencies:
     jest-diff "^24.3.0"
 
@@ -3530,10 +3530,10 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.npmjs.org/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
-copy-webpack-plugin@^5.0.5:
-  version "5.0.5"
-  resolved "https://registry.npmjs.org/copy-webpack-plugin/-/copy-webpack-plugin-5.0.5.tgz#731df6a837a2ef0f8f8e2345bdfe9b7c62a2da68"
-  integrity sha512-7N68eIoQTyudAuxkfPT7HzGoQ+TsmArN/I3HFwG+lVE3FNzqvZKIiaxtYh4o3BIznioxUvx9j26+Rtsc9htQUQ==
+copy-webpack-plugin@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.npmjs.org/copy-webpack-plugin/-/copy-webpack-plugin-5.1.1.tgz#5481a03dea1123d88a988c6ff8b78247214f0b88"
+  integrity sha512-P15M5ZC8dyCjQHWwd4Ia/dm0SgVvZJMYeykVIVYXbGyqO4dWB5oyPHp9i7wjwo5LhtlhKbiBCdS2NvM07Wlybg==
   dependencies:
     cacache "^12.0.3"
     find-cache-dir "^2.1.0"
@@ -3545,7 +3545,7 @@ copy-webpack-plugin@^5.0.5:
     normalize-path "^3.0.0"
     p-limit "^2.2.1"
     schema-utils "^1.0.0"
-    serialize-javascript "^2.1.0"
+    serialize-javascript "^2.1.2"
     webpack-log "^2.0.0"
 
 core-js-compat@^3.1.1:
@@ -4074,6 +4074,13 @@ deepmerge@^4.2.2:
   resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
   integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
 
+default-gateway@^5.0.4:
+  version "5.0.5"
+  resolved "https://registry.npmjs.org/default-gateway/-/default-gateway-5.0.5.tgz#4fd6bd5d2855d39b34cc5a59505486e9aafc9b10"
+  integrity sha512-z2RnruVmj8hVMmAnEJMTIJNijhKCDiGjbLP+BHJFOT7ld3Bo5qcIBpVYDniqhbMIIf+jZDlkP2MkPXiQy/DBLA==
+  dependencies:
+    execa "^3.3.0"
+
 defer-to-connect@^1.0.1:
   version "1.1.0"
   resolved "https://registry.npmjs.org/defer-to-connect/-/defer-to-connect-1.1.0.tgz#b41bd7efa8508cef13f8456975f7a278c72833fd"
@@ -4257,7 +4264,7 @@ docsify-server-renderer@>=4:
     node-fetch "^1.7.0"
     resolve-pathname "^2.1.0"
 
-docsify@>=3, docsify@^4.8.0, docsify@^4.9.4:
+docsify@>=3, docsify@^4.8.0:
   version "4.9.4"
   resolved "https://registry.npmjs.org/docsify/-/docsify-4.9.4.tgz#d97362140e49c3db0da5d866da58c8e805dda2b5"
   integrity sha512-Xtm6sfrNU7cqOViWMewDhscn0cySF60q2KTKok9OaPmzt6nRkTAIvYU4dj916IT21o/b336Or3vO2hsvmaQzxg==
@@ -4265,6 +4272,18 @@ docsify@>=3, docsify@^4.8.0, docsify@^4.9.4:
     marked "^0.5.1"
     medium-zoom "^0.4.0"
     opencollective "^1.0.3"
+    prismjs "^1.15.0"
+    tinydate "^1.0.0"
+    tweezer.js "^1.4.0"
+
+docsify@^4.10.2:
+  version "4.10.2"
+  resolved "https://registry.npmjs.org/docsify/-/docsify-4.10.2.tgz#0e4e7efad511b75680c69a4d648253e63c8cf647"
+  integrity sha512-Y1LbI29X9c4uRVEp7wGOYhy8lDrn47o96or0Dbj+pElxWk1cLYQ5CVYPHnf75P3oM1CrEGIrazac6AjYXaD1kw==
+  dependencies:
+    marked "^0.7.0"
+    medium-zoom "^1.0.4"
+    opencollective-postinstall "^2.0.2"
     prismjs "^1.15.0"
     tinydate "^1.0.0"
     tweezer.js "^1.4.0"
@@ -4983,6 +5002,22 @@ execa@^2.0.3:
     is-stream "^2.0.0"
     merge-stream "^2.0.0"
     npm-run-path "^3.0.0"
+    onetime "^5.1.0"
+    p-finally "^2.0.0"
+    signal-exit "^3.0.2"
+    strip-final-newline "^2.0.0"
+
+execa@^3.3.0:
+  version "3.4.0"
+  resolved "https://registry.npmjs.org/execa/-/execa-3.4.0.tgz#c08ed4550ef65d858fac269ffc8572446f37eb89"
+  integrity sha512-r9vdGQk4bmCuK1yKQu1KTwcT2zwfWdbdaXfCtAh+5nU/4fSX+JAb7vZGvI5naJrQlvONrEB20jeruESI69530g==
+  dependencies:
+    cross-spawn "^7.0.0"
+    get-stream "^5.0.0"
+    human-signals "^1.1.1"
+    is-stream "^2.0.0"
+    merge-stream "^2.0.0"
+    npm-run-path "^4.0.0"
     onetime "^5.1.0"
     p-finally "^2.0.0"
     signal-exit "^3.0.2"
@@ -6238,6 +6273,11 @@ https-browserify@^1.0.0:
   resolved "https://registry.npmjs.org/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
+human-signals@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/human-signals/-/human-signals-1.1.1.tgz#c5b1cd14f50aeae09ab6c59fe63ba3395fe4dfa3"
+  integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
+
 husky@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/husky/-/husky-3.1.0.tgz#5faad520ab860582ed94f0c1a77f0f04c90b57c0"
@@ -6559,6 +6599,14 @@ inquirer@^7.0.0:
     strip-ansi "^5.1.0"
     through "^2.3.6"
 
+internal-ip@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/internal-ip/-/internal-ip-5.0.0.tgz#e7c24aea05308f57b7b3ca7c80c07da8f25e224f"
+  integrity sha512-2rbiwUsG8My+vT/JBdaE2r6EjzOibu4VXjkfdVBP9PbfTn68EE1DCZ4iw6dOnc+FGsFL4uAqap/eeNoqK5sdtA==
+  dependencies:
+    default-gateway "^5.0.4"
+    ipaddr.js "^1.9.1"
+
 into-stream@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/into-stream/-/into-stream-3.1.0.tgz#96fb0a936c12babd6ff1752a17d05616abd094c6"
@@ -6578,6 +6626,11 @@ ipaddr.js@1.9.0:
   version "1.9.0"
   resolved "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.0.tgz#37df74e430a0e47550fe54a2defe30d8acd95f65"
   integrity sha512-M4Sjn6N/+O6/IXSJseKqHoFc+5FdGJ22sXqnjTpdZweHK64MzEPAyQZyEU3R/KRv2GLoa7nNtg/C2Ev6m7z+eA==
+
+ipaddr.js@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz#bff38543eeb8984825079ff3a2a8e6cbd46781b3"
+  integrity sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
 
 is-absolute-url@^2.0.0:
   version "2.1.0"
@@ -7098,11 +7151,6 @@ isurl@^1.0.0-alpha5:
   dependencies:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
-
-javascript-stringify@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/javascript-stringify/-/javascript-stringify-2.0.0.tgz#ef750216ae66504ffd670b68c8b8aa07bdf7b588"
-  integrity sha512-zzK8+ByrzvOL6N92hRewwUKL0wN0TOaIuUjX0Jj8lraxWvr5wHYs2YTjaj2lstF+8qMv5cmPPef47va8NT8lDw==
 
 javascript-stringify@^2.0.1:
   version "2.0.1"
@@ -8256,6 +8304,11 @@ marked@^0.5.1:
   resolved "https://registry.npmjs.org/marked/-/marked-0.5.2.tgz#3efdb27b1fd0ecec4f5aba362bddcd18120e5ba9"
   integrity sha512-fdZvBa7/vSQIZCi4uuwo2N3q+7jJURpMVCcbaX0S1Mg65WZ5ilXvC67MviJAsdjqqgD+CEq4RKo5AYGgINkVAA==
 
+marked@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.npmjs.org/marked/-/marked-0.7.0.tgz#b64201f051d271b1edc10a04d1ae9b74bb8e5c0e"
+  integrity sha512-c+yYdCZJQrsRjTPhUx7VKkApw9bwDkNbHUKo1ovgcfDjb2kc8rLuRbIFyXL5WOEUwzSSKo3IXpph2K6DqB/KZg==
+
 mathml-tag-names@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/mathml-tag-names/-/mathml-tag-names-2.1.1.tgz#6dff66c99d55ecf739ca53c492e626f1d12a33cc"
@@ -8301,6 +8354,11 @@ medium-zoom@^0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.org/medium-zoom/-/medium-zoom-0.4.0.tgz#8e13c9b754903c0c903220611af0d3cd373a4222"
   integrity sha512-0z7yMfd6I1BTCAa8QaR4cp5AqDkQD571GzhHIbbfefKEssGLSvs+4Xai/itOAncm4FBlF5gUoMQ22yW9/f8Sig==
+
+medium-zoom@^1.0.4:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/medium-zoom/-/medium-zoom-1.0.5.tgz#81413dda20ccdd857141ff420cfab788dd32e20e"
+  integrity sha512-aLGa6WlTuFKWvH88bqTrY5ztJMN+D0hd8UX6BYc4YSoPayppzETjZUcdVcksgaoQEMg4cZSmXPg846fTp2rjRQ==
 
 mem@^3.0.0:
   version "3.0.1"
@@ -8953,6 +9011,13 @@ npm-run-path@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/npm-run-path/-/npm-run-path-3.1.0.tgz#7f91be317f6a466efed3c9f2980ad8a4ee8b0fa5"
   integrity sha512-Dbl4A/VfiVGLgQv29URL9xshU8XDY1GeLy+fsaZ1AA8JDSfjvr5P5+pzRbWqRSBxk6/DW7MIh8lTM/PaGnP2kg==
+  dependencies:
+    path-key "^3.0.0"
+
+npm-run-path@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/npm-run-path/-/npm-run-path-4.0.0.tgz#d644ec1bd0569187d2a52909971023a0a58e8438"
+  integrity sha512-8eyAOAH+bYXFPSnNnKr3J+yoybe8O87Is5rtAQ8qRczJz1ajcsjg8l2oZqP+Ppx15Ii3S1vUTjQN2h4YO2tWWQ==
   dependencies:
     path-key "^3.0.0"
 
@@ -11277,15 +11342,10 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
-serialize-javascript@^1.7.0:
-  version "1.9.1"
-  resolved "https://registry.npmjs.org/serialize-javascript/-/serialize-javascript-1.9.1.tgz#cfc200aef77b600c47da9bb8149c943e798c2fdb"
-  integrity sha512-0Vb/54WJ6k5v8sSWN09S0ora+Hnr+cX40r9F170nT+mSkaxltoE/7R3OrIdBSUv1OoiobH1QoWQbCnAO+e8J1A==
-
-serialize-javascript@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/serialize-javascript/-/serialize-javascript-2.1.0.tgz#9310276819efd0eb128258bb341957f6eb2fc570"
-  integrity sha512-a/mxFfU00QT88umAJQsNWOnUKckhNCqOl028N48e7wFmo2/EHpTo9Wso+iJJCMrQnmFvcjto5RJdAHEvVhcyUQ==
+serialize-javascript@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/serialize-javascript/-/serialize-javascript-2.1.2.tgz#ecec53b0e0317bdc95ef76ab7074b7384785fa61"
+  integrity sha512-rs9OggEUF0V4jUSecXazOYsLfu7OGK2qIn3c7IPBiffz32XniEp/TX9Xmc9LQfK2nQ2QKHvZ2oygKUGU0lG4jQ==
 
 serve-static@1.14.1, serve-static@^1.12.1:
   version "1.14.1"
@@ -12157,16 +12217,16 @@ term-size@^1.2.0:
   dependencies:
     execa "^0.7.0"
 
-terser-webpack-plugin@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.npmjs.org/terser-webpack-plugin/-/terser-webpack-plugin-1.4.1.tgz#61b18e40eaee5be97e771cdbb10ed1280888c2b4"
-  integrity sha512-ZXmmfiwtCLfz8WKZyYUuuHf3dMYEjg8NrjHMb0JqHVHVOSkzp3cW2/XG1fP3tRhqEqSzMwzzRQGtAPbs4Cncxg==
+terser-webpack-plugin@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.npmjs.org/terser-webpack-plugin/-/terser-webpack-plugin-1.4.3.tgz#5ecaf2dbdc5fb99745fd06791f46fc9ddb1c9a7c"
+  integrity sha512-QMxecFz/gHQwteWwSo5nTc6UaICqN1bMedC5sMtUc7y3Ha3Q8y6ZO0iCR8pq4RJC8Hjf0FEPEHZqcMB/+DFCrA==
   dependencies:
     cacache "^12.0.2"
     find-cache-dir "^2.1.0"
     is-wsl "^1.1.0"
     schema-utils "^1.0.0"
-    serialize-javascript "^1.7.0"
+    serialize-javascript "^2.1.2"
     source-map "^0.6.1"
     terser "^4.1.2"
     webpack-sources "^1.4.0"
@@ -12983,13 +13043,13 @@ webpack-bundle-analyzer@^3.6.0:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-chain@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/webpack-chain/-/webpack-chain-6.0.0.tgz#9c36525a1271a54e7bfd1791199b395f400ae4f1"
-  integrity sha512-NK62XgJOOSmYs4kaXFIKKeClpuOVHY7m6e4XwxbVX/2HAUboH6xFCTVXMVv8+jB6K8o/UGjlo1Cv3XXOyNAAGw==
+webpack-chain@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.npmjs.org/webpack-chain/-/webpack-chain-6.2.0.tgz#bcea7b0ad5feae6845d70e6fd7a048953f8ae77c"
+  integrity sha512-Kt/TCt6p4sL8YJ49m6/mMkU1gkGJUMu/6yevWbWnaHYTdKc7U6hNAm0d9RSdLIN28CGonmYD5FkABqE1UuNTTw==
   dependencies:
     deepmerge "^1.5.2"
-    javascript-stringify "^2.0.0"
+    javascript-stringify "^2.0.1"
 
 webpack-dev-middleware@^3.0.0:
   version "3.7.2"
@@ -13113,10 +13173,10 @@ webpack-subresource-integrity@^1.3.4:
   dependencies:
     webpack-sources "^1.3.0"
 
-webpack@^4.41.2:
-  version "4.41.2"
-  resolved "https://registry.npmjs.org/webpack/-/webpack-4.41.2.tgz#c34ec76daa3a8468c9b61a50336d8e3303dce74e"
-  integrity sha512-Zhw69edTGfbz9/8JJoyRQ/pq8FYUoY0diOXqW0T6yhgdhCv6wr0hra5DwwWexNRns2Z2+gsnrNcbe9hbGBgk/A==
+webpack@^4.41.4:
+  version "4.41.4"
+  resolved "https://registry.npmjs.org/webpack/-/webpack-4.41.4.tgz#4bec4125224bdf50efa8be6226c19047599cd034"
+  integrity sha512-Lc+2uB6NjpCWsHI3trkoISOI64h9QYIXenbEWj3bn3oyjfB1lEBXjWAfAyY2sM0rZn41oD5V91OLwKRwS6Wp8Q==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
@@ -13138,7 +13198,7 @@ webpack@^4.41.2:
     node-libs-browser "^2.2.1"
     schema-utils "^1.0.0"
     tapable "^1.1.3"
-    terser-webpack-plugin "^1.4.1"
+    terser-webpack-plugin "^1.4.3"
     watchpack "^1.6.0"
     webpack-sources "^1.4.1"
 

@@ -30,15 +30,15 @@
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
     "@types/react": "^16.9.16",
-    "docsify": "^4.9.4",
+    "docsify": "^4.10.2",
     "docsify-cli": "^4.4.0",
     "jest": "^24.9.0",
     "nodemon": "^2.0.2",
-    "webpack": "^4.41.2"
+    "webpack": "^4.41.4"
   },
   "optionalDependencies": {
     "@nice-move/cli": "^0.0.4",
-    "@nice-move/eslint-config-base": "^0.2.4",
+    "@nice-move/eslint-config-base": "^0.2.5",
     "@nice-move/prettier-config": "^0.0.5",
     "@nice-move/stylelint-config": "^0.0.18",
     "@types/jest": "^24.0.23",
@@ -53,6 +53,9 @@
   },
   "engines": {
     "node": "^8.10 || ^10 || ^12"
+  },
+  "eslintConfig": {
+    "extends": "@nice-move/eslint-config-base"
   },
   "husky": {
     "hooks": {

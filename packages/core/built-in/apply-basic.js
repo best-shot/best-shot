@@ -1,5 +1,3 @@
-'use strict';
-
 const { resolve } = require('path');
 
 exports.name = 'basic';
@@ -26,6 +24,8 @@ exports.apply = function applyBasic({
       })
     );
 
+    chain.module.strictExportPresence(!watch);
+
     chain.optimization
       .minimize(mode === 'production')
       .set('moduleIds', mode === 'production' ? 'hashed' : 'named');
@@ -37,10 +37,27 @@ exports.apply = function applyBasic({
         resolve(
           context,
           outputPath
-            .replace(/\[platform\]/g, platform)
-            .replace(/\[mode\]/g, mode)
-            .replace(/\[mode:shorthand\]/g, shorthand[mode])
+            .replace(/\[platform]/g, platform)
+            .replace(/\[mode]/g, mode)
+            .replace(/\[mode:shorthand]/g, shorthand[mode])
         )
       );
   };
+};
+
+exports.schema = {
+  outputPath: {
+    default: 'dist',
+    description:
+      'It can be a relative path. Additional placeholder: [mode]/[mode:shorthand]/[platform]',
+    minLength: 3,
+    title: 'Same as `output.path` of `webpack`',
+    type: 'string'
+  },
+  publicPath: {
+    default: '/',
+    minLength: 1,
+    title: 'Same as `output.publicPath` of `webpack`',
+    type: 'string'
+  }
 };

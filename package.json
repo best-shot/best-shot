@@ -21,15 +21,15 @@
     "packages/*"
   ],
   "dependencies": {
-    "core-js": "3.5.0",
+    "core-js": "3.6.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/core": "^7.7.5",
-    "@types/react": "^16.9.16",
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@types/react": "^16.9.17",
     "docsify": "^4.10.2",
     "docsify-cli": "^4.4.0",
     "jest": "^24.9.0",
@@ -38,21 +38,21 @@
   },
   "optionalDependencies": {
     "@nice-move/cli": "^0.0.4",
-    "@nice-move/eslint-config-base": "^0.2.5",
+    "@nice-move/eslint-config-base": "^0.2.7",
     "@nice-move/prettier-config": "^0.0.5",
     "@nice-move/stylelint-config": "^0.0.18",
-    "@types/jest": "^24.0.23",
-    "eslint": "^6.7.2",
+    "@types/jest": "^24.0.25",
+    "eslint": "^6.8.0",
     "eslint-plugin-jest": "^23.1.1",
     "husky": "^3.1.0",
     "prettier": "^1.19.1",
-    "stylelint": "^12.0.0"
+    "stylelint": "^12.0.1"
   },
   "resolutions": {
     "bin-wrapper": "npm:bin-wrapper-china"
   },
   "engines": {
-    "node": "^8.10 || ^10 || ^12"
+    "node": "^8.15 || ^10.15 || ^12"
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"

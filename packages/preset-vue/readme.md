@@ -15,7 +15,6 @@ A `best-shot` preset for Vue project.
 This preset includes the following packages:
 
 - vue-loader
-- vue-style-loader
 - vue-template-compiler
 
 ## Installation

@@ -1,5 +1,3 @@
-'use strict';
-
 const extToRegexp = require('ext-to-regexp');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -9,20 +7,7 @@ exports.name = 'preset-vue';
 
 exports.apply = function applyVue() {
   return chain => {
-    const mode = chain.get('mode');
     const context = chain.get('context');
-
-    const useStyle = chain.module.rule('style').uses.has('style-loader');
-
-    if (useStyle) {
-      chain.module
-        .rule('style')
-        .use('style-loader')
-        .loader('vue-style-loader')
-        .options({
-          sourceMap: mode === 'development'
-        });
-    }
 
     chain.module
       .rule('vue')

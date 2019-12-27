@@ -45,7 +45,7 @@ Use `[name].module.[extname]` as filename. [Learn more](https://github.com/css-m
 ```js
 // example.js
 import foo from './foo.module.css';
-import bar from './bar.module.css';
+import bar from './bar.module.scss';
 ```
 
 Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-modules.html)
@@ -66,6 +66,7 @@ Disable internal `autoprefixer` first.
 module.exports = {
   webpackChain: config => {
     config.module
+      .rule('style')
       .rule('postcss')
       .use('postcss-loader')
       .delete('options');
@@ -89,10 +90,14 @@ module.exports = {
 This preset didn't offering `stylus` syntax support by default. But you still can add by your self:
 
 ```js
+// example: .best-shot/config.js
 module.exports = {
   webpackChain: config => {
-    config.module.rule('stylus');
-    ...
+    config.module
+      .rule('stylus')
+      .after('style')
+      .use('stylus-loader')
+      .loader('stylus-loader');
   }
 };
 ```

@@ -1,8 +1,7 @@
-'use strict';
-
 const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const extToRegexp = require('ext-to-regexp');
+const autoprefixer = require('autoprefixer');
 
 function applyOneOf({ cssModules = false, mode }) {
   return rule => {
@@ -11,7 +10,8 @@ function applyOneOf({ cssModules = false, mode }) {
       .loader('css-loader')
       .options({
         sourceMap: mode === 'development',
-        importLoaders: 3
+        importLoaders: 3,
+        esModule: true
       })
       .when(cssModules, io =>
         io.tap(options => ({
@@ -58,20 +58,38 @@ module.exports = function applyStylesheet(chain) {
 
   chain.module
     .rule('style')
+    .rule('css')
     .oneOf('css-modules-by-query')
     .resourceQuery(/module/)
     .batch(applyOneOf({ mode, cssModules: true }));
 
   chain.module
     .rule('style')
+    .rule('css')
     .oneOf('css-modules-by-filename')
     .test(extToRegexp({ suffix: ['module'], extname: ['\\w+'] }))
     .batch(applyOneOf({ mode, cssModules: true }));
 
   chain.module
     .rule('style')
+    .rule('css')
     .oneOf('normal-css')
     .batch(applyOneOf({ mode }));
+
+  const Autoprefixer = autoprefixer();
+  // @ts-ignore
+  // eslint-disable-next-line no-underscore-dangle
+  Autoprefixer.__expression = 'autoprefixer()';
+
+  chain.module
+    .rule('style')
+    .rule('postcss')
+    .use('postcss-loader')
+    .loader('postcss-loader')
+    .options({
+      sourceMap: mode === 'development',
+      plugins: [Autoprefixer]
+    });
 
   const useHot = chain.devServer.get('hot');
   if (!useHot) {
@@ -87,7 +105,10 @@ module.exports = function applyStylesheet(chain) {
   chain.module.rule('style').when(
     useHot,
     rule => {
-      rule.use('style-loader').loader('style-loader');
+      rule
+        .use('style-loader')
+        .loader('style-loader')
+        .options({ esModule: true });
     },
     rule => {
       rule

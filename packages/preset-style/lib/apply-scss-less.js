@@ -1,5 +1,3 @@
-'use strict';
-
 const extToRegexp = require('ext-to-regexp');
 
 function addExtname(rule) {
@@ -12,7 +10,6 @@ module.exports = function applyScssLess(chain) {
   const isDevelopment = chain.get('mode') === 'development';
 
   chain.module.rule('style').batch(addExtname);
-  chain.module.rule('postcss').batch(addExtname);
 
   chain.module
     .rule('sass')

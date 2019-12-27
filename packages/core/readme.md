@@ -31,5 +31,17 @@ npm install @best-shot/core --save-dev
 ```js
 const BestShot = require('@best-shot/core');
 
-new BestShot({ presets: ['babel'] }).load({ mode: 'production' });
+const config = new BestShot({ presets: ['babel'] }).load({
+  mode: 'production',
+  config: {
+    polyfill: 'usage'
+  }
+});
+
+const config = new BestShot({ presets: ['style'] }).load({
+  mode: 'development',
+  options: {
+    watch: true
+  }
+});
 ```

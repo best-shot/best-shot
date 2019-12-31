@@ -29,24 +29,20 @@
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
+    "@nice-move/cli": "^0.0.5",
+    "@nice-move/eslint-config-base": "^0.2.7",
+    "@nice-move/prettier-config": "^0.0.5",
+    "@types/jest": "^24.0.25",
     "@types/react": "^16.9.17",
     "docsify": "^4.10.2",
     "docsify-cli": "^4.4.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.2.0",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
     "nodemon": "^2.0.2",
-    "webpack": "^4.41.4"
-  },
-  "optionalDependencies": {
-    "@nice-move/cli": "^0.0.4",
-    "@nice-move/eslint-config-base": "^0.2.7",
-    "@nice-move/prettier-config": "^0.0.5",
-    "@nice-move/stylelint-config": "^0.0.18",
-    "@types/jest": "^24.0.25",
-    "eslint": "^6.8.0",
-    "eslint-plugin-jest": "^23.1.1",
-    "husky": "^3.1.0",
     "prettier": "^1.19.1",
-    "stylelint": "^12.0.1"
+    "webpack": "^4.41.5"
   },
   "resolutions": {
     "bin-wrapper": "npm:bin-wrapper-china"
@@ -62,8 +58,5 @@
       "pre-commit": "nice-move && jest"
     }
   },
-  "prettier": "@nice-move/prettier-config",
-  "stylelint": {
-    "extends": "@nice-move/stylelint-config"
-  }
+  "prettier": "@nice-move/prettier-config"
 }

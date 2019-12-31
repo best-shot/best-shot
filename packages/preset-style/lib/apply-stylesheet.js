@@ -3,7 +3,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const extToRegexp = require('ext-to-regexp');
 const autoprefixer = require('autoprefixer');
 
-function applyOneOf({ cssModules = false, mode }) {
+function applyOneOf({ cssModules = false, useHot = false, mode }) {
   return rule => {
     rule
       .use('css-loader')
@@ -11,7 +11,7 @@ function applyOneOf({ cssModules = false, mode }) {
       .options({
         sourceMap: mode === 'development',
         importLoaders: 3,
-        esModule: true
+        esModule: useHot
       })
       .when(cssModules, io =>
         io.tap(options => ({
@@ -55,26 +55,27 @@ module.exports = function applyStylesheet(chain) {
   chain.module.rule('style').test(extToRegexp({ extname: ['css'] }));
 
   const mode = chain.get('mode');
+  const useHot = chain.devServer.get('hot') || false;
 
   chain.module
     .rule('style')
     .rule('css')
     .oneOf('css-modules-by-query')
     .resourceQuery(/module/)
-    .batch(applyOneOf({ mode, cssModules: true }));
+    .batch(applyOneOf({ mode, useHot, cssModules: true }));
 
   chain.module
     .rule('style')
     .rule('css')
     .oneOf('css-modules-by-filename')
     .test(extToRegexp({ suffix: ['module'], extname: ['\\w+'] }))
-    .batch(applyOneOf({ mode, cssModules: true }));
+    .batch(applyOneOf({ mode, useHot, cssModules: true }));
 
   chain.module
     .rule('style')
     .rule('css')
     .oneOf('normal-css')
-    .batch(applyOneOf({ mode }));
+    .batch(applyOneOf({ mode, useHot }));
 
   const Autoprefixer = autoprefixer();
   // @ts-ignore
@@ -91,7 +92,6 @@ module.exports = function applyStylesheet(chain) {
       plugins: [Autoprefixer]
     });
 
-  const useHot = chain.devServer.get('hot');
   if (!useHot) {
     chain.plugin('extract-css').use(ExtractCssChunksPlugin, [
       {

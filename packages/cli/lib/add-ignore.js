@@ -1,14 +1,7 @@
-'use strict';
-
 const { stat, appendFile } = require('fs-extra');
 const { join } = require('path');
 
-const files = [
-  '.gitignore',
-  '.eslintignore',
-  '.prettierignore',
-  '.stylelintignore'
-];
+const files = ['.gitignore', '.prettierignore', '.stylelintignore'];
 
 const text = `
 # best-shot

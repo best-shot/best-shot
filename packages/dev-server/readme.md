@@ -1,1 +1,1 @@
-# best-shot-dev-server
+# @best-shot/dev-server

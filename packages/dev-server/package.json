@@ -1,6 +1,7 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -33,8 +34,8 @@
     "webpack-dev-server-waitpage": "^1.0.0"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.1.3",
-    "webpack": "^4.41.2"
+    "@best-shot/cli": "^0.2.0",
+    "webpack": "^4.41.5"
   },
   "engines": {
     "node": "^8.15 || ^10.15 || ^12"

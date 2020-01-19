@@ -1,5 +1,7 @@
 # @best-shot/dev-server
 
+DevServer support of `@best-shot/cli`.
+
 [![npm][npm-badge]][npm-url]
 [![license][license-badge]][github-url]
 ![node][node-badge]

@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-'use strict';
-
 require('v8-compile-cache');
 
 process.title = 'best-shot';
@@ -35,12 +33,7 @@ yargs
   .detectLocale(false)
   .strict()
   .demandCommand(1, "Won't work without a command")
-  .command(
-    'serve',
-    'Same as `dev` command with dev server',
-    setOptions.serve,
-    action
-  )
+  .command(findPkg('@best-shot/dev-server'))
   .command(
     'watch',
     'Same as `dev` command in watch mode',

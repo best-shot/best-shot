@@ -1,23 +1,11 @@
-'use strict';
-
-const internalIp = require('internal-ip');
-
 exports.name = 'preset-serve';
 
-exports.apply = function applyServe({
-  config: { devServer = {}, publicPath = '' }
-}) {
+exports.apply = function applyServe({ config: { devServer = {} } }) {
   return chain => {
     chain.devServer
-      .publicPath(publicPath[0] === '/' ? publicPath : '/')
       .merge(devServer)
-      .stats(devServer.stats || chain.get('stats'));
-
-    if (devServer.overlay && devServer.hot) {
-      Object.entries(chain.entryPoints.entries()).forEach(([key]) => {
-        chain.entry(key).prepend('webpack-serve-overlay');
-      });
-    }
+      .publicPath(chain.output.get('publicPath') || '/')
+      .stats(chain.get('stats'));
   };
 };
 
@@ -28,40 +16,31 @@ exports.schema = {
     default: {},
     properties: {
       clientLogLevel: {
-        default: 'warn',
-        enum: ['trace', 'debug', 'info', 'warn', 'error', 'silent'],
-        type: 'string'
+        default: 'warn'
       },
-      host: {
-        default: internalIp.v4.sync() || 'localhost',
-        type: 'string'
+      useLocalIp: {
+        default: true
       },
       hot: {
-        default: true,
-        type: 'boolean'
+        default: true
       },
       hotOnly: {
-        default: true,
-        type: 'boolean'
+        default: true
       },
       overlay: {
-        default: true,
-        type: 'boolean'
+        default: true
       },
       port: {
-        default: 1234,
-        type: 'number'
+        default: 1234
+      },
+      contentBase: {
+        default: false
+      },
+      features: {
+        default: []
       },
       historyApiFallback: {
-        default: true,
-        oneOf: [
-          {
-            type: 'boolean'
-          },
-          {
-            type: 'object'
-          }
-        ]
+        default: true
       }
     }
   }

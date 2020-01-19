@@ -1,6 +1,4 @@
-'use strict';
-
-function wrap(cli, progress = true) {
+function wrap(cli, progress = false) {
   return cli.options({
     platform: {
       describe: 'Applicable platform',
@@ -25,11 +23,10 @@ function wrap(cli, progress = true) {
 }
 
 module.exports = {
-  watch: cli => wrap(cli, false),
-  dev: cli => wrap(cli),
-  serve: cli => wrap(cli, false),
+  watch: cli => wrap(cli),
+  dev: cli => wrap(cli, true),
   prod: cli =>
-    wrap(cli).option('analyze', {
+    wrap(cli, true).option('analyze', {
       describe: 'Generate bundle analyze',
       type: 'boolean',
       default: false

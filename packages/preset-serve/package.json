@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/preset-serve",
-  "version": "0.1.1",
-  "description": "A `best-shot` preset for development server",
+  "version": "0.2.0",
+  "description": "A `best-shot` preset for `dev-server` options",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -22,13 +22,10 @@
     "directory": "packages/preset-serve"
   },
   "main": "index.js",
-  "dependencies": {
-    "internal-ip": "^5.0.0"
-  },
   "peerDependencies": {
     "@best-shot/core": "^0.1.2"
   },
   "engines": {
-    "node": "^8.10 || ^10 || ^12"
+    "node": "^8.15 || ^10.15 || ^12"
   }
 }

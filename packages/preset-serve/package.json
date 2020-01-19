@@ -22,9 +22,6 @@
     "directory": "packages/preset-serve"
   },
   "main": "index.js",
-  "dependencies": {
-    "internal-ip": "^5.0.0"
-  },
   "peerDependencies": {
     "@best-shot/core": "^0.1.2"
   },

@@ -1,5 +1,3 @@
-const internalIp = require('internal-ip');
-
 exports.name = 'preset-serve';
 
 exports.apply = function applyServe({ config: { devServer = {} } }) {
@@ -20,8 +18,8 @@ exports.schema = {
       clientLogLevel: {
         default: 'warn'
       },
-      host: {
-        default: internalIp.v4.sync() || 'localhost'
+      useLocalIp: {
+        default: true
       },
       hot: {
         default: true

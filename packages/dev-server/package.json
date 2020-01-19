@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -30,7 +30,7 @@
     "@best-shot/preset-serve": "^0.2.0",
     "lodash": "^4.17.15",
     "webpack-dev-server": "^3.10.1",
-    "webpack-serve-waitpage": "^1.0.2"
+    "webpack-dev-server-waitpage": "^1.0.0"
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.1.3",

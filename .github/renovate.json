@@ -5,6 +5,7 @@
     "schedule:daily",
     ":unpublishSafe",
     ":prNotPending",
+    ":rebaseStalePrs",
     ":disableMajorUpdates"
   ],
   "rangeStrategy": "bump"

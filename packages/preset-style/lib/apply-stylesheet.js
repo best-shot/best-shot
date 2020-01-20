@@ -115,7 +115,7 @@ module.exports = function applyStylesheet(chain) {
         .use('extract-css')
         .loader(ExtractCssChunksPlugin.loader)
         .options({
-          hot: chain.devServer.get('hot') || false
+          hot: useHot
           // reloadAll: false
         });
     }

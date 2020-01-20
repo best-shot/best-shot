@@ -2,21 +2,14 @@
 
 A `best-shot` preset for stylesheets.
 
-[npm-url]: https://www.npmjs.com/package/@best-shot/preset-style
-[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-style.svg?style=flat-square&logo=npm
-[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-style
-[node-badge]: https://img.shields.io/node/v/@best-shot/preset-style.svg?style=flat-square&colorB=green&logo=node.js
-[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-style.svg?style=flat-square&colorB=blue&logo=github
-
 [![npm][npm-badge]][npm-url]
 [![license][license-badge]][github-url]
 ![node][node-badge]
 
 This preset offer the following features:
 
-- CSS import and CSS extract
-- `less` syntax support
-- `sass` syntax support
+- CSS Modules
+- `less` / `sass` syntax
 - Use `autoprefixer` by default
 - `imagemin` and `cssnano` support
 
@@ -35,8 +28,6 @@ module.exports = {
   ...
 };
 ```
-
-## Tips
 
 ### CSS Modules support
 
@@ -57,6 +48,8 @@ Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-m
 <style lang="less" module></style>
 ```
 
+## Tips
+
 ### Load custom `postcss` config
 
 Disable internal `autoprefixer` first.
@@ -64,12 +57,15 @@ Disable internal `autoprefixer` first.
 ```js
 // example: .best-shot/config.js
 module.exports = {
-  webpackChain: config => {
+  webpackChain(config) {
     config.module
       .rule('style')
       .rule('postcss')
       .use('postcss-loader')
-      .delete('options');
+      .tap(options => ({
+        ...options,
+        plugins: []
+      }));
   }
 };
 ```
@@ -85,23 +81,6 @@ module.exports = {
 };
 ```
 
-### Add `stylus` support
-
-This preset didn't offering `stylus` syntax support by default. But you still can add by your self:
-
-```js
-// example: .best-shot/config.js
-module.exports = {
-  webpackChain: config => {
-    config.module
-      .rule('stylus')
-      .after('style')
-      .use('stylus-loader')
-      .loader('stylus-loader');
-  }
-};
-```
-
 ### Speed up `sass` compile
 
 `@best-shot/preset-style` use `dart-sass` by default. Because `node-sass` has [many issues](https://github.com/webpack-contrib/sass-loader/issues/435). But you still can speed up sass compile by installing `node-sass`.
@@ -109,3 +88,9 @@ module.exports = {
 ```bash
 npm install node-sass --save-dev
 ```
+
+[npm-url]: https://www.npmjs.com/package/@best-shot/preset-style
+[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-style.svg?style=flat-square&logo=npm
+[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-style
+[node-badge]: https://img.shields.io/node/v/@best-shot/preset-style.svg?style=flat-square&colorB=green&logo=node.js
+[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-style.svg?style=flat-square&colorB=blue&logo=github

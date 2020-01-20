@@ -1,7 +1,3 @@
-// @ts-nocheck
-
-'use strict';
-
 const { declare } = require('@babel/helper-plugin-utils');
 
 module.exports = declare((api, options) => {
@@ -17,6 +13,7 @@ module.exports = declare((api, options) => {
   if (polyfill === 'pure') {
     plugins.push([
       '@babel/transform-runtime',
+      // @ts-ignore
       { corejs: 3, useESModules: true }
     ]);
   }

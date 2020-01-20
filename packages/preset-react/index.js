@@ -1,5 +1,3 @@
-'use strict';
-
 const slashToRegexp = require('slash-to-regexp');
 
 exports.name = 'preset-react';

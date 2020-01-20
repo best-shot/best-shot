@@ -2,12 +2,6 @@
 
 A `best-shot` preset for react project.
 
-[npm-url]: https://www.npmjs.com/package/@best-shot/preset-react
-[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-react.svg?style=flat-square&logo=npm
-[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-react
-[node-badge]: https://img.shields.io/node/v/@best-shot/preset-react.svg?style=flat-square&colorB=green&logo=node.js
-[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-react.svg?style=flat-square&colorB=blue&logo=github
-
 [![npm][npm-badge]][npm-url]
 [![license][license-badge]][github-url]
 ![node][node-badge]
@@ -37,11 +31,17 @@ module.exports = {
 ## Tips
 
 This preset contains `@babel/plugin-transform-react-constant-elements` for prevent multiple unnecessary instantiations.
-It is not 100% safe, you have to enable it by manul.
+It is not 100% safe, you have to enable it by manual.
 
-```js
-// babel.config.js
-module.exports = {
-  plugins: ['transform-react-constant-elements']
-};
+```json
+// babel.config.json
+{
+  "plugins": ["transform-react-constant-elements"]
+}
 ```
+
+[npm-url]: https://www.npmjs.com/package/@best-shot/preset-react
+[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-react.svg?style=flat-square&logo=npm
+[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-react
+[node-badge]: https://img.shields.io/node/v/@best-shot/preset-react.svg?style=flat-square&colorB=green&logo=node.js
+[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-react.svg?style=flat-square&colorB=blue&logo=github

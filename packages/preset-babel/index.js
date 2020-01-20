@@ -1,5 +1,3 @@
-'use strict';
-
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 

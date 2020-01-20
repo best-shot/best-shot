@@ -35,7 +35,7 @@
     "webpack-chain": "^6.3.0"
   },
   "peerDependencies": {
-    "webpack": "^4.41.4"
+    "webpack": "^4.41"
   },
   "engines": {
     "node": "^8.15 || ^10.15 || ^12"

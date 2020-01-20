@@ -35,7 +35,7 @@
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.2.0",
-    "webpack": "^4.41.5"
+    "webpack": "^4.41"
   },
   "engines": {
     "node": "^8.15 || ^10.15 || ^12"

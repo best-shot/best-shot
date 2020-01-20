@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@best-shot/core": "^0.1.0",
-    "webpack": "^4.41.2"
+    "webpack": "^4.41"
   },
   "engines": {
     "node": "^8.10 || ^10 || ^12"

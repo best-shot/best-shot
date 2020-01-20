@@ -29,6 +29,24 @@ exports.apply = function applyReact() {
         presets: [...presets, ['@babel/react', { useSpread: true }]],
         plugins: [
           ...plugins,
+          [
+            '@babel/plugin-transform-destructuring',
+            {
+              loose: false,
+              selectiveLoose: [
+                'useState',
+                'useEffect',
+                'useContext',
+                'useReducer',
+                'useCallback',
+                'useMemo',
+                'useRef',
+                'useImperativeHandle',
+                'useLayoutEffect',
+                'useDebugValue'
+              ]
+            }
+          ],
           ...(isProd ? ['transform-react-remove-prop-types'] : []),
           ...(useHot ? ['react-hot-loader/babel'] : [])
         ]

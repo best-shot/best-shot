@@ -1,5 +1,3 @@
-'use strict';
-
 exports.name = 'entry';
 
 exports.apply = function applyEntry({ config: { entry } }) {

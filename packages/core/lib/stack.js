@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = class Stack {
   constructor() {
     this.store = Object.freeze({

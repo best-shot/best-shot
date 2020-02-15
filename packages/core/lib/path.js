@@ -1,5 +1,3 @@
-'use strict';
-
 const slash = require('slash');
 const { resolve, relative, join, sep } = require('path');
 

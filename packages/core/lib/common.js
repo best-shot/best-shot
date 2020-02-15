@@ -1,5 +1,3 @@
-'use strict';
-
 // @ts-ignore
 const { red, supportsColor } = require('chalk');
 const { EOL } = require('os');

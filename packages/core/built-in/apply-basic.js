@@ -42,6 +42,15 @@ exports.apply = function applyBasic({
             .replace(/\[mode:shorthand]/g, shorthand[mode])
         )
       );
+
+    chain.node.merge({
+      __dirname: true,
+      __filename: true,
+      Buffer: false,
+      global: false,
+      process: false,
+      setImmediate: false
+    });
   };
 };
 

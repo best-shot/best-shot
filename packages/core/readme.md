@@ -2,12 +2,6 @@
 
 Create 'best-shot' config chain.
 
-[npm-url]: https://www.npmjs.com/package/@best-shot/core
-[npm-badge]: https://img.shields.io/npm/v/@best-shot/core.svg?style=flat-square&logo=npm
-[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/core
-[node-badge]: https://img.shields.io/node/v/@best-shot/core.svg?style=flat-square&colorB=green&logo=node.js
-[license-badge]: https://img.shields.io/npm/l/@best-shot/core.svg?style=flat-square&colorB=blue&logo=github
-
 [![npm][npm-badge]][npm-url]
 [![license][license-badge]][github-url]
 ![node][node-badge]
@@ -45,3 +39,9 @@ const config = new BestShot({ presets: ['style'] }).load({
   }
 });
 ```
+
+[npm-url]: https://www.npmjs.com/package/@best-shot/core
+[npm-badge]: https://img.shields.io/npm/v/@best-shot/core.svg?style=flat-square&logo=npm
+[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/core
+[node-badge]: https://img.shields.io/node/v/@best-shot/core.svg?style=flat-square&colorB=green&logo=node.js
+[license-badge]: https://img.shields.io/npm/l/@best-shot/core.svg?style=flat-square&colorB=blue&logo=github

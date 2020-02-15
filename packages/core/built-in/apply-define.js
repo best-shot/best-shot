@@ -1,5 +1,3 @@
-'use strict';
-
 const { DefinePlugin } = require('webpack');
 const mapValues = require('lodash/mapValues');
 

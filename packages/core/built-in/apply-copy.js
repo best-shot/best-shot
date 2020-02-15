@@ -1,5 +1,3 @@
-'use strict';
-
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const displayName = 'copy';
@@ -13,7 +11,7 @@ exports.apply = function applyCopy({ config: { staticPath } }) {
         .plugin(displayName)
         .use(CopyWebpackPlugin, [
           staticPath.map(item =>
-            (typeof item === 'string' ? { from: item, to: './' } : item)
+            typeof item === 'string' ? { from: item, to: './' } : item
           ),
           { ignore: ['.gitkeep'] }
         ]);

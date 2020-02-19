@@ -36,12 +36,20 @@ exports.apply = function applyBabel({
         ]
       });
 
-    if (polyfill) {
-      chain.module
-        .rule('babel')
-        .exclude.add(slashToRegexp('/node_modules/core-js/'))
-        .add(slashToRegexp('/node_modules/core-js-pure/'));
-    }
+    const isServing = chain.devServer.entries() !== undefined;
+
+    chain.module
+      .rule('babel')
+      .exclude.add(
+        slashToRegexp(
+          isServing
+            ? '/node_modules/webpack(-dev-server)?/'
+            : '/node_modules/webpack/'
+        )
+      )
+      .when(polyfill, exclude =>
+        exclude.add(slashToRegexp('/node_modules/core-js(-pure)?/'))
+      );
 
     chain.resolveLoader.modules.prepend(relative(context, module.paths[0]));
   };

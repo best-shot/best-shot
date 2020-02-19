@@ -27,8 +27,8 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.8.3",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
     "@nice-move/cli": "^0.1.1",
     "@nice-move/eslint-config-base": "^0.2.10",
     "@nice-move/prettier-config": "^0.1.0",

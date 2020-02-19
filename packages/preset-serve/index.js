@@ -1,11 +1,40 @@
+const isEmpty = require('lodash/isEmpty');
+const isObject = require('lodash/isObject');
+
 exports.name = 'preset-serve';
 
-exports.apply = function applyServe({ config: { devServer = {} } }) {
+exports.apply = function applyServe({
+  // @ts-ignore
+  config: { devServer = {} }
+}) {
   return chain => {
+    const publicPath = chain.output.get('publicPath') || '/';
+
     chain.devServer
       .merge(devServer)
-      .publicPath(chain.output.get('publicPath') || '/')
-      .stats(chain.get('stats'));
+      .stats(chain.get('stats'))
+      .publicPath(publicPath)
+      .when(
+        publicPath !== '/' &&
+          (devServer.historyApiFallback === true ||
+            (isObject(devServer.historyApiFallback) &&
+              isEmpty(devServer.historyApiFallback))),
+        config => {
+          // publicPath !== '/' 的需要特别处理
+          config.historyApiFallback({
+            rewrites: [
+              {
+                from: new RegExp(publicPath),
+                to({ parsedUrl: { pathname, path } }) {
+                  return pathname.includes('.')
+                    ? path
+                    : `${publicPath}index.html`;
+                }
+              }
+            ]
+          });
+        }
+      );
   };
 };
 

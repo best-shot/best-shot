@@ -29,20 +29,20 @@
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
-    "@nice-move/cli": "^0.1.0",
-    "@nice-move/eslint-config-base": "^0.2.9",
+    "@nice-move/cli": "^0.1.1",
+    "@nice-move/eslint-config-base": "^0.2.10",
     "@nice-move/prettier-config": "^0.1.0",
-    "@types/jest": "^25.1.0",
-    "@types/react": "^16.9.19",
+    "@types/jest": "^25.1.2",
+    "@types/react": "^16.9.20",
     "docsify": "^4.10.2",
     "docsify-cli": "^4.4.0",
     "eslint": "^6.8.0",
-    "eslint-plugin-jest": "^23.6.0",
-    "husky": "^4.2.1",
+    "eslint-plugin-jest": "^23.7.0",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
-    "webpack": "^4.41.5"
+    "webpack": "^4.41.6"
   },
   "resolutions": {
     "bin-wrapper": "npm:bin-wrapper-china"

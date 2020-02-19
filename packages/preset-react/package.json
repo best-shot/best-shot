@@ -30,16 +30,16 @@
     "@babel/preset-react": "^7.8.3",
     "@hot-loader/react-dom": "^16.11.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "react-hot-loader": "^4.12.18",
+    "react-hot-loader": "^4.12.19",
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.5",
+    "@best-shot/core": "^0.1.6",
     "@best-shot/preset-babel": "^0.1.1",
     "react": "^16.12",
     "react-dom": "^16.12"
   },
   "engines": {
-    "node": "^8.10 || ^10 || ^12"
+    "node": "^8.15 || ^10.15 || ^12"
   }
 }

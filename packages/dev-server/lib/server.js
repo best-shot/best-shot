@@ -8,7 +8,7 @@ module.exports = function DevServer(compiler, devServer) {
       app.use(
         // @ts-ignore
         webpackDevServerWaitpage(server, {
-          title: 'Please wait'
+          title: 'Please wait ...'
         })
       );
 

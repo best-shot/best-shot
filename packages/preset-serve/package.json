@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-serve",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A `best-shot` preset for `dev-server` options",
   "license": "MIT",
   "author": {
@@ -22,8 +22,11 @@
     "directory": "packages/preset-serve"
   },
   "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.2"
+    "@best-shot/core": "^0.1.6"
   },
   "engines": {
     "node": "^8.15 || ^10.15 || ^12"

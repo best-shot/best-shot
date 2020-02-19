@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -28,9 +28,9 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@best-shot/preset-serve": "^0.2.0",
+    "@best-shot/preset-serve": "^0.2.1",
     "lodash": "^4.17.15",
-    "webpack-dev-server": "^3.10.1",
+    "webpack-dev-server": "^3.10.3",
     "webpack-dev-server-waitpage": "^1.0.0"
   },
   "peerDependencies": {

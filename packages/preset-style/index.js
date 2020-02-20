@@ -21,7 +21,8 @@ exports.apply = function applyStyle() {
     if (chain.module.rules.has('babel')) {
       chain.module
         .rule('babel')
-        .exclude.add(slashToRegexp('/node_modules/css-loader/'));
+        .exclude.add(slashToRegexp('/node_modules/css-loader/'))
+        .add(slashToRegexp('/node_modules/extract-css-chunks-webpack-plugin/'));
     }
   };
 };

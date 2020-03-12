@@ -31,7 +31,7 @@ module.exports = {
 ## Tips
 
 This preset contains `@babel/plugin-transform-react-constant-elements` for prevent multiple unnecessary instantiations.
-It is not 100% safe, you have to enable it by manual.
+It is not 100% safe, you can enable it by manual.
 
 ```json
 // babel.config.json

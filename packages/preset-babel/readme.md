@@ -48,7 +48,7 @@ npm install core-js@3 --save
 
 ## Tips
 
-Create custom babel configuration.
+### Create custom babel configuration
 
 References: <https://babeljs.io/docs/en/configuration>
 
@@ -58,6 +58,8 @@ References: <https://babeljs.io/docs/en/configuration>
   "plugins": ["lodash", "macros"]
 }
 ```
+
+This preset contains [babel-plugin-import](https://github.com/ant-design/babel-plugin-import#readme) by default, you can enable it by manual.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-babel
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-babel.svg?style=flat-square&logo=npm

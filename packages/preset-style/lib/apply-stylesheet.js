@@ -3,15 +3,14 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const extToRegexp = require('ext-to-regexp');
 const autoprefixer = require('autoprefixer');
 
-function applyOneOf({ cssModules = false, useHot = false, mode }) {
+function applyOneOf({ cssModules = false, mode }) {
   return rule => {
     rule
       .use('css-loader')
       .loader('css-loader')
       .options({
         sourceMap: mode === 'development',
-        importLoaders: 3,
-        esModule: useHot
+        importLoaders: 3
       })
       .when(cssModules, io =>
         io.tap(options => ({
@@ -62,20 +61,20 @@ module.exports = function applyStylesheet(chain) {
     .rule('css')
     .oneOf('css-modules-by-query')
     .resourceQuery(/module/)
-    .batch(applyOneOf({ mode, useHot, cssModules: true }));
+    .batch(applyOneOf({ mode, cssModules: true }));
 
   chain.module
     .rule('style')
     .rule('css')
     .oneOf('css-modules-by-filename')
     .test(extToRegexp({ suffix: ['module'], extname: ['\\w+'] }))
-    .batch(applyOneOf({ mode, useHot, cssModules: true }));
+    .batch(applyOneOf({ mode, cssModules: true }));
 
   chain.module
     .rule('style')
     .rule('css')
     .oneOf('normal-css')
-    .batch(applyOneOf({ mode, useHot }));
+    .batch(applyOneOf({ mode }));
 
   const Autoprefixer = autoprefixer();
   // @ts-ignore

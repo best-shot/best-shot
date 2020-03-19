@@ -4,8 +4,6 @@ A webpack config wrapper.
 
 [![npm version][npm-badge]][npm-link]
 [![license][github-badge]][github-link]
-[![circleci][circleci-badge]][circleci-link]
-[![appveyor][appveyor-badge]][appveyor-link]
 [![lgtm][lgtm-badge]][lgtm-link]
 
 ## packages
@@ -28,10 +26,6 @@ A webpack config wrapper.
 
 [fossa-badge]: https://app.fossa.io/api/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot.svg?type=large
 [fossa-link]: https://app.fossa.io/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot?ref=badge_large
-[appveyor-badge]: https://img.shields.io/appveyor/ci/Airkro/best-shot.svg?label=appveyor&logo=appveyor&style=flat-square
-[appveyor-link]: https://ci.appveyor.com/project/Airkro/best-shot
-[circleci-badge]: https://img.shields.io/circleci/project/github/best-shot/best-shot/master.svg?label=circleci&logo=circleci&style=flat-square
-[circleci-link]: https://circleci.com/gh/best-shot/best-shot/tree/master
 [github-badge]: https://img.shields.io/github/license/Airkro/best-shot.svg?logo=github&style=flat-square&colorB=blue
 [github-link]: https://github.com/Airkro/best-shot
 [lgtm-badge]: https://img.shields.io/lgtm/alerts/g/Airkro/best-shot.svg?logo=lgtm&style=flat-square

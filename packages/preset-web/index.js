@@ -1,5 +1,3 @@
-'use strict';
-
 const suffix = require('suffix');
 
 const { setOutputName } = require('./lib/apply-set-output-name');
@@ -19,7 +17,7 @@ exports.name = 'preset-web';
 exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
   return chain => {
     const mode = chain.get('mode');
-    const hot = chain.devServer.get('hot');
+    const hot = chain.devServer.get('hot') || false;
     const minimize = chain.optimization.get('minimize');
     const serve = chain.devServer.entries() !== undefined;
 

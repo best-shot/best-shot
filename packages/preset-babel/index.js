@@ -24,6 +24,7 @@ exports.apply = function applyBabel({
         envName: mode,
         sourceType: 'unambiguous',
         cacheDirectory: UseCache,
+        ...(UseCache ? { cacheCompression: false } : undefined),
         compact: mode === 'production',
         presets: [
           [

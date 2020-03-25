@@ -27,6 +27,7 @@ module.exports = declare((api, options) => {
           useBuiltIns: polyfill === 'pure' ? false : polyfill,
           ...(polyfill === 'usage' ? { corejs: 3 } : undefined),
           spec: true,
+          bugfixes: true,
           targets
         }
       ]

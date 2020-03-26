@@ -1,5 +1,5 @@
 const extToRegexp = require('ext-to-regexp');
-const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack');
 
 const imageRegexp = extToRegexp({
   extname: ['jpg', 'jpeg', 'png', 'gif', 'svg']
@@ -14,7 +14,9 @@ module.exports = function applyImage(chain) {
     .use('file-loader')
     .loader('file-loader')
     .options({
-      name: '[name].[contenthash:8].[ext]',
+      name: minimize
+        ? '[name].min.[contenthash:8].[ext]'
+        : '[name].[contenthash:8].[ext]',
       outputPath: 'image',
       esModules: true
     });
@@ -22,17 +24,27 @@ module.exports = function applyImage(chain) {
   if (minimize) {
     chain.optimization.minimizer('imagemin').use(ImageminPlugin, [
       {
+        cache: false,
         test: imageRegexp,
-        jpegtran: { progressive: true },
-        svgo: {
+        imageminOptions: {
           plugins: [
-            { removeAttrs: { attrs: 'data-*' } },
-            { removeAttrs: { attrs: 'data.*' } },
-            { removeDimensions: true },
-            { removeScriptElement: true },
-            { removeTitle: true },
-            { removeUselessStrokeAndFill: true },
-            { removeViewBox: true }
+            'optipng',
+            ['jpegtran', { progressive: true }],
+            ['gifsicle', { interlaced: true }],
+            [
+              'svgo',
+              {
+                plugins: [
+                  { removeAttrs: { attrs: 'data-*' } },
+                  { removeAttrs: { attrs: 'data.*' } },
+                  { removeDimensions: true },
+                  { removeScriptElement: true },
+                  { removeTitle: true },
+                  { removeUselessStrokeAndFill: true },
+                  { removeViewBox: true }
+                ]
+              }
+            ]
           ]
         }
       }

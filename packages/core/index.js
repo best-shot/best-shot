@@ -51,7 +51,7 @@ module.exports = class BestShot {
     mode = 'development',
     options: { watch = false } = {},
     packages = {},
-    platform,
+    platform = undefined,
     rootPath = process.cwd()
   } = {}) {
     this.check();

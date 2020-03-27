@@ -10,7 +10,7 @@ function applyOneOf({ cssModules = false, mode }) {
       .loader('css-loader')
       .options({
         sourceMap: mode === 'development',
-        importLoaders: 3
+        importLoaders: 1
       })
       .when(cssModules, io =>
         io.tap(options => ({

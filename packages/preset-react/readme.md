@@ -36,7 +36,7 @@ It is not 100% safe, you can enable it by manual.
 ```json
 // babel.config.json
 {
-  "plugins": ["transform-react-constant-elements"]
+  "plugins": ["@babel/transform-react-constant-elements"]
 }
 ```
 

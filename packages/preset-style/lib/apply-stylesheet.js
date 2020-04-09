@@ -3,27 +3,23 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const extToRegexp = require('ext-to-regexp');
 const autoprefixer = require('autoprefixer');
 
-function applyOneOf({ cssModules = false, mode }) {
-  return rule => {
+function applyOneOf({ auto = undefined, mode }) {
+  return (rule) => {
     rule
       .use('css-loader')
       .loader('css-loader')
       .options({
         sourceMap: mode === 'development',
-        importLoaders: 1
-      })
-      .when(cssModules, io =>
-        io.tap(options => ({
-          ...options,
-          localsConvention: 'camelCaseOnly',
-          modules: {
-            localIdentName: {
-              development: '[path][name]__[local]',
-              production: '[local]_[hash:base64:8]'
-            }[mode]
-          }
-        }))
-      );
+        importLoaders: 1,
+        localsConvention: 'camelCaseOnly',
+        modules: {
+          ...(auto ? { auto } : undefined),
+          localIdentName: {
+            development: '[path][name]__[local]',
+            production: '[local]_[hash:base64:8]',
+          }[mode],
+        },
+      });
   };
 }
 
@@ -43,11 +39,11 @@ module.exports = function applyStylesheet(chain) {
               'default',
               {
                 // mergeLonghand: false,
-                discardComments: { removeAll: true }
-              }
-            ]
-          }
-        }
+                discardComments: { removeAll: true },
+              },
+            ],
+          },
+        },
       ]);
   }
 
@@ -61,20 +57,13 @@ module.exports = function applyStylesheet(chain) {
     .rule('css')
     .oneOf('css-modules-by-query')
     .resourceQuery(/module/)
-    .batch(applyOneOf({ mode, cssModules: true }));
+    .batch(applyOneOf({ mode }));
 
   chain.module
     .rule('style')
     .rule('css')
     .oneOf('css-modules-by-filename')
-    .test(extToRegexp({ suffix: ['module'], extname: ['\\w+'] }))
-    .batch(applyOneOf({ mode, cssModules: true }));
-
-  chain.module
-    .rule('style')
-    .rule('css')
-    .oneOf('normal-css')
-    .batch(applyOneOf({ mode }));
+    .batch(applyOneOf({ mode, auto: true }));
 
   const Autoprefixer = autoprefixer();
   // @ts-ignore
@@ -88,7 +77,7 @@ module.exports = function applyStylesheet(chain) {
     .loader('postcss-loader')
     .options({
       sourceMap: mode === 'development',
-      plugins: [Autoprefixer]
+      plugins: [Autoprefixer],
     });
 
   if (!useHot) {
@@ -96,27 +85,24 @@ module.exports = function applyStylesheet(chain) {
       {
         filename: '[name].css',
         // chunkFilename: '[id].css',
-        ignoreOrder: false
-      }
+        ignoreOrder: false,
+      },
     ]);
   }
 
   chain.module.rule('style').when(
     useHot,
-    rule => {
+    (rule) => {
       rule
         .use('style-loader')
         .loader('style-loader')
         .options({ esModule: true });
     },
-    rule => {
-      rule
-        .use('extract-css')
-        .loader(ExtractCssChunksPlugin.loader)
-        .options({
-          hot: useHot
-          // reloadAll: false
-        });
-    }
+    (rule) => {
+      rule.use('extract-css').loader(ExtractCssChunksPlugin.loader).options({
+        hot: useHot,
+        // reloadAll: false
+      });
+    },
   );
 };

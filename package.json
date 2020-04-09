@@ -7,9 +7,13 @@
     "name": "Eric Chen",
     "email": "airkro@qq.com"
   },
+  "homepage": "https://github.com/airkro/best-shot#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/airkro/best-shot.git"
+    "url": "git+https://github.com/airkro/best-shot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/airkro/best-shot/issues"
   },
   "scripts": {
     "docs": "nodemon",
@@ -29,19 +33,19 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
-    "@nice-move/cli": "^0.3.1",
-    "@nice-move/eslint-config-base": "^0.2.12",
-    "@nice-move/prettier-config": "^0.1.0",
-    "@types/jest": "^25.1.4",
-    "@types/react": "^16.9.31",
+    "@nice-move/cli": "^0.3.2",
+    "@nice-move/eslint-config-base": "^0.2.13",
+    "@nice-move/prettier-config": "^0.2.0",
+    "@types/jest": "^25.2.1",
+    "@types/react": "^16.9.33",
     "docsify": "^4.11.3",
     "docsify-cli": "^4.4.0",
     "eslint": "^6.8.0",
     "eslint-plugin-jest": "^23.8.2",
     "husky": "^4.2.3",
-    "jest": "^25.2.4",
-    "nodemon": "^2.0.2",
-    "prettier": "^1.19.1",
+    "jest": "^25.3.0",
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.4",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-style",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A `best-shot` preset for stylesheets",
   "license": "MIT",
   "author": {
@@ -29,13 +29,16 @@
   "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-style",
   "repository": {
     "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
+    "url": "git+https://github.com/airkro/best-shot.git",
     "directory": "packages/preset-style"
+  },
+  "bugs": {
+    "url": "https://github.com/airkro/best-shot/issues"
   },
   "main": "index.js",
   "dependencies": {
-    "autoprefixer": "^9.7.5",
-    "css-loader": "^3.4.2",
+    "autoprefixer": "^9.7.6",
+    "css-loader": "^3.5.1",
     "cssnano": "^4.1.10",
     "ext-to-regexp": "^0.0.8",
     "extract-css-chunks-webpack-plugin": "^4.7.4",

@@ -1,11 +1,8 @@
-'use strict';
-
 const deepmerge = require('deepmerge');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 const SubresourceIntegrityPlugin = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const { objectFilter } = require('@best-shot/core/lib/common');
 const { resolve, relative } = require('@best-shot/core/lib/path');
 
@@ -15,7 +12,7 @@ function getPkg(context) {
     const {
       name,
       version,
-      description
+      description,
       // eslint-disable-next-line import/no-dynamic-require, global-require
     } = require(resolve(context, 'package.json'));
     return name || version || description
@@ -30,14 +27,18 @@ const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
 const htmlMinifier = {
   collapseWhitespace: true,
-  removeEmptyAttributes: true,
-  removeComments: true,
   minifyCSS: true,
-  minifyJS: true
+  minifyJS: true,
+  removeComments: true,
+  removeEmptyAttributes: true,
+  removeRedundantAttributes: true,
+  removeScriptTypeAttributes: true,
+  removeStyleLinkTypeAttributes: true,
+  useShortDoctype: true,
 };
 
-exports.setHtml = function setHtml({ html = {}, define, sri }) {
-  return chain => {
+exports.setHtml = function setHtml({ html = [], define, sri }) {
+  return (chain) => {
     const mode = chain.get('mode');
     const context = chain.get('context');
     const publicPath = chain.output.get('publicPath');
@@ -56,20 +57,17 @@ exports.setHtml = function setHtml({ html = {}, define, sri }) {
                 publicPath,
                 title: options.title,
                 package: pkg,
-                ...(define && { define })
+                ...(define && { define }),
               },
+              scriptLoading: 'defer',
               inject: 'head',
-              minify: minimize ? htmlMinifier : false
-            }
+              minify: minimize ? htmlMinifier : false,
+            },
           ],
-          { arrayMerge: overwriteMerge }
-        )
+          { arrayMerge: overwriteMerge },
+        ),
       ]);
     });
-
-    chain
-      .plugin('script-ext-html')
-      .use(ScriptExtHtmlWebpackPlugin, [{ defaultAttribute: 'defer' }]);
 
     if (mode === 'production' && sri) {
       chain.output.crossOriginLoading('anonymous');
@@ -77,7 +75,7 @@ exports.setHtml = function setHtml({ html = {}, define, sri }) {
       chain
         .plugin('subresource-integrity')
         .use(SubresourceIntegrityPlugin, [
-          { hashFuncNames: ['sha512', 'sha384', 'sha256'] }
+          { hashFuncNames: ['sha512', 'sha384', 'sha256'] },
         ]);
     }
 

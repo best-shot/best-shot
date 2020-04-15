@@ -1,7 +1,5 @@
-'use strict';
-
 exports.setOutputName = function setOutputName({ script, style }) {
-  return chain => {
+  return (chain) => {
     const jsFilename = chain.output.get('filename');
 
     chain.output.filename(script(jsFilename));
@@ -12,9 +10,9 @@ exports.setOutputName = function setOutputName({ script, style }) {
         .tap(([{ /* chunkFilename,  */ filename, ...options }]) => [
           {
             ...options,
-            filename: style(filename)
+            filename: style(filename),
             // chunkFilename: style(chunkFilename)
-          }
+          },
         ]);
     }
   };

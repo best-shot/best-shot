@@ -1,4 +1,4 @@
 module.exports = {
-  presets: [],
-  staticPath: false
+  presets: ['web'],
+  staticPath: false,
 };

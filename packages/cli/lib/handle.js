@@ -1,9 +1,9 @@
-const webpack = require('webpack');
+const watcher = require('chokidar-watcher');
+const debounce = require('lodash/debounce');
 
-module.exports = function handle(command, chain) {
-  const { watch, watchOptions, stats, devServer, ...config } = chain.toConfig();
+function getCompiler(getConfig) {
+  const { watch, watchOptions, stats, devServer, ...config } = getConfig();
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   function showStats(error, Stats) {
     if (error) {
       console.error(error);
@@ -13,16 +13,67 @@ module.exports = function handle(command, chain) {
     }
   }
 
+  // eslint-disable-next-line global-require
+  const webpack = require('webpack');
   const compiler = webpack(config);
 
-  if (command === 'serve') {
-    // eslint-disable-next-line global-require, import/no-extraneous-dependencies, node/no-extraneous-require
-    const DevServer = require('@best-shot/dev-server/lib/server');
+  return { compiler, showStats, watchOptions, devServer };
+}
 
-    DevServer(compiler, devServer);
-  } else if (command === 'watch') {
-    compiler.watch(watchOptions, showStats);
-  } else {
+module.exports = function handle(command, getConfig) {
+  if (command !== 'serve' && command !== 'watch') {
+    const { compiler, showStats } = getCompiler(getConfig);
     compiler.run(showStats);
+  } else {
+    let instance;
+
+    const runner = debounce(
+      () => {
+        if (instance) {
+          instance.close(() => {
+            console.log('Configuration change, rebooting...');
+          });
+        }
+
+        const { compiler, showStats, watchOptions, devServer } = getCompiler(
+          getConfig,
+        );
+
+        if (command === 'serve') {
+          // eslint-disable-next-line global-require, import/no-extraneous-dependencies, node/no-extraneous-require
+          const DevServer = require('@best-shot/dev-server/lib/server');
+
+          instance = DevServer(compiler, devServer);
+        } else {
+          instance = compiler.watch(watchOptions, showStats);
+        }
+      },
+      3000,
+      { trailing: true },
+    );
+
+    watcher(
+      // @ts-ignore
+      [
+        '.best-shot/{config,custom,diy}/*',
+        '.best-shot/{config,env,preset,plugin,tool}.*',
+        '.{babel,postcss,browserslist}rc',
+        '.{babel,postcss}rc.json',
+        'browserslist',
+        'package.json',
+        '{babel,postcss}.config.*',
+        '{js,ts}config.json',
+      ],
+      {
+        cwd: process.cwd(),
+        awaitWriteFinish: true,
+      },
+      {
+        add: runner,
+        change: runner,
+        rename: runner,
+        unlink: runner,
+      },
+    );
   }
 };

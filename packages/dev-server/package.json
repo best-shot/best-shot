@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -23,8 +23,11 @@
   "homepage": "https://github.com/airkro/best-shot/tree/master/packages/dev-server",
   "repository": {
     "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
+    "url": "git+https://github.com/airkro/best-shot.git",
     "directory": "packages/dev-server"
+  },
+  "bugs": {
+    "url": "https://github.com/airkro/best-shot/issues"
   },
   "main": "index.js",
   "dependencies": {
@@ -34,10 +37,10 @@
     "webpack-dev-server-waitpage": "^1.0.0"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.2.0",
-    "webpack": "^4.41"
+    "@best-shot/cli": "^0.3.0",
+    "webpack": "^4.42.1"
   },
   "engines": {
-    "node": "^8.15 || ^10.15 || ^12"
+    "node": "^10.18 || ^12"
   }
 }

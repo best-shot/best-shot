@@ -1,7 +1,7 @@
 const { stat, appendFile } = require('fs-extra');
 const { join } = require('path');
 
-const files = ['.gitignore', '.prettierignore', '.stylelintignore'];
+const files = ['.gitignore', '.prettierignore'];
 
 const text = `
 # best-shot
@@ -18,7 +18,7 @@ async function append(filename) {
       .then(() => {
         console.log('✔', 'Append to', filename);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -29,7 +29,7 @@ exports.command = 'ignore';
 exports.describe = 'Add temporary directories to .*ignore';
 
 exports.handler = function addIgnore() {
-  Promise.all(files.map(append)).catch(error => {
+  Promise.all(files.map(append)).catch((error) => {
     console.error(error);
   });
 };

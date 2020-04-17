@@ -5,8 +5,7 @@ require('v8-compile-cache');
 process.title = 'best-shot';
 
 const yargs = require('yargs');
-// @ts-ignore
-const { green, cyan, supportsColor } = require('chalk');
+const { green, cyan, level } = require('chalk');
 
 const { commandEnv } = require('./lib/utils');
 const action = require('./lib/action');
@@ -24,7 +23,7 @@ function findPkg(pkg) {
 // eslint-disable-next-line no-unused-expressions
 yargs
   .scriptName('best-shot')
-  .epilogue('Repository: https://github.com/airkro/best-shot')
+  .epilogue('Repository: https://github.com/best-shot/best-shot')
   .epilogue('Website: https://www.npmjs.com/org/best-shot')
   .usage(`Usage: ${green`$0`} <command> [options]`)
   .alias('help', 'h')
@@ -38,30 +37,28 @@ yargs
     'watch',
     'Same as `dev` command in watch mode',
     setOptions.watch,
-    action
+    action,
   )
   .command(
     'dev',
     `Bundle files in ${cyan`development`} mode`,
     setOptions.dev,
-    action
+    action,
   )
   .command(
     'prod',
     `Bundle files in ${cyan`production`} mode`,
     setOptions.prod,
-    action
+    action,
   )
   .command(findPkg('@best-shot/inspector'))
   .command(findPkg('./lib/add-ignore'))
   .options({
     color: {
-      coerce() {
-        return supportsColor.level > 0;
-      },
+      coerce: () => level > 0,
       describe: 'Colorful output',
-      type: 'boolean'
-    }
+      type: 'boolean',
+    },
   })
   .middleware([
     function setEnv({ _: [command] }) {
@@ -70,5 +67,5 @@ yargs
 
         console.log(cyan`NODE_ENV:`, process.env.NODE_ENV);
       }
-    }
+    },
   ]).argv;

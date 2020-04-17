@@ -8,15 +8,17 @@ module.exports = function DevServer(compiler, devServer) {
       app.use(
         // @ts-ignore
         webpackDevServerWaitpage(server, {
-          title: 'Please wait ...'
-        })
+          title: 'Please wait ...',
+        }),
       );
 
       if (typeof devServer.before === 'function') {
         devServer.before(app, server);
       }
-    }
+    },
   });
 
   Server.listen(devServer.port, devServer.host);
+
+  return Server;
 };

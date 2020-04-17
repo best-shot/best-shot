@@ -1,5 +1,3 @@
-'use strict';
-
 const pick = require('lodash/pick');
 const { resolve } = require('path');
 const slash = require('slash');
@@ -37,11 +35,11 @@ function reachPackages(rootPath) {
       'resolutions',
       'dependencies',
       'devDependencies',
-      'optionalDependencies'
+      'optionalDependencies',
     ]);
   } catch (error) {
     return {
-      error: 'Fail to list all dependencies'
+      error: 'Fail to list all dependencies',
     };
   }
 }
@@ -49,5 +47,5 @@ function reachPackages(rootPath) {
 module.exports = {
   reachConfig,
   reachBrowsers,
-  reachPackages
+  reachPackages,
 };

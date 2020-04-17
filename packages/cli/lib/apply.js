@@ -1,5 +1,3 @@
-'use strict';
-
 const WebpackBar = require('webpackbar');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -14,8 +12,8 @@ module.exports = {
     chain.plugin('progress-bar').use(WebpackBar, [
       {
         name: 'BEST-SHOT',
-        reporter: 'profile'
-      }
+        reporter: 'profile',
+      },
     ]);
   },
   applyAnalyzer(chain) {
@@ -29,8 +27,8 @@ module.exports = {
         generateStatsFile: true,
         openAnalyzer: false,
         reportFilename: getReportPath(rootPath, 'index.html'),
-        statsFilename: getReportPath(rootPath, 'data.json')
-      }
+        statsFilename: getReportPath(rootPath, 'data.json'),
+      },
     ]);
-  }
+  },
 };

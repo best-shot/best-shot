@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Inspector of `best-shot`",
   "license": "MIT",
   "author": {
@@ -18,22 +18,25 @@
   "homepage": "https://github.com/airkro/best-shot/tree/master/packages/inspector",
   "repository": {
     "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
+    "url": "git+https://github.com/airkro/best-shot.git",
     "directory": "packages/inspector"
+  },
+  "bugs": {
+    "url": "https://github.com/airkro/best-shot/issues"
   },
   "main": "index.js",
   "dependencies": {
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "javascript-stringify": "^2.0.1",
     "lodash": "^4.17.15",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.4",
     "sort-object": "^3.0.3"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.1.1",
-    "@best-shot/core": "^0.1.2"
+    "@best-shot/cli": "^0.3.1",
+    "@best-shot/core": "^0.1.7"
   },
   "engines": {
-    "node": "^8.10 || ^10 || ^12"
+    "node": "^10.18 || ^12"
   }
 }

@@ -1,79 +1,47 @@
-const watcher = require('chokidar-watcher');
+const { watch: Watcher } = require('chokidar');
 const debounce = require('lodash/debounce');
 
-function getCompiler(getConfig) {
-  const { watch, watchOptions, stats, devServer, ...config } = getConfig();
-
-  function showStats(error, Stats) {
-    if (error) {
-      console.error(error);
-    }
-    if (Stats) {
-      console.log(Stats.toString(stats));
-    }
-  }
-
-  // eslint-disable-next-line global-require
-  const webpack = require('webpack');
-  const compiler = webpack(config);
-
-  return { compiler, showStats, watchOptions, devServer };
-}
+const { getCompiler } = require('./utils');
 
 module.exports = function handle(command, getConfig) {
   if (command !== 'serve' && command !== 'watch') {
     const { compiler, showStats } = getCompiler(getConfig);
     compiler.run(showStats);
   } else {
+    console.log('`best-shot` is watching your configuration');
+
     let instance;
 
-    const runner = debounce(
-      () => {
-        if (instance) {
-          instance.close(() => {
-            console.log('Configuration change, rebooting...');
-          });
-        }
+    const runner = () => {
+      if (instance) {
+        instance.close(() => {
+          console.log('Configuration change, rebooting...');
+        });
+      }
 
-        const { compiler, showStats, watchOptions, devServer } = getCompiler(
-          getConfig,
-        );
+      const { compiler, showStats, watchOptions, devServer } = getCompiler(
+        getConfig,
+      );
 
-        if (command === 'serve') {
-          // eslint-disable-next-line global-require, import/no-extraneous-dependencies, node/no-extraneous-require
-          const DevServer = require('@best-shot/dev-server/lib/server');
+      if (command === 'serve') {
+        // eslint-disable-next-line global-require, import/no-extraneous-dependencies, node/no-extraneous-require
+        const DevServer = require('@best-shot/dev-server/lib/server');
 
-          instance = DevServer(compiler, devServer);
-        } else {
-          instance = compiler.watch(watchOptions, showStats);
-        }
-      },
-      3000,
-      { trailing: true },
-    );
+        instance = DevServer(compiler, devServer);
+      } else {
+        instance = compiler.watch(watchOptions, showStats);
+      }
+    };
 
-    watcher(
-      // @ts-ignore
-      [
-        '.best-shot/{config,custom,diy}/*',
-        '.best-shot/{config,env,preset,plugin,tool}.*',
-        '.{babel,postcss,browserslist}rc',
-        '.{babel,postcss}rc.json',
-        'browserslist',
-        'package.json',
-        '{babel,postcss}.config.*',
-        '{js,ts}config.json',
-      ],
-      {
-        cwd: process.cwd(),
-        awaitWriteFinish: true,
-      },
-      {
-        add: runner,
-        change: runner,
-        rename: runner,
-        unlink: runner,
-      },
-    );
+    const action = debounce(runner, 3000, { trailing: true });
+
+    // eslint-disable-next-line global-require
+    const globs = require('./globs.json');
+
+    Watcher(globs, {
+      cwd: process.cwd(),
+      awaitWriteFinish: true,
+      ignored: ['**/node_modules', '**/.git', '**/.svn'],
+    }).on('all', action);
   }
 };

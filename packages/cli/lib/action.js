@@ -1,7 +1,7 @@
 const handle = require('./handle');
 const { commandEnv } = require('./utils');
 const { applyProgress, applyAnalyzer } = require('./apply');
-const { reachConfig, reachBrowsers, reachPackages } = require('./reach');
+const { reachConfig, reachBrowsers } = require('./reach');
 
 const rootPath = process.cwd();
 
@@ -16,8 +16,6 @@ module.exports = function action({
 
   function getConfig() {
     const configFunc = reachConfig(rootPath);
-    const packages = reachPackages(rootPath);
-    const browsers = reachBrowsers(rootPath, mode);
 
     const { webpackChain, presets = [], ...config } = configFunc({
       command,
@@ -37,9 +35,8 @@ module.exports = function action({
           watch: ['watch', 'serve'].includes(command),
         },
         mode,
-        browsers,
+        browsers: reachBrowsers(rootPath, mode),
         config,
-        packages,
         platform,
         rootPath,
       })

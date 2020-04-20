@@ -1,15 +1,9 @@
-'use strict';
-
 const cloneDeep = require('lodash/cloneDeep');
 const sortObject = require('sort-object');
 const BestShot = require('@best-shot/core');
 const { commandEnv } = require('@best-shot/cli/lib/utils');
 
-const {
-  reachPackages,
-  reachConfig,
-  reachBrowsers
-} = require('@best-shot/cli/lib/reach');
+const { reachConfig, reachBrowsers } = require('@best-shot/cli/lib/reach');
 const concatStr = require('./concat-str');
 const makeWriteFile = require('./write-file');
 
@@ -18,22 +12,21 @@ const commands = ['serve', 'watch', 'dev', 'prod'];
 module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
   const rootPath = process.cwd();
   const configFunc = reachConfig(rootPath);
-  const packages = reachPackages(rootPath);
   const writeFile = makeWriteFile(rootPath, stamp);
 
   console.log('Output files ...');
 
-  platforms.forEach(_ => {
+  platforms.forEach((_) => {
     const platform = _ || undefined;
-    commands.forEach(command => {
+    commands.forEach((command) => {
       const mode = commandEnv(command);
       const browsers = reachBrowsers(rootPath, mode);
 
       const { webpackChain, presets, ...config } = cloneDeep(
         configFunc({
           command,
-          platform
-        })
+          platform,
+        }),
       );
 
       if (command === 'serve') {
@@ -53,29 +46,23 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
             command,
             presets,
             config,
-            webpackChain
+            webpackChain,
           }),
           schema: io.schema.toObject(),
           output: io
             .load({
               options: {
-                watch: ['watch', 'serve'].includes(command)
+                watch: ['watch', 'serve'].includes(command),
               },
               mode,
               browsers,
               config,
-              packages,
               platform,
-              rootPath
+              rootPath,
             })
-            .when(typeof webpackChain === 'function', webpackChain)
-        })
+            .when(typeof webpackChain === 'function', webpackChain),
+        }),
       });
     });
-  });
-
-  writeFile({
-    name: 'packages.json',
-    data: JSON.stringify(packages, null, '  ')
   });
 };

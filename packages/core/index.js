@@ -13,11 +13,11 @@ module.exports = class BestShot {
     this.stack = new Stack();
     this.locked = false;
 
-    builtIn.forEach(preset => {
+    builtIn.forEach((preset) => {
       this.use(preset, types[0]);
     });
     if (presets.length > 0) {
-      importPresets(presets).forEach(preset => {
+      importPresets(presets).forEach((preset) => {
         this.use(preset, types[1]);
       });
     }
@@ -50,9 +50,8 @@ module.exports = class BestShot {
     config = {},
     mode = 'development',
     options: { watch = false } = {},
-    packages = {},
     platform = undefined,
-    rootPath = process.cwd()
+    rootPath = process.cwd(),
   } = {}) {
     this.check();
 
@@ -64,11 +63,10 @@ module.exports = class BestShot {
     const params = {
       browsers,
       config: this.schema.validate(config),
-      packages,
-      platform
+      platform,
     };
 
-    this.stack.setup(params).forEach(apply => {
+    this.stack.setup(params).forEach((apply) => {
       this.chain.batch(apply);
     });
 

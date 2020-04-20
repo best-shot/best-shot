@@ -1,4 +1,3 @@
-const pick = require('lodash/pick');
 const { resolve } = require('path');
 const slash = require('slash');
 // @ts-ignore
@@ -19,33 +18,15 @@ function reachConfig(rootPath) {
 }
 
 function reachBrowsers(rootPath, mode) {
-  const config = findConfig(rootPath) || {};
-  const { defaults = 'defaults', [mode]: browsers = defaults } = config;
+  const { defaults = 'defaults', [mode]: browsers = defaults } =
+    findConfig(rootPath) || {};
   if (Array.isArray(browsers) && browsers.length === 0) {
     return 'defaults';
   }
   return browsers;
 }
 
-function reachPackages(rootPath) {
-  const fileName = resolve(rootPath, 'package.json');
-  try {
-    // eslint-disable-next-line global-require, import/no-dynamic-require
-    return pick(require(fileName), [
-      'resolutions',
-      'dependencies',
-      'devDependencies',
-      'optionalDependencies',
-    ]);
-  } catch (error) {
-    return {
-      error: 'Fail to list all dependencies',
-    };
-  }
-}
-
 module.exports = {
   reachConfig,
   reachBrowsers,
-  reachPackages,
 };

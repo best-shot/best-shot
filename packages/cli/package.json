@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -32,7 +32,7 @@
   "dependencies": {
     "browserslist": "^4.11.1",
     "chalk": "^4.0.0",
-    "chokidar-watcher": "^1.4.1",
+    "chokidar": "^3.3.1",
     "fs-extra": "^9.0.0",
     "lodash": "^4.17.15",
     "slash": "^3.0.0",

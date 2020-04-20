@@ -1,0 +1,10 @@
+[
+  "**/.{babel,postcss,browserslist}rc",
+  "**/.{babel,postcss}rc.json",
+  "**/babel.config.*",
+  "**/postcss{rc,.config}.*",
+  ".best-shot/{config,custom,diy}/*",
+  ".best-shot/{config,env,preset,plugin,tool}.*",
+  "{browserslist,package.json}",
+  "{js,ts}config.json"
+]

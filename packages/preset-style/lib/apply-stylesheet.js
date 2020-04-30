@@ -9,9 +9,10 @@ function applyOneOf({ auto = undefined, mode }) {
       .use('css-loader')
       .loader('css-loader')
       .options({
-        sourceMap: mode === 'development',
+        esModule: true,
         importLoaders: 1,
         localsConvention: 'camelCaseOnly',
+        sourceMap: mode === 'development',
         modules: {
           ...(auto ? { auto } : undefined),
           localIdentName: {
@@ -100,6 +101,7 @@ module.exports = function applyStylesheet(chain) {
     },
     (rule) => {
       rule.use('extract-css').loader(ExtractCssChunksPlugin.loader).options({
+        esModule: true,
         hot: useHot,
         // reloadAll: false
       });

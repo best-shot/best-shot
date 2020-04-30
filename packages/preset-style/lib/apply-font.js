@@ -5,14 +5,13 @@ module.exports = function applyFont(chain) {
     .rule('font')
     .test(
       extToRegexp({
-        extname: ['woff', 'woff2', 'otf', 'eot', 'ttf']
-      })
+        extname: ['woff', 'woff2', 'otf', 'eot', 'ttf'],
+      }),
     )
     .use('file-loader')
     .loader('file-loader')
     .options({
       name: '[name].[contenthash:8].[ext]',
       outputPath: 'font',
-      esModules: true
     });
 };

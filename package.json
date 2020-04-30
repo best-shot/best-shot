@@ -19,6 +19,7 @@
     "docs": "nodemon",
     "format": "nice-move lint",
     "inspect": "best-shot inspect --stamp test",
+    "serve": "best-shot serve",
     "test": "jest"
   },
   "workspaces": [

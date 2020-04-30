@@ -8,22 +8,19 @@ function addExtname(rule) {
 
 module.exports = function applyScssLess({
   sassResolveUrl,
-  lessJavascriptEnabled
+  lessJavascriptEnabled,
 }) {
-  return chain => {
+  return (chain) => {
     const isDevelopment = chain.get('mode') === 'development';
 
     chain.module.rule('style').batch(addExtname);
 
     function useResolveUrl(rule) {
-      rule
-        .use('resolve-url-loader')
-        .loader('resolve-url-loader')
-        .options({
-          sourceMap: isDevelopment,
-          keepQuery: true,
-          removeCR: true
-        });
+      rule.use('resolve-url-loader').loader('resolve-url-loader').options({
+        sourceMap: isDevelopment,
+        keepQuery: true,
+        removeCR: true,
+      });
     }
 
     chain.module
@@ -33,13 +30,13 @@ module.exports = function applyScssLess({
       .use('sass-loader')
       .loader('sass-loader')
       .options({ sourceMap: isDevelopment })
-      .when(isDevelopment, io =>
-        io.tap(options => ({
+      .when(isDevelopment, (io) =>
+        io.tap((options) => ({
           ...options,
           sassOptions: {
-            outputStyle: 'expanded'
-          }
-        }))
+            outputStyle: 'expanded',
+          },
+        })),
       );
 
     chain.module
@@ -47,9 +44,14 @@ module.exports = function applyScssLess({
       .test(extToRegexp({ extname: ['less'] }))
       .use('less-loader')
       .loader('less-loader')
-      .options({
-        sourceMap: isDevelopment,
-        javascriptEnabled: lessJavascriptEnabled
-      });
+      .options({ sourceMap: isDevelopment })
+      .when(lessJavascriptEnabled, (io) =>
+        io.tap((options) => ({
+          ...options,
+          lessOptions: {
+            javascriptEnabled: lessJavascriptEnabled,
+          },
+        })),
+      );
   };
 };

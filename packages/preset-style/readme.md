@@ -1,6 +1,6 @@
 # @best-shot/preset-style
 
-A `best-shot` preset for stylesheets.
+A `best-shot` preset for stylesheet.
 
 [![npm][npm-badge]][npm-url]
 [![license][license-badge]][github-url]
@@ -62,11 +62,11 @@ module.exports = {
       .rule('style')
       .rule('postcss')
       .use('postcss-loader')
-      .tap(options => ({
+      .tap((options) => ({
         ...options,
-        plugins: []
+        plugins: [],
       }));
-  }
+  },
 };
 ```
 
@@ -76,8 +76,8 @@ Write your config in any way. See <https://github.com/michael-ciniawsky/postcss-
 // example: postcss.config.js
 module.exports = {
   plugins: {
-    'postcss-preset-env': {}
-  }
+    'postcss-preset-env': {},
+  },
 };
 ```
 

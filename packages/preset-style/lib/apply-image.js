@@ -2,7 +2,7 @@ const extToRegexp = require('ext-to-regexp');
 const ImageminPlugin = require('imagemin-webpack');
 
 const imageRegexp = extToRegexp({
-  extname: ['jpg', 'jpeg', 'png', 'gif', 'svg']
+  extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
 });
 
 module.exports = function applyImage(chain) {
@@ -18,7 +18,6 @@ module.exports = function applyImage(chain) {
         ? '[name].min.[contenthash:8].[ext]'
         : '[name].[contenthash:8].[ext]',
       outputPath: 'image',
-      esModules: true
     });
 
   if (minimize) {
@@ -42,13 +41,13 @@ module.exports = function applyImage(chain) {
                   { removeScriptElement: true },
                   { removeTitle: true },
                   { removeUselessStrokeAndFill: true },
-                  { removeViewBox: true }
-                ]
-              }
-            ]
-          ]
-        }
-      }
+                  { removeViewBox: true },
+                ],
+              },
+            ],
+          ],
+        },
+      },
     ]);
   }
 };

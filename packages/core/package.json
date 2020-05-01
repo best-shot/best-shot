@@ -32,12 +32,18 @@
     "lodash": "^4.17.15",
     "slash": "^3.0.0",
     "terser-webpack-plugin": "^1.4.3",
-    "webpack-chain": "^6.4.0"
+    "webpack-chain": "^6.4.0",
+    "snyk": "^1.316.1"
   },
   "peerDependencies": {
     "webpack": "^4.42.1"
   },
   "engines": {
     "node": "^8.15 || ^10.15 || ^12"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }

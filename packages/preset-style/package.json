@@ -57,12 +57,18 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "slash-to-regexp": "^0.0.4",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "snyk": "^1.316.1"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.1.7"
   },
   "engines": {
     "node": "^10.18 || ^12"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }

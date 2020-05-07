@@ -9,7 +9,7 @@ function applyOneOf({ auto = undefined, mode }) {
       .use('css-loader')
       .loader('css-loader')
       .options({
-        esModule: true,
+        esModule: false,
         importLoaders: 1,
         localsConvention: 'camelCaseOnly',
         sourceMap: mode === 'development',
@@ -97,11 +97,11 @@ module.exports = function applyStylesheet(chain) {
       rule
         .use('style-loader')
         .loader('style-loader')
-        .options({ esModule: true });
+        .options({ esModule: false });
     },
     (rule) => {
       rule.use('extract-css').loader(ExtractCssChunksPlugin.loader).options({
-        esModule: true,
+        esModule: false,
         hot: useHot,
         // reloadAll: false
       });

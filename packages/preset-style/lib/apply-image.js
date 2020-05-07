@@ -18,6 +18,7 @@ module.exports = function applyImage(chain) {
         ? '[name].min.[contenthash:8].[ext]'
         : '[name].[contenthash:8].[ext]',
       outputPath: 'image',
+      esModule: false,
     });
 
   if (minimize) {

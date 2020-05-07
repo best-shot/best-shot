@@ -13,5 +13,6 @@ module.exports = function applyFont(chain) {
     .options({
       name: '[name].[contenthash:8].[ext]',
       outputPath: 'font',
+      esModule: false,
     });
 };

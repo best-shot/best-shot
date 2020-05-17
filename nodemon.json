@@ -1,9 +1,0 @@
-{
-  "quiet": true,
-  "delay": 3,
-  "exitcrash": true,
-  "watch": [
-    "packages"
-  ],
-  "exec": "docsify serve ./docs"
-}

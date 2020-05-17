@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-babel",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -25,28 +25,26 @@
   "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-babel",
   "repository": {
     "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
+    "url": "git+https://github.com/airkro/best-shot.git",
     "directory": "packages/preset-babel"
+  },
+  "bugs": {
+    "url": "https://github.com/airkro/best-shot/issues"
   },
   "main": "index.js",
   "dependencies": {
-    "@babel/helper-plugin-utils": "^7.8.3",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-decorators": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/runtime-corejs3": "^7.9.2",
     "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.0",
+    "babel-preset-evergreen": "^0.0.0",
     "ext-to-regexp": "^0.0.8",
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.9.0",
-    "@best-shot/core": "^0.1.6",
-    "core-js": "^3.6.4"
+    "@babel/core": "^7.9.6",
+    "@best-shot/core": "^0.1.7",
+    "core-js": "^3.6.5"
   },
   "engines": {
-    "node": "^10.15 || ^12"
+    "node": "^10.18 || ^12"
   }
 }

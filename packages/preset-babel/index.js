@@ -1,15 +1,15 @@
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 
-const { relative, child } = require('@best-shot/core/lib/path');
+const { relative } = require('@best-shot/core/lib/path');
 
 exports.name = 'preset-babel';
 
 exports.apply = function applyBabel({
   browsers = 'defaults',
-  config: { polyfill = false }
+  config: { polyfill = false },
 }) {
-  return chain => {
+  return (chain) => {
     const mode = chain.get('mode');
     const context = chain.get('context');
     const UseCache = chain.get('watch');
@@ -28,13 +28,13 @@ exports.apply = function applyBabel({
         compact: mode === 'production',
         presets: [
           [
-            `module:${child(context, __dirname, 'preset')}`,
+            'evergreen',
             {
               polyfill,
-              targets: { browsers }
-            }
-          ]
-        ]
+              targets: { browsers },
+            },
+          ],
+        ],
       });
 
     const isServing = chain.devServer.entries() !== undefined;
@@ -45,11 +45,11 @@ exports.apply = function applyBabel({
         slashToRegexp(
           isServing
             ? '/node_modules/webpack(-dev-server)?/'
-            : '/node_modules/webpack/'
-        )
+            : '/node_modules/webpack/',
+        ),
       )
-      .when(polyfill, exclude =>
-        exclude.add(slashToRegexp('/node_modules/core-js(-pure)?/'))
+      .when(polyfill, (exclude) =>
+        exclude.add(slashToRegexp('/node_modules/core-js(-pure)?/')),
       );
 
     chain.resolveLoader.modules.prepend(relative(context, module.paths[0]));
@@ -61,6 +61,6 @@ exports.schema = {
     default: false,
     description: 'References: <https://github.com/babel/babel/issues/10008>',
     enum: [false, 'usage', 'pure'],
-    title: 'How `babel` handles polyfills'
-  }
+    title: 'How `babel` handles polyfills',
+  },
 };

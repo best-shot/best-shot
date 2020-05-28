@@ -15,7 +15,7 @@ function addMin(filename) {
 exports.name = 'preset-web';
 
 exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
-  return chain => {
+  return (chain) => {
     const mode = chain.get('mode');
     const hot = chain.devServer.get('hot') || false;
     const minimize = chain.optimization.get('minimize');
@@ -26,7 +26,7 @@ exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
         ? false
         : serve
         ? 'cheap-module-eval-source-map'
-        : 'cheap-module-source-map'
+        : 'cheap-module-source-map',
     );
 
     chain
@@ -34,9 +34,9 @@ exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
       .when(!hot, setOutputName({ style: addHash, script: addHash }))
       .batch(
         setOutputName({
-          script: filename => `script/${filename}`,
-          style: filename => `style/${filename}`
-        })
+          script: (filename) => `script/${filename}`,
+          style: (filename) => `style/${filename}`,
+        }),
       )
       .batch(splitChunks({ vendors }))
       .batch(setHtml({ sri, html, define }));
@@ -46,8 +46,17 @@ exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
 const regexpFormat = {
   format: 'regex',
   minLength: 1,
-  type: 'string'
+  type: 'string',
 };
+
+function polyfill() {
+  try {
+    // eslint-disable-next-line global-require,import/no-extraneous-dependencies,node/no-extraneous-require
+    return require('@best-shot/preset-babel').schema.polyfill.enum[1];
+  } catch {
+    return false;
+  }
+}
 
 exports.schema = {
   html: {
@@ -58,30 +67,30 @@ exports.schema = {
         title: {
           minLength: 1,
           type: 'string',
-          default: 'BEST-SHOT Project'
+          default: 'BEST-SHOT Project',
         },
         filename: {
           minLength: 1,
-          type: 'string'
+          type: 'string',
         },
         template: {
           minLength: 1,
           type: 'string',
-          default: './src/index.html'
-        }
-      }
+          default: './src/index.html',
+        },
+      },
     },
     minItems: 1,
     type: 'array',
     uniqueItems: true,
-    title: 'Options group of HtmlWebpackPlugin'
+    title: 'Options group of HtmlWebpackPlugin',
   },
   polyfill: {
-    default: 'usage'
+    default: polyfill(),
   },
   sri: {
     default: true,
-    type: 'boolean'
+    type: 'boolean',
   },
   vendors: {
     additionalProperties: {
@@ -91,10 +100,10 @@ exports.schema = {
           items: regexpFormat,
           minItems: 1,
           type: 'array',
-          uniqueItems: true
-        }
-      ]
+          uniqueItems: true,
+        },
+      ],
     },
-    type: 'object'
-  }
+    type: 'object',
+  },
 };

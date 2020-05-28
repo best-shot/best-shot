@@ -2,12 +2,6 @@
 
 A `best-shot` preset for web project.
 
-[npm-url]: https://www.npmjs.com/package/@best-shot/preset-web
-[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-web.svg?style=flat-square&logo=npm
-[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-web
-[node-badge]: https://img.shields.io/node/v/@best-shot/preset-web.svg?style=flat-square&colorB=green&logo=node.js
-[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-web.svg?style=flat-square&colorB=blue&logo=github
-
 [![npm][npm-badge]][npm-url]
 [![license][license-badge]][github-url]
 ![node][node-badge]
@@ -39,7 +33,7 @@ module.exports = {
 
 ### Polyfill
 
-This preset use `usage` as `options.polyfill`.
+This preset use `global` as `options.polyfill`.
 
 See Options in [@best-shot/preset-babel](../preset-babel)
 
@@ -48,6 +42,7 @@ See Options in [@best-shot/preset-babel](../preset-babel)
 Subresource Integrity (SRI) is enable by default.
 
 ```js
+// example: .best-shot/config.js
 module.exports = {
   presets: [..., 'web'],
   sri: false // To disable it
@@ -67,19 +62,6 @@ module.exports = {
 };
 ```
 
-### Single Page Application
-
-```js
-// example: .best-shot/config.js
-module.exports = {
-  presets: [..., 'web'],
-  html: {
-    filename: './src/index.html'
-  },
-  ...
-};
-```
-
 ### Multiple Page Application
 
 ```js
@@ -92,10 +74,15 @@ module.exports = {
       title: 'Hello world!'
     },
     {
-      filename: './src/intro.html',
-      title: 'Hello world!' // same by default
+      filename: './src/intro.html'
     }
   ],
   ...
 };
 ```
+
+[npm-url]: https://www.npmjs.com/package/@best-shot/preset-web
+[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-web.svg?style=flat-square&logo=npm
+[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-web
+[node-badge]: https://img.shields.io/node/v/@best-shot/preset-web.svg?style=flat-square&colorB=green&logo=node.js
+[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-web.svg?style=flat-square&colorB=blue&logo=github

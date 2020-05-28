@@ -60,7 +60,7 @@ exports.schema = {
   polyfill: {
     default: false,
     description: 'References: <https://github.com/babel/babel/issues/10008>',
-    enum: [false, 'usage', 'pure'],
+    enum: [false, 'global', 'pure'],
     title: 'How `babel` handles polyfills',
   },
 };

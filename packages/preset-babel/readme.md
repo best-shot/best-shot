@@ -6,7 +6,7 @@ A `best-shot` preset for babel compiler.
 [![license][license-badge]][github-url]
 ![node][node-badge]
 
-This preset can transform:
+This preset uses [babel-preset-evergreen] by default. It can transform:
 
 - ECMAScript 2020 syntax
 - Class static properties
@@ -24,7 +24,7 @@ npm install @best-shot/preset-babel --save-dev
 // example: .best-shot/config.js
 module.exports = {
   presets: [..., 'babel'],
-  polyfill: 'usage',
+  polyfill: 'global',
   ...
 };
 ```
@@ -33,14 +33,14 @@ module.exports = {
 
 ### polyfill
 
-- type: [ false, 'usage', 'pure' ]
+- type: [ false, 'global', 'pure' ]
 - default: false
 
 How `babel` handles polyfills. `pure` is an experimental option.
 
 References: <https://github.com/babel/babel/issues/10008>
 
-Install `core-js@3` as a top-level dependency when specifying 'usage' or 'pure'.
+Install `core-js@3` as a top-level dependency when specifying 'global' or 'pure'.
 
 ```bash
 npm install core-js@3 --save
@@ -59,8 +59,7 @@ References: <https://babeljs.io/docs/en/configuration>
 }
 ```
 
-This preset contains [babel-plugin-import](https://github.com/ant-design/babel-plugin-import#readme) by default, you can enable it by manual.
-
+[babel-preset-evergreen]: https://github.com/best-shot/babel-preset-evergreen
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-babel
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-babel.svg?style=flat-square&logo=npm
 [github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-babel

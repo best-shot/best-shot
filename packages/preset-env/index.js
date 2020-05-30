@@ -1,6 +1,3 @@
-'use strict';
-
-// @ts-ignore
 const { cyan } = require('chalk');
 
 const mapValues = require('lodash/mapValues');
@@ -13,8 +10,12 @@ const { findConfig, mergeParams, parseConfig } = require('./lib');
 
 exports.name = 'preset-env';
 
+function logger({ GIT_BRANCH, GIT_HASH, ...data }) {
+  console.log(cyan`PRESET-ENV`, pretty(data));
+}
+
 exports.apply = function applyEnv() {
-  return chain => {
+  return (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
     const context = chain.get('context');
@@ -33,7 +34,8 @@ exports.apply = function applyEnv() {
     if (Object.values(data).length > 0) {
       const sorted = sortKeys(data);
 
-      console.log(cyan`PRESET-ENV`, pretty(sorted));
+      // @ts-ignore
+      logger(sorted);
 
       const result = mapValues(sorted, JSON.stringify);
       if (chain.plugins.has('define')) {

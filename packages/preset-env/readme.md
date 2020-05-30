@@ -2,12 +2,6 @@
 
 A `best-shot` preset for env variables.
 
-[npm-url]: https://www.npmjs.com/package/@best-shot/preset-env
-[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-env.svg?style=flat-square&logo=npm
-[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-env
-[node-badge]: https://img.shields.io/node/v/@best-shot/preset-env.svg?style=flat-square&colorB=green&logo=node.js
-[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-env.svg?style=flat-square&colorB=blue&logo=github
-
 [![npm][npm-badge]][npm-url]
 [![license][license-badge]][github-url]
 ![node][node-badge]
@@ -95,7 +89,7 @@ console = "xyz"
 
 ### Git info inject
 
-If a `process.cwd()` is a git repository, `GIT_BRANCH`, `GIT_HASH` will be injected to your config.
+If a `process.cwd()` is a git repository, `GIT_BRANCH`, `GIT_HASH` will be injected to your config too.
 
 ```js
 module.exports = {
@@ -105,3 +99,9 @@ module.exports = {
   })
 };
 ```
+
+[npm-url]: https://www.npmjs.com/package/@best-shot/preset-env
+[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-env.svg?style=flat-square&logo=npm
+[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-env
+[node-badge]: https://img.shields.io/node/v/@best-shot/preset-env.svg?style=flat-square&colorB=green&logo=node.js
+[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-env.svg?style=flat-square&colorB=blue&logo=github

@@ -1,5 +1,3 @@
-'use strict';
-
 const mapValues = require('lodash/mapValues');
 const isGit = require('is-git-repository');
 const sortKeys = require('sort-keys');
@@ -15,19 +13,19 @@ const envObject = mapValues(
     ...production,
     ...development,
     ...watch,
-    ...serve
+    ...serve,
   }),
-  () => 'readonly'
+  () => 'readonly',
 );
 
 const globals = sortKeys({
   ...envObject,
   ...(isGit()
     ? {
-      GIT_HASH: 'readonly',
-      GIT_BRANCH: 'readonly'
-    }
-    : undefined)
+        GIT_HASH: 'readonly',
+        GIT_BRANCH: 'readonly',
+      }
+    : undefined),
 });
 
 module.exports = { globals };

@@ -1,7 +1,6 @@
-'use strict';
-
 const { readFileSync } = require('fs');
 const pickBy = require('lodash/pickBy');
+// @ts-ignore
 const tomlParser = require('@iarna/toml/parse');
 const yaml = require('js-yaml');
 
@@ -11,7 +10,7 @@ function ensureConfig(type, rootPath) {
     return {
       type,
       name: filename,
-      path: require.resolve(`./${filename}`, { paths: [rootPath] })
+      path: require.resolve(`./${filename}`, { paths: [rootPath] }),
     };
   } catch (error) {
     return undefined;
@@ -27,12 +26,12 @@ function findConfig(rootPath) {
 }
 
 function filterData(data) {
-  return pickBy(data, item => item !== undefined);
+  return pickBy(data, (item) => item !== undefined);
 }
 
 function mergeParams(
   { mode, watch: isWatch, serve: isServe },
-  { development, production, watch, serve }
+  { development, production, watch, serve },
 ) {
   return filterData(
     mode === 'production'
@@ -41,17 +40,18 @@ function mergeParams(
           ...production,
           ...development,
           ...(isWatch || isServe ? watch : {}),
-          ...(isServe ? serve : {})
-        }
+          ...(isServe ? serve : {}),
+        },
   );
 }
 
 const parser = {
-  json: str => JSON.parse(str),
-  yaml: str => yaml.safeLoad(str),
-  toml: str => tomlParser(str)
+  json: (str) => JSON.parse(str),
+  yaml: (str) => yaml.safeLoad(str),
+  toml: (str) => tomlParser(str),
 };
 
+// @ts-ignore
 function parseConfig({ path, name, type } = {}) {
   if (!path) {
     return {};
@@ -70,5 +70,5 @@ module.exports = {
   filterData,
   findConfig,
   mergeParams,
-  parseConfig
+  parseConfig,
 };

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-vue",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A `best-shot` preset for Vue project",
   "license": "MIT",
   "author": {
@@ -18,21 +18,24 @@
   "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-vue",
   "repository": {
     "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
+    "url": "git+https://github.com/airkro/best-shot.git",
     "directory": "packages/preset-vue"
+  },
+  "bugs": {
+    "url": "https://github.com/airkro/best-shot/issues"
   },
   "main": "index.js",
   "dependencies": {
-    "css-loader": "^3.4.2",
+    "css-loader": "^3.5.3",
     "ext-to-regexp": "^0.0.8",
-    "vue-loader": "^15.9.1",
+    "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.6",
+    "@best-shot/core": "^0.1.7",
     "vue": "^2.6.11"
   },
   "engines": {
-    "node": "^10.15 || ^12"
+    "node": "^10.18 || ^12"
   }
 }

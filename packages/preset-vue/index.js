@@ -6,7 +6,7 @@ const { relative } = require('@best-shot/core/lib/path');
 exports.name = 'preset-vue';
 
 exports.apply = function applyVue() {
-  return chain => {
+  return (chain) => {
     const context = chain.get('context');
 
     chain.module
@@ -16,9 +16,9 @@ exports.apply = function applyVue() {
       .loader('vue-loader')
       .options({
         compilerOptions: {
-          whitespace: 'condense'
+          whitespace: 'condense',
         },
-        hotReload: chain.devServer.get('hot') || false
+        hotReload: chain.devServer.get('hot') || false,
       });
 
     chain.resolveLoader.modules.prepend(relative(context, module.paths[0]));

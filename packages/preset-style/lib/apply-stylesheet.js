@@ -1,4 +1,4 @@
-const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const extToRegexp = require('ext-to-regexp');
 const autoprefixer = require('autoprefixer');
@@ -82,7 +82,7 @@ module.exports = function applyStylesheet(chain) {
     });
 
   if (!useHot) {
-    chain.plugin('extract-css').use(ExtractCssChunksPlugin, [
+    chain.plugin('extract-css').use(MiniCssExtractPlugin, [
       {
         filename: '[name].css',
         // chunkFilename: '[id].css',
@@ -100,9 +100,9 @@ module.exports = function applyStylesheet(chain) {
         .options({ esModule: false });
     },
     (rule) => {
-      rule.use('extract-css').loader(ExtractCssChunksPlugin.loader).options({
+      rule.use('extract-css').loader(MiniCssExtractPlugin.loader).options({
         esModule: false,
-        hot: useHot,
+        hmr: useHot,
         // reloadAll: false
       });
     },

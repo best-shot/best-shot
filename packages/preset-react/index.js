@@ -3,7 +3,7 @@ const slashToRegexp = require('slash-to-regexp');
 exports.name = 'preset-react';
 
 exports.apply = function applyReact() {
-  return chain => {
+  return (chain) => {
     const isProd = chain.get('mode') === 'production';
     const useHot = chain.devServer.get('hot') || false;
 
@@ -30,8 +30,8 @@ exports.apply = function applyReact() {
         plugins: [
           ...plugins,
           ...(isProd ? ['transform-react-remove-prop-types'] : []),
-          ...(useHot ? ['react-hot-loader/babel'] : [])
-        ]
+          ...(useHot ? ['react-hot-loader/babel'] : []),
+        ],
       }));
   };
 };

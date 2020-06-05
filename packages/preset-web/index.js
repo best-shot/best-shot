@@ -22,11 +22,7 @@ exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
     const serve = chain.devServer.entries() !== undefined;
 
     chain.devtool(
-      mode === 'production'
-        ? false
-        : serve
-        ? 'cheap-module-eval-source-map'
-        : 'cheap-module-source-map',
+      mode === 'production' ? false : serve ? 'eval-source-map' : 'source-map',
     );
 
     chain

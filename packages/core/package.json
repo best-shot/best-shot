@@ -29,7 +29,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "deepmerge": "^4.2.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "slash": "^3.0.0",
     "terser-webpack-plugin": "^1.4.3",
     "webpack-chain": "^6.4.0"

@@ -2562,9 +2562,9 @@ binary-extensions@^2.0.0:
   integrity sha512-Phlt0plgpIIBOGTT/ehfFnbNlfsDEiqmzE2KRXoX1bLIlir4X/MR+zSyBEkL05ffWgnRSf/DXv+WrUAVr93/ow==
 
 binary-mirror-config@^1:
-  version "1.23.0"
-  resolved "https://registry.npm.taobao.org/binary-mirror-config/download/binary-mirror-config-1.23.0.tgz#26f8d6b6933db0382e60c2b801ff6ec4464c4e52"
-  integrity sha1-JvjWtpM9sDguYMK4Af9uxEZMTlI=
+  version "1.25.0"
+  resolved "https://registry.npm.taobao.org/binary-mirror-config/download/binary-mirror-config-1.25.0.tgz#da05e1721dcdba5ef46ee648776f093b748941d6"
+  integrity sha1-2gXhch3Nul70buZId28JO3SJQdY=
 
 bindings@^1.5.0:
   version "1.5.0"
@@ -7811,10 +7811,10 @@ lodash.zip@^4.2.0:
   resolved "https://registry.npmjs.org/lodash.zip/-/lodash.zip-4.2.0.tgz#ec6662e4896408ed4ab6c542a3990b72cc080020"
   integrity sha1-7GZi5IlkCO1KtsVCo5kLcswIACA=
 
-lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5:
-  version "4.17.15"
-  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.5:
+  version "4.17.19"
+  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha1-5I3e2+MLMyF4PFtDAfvTU7weSks=
 
 log-symbols@^3.0.0:
   version "3.0.0"

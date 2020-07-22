@@ -47,8 +47,10 @@ exports.splitChunks = function splitChunks({ vendors = {} }) {
       },
     });
 
-    chain
-      .plugin('min-chunk-size')
-      .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
+    if (chain.get('mode') === 'production') {
+      chain
+        .plugin('min-chunk-size')
+        .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
+    }
   };
 };

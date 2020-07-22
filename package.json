@@ -33,9 +33,9 @@
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
-    "@nice-move/cli": "^0.3.7",
-    "@nice-move/eslint-config-base": "^0.2.13",
-    "@nice-move/prettier-config": "^0.2.1",
+    "@nice-move/cli": "^0.3.11",
+    "@nice-move/eslint-config-base": "^0.3.3",
+    "@nice-move/prettier-config": "^0.2.4",
     "@types/jest": "^25.2.3",
     "@types/react": "^16.9.35",
     "docsify": "^4.11.3",

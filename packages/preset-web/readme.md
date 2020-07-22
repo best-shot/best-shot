@@ -24,8 +24,7 @@ npm install @best-shot/preset-web --save-dev
 ```js
 // example: .best-shot/config.js
 module.exports = {
-  presets: [..., 'web'],
-  ...
+  presets: ['web']
 };
 ```
 
@@ -44,7 +43,7 @@ Subresource Integrity (SRI) is enable by default.
 ```js
 // example: .best-shot/config.js
 module.exports = {
-  presets: [..., 'web'],
+  presets: ['web'],
   sri: false // To disable it
 };
 ```
@@ -54,11 +53,10 @@ module.exports = {
 ```js
 // example: .best-shot/config.js
 module.exports = {
-  presets: [..., 'web'],
+  presets: ['web'],
   vendors: {
     common: ['lodash', 'axios']
-  },
-  ...
+  }
 };
 ```
 
@@ -67,7 +65,7 @@ module.exports = {
 ```js
 // example: .best-shot/config.js
 module.exports = {
-  presets: [..., 'web'],
+  presets: ['web'],
   html: [
     {
       filename: './src/index.html',
@@ -76,8 +74,7 @@ module.exports = {
     {
       filename: './src/intro.html'
     }
-  ],
-  ...
+  ]
 };
 ```
 

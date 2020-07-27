@@ -2,13 +2,12 @@ const extToRegexp = require('ext-to-regexp');
 
 function addExtname(rule) {
   const regexp = rule.get('test');
-
   rule.test(regexp.add('scss', 'sass', 'less'));
 }
 
 module.exports = function applyScssLess({
-  sassResolveUrl,
-  lessJavascriptEnabled,
+  sassResolveUrl = false,
+  lessJavascriptEnabled = false,
 }) {
   return (chain) => {
     const isDevelopment = chain.get('mode') === 'development';
@@ -44,14 +43,12 @@ module.exports = function applyScssLess({
       .test(extToRegexp({ extname: ['less'] }))
       .use('less-loader')
       .loader('less-loader')
-      .options({ sourceMap: isDevelopment })
-      .when(lessJavascriptEnabled, (io) =>
-        io.tap((options) => ({
-          ...options,
-          lessOptions: {
-            javascriptEnabled: lessJavascriptEnabled,
-          },
-        })),
-      );
+      .options({
+        sourceMap: isDevelopment,
+        lessOptions: {
+          rewriteUrls: 'local',
+          ...(lessJavascriptEnabled ? { javascriptEnabled: true } : undefined),
+        },
+      });
   };
 };

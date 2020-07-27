@@ -24,8 +24,7 @@ npm install @best-shot/preset-style --save-dev
 ```js
 // example: .best-shot/config.js
 module.exports = {
-  presets: [..., 'style'],
-  ...
+  presets: ['style']
 };
 ```
 
@@ -34,7 +33,6 @@ module.exports = {
 Use `[name].module.[extname]` as filename. [Learn more](https://github.com/css-modules/css-modules)
 
 ```js
-// example.js
 import foo from './foo.module.css';
 import bar from './bar.module.scss';
 ```
@@ -64,9 +62,9 @@ module.exports = {
       .use('postcss-loader')
       .tap((options) => ({
         ...options,
-        plugins: [],
+        plugins: []
       }));
-  },
+  }
 };
 ```
 
@@ -76,8 +74,8 @@ Write your config in any way. See <https://github.com/michael-ciniawsky/postcss-
 // example: postcss.config.js
 module.exports = {
   plugins: {
-    'postcss-preset-env': {},
-  },
+    'postcss-preset-env': {}
+  }
 };
 ```
 

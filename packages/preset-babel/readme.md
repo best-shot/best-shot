@@ -23,9 +23,8 @@ npm install @best-shot/preset-babel --save-dev
 ```js
 // example: .best-shot/config.js
 module.exports = {
-  presets: [..., 'babel'],
-  polyfill: 'global',
-  ...
+  presets: ['babel'],
+  polyfill: 'global'
 };
 ```
 
@@ -46,16 +45,27 @@ Install `core-js@3` as a top-level dependency when specifying 'global' or 'pure'
 npm install core-js@3 --save
 ```
 
-## Tips
-
-### Create custom babel configuration
+## Create custom babel configuration
 
 References: <https://babeljs.io/docs/en/configuration>
 
 ```json
-// babel.config.json
+// example: babel.config.json
 {
   "plugins": ["lodash", "macros"]
+}
+```
+
+### Decorators support
+
+To avoid risks, you have to enable `proposal-decorators` manually.
+
+Read more: <https://babeljs.io/docs/en/babel-plugin-proposal-decorators>
+
+```json
+// example: babel.config.json
+{
+  "plugins": ["@babel/proposal-decorators"]
 }
 ```
 

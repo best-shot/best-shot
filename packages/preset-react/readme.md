@@ -8,7 +8,7 @@ A `best-shot` preset for react project.
 
 This preset offer the following features:
 
-- [React](https://reactjs.org/) framework and jsx syntax support.
+- [React](https://reactjs.org/) framework and JSX syntax support.
 - Use [react-hot-loader](https://github.com/gaearon/react-hot-loader) to support hot module reload.
 - Remove react propTypes in `production` mode.
 
@@ -23,20 +23,24 @@ npm install @best-shot/preset-react --save-dev
 ```js
 // example: .best-shot/config.js
 module.exports = {
-  presets: [..., 'babel', 'react'],
-  ...
+  presets: ['babel', 'react']
 };
 ```
 
 ## Tips
 
-This preset contains `@babel/plugin-transform-react-constant-elements` for prevent multiple unnecessary instantiations.
-It is not 100% safe, you can enable it by manual.
+This preset contains some optimization transform.
+It is not 100% safe, you can enable them manually.
 
 ```json
-// babel.config.json
+// example: babel.config.json
 {
-  "plugins": ["@babel/transform-react-constant-elements"]
+  "plugins": ["@babel/transform-react-constant-elements"],
+  "env": {
+    "production": {
+      "plugins": ["@babel/transform-react-inline-elements"]
+    }
+  }
 }
 ```
 

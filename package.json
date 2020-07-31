@@ -32,11 +32,11 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.10.5",
+    "@babel/core": "^7.11.0",
     "@nice-move/cli": "^0.4.1",
     "@nice-move/eslint-config-base": "^0.3.4",
     "@nice-move/prettier-config": "^0.2.4",
-    "@types/jest": "^26.0.7",
+    "@types/jest": "^26.0.8",
     "@types/react": "^16.9.43",
     "docsify": "^4.11.4",
     "docsify-cli": "^4.4.1",

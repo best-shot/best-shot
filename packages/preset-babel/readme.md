@@ -8,7 +8,7 @@ A `best-shot` preset for babel compiler.
 
 This preset uses [babel-preset-evergreen] by default. It can transform:
 
-- ECMAScript 2020 syntax
+- ECMAScript 2021 syntax
 - Class static properties
 - Decorators
 

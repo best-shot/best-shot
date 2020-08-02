@@ -37,8 +37,8 @@
   },
   "main": "index.js",
   "dependencies": {
-    "autoprefixer": "^9.8.5",
-    "css-loader": "^3.5.3",
+    "autoprefixer": "^9.8.6",
+    "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
     "ext-to-regexp": "^0.0.8",
     "file-loader": "^6.0.0",

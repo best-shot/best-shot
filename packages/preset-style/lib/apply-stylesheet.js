@@ -10,7 +10,7 @@ function applyOneOf({ auto = undefined, mode }) {
       .loader('css-loader')
       .options({
         esModule: false,
-        importLoaders: 1,
+        importLoaders: 2,
         localsConvention: 'camelCaseOnly',
         sourceMap: mode === 'development',
         modules: {
@@ -103,6 +103,7 @@ module.exports = function applyStylesheet(chain) {
       rule.use('extract-css').loader(MiniCssExtractPlugin.loader).options({
         esModule: false,
         hmr: useHot,
+        ignoreOrder: true,
         // reloadAll: false
       });
     },

@@ -1,13 +1,13 @@
-// eslint-disable-next-line node/no-extraneous-require
-const BestShot = require('@best-shot/core');
+const test = require('ava');
 
+const BestShot = require('../packages/core');
 const Schema = require('../packages/core/lib/schema');
 
 const {
-  schema: properties1
+  schema: properties1,
 } = require('../packages/core/built-in/apply-entry');
 const {
-  schema: properties2
+  schema: properties2,
 } = require('../packages/core/built-in/apply-define');
 
 const example = {
@@ -16,41 +16,39 @@ const example = {
   mode: 'development',
   output: {
     publicPath: '/',
-    filename: '[name].js'
-  }
+    filename: '[name].js',
+  },
 };
 
-describe('Base Config', () => {
-  test('toConfig', () => {
-    const config = new BestShot().load().toConfig();
-    expect(config).toMatchObject(example);
-  });
+test('toConfig', (t) => {
+  const config = new BestShot().load().toConfig();
+  t.like(config, example);
+});
 
-  test('toString', () => {
-    const config = new BestShot().load().toString();
-    expect(config).toMatch(/^{/);
-    expect(config).toMatch(/}$/);
-  });
+test('toString', (t) => {
+  const config = new BestShot().load().toString();
+  t.regex(config, /^{/);
+  t.regex(config, /}$/);
+});
 
-  test('toSchema', () => {
-    const schema = new BestShot().schema.toObject();
-    const baseSchema = new Schema().schema;
-    Object.assign(baseSchema.properties, properties1, properties2);
-    expect(schema).toMatchObject(baseSchema);
-  });
+test('toSchema', (t) => {
+  const schema = new BestShot().schema.toObject();
+  const baseSchema = new Schema().schema;
+  Object.assign(baseSchema.properties, properties1, properties2);
+  t.like(schema, baseSchema);
+});
 
-  test('entryPoints', () => {
-    const stringEntry = new BestShot()
-      .load({ config: { entry: 'index.js' } })
-      .toConfig().entry;
-    const arrayEntry = new BestShot()
-      .load({ config: { entry: ['index.js'] } })
-      .toConfig().entry;
-    const objectEntry = new BestShot()
-      .load({ config: { entry: { main: 'index.js' } } })
-      .toConfig().entry;
+test('entryPoints', (t) => {
+  const stringEntry = new BestShot()
+    .load({ config: { entry: 'index.js' } })
+    .toConfig().entry;
+  const arrayEntry = new BestShot()
+    .load({ config: { entry: ['index.js'] } })
+    .toConfig().entry;
+  const objectEntry = new BestShot()
+    .load({ config: { entry: { main: 'index.js' } } })
+    .toConfig().entry;
 
-    expect(stringEntry).toEqual(arrayEntry);
-    expect(stringEntry).toEqual(objectEntry);
-  });
+  t.deepEqual(stringEntry, arrayEntry);
+  t.deepEqual(stringEntry, objectEntry);
 });

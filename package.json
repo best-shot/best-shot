@@ -19,7 +19,7 @@
     "format": "nice-move lint",
     "inspect": "best-shot inspect --stamp test",
     "serve": "best-shot serve",
-    "test": "jest --passWithNoTests"
+    "test": "ava --verbose"
   },
   "workspaces": [
     "packages/*"
@@ -36,14 +36,13 @@
     "@nice-move/cli": "^0.4.1",
     "@nice-move/eslint-config-base": "^0.3.4",
     "@nice-move/prettier-config": "^0.2.4",
-    "@types/jest": "^26.0.8",
     "@types/react": "^16.9.43",
+    "ava": "^3.11.0",
     "docsify": "^4.11.4",
     "docsify-cli": "^4.4.1",
     "eslint": "^6.8.0",
-    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-ava": "^10.5.0",
     "husky": "^4.2.5",
-    "jest": "^26.2.2",
     "prettier": "^2.0.5",
     "typescript": "^3.9.7",
     "webpack": "^4.44.1"
@@ -56,12 +55,13 @@
   },
   "eslintConfig": {
     "extends": [
-      "@nice-move/eslint-config-base"
+      "@nice-move/eslint-config-base",
+      "plugin:ava/recommended"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "nice-move lint && jest --passWithNoTests"
+      "pre-commit": "nice-move lint && ava --verbose"
     }
   },
   "prettier": "@nice-move/prettier-config"

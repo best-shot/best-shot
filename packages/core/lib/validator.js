@@ -1,25 +1,26 @@
 const Ajv = require('ajv');
-
-class ExError extends Error {
-  constructor(message, extra) {
-    super(message);
-    this.extra = extra;
-  }
-}
+const { EOL } = require('os');
+const betterAjvErrors = require('better-ajv-errors');
 
 module.exports = function validator({ data, schema }) {
   const validate = new Ajv({
+    jsonPointers: true,
+    strictDefaults: true,
     useDefaults: true,
-    strictDefaults: true
   }).compile(schema);
 
   const valid = validate(data);
 
   if (!valid) {
-    throw new ExError(
-      'Not match the schema, Invalid configuration',
-      validate.errors[0]
-    );
+    const output = betterAjvErrors(schema, data, validate.errors.slice(-1), {
+      indent: 2,
+    });
+
+    // @ts-ignore
+    console.log('Invalid config:', output.replace(/👈🏽.*\n/, '\n'), EOL);
+
+    // eslint-disable-next-line unicorn/no-process-exit
+    process.exit(1);
   }
 
   return data;

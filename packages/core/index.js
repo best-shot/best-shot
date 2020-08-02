@@ -55,10 +55,7 @@ module.exports = class BestShot {
   } = {}) {
     this.check();
 
-    this.chain
-      .context(rootPath)
-      .mode(mode)
-      .watch(mode === 'development' && watch);
+    this.chain.context(rootPath).mode(mode).watch(watch).cache(watch);
 
     const params = {
       browsers,

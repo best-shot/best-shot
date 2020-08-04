@@ -8,7 +8,6 @@ const rootPath = process.cwd();
 module.exports = function action({
   _: [command],
   platform,
-  custom,
   progress,
   analyze,
 }) {
@@ -19,7 +18,6 @@ module.exports = function action({
 
     const { webpackChain, presets = [], ...config } = configFunc({
       command,
-      custom,
       platform,
     });
 

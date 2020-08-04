@@ -1,3 +1,5 @@
+const { red } = require('chalk');
+
 function commandEnv(command) {
   return (
     {
@@ -10,24 +12,38 @@ function commandEnv(command) {
 }
 
 function getCompiler(getConfig) {
-  const config = getConfig();
+  try {
+    const config = getConfig();
 
-  const { watchOptions, stats, devServer } = config;
+    // eslint-disable-next-line no-inner-declarations
+    function showStats(error, stats) {
+      if (error) {
+        console.error(error);
+      }
+      if (stats) {
+        const hasErrors = stats.hasErrors();
+        const hasWarnings = stats.hasWarnings();
 
-  function showStats(error, Stats) {
-    if (error) {
-      console.error(error);
+        if (hasErrors || hasWarnings) {
+          process.exitCode = 1;
+        }
+
+        console.log(stats.toString(config.stats));
+      }
     }
-    if (Stats) {
-      console.log(Stats.toString(stats));
-    }
+
+    // eslint-disable-next-line global-require
+    const webpack = require('webpack');
+    const compiler = webpack(config);
+
+    const { watchOptions, devServer } = config;
+
+    return { compiler, showStats, watchOptions, devServer };
+  } catch (error) {
+    console.log(red('Error:', error.message));
+    process.exitCode = 1;
+    return {};
   }
-
-  // eslint-disable-next-line global-require
-  const webpack = require('webpack');
-  const compiler = webpack(config);
-
-  return { compiler, showStats, watchOptions, devServer };
 }
 
 module.exports = {

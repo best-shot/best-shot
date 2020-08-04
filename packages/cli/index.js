@@ -53,12 +53,10 @@ yargs
   )
   .command(findPkg('@best-shot/inspector'))
   .command(findPkg('./lib/add-ignore'))
-  .options({
-    color: {
-      coerce: () => level > 0,
-      describe: 'Colorful output',
-      type: 'boolean',
-    },
+  .option('color', {
+    coerce: () => level > 0,
+    describe: 'Colorful output',
+    type: 'boolean',
   })
   .middleware([
     function setEnv({ _: [command] }) {

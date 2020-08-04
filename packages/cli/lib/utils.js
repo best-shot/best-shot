@@ -10,7 +10,9 @@ function commandEnv(command) {
 }
 
 function getCompiler(getConfig) {
-  const { watch: _, watchOptions, stats, devServer, ...config } = getConfig();
+  const config = getConfig();
+
+  const { watchOptions, stats, devServer } = config;
 
   function showStats(error, Stats) {
     if (error) {

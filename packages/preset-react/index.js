@@ -2,6 +2,14 @@ const slashToRegexp = require('slash-to-regexp');
 
 exports.name = 'preset-react';
 
+function airbnb() {
+  try {
+    return !!require.resolve('airbnb-prop-types');
+  } catch {
+    return false;
+  }
+}
+
 exports.apply = function applyReact() {
   return (chain) => {
     const isProd = chain.get('mode') === 'production';
@@ -29,7 +37,16 @@ exports.apply = function applyReact() {
         presets: [...presets, ['@babel/react', { useSpread: true }]],
         plugins: [
           ...plugins,
-          ...(isProd ? ['transform-react-remove-prop-types'] : []),
+          ...(isProd
+            ? [
+                airbnb()
+                  ? [
+                      'transform-react-remove-prop-types',
+                      { additionalLibraries: ['airbnb-prop-types'] },
+                    ]
+                  : 'transform-react-remove-prop-types',
+              ]
+            : []),
           ...(useHot ? ['react-hot-loader/babel'] : []),
         ],
       }));

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -16,24 +16,27 @@
     "terminal",
     "webpack"
   ],
-  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/cli",
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/cli#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airkro/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/airkro/best-shot/issues"
+    "url": "https://github.com/best-shot/best-shot/issues"
   },
   "bin": {
     "best-shot": "index.js"
   },
   "main": "index.js",
+  "files": [
+    "config",
+    "lib"
+  ],
   "dependencies": {
     "browserslist": "^4.13.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.4.1",
-    "fs-extra": "^9.0.1",
     "lodash": "^4.17.19",
     "slash": "^3.0.0",
     "v8-compile-cache": "^2.1.1",

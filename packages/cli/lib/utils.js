@@ -21,10 +21,7 @@ function getCompiler(getConfig) {
         console.error(error);
       }
       if (stats) {
-        const hasErrors = stats.hasErrors();
-        const hasWarnings = stats.hasWarnings();
-
-        if (hasErrors || hasWarnings) {
+        if (stats.hasErrors()) {
           process.exitCode = 1;
         }
 

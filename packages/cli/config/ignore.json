@@ -1,0 +1,4 @@
+{
+  ".gitignore": ".best-shot/*[build,inspect,stats]/",
+  ".prettierignore": null
+}

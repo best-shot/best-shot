@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-web",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A `best-shot` preset for web project",
   "license": "MIT",
   "author": {
@@ -17,16 +17,17 @@
     "spa",
     "template",
     "web",
-    "webpack"
+    "webpack",
+    "yaml"
   ],
-  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-web",
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-web#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airkro/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/preset-web"
   },
   "bugs": {
-    "url": "https://github.com/airkro/best-shot/issues"
+    "url": "https://github.com/best-shot/best-shot/issues"
   },
   "main": "index.js",
   "dependencies": {
@@ -34,13 +35,15 @@
     "ext-to-regexp": "^0.0.8",
     "html-webpack-plugin": "^4.3.0",
     "micro-tpl-loader": "^0.0.1",
+    "raw-loader": "^4.0.1",
     "slash-to-regexp": "^0.0.4",
     "suffix": "^1.0.0",
-    "webpack-subresource-integrity": "^1.4.1"
+    "webpack-subresource-integrity": "^1.4.1",
+    "yaml-loader": "^0.6.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.7",
-    "webpack": "^4.43.0"
+    "@best-shot/core": "^0.1.9",
+    "webpack": "^4.44.1"
   },
   "engines": {
     "node": "^10.18 || ^12"

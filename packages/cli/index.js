@@ -1,11 +1,21 @@
 #!/usr/bin/env node
 
+const { green, cyan, red, level } = require('chalk');
+const isInstalledGlobally = require('is-installed-globally');
+
+if (isInstalledGlobally) {
+  console.log(
+    red('Error:'),
+    "`@best-shot/cli` shouldn't be installed globally",
+  );
+  process.exit(1);
+}
+
 require('v8-compile-cache');
 
 process.title = 'best-shot';
 
 const yargs = require('yargs');
-const { green, cyan, level } = require('chalk');
 
 const { commandEnv } = require('./lib/utils');
 const action = require('./lib/action');
@@ -25,7 +35,7 @@ yargs
   .scriptName('best-shot')
   .epilogue('Repository: https://github.com/best-shot/best-shot')
   .epilogue('Website: https://www.npmjs.com/org/best-shot')
-  .usage(`Usage: ${green`$0`} <command> [options]`)
+  .usage(`Usage: ${green('$0')} <command> [options]`)
   .alias('help', 'h')
   .version(false)
   .wrap(60)
@@ -41,13 +51,13 @@ yargs
   )
   .command(
     'dev',
-    `Bundle files in ${cyan`development`} mode`,
+    `Bundle files in ${cyan('development')} mode`,
     setOptions.dev,
     action,
   )
   .command(
     'prod',
-    `Bundle files in ${cyan`production`} mode`,
+    `Bundle files in ${cyan('production')} mode`,
     setOptions.prod,
     action,
   )
@@ -62,7 +72,7 @@ yargs
       if (['dev', 'prod', 'watch', 'serve'].includes(command)) {
         process.env.NODE_ENV = commandEnv(command);
 
-        console.log(cyan`NODE_ENV:`, process.env.NODE_ENV);
+        console.log(cyan('NODE_ENV:'), process.env.NODE_ENV);
       }
     },
   ]).argv;

@@ -1,4 +1,11 @@
 {
-  ".gitignore": ".best-shot/*[build,inspect,stats]/",
-  ".prettierignore": null
+  "git": [
+    ".best-shot/*[build,inspect,stats]/"
+  ],
+  "eslint": [
+    "**/.best-shot/*[build,inspect,stats]/"
+  ],
+  "stylelint": [
+    ".best-shot/(build|inspect|stats)/*"
+  ]
 }

@@ -7,8 +7,6 @@ module.exports = function handle(command, getConfig) {
       compiler.run(showStats);
     }
   } else {
-    console.log('`best-shot` is watching your configuration');
-
     const { compiler, showStats, watchOptions, devServer } = getCompiler(
       getConfig,
     );

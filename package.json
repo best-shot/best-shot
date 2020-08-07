@@ -2,18 +2,19 @@
   "private": true,
   "name": "best-shot",
   "version": "0.0.0",
+  "description": "A webpack config wrapper",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
     "email": "airkro@qq.com"
   },
-  "homepage": "https://github.com/airkro/best-shot#readme",
+  "homepage": "https://github.com/best-shot/best-shot#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airkro/best-shot.git"
+    "url": "git+https://github.com/best-shot/best-shot.git"
   },
   "bugs": {
-    "url": "https://github.com/airkro/best-shot/issues"
+    "url": "https://github.com/best-shot/best-shot/issues"
   },
   "scripts": {
     "format": "nice-move lint",
@@ -33,12 +34,10 @@
   "devDependencies": {
     "@babel/core": "^7.11.0",
     "@nice-move/cli": "^0.4.1",
-    "@nice-move/eslint-config-base": "^0.3.4",
+    "@nice-move/eslint-config-base": "^0.3.5",
     "@nice-move/prettier-config": "^0.2.4",
     "@types/react": "^16.9.44",
     "ava": "^3.11.1",
-    "docsify": "^4.11.4",
-    "docsify-cli": "^4.4.1",
     "eslint": "^6.8.0",
     "eslint-plugin-ava": "^10.5.0",
     "husky": "^4.2.5",

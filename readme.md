@@ -2,11 +2,11 @@
 
 A webpack config wrapper.
 
-[![npm version][npm-badge]][npm-link]
-[![license][github-badge]][github-link]
-[![lgtm][lgtm-badge]][lgtm-link]
+[![npm org][npm-badge]][npm-link]
+[![github repo][github-badge]][github-link]
+[![lgtm alert][lgtm-badge]][lgtm-link]
 
-## packages
+## Packages
 
 - [@best-shot/cli](./packages/cli/)
 - [@best-shot/core](./packages/core/)
@@ -24,11 +24,11 @@ A webpack config wrapper.
 
 [![fossa status][fossa-badge]][fossa-link]
 
-[fossa-badge]: https://app.fossa.io/api/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot.svg?type=large
-[fossa-link]: https://app.fossa.io/projects/git%2Bgithub.com%2FAirkro%2Fbest-shot?ref=badge_large
-[github-badge]: https://img.shields.io/github/license/Airkro/best-shot.svg?logo=github&style=flat-square&colorB=blue
-[github-link]: https://github.com/Airkro/best-shot
-[lgtm-badge]: https://img.shields.io/lgtm/alerts/g/Airkro/best-shot.svg?logo=lgtm&style=flat-square
-[lgtm-link]: https://lgtm.com/projects/g/Airkro/best-shot/alerts/
-[npm-badge]: https://img.shields.io/badge/npm-best--shot-orange.svg?style=flat-square&logo=npm
+[npm-badge]: https://img.shields.io/badge/npm-best--shot-blue.svg?logo=npm&style=flat-square
 [npm-link]: https://www.npmjs.com/org/best-shot
+[github-badge]: https://img.shields.io/github/license/best-shot/best-shot.svg?logo=github&style=flat-square
+[github-link]: https://github.com/best-shot/best-shot
+[lgtm-badge]: https://img.shields.io/lgtm/alerts/g/best-shot/best-shot.svg?logo=lgtm&style=flat-square
+[lgtm-link]: https://lgtm.com/projects/g/best-shot/best-shot/alerts/
+[fossa-badge]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbest-shot%2Fbest-shot.svg?type=large
+[fossa-link]: https://app.fossa.com/projects/git%2Bgithub.com%2Fbest-shot%2Fbest-shot?ref=badge_large

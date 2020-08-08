@@ -1,4 +1,3 @@
-const cloneDeep = require('lodash/cloneDeep');
 const sortObject = require('sort-object');
 const BestShot = require('@best-shot/core');
 const { commandEnv } = require('@best-shot/cli/lib/utils');
@@ -22,18 +21,14 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
       const mode = commandEnv(command);
       const browsers = reachBrowsers(rootPath, mode);
 
-      const { webpackChain, presets, ...config } = cloneDeep(
-        configFunc({
-          command,
-          platform,
-        }),
-      );
+      const { webpackChain, presets, ...config } = configFunc({
+        command,
+        platform,
+      });
 
-      if (command === 'serve') {
-        presets.unshift('serve');
-      }
-
-      const io = new BestShot({ presets });
+      const io = new BestShot({
+        presets: command === 'serve' ? ['serve', ...presets] : presets,
+      });
 
       writeFile({
         name: `${platform ? `${platform}/` : ''}${command}.js`,

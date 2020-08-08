@@ -1,5 +1,3 @@
-'use strict';
-
 const { format } = require('prettier');
 const sortObject = require('sort-object');
 const { stringify } = require('javascript-stringify');
@@ -7,7 +5,7 @@ const { stringify } = require('javascript-stringify');
 function formatJs(code) {
   return format(code, {
     parser: 'babel',
-    singleQuote: true
+    singleQuote: true,
   });
 }
 
@@ -18,7 +16,7 @@ function formatJson(json) {
 module.exports = function concatStr({ input, output, schema, stamp }) {
   return formatJs(`
 // Generate by \`best-shot\`
-// repository: https://github.com/airkro/best-shot
+// repository: https://github.com/best-shot/best-shot
 // website: https://www.npmjs.com/org/best-shot
 // stamp: ${stamp}
 

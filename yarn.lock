@@ -1019,21 +1019,21 @@
     eslint-plugin-promise "^4.2.1"
     eslint-plugin-unicorn "^19.0.1"
 
-"@nice-move/prettier-config@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.npm.taobao.org/@nice-move/prettier-config/download/@nice-move/prettier-config-0.2.4.tgz#b224b73ccafbdc41f203fca3b10d87f12682a683"
-  integrity sha1-siS3PMr73EHyA/yjsQ2H8SaCpoM=
+"@nice-move/prettier-config@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.npm.taobao.org/@nice-move/prettier-config/download/@nice-move/prettier-config-0.2.5.tgz#aaae2807bfdc2711b871fd4f4709a0b005e3b3c4"
+  integrity sha1-qq4oB7/cJxG4cf1PRwmgsAXjs8Q=
   dependencies:
-    "@nice-move/prettier-plugin-package-json" "^0.2.0"
-    "@prettier/plugin-xml" "^0.8.0"
+    "@nice-move/prettier-plugin-package-json" "^0.3.0"
+    "@prettier/plugin-xml" "^0.10.0"
     prettier-plugin-ini "^0.3.0"
     prettier-plugin-properties "^0.1.0"
     prettier-plugin-toml "^0.3.1"
 
-"@nice-move/prettier-plugin-package-json@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/@nice-move/prettier-plugin-package-json/-/prettier-plugin-package-json-0.2.0.tgz#8a4caea35ce08c346bf77f1cb99ae17bbe8a7a5a"
-  integrity sha512-eP9tapN3dF25qyQnhzvYQ4yHKEpynz4ExnpI2ga/xmocUZkjy6hMROg9HCiM86gYUcAKUZh/R9DACNF5qXoLTg==
+"@nice-move/prettier-plugin-package-json@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npm.taobao.org/@nice-move/prettier-plugin-package-json/download/@nice-move/prettier-plugin-package-json-0.3.0.tgz#1121b306cefb0b92a7825f09dcc42f1c6c44c3e4"
+  integrity sha1-ESGzBs77C5Kngl8J3MQvHGxEw+Q=
   dependencies:
     normalize-package-data "^2.5.0"
     npm-normalize-package-bin "^1.0.1"
@@ -1060,10 +1060,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@prettier/plugin-xml@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.npm.taobao.org/@prettier/plugin-xml/download/@prettier/plugin-xml-0.8.0.tgz#b9739a1221c3033c62c39cdebdc4dc4d7e7e0da4"
-  integrity sha1-uXOaEiHDAzxiw5zevcTcTX5+DaQ=
+"@prettier/plugin-xml@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.npm.taobao.org/@prettier/plugin-xml/download/@prettier/plugin-xml-0.10.0.tgz#538e485bc38aa9852b82679a020df3e05c49df4a"
+  integrity sha1-U45IW8OKqYUrgmeaAg3z4FxJ30o=
   dependencies:
     "@xml-tools/parser" "^1.0.2"
     prettier ">=1.10"
@@ -6396,10 +6396,10 @@ kleur@^4.0.2:
   resolved "https://registry.npm.taobao.org/kleur/download/kleur-4.0.2.tgz#57b36cc5235601f824c33e6e45db10cd5493dbf5"
   integrity sha1-V7NsxSNWAfgkwz5uRdsQzVST2/U=
 
-klona@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npm.taobao.org/klona/download/klona-1.1.1.tgz#8b1e93808ef602a0cc4fb438ba72eb00594e9802"
-  integrity sha1-ix6TgI72AqDMT7Q4unLrAFlOmAI=
+klona@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npm.taobao.org/klona/download/klona-1.1.2.tgz?cache=0&sync_timestamp=1594031401487&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fklona%2Fdownload%2Fklona-1.1.2.tgz#a79e292518a5a5412ec8d097964bff1571a64db0"
+  integrity sha1-p54pJRilpUEuyNCXlkv/FXGmTbA=
 
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
@@ -6997,10 +6997,10 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-mini-css-extract-plugin@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.npm.taobao.org/mini-css-extract-plugin/download/mini-css-extract-plugin-0.9.0.tgz?cache=0&sync_timestamp=1576856499989&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmini-css-extract-plugin%2Fdownload%2Fmini-css-extract-plugin-0.9.0.tgz#47f2cf07aa165ab35733b1fc97d4c46c0564339e"
-  integrity sha1-R/LPB6oWWrNXM7H8l9TEbAVkM54=
+mini-css-extract-plugin@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.npm.taobao.org/mini-css-extract-plugin/download/mini-css-extract-plugin-0.10.0.tgz?cache=0&sync_timestamp=1597072282658&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmini-css-extract-plugin%2Fdownload%2Fmini-css-extract-plugin-0.10.0.tgz#a0e6bfcad22a9c73f6c882a3c7557a98e2d3d27d"
+  integrity sha1-oOa/ytIqnHP2yIKjx1V6mOLT0n0=
   dependencies:
     loader-utils "^1.1.0"
     normalize-url "1.9.1"
@@ -7175,10 +7175,10 @@ negotiator@0.6.2:
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-neo-async@^2.5.0, neo-async@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
-  integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
+neo-async@^2.5.0, neo-async@^2.6.1, neo-async@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.2.tgz?cache=0&sync_timestamp=1594317434347&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fneo-async%2Fdownload%2Fneo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
+  integrity sha1-tKr7k+OustgXTKU88WOrfXMIMF8=
 
 next-tick@~1.0.0:
   version "1.0.0"
@@ -9197,14 +9197,14 @@ safe-regex@^2.1.1:
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sass-loader@^9.0.2:
-  version "9.0.2"
-  resolved "https://registry.npm.taobao.org/sass-loader/download/sass-loader-9.0.2.tgz?cache=0&sync_timestamp=1594134284232&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsass-loader%2Fdownload%2Fsass-loader-9.0.2.tgz#847c9b4c95328ddc8c7d35cf28c9d6e54e59a90b"
-  integrity sha1-hHybTJUyjdyMfTXPKMnW5U5ZqQs=
+sass-loader@^9.0.3:
+  version "9.0.3"
+  resolved "https://registry.npm.taobao.org/sass-loader/download/sass-loader-9.0.3.tgz?cache=0&sync_timestamp=1596633419455&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsass-loader%2Fdownload%2Fsass-loader-9.0.3.tgz#086adcf0bfdcc9d920413e2cdc3ba3321373d547"
+  integrity sha1-CGrc8L/cydkgQT4s3DujMhNz1Uc=
   dependencies:
-    klona "^1.1.1"
+    klona "^1.1.2"
     loader-utils "^2.0.0"
-    neo-async "^2.6.1"
+    neo-async "^2.6.2"
     schema-utils "^2.7.0"
     semver "^7.3.2"
 

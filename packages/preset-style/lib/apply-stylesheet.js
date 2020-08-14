@@ -1,7 +1,8 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const extToRegexp = require('ext-to-regexp');
 const autoprefixer = require('autoprefixer');
+const extToRegexp = require('ext-to-regexp');
+const slashToRegexp = require('slash-to-regexp');
 
 function applyOneOf({ auto = undefined, mode }) {
   return (rule) => {
@@ -10,7 +11,7 @@ function applyOneOf({ auto = undefined, mode }) {
       .loader('css-loader')
       .options({
         esModule: false,
-        importLoaders: 2,
+        importLoaders: 3,
         localsConvention: 'camelCaseOnly',
         sourceMap: mode === 'development',
         modules: {
@@ -89,6 +90,15 @@ module.exports = function applyStylesheet(chain) {
         ignoreOrder: false,
       },
     ]);
+  }
+
+  if (chain.module.rules.has('babel')) {
+    chain.module
+      .rule('babel')
+      .exclude.add(slashToRegexp('/node_modules/css-loader/'))
+      .when(!useHot, (exclude) =>
+        exclude.add(slashToRegexp('/node_modules/mini-css-extract-plugin/')),
+      );
   }
 
   chain.module.rule('style').when(

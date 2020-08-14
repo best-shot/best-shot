@@ -1,4 +1,4 @@
 module.exports = {
-  presets: [],
+  presets: ['babel', 'style'],
   staticPath: false,
 };

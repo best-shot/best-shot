@@ -33,16 +33,16 @@
   "main": "index.js",
   "dependencies": {
     "@iarna/toml": "^2.2.5",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.0",
     "git-rev-webpack-plugin": "^0.2.2",
     "is-git-repository": "^1.1.1",
     "js-yaml": "^3.14.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "sort-keys": "^4.0.0"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.1.7",
-    "webpack": "^4.43.0"
+    "webpack": "^4.44.1"
   },
   "engines": {
     "node": "^10.18 || ^12"

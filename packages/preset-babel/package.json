@@ -40,7 +40,7 @@
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.11.0",
+    "@babel/core": "^7.11.1",
     "@best-shot/core": "^0.1.8",
     "core-js": "^3.6.5"
   },

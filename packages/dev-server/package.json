@@ -32,13 +32,13 @@
   "main": "index.js",
   "dependencies": {
     "@best-shot/preset-serve": "^0.2.1",
-    "lodash": "^4.17.15",
-    "webpack-dev-server": "^3.10.3",
+    "lodash": "^4.17.20",
+    "webpack-dev-server": "^3.11.0",
     "webpack-dev-server-waitpage": "^1.0.0"
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.3.0",
-    "webpack": "^4.42.1"
+    "webpack": "^4.44.1"
   },
   "engines": {
     "node": "^10.18 || ^12"

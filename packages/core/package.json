@@ -35,7 +35,7 @@
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.19",
     "slash": "^3.0.0",
-    "terser-webpack-plugin": "^2.3.7",
+    "terser-webpack-plugin": "^4.0.0",
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {

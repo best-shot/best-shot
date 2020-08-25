@@ -2,6 +2,9 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpackDevServerWaitpage = require('webpack-dev-server-waitpage');
 
 module.exports = function DevServer(compiler, devServer) {
+  // @ts-ignore
+  compiler.apply(webpackDevServerWaitpage.plugin());
+
   const Server = new WebpackDevServer(compiler, {
     ...devServer,
     before(app, server) {

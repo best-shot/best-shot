@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -20,25 +20,25 @@
     "wds",
     "webpack"
   ],
-  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/dev-server",
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/dev-server",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airkro/best-shot.git",
+    "url": "https://github.com/best-shot/best-shot.git",
     "directory": "packages/dev-server"
   },
   "bugs": {
-    "url": "https://github.com/airkro/best-shot/issues"
+    "url": "https://github.com/best-shot/best-shot/issues"
   },
   "main": "index.js",
   "dependencies": {
     "@best-shot/preset-serve": "^0.2.1",
-    "lodash": "^4.17.15",
-    "webpack-dev-server": "^3.10.3",
-    "webpack-dev-server-waitpage": "^1.0.0"
+    "lodash": "^4.17.20",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server-waitpage": "^2.0.0"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.3.0",
-    "webpack": "^4.42.1"
+    "@best-shot/cli": "^0.3.6",
+    "webpack": "^4.44.1"
   },
   "engines": {
     "node": "^10.18 || ^12"

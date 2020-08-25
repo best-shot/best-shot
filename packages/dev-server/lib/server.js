@@ -1,12 +1,12 @@
 const WebpackDevServer = require('webpack-dev-server');
 const webpackDevServerWaitpage = require('webpack-dev-server-waitpage');
 
-module.exports = function DevServer(compiler, devServer) {
+module.exports = function DevServer(compiler, options) {
   // @ts-ignore
-  compiler.apply(webpackDevServerWaitpage.plugin());
+  webpackDevServerWaitpage.plugin().apply(compiler);
 
   const Server = new WebpackDevServer(compiler, {
-    ...devServer,
+    ...options,
     before(app, server) {
       app.use(
         // @ts-ignore
@@ -15,13 +15,13 @@ module.exports = function DevServer(compiler, devServer) {
         }),
       );
 
-      if (typeof devServer.before === 'function') {
-        devServer.before(app, server);
+      if (typeof options.before === 'function') {
+        options.before(app, server);
       }
     },
   });
 
-  Server.listen(devServer.port, devServer.host);
+  Server.listen(options.port, options.host);
 
   return Server;
 };

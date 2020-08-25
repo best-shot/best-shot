@@ -1766,10 +1766,10 @@ autoprefixer@^9.8.6:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-ava@^3.12.0:
-  version "3.12.0"
-  resolved "https://registry.npm.taobao.org/ava/download/ava-3.12.0.tgz#82c837cfcd3bec980f491cabb7ca1e2b071a16c7"
-  integrity sha1-gsg3z8077JgPSRyrt8oeKwcaFsc=
+ava@^3.12.1:
+  version "3.12.1"
+  resolved "https://registry.npm.taobao.org/ava/download/ava-3.12.1.tgz#0181b5ca10d178539a0d503e0fc9244146303717"
+  integrity sha1-AYG1yhDReFOaDVA+D8kkQUYwNxc=
   dependencies:
     "@concordance/react" "^2.0.0"
     acorn "^8.0.1"

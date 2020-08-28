@@ -33,17 +33,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",
-    "@nice-move/cli": "^0.4.2",
-    "@nice-move/eslint-config-base": "^0.3.7",
-    "@nice-move/prettier-config": "^0.2.5",
+    "@nice-move/cli": "^0.4.4",
+    "@nice-move/eslint-config-base": "^0.3.9",
+    "@nice-move/prettier-config": "^0.3.0",
     "@types/react": "^16.9.44",
     "ava": "^3.12.1",
     "eslint": "^6.8.0",
     "eslint-plugin-ava": "^10.5.0",
     "husky": "^4.2.5",
-    "prettier": "^2.1.0",
+    "prettier": "^2.1.1",
     "typescript": "^4.0.2",
-    "webpack": "^4.44.1"
+    "webpack": "^4.44.1",
+    "x-readme": "^0.0.3"
   },
   "resolutions": {
     "bin-wrapper": "npm:bin-wrapper-china"

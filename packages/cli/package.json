@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.3.6",
+  "version": "0.4.0",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -16,10 +16,10 @@
     "terminal",
     "webpack"
   ],
-  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/cli#readme",
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/cli",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/best-shot/best-shot.git",
+    "url": "https://github.com/best-shot/best-shot.git",
     "directory": "packages/cli"
   },
   "bugs": {
@@ -30,16 +30,16 @@
   },
   "main": "index.js",
   "dependencies": {
-    "browserslist": "^4.13.0",
+    "browserslist": "^4.14.0",
     "chalk": "^4.1.0",
-    "chokidar": "^3.4.1",
+    "cheetor": "^0.2.1",
+    "chokidar": "^3.4.2",
     "is-installed-globally": "^0.3.2",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "slash": "^3.0.0",
     "v8-compile-cache": "^2.1.1",
     "webpack-bundle-analyzer": "^3.8.0",
-    "webpackbar": "^4.0.0",
-    "yargs": "^15.4.1"
+    "webpackbar": "^4.0.0"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.1.9",

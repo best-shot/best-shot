@@ -1,10 +1,27 @@
-const setOptions = require('@best-shot/cli/lib/set-options');
-const action = require('@best-shot/cli/lib/action');
+const WebpackDevServer = require('webpack-dev-server');
+const webpackDevServerWaitpage = require('webpack-dev-server-waitpage');
 
-exports.command = 'serve';
+module.exports = function DevServer(compiler, options) {
+  // @ts-ignore
+  webpackDevServerWaitpage.plugin().apply(compiler);
 
-exports.describe = 'Same as `dev` command with `dev-server`';
+  const Server = new WebpackDevServer(compiler, {
+    ...options,
+    before(app, server) {
+      app.use(
+        // @ts-ignore
+        webpackDevServerWaitpage(server, {
+          title: 'Please wait ...',
+        }),
+      );
 
-exports.builder = setOptions.watch;
+      if (typeof options.before === 'function') {
+        options.before(app, server);
+      }
+    },
+  });
 
-exports.handler = action;
+  Server.listen(options.port, options.host);
+
+  return Server;
+};

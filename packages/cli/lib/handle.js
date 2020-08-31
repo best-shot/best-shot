@@ -14,7 +14,7 @@ module.exports = function handle(command, getConfig) {
     if (compiler) {
       if (command === 'serve') {
         // eslint-disable-next-line global-require, import/no-extraneous-dependencies
-        const DevServer = require('@best-shot/dev-server/lib/server');
+        const DevServer = require('@best-shot/dev-server');
         DevServer(compiler, devServer);
       } else {
         compiler.watch(watchOptions, showStats);

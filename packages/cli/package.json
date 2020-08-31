@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -32,10 +32,8 @@
   "dependencies": {
     "browserslist": "^4.14.0",
     "chalk": "^4.1.0",
-    "cheetor": "^0.2.1",
-    "chokidar": "^3.4.2",
+    "cheetor": "^0.2.2",
     "is-installed-globally": "^0.3.2",
-    "lodash": "^4.17.20",
     "slash": "^3.0.0",
     "v8-compile-cache": "^2.1.1",
     "webpack-bundle-analyzer": "^3.8.0",

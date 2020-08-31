@@ -4,7 +4,7 @@
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4":
   version "7.10.4"
-  resolved "https://registry.npm.taobao.org/@babel/code-frame/download/@babel/code-frame-7.10.4.tgz?cache=0&sync_timestamp=1593522948158&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fcode-frame%2Fdownload%2F%40babel%2Fcode-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
+  resolved "https://registry.npm.taobao.org/@babel/code-frame/download/@babel/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
   integrity sha1-Fo2ho26Q2miujUnA8bSMfGJJITo=
   dependencies:
     "@babel/highlight" "^7.10.4"
@@ -988,10 +988,10 @@
   resolved "https://registry.npm.taobao.org/@iarna/toml/download/@iarna/toml-2.2.5.tgz?cache=0&sync_timestamp=1587675154121&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40iarna%2Ftoml%2Fdownload%2F%40iarna%2Ftoml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha1-syNmyJtDxvjO+976x3i5yCjjuow=
 
-"@nice-move/cli@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.npm.taobao.org/@nice-move/cli/download/@nice-move/cli-0.4.4.tgz#3347842a44907b8b90607a0671399b3d237b2104"
-  integrity sha1-M0eEKkSQe4uQYHoGcTmbPSN7IQQ=
+"@nice-move/cli@^0.4.5":
+  version "0.4.5"
+  resolved "https://registry.npm.taobao.org/@nice-move/cli/download/@nice-move/cli-0.4.5.tgz#913ba1000f821f91b1aee608ff3b2fb5e052bc07"
+  integrity sha1-kTuhAA+CH5GxruYI/zsvteBSvAc=
   dependencies:
     centra "^2.4.2"
     chalk "^4.1.0"
@@ -1006,6 +1006,7 @@
     micromustache "^8.0.3"
     ora "^5.0.0"
     os-locale "^5.0.0"
+    replace-in-file "^6.1.0"
     yarn-deduplicate "^2.1.1"
 
 "@nice-move/eslint-config-base@^0.3.9":
@@ -2521,10 +2522,10 @@ cheetor@^0.1.0:
     kleur "^4.1.1"
     yargs "^15.4.1"
 
-cheetor@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.npm.taobao.org/cheetor/download/cheetor-0.2.1.tgz?cache=0&sync_timestamp=1598601410149&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcheetor%2Fdownload%2Fcheetor-0.2.1.tgz#855af47c3fb3ec7d80332918a3a5f9f6891f78d8"
-  integrity sha1-hVr0fD+z7H2AMykYo6X59okfeNg=
+cheetor@^0.2.1, cheetor@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.npm.taobao.org/cheetor/download/cheetor-0.2.2.tgz?cache=0&sync_timestamp=1598836155041&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcheetor%2Fdownload%2Fcheetor-0.2.2.tgz#8ba77aef17fd8701006ebc22f0b9a1fe7f6dd006"
+  integrity sha1-i6d67xf9hwEAbrwi8Lmh/n9t0AY=
   dependencies:
     chalk "^4.1.0"
     yargs "^15.4.1"
@@ -6479,7 +6480,7 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.npmjs.org/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kleur@^4.1.0, kleur@^4.1.1:
+kleur@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npm.taobao.org/kleur/download/kleur-4.1.1.tgz?cache=0&sync_timestamp=1597815066335&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkleur%2Fdownload%2Fkleur-4.1.1.tgz#80b49dd7d1afeba41b8dcdf4ecfff9252205fc52"
   integrity sha1-gLSd19Gv66Qbjc307P/5JSIF/FI=
@@ -9141,6 +9142,15 @@ replace-ext@1.0.0, replace-ext@^1.0.0:
   resolved "https://registry.npm.taobao.org/replace-ext/download/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
   integrity sha1-3mMSg3P8v3w8z6TeWkgMRaZ5WOs=
 
+replace-in-file@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.npm.taobao.org/replace-in-file/download/replace-in-file-6.1.0.tgz#9f9ddd7bb70d6ad231d2ad692e1b646e73d06647"
+  integrity sha1-n53de7cNatIx0q1pLhtkbnPQZkc=
+  dependencies:
+    chalk "^4.0.0"
+    glob "^7.1.6"
+    yargs "^15.3.1"
+
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
@@ -11364,7 +11374,7 @@ yargs@^13.3.2:
     y18n "^4.0.0"
     yargs-parser "^13.1.2"
 
-yargs@^15.4.1:
+yargs@^15.3.1, yargs@^15.4.1:
   version "15.4.1"
   resolved "https://registry.npm.taobao.org/yargs/download/yargs-15.4.1.tgz?cache=0&sync_timestamp=1594421142336&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyargs%2Fdownload%2Fyargs-15.4.1.tgz#0d87a16de01aee9d8bec2bfbf74f67851730f4f8"
   integrity sha1-DYehbeAa7p2L7Cv7909nhRcw9Pg=

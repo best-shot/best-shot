@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-style",
-  "version": "0.2.11",
+  "version": "0.3.0",
   "description": "A `best-shot` preset for stylesheet",
   "license": "MIT",
   "author": {
@@ -13,27 +13,22 @@
     "css",
     "css-modules",
     "cssnano",
-    "font",
-    "image",
-    "imagemin",
     "less",
     "modules",
     "postcss",
     "sass",
     "scss",
     "style",
-    "svg",
-    "svgo",
     "webpack"
   ],
-  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-style",
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-style",
   "repository": {
     "type": "git",
-    "url": "https://github.com/airkro/best-shot.git",
+    "url": "https://github.com/best-shot/best-shot.git",
     "directory": "packages/preset-style"
   },
   "bugs": {
-    "url": "https://github.com/airkro/best-shot/issues"
+    "url": "https://github.com/best-shot/best-shot/issues"
   },
   "main": "index.js",
   "dependencies": {
@@ -41,21 +36,15 @@
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
     "ext-to-regexp": "^0.0.8",
-    "file-loader": "^6.0.0",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegtran": "^7.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^8.0.0",
-    "imagemin-webpack": "^5.1.1",
     "less": "^3.12.2",
-    "less-loader": "^6.2.0",
-    "mini-css-extract-plugin": "^0.10.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "less-loader": "^7.0.0",
+    "mini-css-extract-plugin": "^0.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss": "^7.0.32",
     "postcss-loader": "^3.0.0",
     "resolve-url-loader": "^3.1.1",
     "sass": "^1.26.10",
-    "sass-loader": "^9.0.3",
+    "sass-loader": "^10.0.1",
     "slash-to-regexp": "^0.0.4",
     "style-loader": "^1.2.1"
   },

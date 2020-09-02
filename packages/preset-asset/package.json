@@ -1,0 +1,46 @@
+{
+  "name": "@best-shot/preset-asset",
+  "version": "0.1.0",
+  "description": "A `best-shot` preset for stylesheet",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "keywords": [
+    "best-shot",
+    "font",
+    "image",
+    "imagemin",
+    "svg",
+    "svgo",
+    "webpack"
+  ],
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-asset",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/best-shot/best-shot.git",
+    "directory": "packages/preset-asset"
+  },
+  "bugs": {
+    "url": "https://github.com/best-shot/best-shot/issues"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "autoprefixer": "^9.8.6",
+    "ext-to-regexp": "^0.0.8",
+    "file-loader": "^6.1.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^8.0.0",
+    "imagemin-webpack": "^5.1.1",
+    "slash-to-regexp": "^0.0.4"
+  },
+  "peerDependencies": {
+    "@best-shot/core": "^0.1.10"
+  },
+  "engines": {
+    "node": "^10.18 || ^12"
+  }
+}

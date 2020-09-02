@@ -1,7 +1,5 @@
 const { relative } = require('@best-shot/core/lib/path');
 
-const applyFont = require('./lib/apply-font');
-const applyImage = require('./lib/apply-image');
 const applyScssLess = require('./lib/apply-scss-less');
 const applyStylesheet = require('./lib/apply-stylesheet');
 
@@ -18,9 +16,7 @@ exports.apply = function applyStyle({
 
     chain
       .batch(applyStylesheet)
-      .batch(applyScssLess({ sassResolveUrl, lessJavascriptEnabled }))
-      .batch(applyImage)
-      .batch(applyFont);
+      .batch(applyScssLess({ sassResolveUrl, lessJavascriptEnabled }));
 
     chain.resolveLoader.modules.prepend(relative(context, module.paths[0]));
   };

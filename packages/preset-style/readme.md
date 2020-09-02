@@ -3,15 +3,21 @@
 A `best-shot` preset for stylesheet.
 
 [![npm][npm-badge]][npm-url]
-[![license][license-badge]][github-url]
+[![github][github-badge]][github-url]
 ![node][node-badge]
+
+[npm-url]: https://www.npmjs.com/package/@best-shot/preset-style
+[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-style.svg?style=flat-square&logo=npm
+[github-url]: https://github.com/best-shot/best-shot/tree/master/packages/preset-style
+[github-badge]: https://img.shields.io/npm/l/@best-shot/preset-style.svg?style=flat-square&colorB=blue&logo=github
+[node-badge]: https://img.shields.io/node/v/@best-shot/preset-style.svg?style=flat-square&colorB=green&logo=node.js
 
 This preset offer the following features:
 
 - CSS Modules
 - `less` / `sass` syntax
 - Use `autoprefixer` by default
-- `imagemin` and `cssnano` support
+- Use `cssnano` in production mode
 
 ## Installation
 
@@ -38,6 +44,8 @@ import bar from './bar.module.scss';
 ```
 
 Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-modules.html)
+
+<!-- eslint-skip -->
 
 ```vue
 <!-- example.vue -->
@@ -86,9 +94,3 @@ module.exports = {
 ```bash
 npm install node-sass --save-dev
 ```
-
-[npm-url]: https://www.npmjs.com/package/@best-shot/preset-style
-[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-style.svg?style=flat-square&logo=npm
-[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-style
-[node-badge]: https://img.shields.io/node/v/@best-shot/preset-style.svg?style=flat-square&colorB=green&logo=node.js
-[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-style.svg?style=flat-square&colorB=blue&logo=github

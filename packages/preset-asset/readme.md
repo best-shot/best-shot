@@ -1,6 +1,6 @@
 # @best-shot/preset-asset
 
-A `best-shot` preset for stylesheet.
+A `best-shot` preset for asset.
 
 [![npm][npm-badge]][npm-url]
 [![github][github-badge]][github-url]

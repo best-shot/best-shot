@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-env",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A `best-shot` preset for env variables",
   "license": "MIT",
   "author": {
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-env",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airkro/best-shot.git",
+    "url": "https://github.com/airkro/best-shot.git",
     "directory": "packages/preset-env"
   },
   "bugs": {
@@ -33,18 +33,19 @@
   "main": "index.js",
   "dependencies": {
     "@iarna/toml": "^2.2.5",
-    "chalk": "^4.0.0",
-    "git-rev-webpack-plugin": "^0.2.2",
-    "is-git-repository": "^1.1.1",
+    "@nice-labs/git-rev": "^3.5.0",
+    "chalk": "^4.1.0",
+    "ini": "^1.3.5",
+    "is-git-repository": "^2.0.0",
     "js-yaml": "^3.14.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "sort-keys": "^4.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.7",
-    "webpack": "^4.43.0"
+    "@best-shot/core": "^0.2.0",
+    "webpack": "^4.44.1"
   },
   "engines": {
-    "node": "^10.18 || ^12"
+    "node": "^10.18 || ^12.14 || ^14"
   }
 }

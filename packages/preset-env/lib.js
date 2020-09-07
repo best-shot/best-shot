@@ -3,6 +3,7 @@ const pickBy = require('lodash/pickBy');
 // @ts-ignore
 const tomlParser = require('@iarna/toml/parse');
 const yaml = require('js-yaml');
+const { decode } = require('ini');
 
 function ensureConfig(type, rootPath) {
   try {
@@ -20,6 +21,7 @@ function ensureConfig(type, rootPath) {
 function findConfig(rootPath) {
   return (
     ensureConfig('toml', rootPath) ||
+    ensureConfig('ini', rootPath) ||
     ensureConfig('yaml', rootPath) ||
     ensureConfig('json', rootPath)
   );
@@ -49,6 +51,7 @@ const parser = {
   json: (str) => JSON.parse(str),
   yaml: (str) => yaml.safeLoad(str),
   toml: (str) => tomlParser(str),
+  ini: (str) => decode(str),
 };
 
 // @ts-ignore

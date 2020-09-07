@@ -33,7 +33,7 @@ module.exports = class BestShot {
 
   use({ apply, schema, name = 'Unnamed' } = {}, type) {
     if (!types.includes(type)) {
-      throw new Error(`Can't use ${type} presets: [${name}]`);
+      throw new Error(`Can't prepare ${type} presets: ${name}`);
     }
 
     if (typeof apply === 'function') {

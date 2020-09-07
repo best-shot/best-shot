@@ -34,11 +34,14 @@ test('Prevent React and Vue', (t) => {
 });
 
 test('More presets', (t) => {
-  const io = new BestShot({
-    presets: ['babel', 'style', 'vue', 'web'],
-  });
-  t.is(io.stack.store.additional.length, 4);
+  const presets = ['babel', 'style', 'vue'];
+
+  const io = new BestShot({ presets });
+
+  t.is(io.stack.store.additional.length, presets.length);
+
   const { rules } = io.load().module;
+
   t.is(rules.has('babel'), true);
   t.is(rules.has('style'), true);
   t.is(rules.has('vue'), true);

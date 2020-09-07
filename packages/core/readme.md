@@ -16,7 +16,7 @@ This tool includes the following packages:
 
 - case-sensitive-paths-webpack-plugin
 - clean-webpack-plugin
-- copy-webpack-plugin
+- copy-webpack
 - terser-webpack-plugin
 - webpack-chain
 

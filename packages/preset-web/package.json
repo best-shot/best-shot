@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-web",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "A `best-shot` preset for web project",
   "license": "MIT",
   "author": {
@@ -20,10 +20,10 @@
     "webpack",
     "yaml"
   ],
-  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-web#readme",
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-web",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/best-shot/best-shot.git",
+    "url": "https://github.com/best-shot/best-shot.git",
     "directory": "packages/preset-web"
   },
   "bugs": {
@@ -33,7 +33,7 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "ext-to-regexp": "^0.0.8",
-    "html-webpack-plugin": "^4.3.0",
+    "html-webpack-plugin": "^4.4.1",
     "micro-tpl-loader": "^0.0.1",
     "raw-loader": "^4.0.1",
     "slash-to-regexp": "^0.0.4",
@@ -42,10 +42,10 @@
     "yaml-loader": "^0.6.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.9",
+    "@best-shot/core": "^0.2.0",
     "webpack": "^4.44.1"
   },
   "engines": {
-    "node": "^10.18 || ^12"
+    "node": "^10.18 || ^12.14 || ^14"
   }
 }

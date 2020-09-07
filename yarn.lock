@@ -5362,7 +5362,7 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
-html-webpack-plugin@^4.3.0:
+html-webpack-plugin@^4.4.1:
   version "4.4.1"
   resolved "https://registry.npm.taobao.org/html-webpack-plugin/download/html-webpack-plugin-4.4.1.tgz#61ab85aa1a84ba181443345ebaead51abbb84149"
   integrity sha1-YauFqhqEuhgUQzReuurVGru4QUk=

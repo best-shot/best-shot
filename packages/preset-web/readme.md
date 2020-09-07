@@ -3,14 +3,19 @@
 A `best-shot` preset for web project.
 
 [![npm][npm-badge]][npm-url]
-[![license][license-badge]][github-url]
+[![github][github-badge]][github-url]
 ![node][node-badge]
+
+[npm-url]: https://www.npmjs.com/package/@best-shot/preset-web
+[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-web.svg?style=flat-square&logo=npm
+[github-url]: https://github.com/best-shot/best-shot/tree/master/packages/preset-web
+[github-badge]: https://img.shields.io/npm/l/@best-shot/preset-web.svg?style=flat-square&colorB=blue&logo=github
+[node-badge]: https://img.shields.io/node/v/@best-shot/preset-web.svg?style=flat-square&colorB=green&logo=node.js
 
 This preset includes the following packages:
 
 - micro-tpl-loader
 - html-webpack-plugin
-- script-ext-html-webpack-plugin
 - webpack-subresource-integrity
 - raw-loader / yaml-loader
 
@@ -78,9 +83,3 @@ module.exports = {
   ]
 };
 ```
-
-[npm-url]: https://www.npmjs.com/package/@best-shot/preset-web
-[npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-web.svg?style=flat-square&logo=npm
-[github-url]: https://github.com/Airkro/best-shot/tree/master/packages/preset-web
-[node-badge]: https://img.shields.io/node/v/@best-shot/preset-web.svg?style=flat-square&colorB=green&logo=node.js
-[license-badge]: https://img.shields.io/npm/l/@best-shot/preset-web.svg?style=flat-square&colorB=blue&logo=github

@@ -1,12 +1,17 @@
-const { format } = require('prettier');
 const sortObject = require('sort-object');
 const { stringify } = require('javascript-stringify');
 
 function formatJs(code) {
-  return format(code, {
-    parser: 'babel',
-    singleQuote: true,
-  });
+  try {
+    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    const { format } = require('prettier');
+    return format(code, {
+      parser: 'babel',
+      singleQuote: true,
+    });
+  } catch {
+    return code;
+  }
 }
 
 function formatJson(json) {

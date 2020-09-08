@@ -1,31 +1,63 @@
-'use strict';
+const sortObject = require('sort-object');
+const BestShot = require('@best-shot/core');
+const { commandEnv } = require('@best-shot/cli/lib/utils');
 
-const inspector = require('./lib/action');
+const { reachConfig, reachBrowsers } = require('@best-shot/cli/lib/reach');
+const concatStr = require('./lib/concat-str');
+const makeWriteFile = require('./lib/write-file');
 
-exports.command = 'inspect';
+const commands = ['serve', 'watch', 'dev', 'prod'];
 
-exports.describe = 'Output all configuration for inspection';
+module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
+  const rootPath = process.cwd();
+  const configFunc = reachConfig(rootPath);
+  const writeFile = makeWriteFile(rootPath, stamp);
 
-exports.builder = {
-  platforms: {
-    coerce(values) {
-      if (values.length === 0) {
-        throw new Error('Not enough platforms arguments');
-      }
-      return values;
-    },
-    describe: 'Applicable platforms',
-    type: 'array'
-  },
-  stamp: {
-    coerce(value) {
-      return value === 'auto' ? new Date().getTime().toString() : value;
-    },
-    default: '',
-    describe: 'Markup of output files',
-    requiresArg: true,
-    type: 'string'
-  }
+  console.log('Output files ...');
+
+  platforms.forEach((_) => {
+    const platform = _ || undefined;
+    commands.forEach((command) => {
+      const mode = commandEnv(command);
+      const browsers = reachBrowsers(rootPath, mode);
+
+      const { webpackChain, presets = [], ...config } = configFunc({
+        command,
+        platform,
+      });
+
+      const io = new BestShot({
+        presets: command === 'serve' ? ['serve', ...presets] : presets,
+      });
+
+      writeFile({
+        name: `${platform ? `${platform}/` : ''}${command}.js`,
+        data: concatStr({
+          stamp,
+          input: sortObject({
+            platform,
+            mode,
+            browsers,
+            command,
+            presets,
+            config,
+            webpackChain,
+          }),
+          schema: io.schema.toObject(),
+          output: io
+            .load({
+              options: {
+                watch: ['watch', 'serve'].includes(command),
+              },
+              mode,
+              browsers,
+              config,
+              platform,
+              rootPath,
+            })
+            .when(typeof webpackChain === 'function', webpackChain),
+        }),
+      });
+    });
+  });
 };
-
-exports.handler = inspector;

@@ -8494,7 +8494,7 @@ prettier-plugin-toml@^0.3.1:
     "@toml-tools/parser" "^0.3.1"
     prettier "^1.16.0"
 
-prettier@>=1.10, prettier@>=2.0, prettier@^2.0.5, prettier@^2.1.1:
+prettier@>=1.10, prettier@>=2.0, prettier@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npm.taobao.org/prettier/download/prettier-2.1.1.tgz#d9485dd5e499daa6cb547023b87a6cf51bee37d6"
   integrity sha1-2Uhd1eSZ2qbLVHAjuHps9RvuN9Y=

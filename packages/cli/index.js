@@ -23,7 +23,8 @@ new Cheetor()
   .command('./cmd/watch')
   .command('./cmd/dev')
   .command('./cmd/prod')
-  .commandSmart('@best-shot/inspector')
+  .commandSmart('@best-shot/analyzer/cmd/analyze')
+  .commandSmart('@best-shot/inspector/cmd/inspect')
   .middleware([
     ({ _: [command] }) => {
       if (['dev', 'prod', 'watch', 'serve'].includes(command)) {

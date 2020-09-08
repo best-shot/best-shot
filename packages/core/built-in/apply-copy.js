@@ -5,16 +5,16 @@ const displayName = 'copy';
 
 exports.name = displayName;
 
-exports.apply = function applyCopy({ config: { static: staticPath } }) {
+exports.apply = function applyCopy({ config: { copy } }) {
   return (chain) => {
-    chain.when(staticPath && staticPath.length > 0, (config) => {
-      config.plugin(displayName).use(CopyWebpack, [staticPath]);
+    chain.when(copy && copy.length > 0, (config) => {
+      config.plugin(displayName).use(CopyWebpack, [copy]);
     });
   };
 };
 
 exports.schema = {
-  static: {
+  copy: {
     title: 'Paths to place static file without compile',
     default: false,
     oneOf: [

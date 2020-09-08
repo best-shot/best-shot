@@ -3042,10 +3042,10 @@ copy-webpack-plugin@^6.1.0:
     serialize-javascript "^4.0.0"
     webpack-sources "^1.4.3"
 
-copy-webpack@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npm.taobao.org/copy-webpack/download/copy-webpack-1.0.0.tgz#88ff860b71e245bedc74f510c5e4529881a43022"
-  integrity sha1-iP+GC3HiRb7cdPUQxeRSmIGkMCI=
+copy-webpack@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/copy-webpack/download/copy-webpack-1.0.1.tgz#ba4388312f38913b42fbb248dfb184c064f5cca9"
+  integrity sha1-ukOIMS84kTtC+7JI37GEwGT1zKk=
   dependencies:
     copy-webpack-plugin "^6.1.0"
     deepmerge "^4.2.2"

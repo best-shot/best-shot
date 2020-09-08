@@ -106,6 +106,10 @@ If a `process.cwd()` is a git repository, `GIT_HASH` will be injected to your co
 
 ```js
 module.exports = {
-  plugins: [new DefinePlugin({ GIT_HASH: '"66ed46c"' })]
+  plugins: [
+    new DefinePlugin({
+      GIT_HASH: '"xxxxxxxxxxxxxxxxxxxx"'
+    })
+  ]
 };
 ```

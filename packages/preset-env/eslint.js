@@ -20,12 +20,7 @@ const envObject = mapValues(
 
 const globals = sortKeys({
   ...envObject,
-  ...(isGit()
-    ? {
-        GIT_HASH: 'readonly',
-        GIT_BRANCH: 'readonly',
-      }
-    : undefined),
+  ...(isGit() ? { GIT_HASH: 'readonly' } : undefined),
 });
 
 module.exports = { globals };

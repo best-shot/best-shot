@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-env",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A `best-shot` preset for env variables",
   "license": "MIT",
   "author": {
@@ -42,7 +42,7 @@
     "sort-keys": "^4.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.2.0",
+    "@best-shot/core": "^0.2.2",
     "webpack": "^4.44.1"
   },
   "engines": {

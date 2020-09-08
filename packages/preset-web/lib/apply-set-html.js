@@ -19,23 +19,34 @@ const htmlMinifier = {
   useShortDoctype: true,
 };
 
-exports.setHtml = function setHtml({ html = [], define, sri }) {
+const fallback = {
+  template: './src/index.html',
+  title: 'BEST-SHOT Project',
+};
+
+exports.setHtml = function setHtml({ html = {}, define, sri }) {
   return (chain) => {
     const mode = chain.get('mode');
     const context = chain.get('context');
     const publicPath = chain.output.get('publicPath');
     const minimize = chain.optimization.get('minimize');
 
-    html.forEach((options, index) => {
+    const page = Array.isArray(html) ? html : [html];
+
+    page.forEach((options, index) => {
       chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
         deepmerge.all(
           [
-            index > 0 ? html[0] : {},
+            {
+              template: './src/index.html',
+              title: 'BEST-SHOT Project',
+            },
+            index > 0 ? page[0] : {},
             options,
             {
               templateParameters: {
                 publicPath,
-                title: options.title,
+                title: options.title || fallback.title,
                 ...(define && { define }),
               },
               scriptLoading: 'defer',
@@ -60,7 +71,7 @@ exports.setHtml = function setHtml({ html = [], define, sri }) {
 
     chain.module
       .rule('micro-tpl')
-      .test(extToRegexp({ extname: ['html'] }))
+      .test(extToRegexp({ extname: ['html', 'htm'] }))
       .use('micro-tpl-loader')
       .loader('micro-tpl-loader');
 

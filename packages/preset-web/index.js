@@ -56,32 +56,23 @@ function polyfill() {
   }
 }
 
+const items = {
+  type: 'object',
+};
+
 exports.schema = {
   html: {
-    default: [{}],
-    items: {
-      type: 'object',
-      properties: {
-        title: {
-          minLength: 1,
-          type: 'string',
-          default: 'BEST-SHOT Project',
-        },
-        filename: {
-          minLength: 1,
-          type: 'string',
-        },
-        template: {
-          minLength: 1,
-          type: 'string',
-          default: './src/index.html',
-        },
+    default: {},
+    oneOf: [
+      items,
+      {
+        items,
+        minItems: 1,
+        type: 'array',
+        uniqueItems: true,
+        title: 'Options group of HtmlWebpackPlugin',
       },
-    },
-    minItems: 1,
-    type: 'array',
-    uniqueItems: true,
-    title: 'Options group of HtmlWebpackPlugin',
+    ],
   },
   polyfill: {
     default: polyfill(),

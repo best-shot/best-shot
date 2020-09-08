@@ -74,7 +74,7 @@ module.exports = {
   presets: ['web'],
   html: [
     {
-      filename: './src/index.html',
+      filename: './src/index.html', // default
       title: 'Hello world!'
     },
     {

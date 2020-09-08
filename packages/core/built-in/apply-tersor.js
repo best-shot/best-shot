@@ -1,10 +1,13 @@
 const TerserPlugin = require('terser-webpack-plugin');
+const deepMerge = require('deepmerge');
 
 const displayName = 'tersor';
 
 exports.name = displayName;
 
-exports.apply = function applyTersor() {
+const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
+
+exports.apply = function applyTersor({ config: { terser = {} } }) {
   return (chain) => {
     const minimize = chain.optimization.get('minimize');
 
@@ -13,18 +16,29 @@ exports.apply = function applyTersor() {
         {
           cache: false,
           extractComments: false,
-          terserOptions: {
-            safari10: true,
-            compress: {
-              drop_console: true,
+          terserOptions: deepMerge(
+            {
+              safari10: true, // TODO: auto
+              compress: {
+                drop_console: true,
+              },
+              output: {
+                beautify: false,
+                ascii_only: true,
+              },
             },
-            output: {
-              beautify: false,
-              ascii_only: true,
-            },
-          },
+            terser,
+            { arrayMerge: overwriteMerge },
+          ),
         },
       ]);
     });
   };
+};
+
+exports.schema = {
+  terser: {
+    title: 'terserOptions',
+    type: 'object',
+  },
 };

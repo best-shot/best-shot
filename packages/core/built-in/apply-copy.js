@@ -1,4 +1,4 @@
-const CopyWebpack = require('copy-webpack');
+const { CopyWebpack } = require('copy-webpack');
 const { schema } = require('copy-webpack/lib/schema');
 
 const displayName = 'copy';

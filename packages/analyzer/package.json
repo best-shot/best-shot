@@ -1,0 +1,39 @@
+{
+  "name": "@best-shot/analyzer",
+  "version": "0.2.1",
+  "description": "Analyzer of `@best-shot/cli`",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "keywords": [
+    "analyse",
+    "analyser",
+    "analyze",
+    "analyzer",
+    "best-shot",
+    "cli",
+    "webpack"
+  ],
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/analyzer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/best-shot/best-shot.git",
+    "directory": "packages/analyzer"
+  },
+  "bugs": {
+    "url": "https://github.com/best-shot/best-shot/issues"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "webpack-bundle-analyzer": "^3.8.0"
+  },
+  "peerDependencies": {
+    "@best-shot/cli": "^0.5.0",
+    "@best-shot/core": "^0.2.2"
+  },
+  "engines": {
+    "node": "^10.18 || ^12"
+  }
+}

@@ -1,13 +1,14 @@
-const isEmpty = require('lodash/isEmpty');
-const isObject = require('lodash/isObject');
-
 exports.name = 'preset-serve';
+
+function defined(obj) {
+  return obj === true || Object.values(obj).some((item) => item !== undefined);
+}
 
 exports.apply = function applyServe({
   // @ts-ignore
-  config: { devServer = {} }
+  config: { devServer = {} },
 }) {
-  return chain => {
+  return (chain) => {
     const publicPath = chain.output.get('publicPath') || '/';
 
     chain.devServer
@@ -15,11 +16,9 @@ exports.apply = function applyServe({
       .stats(chain.get('stats'))
       .publicPath(publicPath)
       .when(
-        publicPath !== '/' &&
-          (devServer.historyApiFallback === true ||
-            (isObject(devServer.historyApiFallback) &&
-              isEmpty(devServer.historyApiFallback))),
-        config => {
+        // @ts-ignore
+        publicPath !== '/' && defined(devServer.historyApiFallback),
+        (config) => {
           // publicPath !== '/' 的需要特别处理
           config.historyApiFallback({
             rewrites: [
@@ -29,11 +28,11 @@ exports.apply = function applyServe({
                   return pathname.includes('.')
                     ? path
                     : `${publicPath}index.html`;
-                }
-              }
-            ]
+                },
+              },
+            ],
           });
-        }
+        },
       );
   };
 };
@@ -45,32 +44,29 @@ exports.schema = {
     default: {},
     properties: {
       clientLogLevel: {
-        default: 'warn'
+        default: 'warn',
       },
       useLocalIp: {
-        default: true
+        default: true,
       },
       hot: {
-        default: true
+        default: true,
       },
       hotOnly: {
-        default: true
+        default: true,
       },
       overlay: {
-        default: true
+        default: true,
       },
       port: {
-        default: 1234
+        default: 1234,
       },
       contentBase: {
-        default: false
-      },
-      features: {
-        default: []
+        default: false,
       },
       historyApiFallback: {
-        default: true
-      }
-    }
-  }
+        default: true,
+      },
+    },
+  },
 };

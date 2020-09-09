@@ -1,10 +1,9 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 
-function applyOneOf({ auto = undefined, mode }) {
+function applyOneOf({ auto, mode }) {
   return (rule) => {
     rule
       .use('css-loader')
@@ -12,10 +11,9 @@ function applyOneOf({ auto = undefined, mode }) {
       .options({
         esModule: false,
         importLoaders: 3,
-        localsConvention: 'camelCaseOnly',
-        sourceMap: mode === 'development',
         modules: {
           ...(auto ? { auto } : undefined),
+          exportLocalsConvention: 'camelCaseOnly',
           localIdentName: {
             development: '[path][name]__[local]',
             production: '[local]_[hash:base64:8]',
@@ -35,7 +33,7 @@ module.exports = function applyStylesheet(chain) {
       .minimizer('optimize-css-assets')
       .use(OptimizeCssAssetsPlugin, [
         {
-          sourceMap: false,
+          sourceMap: !['eval', false].includes(chain.get('devtool')),
           cssProcessorPluginOptions: {
             preset: [
               'default',
@@ -67,19 +65,15 @@ module.exports = function applyStylesheet(chain) {
     .oneOf('css-modules-by-filename')
     .batch(applyOneOf({ mode, auto: true }));
 
-  const Autoprefixer = autoprefixer();
-  // @ts-ignore
-  // eslint-disable-next-line no-underscore-dangle
-  Autoprefixer.__expression = 'autoprefixer()';
-
   chain.module
     .rule('style')
     .rule('postcss')
     .use('postcss-loader')
     .loader('postcss-loader')
     .options({
-      sourceMap: mode === 'development',
-      plugins: [Autoprefixer],
+      postcssOptions: {
+        plugins: ['autoprefixer'],
+      },
     });
 
   if (!useHot) {
@@ -87,7 +81,7 @@ module.exports = function applyStylesheet(chain) {
       {
         filename: '[name].css',
         // chunkFilename: '[id].css',
-        ignoreOrder: false,
+        ignoreOrder: true,
       },
     ]);
   }
@@ -113,7 +107,6 @@ module.exports = function applyStylesheet(chain) {
       rule.use('extract-css').loader(MiniCssExtractPlugin.loader).options({
         esModule: false,
         hmr: useHot,
-        ignoreOrder: true,
         // reloadAll: false
       });
     },

@@ -70,7 +70,7 @@ module.exports = {
       .use('postcss-loader')
       .tap((options) => ({
         ...options,
-        plugins: []
+        postcssOptions: {}
       }));
   }
 };
@@ -85,12 +85,4 @@ module.exports = {
     'postcss-preset-env': {}
   }
 };
-```
-
-### Speed up `sass` compile
-
-`@best-shot/preset-style` use `dart-sass` by default. Because `node-sass` has [many issues](https://github.com/webpack-contrib/sass-loader/issues/435). But you still can speed up sass compile by installing `node-sass`.
-
-```bash
-npm install node-sass --save-dev
 ```

@@ -10901,10 +10901,10 @@ webpack-dev-middleware@^3.7.2:
     range-parser "^1.2.1"
     webpack-log "^2.0.0"
 
-webpack-dev-server-waitpage@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npm.taobao.org/webpack-dev-server-waitpage/download/webpack-dev-server-waitpage-2.0.0.tgz#965c01626365fa16258586894be933055ac202d7"
-  integrity sha1-llwBYmNl+hYlhYaJS+kzBVrCAtc=
+webpack-dev-server-waitpage@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/webpack-dev-server-waitpage/download/webpack-dev-server-waitpage-2.0.1.tgz#6c9f2f2f720e9308f23097e4324495e7db397738"
+  integrity sha1-bJ8vL3IOkwjyMJfkMkSV59s5dzg=
   dependencies:
     ejs "^3.1.5"
 

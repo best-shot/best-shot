@@ -7,7 +7,7 @@ exports.name = displayName;
 
 exports.apply = function applyCopy({ config: { copy } }) {
   return (chain) => {
-    chain.when(copy && copy.length > 0, (config) => {
+    chain.when(copy && copy.length !== 0, (config) => {
       config.plugin(displayName).use(CopyWebpack, [copy]);
     });
   };

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -26,7 +26,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "ajv": "^6.12.4",
+    "ajv": "^6.12.5",
     "better-ajv-errors": "^0.6.7",
     "case-sensitive-paths-webpack-plugin": "^2.3.0",
     "chalk": "^4.1.0",
@@ -35,7 +35,7 @@
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.20",
     "slash": "^3.0.0",
-    "terser-webpack-plugin": "^4.1.0",
+    "terser-webpack-plugin": "^4.2.0",
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {

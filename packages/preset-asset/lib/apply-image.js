@@ -26,7 +26,7 @@ module.exports = function applyImage(chain) {
       {
         cache: false,
         test: imageRegexp,
-        name: '[name].[ext]',
+        name: '[path][name].[ext]',
         imageminOptions: {
           plugins: [
             'optipng',

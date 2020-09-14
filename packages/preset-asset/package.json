@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-asset",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A `best-shot` preset for asset",
   "license": "MIT",
   "author": {
@@ -36,9 +36,9 @@
     "imagemin-webpack": "^5.1.1"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.10"
+    "@best-shot/core": "^0.2.3"
   },
   "engines": {
-    "node": "^10.18 || ^12"
+    "node": "^10.18 || ^12.14 || ^14"
   }
 }

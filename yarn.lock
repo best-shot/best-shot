@@ -7064,10 +7064,10 @@ min-document@^2.19.0:
   dependencies:
     dom-walk "^0.1.0"
 
-mini-css-extract-plugin@^0.11.1:
-  version "0.11.1"
-  resolved "https://registry.npm.taobao.org/mini-css-extract-plugin/download/mini-css-extract-plugin-0.11.1.tgz#f04048de8b4d4d7b1b1dea02363d167438c7f6dc"
-  integrity sha1-8EBI3otNTXsbHeoCNj0WdDjH9tw=
+mini-css-extract-plugin@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.npm.taobao.org/mini-css-extract-plugin/download/mini-css-extract-plugin-0.11.2.tgz#e3af4d5e04fbcaaf11838ab230510073060b37bf"
+  integrity sha1-469NXgT7yq8Rg4qyMFEAcwYLN78=
   dependencies:
     loader-utils "^1.1.0"
     normalize-url "1.9.1"

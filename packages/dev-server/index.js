@@ -25,7 +25,7 @@ module.exports = function DevServer(compiler, options) {
       if (typeof options.after === 'function') {
         options.after(app, server);
       }
-      app.use(notFound);
+      app.use(notFound({ publicPath: options.publicPath }));
     },
   });
 

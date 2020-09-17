@@ -11,69 +11,99 @@
     <title>Page not found</title>
     <link type="image/png" href="/.best-shot/logo.png" rel="shortcut icon" />
     <style>
-      html,
       html {
+        min-width: 300px;
         height: 100%;
-        min-width: 320px;
+        min-height: 300px;
+        /* stylelint-disable property-no-vendor-prefix */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
         user-select: none;
+      }
+
+      img,
+      h1 {
         pointer-events: none;
       }
+
       body {
-        height: 100%;
-        margin: 0;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        margin: 0;
+        height: 100%;
+        color: #999;
+        font-family: -apple-system, BlinkMacSystemFont, roboto, Segoe UI, Segoe,
+          Helvetica, Arial, monospace;
       }
+
       .logo {
+        margin-right: 4%;
         height: 48px;
         height: 10vw;
         height: clamp(32px, 10vw, 64px);
-        margin-right: 4%;
       }
+
       .not-found {
-        max-width: 720px;
         width: 80%;
+        max-width: 720px;
       }
+
       .text {
-        line-height: 0.75;
         font-size: 44px;
         font-size: 8vw;
         font-size: clamp(32px, 8vw, 60px);
+        line-height: 0.75;
       }
-      h1,
-      h2 {
-        font-family: -apple-system, BlinkMacSystemFont, roboto, Segoe UI, Segoe,
-          Helvetica, Arial, monospace;
-        color: #999;
-      }
+
       h1 {
-        width: 100%;
-        white-space: nowrap;
-        justify-content: center;
         display: flex;
         align-items: center;
+        justify-content: center;
         margin: 0;
+        width: 100%;
+        white-space: nowrap;
       }
-      h2 {
-        font-size: 26px;
-        font-size: 6vw;
-        font-size: clamp(18px, 6vw, 40px);
-        margin: 0;
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0;
+        font-size: 18px;
+        font-size: 4vw;
+        font-size: clamp(14px, 4vw, 22px);
+      }
+
+      a {
+        color: #93f;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      [data-path=''] {
+        visibility: hidden;
       }
     </style>
   </head>
   <body>
     <div style="flex: 3"></div>
-    <h1>
-      <img src="/.best-shot/logo.svg" alt="logo" class="logo" />
-      <span class="text">BEST SHOT</span>
-    </h1>
+    <div style="text-align: right">
+      <h1>
+        <img src="/.best-shot/logo.svg" alt="logo" class="logo" />
+        <span class="text">BEST SHOT</span>
+      </h1>
+      <p>Page not found</p>
+      <p data-path="{{ publicPath }}">
+        Back to
+        <a rel="noopener noreferrer" href="{{ publicPath }}">
+          {{ publicPath }}
+        </a>
+      </p>
+    </div>
     <div style="flex: 2"></div>
     <img src="/.best-shot/404.svg" alt="404" class="not-found" />
-    <div style="flex: 1"></div>
-    <h2>Page not found</h2>
+
     <div style="flex: 8"></div>
   </body>
 </html>

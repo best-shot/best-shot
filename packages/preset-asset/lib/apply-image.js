@@ -35,14 +35,28 @@ module.exports = function applyImage(chain) {
             [
               'svgo',
               {
+                multipass: true,
                 plugins: [
-                  { removeAttrs: { attrs: 'data-*' } },
-                  { removeAttrs: { attrs: 'data.*' } },
+                  {
+                    removeAttrs: {
+                      attrs: ['data-*', 'data.*'],
+                    },
+                  },
                   { removeDimensions: true },
                   { removeScriptElement: true },
-                  { removeTitle: true },
-                  { removeUselessStrokeAndFill: true },
-                  { removeViewBox: true },
+                  { sortAttrs: true },
+                  { moveElemsAttrsToGroup: false },
+                  {
+                    inlineStyles: {
+                      onlyMatchedOnce: false,
+                    },
+                  },
+                  {
+                    removeAttributesBySelector: {
+                      selector: 'svg',
+                      attributes: ['id'],
+                    },
+                  },
                 ],
               },
             ],

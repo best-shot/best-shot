@@ -5,10 +5,7 @@ const { relative } = require('@best-shot/core/lib/path');
 
 exports.name = 'preset-babel';
 
-exports.apply = function applyBabel({
-  browsers = 'defaults',
-  config: { polyfill = false },
-}) {
+exports.apply = function applyBabel({ config: { polyfill = false } }) {
   return (chain) => {
     const mode = chain.get('mode');
     const context = chain.get('context');
@@ -26,15 +23,7 @@ exports.apply = function applyBabel({
         cacheDirectory: UseCache,
         ...(UseCache ? { cacheCompression: false } : undefined),
         compact: mode === 'production',
-        presets: [
-          [
-            'evergreen',
-            {
-              polyfill,
-              targets: { browsers },
-            },
-          ],
-        ],
+        presets: [['evergreen', { polyfill }]],
       });
 
     const isServing = chain.devServer.entries() !== undefined;

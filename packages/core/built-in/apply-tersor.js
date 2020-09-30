@@ -1,9 +1,26 @@
 const TerserPlugin = require('terser-webpack-plugin');
 const deepMerge = require('deepmerge');
+const browserslist = require('browserslist');
 
 const displayName = 'tersor';
 
 exports.name = displayName;
+
+function haveSafari10() {
+  const config = browserslist.loadConfig({
+    path: process.cwd(),
+  });
+
+  const list = config && config.length > 0 ? config : browserslist.defaults;
+
+  return browserslist([
+    ...list,
+    'not ios_saf > 11',
+    'not safari > 11',
+    'not ios_saf < 10',
+    'not safari < 10',
+  ]).some((item) => item.includes('saf'));
+}
 
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
@@ -18,12 +35,12 @@ exports.apply = function applyTersor({ config: { terser = {} } }) {
           extractComments: false,
           terserOptions: deepMerge(
             {
-              safari10: true, // TODO: auto
+              safari10: haveSafari10(),
               compress: {
                 drop_console: true,
               },
               output: {
-                beautify: false,
+                comments: false,
                 ascii_only: true,
               },
             },

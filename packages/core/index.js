@@ -7,8 +7,12 @@ const builtIn = require('./built-in');
 const types = ['built-in', 'additional'];
 
 module.exports = class BestShot {
-  constructor({ name = 'best-shot.config', presets = [] } = {}) {
-    this.chain = new WebpackChain().name(name);
+  constructor({
+    name = 'best-shot.config',
+    rootPath = process.cwd(),
+    presets = [],
+  } = {}) {
+    this.chain = new WebpackChain().name(name).context(rootPath);
     this.schema = new Schema();
     this.stack = new Stack();
     this.locked = false;
@@ -46,19 +50,16 @@ module.exports = class BestShot {
   }
 
   load({
-    browsers = [],
     config = {},
     mode = 'development',
     options: { watch = false } = {},
     platform = undefined,
-    rootPath = process.cwd(),
   } = {}) {
     this.check();
 
-    this.chain.context(rootPath).mode(mode).watch(watch).cache(watch);
+    this.chain.mode(mode).watch(watch).cache(watch);
 
     const params = {
-      browsers,
       config: this.schema.validate(config),
       platform,
     };

@@ -1,6 +1,6 @@
-# best-shot
+# best-shot <img src="https://gitcdn.link/repo/best-shot/best-shot/master/packages/core/logo.svg" alt="logo" height="80" align="right">
 
-A webpack config wrapper.
+A webpack config tool chain.
 
 [![npm org][npm-badge]][npm-link]
 [![github repo][github-badge]][github-link]
@@ -19,6 +19,10 @@ A webpack config wrapper.
 - [@best-shot/preset-web](./packages/preset-web/)
 - [@best-shot/analyzer](./packages/analyzer/)
 - [@best-shot/inspector](./packages/inspector/)
+
+## Inspiration
+
+This project is inspired by [neutrinojs](https://neutrinojs.org/).
 
 ## License
 

@@ -1,4 +1,4 @@
-# @best-shot/core <img src="./logo.svg" alt="best-shot" height="80" align="right">
+# @best-shot/core <img src="https://gitcdn.link/repo/best-shot/best-shot/master/packages/core/logo.svg" alt="logo" height="80" align="right">
 
 Create 'best-shot' config chain.
 
@@ -45,3 +45,7 @@ const configB = new BestShot({ presets: ['style'] }).load({
   }
 });
 ```
+
+## Inspiration
+
+This project is inspired by [neutrinojs](https://neutrinojs.org/).

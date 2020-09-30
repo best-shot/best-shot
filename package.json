@@ -2,7 +2,7 @@
   "private": true,
   "name": "best-shot",
   "version": "0.0.0",
-  "description": "A webpack config wrapper",
+  "description": "A webpack config tool chain",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",

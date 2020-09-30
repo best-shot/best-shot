@@ -15,7 +15,6 @@ module.exports = class BestShot {
     this.chain = new WebpackChain().name(name).context(rootPath);
     this.schema = new Schema();
     this.stack = new Stack();
-    this.locked = false;
 
     builtIn.forEach((preset) => {
       this.use(preset, types[0]);
@@ -29,12 +28,6 @@ module.exports = class BestShot {
     return this;
   }
 
-  check() {
-    if (this.locked) {
-      throw new Error('Configuration has been loaded');
-    }
-  }
-
   use({ apply, schema, name = 'Unnamed' } = {}, type) {
     if (!types.includes(type)) {
       throw new Error(`Can't prepare ${type} presets: ${name}`);
@@ -46,7 +39,6 @@ module.exports = class BestShot {
     if (typeof schema === 'object') {
       this.schema.merge(schema);
     }
-    // TODO installed mark
   }
 
   load({
@@ -55,8 +47,6 @@ module.exports = class BestShot {
     options: { watch = false } = {},
     platform = undefined,
   } = {}) {
-    this.check();
-
     this.chain.mode(mode).watch(watch).cache(watch);
 
     const params = {
@@ -67,8 +57,6 @@ module.exports = class BestShot {
     this.stack.setup(params).forEach((apply) => {
       this.chain.batch(apply);
     });
-
-    this.locked = true;
 
     return this.chain;
   }

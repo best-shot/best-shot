@@ -28,8 +28,8 @@ exports.apply = function applyTersor({ config: { terser = {} } }) {
   return (chain) => {
     const minimize = chain.optimization.get('minimize');
 
-    return chain.when(minimize, (config) => {
-      config.optimization.minimizer('terser').use(TerserPlugin, [
+    if (minimize) {
+      chain.optimization.minimizer('terser').use(TerserPlugin, [
         {
           cache: false,
           extractComments: false,
@@ -49,7 +49,7 @@ exports.apply = function applyTersor({ config: { terser = {} } }) {
           ),
         },
       ]);
-    });
+    }
   };
 };
 

@@ -1,4 +1,4 @@
-# @best-shot/core
+# @best-shot/core <img src="./logo.svg" alt="best-shot" height="80" align="right">
 
 Create 'best-shot' config chain.
 

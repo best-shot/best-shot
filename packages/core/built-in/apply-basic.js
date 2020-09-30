@@ -18,11 +18,11 @@ exports.apply = function applyBasic({
     const mode = chain.get('mode');
     const watch = chain.get('watch');
 
-    chain.when(watch, (config) =>
-      config.watchOptions({
+    if (watch) {
+      chain.watchOptions({
         ignored: /node_modules/,
-      }),
-    );
+      });
+    }
 
     chain.module.strictExportPresence(!watch);
 

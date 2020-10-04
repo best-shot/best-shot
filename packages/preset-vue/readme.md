@@ -40,21 +40,37 @@ module.exports = {
 
 See: [vue-template-compiler#options](https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler#options)
 
+### Add stylesheet support
+
+```bash
+npm install @best-shot/preset-style --save-dev
+```
+
+```js
+// example: .best-shot/config.js
+module.exports = {
+  presets: ['style', 'vue']
+};
+```
+
 ### Add `JSX` support
 
-Install [@vue/babel-preset-jsx](https://github.com/vuejs/jsx) to add Vue JSX support.
+```bash
+npm install @best-shot/preset-babel --save-dev
+```
+
+```js
+// example: .best-shot/config.js
+module.exports = {
+  presets: ['babel', 'vue']
+};
+```
 
 ```bash
 npm install @vue/babel-preset-jsx --save-dev
 ```
 
 ```js
-// example: .best-shot/config.js
-module.exports = {
-  // install @best-shot/preset-babel
-  presets: ['babel', 'vue']
-};
-
 // example: babel.config.js
 module.exports = {
   presets: ['@vue/jsx']

@@ -4,15 +4,15 @@ exports.name = 'preset-react';
 
 function airbnb() {
   try {
-    return !!require.resolve('airbnb-prop-types');
+    return !!require.resolve('airbnb-prop-types/package.json');
   } catch {
     return false;
   }
 }
 
-exports.apply = function applyReact() {
+exports.apply = function apply() {
   return (chain) => {
-    const isProd = chain.get('mode') === 'production';
+    const mode = chain.get('mode') || 'development';
     const useHot = chain.devServer.get('hot') || false;
 
     if (useHot) {
@@ -37,7 +37,7 @@ exports.apply = function applyReact() {
         presets: [...presets, ['@babel/react', { useSpread: true }]],
         plugins: [
           ...plugins,
-          ...(isProd
+          ...(mode === 'production'
             ? [
                 airbnb()
                   ? [

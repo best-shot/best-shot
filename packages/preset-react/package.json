@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
@@ -18,14 +18,14 @@
     "react",
     "webpack"
   ],
-  "homepage": "https://github.com/airkro/best-shot/tree/master/packages/preset-react",
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-react",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airkro/best-shot.git",
+    "url": "https://github.com/best-shot/best-shot.git",
     "directory": "packages/preset-react"
   },
   "bugs": {
-    "url": "https://github.com/airkro/best-shot/issues"
+    "url": "https://github.com/best-shot/best-shot/issues"
   },
   "main": "index.js",
   "dependencies": {
@@ -34,16 +34,16 @@
     "@babel/preset-react": "^7.10.4",
     "@hot-loader/react-dom": "^16.13.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "react-hot-loader": "^4.12.21",
+    "react-hot-loader": "^4.13.0",
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.1.7",
-    "@best-shot/preset-babel": "^0.4.2",
+    "@best-shot/core": "^0.2.7",
+    "@best-shot/preset-babel": "^0.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "engines": {
-    "node": "^10.18 || ^12"
+    "node": "^10.18 || ^12.14 || ^14"
   }
 }

@@ -1209,10 +1209,10 @@
   resolved "https://registry.npm.taobao.org/@types/q/download/@types/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha1-FZJUFOCtLNdlv+9YhC9+JqesyyQ=
 
-"@types/react@^16.9.49":
-  version "16.9.49"
-  resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.49.tgz#09db021cf8089aba0cdb12a49f8021a69cce4872"
-  integrity sha1-CdsCHPgImroM2xKkn4AhppzOSHI=
+"@types/react@^16.9.50":
+  version "16.9.50"
+  resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.50.tgz#cb5f2c22d42de33ca1f5efc6a0959feb784a3a2d"
+  integrity sha1-y18sItQt4zyh9e/GoJWf63hKOi0=
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
@@ -9025,10 +9025,10 @@ react-dom@^16.13.1:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-hot-loader@^4.12.21:
-  version "4.12.21"
-  resolved "https://registry.npm.taobao.org/react-hot-loader/download/react-hot-loader-4.12.21.tgz#332e830801fb33024b5a147d6b13417f491eb975"
-  integrity sha1-My6DCAH7MwJLWhR9axNBf0keuXU=
+react-hot-loader@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.npm.taobao.org/react-hot-loader/download/react-hot-loader-4.13.0.tgz#c27e9408581c2a678f5316e69c061b226dc6a202"
+  integrity sha1-wn6UCFgcKmePUxbmnAYbIm3GogI=
   dependencies:
     fast-levenshtein "^2.0.6"
     global "^4.3.0"

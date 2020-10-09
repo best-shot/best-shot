@@ -11,9 +11,9 @@ function commandEnv(command) {
   );
 }
 
-function getCompiler(getConfig) {
+function getCompiler(getConfigs) {
   try {
-    const config = getConfig();
+    const config = getConfigs();
 
     // eslint-disable-next-line no-inner-declarations
     function showStats(error, stats) {
@@ -43,7 +43,14 @@ function getCompiler(getConfig) {
   }
 }
 
+function getConfig({ presets }) {
+  // eslint-disable-next-line global-require
+  const BestShot = require('@best-shot/core');
+  return new BestShot({ presets });
+}
+
 module.exports = {
   commandEnv,
   getCompiler,
+  getConfig,
 };

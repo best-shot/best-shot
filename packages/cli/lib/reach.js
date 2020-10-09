@@ -1,7 +1,5 @@
 const { resolve } = require('path');
 const slash = require('slash');
-// @ts-ignore
-const { findConfig } = require('browserslist');
 
 function reachConfig(rootPath) {
   // eslint-disable-next-line import/no-dynamic-require, global-require
@@ -17,16 +15,6 @@ function reachConfig(rootPath) {
   };
 }
 
-function reachBrowsers(rootPath, mode) {
-  const { defaults = 'defaults', [mode]: browsers = defaults } =
-    findConfig(rootPath) || {};
-  if (Array.isArray(browsers) && browsers.length === 0) {
-    return 'defaults';
-  }
-  return browsers;
-}
-
 module.exports = {
   reachConfig,
-  reachBrowsers,
 };

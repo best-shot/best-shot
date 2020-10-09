@@ -1,4 +1,4 @@
-# @best-shot/cli
+# @best-shot/cli <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
 Command-Line Interface of `best-shot`.
 
@@ -8,7 +8,7 @@ Command-Line Interface of `best-shot`.
 
 [npm-url]: https://www.npmjs.com/package/@best-shot/cli
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/cli.svg?style=flat-square&logo=npm
-[github-url]: git+https://github.com/best-shot/best-shot/tree/master/packages/cli
+[github-url]: https://github.com/best-shot/best-shot/tree/master/packages/cli
 [github-badge]: https://img.shields.io/npm/l/@best-shot/cli.svg?style=flat-square&colorB=blue&logo=github
 [node-badge]: https://img.shields.io/node/v/@best-shot/cli.svg?style=flat-square&colorB=green&logo=node.js
 

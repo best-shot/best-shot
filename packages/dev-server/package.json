@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -40,10 +40,13 @@
     "webpack-dev-server-waitpage": "^2.0.1"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.5.0",
-    "webpack": "^4.44.1"
+    "@best-shot/cli": "^0.6.0",
+    "webpack": "^4.44.2"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"
+  },
+  "x-readme": {
+    "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"
   }
 }

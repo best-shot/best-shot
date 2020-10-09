@@ -2,7 +2,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpackDevServerWaitpage = require('webpack-dev-server-waitpage');
 const getPort = require('get-port');
 
-const notFound = require('./lib/404');
+const notFound = require('./middleware/not-found');
 
 module.exports = function DevServer(compiler, options) {
   // @ts-ignore

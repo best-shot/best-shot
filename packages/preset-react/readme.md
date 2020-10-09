@@ -1,4 +1,4 @@
-# @best-shot/preset-react
+# @best-shot/preset-react <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
 A `best-shot` preset for react project.
 
@@ -41,11 +41,6 @@ It is not 100% safe, you can enable them manually.
 ```json
 // example: babel.config.json
 {
-  "plugins": ["@babel/transform-react-constant-elements"],
-  "env": {
-    "production": {
-      "plugins": ["@babel/transform-react-inline-elements"]
-    }
-  }
+  "plugins": ["@babel/transform-react-constant-elements"]
 }
 ```

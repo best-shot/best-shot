@@ -10,7 +10,7 @@ function airbnb() {
   }
 }
 
-exports.apply = function apply() {
+exports.apply = function apply({ config: { polyfill = false } }) {
   return (chain) => {
     const mode = chain.get('mode') || 'development';
     const useHot = chain.devServer.get('hot') || false;
@@ -39,6 +39,10 @@ exports.apply = function apply() {
           ...plugins,
           ...(mode === 'production'
             ? [
+                // @ts-ignore
+                ...(polyfill !== 'pure'
+                  ? ['@babel/transform-react-inline-elements']
+                  : []),
                 airbnb()
                   ? [
                       'transform-react-remove-prop-types',

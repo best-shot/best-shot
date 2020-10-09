@@ -1,4 +1,4 @@
-# best-shot <img src="https://gitcdn.link/repo/best-shot/best-shot/master/packages/core/logo.svg" alt="logo" height="80" align="right">
+# best-shot <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
 A webpack config tool chain.
 

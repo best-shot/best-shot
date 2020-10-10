@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -31,10 +31,13 @@
     "sort-object": "^3.0.3"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.5.0",
-    "@best-shot/core": "^0.2.2"
+    "@best-shot/cli": "^0.6.0",
+    "@best-shot/core": "^0.2.7"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"
+  },
+  "x-readme": {
+    "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"
   }
 }

@@ -1,4 +1,4 @@
-# @best-shot/inspector
+# @best-shot/inspector <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
 Inspector of `@best-shot/cli`.
 

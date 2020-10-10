@@ -2,7 +2,7 @@ const sortObject = require('sort-object');
 const BestShot = require('@best-shot/core');
 const { commandEnv } = require('@best-shot/cli/lib/utils');
 
-const { reachConfig, reachBrowsers } = require('@best-shot/cli/lib/reach');
+const { reachConfig } = require('@best-shot/cli/lib/reach');
 const concatStr = require('./lib/concat-str');
 const makeWriteFile = require('./lib/write-file');
 
@@ -19,9 +19,8 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
     const platform = _ || undefined;
     commands.forEach((command) => {
       const mode = commandEnv(command);
-      const browsers = reachBrowsers(rootPath, mode);
 
-      const { webpackChain, presets = [], ...config } = configFunc({
+      const { chain, presets = [], ...config } = configFunc({
         command,
         platform,
       });
@@ -37,11 +36,10 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
           input: sortObject({
             platform,
             mode,
-            browsers,
             command,
             presets,
             config,
-            webpackChain,
+            chain,
           }),
           schema: io.schema.toObject(),
           output: io
@@ -50,12 +48,10 @@ module.exports = function inspector({ platforms = [''], stamp = 'none' }) {
                 watch: ['watch', 'serve'].includes(command),
               },
               mode,
-              browsers,
               config,
               platform,
-              rootPath,
             })
-            .when(typeof webpackChain === 'function', webpackChain),
+            .when(typeof chain === 'function', chain),
         }),
       });
     });

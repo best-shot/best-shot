@@ -36,7 +36,7 @@
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.20",
     "slash": "^3.0.0",
-    "terser-webpack-plugin": "^4.2.2",
+    "terser-webpack-plugin": "^4.2.3",
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {
@@ -44,5 +44,8 @@
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"
+  },
+  "x-readme": {
+    "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"
   }
 }

@@ -6,10 +6,8 @@ const displayName = 'tersor';
 
 exports.name = displayName;
 
-function haveSafari10() {
-  const config = browserslist.loadConfig({
-    path: process.cwd(),
-  });
+function haveSafari10(path) {
+  const config = browserslist.loadConfig({ path });
 
   const list = config && config.length > 0 ? config : browserslist.defaults;
 
@@ -29,13 +27,15 @@ exports.apply = function applyTersor({ config: { terser = {} } }) {
     const minimize = chain.optimization.get('minimize');
 
     if (minimize) {
+      const context = chain.get('context');
+
       chain.optimization.minimizer('terser').use(TerserPlugin, [
         {
           cache: false,
           extractComments: false,
           terserOptions: deepMerge(
             {
-              safari10: haveSafari10(),
+              safari10: haveSafari10(context),
               compress: {
                 drop_console: true,
               },

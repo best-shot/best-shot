@@ -16,6 +16,7 @@ jobs:
           - cli
           - core
           - dev-server
+          - analyzer
           - inspector
           - preset-babel
           - preset-env

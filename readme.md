@@ -10,6 +10,8 @@ A webpack config tool chain.
 - [@best-shot/core](./packages/core/)
 - [@best-shot/cli](./packages/cli/)
 - [@best-shot/dev-server](./packages/dev-server/)
+- [@best-shot/analyzer](./packages/analyzer/)
+- [@best-shot/inspector](./packages/inspector/)
 - [@best-shot/preset-babel](./packages/preset-babel/)
 - [@best-shot/preset-env](./packages/preset-env/)
 - [@best-shot/preset-react](./packages/preset-react/)
@@ -17,8 +19,6 @@ A webpack config tool chain.
 - [@best-shot/preset-style](./packages/preset-style/)
 - [@best-shot/preset-vue](./packages/preset-vue/)
 - [@best-shot/preset-web](./packages/preset-web/)
-- [@best-shot/analyzer](./packages/analyzer/)
-- [@best-shot/inspector](./packages/inspector/)
 
 ## Inspiration
 

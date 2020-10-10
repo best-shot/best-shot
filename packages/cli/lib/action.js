@@ -6,7 +6,7 @@ const rootPath = process.cwd();
 
 function handle(command, getConfigs) {
   if (command !== 'watch') {
-    const { compiler, showStats } = getCompiler(getConfig);
+    const { compiler, showStats } = getCompiler(getConfigs);
     if (compiler) {
       compiler.run(showStats);
     }

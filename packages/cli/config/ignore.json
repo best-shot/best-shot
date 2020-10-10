@@ -1,11 +1,11 @@
 {
   "git": [
-    ".best-shot/*[build,inspect,stats]/"
+    ".best-shot/*[build,inspect,stats,temp,cache]/"
   ],
   "eslint": [
-    "**/.best-shot/*[build,inspect,stats]/"
+    "**/.best-shot/*[build,inspect,stats,temp,cache]/"
   ],
   "stylelint": [
-    ".best-shot/(build|inspect|stats)/*"
+    ".best-shot/(build|inspect|stats|temp|cache)/*"
   ]
 }

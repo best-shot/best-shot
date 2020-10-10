@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -24,7 +24,6 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.js",
   "dependencies": {
     "fs-extra": "^9.0.1",
     "javascript-stringify": "^2.0.1",
@@ -32,7 +31,7 @@
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.6.0",
-    "@best-shot/core": "^0.2.7"
+    "@best-shot/core": "^0.2.8"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"

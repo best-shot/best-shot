@@ -3,8 +3,8 @@ const BestShot = require('@best-shot/core');
 const { commandEnv } = require('@best-shot/cli/lib/utils');
 
 const { reachConfig } = require('@best-shot/cli/lib/reach');
-const concatStr = require('./lib/concat-str');
-const makeWriteFile = require('./lib/write-file');
+const concatStr = require('./concat-str');
+const makeWriteFile = require('./write-file');
 
 const commands = ['serve', 'watch', 'dev', 'prod'];
 

@@ -1,4 +1,4 @@
-const inspector = require('..');
+const action = require('../lib/action');
 
 exports.command = 'inspect';
 
@@ -26,4 +26,4 @@ exports.builder = {
   },
 };
 
-exports.handler = inspector;
+exports.handler = action;

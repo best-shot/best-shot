@@ -1,4 +1,4 @@
-# @best-shot/preset-style
+# @best-shot/preset-style <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
 A `best-shot` preset for stylesheet.
 

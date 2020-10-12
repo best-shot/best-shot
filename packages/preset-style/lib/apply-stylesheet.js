@@ -72,7 +72,7 @@ module.exports = function applyStylesheet(chain) {
     .loader('postcss-loader')
     .options({
       postcssOptions: {
-        plugins: ['autoprefixer'],
+        plugins: ['autoprefixer', 'postcss-selector-not'],
       },
     });
 
@@ -104,11 +104,10 @@ module.exports = function applyStylesheet(chain) {
         .options({ esModule: false });
     },
     (rule) => {
-      rule.use('extract-css').loader(MiniCssExtractPlugin.loader).options({
-        esModule: false,
-        hmr: useHot,
-        // reloadAll: false
-      });
+      rule
+        .use('extract-css')
+        .loader(MiniCssExtractPlugin.loader)
+        .options({ esModule: false });
     },
   );
 };

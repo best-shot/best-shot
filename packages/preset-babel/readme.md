@@ -51,6 +51,10 @@ Install `core-js@3` as a top-level dependency when specifying 'global' or 'pure'
 npm install core-js@3 --save
 ```
 
+### targets
+
+Can't be specify directly, use `browserslist.loadConfig() || browserslist.defaults`
+
 ## Create custom babel configuration
 
 References: <https://babeljs.io/docs/en/configuration>

@@ -34,7 +34,16 @@ exports.apply = function apply({ config: { polyfill = false } }) {
       .use('babel-loader')
       .tap(({ presets = [], plugins = [], ...options }) => ({
         ...options,
-        presets: [...presets, ['@babel/react', { useSpread: true }]],
+        presets: [
+          ...presets,
+          [
+            '@babel/react',
+            {
+              useSpread: true,
+              runtime: 'automatic',
+            },
+          ],
+        ],
         plugins: [
           ...plugins,
           ...(mode === 'production'

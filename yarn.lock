@@ -14,19 +14,19 @@
   resolved "https://registry.npm.taobao.org/@babel/compat-data/download/@babel/compat-data-7.12.0.tgz#443aea07a5aeba7942cb067de6b8272f2ab36b9e"
   integrity sha1-RDrqB6WuunlCywZ95rgnLyqza54=
 
-"@babel/core@>=7.9.0", "@babel/core@^7.11.6":
-  version "7.11.6"
-  resolved "https://registry.npm.taobao.org/@babel/core/download/@babel/core-7.11.6.tgz#3a9455dc7387ff1bac45770650bc13ba04a15651"
-  integrity sha1-OpRV3HOH/xusRXcGULwTugShVlE=
+"@babel/core@>=7.9.0", "@babel/core@^7.12.0":
+  version "7.12.0"
+  resolved "https://registry.npm.taobao.org/@babel/core/download/@babel/core-7.12.0.tgz#e42e07a086e978cdd4c61f4078d8230fb817cc86"
+  integrity sha1-5C4HoIbpeM3Uxh9AeNgjD7gXzIY=
   dependencies:
     "@babel/code-frame" "^7.10.4"
-    "@babel/generator" "^7.11.6"
-    "@babel/helper-module-transforms" "^7.11.0"
+    "@babel/generator" "^7.12.0"
+    "@babel/helper-module-transforms" "^7.12.0"
     "@babel/helpers" "^7.10.4"
-    "@babel/parser" "^7.11.5"
+    "@babel/parser" "^7.12.0"
     "@babel/template" "^7.10.4"
-    "@babel/traverse" "^7.11.5"
-    "@babel/types" "^7.11.5"
+    "@babel/traverse" "^7.12.0"
+    "@babel/types" "^7.12.0"
     convert-source-map "^1.7.0"
     debug "^4.1.0"
     gensync "^1.0.0-beta.1"
@@ -36,7 +36,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/generator@^7.11.5", "@babel/generator@^7.11.6", "@babel/generator@^7.12.0":
+"@babel/generator@^7.11.6", "@babel/generator@^7.12.0":
   version "7.12.0"
   resolved "https://registry.npm.taobao.org/@babel/generator/download/@babel/generator-7.12.0.tgz#91a45f1c18ca8d895a35a04da1a4cf7ea3f37f98"
   integrity sha1-kaRfHBjKjYlaNaBNoaTPfqPzf5g=
@@ -147,7 +147,7 @@
   dependencies:
     "@babel/types" "^7.10.4"
 
-"@babel/helper-member-expression-to-functions@^7.10.4", "@babel/helper-member-expression-to-functions@^7.10.5", "@babel/helper-member-expression-to-functions@^7.12.0":
+"@babel/helper-member-expression-to-functions@^7.10.5", "@babel/helper-member-expression-to-functions@^7.12.0":
   version "7.12.0"
   resolved "https://registry.npm.taobao.org/@babel/helper-member-expression-to-functions/download/@babel/helper-member-expression-to-functions-7.12.0.tgz#48f605fa801764f3e5b2e301e49d35fe1820c4f3"
   integrity sha1-SPYF+oAXZPPlsuMB5J01/hggxPM=
@@ -993,10 +993,10 @@
   resolved "https://registry.npm.taobao.org/@nice-labs/git-rev/download/@nice-labs/git-rev-3.5.0.tgz#997edfb9d1831dd5d6593512c46fb3064c30ea0c"
   integrity sha1-mX7fudGDHdXWWTUSxG+zBkww6gw=
 
-"@nice-move/cli@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.npm.taobao.org/@nice-move/cli/download/@nice-move/cli-0.5.0.tgz#e3ea0122b3f235674e7a10e6f5127b4b2dcd46ae"
-  integrity sha1-4+oBIrPyNWdOehDm9RJ7Sy3NRq4=
+"@nice-move/cli@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.npm.taobao.org/@nice-move/cli/download/@nice-move/cli-0.5.1.tgz#301c26168b29a912f06e6fb97c14685b6cf49151"
+  integrity sha1-MBwmFospqRLwbm+5fBRoW2z0kVE=
   dependencies:
     centra "^2.4.2"
     chalk "^4.1.0"
@@ -1005,7 +1005,7 @@
     fs-chain "^1.4.1"
     git-username "^1.0.0"
     is-there "^4.5.1"
-    lint-staged "^10.3.0"
+    lint-staged "^10.4.0"
     lodash "^4.17.20"
     micromustache "^8.0.3"
     ora "^5.1.0"
@@ -1013,10 +1013,10 @@
     replace-in-file "^6.1.0"
     yarn-deduplicate "^3.0.0"
 
-"@nice-move/eslint-config-base@^0.3.12":
-  version "0.3.12"
-  resolved "https://registry.npm.taobao.org/@nice-move/eslint-config-base/download/@nice-move/eslint-config-base-0.3.12.tgz#ef28a7da3cf95df39d0015b60a9f3b65b2786a06"
-  integrity sha1-7yin2jz5XfOdABW2Cp87ZbJ4agY=
+"@nice-move/eslint-config-base@^0.3.13":
+  version "0.3.13"
+  resolved "https://registry.npm.taobao.org/@nice-move/eslint-config-base/download/@nice-move/eslint-config-base-0.3.13.tgz#eb85d781378e25c500d89563c55071f1eb84812c"
+  integrity sha1-64XXgTeOJcUA2JVjxVBx8euEgSw=
   dependencies:
     eslint-config-airbnb-base "^14.2.0"
     eslint-config-prettier "^6.12.0"
@@ -1211,10 +1211,10 @@
   resolved "https://registry.npm.taobao.org/@types/q/download/@types/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha1-FZJUFOCtLNdlv+9YhC9+JqesyyQ=
 
-"@types/react@^16.9.51":
-  version "16.9.51"
-  resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.51.tgz#f8aa51ffa9996f1387f63686696d9b59713d2b60"
-  integrity sha1-+KpR/6mZbxOH9jaGaW2bWXE9K2A=
+"@types/react@^16.9.52":
+  version "16.9.52"
+  resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.52.tgz#c46c72d1a1d8d9d666f4dd2066c0e22600ccfde1"
+  integrity sha1-xGxy0aHY2dZm9N0gZsDiJgDM/eE=
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
@@ -6672,10 +6672,10 @@ linguist-languages@^7.9.0:
   resolved "https://registry.npm.taobao.org/linguist-languages/download/linguist-languages-7.10.0.tgz#c2098dfe6c5a4ab665fb78f13b190344e4cff1af"
   integrity sha1-wgmN/mxaSrZl+3jxOxkDROTP8a8=
 
-lint-staged@^10.3.0:
-  version "10.3.0"
-  resolved "https://registry.npm.taobao.org/lint-staged/download/lint-staged-10.3.0.tgz#388c3d440590c45c339e7163f669ea69ae90b1e0"
-  integrity sha1-OIw9RAWQxFwznnFj9mnqaa6QseA=
+lint-staged@^10.4.0:
+  version "10.4.0"
+  resolved "https://registry.npm.taobao.org/lint-staged/download/lint-staged-10.4.0.tgz#d18628f737328e0bbbf87d183f4020930e9a984e"
+  integrity sha1-0YYo9zcyjgu7+H0YP0Agkw6amE4=
   dependencies:
     chalk "^4.1.0"
     cli-truncate "^2.1.0"
@@ -9011,10 +9011,10 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^16.13.1:
-  version "16.13.1"
-  resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
-  integrity sha1-wb03MxoEhsB47lTEdAcgmTsuDn8=
+react-dom@^16.14.0:
+  version "16.14.0"
+  resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.14.0.tgz#7ad838ec29a777fb3c75c3a190f661cf92ab8b89"
+  integrity sha1-etg47Cmnd/s8dcOhkPZhz5Kri4k=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -9045,10 +9045,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
-react@^16.13.1:
-  version "16.13.1"
-  resolved "https://registry.npm.taobao.org/react/download/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
-  integrity sha1-LoGIIvGpdDEiwGPWQQ2FweOv5I4=
+react@^16.14.0:
+  version "16.14.0"
+  resolved "https://registry.npm.taobao.org/react/download/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
+  integrity sha1-lNd23dCqo32j7aj8W2sYpMmjEU0=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

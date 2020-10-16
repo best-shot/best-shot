@@ -1,9 +1,9 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 
-function applyOneOf({ auto, mode }) {
+function applyOneOf({ auto = false, mode }) {
   return (rule) => {
     rule
       .use('css-loader')
@@ -29,22 +29,15 @@ module.exports = function applyStylesheet(chain) {
   const minimize = chain.optimization.get('minimize');
 
   if (minimize) {
-    chain.optimization
-      .minimizer('optimize-css-assets')
-      .use(OptimizeCssAssetsPlugin, [
-        {
-          sourceMap: !['eval', false].includes(chain.get('devtool')),
-          cssProcessorPluginOptions: {
-            preset: [
-              'default',
-              {
-                // mergeLonghand: false,
-                discardComments: { removeAll: true },
-              },
-            ],
-          },
+    chain.optimization.minimizer('css-minimizer').use(CssMinimizerPlugin, [
+      {
+        cache: false,
+        sourceMap: !['eval', false].includes(chain.get('devtool')),
+        minimizerOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
         },
-      ]);
+      },
+    ]);
   }
 
   chain.module.rule('style').test(extToRegexp({ extname: ['css'] }));

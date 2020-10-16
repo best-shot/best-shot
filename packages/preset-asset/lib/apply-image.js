@@ -1,5 +1,5 @@
 const extToRegexp = require('ext-to-regexp');
-const ImageminPlugin = require('imagemin-webpack');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 const imageRegexp = extToRegexp({
   extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
@@ -22,42 +22,31 @@ module.exports = function applyImage(chain) {
     });
 
   if (minimize) {
-    chain.optimization.minimizer('imagemin').use(ImageminPlugin, [
+    chain.optimization.minimizer('imagemin').use(ImageMinimizerPlugin, [
       {
         cache: false,
         test: imageRegexp,
-        name: '[path][name].[ext]',
-        imageminOptions: {
+        minimizerOptions: {
           plugins: [
-            'optipng',
-            ['jpegtran', { progressive: true }],
             ['gifsicle', { interlaced: true }],
+            ['jpegtran', { progressive: true }],
+            ['optipng', { optimizationLevel: 5 }],
             [
               'svgo',
               {
                 multipass: true,
-                plugins: [
-                  {
-                    removeAttrs: {
-                      attrs: ['data-*', 'data.*'],
-                    },
+                plugins: Object.entries({
+                  inlineStyles: { onlyMatchedOnce: false },
+                  moveElemsAttrsToGroup: false,
+                  removeAttrs: { attrs: ['data-*', 'data.*'] },
+                  removeDimensions: true,
+                  removeScriptElement: true,
+                  sortAttrs: true,
+                  removeAttributesBySelector: {
+                    selector: 'svg',
+                    attributes: ['id', 'xml:space'],
                   },
-                  { removeDimensions: true },
-                  { removeScriptElement: true },
-                  { sortAttrs: true },
-                  { moveElemsAttrsToGroup: false },
-                  {
-                    inlineStyles: {
-                      onlyMatchedOnce: false,
-                    },
-                  },
-                  {
-                    removeAttributesBySelector: {
-                      selector: 'svg',
-                      attributes: ['id'],
-                    },
-                  },
-                ],
+                }).map(([key, value]) => ({ [key]: value })),
               },
             ],
           ],

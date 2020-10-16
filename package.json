@@ -34,7 +34,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.0",
     "@nice-move/cli": "^0.5.1",
-    "@nice-move/eslint-config-base": "^0.3.13",
+    "@nice-move/eslint-config-base": "^0.3.14",
     "@nice-move/prettier-config": "^0.3.2",
     "@nice-move/stylelint-config": "^0.4.1",
     "@types/react": "^16.9.52",
@@ -51,7 +51,7 @@
     "bin-wrapper": "npm:bin-wrapper-china"
   },
   "engines": {
-    "node": "^12.18 || ^14"
+    "node": "^12.14 || ^14"
   },
   "eslintConfig": {
     "extends": [

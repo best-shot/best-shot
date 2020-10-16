@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-asset",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A `best-shot` preset for asset",
   "license": "MIT",
   "author": {
@@ -28,17 +28,20 @@
   "main": "index.js",
   "dependencies": {
     "ext-to-regexp": "^0.0.8",
-    "file-loader": "^6.1.0",
+    "file-loader": "^6.1.1",
+    "image-minimizer-webpack-plugin": "^1.0.0",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^8.0.0",
-    "imagemin-webpack": "^5.1.1"
+    "imagemin-svgo": "^8.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.2.3"
+    "@best-shot/core": "^0.2.8"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"
+  },
+  "x-readme": {
+    "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"
   }
 }

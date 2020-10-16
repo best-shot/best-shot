@@ -1,21 +1,19 @@
-'use strict';
-
 const slashToRegexp = require('slash-to-regexp');
 
 module.exports = function imageAvatar({
-  include = slashToRegexp('/src/avatar/')
+  include = slashToRegexp('/src/avatar/'),
 } = {}) {
-  return chain => {
+  return (chain) => {
     if (include) {
       chain.module
         .rule('image')
         .use('file-loader')
-        .tap(options => ({
+        .tap((options) => ({
           ...options,
-          name: file =>
-            (include.test(file)
+          name: (file) =>
+            include.test(file)
               ? 'avatar/[name].[ext]'
-              : '[name].[contenthash:8].[ext]')
+              : '[name].[contenthash:8].[ext]',
         }));
     }
   };

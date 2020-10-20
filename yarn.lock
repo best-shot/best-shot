@@ -36,7 +36,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/generator@^7.12.0", "@babel/generator@^7.12.1":
+"@babel/generator@^7.12.1":
   version "7.12.1"
   resolved "https://registry.npm.taobao.org/@babel/generator/download/@babel/generator-7.12.1.tgz#0d70be32bdaa03d7c51c8597dda76e0df1f15468"
   integrity sha1-DXC+Mr2qA9fFHIWX3aduDfHxVGg=
@@ -147,7 +147,7 @@
   dependencies:
     "@babel/types" "^7.10.4"
 
-"@babel/helper-member-expression-to-functions@^7.10.5", "@babel/helper-member-expression-to-functions@^7.12.0", "@babel/helper-member-expression-to-functions@^7.12.1":
+"@babel/helper-member-expression-to-functions@^7.10.5", "@babel/helper-member-expression-to-functions@^7.12.1":
   version "7.12.1"
   resolved "https://registry.npm.taobao.org/@babel/helper-member-expression-to-functions/download/@babel/helper-member-expression-to-functions-7.12.1.tgz#fba0f2fcff3fba00e6ecb664bb5e6e26e2d6165c"
   integrity sha1-+6Dy/P8/ugDm7LZku15uJuLWFlw=
@@ -205,7 +205,7 @@
     "@babel/template" "^7.10.4"
     "@babel/types" "^7.10.4"
 
-"@babel/helper-replace-supers@^7.10.4", "@babel/helper-replace-supers@^7.12.0", "@babel/helper-replace-supers@^7.12.1":
+"@babel/helper-replace-supers@^7.10.4", "@babel/helper-replace-supers@^7.12.1":
   version "7.12.1"
   resolved "https://registry.npm.taobao.org/@babel/helper-replace-supers/download/@babel/helper-replace-supers-7.12.1.tgz#f15c9cc897439281891e11d5ce12562ac0cf3fa9"
   integrity sha1-8VycyJdDkoGJHhHVzhJWKsDPP6k=
@@ -256,7 +256,7 @@
     "@babel/traverse" "^7.10.4"
     "@babel/types" "^7.10.4"
 
-"@babel/helpers@^7.10.4", "@babel/helpers@^7.12.1":
+"@babel/helpers@^7.12.1":
   version "7.12.1"
   resolved "https://registry.npm.taobao.org/@babel/helpers/download/@babel/helpers-7.12.1.tgz#8a8261c1d438ec18cb890434df4ec768734c1e79"
   integrity sha1-ioJhwdQ47BjLiQQ0307HaHNMHnk=
@@ -274,7 +274,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.10.4", "@babel/parser@^7.12.0", "@babel/parser@^7.12.1", "@babel/parser@^7.12.3":
+"@babel/parser@^7.10.4", "@babel/parser@^7.12.1", "@babel/parser@^7.12.3":
   version "7.12.3"
   resolved "https://registry.npm.taobao.org/@babel/parser/download/@babel/parser-7.12.3.tgz#a305415ebe7a6c7023b40b5122a0662d928334cd"
   integrity sha1-owVBXr56bHAjtAtRIqBmLZKDNM0=
@@ -939,7 +939,7 @@
     "@babel/parser" "^7.10.4"
     "@babel/types" "^7.10.4"
 
-"@babel/traverse@^7.10.4", "@babel/traverse@^7.12.0", "@babel/traverse@^7.12.1":
+"@babel/traverse@^7.10.4", "@babel/traverse@^7.12.1":
   version "7.12.1"
   resolved "https://registry.npm.taobao.org/@babel/traverse/download/@babel/traverse-7.12.1.tgz#941395e0c5cc86d5d3e75caa095d3924526f0c1e"
   integrity sha1-lBOV4MXMhtXT51yqCV05JFJvDB4=
@@ -11598,10 +11598,10 @@ webpack-sources@^1.1.0, webpack-sources@^1.3.0, webpack-sources@^1.4.0, webpack-
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack-subresource-integrity@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.npm.taobao.org/webpack-subresource-integrity/download/webpack-subresource-integrity-1.4.1.tgz#e8bf918b444277df46a66cd84542cbcdc5a6272d"
-  integrity sha1-6L+Ri0RCd99GpmzYRULLzcWmJy0=
+webpack-subresource-integrity@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npm.taobao.org/webpack-subresource-integrity/download/webpack-subresource-integrity-1.5.1.tgz#6f44ea99987266b70c4ec42ac51064d33e982277"
+  integrity sha1-b0TqmZhyZrcMTsQqxRBk0z6YInc=
   dependencies:
     webpack-sources "^1.3.0"
 

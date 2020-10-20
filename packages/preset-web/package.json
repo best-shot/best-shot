@@ -38,7 +38,7 @@
     "raw-loader": "^4.0.1",
     "slash-to-regexp": "^0.0.4",
     "suffix": "^1.0.0",
-    "webpack-subresource-integrity": "^1.4.1",
+    "webpack-subresource-integrity": "^1.5.1",
     "yaml-loader": "^0.6.0"
   },
   "peerDependencies": {

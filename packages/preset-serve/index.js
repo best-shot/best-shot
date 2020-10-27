@@ -9,12 +9,12 @@ exports.apply = function applyServe({
   config: { devServer = {} },
 }) {
   return (chain) => {
-    const publicPath = chain.output.get('publicPath') || '/';
+    const publicPath =
+      // @ts-ignore
+      devServer.publicPath || chain.output.get('publicPath') || '/';
 
     chain.devServer
-      .merge(devServer)
       .stats(chain.get('stats'))
-      .publicPath(publicPath)
       .when(
         // @ts-ignore
         publicPath !== '/' && defined(devServer.historyApiFallback),
@@ -33,7 +33,9 @@ exports.apply = function applyServe({
             ],
           });
         },
-      );
+      )
+      .merge(devServer)
+      .publicPath(publicPath);
   };
 };
 

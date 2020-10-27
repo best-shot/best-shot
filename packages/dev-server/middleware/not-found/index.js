@@ -1,6 +1,6 @@
 const { resolve } = require('path');
 const { Router } = require('express');
-const { compile } = require('micromustache');
+const { compile } = require('ejs');
 const { readFileSync } = require('fs');
 
 const router = Router({ strict: true });
@@ -12,12 +12,15 @@ router.get(
   },
 );
 
-router.use(({ method, url }, res, next) => {
+function isRaw({ method, url }) {
   const [last] = url.split('/').slice(-1);
-  if (
-    method !== 'GET' ||
-    (last && !/\.html?$/.test(last) && /\.\w+$/.test(last))
-  ) {
+  return (
+    method !== 'GET' || (last && !/\.html?$/.test(last) && /\.\w+$/.test(last))
+  );
+}
+
+router.use(({ method, url }, res, next) => {
+  if (isRaw({ method, url })) {
     res.status(404).type('text').end();
   } else {
     next();
@@ -25,13 +28,18 @@ router.use(({ method, url }, res, next) => {
 });
 
 module.exports = function notFound({ publicPath: path }) {
-  router.use(({ originalUrl, url }, res) => {
-    const { render } = compile(
-      readFileSync(resolve(__dirname, '404.html'), {
-        encoding: 'utf-8',
-      }),
-    );
+  const render = compile(
+    readFileSync(resolve(__dirname, '404.html'), {
+      encoding: 'utf-8',
+    }),
+    {
+      delimiter: '?',
+      openDelimiter: '[',
+      closeDelimiter: ']',
+    },
+  );
 
+  router.use(({ originalUrl, url }, res) => {
     const notRoot = path !== '.' && path !== '/';
 
     const URL = originalUrl

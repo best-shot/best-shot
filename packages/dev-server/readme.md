@@ -1,4 +1,4 @@
-# @best-shot/dev-server
+# @best-shot/dev-server <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
 DevServer support of `@best-shot/cli`.
 

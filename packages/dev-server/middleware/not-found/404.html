@@ -35,8 +35,8 @@
         margin: 0;
         height: 100%;
         color: #999;
-        font-family: -apple-system, BlinkMacSystemFont, roboto, Segoe UI, Segoe,
-          Helvetica, Arial, monospace;
+        font-family: -apple-system, BlinkMacSystemFont, roboto, 'Segoe UI',
+          Segoe, Helvetica, Arial, monospace;
       }
 
       .logo {
@@ -80,10 +80,6 @@
         text-decoration: none;
         cursor: pointer;
       }
-
-      [data-path=''] {
-        visibility: hidden;
-      }
     </style>
   </head>
   <body>
@@ -94,12 +90,14 @@
         <span class="text">BEST SHOT</span>
       </h1>
       <p>Page not found</p>
-      <p data-path="{{ publicPath }}">
+      [? if (publicPath) { ?]
+      <p>
         Back to
-        <a rel="noopener noreferrer" href="{{ publicPath }}">
-          {{ publicPath }}
+        <a rel="noopener noreferrer" href="[?= publicPath ?]">
+          [?= publicPath ?]
         </a>
       </p>
+      [? } ?]
     </div>
     <div style="flex: 2"></div>
     <img src="/.best-shot/404.svg" alt="404" class="not-found" />

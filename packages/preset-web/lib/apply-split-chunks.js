@@ -27,25 +27,27 @@ exports.splitChunks = function splitChunks({ vendors = {} }) {
       };
     });
 
-    chain.optimization.runtimeChunk('single').splitChunks({
-      maxAsyncRequests: 5,
-      cacheGroups: {
-        ...settings,
-        vendor: {
-          chunks: 'initial',
-          enforce: true,
-          name: 'initial',
-          priority: 10,
-          reuseExistingChunk: true,
-          test: slashToRegexp('/node_modules/'),
+    chain.optimization
+      .runtimeChunk(chain.get('target') === 'web' ? 'single' : false)
+      .splitChunks({
+        maxAsyncRequests: 5,
+        cacheGroups: {
+          ...settings,
+          vendor: {
+            chunks: 'initial',
+            enforce: true,
+            name: 'initial',
+            priority: 10,
+            reuseExistingChunk: true,
+            test: slashToRegexp('/node_modules/'),
+          },
+          async: {
+            chunks: 'async',
+            enforce: true,
+            reuseExistingChunk: true,
+          },
         },
-        async: {
-          chunks: 'async',
-          enforce: true,
-          reuseExistingChunk: true,
-        },
-      },
-    });
+      });
 
     if (chain.get('mode') === 'production') {
       chain

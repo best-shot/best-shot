@@ -27,7 +27,7 @@ router.use(({ method, url }, res, next) => {
   }
 });
 
-module.exports = function notFound({ publicPath: path }) {
+module.exports = function notFound({ publicPath: path = '/' }) {
   const render = compile(
     readFileSync(resolve(__dirname, '404.html'), {
       encoding: 'utf-8',
@@ -40,13 +40,13 @@ module.exports = function notFound({ publicPath: path }) {
   );
 
   router.use(({ originalUrl, url }, res) => {
-    const notRoot = path !== '.' && path !== '/';
-
     const URL = originalUrl
       ? originalUrl.endsWith('/')
         ? `${originalUrl}index.html`
         : originalUrl
       : url;
+
+    const notRoot = path !== '/';
 
     const html = render({
       publicPath:

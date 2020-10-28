@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -31,7 +31,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@best-shot/preset-serve": "^0.3.1",
+    "@best-shot/preset-serve": "^0.3.2",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "get-port": "^5.1.1",

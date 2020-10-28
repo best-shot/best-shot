@@ -64,7 +64,7 @@ exports.schema = {
     type: 'string',
   },
   publicPath: {
-    default: '/',
+    default: '',
     title: 'Same as `output.publicPath` of `webpack`',
     type: 'string',
     oneOf: [

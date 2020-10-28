@@ -1,4 +1,4 @@
-const test = require('ava');
+const test = require('ava').default;
 
 const BestShot = require('../packages/core');
 const Schema = require('../packages/core/lib/schema');
@@ -15,7 +15,7 @@ const example = {
   target: 'web',
   mode: 'development',
   output: {
-    publicPath: '/',
+    publicPath: '',
     filename: '[name].js',
   },
 };

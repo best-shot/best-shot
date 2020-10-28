@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -26,7 +26,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "ajv": "^6.12.5",
+    "ajv": "^6.12.6",
     "better-ajv-errors": "^0.6.7",
     "browserslist": "^4.14.5",
     "case-sensitive-paths-webpack-plugin": "^2.3.0",

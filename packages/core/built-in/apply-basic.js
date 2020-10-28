@@ -8,11 +8,11 @@ const shorthand = {
 };
 
 exports.apply = function applyBasic({
-  config: { publicPath, outputPath },
+  config: { publicPath, outputPath, target },
   platform = '',
 }) {
   return (chain) => {
-    chain.amd(false).target('web');
+    chain.amd(false).target(target);
 
     const context = chain.get('context');
     const mode = chain.get('mode');
@@ -65,7 +65,7 @@ exports.schema = {
   },
   publicPath: {
     default: '',
-    title: 'Same as `output.publicPath` of `webpack`',
+    title: 'Same as `output.publicPath` of `webpack` configuration',
     type: 'string',
     oneOf: [
       {
@@ -75,5 +75,10 @@ exports.schema = {
         pattern: '\\/$',
       },
     ],
+  },
+  target: {
+    default: 'web',
+    title: 'Same as `target` of `webpack` configuration',
+    type: 'string',
   },
 };

@@ -33,9 +33,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
-    "@nice-move/cli": "^0.5.2",
-    "@nice-move/eslint-config-base": "^0.3.14",
-    "@nice-move/prettier-config": "^0.3.2",
+    "@nice-move/cli": "^0.5.3",
+    "@nice-move/eslint-config-base": "^0.3.15",
+    "@nice-move/prettier-config": "^0.3.3",
     "@nice-move/stylelint-config": "^0.4.2",
     "@types/react": "^16.9.53",
     "ava": "^3.13.0",

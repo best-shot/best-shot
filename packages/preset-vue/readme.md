@@ -1,4 +1,4 @@
-# @best-shot/preset-vue
+# @best-shot/preset-vue <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
 A `best-shot` preset for Vue project.
 
@@ -12,10 +12,10 @@ A `best-shot` preset for Vue project.
 [github-badge]: https://img.shields.io/npm/l/@best-shot/preset-vue.svg?style=flat-square&colorB=blue&logo=github
 [node-badge]: https://img.shields.io/node/v/@best-shot/preset-vue.svg?style=flat-square&colorB=green&logo=node.js
 
-This preset includes the following packages:
+This preset offer the following features:
 
-- vue-loader
-- vue-template-compiler
+- [Vue](https://vuejs.org/) (2.x) framework support
+- Vue Single-File Component (SFC) Spec support
 
 ## Installation
 

@@ -1,12 +1,22 @@
 const WebpackDevServer = require('webpack-dev-server');
 const webpackDevServerWaitpage = require('webpack-dev-server-waitpage');
 const getPort = require('get-port');
+const log = require('webpack-log');
 
 const notFound = require('./middleware/not-found');
 
 module.exports = function DevServer(compiler, options) {
   // @ts-ignore
   webpackDevServerWaitpage.plugin().apply(compiler);
+
+  if (
+    options.historyApiFallback === true &&
+    !compiler.options.output.publicPath.startsWith('/')
+  ) {
+    const logger = log({ name: 'wds' });
+    logger.warn("output.publicPath didn't starts with '/'");
+    logger.warn('historyApiFallback might caught assets error');
+  }
 
   const Server = new WebpackDevServer(compiler, {
     ...options,

@@ -13,7 +13,7 @@ module.exports = function apply(chain) {
 
   chain.output.path(Resolve(rootPath, '.best-shot/stats/temp'));
 
-  chain.optimization.concatenateModules(false);
+  chain.optimization.runtimeChunk('single').concatenateModules(false);
 
   chain.plugin('bundle-analyzer').use(BundleAnalyzerPlugin, [
     {

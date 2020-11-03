@@ -33,12 +33,13 @@ function filterData(data) {
 
 function mergeParams(
   { mode, watch: isWatch, serve: isServe },
-  { development, production, watch, serve },
+  { development, production, watch, serve, ...rest },
 ) {
   return filterData(
     mode === 'production'
-      ? production
+      ? { ...rest, ...production }
       : {
+          ...rest,
           ...production,
           ...development,
           ...(isWatch || isServe ? watch : {}),

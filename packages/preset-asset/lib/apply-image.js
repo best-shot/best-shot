@@ -5,6 +5,18 @@ const imageRegexp = extToRegexp({
   extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
 });
 
+function autoDetect(name, options) {
+  try {
+    // eslint-disable-next-line global-require, import/no-dynamic-require
+    if (require(`${name}/package.json`).name === name) {
+      return [name, options];
+    }
+    return false;
+  } catch {
+    return false;
+  }
+}
+
 module.exports = function applyImage(chain) {
   const minimize = chain.optimization.get('minimize');
 
@@ -28,9 +40,9 @@ module.exports = function applyImage(chain) {
         test: imageRegexp,
         minimizerOptions: {
           plugins: [
-            ['gifsicle', { interlaced: true }],
-            ['jpegtran', { progressive: true }],
-            ['optipng', { optimizationLevel: 5 }],
+            autoDetect('gifsicle', { interlaced: true }),
+            autoDetect('jpegtran', { progressive: true }),
+            autoDetect('optipng', { optimizationLevel: 5 }),
             [
               'svgo',
               {
@@ -49,7 +61,7 @@ module.exports = function applyImage(chain) {
                 }).map(([key, value]) => ({ [key]: value })),
               },
             ],
-          ],
+          ].filter(Boolean),
         },
       },
     ]);

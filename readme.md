@@ -12,6 +12,7 @@ A webpack config tool chain.
 - [@best-shot/dev-server](./packages/dev-server/)
 - [@best-shot/analyzer](./packages/analyzer/)
 - [@best-shot/inspector](./packages/inspector/)
+- [@best-shot/preset-asset](./packages/preset-asset/)
 - [@best-shot/preset-babel](./packages/preset-babel/)
 - [@best-shot/preset-env](./packages/preset-env/)
 - [@best-shot/preset-react](./packages/preset-react/)

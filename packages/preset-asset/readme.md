@@ -39,7 +39,7 @@ module.exports = {
 
 In China mainland, use [bin-wrapper-china](https://github.com/best-shot/bin-wrapper-china) might help.
 
-You also can replace `gifsicle/jpegtran/optipng` by using [yarn resolutions](https://classic.yarnpkg.com/en/docs/selective-version-resolutions), `best-shot` will disable them automatically.
+You also can replace `gifsicle/jpegtran-bin/optipng-bin` by using [yarn resolutions](https://classic.yarnpkg.com/en/docs/selective-version-resolutions), `best-shot` will disable them automatically.
 
 ```json
 // package.json

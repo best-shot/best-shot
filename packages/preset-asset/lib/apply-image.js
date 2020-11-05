@@ -5,10 +5,10 @@ const imageRegexp = extToRegexp({
   extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
 });
 
-function autoDetect(name, options) {
+function autoDetect(name, options, packageName = name) {
   try {
     // eslint-disable-next-line global-require, import/no-dynamic-require
-    if (require(`${name}/package.json`).name === name) {
+    if (require(`${packageName}/package.json`).name === packageName) {
       return [name, options];
     }
     return false;
@@ -41,8 +41,8 @@ module.exports = function applyImage(chain) {
         minimizerOptions: {
           plugins: [
             autoDetect('gifsicle', { interlaced: true }),
-            autoDetect('jpegtran', { progressive: true }),
-            autoDetect('optipng', { optimizationLevel: 5 }),
+            autoDetect('jpegtran', { progressive: true }, 'jpegtran-bin'),
+            autoDetect('optipng', { optimizationLevel: 5 }, 'optipng-bin'),
             [
               'svgo',
               {

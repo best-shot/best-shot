@@ -13,11 +13,12 @@ jobs:
           - https://cnpmjs.org
           - https://npm.taobao.org
         package:
+          - analyzer
           - cli
           - core
           - dev-server
-          - analyzer
           - inspector
+          - preset-asset
           - preset-babel
           - preset-env
           - preset-react

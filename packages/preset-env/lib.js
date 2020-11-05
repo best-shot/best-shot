@@ -4,6 +4,7 @@ const pickBy = require('lodash/pickBy');
 const tomlParser = require('@iarna/toml/parse');
 const yaml = require('js-yaml');
 const { decode } = require('ini');
+const { default: git } = require('@nice-labs/git-rev');
 
 function ensureConfig(type, rootPath) {
   try {
@@ -29,6 +30,14 @@ function findConfig(rootPath) {
 
 function filterData(data) {
   return pickBy(data, (item) => item !== undefined);
+}
+
+function getGitHash() {
+  try {
+    return git.commitHash();
+  } catch {
+    return '';
+  }
 }
 
 function mergeParams(
@@ -71,6 +80,7 @@ function parseConfig({ path, name, type } = {}) {
 }
 
 module.exports = {
+  getGitHash,
   filterData,
   findConfig,
   mergeParams,

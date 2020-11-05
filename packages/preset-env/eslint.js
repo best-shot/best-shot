@@ -1,8 +1,7 @@
 const mapValues = require('lodash/mapValues');
-const isGit = require('is-git-repository').default;
 const sortKeys = require('sort-keys');
 
-const { findConfig, parseConfig, filterData } = require('./lib');
+const { findConfig, parseConfig, filterData, getGitHash } = require('./lib');
 
 const envFile = findConfig(process.cwd());
 
@@ -21,7 +20,7 @@ const envObject = mapValues(
 
 const globals = sortKeys({
   ...envObject,
-  ...(isGit() ? { GIT_HASH: 'readonly' } : undefined),
+  ...(getGitHash() ? { GIT_HASH: 'readonly' } : undefined),
 });
 
 module.exports = { globals };

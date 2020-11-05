@@ -2,12 +2,10 @@ const { inspect } = require('util');
 const { cyan, level } = require('chalk');
 const mapValues = require('lodash/mapValues');
 
-const { default: git } = require('@nice-labs/git-rev');
-
 const sortKeys = require('sort-keys');
 const { DefinePlugin } = require('webpack');
 
-const { findConfig, mergeParams, parseConfig } = require('./lib');
+const { findConfig, mergeParams, parseConfig, getGitHash } = require('./lib');
 
 exports.name = 'preset-env';
 
@@ -24,14 +22,6 @@ function logger({ GIT_HASH, ...data }) {
   console.log(cyan`PRESET-ENV`, pretty(data));
 }
 
-function hash() {
-  try {
-    return git.commitHash();
-  } catch {
-    return '';
-  }
-}
-
 exports.apply = function applyEnv() {
   return (chain) => {
     const mode = chain.get('mode');
@@ -43,7 +33,7 @@ exports.apply = function applyEnv() {
     const configObject = parseConfig(configFile);
     const data = mergeParams({ mode, serve, watch }, configObject);
 
-    const GIT_HASH = hash();
+    const GIT_HASH = getGitHash();
 
     if (GIT_HASH) {
       data.GIT_HASH = GIT_HASH;

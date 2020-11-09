@@ -33,6 +33,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@nice-move/cli": "^0.5.3",
     "@nice-move/eslint-config-base": "^0.3.16",
     "@nice-move/prettier-config": "^0.3.4",
@@ -53,6 +55,11 @@
   "engines": {
     "node": "^12.14 || ^14"
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "@nice-move/eslint-config-base",
@@ -61,6 +68,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "nice-move lint && ava --verbose"
     }
   },

@@ -141,7 +141,7 @@ $RECYCLE.BIN/
 # End of https://gitignore.io/api/node,windows
 
 # best-shot
-.best-shot/*[build,inspect,stats]/
+.best-shot/*[build,inspect,stats,temp,cache]/
 # best-shot
 
 /src/

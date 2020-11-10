@@ -3,6 +3,8 @@ const { Router } = require('express');
 const { compile } = require('ejs');
 const { readFileSync } = require('fs');
 
+const { isRaw } = require('../../lib/utils');
+
 const router = Router({ strict: true });
 
 router.get(
@@ -12,15 +14,8 @@ router.get(
   },
 );
 
-function isRaw({ method, url }) {
-  const [last] = url.split('/').slice(-1);
-  return (
-    method !== 'GET' || (last && !/\.html?$/.test(last) && /\.\w+$/.test(last))
-  );
-}
-
 router.use(({ method, url }, res, next) => {
-  if (isRaw({ method, url })) {
+  if (method !== 'GET' || isRaw(url)) {
     res.status(404).type('text').end();
   } else {
     next();

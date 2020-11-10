@@ -3,6 +3,7 @@ const webpackDevServerWaitpage = require('webpack-dev-server-waitpage');
 const getPort = require('get-port');
 const log = require('webpack-log');
 
+const { isRaw } = require('./lib/utils');
 const notFound = require('./middleware/not-found');
 
 module.exports = function DevServer(compiler, options) {
@@ -25,6 +26,8 @@ module.exports = function DevServer(compiler, options) {
         // @ts-ignore
         webpackDevServerWaitpage(server, {
           title: 'Bundling...',
+          // @ts-ignore
+          ignore: (req) => isRaw(req.url),
         }),
       );
       if (typeof options.before === 'function') {

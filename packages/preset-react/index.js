@@ -16,9 +16,12 @@ exports.apply = function apply({ config: { polyfill = false } }) {
     const useHot = chain.devServer.get('hot') || false;
 
     if (useHot) {
-      Object.entries(chain.entryPoints.entries()).forEach(([key]) => {
+      const entries = Object.keys(chain.entryPoints.entries());
+
+      entries.forEach((key) => {
         chain.entry(key).prepend('react-hot-loader/patch');
       });
+
       chain.resolve.alias.set('react-dom', '@hot-loader/react-dom');
     }
 

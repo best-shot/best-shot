@@ -24,6 +24,11 @@ exports.apply = function applyBabel({ config: { polyfill = false } }) {
         ...(UseCache ? { cacheCompression: false } : undefined),
         compact: mode === 'production',
         presets: [['evergreen', { polyfill }]],
+        plugins: [
+          // for webpack v4
+          '@babel/proposal-optional-chaining',
+          '@babel/proposal-nullish-coalescing-operator',
+        ],
       });
 
     const isServing = chain.devServer.entries() !== undefined;

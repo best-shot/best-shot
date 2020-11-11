@@ -12,6 +12,11 @@ function mapValues(obj, func) {
   );
 }
 
+const force = {
+  enforce: true,
+  reuseExistingChunk: true,
+};
+
 exports.splitChunks = function splitChunks({ vendors = {} }) {
   return (chain) => {
     const settings = mapValues(vendors, (value, key, index, length) => {
@@ -22,32 +27,38 @@ exports.splitChunks = function splitChunks({ vendors = {} }) {
         name: key,
         chunks: 'initial',
         priority: (length - index + 1) * 10,
-        enforce: true,
-        reuseExistingChunk: true,
+        ...force,
       };
     });
 
-    chain.optimization
-      .runtimeChunk(chain.get('target') === 'web' ? 'single' : false)
-      .splitChunks({
-        maxAsyncRequests: 5,
-        cacheGroups: {
-          ...settings,
-          vendor: {
-            chunks: 'initial',
-            enforce: true,
-            name: 'initial',
-            priority: 10,
-            reuseExistingChunk: true,
-            test: slashToRegexp('/node_modules/'),
-          },
-          async: {
-            chunks: 'async',
-            enforce: true,
-            reuseExistingChunk: true,
-          },
+    const initial = {
+      chunks: 'initial',
+      priority: 10,
+      ...force,
+    };
+
+    chain.optimization.runtimeChunk('single').splitChunks({
+      maxAsyncRequests: 5,
+      cacheGroups: {
+        ...settings,
+        vendor:
+          Object.keys(chain.entryPoints.entries()).length > 1
+            ? {
+                name: 'common',
+                minChunks: 2,
+                ...initial,
+              }
+            : {
+                name: 'vendor',
+                test: slashToRegexp('/node_modules/'),
+                ...initial,
+              },
+        async: {
+          chunks: 'async',
+          ...force,
         },
-      });
+      },
+    });
 
     if (chain.get('mode') === 'production') {
       chain

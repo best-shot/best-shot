@@ -1,5 +1,6 @@
 const extToRegexp = require('ext-to-regexp');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const svgoConfig = require('svgo-config/config.json');
 
 const imageRegexp = extToRegexp({
   extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
@@ -43,24 +44,7 @@ module.exports = function applyImage(chain) {
             autoDetect('gifsicle', { interlaced: true }),
             autoDetect('jpegtran', { progressive: true }, 'jpegtran-bin'),
             autoDetect('optipng', { optimizationLevel: 5 }, 'optipng-bin'),
-            [
-              'svgo',
-              {
-                multipass: true,
-                plugins: Object.entries({
-                  inlineStyles: { onlyMatchedOnce: false },
-                  moveElemsAttrsToGroup: false,
-                  removeAttrs: { attrs: ['data-*', 'data.*'] },
-                  removeDimensions: true,
-                  removeScriptElement: true,
-                  sortAttrs: true,
-                  removeAttributesBySelector: {
-                    selector: 'svg',
-                    attributes: ['id', 'xml:space'],
-                  },
-                }).map(([key, value]) => ({ [key]: value })),
-              },
-            ],
+            ['svgo', svgoConfig],
           ].filter(Boolean),
         },
       },

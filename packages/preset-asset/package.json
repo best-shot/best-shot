@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-asset",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A `best-shot` preset for asset",
   "license": "MIT",
   "author": {
@@ -33,7 +33,8 @@
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^8.0.0"
+    "imagemin-svgo": "^8.0.0",
+    "svgo-config": "^0.1.0"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.2.10"

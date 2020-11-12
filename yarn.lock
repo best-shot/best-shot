@@ -700,7 +700,7 @@
 "@babel/plugin-transform-react-jsx-development@^7.12.5":
   version "7.12.5"
   resolved "https://registry.npm.taobao.org/@babel/plugin-transform-react-jsx-development/download/@babel/plugin-transform-react-jsx-development-7.12.5.tgz#677de5b96da310430d6cfb7fee16a1603afa3d56"
-  integrity sha1-Z33luW2jEEMNbPt/7hahYDr6PVY=
+  integrity "sha1-Z33luW2jEEMNbPt/7hahYDr6PVY= sha512-1JJusg3iPgsZDthyWiCr3KQiGs31ikU/mSf2N2dSYEAO0GEImmVUbWf0VoSDGDFTAn5Dj4DUiR6SdIXHY7tELA=="
   dependencies:
     "@babel/helper-builder-react-jsx-experimental" "^7.12.1"
     "@babel/helper-plugin-utils" "^7.10.4"
@@ -723,7 +723,7 @@
 "@babel/plugin-transform-react-jsx@^7.12.5":
   version "7.12.5"
   resolved "https://registry.npm.taobao.org/@babel/plugin-transform-react-jsx/download/@babel/plugin-transform-react-jsx-7.12.5.tgz#39ede0e30159770561b6963be143e40af3bde00c"
-  integrity sha1-Oe3g4wFZdwVhtpY74UPkCvO94Aw=
+  integrity "sha1-Oe3g4wFZdwVhtpY74UPkCvO94Aw= sha512-2xkcPqqrYiOQgSlM/iwto1paPijjsDbUynN13tI6bosDz/jOW3CRzYguIE8wKX32h+msbBM22Dv5fwrFkUOZjQ=="
   dependencies:
     "@babel/helper-builder-react-jsx" "^7.10.4"
     "@babel/helper-builder-react-jsx-experimental" "^7.12.1"
@@ -900,7 +900,7 @@
 "@babel/preset-react@^7.12.5":
   version "7.12.5"
   resolved "https://registry.npm.taobao.org/@babel/preset-react/download/@babel/preset-react-7.12.5.tgz#d45625f65d53612078a43867c5c6750e78772c56"
-  integrity sha1-1FYl9l1TYSB4pDhnxcZ1Dnh3LFY=
+  integrity "sha1-1FYl9l1TYSB4pDhnxcZ1Dnh3LFY= sha512-jcs++VPrgyFehkMezHtezS2BpnUlR7tQFAyesJn1vGTO9aTFZrgIQrA5YydlTwxbcjMwkFY6i04flCigRRr3GA=="
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-transform-react-display-name" "^7.12.1"
@@ -1104,7 +1104,7 @@
 "@hot-loader/react-dom@^16.14.0":
   version "16.14.0"
   resolved "https://registry.npm.taobao.org/@hot-loader/react-dom/download/@hot-loader/react-dom-16.14.0.tgz#3cfc64e40bb78fa623e59b582b8f09dcdaad648a"
-  integrity sha1-PPxk5Au3j6Yj5ZtYK48J3NqtZIo=
+  integrity "sha1-etg47Cmnd/s8dcOhkPZhz5Kri4k= sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw=="
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -5105,9 +5105,12 @@ fs-extra@^8.1.0:
 fs-extra@^9.0.0, fs-extra@^9.0.1:
   version "9.0.1"
   resolved "https://registry.npm.taobao.org/fs-extra/download/fs-extra-9.0.1.tgz#910da0062437ba4c39fedd863f1675ccfefcb9fc"
-  integrity "sha1-kcj8TFH21dvkTCypqwkxC9AMeRg= sha512-B42Sxuaz09MhC3DDeW5kubRcQ5by4iuVQ0cRRWM2lggLzAa/KVom0Aft/208NgMvNQQZ86s5rVcqDdn/SH0/mg=="
+  integrity "sha1-kQ2gBiQ3ukw5/t2GPxZ1zP78ufw= sha512-h2iAoN838FqAFJY2/qVpzFXy+EBxfVE220PalAqQLDVsFOHLJrZvut5puAbCdNv6WJk+B8ihI+k0c7JK5erwqQ=="
   dependencies:
-    "@types/node" "*"
+    at-least-node "^1.0.0"
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^1.0.0"
 
 fs-minipass@^2.0.0:
   version "2.1.0"
@@ -5662,7 +5665,15 @@ html-entities@^1.3.1:
 html-minifier-terser@^5.0.1:
   version "5.1.1"
   resolved "https://registry.npm.taobao.org/html-minifier-terser/download/html-minifier-terser-5.1.1.tgz#922e96f1f3bb60832c2634b79884096389b1f054"
-  integrity "sha1-PJ7pgPGhDWAhrmYyyj55yi7E+1A= sha512-giAlZwstKbmvMk1OO7WXSj4OZ0keXAcl2TQq4LWHiiPH2ByaH7WeUzng+Qej8UPxxv+8lRTuouo0iaNDBuzIBA=="
+  integrity "sha1-ki6W8fO7YIMsJjS3mIQJY4mx8FQ= sha512-ZPr5MNObqnV/T9akshPKbVgyOqLmy+Bxo7juKCfTfnjNniTAMdy4hz21YQqoofMBJD2kdREaqPPdThoR78Tgxg=="
+  dependencies:
+    camel-case "^4.1.1"
+    clean-css "^4.2.3"
+    commander "^4.1.1"
+    he "^1.2.0"
+    param-case "^3.0.3"
+    relateurl "^0.2.7"
+    terser "^4.6.3"
 
 html-tags@^3.1.0:
   version "3.1.0"
@@ -10732,6 +10743,11 @@ svg-tags@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/svg-tags/download/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
   integrity "sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q= sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA=="
+
+svgo-config@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npm.taobao.org/svgo-config/download/svgo-config-0.1.0.tgz#fbb3ce65e10cba72a604dc3773d0d7d078e8d1c7"
+  integrity "sha1-+7POZeEMunKmBNw3c9DX0Hjo0cc= sha512-wH6Keni4TqsoDUMDpVyzEO9wBf5Q6P4GBI39wLhbsFv5y+h3Z5ZbKecGMhsTZTZkwigL3QctjzqWddZ3AIWCdA=="
 
 svgo@^1.0.0, svgo@^1.3.2:
   version "1.3.2"

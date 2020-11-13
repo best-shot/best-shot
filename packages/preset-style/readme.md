@@ -16,7 +16,7 @@ This preset offer the following features:
 
 - CSS Modules
 - `less` / `sass` syntax
-- Use `autoprefixer` by default
+- Use `postcss-preset-evergreen` by default
 - Use `cssnano` in production mode
 
 ## Installation

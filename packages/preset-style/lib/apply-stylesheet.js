@@ -65,7 +65,7 @@ module.exports = function applyStylesheet(chain) {
     .loader('postcss-loader')
     .options({
       postcssOptions: {
-        plugins: ['autoprefixer', 'postcss-selector-not'],
+        plugins: ['postcss-preset-evergreen'],
       },
     });
 

@@ -1,6 +1,8 @@
 const slashToRegexp = require('slash-to-regexp');
 const { MinChunkSizePlugin } = require('webpack').optimize;
 
+const { join } = require('@best-shot/core/lib/path');
+
 function mapValues(obj, func) {
   const arr = Object.entries(obj);
   return arr.reduce(
@@ -42,7 +44,7 @@ exports.splitChunks = function splitChunks({ vendors = {} }) {
       cacheGroups: {
         ...settings,
         vendor:
-          Object.keys(chain.entryPoints.entries()).length > 1
+          chain.entryPoints.values().length > 1
             ? {
                 name: 'common',
                 minChunks: 2,
@@ -60,10 +62,15 @@ exports.splitChunks = function splitChunks({ vendors = {} }) {
       },
     });
 
-    if (chain.get('mode') === 'production') {
+    const mode = chain.get('mode');
+
+    if (mode === 'production') {
       chain
         .plugin('min-chunk-size')
         .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
+
+      const rootPath = chain.get('context');
+      chain.recordsPath(join(rootPath, '.best-shot', 'stats', 'records.json'));
     }
   };
 };

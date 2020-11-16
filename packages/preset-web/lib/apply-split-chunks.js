@@ -1,7 +1,7 @@
 const slashToRegexp = require('slash-to-regexp');
 const { MinChunkSizePlugin } = require('webpack').optimize;
 
-const { join } = require('@best-shot/core/lib/path');
+const { join } = require('path');
 
 function mapValues(obj, func) {
   const arr = Object.entries(obj);

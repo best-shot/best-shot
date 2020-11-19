@@ -26,10 +26,14 @@ exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
       mode === 'production' ? false : serve ? 'eval-source-map' : 'source-map',
     );
 
+    const target = chain.get('target');
+    const publicPath = chain.output.get('publicPath');
+
     chain
       .when(minimize, setOutputName({ style: addMin, script: addMin }))
       .when(!hot, setOutputName({ style: addHash, script: addHash }))
-      .batch(
+      .when(
+        target === 'web' && publicPath === '/',
         setOutputName({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,

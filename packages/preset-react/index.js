@@ -44,6 +44,7 @@ exports.apply = function apply({ config: { polyfill = false } }) {
             {
               useSpread: true,
               runtime: 'automatic',
+              ...(mode === 'development' ? { development: true } : undefined),
             },
           ],
         ],

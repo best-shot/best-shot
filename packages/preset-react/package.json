@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
@@ -31,7 +31,7 @@
   "dependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.12.1",
     "@babel/plugin-transform-react-inline-elements": "^7.12.1",
-    "@babel/preset-react": "^7.12.5",
+    "@babel/preset-react": "^7.12.7",
     "@hot-loader/react-dom": "^16.14.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "react-hot-loader": "^4.13.0",
@@ -39,12 +39,15 @@
   },
   "peerDependencies": {
     "@best-shot/core": "^0.2.10",
-    "@best-shot/preset-babel": "^0.5.2",
+    "@best-shot/preset-babel": "^0.6.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

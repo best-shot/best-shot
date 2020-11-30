@@ -16,7 +16,6 @@ This preset uses [babel-preset-evergreen] by default. It can transform:
 
 - ECMAScript 2021 syntax
 - Class static properties
-- Decorators
 
 ## Installation
 
@@ -53,7 +52,7 @@ npm install core-js@3 --save
 
 ### targets
 
-Can't be specify directly, use `browserslist.loadConfig() || browserslist.defaults`
+Can't be specify directly, always using `browserslist.loadConfig() || browserslist.defaults`.
 
 ## Create custom babel configuration
 
@@ -63,18 +62,5 @@ References: <https://babeljs.io/docs/en/configuration>
 // example: babel.config.json
 {
   "plugins": ["lodash", "macros"]
-}
-```
-
-### Decorators support
-
-To avoid risks, you have to enable `proposal-decorators` manually.
-
-Read more: <https://babeljs.io/docs/en/babel-plugin-proposal-decorators>
-
-```json
-// example: babel.config.json
-{
-  "plugins": ["@babel/proposal-decorators"]
 }
 ```

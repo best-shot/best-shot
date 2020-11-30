@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-babel",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -34,19 +34,21 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@babel/plugin-proposal-decorators": "^7.12.1",
-    "babel-loader": "^8.2.1",
-    "babel-preset-evergreen": "^0.4.2",
+    "babel-loader": "^8.2.2",
+    "babel-preset-evergreen": "^0.4.3",
     "ext-to-regexp": "^0.0.8",
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.9",
     "@best-shot/core": "^0.2.10",
-    "core-js": "^3.7.0"
+    "core-js": "^3.8.0"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

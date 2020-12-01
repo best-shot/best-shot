@@ -1,4 +1,4 @@
-const slashToRegexp = require('slash-to-regexp');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 exports.name = 'preset-react';
 
@@ -15,24 +15,12 @@ exports.apply = function apply({ config: { polyfill = false } }) {
     const mode = chain.get('mode') || 'development';
     const useHot = chain.devServer.get('hot') || false;
 
-    if (useHot) {
-      const entries = Object.keys(chain.entryPoints.entries());
-
-      entries.forEach((key) => {
-        chain.entry(key).prepend('react-hot-loader/patch');
-      });
-
-      chain.resolve.alias.set('react-dom', '@hot-loader/react-dom');
-    }
-
     const fileRegexp = chain.module.rule('babel').get('test');
 
     chain.resolve.extensions.prepend('.jsx');
 
     chain.module
       .rule('babel')
-      .exclude.add(slashToRegexp('/node_modules/react-hot-loader/'))
-      .end()
       .test(fileRegexp.add('jsx'))
       .use('babel-loader')
       .tap(({ presets = [], plugins = [], ...options }) => ({
@@ -64,8 +52,12 @@ exports.apply = function apply({ config: { polyfill = false } }) {
                   : 'transform-react-remove-prop-types',
               ]
             : []),
-          ...(useHot ? ['react-hot-loader/babel'] : []),
+          ...(useHot ? ['react-refresh/babel'] : []),
         ],
       }));
+
+    if (useHot) {
+      chain.plugin('react-refresh').use(ReactRefreshWebpackPlugin);
+    }
   };
 };

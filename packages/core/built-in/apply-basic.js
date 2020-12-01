@@ -1,5 +1,7 @@
 const { resolve } = require('path');
 
+const { version } = require('webpack/package.json');
+
 exports.name = 'basic';
 
 const shorthand = {
@@ -28,7 +30,14 @@ exports.apply = function applyBasic({
 
     chain.optimization
       .minimize(mode === 'production')
-      .set('moduleIds', mode === 'production' ? 'hashed' : 'named');
+      .set(
+        'moduleIds',
+        mode === 'production'
+          ? version.startsWith('5.')
+            ? 'deterministic'
+            : 'hashed'
+          : 'named',
+      );
 
     chain.output
       .publicPath(publicPath)
@@ -46,13 +55,19 @@ exports.apply = function applyBasic({
     chain.node.merge({
       __dirname: true,
       __filename: true,
-      Buffer: false,
       global: false,
-      process: false,
-      setImmediate: false,
+      ...(version.startsWith('4.')
+        ? {
+            Buffer: false,
+            process: false,
+            setImmediate: false,
+          }
+        : undefined),
     });
   };
 };
+
+const string = { type: 'string' };
 
 exports.schema = {
   outputPath: {
@@ -67,18 +82,22 @@ exports.schema = {
     default: '',
     title: 'Same as `output.publicPath` of `webpack` configuration',
     type: 'string',
-    oneOf: [
-      {
-        const: '',
-      },
-      {
-        pattern: '\\/$',
-      },
-    ],
+    oneOf: [{ const: '' }, { pattern: '\\/$' }],
   },
   target: {
     default: 'web',
     title: 'Same as `target` of `webpack` configuration',
-    type: 'string',
+    ...(version.startsWith('4.')
+      ? string
+      : {
+          oneOf: [
+            string,
+            {
+              type: 'array',
+              uniqueItems: true,
+              items: string,
+            },
+          ],
+        }),
   },
 };

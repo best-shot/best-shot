@@ -21,6 +21,7 @@
     "format": "nice-move lint",
     "inspect": "best-shot inspect --stamp test",
     "serve": "best-shot serve",
+    "start": "best-shot prod",
     "test": "ava --verbose"
   },
   "workspaces": [
@@ -28,8 +29,8 @@
   ],
   "dependencies": {
     "core-js": "^3.8.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "vue": "^2.6.12"
   },
   "devDependencies": {
@@ -39,7 +40,7 @@
     "@nice-move/eslint-config-base": "^0.4.0",
     "@nice-move/prettier-config": "^0.3.5",
     "@nice-move/stylelint-config": "^0.4.2",
-    "@types/react": "^16.14.2",
+    "@types/react": "^17.0.0",
     "ava": "^3.13.0",
     "commitlint": "^11.0.0",
     "eslint": "^6.8.0",
@@ -48,7 +49,7 @@
     "prettier": "^2.2.1",
     "stylelint": "^13.8.0",
     "typescript": "^4.1.2",
-    "webpack": "^4.44.2"
+    "webpack": "^5.9.0"
   },
   "resolutions": {
     "bin-wrapper": "npm:bin-wrapper-china"

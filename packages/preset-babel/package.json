@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-babel",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -41,8 +41,9 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.12.9",
-    "@best-shot/core": "^0.2.10",
-    "core-js": "^3.8.0"
+    "@best-shot/core": "^0.2.12",
+    "core-js": "^3.8.0",
+    "webpack": "^4.44.2 || ^5.9.0"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"

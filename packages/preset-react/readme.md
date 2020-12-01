@@ -15,7 +15,7 @@ A `best-shot` preset for react project.
 This preset offer the following features:
 
 - [React](https://reactjs.org/) (16.x) framework and JSX syntax support.
-- Use [react-hot-loader](https://github.com/gaearon/react-hot-loader) to support hot module reload.
+- Use [react-refresh](https://github.com/pmmmwh/react-refresh-webpack-plugin) to support hot module reload.
 - Remove react/airbnb propTypes in `production` mode.
 
 ## Installation

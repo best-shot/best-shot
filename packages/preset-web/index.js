@@ -33,7 +33,10 @@ exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
       .when(minimize, setOutputName({ style: addMin, script: addMin }))
       .when(!hot, setOutputName({ style: addHash, script: addHash }))
       .when(
-        target === 'web' && publicPath === '/',
+        publicPath === '/' &&
+          (['web', 'browserslist', undefined].includes(target) ||
+            (Array.isArray(target) &&
+              target.some((item) => ['web', 'browserslist'].includes(item)))),
         setOutputName({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,

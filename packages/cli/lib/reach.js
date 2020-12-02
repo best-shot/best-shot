@@ -1,10 +1,21 @@
 const { resolve } = require('path');
 const slash = require('slash');
 
+function requireConfig(rootPath) {
+  try {
+    // eslint-disable-next-line import/no-dynamic-require, global-require
+    return require(resolve(rootPath, '.best-shot', 'config.js'));
+  } catch (error) {
+    if (error.code === 'MODULE_NOT_FOUND') {
+      return {};
+    }
+    throw error;
+  }
+}
+
 function reachConfig(rootPath) {
-  // eslint-disable-next-line import/no-dynamic-require, global-require
-  const io = require(resolve(rootPath, '.best-shot', 'config.js'));
   return function func(params) {
+    const io = requireConfig(rootPath);
     const config = typeof io === 'function' ? io(params) : io;
     if (typeof config === 'object') {
       config.outputPath =
@@ -15,6 +26,4 @@ function reachConfig(rootPath) {
   };
 }
 
-module.exports = {
-  reachConfig,
-};
+module.exports = { reachConfig };

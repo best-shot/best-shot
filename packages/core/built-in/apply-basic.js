@@ -29,14 +29,12 @@ exports.apply = function applyBasic({
     if (watch) {
       chain.watchOptions({ ignored: /node_modules/ });
       chain.output.pathinfo(false);
+      chain.removeAvailableModules(false).removeEmptyChunks(false);
     }
 
     chain.module.strictExportPresence(!watch);
 
-    chain.optimization
-      .minimize(mode === 'production')
-      .removeAvailableModules(!watch)
-      .removeEmptyChunks(!watch);
+    chain.optimization.minimize(mode === 'production');
 
     if (!is5) {
       const type = mode === 'production' ? 'hashed' : 'named';

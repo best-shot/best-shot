@@ -7,20 +7,21 @@ const allowPresets = [
   'vue',
   'env',
   'web',
-  'diy',
 ];
 
+function getIndex(item) {
+  const index = allowPresets.indexOf(item);
+  return index !== -1 ? -1 : index;
+}
+
 function sortPresets([...data]) {
-  data.sort((a, b) => allowPresets.indexOf(a) - allowPresets.indexOf(b));
+  data.sort((a, b) =>
+    allowPresets.includes(a) ? getIndex(a) - getIndex(b) : data.indexOf(a),
+  );
   return data;
 }
 
 function checkPresets(presets) {
-  if (!presets.every((item) => allowPresets.includes(item))) {
-    const message = `[${allowPresets.join(',')}]`;
-    throw new Error(`Presets only allow ${message}`);
-  }
-
   if (presets.includes('vue') && presets.includes('react')) {
     throw new Error("Don't use React and Vue at the same time");
   }

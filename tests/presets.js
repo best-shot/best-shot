@@ -1,23 +1,10 @@
-const test = require('ava');
+const test = require('ava').default;
 
 const BestShot = require('../packages/core');
 
 test('Right presets enum', (t) => {
   const io = new BestShot({ presets: ['babel'] });
   t.is(io.stack.store.additional.length, 1);
-});
-
-test('Wrong presets enum', (t) => {
-  t.throws(
-    () => {
-      // eslint-disable-next-line no-new
-      new BestShot({ presets: ['abc'] });
-    },
-    {
-      instanceOf: Error,
-      message: /^Presets only allow \[.+]/,
-    },
-  );
 });
 
 test('Prevent React and Vue', (t) => {

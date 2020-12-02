@@ -16,7 +16,11 @@ exports.apply = function applyBasic({
   platform = '',
 }) {
   return (chain) => {
-    chain.amd(false).target(target);
+    chain.amd(false);
+
+    if (target) {
+      chain.target(target);
+    }
 
     const context = chain.get('context');
     const mode = chain.get('mode');
@@ -34,14 +38,9 @@ exports.apply = function applyBasic({
       .removeAvailableModules(!watch)
       .removeEmptyChunks(!watch);
 
-    if (is5) {
-      if (mode === 'production') {
-        const type = 'deterministic';
-        chain.optimization.set('moduleIds', type).set('chunkIds', type);
-      }
-    } else {
+    if (!is5) {
       const type = mode === 'production' ? 'hashed' : 'named';
-      chain.optimization.set('moduleIds', type).set('chunkIds', type);
+      chain.optimization.set('moduleIds', type);
     }
 
     chain.output
@@ -90,7 +89,7 @@ exports.schema = {
     oneOf: [{ const: '' }, { pattern: '\\/$' }],
   },
   target: {
-    default: 'web',
+    default: is5 ? undefined : 'web',
     title: 'Same as `target` of `webpack` configuration',
     ...(is5
       ? {

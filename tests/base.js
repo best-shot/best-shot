@@ -12,7 +12,6 @@ const {
 
 const example = {
   name: 'best-shot.config',
-  target: 'web',
   mode: 'development',
   output: {
     publicPath: '',

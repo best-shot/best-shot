@@ -1097,7 +1097,7 @@
 "@nice-move/cli@^0.5.9":
   version "0.5.9"
   resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fcli/-/cli-0.5.9.tgz#72783e8cdf96342f341e837386d053d913174ea2"
-  integrity sha512-QubtboVNx6WHZQ7JyDxcLqOxOz9tQ+5vx412Ij6fuJDJj440DhUziadRWx9952K0qqTNptY0rfg5+NzhOGEqKA==
+  integrity "sha1-cng+jN+WNC80HoNzhtBT2RMXTqI= sha512-QubtboVNx6WHZQ7JyDxcLqOxOz9tQ+5vx412Ij6fuJDJj440DhUziadRWx9952K0qqTNptY0rfg5+NzhOGEqKA=="
   dependencies:
     centra "^2.4.2"
     chalk "^4.1.0"
@@ -1305,7 +1305,15 @@
 "@types/html-minifier-terser@^5.0.0":
   version "5.1.0"
   resolved "https://registry.npm.taobao.org/@types/html-minifier-terser/download/@types/html-minifier-terser-5.1.0.tgz#551a4589b6ee2cc9c1dff08056128aec29b94880"
-  integrity "sha1-VRpFibbuLMnB3/CAVhKK7Cm5SIA= sha512-iYCgjm1dGPRuo12+BStjd1HiVQqhlRhWDOQigNxn023HcjnhsiFz9pc6CzJj4HwDCSQca9bxTL4PxJDbkdm3PA=="
+  integrity "sha1-ldPfA38Eg16dGgnRdnwONhp96RY= sha512-tiYE76O1zunboByeB/nFGwUEb263Z3nkNv6Lz2oLC1s6M36bLKfTrjQ+7ssVfaucVllE+N7hh/FbpbxvnIA+LQ=="
+  dependencies:
+    camel-case "^4.1.1"
+    clean-css "^4.2.3"
+    commander "^4.1.1"
+    he "^1.2.0"
+    param-case "^3.0.3"
+    relateurl "^0.2.7"
+    terser "^4.6.3"
 
 "@types/json-schema@*", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.6":
   version "7.0.6"
@@ -1690,7 +1698,7 @@ ansi-colors@^4.1.1:
   resolved "https://registry.npm.taobao.org/ansi-colors/download/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
   integrity "sha1-y7muJWv3UK8eqzRPIpqif+lLo0g= sha512-JoX0apGbHaUJBNl6yF+p6JAFYZ666/hhCGKN5t9QFjbJQKUU/g8MNbFDbvfrgKXvI1QpZplPOnwIo99lX/AAmA=="
 
-ansi-escapes@^4.2.1, ansi-escapes@^4.3.0:
+ansi-escapes@^4.2.1, ansi-escapes@^4.3.0, ansi-escapes@^4.3.1:
   version "4.3.1"
   resolved "https://registry.npm.taobao.org/ansi-escapes/download/ansi-escapes-4.3.1.tgz#a5c47cc43181f1f38ffd7076837700d395522a61"
   integrity "sha1-pcR8xDGB8fOP/XB2g3cA05VSKmE= sha512-JWF7ocqNrp8u9oqpgV+wH5ftbt+cfvv+PTjOvKLT3AdYly/LmORARfEVT1iyjwN+4MqE5UmVKoAdIBqeoCHgLA=="
@@ -2249,16 +2257,16 @@ braces@^3.0.1, braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.14.5, browserslist@^4.14.7:
-  version "4.14.7"
-  resolved "https://registry.npm.taobao.org/browserslist/download/browserslist-4.14.7.tgz#c071c1b3622c1c2e790799a37bb09473a4351cb6"
-  integrity "sha1-wHHBs2IsHC55B5mje7CUc6Q1HLY= sha512-BSVRLCeG3Xt/j/1cCGj1019Wbty0H+Yvu2AOuZSuoaUWn3RatbL33Cxk+Q4jRMRAbOm0p7SLravLjpnT6s0vzQ=="
+browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.14.5, browserslist@^4.14.7, browserslist@^4.15.0:
+  version "4.15.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/browserslist/-/browserslist-4.15.0.tgz#3d48bbca6a3f378e86102ffd017d9a03f122bdb0"
+  integrity "sha1-PUi7ymo/N46GEC/9AX2aA/EivbA= sha512-IJ1iysdMkGmjjYeRlDU8PQejVwxvVO5QOfXH7ylW31GO6LwNRSmm/SgRXtNsEXqMLl2e+2H5eEJ7sfynF8TCaQ=="
   dependencies:
-    caniuse-lite "^1.0.30001157"
+    caniuse-lite "^1.0.30001164"
     colorette "^1.2.1"
-    electron-to-chromium "^1.3.591"
+    electron-to-chromium "^1.3.612"
     escalade "^3.1.1"
-    node-releases "^1.1.66"
+    node-releases "^1.1.67"
 
 buf-compare@^1.0.0:
   version "1.0.1"
@@ -2477,10 +2485,10 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001157:
-  version "1.0.30001157"
-  resolved "https://registry.npm.taobao.org/caniuse-lite/download/caniuse-lite-1.0.30001157.tgz#2d11aaeb239b340bc1aa730eca18a37fdb07a9ab"
-  integrity "sha1-LRGq6yObNAvBqnMOyhijf9sHqas= sha512-gOerH9Wz2IRZ2ZPdMfBvyOi3cjaz4O4dgNwPGzx8EhqAs4+2IL/O+fJsbt+znSigujoZG8bVcIAUM/I/E5K3MA=="
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001157, caniuse-lite@^1.0.30001164:
+  version "1.0.30001164"
+  resolved "https://mirrors.cloud.tencent.com/npm/caniuse-lite/-/caniuse-lite-1.0.30001164.tgz#5bbfd64ca605d43132f13cc7fdabb17c3036bfdc"
+  integrity "sha1-W7/WTKYF1DEy8TzH/auxfDA2v9w= sha512-G+A/tkf4bu0dSp9+duNiXc7bGds35DioCyC6vgK2m/rjA4Krpy5WeZgZyfH2f0wj2kI6yAWWucyap6oOwmY1mg=="
 
 case-sensitive-paths-webpack-plugin@^2.3.0:
   version "2.3.0"
@@ -2969,9 +2977,9 @@ connect-history-api-fallback@^1.6.0:
   resolved "https://registry.npm.taobao.org/connect-history-api-fallback/download/connect-history-api-fallback-1.6.0.tgz#8b32089359308d111115d81cad3fceab888f97bc"
   integrity "sha1-izIIk1kwjRERFdgcrT/Oq4iPl7w= sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg=="
 
-consola@^2.10.0:
+consola@^2.15.0:
   version "2.15.0"
-  resolved "https://registry.npm.taobao.org/consola/download/consola-2.15.0.tgz#40fc4eefa4d2f8ef2e2806147f056ea207fcc0e9"
+  resolved "https://mirrors.cloud.tencent.com/npm/consola/-/consola-2.15.0.tgz#40fc4eefa4d2f8ef2e2806147f056ea207fcc0e9"
   integrity "sha1-QPxO76TS+O8uKAYUfwVuogf8wOk= sha512-vlcSGgdYS26mPf7qNi+dCisbhiyDnrN1zaRbw3CSuc2wGOMEGGPsp46PdRG5gqXwgtJfjxDkxRNAgRPr1B77vQ=="
 
 console-stream@^0.1.1:
@@ -3822,10 +3830,10 @@ ejs@^3.1.5:
   dependencies:
     jake "^10.6.1"
 
-electron-to-chromium@^1.3.591:
-  version "1.3.592"
-  resolved "https://registry.npm.taobao.org/electron-to-chromium/download/electron-to-chromium-1.3.592.tgz#4621521b223bf6e5469373528321e185d3c24670"
-  integrity "sha1-RiFSGyI79uVGk3NSgyHhhdPCRnA= sha512-kGNowksvqQiPb1pUSQKpd8JFoGPLxYOwduNRCqCxGh/2Q1qE2JdmwouCW41lUzDxOb/2RIV4lR0tVIfboWlO9A=="
+electron-to-chromium@^1.3.591, electron-to-chromium@^1.3.612:
+  version "1.3.613"
+  resolved "https://mirrors.cloud.tencent.com/npm/electron-to-chromium/-/electron-to-chromium-1.3.613.tgz#5ad7ec1e19d28c81edb6d61b9d4990d1c9716182"
+  integrity "sha1-WtfsHhnSjIHtttYbnUmQ0clxYYI= sha512-c3gkahddiUalk7HLhTC7PsKzPZmovYFtgh+g3rZJ+dGokk4n4dzEoOBnoV8VU8ptvnGJMhrjM/lyXKSltqf2hQ=="
 
 emittery@^0.7.1:
   version "0.7.1"
@@ -7274,10 +7282,10 @@ node-forge@0.9.0:
   resolved "https://registry.npm.taobao.org/node-forge/download/node-forge-0.9.0.tgz#d624050edbb44874adca12bb9a52ec63cb782579"
   integrity "sha1-1iQFDtu0SHStyhK7mlLsY8t4JXk= sha512-7ASaDa3pD+lJ3WvXFsxekJQelBKRpne+GOVbLbtHYdd7pFspyeuJHnWfLplGf3SwKGbfs/aYl5V/JCIaHVUKKQ=="
 
-node-releases@^1.1.66:
-  version "1.1.66"
-  resolved "https://registry.npm.taobao.org/node-releases/download/node-releases-1.1.66.tgz#609bd0dc069381015cd982300bae51ab4f1b1814"
-  integrity "sha1-YJvQ3AaTgQFc2YIwC65Rq08bGBQ= sha512-JHEQ1iWPGK+38VLB2H9ef2otU4l8s3yAMt9Xf934r6+ojCYDMHPMqvCc9TnzfeFSP1QEOeU6YZEd3+De0LTCgg=="
+node-releases@^1.1.66, node-releases@^1.1.67:
+  version "1.1.67"
+  resolved "https://mirrors.cloud.tencent.com/npm/node-releases/-/node-releases-1.1.67.tgz#28ebfcccd0baa6aad8e8d4d8fe4cbc49ae239c12"
+  integrity "sha1-KOv8zNC6pqrY6NTY/ky8Sa4jnBI= sha512-V5QF9noGFl3EymEwUYzO+3NTDpGfQB4ve6Qfnzf3UNydMhjQRVPR1DZTuvWiLzaFJYw2fmDwAfnRNEVb64hSIg=="
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4, normalize-package-data@^2.5.0:
   version "2.5.0"
@@ -10923,7 +10931,7 @@ uuid@^3.0.1, uuid@^3.3.2, uuid@^3.4.0:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity "sha1-sj5DWK+oogL+ehAK8fX4g/AgB+4= sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A=="
 
-v8-compile-cache@^2.0.3, v8-compile-cache@^2.1.1, v8-compile-cache@^2.2.0:
+v8-compile-cache@^2.0.3, v8-compile-cache@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/v8-compile-cache/download/v8-compile-cache-2.2.0.tgz#9471efa3ef9128d2f7c6a7ca39c4dd6b5055b132"
   integrity "sha1-lHHvo++RKNL3xqfKOcTda1BVsTI= sha512-gTpR5XQNKFwOd4clxfnhaqvfqMpqEwr4tOtCyz4MtYZX2JYhfr1JvBFKdS+7K/9rfpZR3VLX+YWBbKoxCgS43Q=="
@@ -11193,19 +11201,19 @@ webpack@^5.9.0:
     watchpack "^2.0.0"
     webpack-sources "^2.1.1"
 
-webpackbar@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npm.taobao.org/webpackbar/download/webpackbar-4.0.0.tgz#ee7a87f16077505b5720551af413c8ecd5b1f780"
-  integrity "sha1-7nqH8WB3UFtXIFUa9BPI7NWx94A= sha512-k1qRoSL/3BVuINzngj09nIwreD8wxV4grcuhHTD8VJgUbGcy8lQSPqv+bM00B7F+PffwIsQ8ISd4mIwRbr23eQ=="
+webpackbar@5.0.0-3:
+  version "5.0.0-3"
+  resolved "https://mirrors.cloud.tencent.com/npm/webpackbar/-/webpackbar-5.0.0-3.tgz#f4f96c8fb13001b2bb1348252db4c980ab93aaac"
+  integrity "sha1-9Plsj7EwAbK7E0glLbTJgKuTqqw= sha512-viW6KCYjMb0NPoDrw2jAmLXU2dEOhRrtku28KmOfeE1vxbfwCYuTbTaMhnkrCZLFAFyY9Q49Z/jzYO80Dw5b8g=="
   dependencies:
-    ansi-escapes "^4.2.1"
-    chalk "^2.4.2"
-    consola "^2.10.0"
-    figures "^3.0.0"
+    ansi-escapes "^4.3.1"
+    chalk "^4.1.0"
+    consola "^2.15.0"
+    figures "^3.2.0"
     pretty-time "^1.1.0"
     std-env "^2.2.1"
     text-table "^0.2.0"
-    wrap-ansi "^6.0.0"
+    wrap-ansi "^7.0.0"
 
 websocket-driver@0.6.5:
   version "0.6.5"
@@ -11278,7 +11286,7 @@ wrap-ansi@^5.1.0:
     string-width "^3.0.0"
     strip-ansi "^5.0.0"
 
-wrap-ansi@^6.0.0, wrap-ansi@^6.2.0:
+wrap-ansi@^6.2.0:
   version "6.2.0"
   resolved "https://registry.npm.taobao.org/wrap-ansi/download/wrap-ansi-6.2.0.tgz#e9393ba07102e6c91a3b221478f0257cd2856e53"
   integrity "sha1-6Tk7oHEC5skaOyIUePAlfNKFblM= sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA=="

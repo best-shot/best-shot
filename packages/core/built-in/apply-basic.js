@@ -9,6 +9,8 @@ const shorthand = {
   production: 'prod',
 };
 
+const is5 = version.startsWith('5.');
+
 exports.apply = function applyBasic({
   config: { publicPath, outputPath, target },
   platform = '',
@@ -21,23 +23,26 @@ exports.apply = function applyBasic({
     const watch = chain.get('watch');
 
     if (watch) {
-      chain.watchOptions({
-        ignored: /node_modules/,
-      });
+      chain.watchOptions({ ignored: /node_modules/ });
+      chain.output.pathinfo(false);
     }
 
     chain.module.strictExportPresence(!watch);
 
     chain.optimization
       .minimize(mode === 'production')
-      .set(
-        'moduleIds',
-        mode === 'production'
-          ? version.startsWith('5.')
-            ? 'deterministic'
-            : 'hashed'
-          : 'named',
-      );
+      .removeAvailableModules(!watch)
+      .removeEmptyChunks(!watch);
+
+    if (is5) {
+      if (mode === 'production') {
+        const type = 'deterministic';
+        chain.optimization.set('moduleIds', type).set('chunkIds', type);
+      }
+    } else {
+      const type = mode === 'production' ? 'hashed' : 'named';
+      chain.optimization.set('moduleIds', type).set('chunkIds', type);
+    }
 
     chain.output
       .publicPath(publicPath)
@@ -56,13 +61,13 @@ exports.apply = function applyBasic({
       __dirname: true,
       __filename: true,
       global: false,
-      ...(version.startsWith('4.')
-        ? {
+      ...(is5
+        ? undefined
+        : {
             Buffer: false,
             process: false,
             setImmediate: false,
-          }
-        : undefined),
+          }),
     });
   };
 };
@@ -87,9 +92,8 @@ exports.schema = {
   target: {
     default: 'web',
     title: 'Same as `target` of `webpack` configuration',
-    ...(version.startsWith('4.')
-      ? string
-      : {
+    ...(is5
+      ? {
           oneOf: [
             string,
             {
@@ -98,6 +102,7 @@ exports.schema = {
               items: string,
             },
           ],
-        }),
+        }
+      : string),
   },
 };

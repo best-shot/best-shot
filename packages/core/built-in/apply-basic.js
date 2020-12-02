@@ -29,7 +29,7 @@ exports.apply = function applyBasic({
     if (watch) {
       chain.watchOptions({ ignored: /node_modules/ });
       chain.output.pathinfo(false);
-      chain.removeAvailableModules(false).removeEmptyChunks(false);
+      chain.optimization.removeAvailableModules(false).removeEmptyChunks(false);
     }
 
     chain.module.strictExportPresence(!watch);

@@ -1,4 +1,5 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { applyProgress } = require('@best-shot/cli/lib/apply');
 
 const { resolve: Resolve } = require('path');
 
@@ -11,7 +12,9 @@ function getReportPath(rootPath, filename) {
 module.exports = function apply(chain) {
   const rootPath = chain.get('context');
 
-  chain.output.path(Resolve(rootPath, '.best-shot/stats/temp'));
+  applyProgress(chain);
+
+  chain.output.path(Resolve(rootPath, '.best-shot/temp'));
 
   chain.optimization.runtimeChunk('single').concatenateModules(false);
 
@@ -20,8 +23,8 @@ module.exports = function apply(chain) {
       analyzerMode: 'static',
       generateStatsFile: true,
       openAnalyzer: false,
-      reportFilename: getReportPath(rootPath, 'index.html'),
-      statsFilename: getReportPath(rootPath, 'data.json'),
+      reportFilename: getReportPath(rootPath, 'report.html'),
+      statsFilename: getReportPath(rootPath, 'stats.json'),
     },
   ]);
 };

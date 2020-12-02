@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/analyzer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Analyzer of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -27,11 +27,11 @@
   },
   "main": "index.js",
   "dependencies": {
-    "webpack-bundle-analyzer": "^3.9.0"
+    "webpack-bundle-analyzer": "^4.2.0"
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.6.1",
-    "@best-shot/core": "^0.2.10"
+    "@best-shot/core": "^0.2.12"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"

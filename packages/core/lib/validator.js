@@ -13,32 +13,19 @@ module.exports = function validator({ data, schema }) {
   const valid = validate(data);
 
   if (!valid) {
-    const isOneOf = validate.errors.slice(-1)[0].keyword === 'oneOf';
-
     const output = betterAjvErrors(
       schema,
       data,
-      isOneOf ? validate.errors.slice(-1) : validate.errors,
+      [validate.errors.find((error) => error.dataPath !== '')],
       { indent: 2 },
     );
-
-    const types = isOneOf
-      ? validate.errors
-          .filter(({ keyword }) => keyword === 'type')
-          // @ts-ignore
-          .map(({ params: { type } }) => type)
-          .join('/')
-      : undefined;
 
     console.log(
       cyan(' BEST-SHOT:'),
       'invalid configuration:',
       EOL,
       EOL, // @ts-ignore
-      (isOneOf ? output.replace('oneOf', `oneOf: ${types}`) : output).replace(
-        /👈🏽.*\n/,
-        '\n',
-      ),
+      output.replace(/👈🏽.*\n/, '\n'),
       EOL,
     );
 

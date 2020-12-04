@@ -11,7 +11,7 @@ const {
 } = require('../packages/core/built-in/apply-define');
 
 const example = {
-  name: 'best-shot.config',
+  name: 'best-shot',
   mode: 'development',
   output: {
     publicPath: '',
@@ -20,12 +20,12 @@ const example = {
 };
 
 test('toConfig', (t) => {
-  const config = new BestShot().load().toConfig();
+  const config = new BestShot().setup().toConfig();
   t.like(config, example);
 });
 
 test('toString', (t) => {
-  const config = new BestShot().load().toString();
+  const config = new BestShot().setup().toString();
   t.regex(config, /^{/);
   t.regex(config, /}$/);
 });
@@ -39,13 +39,13 @@ test('toSchema', (t) => {
 
 test('entryPoints', (t) => {
   const stringEntry = new BestShot()
-    .load({ config: { entry: 'index.js' } })
+    .setup({ config: { entry: 'index.js' } })
     .toConfig().entry;
   const arrayEntry = new BestShot()
-    .load({ config: { entry: ['index.js'] } })
+    .setup({ config: { entry: ['index.js'] } })
     .toConfig().entry;
   const objectEntry = new BestShot()
-    .load({ config: { entry: { main: 'index.js' } } })
+    .setup({ config: { entry: { main: 'index.js' } } })
     .toConfig().entry;
 
   t.deepEqual(stringEntry, arrayEntry);

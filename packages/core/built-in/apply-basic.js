@@ -13,7 +13,6 @@ const is5 = version.startsWith('5.');
 
 exports.apply = function applyBasic({
   config: { publicPath, outputPath, target },
-  platform = '',
 }) {
   return (chain) => {
     chain.amd(false);
@@ -48,7 +47,6 @@ exports.apply = function applyBasic({
         resolve(
           context,
           outputPath
-            .replace(/\[platform]/g, platform)
             .replace(/\[mode]/g, mode)
             .replace(/\[mode:shorthand]/g, shorthand[mode]),
         ),
@@ -75,7 +73,7 @@ exports.schema = {
   outputPath: {
     default: 'dist',
     description:
-      'It can be a relative path. Additional placeholder: [mode]/[mode:shorthand]/[platform]',
+      'It can be a relative path. Additional placeholder: [mode]/[mode:shorthand]/',
     minLength: 3,
     title: 'Same as `output.path` of `webpack`',
     type: 'string',

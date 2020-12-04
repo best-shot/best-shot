@@ -2,9 +2,11 @@ const test = require('ava').default;
 
 const BestShot = require('../packages/core');
 
+const builtIn = require('../packages/core/built-in');
+
 test('Right presets enum', (t) => {
   const io = new BestShot({ presets: ['babel'] });
-  t.is(io.stack.store.additional.length, 1);
+  t.is(io.stack.store.size, 1 + builtIn.length);
 });
 
 test('Prevent React and Vue', (t) => {
@@ -25,9 +27,9 @@ test('More presets', (t) => {
 
   const io = new BestShot({ presets });
 
-  t.is(io.stack.store.additional.length, presets.length);
+  t.is(io.stack.store.size, presets.length + builtIn.length);
 
-  const { rules } = io.load().module;
+  const { rules } = io.setup().module;
 
   t.is(rules.has('babel'), true);
   t.is(rules.has('style'), true);

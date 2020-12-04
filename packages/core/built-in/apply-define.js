@@ -13,17 +13,19 @@ const displayName = 'define';
 
 exports.name = displayName;
 
-exports.apply = function applyDefine({ config: { define }, platform }) {
+exports.apply = function apply({ config: { define } }) {
   return (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
+    const name = chain.get('name');
 
     chain.plugin(displayName).use(DefinePlugin, [
       variables({
         ...define,
         'process.env.NODE_ENV': mode,
-        'process.env.PLATFORM': platform,
-        'process.env.LOCAL': watch,
+        'BEST_SHOT.MODE': mode,
+        'BEST_SHOT.WATCHING': watch,
+        'BEST_SHOT.CONFIG_NAME': name,
       }),
     ]);
   };
@@ -31,7 +33,8 @@ exports.apply = function applyDefine({ config: { define }, platform }) {
 
 exports.schema = {
   define: {
-    description: 'Options of DefinePlugin',
+    title: 'Options of DefinePlugin',
+    description: 'transform by `JSON.stringify`',
     type: 'object',
   },
 };

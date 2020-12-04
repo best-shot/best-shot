@@ -1,18 +1,14 @@
 module.exports = class Stack {
   constructor() {
-    this.store = Object.freeze({
-      'built-in': [],
-      additional: []
-    });
+    this.store = new Set();
     return this;
   }
 
-  add(type, apply) {
-    this.store[type].push(apply);
+  add(apply) {
+    this.store.add(apply);
   }
 
-  setup(params) {
-    const { additional, 'built-in': builtIn } = this.store;
-    return [...builtIn, ...additional].map(apply => apply(params));
+  setup(callback) {
+    return this.store.forEach((apply) => callback(apply));
   }
 };

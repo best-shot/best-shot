@@ -4,11 +4,9 @@ const Stack = require('./lib/stack');
 const Schema = require('./lib/schema');
 const builtIn = require('./built-in');
 
-const types = ['built-in', 'additional'];
-
 module.exports = class BestShot {
   constructor({
-    name = 'best-shot.config',
+    name = 'best-shot',
     rootPath = process.cwd(),
     presets = [],
   } = {}) {
@@ -17,45 +15,35 @@ module.exports = class BestShot {
     this.stack = new Stack();
 
     builtIn.forEach((preset) => {
-      this.use(preset, types[0]);
+      this.use(preset);
     });
     if (presets.length > 0) {
       importPresets(presets).forEach((preset) => {
-        this.use(preset, types[1]);
+        this.use(preset);
       });
     }
 
     return this;
   }
 
-  use({ apply, schema, name = 'Unnamed' } = {}, type) {
-    if (!types.includes(type)) {
-      throw new Error(`Can't prepare ${type} presets: ${name}`);
-    }
-
+  use({ apply, schema }) {
     if (typeof apply === 'function') {
-      this.stack.add(type, apply);
+      this.stack.add(apply);
     }
     if (typeof schema === 'object') {
       this.schema.merge(schema);
     }
   }
 
-  load({
-    config = {},
-    mode = 'development',
-    options: { watch = false } = {},
-    platform = undefined,
-  } = {}) {
-    this.chain.mode(mode).watch(watch).cache(watch);
+  setup({ config = {}, mode = 'development', watch = false } = {}) {
+    const params = { config: this.schema.validate(config) };
 
-    const params = {
-      config: this.schema.validate(config),
-      platform,
-    };
+    const local = mode === 'development' && watch;
 
-    this.stack.setup(params).forEach((apply) => {
-      this.chain.batch(apply);
+    this.chain.mode(mode).watch(local).cache(local);
+
+    this.stack.setup((apply) => {
+      this.chain.batch(apply(params));
     });
 
     return this.chain;

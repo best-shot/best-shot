@@ -1,6 +1,6 @@
 const deepmerge = require('deepmerge');
 
-const validator = require('./validator');
+const validate = require('./validate');
 
 module.exports = class Schema {
   constructor() {
@@ -10,15 +10,15 @@ module.exports = class Schema {
       type: 'object',
       properties: {
         experimental: {
-          type: 'object'
-        }
-      }
+          type: 'object',
+        },
+      },
     };
     return this;
   }
 
   merge(properties) {
-    this.schema = deepmerge(this.schema, { properties });
+    this.schema.properties = deepmerge(this.schema.properties, properties);
   }
 
   toObject() {
@@ -26,6 +26,6 @@ module.exports = class Schema {
   }
 
   validate(data) {
-    return validator({ data, schema: this.schema });
+    return validate({ data, schema: this.schema });
   }
 };

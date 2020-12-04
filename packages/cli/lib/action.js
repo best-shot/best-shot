@@ -15,48 +15,37 @@ function safeRun(callback) {
   }
 }
 
-module.exports = function action({ _: [command], platform, progress }) {
+module.exports = function action({ _: [command], progress }) {
   safeRun(function main() {
     const readConfig = require('./read-config');
     const applyProgress = require('./apply-progress');
 
     const { commandEnv, getCompiler, getConfig } = require('./utils');
+    const configFunc = readConfig(rootPath);
 
-    const handle = (getConfigs) => {
-      if (command !== 'watch') {
-        const { compiler, showStats } = getCompiler(getConfigs);
-        if (compiler) {
-          compiler.run(showStats);
-        }
-      } else {
-        const { compiler, showStats, watchOptions } = getCompiler(getConfigs);
+    const { name, chain, presets = [], ...config } = configFunc({ command });
 
-        if (compiler) {
-          compiler.watch(watchOptions, showStats);
-        }
+    const final = getConfig({ name, presets })
+      .setup({
+        watch: command === 'watch',
+        mode: commandEnv(command),
+        config,
+      })
+      .when(typeof chain === 'function', chain)
+      .when(progress, applyProgress)
+      .toConfig();
+
+    if (command !== 'watch') {
+      const { compiler, showStats } = getCompiler(() => final);
+      if (compiler) {
+        compiler.run(showStats);
       }
-    };
+    } else {
+      const { compiler, showStats, watchOptions } = getCompiler(() => final);
 
-    handle(() => {
-      const configFunc = readConfig(rootPath);
-
-      const { name, chain, presets = [], ...config } = configFunc({
-        command,
-        platform,
-      });
-
-      return getConfig({ name, presets })
-        .load({
-          options: {
-            watch: command === 'watch',
-          },
-          mode: commandEnv(command),
-          config,
-          platform,
-        })
-        .when(typeof chain === 'function', chain)
-        .when(progress, applyProgress)
-        .toConfig();
-    });
+      if (compiler) {
+        compiler.watch(watchOptions, showStats);
+      }
+    }
   });
 };

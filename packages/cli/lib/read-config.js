@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 const slash = require('slash');
 
-const validate = require('@best-shot/core/lib/validator');
+const validate = require('@best-shot/core/lib/validate');
 
 function requireConfig(rootPath) {
   try {
@@ -35,8 +35,7 @@ module.exports = function readConfig(rootPath) {
     validate({ schema, data: config });
 
     if (typeof config === 'object') {
-      config.outputPath =
-        config.outputPath || slash('.best-shot/build/[platform]');
+      config.outputPath = config.outputPath || slash('.best-shot/build/');
     }
 
     return config;

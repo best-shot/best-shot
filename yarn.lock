@@ -2703,10 +2703,10 @@ cheetor@^0.2.2:
     chalk "^4.1.0"
     yargs "^15.4.1"
 
-cheetor@^0.3.0:
-  version "0.3.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/cheetor/-/cheetor-0.3.0.tgz#a4277ba1d9ea8e55c085ef9575f2772bcff2eaa7"
-  integrity "sha1-pCd7odnqjlXAhe+VdfJ3K8/y6qc= sha512-bzwOc92C10n1TKQhlDFbLvzdKN3CW5pE1zuvd1lB7dhamLS8O17KTvKdfFWKvAy6dVt2wp41dQly++eoVAbBBg=="
+cheetor@^0.3.1:
+  version "0.3.1"
+  resolved "https://mirrors.cloud.tencent.com/npm/cheetor/-/cheetor-0.3.1.tgz#25225985d9840aaef4bb4a5ceab0920e6ba9cfb6"
+  integrity sha512-ny74q7+CbY5O6gGttCfGL6h8Zqr8VNvRB2pDgQU6SxQW0rUY9C9CzN2rnxxJt1MyiV2KGDUWCn4mlaXgFvNwqQ==
   dependencies:
     chalk "^4.1.0"
     yargs "^16.1.1"

@@ -1,44 +1,62 @@
-const { commandEnv, getCompiler, getConfig } = require('./utils');
-const { reachConfig } = require('./reach');
-const { applyProgress } = require('./apply');
+/* eslint-disable global-require */
+const { red } = require('chalk');
 
 const rootPath = process.cwd();
 
-function handle(command, getConfigs) {
-  if (command !== 'watch') {
-    const { compiler, showStats } = getCompiler(getConfigs);
-    if (compiler) {
-      compiler.run(showStats);
+function safeRun(callback) {
+  try {
+    callback();
+  } catch (error) {
+    if (error.code === 'MODULE_NOT_FOUND') {
+      console.log(red('Error:'), error.message);
+      process.exitCode = 1;
     }
-  } else {
-    const { compiler, showStats, watchOptions } = getCompiler(getConfigs);
-
-    if (compiler) {
-      compiler.watch(watchOptions, showStats);
-    }
+    throw error;
   }
 }
 
 module.exports = function action({ _: [command], platform, progress }) {
-  handle(command, () => {
-    const configFunc = reachConfig(rootPath);
+  safeRun(function main() {
+    const readConfig = require('./read-config');
+    const applyProgress = require('./apply-progress');
 
-    const { chain, presets = [], ...config } = configFunc({
-      command,
-      platform,
-    });
+    const { commandEnv, getCompiler, getConfig } = require('./utils');
 
-    return getConfig({ presets })
-      .load({
-        options: {
-          watch: command === 'watch',
-        },
-        mode: commandEnv(command),
-        config,
+    const handle = (getConfigs) => {
+      if (command !== 'watch') {
+        const { compiler, showStats } = getCompiler(getConfigs);
+        if (compiler) {
+          compiler.run(showStats);
+        }
+      } else {
+        const { compiler, showStats, watchOptions } = getCompiler(getConfigs);
+
+        if (compiler) {
+          compiler.watch(watchOptions, showStats);
+        }
+      }
+    };
+
+    handle(() => {
+      const configFunc = readConfig(rootPath);
+
+      const { name, chain, presets = [], ...config } = configFunc({
+        command,
         platform,
-      })
-      .when(typeof chain === 'function', chain)
-      .when(progress, applyProgress)
-      .toConfig();
+      });
+
+      return getConfig({ name, presets })
+        .load({
+          options: {
+            watch: command === 'watch',
+          },
+          mode: commandEnv(command),
+          config,
+          platform,
+        })
+        .when(typeof chain === 'function', chain)
+        .when(progress, applyProgress)
+        .toConfig();
+    });
   });
 };

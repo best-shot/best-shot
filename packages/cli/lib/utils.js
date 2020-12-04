@@ -7,6 +7,7 @@ function commandEnv(command) {
       serve: 'development',
       watch: 'development',
       prod: 'production',
+      analyze: 'production',
     }[command] || 'development'
   );
 }
@@ -43,10 +44,10 @@ function getCompiler(getConfigs) {
   }
 }
 
-function getConfig({ presets }) {
+function getConfig({ name, presets }) {
   // eslint-disable-next-line global-require
   const BestShot = require('@best-shot/core');
-  return new BestShot({ presets });
+  return new BestShot({ name, presets });
 }
 
 module.exports = {

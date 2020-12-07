@@ -1,1 +1,4 @@
-module.exports = [{ name: 'a' }, { presets: ['serve'], name: 'b' }];
+module.exports = [
+  { presets: ['env'], name: 'a' },
+  { presets: ['serve', 'env'], name: 'b' },
+];

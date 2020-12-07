@@ -8,7 +8,13 @@ module.exports = function createConfig(
 ) {
   const { name, chain, presets = [], ...rest } = config;
 
-  return new BestShot({ name, presets })
+  return new BestShot({
+    name,
+    presets:
+      command === 'serve'
+        ? presets
+        : presets.filter((item) => item !== 'serve'),
+  })
     .setup({
       watch,
       mode: commandMode(command),

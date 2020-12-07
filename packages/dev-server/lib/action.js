@@ -1,37 +1,76 @@
-const { getCompiler, getConfig } = require('@best-shot/cli/lib/utils');
-const { reachConfig } = require('@best-shot/cli/lib/reach');
+/* eslint-disable global-require */
+const { cyan } = require('chalk');
+const { errorHandle } = require('@best-shot/cli/lib/utils');
 
-const rootPath = process.cwd();
+module.exports = function action({ _: [command] }) {
+  errorHandle(function main() {
+    const readConfig = require('@best-shot/cli/lib/read-config');
+    const createConfig = require('@best-shot/cli/lib/create-config');
+    const createCompiler = require('@best-shot/cli/lib/create-compiler');
 
-function handle(getConfigs) {
-  const { compiler, devServer } = getCompiler(getConfigs);
+    const configs = readConfig()({ command });
 
-  if (compiler) {
-    // eslint-disable-next-line global-require
-    const DevServer = require('..');
-    DevServer(compiler, devServer);
-  }
-}
+    if (configs.length === 1) {
+      configs[0].presets = ['serve', ...(configs[0].presets || [])];
+    }
 
-module.exports = function action({ _: [command], platform }) {
-  handle(() => {
-    const configFunc = reachConfig(rootPath);
+    const result = configs.map((config) =>
+      // @ts-ignore
+      createConfig(config, {
+        watch: true,
+        command,
+      }),
+    );
 
-    const { chain, presets = [], ...config } = configFunc({
-      command,
-      platform,
+    const shouldServe = [];
+    const shouldWatch = [];
+
+    result.forEach((config) => {
+      // @ts-ignore
+      if (config.devServer) {
+        shouldServe.push(config);
+      } else {
+        shouldWatch.push(config);
+      }
     });
 
-    return getConfig({ presets: ['serve', ...presets] })
-      .load({
-        options: {
-          watch: true,
-        },
-        mode: 'development',
-        config,
-        platform,
-      })
-      .when(typeof chain === 'function', chain)
-      .toConfig();
+    if (shouldWatch.length > 0) {
+      console.log(
+        cyan('Tips:'),
+        'some configurations have been fallback to watch mode',
+      );
+
+      const compiler = createCompiler(result);
+
+      const { watchOptions } =
+        result.find((config) => config.watchOptions) || {};
+      const { stats: statsConfig } = result.find(({ stats }) => stats) || {};
+
+      // eslint-disable-next-line no-inner-declarations
+      function showStats(error, stats) {
+        if (error) {
+          console.error(error);
+          process.exitCode = 1;
+        }
+        if (stats) {
+          if (stats.hasErrors()) {
+            process.exitCode = 1;
+          }
+
+          console.log(stats.toString(statsConfig));
+        }
+      }
+
+      compiler.watch(watchOptions, showStats);
+    }
+
+    if (shouldServe.length > 0) {
+      const DevServer = require('..');
+
+      shouldServe.forEach(({ devServer }) => {
+        const compiler = createCompiler(result);
+        DevServer(compiler, devServer);
+      });
+    }
   });
 };

@@ -39,7 +39,7 @@ module.exports = function action({ stamp = 'none' }) {
               mode,
               command,
               presets,
-              config,
+              config: rest,
               ...(chain ? { chain } : undefined),
             }),
             schema: io.schema.toObject(),

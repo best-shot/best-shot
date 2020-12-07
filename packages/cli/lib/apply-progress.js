@@ -1,10 +1,9 @@
 module.exports = function applyProgress(chain) {
-  // eslint-disable-next-line global-require
-  const WebpackBar = require('webpackbar');
+  const name = chain.get('name');
 
-  chain.plugin('progress-bar').use(WebpackBar, [
+  chain.plugin('progress-bar').use('webpackbar', [
     {
-      name: 'BEST-SHOT',
+      name: name || 'BEST-SHOT',
       reporter: 'profile',
     },
   ]);

@@ -1,4 +1,18 @@
-function commandEnv(command) {
+const { red } = require('chalk');
+
+function errorHandle(callback) {
+  try {
+    callback();
+  } catch (error) {
+    if (error.code === 'MODULE_NOT_FOUND') {
+      console.log(red('Error:'), error.message);
+      process.exitCode = 1;
+    }
+    throw error;
+  }
+}
+
+function commandMode(command) {
   return (
     {
       dev: 'development',
@@ -10,39 +24,7 @@ function commandEnv(command) {
   );
 }
 
-function getCompiler(getConfigs) {
-  const config = getConfigs();
-
-  function showStats(error, stats) {
-    if (error) {
-      console.error(error);
-    }
-    if (stats) {
-      if (stats.hasErrors()) {
-        process.exitCode = 1;
-      }
-
-      console.log(stats.toString(config.stats));
-    }
-  }
-
-  // eslint-disable-next-line global-require
-  const webpack = require('webpack');
-  const compiler = webpack(config);
-
-  const { watchOptions, devServer } = config;
-
-  return { compiler, showStats, watchOptions, devServer };
-}
-
-function getConfig({ name, presets }) {
-  // eslint-disable-next-line global-require
-  const BestShot = require('@best-shot/core');
-  return new BestShot({ name, presets });
-}
-
 module.exports = {
-  commandEnv,
-  getCompiler,
-  getConfig,
+  commandMode,
+  errorHandle,
 };

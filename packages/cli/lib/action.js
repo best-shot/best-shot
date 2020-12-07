@@ -1,51 +1,49 @@
 /* eslint-disable global-require */
-const { red } = require('chalk');
 
-const rootPath = process.cwd();
-
-function safeRun(callback) {
-  try {
-    callback();
-  } catch (error) {
-    if (error.code === 'MODULE_NOT_FOUND') {
-      console.log(red('Error:'), error.message);
-      process.exitCode = 1;
-    }
-    throw error;
-  }
-}
+const { errorHandle } = require('./utils');
 
 module.exports = function action({ _: [command], progress }) {
-  safeRun(function main() {
+  errorHandle(function main() {
     const readConfig = require('./read-config');
+    const createConfig = require('./create-config');
+    const createCompiler = require('./create-compiler');
+
     const applyProgress = require('./apply-progress');
 
-    const { commandEnv, getCompiler, getConfig } = require('./utils');
-    const configFunc = readConfig(rootPath);
+    const configs = readConfig()({ command });
 
-    const { name, chain, presets = [], ...config } = configFunc({ command });
-
-    const final = getConfig({ name, presets })
-      .setup({
+    const result = configs.map((config) =>
+      createConfig(config, {
         watch: command === 'watch',
-        mode: commandEnv(command),
-        config,
-      })
-      .when(typeof chain === 'function', chain)
-      .when(progress, applyProgress)
-      .toConfig();
+        command,
+        batch: progress ? applyProgress : undefined,
+      }),
+    );
+
+    const { stats: statsConfig } = result.find(({ stats }) => stats) || {};
+
+    function showStats(error, stats) {
+      if (error) {
+        console.error(error);
+        process.exitCode = 1;
+      }
+      if (stats) {
+        if (stats.hasErrors()) {
+          process.exitCode = 1;
+        }
+
+        console.log(stats.toString(statsConfig));
+      }
+    }
+
+    const compiler = createCompiler(result);
 
     if (command !== 'watch') {
-      const { compiler, showStats } = getCompiler(() => final);
-      if (compiler) {
-        compiler.run(showStats);
-      }
+      compiler.run(showStats);
     } else {
-      const { compiler, showStats, watchOptions } = getCompiler(() => final);
-
-      if (compiler) {
-        compiler.watch(watchOptions, showStats);
-      }
+      const { watchOptions } =
+        result.find((config) => config.watchOptions) || {};
+      compiler.watch(watchOptions, showStats);
     }
   });
 };

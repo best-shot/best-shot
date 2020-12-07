@@ -1,7 +1,7 @@
 const { cyan } = require('chalk');
 const Cheetor = require('cheetor');
 
-const { commandEnv } = require('./lib/utils');
+const { commandMode } = require('./lib/utils');
 
 new Cheetor()
   .website('https://www.npmjs.com/org/best-shot')
@@ -14,7 +14,7 @@ new Cheetor()
   .middleware([
     ({ _: [command] }) => {
       if (['dev', 'prod', 'watch', 'serve', 'analyze'].includes(command)) {
-        process.env.NODE_ENV = commandEnv(command);
+        process.env.NODE_ENV = commandMode(command);
 
         console.log(cyan('NODE_ENV:'), process.env.NODE_ENV);
       }

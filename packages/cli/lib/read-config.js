@@ -1,14 +1,18 @@
 const { resolve } = require('path');
 const slash = require('slash');
+const { red } = require('chalk');
 
 const validate = require('@best-shot/core/lib/validate');
 
-function requireConfig(rootPath) {
+function requireConfig(rootPath = process.cwd()) {
   try {
     // eslint-disable-next-line import/no-dynamic-require, global-require
     return require(resolve(rootPath, '.best-shot', 'config.js'));
   } catch (error) {
-    if (error.code === 'MODULE_NOT_FOUND') {
+    if (
+      error.code === 'MODULE_NOT_FOUND' &&
+      error.requireStack[0] === __filename
+    ) {
       return {};
     }
     throw error;
@@ -21,23 +25,35 @@ const schema = {
     {
       type: 'array',
       items: { type: 'object' },
+      maxItems: 9,
+      minItems: 1,
     },
   ],
 };
 
 module.exports = function readConfig(rootPath) {
-  return function func(params) {
-    const io = requireConfig(rootPath);
+  return function func({ command }) {
+    const config = requireConfig(rootPath);
 
-    const config = typeof io === 'function' ? io(params) : io;
+    const data = typeof config === 'function' ? config({ command }) : config;
 
     // @ts-ignore
-    validate({ schema, data: config });
+    validate({ schema, data });
 
-    if (typeof config === 'object') {
-      config.outputPath = config.outputPath || slash('.best-shot/build/');
+    if (
+      Array.isArray(data) &&
+      new Set(data.map(({ name }) => name)).size !== data.length
+    ) {
+      console.log(
+        red('Error:'),
+        'every configuration should have a unique name',
+      );
+      // eslint-disable-next-line unicorn/no-process-exit
+      process.exit(1);
+    } else if (typeof data === 'object' && !data.outputPath) {
+      data.outputPath = slash('.best-shot/build/');
     }
 
-    return config;
+    return Array.isArray(data) ? data : [data];
   };
 };

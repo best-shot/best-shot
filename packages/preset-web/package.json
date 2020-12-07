@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-web",
-  "version": "0.3.8",
+  "version": "0.4.0",
   "description": "A `best-shot` preset for web project",
   "license": "MIT",
   "author": {
@@ -42,7 +42,7 @@
     "yaml-loader": "^0.6.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.2.15",
+    "@best-shot/core": "^0.3.0",
     "webpack": "^4.44.2 || ^5.9.0"
   },
   "engines": {

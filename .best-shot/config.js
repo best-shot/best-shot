@@ -1,1 +1,1 @@
-module.exports = [{}, {}];
+module.exports = [{ name: 'a' }, { name: 'b' }];

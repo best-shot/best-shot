@@ -69,8 +69,11 @@ exports.splitChunks = function splitChunks({ vendors = {} }) {
         .plugin('min-chunk-size')
         .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
 
+      const name = chain.get('name') || '';
       const rootPath = chain.get('context');
-      chain.recordsPath(join(rootPath, '.best-shot', 'stats', 'records.json'));
+      chain.recordsPath(
+        join(rootPath, '.best-shot', 'stats', name, 'records.json'),
+      );
     }
   };
 };

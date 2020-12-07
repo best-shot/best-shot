@@ -1,36 +1,42 @@
-const { getCompiler, getConfig } = require('@best-shot/cli/lib/utils');
-const { reachConfig } = require('@best-shot/cli/lib/reach');
-const apply = require('./apply');
+/* eslint-disable global-require */
 
-const rootPath = process.cwd();
+const { errorHandle } = require('@best-shot/cli/lib/utils');
 
-function handle(getConfigs) {
-  const { compiler, showStats } = getCompiler(getConfigs);
-  if (compiler) {
+module.exports = function action({ _: [command] }) {
+  errorHandle(function main() {
+    const readConfig = require('@best-shot/cli/lib/read-config');
+    const createConfig = require('@best-shot/cli/lib/create-config');
+    const createCompiler = require('@best-shot/cli/lib/create-compiler');
+
+    const applyAnalyzer = require('./apply');
+
+    const configs = readConfig()({ command });
+
+    const result = configs.map((config) =>
+      createConfig(config, {
+        command,
+        batch: applyAnalyzer,
+      }),
+    );
+
+    const { stats: statsConfig } = result.find(({ stats }) => stats) || {};
+
+    function showStats(error, stats) {
+      if (error) {
+        console.error(error);
+        process.exitCode = 1;
+      }
+      if (stats) {
+        if (stats.hasErrors()) {
+          process.exitCode = 1;
+        }
+
+        console.log(stats.toString(statsConfig));
+      }
+    }
+
+    const compiler = createCompiler(result);
+
     compiler.run(showStats);
-  }
-}
-
-module.exports = function action({ _: [command], platform }) {
-  handle(() => {
-    const configFunc = reachConfig(rootPath);
-
-    const { chain, presets = [], ...config } = configFunc({
-      command,
-      platform,
-    });
-
-    return getConfig({ presets })
-      .load({
-        options: {
-          watch: false,
-        },
-        mode: 'production',
-        config,
-        platform,
-      })
-      .when(typeof chain === 'function', chain)
-      .batch(apply)
-      .toConfig();
   });
 };

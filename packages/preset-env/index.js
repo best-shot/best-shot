@@ -18,7 +18,7 @@ function pretty(data) {
   });
 }
 
-function logger({ GIT_HASH, ...data }) {
+function logger({ 'BEST_SHOT.GIT_HASH': x, ...data }) {
   console.log(cyan`PRESET-ENV`, pretty(data));
 }
 
@@ -36,7 +36,7 @@ exports.apply = function applyEnv() {
     const GIT_HASH = getGitHash();
 
     if (GIT_HASH) {
-      data.GIT_HASH = GIT_HASH;
+      data['BEST_SHOT.GIT_HASH'] = GIT_HASH;
     }
 
     if (Object.values(data).length > 0) {

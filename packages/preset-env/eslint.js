@@ -1,7 +1,7 @@
 const mapValues = require('lodash/mapValues');
 const sortKeys = require('sort-keys');
 
-const { findConfig, parseConfig, filterData, getGitHash } = require('./lib');
+const { findConfig, parseConfig, filterData } = require('./lib');
 
 const envFile = findConfig(process.cwd());
 
@@ -20,7 +20,7 @@ const envObject = mapValues(
 
 const globals = sortKeys({
   ...envObject,
-  ...(getGitHash() ? { GIT_HASH: 'readonly' } : undefined),
+  BEST_SHOT: 'readonly',
 });
 
 module.exports = { globals };

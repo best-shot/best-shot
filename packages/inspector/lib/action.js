@@ -7,10 +7,27 @@ const { errorHandle, commandMode } = require('@best-shot/cli/lib/utils');
 const concatStr = require('./concat-str');
 const makeWriteFile = require('./write-file');
 
-const commands = ['serve', 'watch', 'dev', 'prod'];
-
 module.exports = function action({ stamp = 'none' }) {
   console.log('Output files ...');
+
+  const commands = ['watch', 'dev', 'prod'];
+
+  let autoAddPreset;
+
+  try {
+    // eslint-disable-next-line import/no-extraneous-dependencies
+    autoAddPreset = require('@best-shot/dev-server/lib/utils').autoAddPreset;
+    if (autoAddPreset) {
+      commands.unshift('serve');
+    }
+  } catch (error) {
+    if (
+      error.code === 'MODULE_NOT_FOUND' &&
+      error.requireStack[0] === __filename
+    ) {
+      // do nothing.
+    }
+  }
 
   errorHandle(function main() {
     const readConfig = require('@best-shot/cli/lib/read-config');
@@ -22,20 +39,30 @@ module.exports = function action({ stamp = 'none' }) {
       const mode = commandMode(command);
       const configs = readConfig(rootPath)({ command });
 
-      if (configs.length === 1 && command === 'serve') {
-        configs[0].presets = ['serve', ...(configs[0].presets || [])];
+      if (command === 'serve') {
+        autoAddPreset(configs);
       }
 
       configs.forEach((config) => {
         const { chain, name, presets = [], ...rest } = config;
 
-        const io = new BestShot({ name, presets });
+        const io = new BestShot({
+          name,
+          presets:
+            command === 'serve'
+              ? presets
+              : presets.filter((item) => item !== 'serve'),
+        });
+
+        const watch = ['watch', 'serve'].includes(command);
 
         writeFile({
           name: `${name ? `${name}/` : ''}${command}.js`,
           data: concatStr({
             stamp,
             input: sortObject({
+              watch,
+              name,
               mode,
               command,
               presets,
@@ -44,11 +71,7 @@ module.exports = function action({ stamp = 'none' }) {
             }),
             schema: io.schema.toObject(),
             output: io
-              .setup({
-                watch: ['watch', 'serve'].includes(command),
-                mode,
-                config: rest,
-              })
+              .setup({ watch, mode, config: rest })
               .when(typeof chain === 'function', chain),
           }),
         });

@@ -11,7 +11,6 @@ const {
 } = require('../packages/core/built-in/apply-define');
 
 const example = {
-  name: 'best-shot',
   mode: 'development',
   output: {
     publicPath: '',

@@ -5,11 +5,7 @@ const Schema = require('./lib/schema');
 const builtIn = require('./built-in');
 
 module.exports = class BestShot {
-  constructor({
-    name = 'best-shot',
-    rootPath = process.cwd(),
-    presets = [],
-  } = {}) {
+  constructor({ name, rootPath = process.cwd(), presets = [] } = {}) {
     this.chain = new WebpackChain().name(name).context(rootPath);
     this.schema = new Schema();
     this.stack = new Stack();

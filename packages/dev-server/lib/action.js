@@ -10,9 +10,9 @@ module.exports = function action({ _: [command] }) {
 
     const configs = readConfig()({ command });
 
-    if (configs.length === 1) {
-      configs[0].presets = ['serve', ...(configs[0].presets || [])];
-    }
+    const { autoAddPreset } = require('./utils');
+
+    autoAddPreset(configs);
 
     const result = configs.map((config) =>
       // @ts-ignore

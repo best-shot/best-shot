@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 
-module.exports = function createCompiler(configs) {
-  return webpack(configs.length > 1 ? configs : configs[0]);
+module.exports = function createCompiler(config) {
+  return webpack(
+    Array.isArray(config) ? (config.length > 1 ? config : config[0]) : config,
+  );
 };

@@ -40,11 +40,12 @@ module.exports = function action({ _: [command] }) {
         'some configurations have been fallback to watch mode',
       );
 
-      const compiler = createCompiler(result);
+      const compiler = createCompiler(shouldWatch);
 
       const { watchOptions } =
-        result.find((config) => config.watchOptions) || {};
-      const { stats: statsConfig } = result.find(({ stats }) => stats) || {};
+        shouldWatch.find((config) => config.watchOptions) || {};
+      const { stats: statsConfig } =
+        shouldWatch.find(({ stats }) => stats) || {};
 
       // eslint-disable-next-line no-inner-declarations
       function showStats(error, stats) {
@@ -67,9 +68,9 @@ module.exports = function action({ _: [command] }) {
     if (shouldServe.length > 0) {
       const DevServer = require('..');
 
-      shouldServe.forEach(({ devServer }) => {
-        const compiler = createCompiler(result);
-        DevServer(compiler, devServer);
+      shouldServe.forEach((config) => {
+        const compiler = createCompiler(config);
+        DevServer(compiler, config.devServer);
       });
     }
   });

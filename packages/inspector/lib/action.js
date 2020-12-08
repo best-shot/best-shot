@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-const sortObject = require('sort-object');
 const BestShot = require('@best-shot/core');
 
 const { errorHandle, commandMode } = require('@best-shot/cli/lib/utils');
@@ -18,7 +17,7 @@ module.exports = function action({ stamp = 'none' }) {
     // eslint-disable-next-line import/no-extraneous-dependencies
     autoAddPreset = require('@best-shot/dev-server/lib/utils').autoAddPreset;
     if (autoAddPreset) {
-      commands.unshift('serve');
+      commands.push('serve');
     }
   } catch (error) {
     if (
@@ -57,10 +56,10 @@ module.exports = function action({ stamp = 'none' }) {
         const watch = ['watch', 'serve'].includes(command);
 
         writeFile({
-          name: `${name ? `${name}/` : ''}${command}.js`,
+          name: name ? `${name}/${command}.js` : `${command}.js`,
           data: concatStr({
             stamp,
-            input: sortObject({
+            input: {
               watch,
               name,
               mode,
@@ -68,7 +67,7 @@ module.exports = function action({ stamp = 'none' }) {
               presets,
               config: rest,
               ...(chain ? { chain } : undefined),
-            }),
+            },
             schema: io.schema.toObject(),
             output: io
               .setup({ watch, mode, config: rest })

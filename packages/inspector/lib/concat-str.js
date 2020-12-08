@@ -28,7 +28,7 @@ module.exports = function concatStr({ input, output, schema, stamp }) {
 /* eslint-disable */
 exports.schema = ${formatJson(schema)}
 
-exports.input = ${stringify(input)}
+exports.input = ${stringify(sortObject(input))}
 
 exports.config = ${output.toString()}
 `);

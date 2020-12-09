@@ -6,6 +6,7 @@ A `best-shot` preset for babel compiler.
 [![github][github-badge]][github-url]
 ![node][node-badge]
 
+[babel-preset-evergreen]: https://github.com/best-shot/babel-preset-evergreen
 [npm-url]: https://www.npmjs.com/package/@best-shot/preset-babel
 [npm-badge]: https://img.shields.io/npm/v/@best-shot/preset-babel.svg?style=flat-square&logo=npm
 [github-url]: https://github.com/best-shot/best-shot/tree/master/packages/preset-babel
@@ -54,7 +55,9 @@ npm install core-js@3 --save
 
 Can't be specify directly, always using `browserslist.loadConfig() || browserslist.defaults`.
 
-## Create custom babel configuration
+## Tips
+
+### Create custom babel configuration
 
 References: <https://babeljs.io/docs/en/configuration>
 

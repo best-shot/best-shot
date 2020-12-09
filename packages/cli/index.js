@@ -13,10 +13,10 @@ new Cheetor()
   .commandSmart('@best-shot/inspector/cmd/inspect')
   .middleware([
     ({ _: [command] }) => {
+      console.log(`${cyan('BEST-SHOT')}:${command}`, '-'.repeat(20));
       if (['dev', 'prod', 'watch', 'serve', 'analyze'].includes(command)) {
         process.env.NODE_ENV = commandMode(command);
-        console.log(cyan('BEST-SHOT'), '-'.repeat(20));
-        console.log(green('NODE_ENV:'), process.env.NODE_ENV);
+        console.log(green('MODE/NODE_ENV:'), process.env.NODE_ENV);
       }
     },
   ])

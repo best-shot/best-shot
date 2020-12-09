@@ -3,7 +3,6 @@ const slash = require('slash');
 const prompts = require('prompts');
 const validate = require('@best-shot/core/lib/validate');
 const Configstore = require('configstore');
-const { name: nameSpace } = require('../package.json');
 
 async function requireConfig(rootPath = process.cwd()) {
   try {
@@ -33,7 +32,11 @@ const schema = {
 };
 
 function ask(configs) {
-  const cache = new Configstore(nameSpace);
+  const cache = new Configstore(
+    '',
+    {},
+    { configPath: resolve(__dirname, '../.cache/prompt.json') },
+  );
   const names = configs.map(({ name }) => name);
   const temp = cache.get('prompt') || names;
 

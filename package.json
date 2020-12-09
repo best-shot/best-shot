@@ -18,10 +18,10 @@
   },
   "scripts": {
     "analyze": "best-shot analyze",
+    "dev": "best-shot dev",
     "format": "nice-move lint",
     "inspect": "best-shot inspect --stamp test",
     "serve": "best-shot serve",
-    "start": "best-shot prod",
     "test": "ava --verbose"
   },
   "workspaces": [

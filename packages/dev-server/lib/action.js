@@ -3,12 +3,12 @@ const { cyan } = require('chalk');
 const { errorHandle } = require('@best-shot/cli/lib/utils');
 
 module.exports = function action({ _: [command] }) {
-  errorHandle(function main() {
+  errorHandle(async function main() {
     const readConfig = require('@best-shot/cli/lib/read-config');
     const createConfig = require('@best-shot/cli/lib/create-config');
     const createCompiler = require('@best-shot/cli/lib/create-compiler');
 
-    const configs = readConfig()({ command });
+    const configs = await readConfig()({ command });
 
     const { autoAddPreset } = require('./utils');
 

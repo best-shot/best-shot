@@ -1,10 +1,9 @@
 const { resolve } = require('path');
 const slash = require('slash');
-const { red } = require('chalk');
-
+const prompts = require('prompts');
 const validate = require('@best-shot/core/lib/validate');
 
-function requireConfig(rootPath = process.cwd()) {
+async function requireConfig(rootPath = process.cwd()) {
   try {
     // eslint-disable-next-line import/no-dynamic-require, global-require
     return require(resolve(rootPath, '.best-shot', 'config.js'));
@@ -31,9 +30,20 @@ const schema = {
   ],
 };
 
+function ask(configs) {
+  return prompts({
+    type: 'multiselect',
+    name: 'tasks',
+    message: 'Pick your task to run',
+    max: schema.oneOf[1].maxItems,
+    min: schema.oneOf[1].minItems,
+    choices: configs.map(({ name }) => ({ title: name, value: name })),
+  }).then(({ tasks }) => configs.filter(({ name }) => tasks.includes(name)));
+}
+
 module.exports = function readConfig(rootPath) {
-  return function func({ command }) {
-    const config = requireConfig(rootPath);
+  return async function func({ command }) {
+    const config = await requireConfig(rootPath);
 
     const data = typeof config === 'function' ? config({ command }) : config;
 
@@ -44,16 +54,17 @@ module.exports = function readConfig(rootPath) {
       Array.isArray(data) &&
       new Set(data.map(({ name }) => name)).size !== data.length
     ) {
-      console.log(
-        red('Error:'),
-        'every configuration should have a unique name',
-      );
-      // eslint-disable-next-line unicorn/no-process-exit
-      process.exit(1);
+      throw new validate.ConfigError('every config[x].name should be unique');
     } else if (typeof data === 'object' && !data.outputPath) {
       data.outputPath = slash('.best-shot/build/');
     }
 
-    return Array.isArray(data) ? data : [data];
+    const configs = Array.isArray(data) ? data : [data];
+
+    if (process.stdout.isTTY && configs.length > 1) {
+      return ask(configs);
+    }
+
+    return configs;
   };
 };

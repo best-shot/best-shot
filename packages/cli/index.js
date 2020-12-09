@@ -1,4 +1,4 @@
-const { cyan } = require('chalk');
+const { cyan, green } = require('chalk');
 const Cheetor = require('cheetor');
 
 const { commandMode } = require('./lib/utils');
@@ -15,8 +15,8 @@ new Cheetor()
     ({ _: [command] }) => {
       if (['dev', 'prod', 'watch', 'serve', 'analyze'].includes(command)) {
         process.env.NODE_ENV = commandMode(command);
-
-        console.log(cyan('NODE_ENV:'), process.env.NODE_ENV);
+        console.log(cyan('BEST-SHOT'), '-'.repeat(20));
+        console.log(green('NODE_ENV:'), process.env.NODE_ENV);
       }
     },
   ])

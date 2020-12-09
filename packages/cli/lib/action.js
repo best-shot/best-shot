@@ -3,14 +3,14 @@
 const { errorHandle } = require('./utils');
 
 module.exports = function action({ _: [command], progress }) {
-  errorHandle(function main() {
+  errorHandle(async function main() {
     const readConfig = require('./read-config');
     const createConfig = require('./create-config');
     const createCompiler = require('./create-compiler');
 
     const applyProgress = require('./apply-progress');
 
-    const configs = readConfig()({ command });
+    const configs = await readConfig()({ command });
 
     const result = configs.map((config) =>
       createConfig(config, {

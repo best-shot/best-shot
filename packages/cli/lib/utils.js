@@ -1,14 +1,14 @@
 const { red } = require('chalk');
 
-function errorHandle(callback) {
+async function errorHandle(callback) {
   try {
-    callback();
+    await callback();
   } catch (error) {
-    if (error.code === 'MODULE_NOT_FOUND') {
-      console.log(red('Error:'), error.message);
-      process.exitCode = 1;
+    console.log(red(`${error.name}:`), error.message);
+    if (error.detail) {
+      console.log(error.detail);
     }
-    throw error;
+    process.exitCode = 1;
   }
 }
 

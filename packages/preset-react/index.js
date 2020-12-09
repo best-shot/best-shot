@@ -57,6 +57,7 @@ exports.apply = function apply({ config: { polyfill = false } }) {
       }));
 
     if (useHot) {
+      chain.optimization.runtimeChunk('single');
       chain.plugin('react-refresh').use(ReactRefreshWebpackPlugin);
     }
   };

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -30,8 +30,8 @@
     "sort-object": "^3.0.3"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.7.1",
-    "@best-shot/core": "^0.3.1"
+    "@best-shot/cli": "^0.8.0",
+    "@best-shot/core": "^0.3.2"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"

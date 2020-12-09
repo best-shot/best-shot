@@ -34,9 +34,9 @@ module.exports = function action({ stamp = 'none' }) {
     const rootPath = process.cwd();
     const writeFile = makeWriteFile(rootPath, stamp);
 
-    commands.forEach((command) => {
+    commands.forEach(async (command) => {
       const mode = commandMode(command);
-      const configs = readConfig(rootPath)({ command });
+      const configs = await readConfig(rootPath, false)({ command });
 
       if (command === 'serve') {
         autoAddPreset(configs);

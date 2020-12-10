@@ -1,7 +1,7 @@
 const { cyan, green } = require('chalk');
 const Cheetor = require('cheetor');
 
-const { commandMode } = require('./lib/utils');
+const { commandMode, commands } = require('./lib/utils');
 
 new Cheetor()
   .website('https://www.npmjs.com/org/best-shot')
@@ -12,9 +12,9 @@ new Cheetor()
   .commandSmart('@best-shot/analyzer/cmd/analyze')
   .commandSmart('@best-shot/inspector/cmd/inspect')
   .middleware([
-    ({ _: [command] }) => {
-      console.log(`${cyan('BEST-SHOT')}:${command}`, '-'.repeat(20));
-      if (['dev', 'prod', 'watch', 'serve', 'analyze'].includes(command)) {
+    ({ _: [command = 'dev'] }) => {
+      console.log(cyan('BEST-SHOT:'), command, '-'.repeat(20));
+      if (Object.keys(commands).includes(command)) {
         process.env.NODE_ENV = commandMode(command);
         console.log(green('MODE/NODE_ENV:'), process.env.NODE_ENV);
       }

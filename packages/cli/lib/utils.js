@@ -12,19 +12,20 @@ async function errorHandle(callback) {
   }
 }
 
+const commands = {
+  dev: 'development',
+  serve: 'development',
+  watch: 'development',
+  prod: 'production',
+  analyze: 'production',
+};
+
 function commandMode(command) {
-  return (
-    {
-      dev: 'development',
-      serve: 'development',
-      watch: 'development',
-      prod: 'production',
-      analyze: 'production',
-    }[command] || 'development'
-  );
+  return commands[command] || 'development';
 }
 
 module.exports = {
+  commands,
   commandMode,
   errorHandle,
 };

@@ -1,8 +1,8 @@
 const { resolve } = require('path');
 const slash = require('slash');
-const prompts = require('prompts');
 const validate = require('@best-shot/core/lib/validate');
-const Configstore = require('configstore');
+
+const prompt = require('./prompt');
 
 async function requireConfig(rootPath = process.cwd()) {
   try {
@@ -31,40 +31,6 @@ const schema = {
   ],
 };
 
-function ask(configs) {
-  const cache = new Configstore(
-    '',
-    {},
-    { configPath: resolve(__dirname, '../.cache/prompt.json') },
-  );
-  const names = configs.map(({ name }) => name);
-  const temp = cache.get('prompt') || names;
-
-  return prompts(
-    {
-      instructions: false,
-      message: 'Select some tasks(config.name) to run',
-      name: 'tasks',
-      type: 'multiselect',
-      max: 4,
-      min: 1,
-      choices: names.map((name) => ({
-        title: name,
-        value: name,
-        selected: temp.includes(name),
-      })),
-    },
-    {
-      onCancel() {
-        throw new Error('The command have been cancelled');
-      },
-    },
-  ).then(({ tasks = [] }) => {
-    cache.set('prompt', tasks);
-    return configs.filter(({ name }) => tasks.includes(name));
-  });
-}
-
 module.exports = function readConfig(
   rootPath,
   interactive = process.stdout.isTTY,
@@ -89,7 +55,7 @@ module.exports = function readConfig(
     const configs = Array.isArray(data) ? data : [data];
 
     if (interactive && configs.length > 1) {
-      return ask(configs);
+      return prompt(configs);
     }
 
     return configs;

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-env",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A `best-shot` preset for env variables",
   "license": "MIT",
   "author": {
@@ -35,13 +35,13 @@
     "@iarna/toml": "^2.2.5",
     "@nice-labs/git-rev": "^3.5.0",
     "chalk": "^4.1.0",
-    "ini": "^1.3.5",
+    "ini": "^1.3.7",
     "js-yaml": "^3.14.1",
     "lodash": "^4.17.20",
     "sort-keys": "^4.1.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.3.0",
+    "@best-shot/core": "^0.3.2",
     "webpack": "^4.44.2 || ^5.10.0"
   },
   "engines": {

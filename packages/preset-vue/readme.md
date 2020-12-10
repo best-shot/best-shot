@@ -15,7 +15,7 @@ A `best-shot` preset for Vue project.
 This preset offer the following features:
 
 - [Vue](https://vuejs.org/) (2.x) framework support
-- Vue Single-File Component (SFC) Spec support
+- Vue [Single-File Component (SFC) Spec](https://vue-loader.vuejs.org/spec.html) support
 
 ## Installation
 

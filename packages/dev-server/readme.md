@@ -23,3 +23,9 @@ npm install @best-shot/cli @best-shot/dev-server --save-dev
 ```bash
 npx -c best-shot serve [options]
 ```
+
+## Features
+
+- features of webpack-dev-server
+- show a wait page when bundling
+- open source file in vscode

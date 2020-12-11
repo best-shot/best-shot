@@ -2,6 +2,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpackDevServerWaitpage = require('webpack-dev-server-waitpage');
 const getPort = require('get-port');
 const log = require('webpack-log');
+const launchMiddleware = require('launch-editor-middleware');
 
 const { isRaw } = require('./lib/utils');
 const notFound = require('./middleware/not-found');
@@ -30,6 +31,9 @@ module.exports = function DevServer(compiler, options) {
           ignore: (req) => isRaw(req.url),
         }),
       );
+      if (process.env.TERM_PROGRAM === 'vscode') {
+        app.use('/__open-in-editor', launchMiddleware('code'));
+      }
       if (typeof options.before === 'function') {
         options.before(app, server);
       }

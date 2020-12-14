@@ -19,6 +19,8 @@ exports.apply = function applyServe({ config: { devServer = {} } }) {
     chain.devServer
       .stats(chain.get('stats'))
       .merge(devServer)
+      // @ts-ignore
+      .when(devServer.hot === false, (config) => config.hotOnly(false))
       .publicPath(publicPath)
       .historyApiFallback(
         // publicPath !== '/' 的需要特别处理

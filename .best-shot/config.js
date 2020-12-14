@@ -1,4 +1,8 @@
 module.exports = [
-  { presets: ['env'], name: 'a' },
-  { presets: ['serve', 'env'], name: 'b' },
+  {
+    presets: ['web'],
+    devServer: {
+      hot: false,
+    },
+  },
 ];

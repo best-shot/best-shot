@@ -1,15 +1,16 @@
 const WebpackDevServer = require('webpack-dev-server');
-const webpackDevServerWaitpage = require('webpack-dev-server-waitpage');
+
 const getPort = require('get-port');
+
 const log = require('webpack-log');
+
 const launchMiddleware = require('launch-editor-middleware');
 
-const { isRaw } = require('./lib/utils');
+const waitPage = require('./middleware/wait-page');
 const notFound = require('./middleware/not-found');
 
 module.exports = function DevServer(compiler, options) {
-  // @ts-ignore
-  webpackDevServerWaitpage.plugin().apply(compiler);
+  waitPage.apply(compiler);
 
   if (
     options.historyApiFallback === true &&
@@ -23,17 +24,13 @@ module.exports = function DevServer(compiler, options) {
   const Server = new WebpackDevServer(compiler, {
     ...options,
     before(app, server) {
-      app.use(
-        // @ts-ignore
-        webpackDevServerWaitpage(server, {
-          title: 'Bundling...',
-          // @ts-ignore
-          ignore: (req) => isRaw(req.url),
-        }),
-      );
+      // @ts-ignore
+      app.use(waitPage.middleware(server));
+
       if (process.env.TERM_PROGRAM === 'vscode') {
         app.use('/__open-in-editor', launchMiddleware('code'));
       }
+
       if (typeof options.before === 'function') {
         options.before(app, server);
       }

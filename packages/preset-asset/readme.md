@@ -35,11 +35,23 @@ module.exports = {
 
 ## Tips
 
+### The `?mutable` resourceQuery
+
+Generate mutable resources filename:
+
+```js
+import('./avatar/male.png?mutable');
+// image/avatar/male.png
+
+import('./header/header-bg.png');
+// image/header-bg.min.xxxxxxxx.png
+```
+
 ### Installing troubleshooting
 
 In China mainland, use [bin-wrapper-china](https://github.com/best-shot/bin-wrapper-china) might help.
 
-You also can replace `gifsicle/jpegtran-bin/optipng-bin` by using [yarn resolutions](https://classic.yarnpkg.com/en/docs/selective-version-resolutions), `best-shot` will disable them automatically.
+Otherwise, you can replace `gifsicle/jpegtran-bin/optipng-bin` with any empty package by using [yarn resolutions](https://classic.yarnpkg.com/en/docs/selective-version-resolutions), `best-shot` will disable them automatically.
 
 ```json
 // package.json

@@ -1,6 +1,6 @@
 {
   "name": "best-shot-addons",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Tool set for Best-shot",
   "license": "MIT",
   "author": {
@@ -12,7 +12,7 @@
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.2.8"
+    "@best-shot/core": "^0.3.2"
   },
   "engines": {
     "node": "^10.18 || ^12.14 || ^14"

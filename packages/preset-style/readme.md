@@ -16,8 +16,10 @@ This preset offer the following features:
 
 - CSS Modules
 - `less` / `sass` syntax
-- Use `postcss-preset-evergreen` by default
+- Use [postcss-preset-evergreen] by default
 - Use `cssnano` in production mode
+
+[postcss-preset-evergreen]: https://github.com/best-shot/postcss-preset-evergreen
 
 ## Installation
 
@@ -27,8 +29,8 @@ npm install @best-shot/preset-style --save-dev
 
 ## Usage
 
-```js
-// example: .best-shot/config.js
+```cjs
+// example: .best-shot/config.cjs
 module.exports = {
   presets: ['style']
 };
@@ -39,8 +41,8 @@ module.exports = {
 Use `[name].module.[extname]` as filename. [Learn more](https://github.com/css-modules/css-modules)
 
 ```js
-import foo from './foo.module.css';
-import bar from './bar.module.scss';
+import { foo } from './foo.module.css';
+import { bar } from './bar.module.scss';
 ```
 
 Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-modules.html)
@@ -58,10 +60,10 @@ Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-m
 
 ### Load custom `postcss` config
 
-Disable internal `autoprefixer` first.
+Disable internal options first.
 
-```js
-// example: .best-shot/config.js
+```cjs
+// example: .best-shot/config.cjs
 module.exports = {
   webpackChain(config) {
     config.module
@@ -78,8 +80,8 @@ module.exports = {
 
 Write your config in any way. See <https://github.com/michael-ciniawsky/postcss-load-config>
 
-```js
-// example: postcss.config.js
+```cjs
+// example: postcss.config.cjs
 module.exports = {
   plugins: {
     'postcss-preset-env': {}

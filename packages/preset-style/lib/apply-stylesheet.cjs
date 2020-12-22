@@ -25,10 +25,6 @@ function applyOneOf({ auto = false, esModule = true, mode }) {
   };
 }
 
-function useNamedExport(loader) {
-  loader.options({ modules: { namedExport: true } });
-}
-
 module.exports = function applyStylesheet(esModule = true) {
   return (chain) => {
     chain.resolve.extensions.add('.css');
@@ -95,19 +91,26 @@ module.exports = function applyStylesheet(esModule = true) {
       ]);
     }
 
+    function takeOptions(loader) {
+      loader.options(
+        esModule
+          ? {
+              modules: { namedExport: true },
+            }
+          : { esModule: false },
+      );
+    }
+
     chain.module.rule('style').when(
       extract,
       (rule) => {
         rule
           .use('extract-css')
           .loader(MiniCssExtractPlugin.loader)
-          .when(esModule, useNamedExport);
+          .batch(takeOptions);
       },
       (rule) => {
-        rule
-          .use('style-loader')
-          .loader('style-loader')
-          .when(esModule, useNamedExport);
+        rule.use('style-loader').loader('style-loader').batch(takeOptions);
       },
     );
   };

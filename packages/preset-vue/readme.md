@@ -25,8 +25,8 @@ npm install @best-shot/preset-vue --save-dev
 
 ## Usage
 
-```js
-// example: .best-shot/config.js
+```cjs
+// example: .best-shot/config.cjs
 module.exports = {
   presets: ['vue']
 };
@@ -40,18 +40,20 @@ module.exports = {
 
 See: [vue-template-compiler#options](https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler#options)
 
-### Add stylesheet support
+### Add `CSS/SCSS/LESS` support
 
 ```bash
 npm install @best-shot/preset-style --save-dev
 ```
 
-```js
-// example: .best-shot/config.js
+```cjs
+// example: .best-shot/config.cjs
 module.exports = {
   presets: ['style', 'vue']
 };
 ```
+
+This preset will override `options.asset.esModule` to `false`.
 
 ### Add `JSX` support
 
@@ -59,8 +61,8 @@ module.exports = {
 npm install @best-shot/preset-babel --save-dev
 ```
 
-```js
-// example: .best-shot/config.js
+```cjs
+// example: .best-shot/config.cjs
 module.exports = {
   presets: ['babel', 'vue']
 };
@@ -70,8 +72,8 @@ module.exports = {
 npm install @vue/babel-preset-jsx --save-dev
 ```
 
-```js
-// example: babel.config.js
+```cjs
+// example: babel.config.cjs
 module.exports = {
   presets: ['@vue/jsx']
 };

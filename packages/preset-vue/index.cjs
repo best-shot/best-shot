@@ -26,3 +26,13 @@ exports.apply = function apply() {
     chain.plugin('vue-loader').use(VueLoaderPlugin);
   };
 };
+
+exports.schema = {
+  asset: {
+    properties: {
+      esModule: {
+        default: false,
+      },
+    },
+  },
+};

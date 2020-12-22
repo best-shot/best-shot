@@ -37,7 +37,7 @@
     "@babel/core": "^7.12.9",
     "@nice-move/cli": "^0.5.11",
     "@nice-move/commitlint-config": "^0.0.0",
-    "@nice-move/eslint-config-base": "^0.5.2",
+    "@nice-move/eslint-config-base": "^0.5.3",
     "@nice-move/prettier-config": "^0.3.5",
     "@nice-move/stylelint-config": "^0.4.2",
     "@types/react": "^17.0.0",

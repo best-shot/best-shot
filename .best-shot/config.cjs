@@ -1,8 +1,3 @@
-module.exports = [
-  {
-    presets: ['web'],
-    devServer: {
-      hot: false,
-    },
-  },
-];
+module.exports = {
+  presets: ['vue', 'style', 'web'],
+};

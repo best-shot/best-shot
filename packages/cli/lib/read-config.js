@@ -3,12 +3,16 @@ const slash = require('slash');
 
 const prompt = require('./prompt');
 const validate = require('./validate');
-const { isSafeError } = require('./utils');
+
+function isSafeError(error) {
+  return (
+    error.code === 'MODULE_NOT_FOUND' && error.requireStack[0] === __filename
+  );
+}
 
 // eslint-disable-next-line consistent-return
 function readConfigFile(filename, rootPath = process.cwd()) {
   try {
-    // eslint-disable-next-line import/no-dynamic-require, global-require
     return require(resolve(rootPath, '.best-shot', filename));
   } catch (error) {
     if (!isSafeError(error)) {

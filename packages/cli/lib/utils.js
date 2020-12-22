@@ -24,15 +24,8 @@ function commandMode(command) {
   return commands[command] || 'development';
 }
 
-function isSafeError(error) {
-  return (
-    error.code === 'MODULE_NOT_FOUND' && error.requireStack[0] === __filename
-  );
-}
-
 module.exports = {
   commands,
   commandMode,
   errorHandle,
-  isSafeError,
 };

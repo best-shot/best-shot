@@ -1,9 +1,9 @@
 const suffix = require('suffix');
 
-const { setOutputName } = require('./lib/apply-set-output-name');
-const { splitChunks } = require('./lib/apply-split-chunks');
-const { setHtml } = require('./lib/apply-set-html');
-const { dataLoader } = require('./lib/apply-data-loader');
+const { setOutputName } = require('./lib/apply-set-output-name.cjs');
+const { splitChunks } = require('./lib/apply-split-chunks.cjs');
+const { setHtml } = require('./lib/apply-set-html.cjs');
+const { dataLoader } = require('./lib/apply-data-loader.cjs');
 
 function addHash(filename) {
   return suffix(filename, '.[contenthash:8]');

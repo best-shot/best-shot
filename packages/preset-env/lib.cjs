@@ -3,9 +3,10 @@ const pickBy = require('lodash/pickBy');
 // @ts-ignore
 const tomlParser = require('@iarna/toml/parse');
 const yaml = require('js-yaml');
-const { decode } = require('ini');
+const ini = require('ini');
 const { default: git } = require('@nice-labs/git-rev');
 
+// eslint-disable-next-line consistent-return
 function ensureConfig(type, rootPath) {
   try {
     const filename = `.best-shot/env.${type}`;
@@ -14,9 +15,8 @@ function ensureConfig(type, rootPath) {
       name: filename,
       path: require.resolve(`./${filename}`, { paths: [rootPath] }),
     };
-  } catch (error) {
-    return undefined;
-  }
+    // eslint-disable-next-line no-empty
+  } catch {}
 }
 
 function findConfig(rootPath) {
@@ -58,10 +58,10 @@ function mergeParams(
 }
 
 const parser = {
+  ini: (str) => ini.parse(str),
   json: (str) => JSON.parse(str),
-  yaml: (str) => yaml.safeLoad(str),
   toml: (str) => tomlParser(str),
-  ini: (str) => decode(str),
+  yaml: (str) => yaml.load(str),
 };
 
 // @ts-ignore

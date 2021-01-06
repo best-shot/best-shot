@@ -5,7 +5,12 @@ const mapValues = require('lodash/mapValues');
 const sortKeys = require('sort-keys');
 const { DefinePlugin } = require('webpack');
 
-const { findConfig, mergeParams, parseConfig, getGitHash } = require('./lib');
+const {
+  findConfig,
+  getGitHash,
+  mergeParams,
+  parseConfig,
+} = require('./lib.cjs');
 
 exports.name = 'preset-env';
 
@@ -40,7 +45,7 @@ exports.apply = function applyEnv() {
     }
 
     if (Object.values(data).length > 0) {
-      const sorted = sortKeys(data);
+      const sorted = sortKeys(data, { deep: true });
 
       // @ts-ignore
       logger(sorted);
@@ -49,7 +54,9 @@ exports.apply = function applyEnv() {
       if (chain.plugins.has('define')) {
         chain
           .plugin('define')
-          .tap(([options]) => [sortKeys({ ...result, ...options })]);
+          .tap(([options]) => [
+            sortKeys({ ...result, ...options }, { deep: true }),
+          ]);
       } else {
         chain.plugin('define').use(DefinePlugin, [result]);
       }

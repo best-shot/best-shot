@@ -1,7 +1,7 @@
 const mapValues = require('lodash/mapValues');
 const sortKeys = require('sort-keys');
 
-const { findConfig, parseConfig, filterData } = require('./lib');
+const { findConfig, parseConfig, filterData } = require('./lib.cjs');
 
 const envFile = findConfig(process.cwd());
 

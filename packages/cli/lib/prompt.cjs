@@ -7,7 +7,7 @@ module.exports = function prompt(configs) {
     '',
     {},
     {
-      configPath: resolve(__dirname, '../.cache/prompt.json'),
+      configPath: resolve(process.cwd(), 'node_modules/.cache/best-shot/prompt.json'),
     },
   );
   const names = configs.map(({ name }) => name);

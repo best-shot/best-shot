@@ -1,16 +1,16 @@
 const { cyan, green } = require('chalk');
 const Cheetor = require('cheetor');
 
-const { commandMode, commands } = require('./lib/utils');
+const { commandMode, commands } = require('./lib/utils.cjs');
 
 new Cheetor()
   .website('https://www.npmjs.com/org/best-shot')
-  .commandSmart('@best-shot/dev-server/cmd/serve')
-  .command('./cmd/watch')
-  .command('./cmd/dev')
-  .command('./cmd/prod')
-  .commandSmart('@best-shot/analyzer/cmd/analyze')
-  .commandSmart('@best-shot/inspector/cmd/inspect')
+  .commandSmart('@best-shot/dev-server')
+  .command('./cmd/watch.cjs')
+  .command('./cmd/dev.cjs')
+  .command('./cmd/prod.cjs')
+  .commandSmart('@best-shot/analyzer')
+  .commandSmart('@best-shot/inspector')
   .middleware([
     ({ _: [command = 'dev'] }) => {
       console.log(cyan('BEST-SHOT:'), command, '-'.repeat(20));

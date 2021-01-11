@@ -1,6 +1,6 @@
 const BestShot = require('@best-shot/core');
 
-const { commandMode } = require('./utils');
+const { commandMode } = require('./utils.cjs');
 
 module.exports = function createConfig(
   config,

@@ -1,6 +1,6 @@
 const { cyan } = require('chalk');
 
-const { handler } = require('./watch');
+const { handler } = require('./watch.cjs');
 
 exports.command = 'dev';
 

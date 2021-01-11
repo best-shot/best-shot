@@ -1,4 +1,4 @@
-const action = require('../lib/action');
+const action = require('../lib/action.cjs');
 
 exports.command = 'watch';
 

@@ -1,6 +1,6 @@
 const { cyan } = require('chalk');
 
-const { builder, handler } = require('./dev');
+const { builder, handler } = require('./dev.cjs');
 
 exports.command = 'prod';
 

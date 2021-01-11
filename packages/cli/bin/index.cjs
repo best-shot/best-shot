@@ -14,6 +14,5 @@ if (isInstalledGlobally) {
 } else if (importLocal(__filename)) {
   console.log(cyan('Tips:'), `Using local version of '${name}'`);
 } else {
-  // eslint-disable-next-line global-require
-  require('..');
+  require('../index.cjs');
 }

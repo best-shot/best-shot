@@ -1,14 +1,12 @@
-/* eslint-disable global-require */
-
-const { errorHandle } = require('./utils');
+const { errorHandle } = require('./utils.cjs');
 
 module.exports = function action({ _: [command], progress }) {
-  errorHandle(async function main() {
-    const readConfig = require('./read-config');
-    const createConfig = require('./create-config');
-    const createCompiler = require('./create-compiler');
+  errorHandle(async () => {
+    const readConfig = require('./read-config.cjs');
+    const createConfig = require('./create-config.cjs');
+    const createCompiler = require('./create-compiler.cjs');
 
-    const applyProgress = require('./apply-progress');
+    const applyProgress = require('./apply-progress.cjs');
 
     const configs = await readConfig()({ command });
 

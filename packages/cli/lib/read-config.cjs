@@ -1,8 +1,8 @@
 const { resolve } = require('path');
 const slash = require('slash');
 
-const prompt = require('./prompt');
-const validate = require('./validate');
+const prompt = require('./prompt.cjs');
+const validate = require('./validate.cjs');
 
 function isSafeError(error) {
   return (

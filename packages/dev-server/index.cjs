@@ -1,6 +1,6 @@
-const { builder } = require('@best-shot/cli/cmd/watch');
+const { builder } = require('@best-shot/cli/cmd/watch.cjs');
 
-const action = require('../lib/action');
+const action = require('./lib/action.cjs');
 
 exports.command = 'serve';
 

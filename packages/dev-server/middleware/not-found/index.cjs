@@ -3,7 +3,7 @@ const { Router } = require('express');
 const { compile } = require('ejs');
 const { readFileSync } = require('fs');
 
-const { isRaw } = require('../../lib/utils');
+const { isRaw } = require('../../lib/utils.cjs');
 
 const router = Router({ strict: true });
 

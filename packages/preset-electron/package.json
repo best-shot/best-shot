@@ -1,0 +1,40 @@
+{
+  "name": "@best-shot/preset-electron",
+  "version": "0.0.0",
+  "description": "A `best-shot` preset for `electron` project",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "keywords": [
+    "best-shot",
+    "electron",
+    "hmr",
+    "webpack"
+  ],
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-electron",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/best-shot/best-shot.git",
+    "directory": "packages/preset-electron"
+  },
+  "bugs": {
+    "url": "https://github.com/best-shot/best-shot/issues"
+  },
+  "main": "index.cjs",
+  "dependencies": {
+    "node-hmr-plugin": "^1.0.1",
+    "slash": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@best-shot/core": "^0.3.2",
+    "webpack": "^4.45.0"
+  },
+  "engines": {
+    "node": "^12.14 || ^14"
+  },
+  "x-readme": {
+    "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"
+  }
+}

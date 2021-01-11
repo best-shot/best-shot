@@ -7766,6 +7766,13 @@ node-forge@^0.10.0:
   resolved "https://mirrors.cloud.tencent.com/npm/node-forge/-/node-forge-0.10.0.tgz#32dea2afb3e9926f02ee5ce8794902691a676bf3"
   integrity sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA==
 
+node-hmr-plugin@^1.0.1:
+  version "1.0.1"
+  resolved "https://mirrors.cloud.tencent.com/npm/node-hmr-plugin/-/node-hmr-plugin-1.0.1.tgz#a2dfd84741d1c9a18fa81391693c6b040794389a"
+  integrity sha512-i9yePOZjhaqOxpgUx/386EoN/arPDGMRqiR3Q2Mj4vJxQDm6oF+drw+Bs4TozJkCO9iTDvLWSQZH8oTIqcMn4g==
+  dependencies:
+    webpack-log "^2.0.0"
+
 node-libs-browser@^2.2.1:
   version "2.2.1"
   resolved "https://mirrors.cloud.tencent.com/npm/node-libs-browser/-/node-libs-browser-2.2.1.tgz#b64f513d18338625f90346d27b0d235e631f6425"

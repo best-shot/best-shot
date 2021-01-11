@@ -1,14 +1,12 @@
-/* eslint-disable global-require */
-
-const { errorHandle } = require('@best-shot/cli/lib/utils');
+const { errorHandle } = require('@best-shot/cli/lib/utils.cjs');
 
 module.exports = function action({ _: [command] }) {
-  errorHandle(async function main() {
-    const readConfig = require('@best-shot/cli/lib/read-config');
-    const createConfig = require('@best-shot/cli/lib/create-config');
-    const createCompiler = require('@best-shot/cli/lib/create-compiler');
+  errorHandle(async () => {
+    const readConfig = require('@best-shot/cli/lib/read-config.cjs');
+    const createConfig = require('@best-shot/cli/lib/create-config.cjs');
+    const createCompiler = require('@best-shot/cli/lib/create-compiler.cjs');
 
-    const applyAnalyzer = require('./apply');
+    const applyAnalyzer = require('./apply.cjs');
 
     const configs = await readConfig()({ command });
 

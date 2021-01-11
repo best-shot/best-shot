@@ -1,5 +1,5 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const applyProgress = require('@best-shot/cli/lib/apply-progress');
+const applyProgress = require('@best-shot/cli/lib/apply-progress.cjs');
 
 const { resolve: Resolve } = require('path');
 

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/analyzer",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Analyzer of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -25,16 +25,16 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.js",
+  "main": "index.cjs",
   "dependencies": {
-    "webpack-bundle-analyzer": "^4.2.0"
+    "webpack-bundle-analyzer": "^4.3.0"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.8.0",
+    "@best-shot/cli": "^0.9.0",
     "@best-shot/core": "^0.3.2"
   },
   "engines": {
-    "node": "^10.18 || ^12.14 || ^14"
+    "node": "^12.14 || ^14"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

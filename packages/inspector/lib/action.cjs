@@ -1,10 +1,15 @@
-/* eslint-disable global-require */
 const BestShot = require('@best-shot/core');
 
-const { errorHandle, commandMode } = require('@best-shot/cli/lib/utils');
+const { errorHandle, commandMode } = require('@best-shot/cli/lib/utils.cjs');
 
-const concatStr = require('./concat-str');
-const makeWriteFile = require('./write-file');
+const concatStr = require('./concat-str.cjs');
+const makeWriteFile = require('./write-file.cjs');
+
+function isSafeError(error) {
+  return (
+    error.code === 'MODULE_NOT_FOUND' && error.requireStack[0] === __filename
+  );
+}
 
 module.exports = function action({ stamp = 'none' }) {
   console.log('Output files ...');
@@ -15,21 +20,19 @@ module.exports = function action({ stamp = 'none' }) {
 
   try {
     // eslint-disable-next-line import/no-extraneous-dependencies
-    autoAddPreset = require('@best-shot/dev-server/lib/utils').autoAddPreset;
+    autoAddPreset = require('@best-shot/dev-server/lib/utils.cjs')
+      .autoAddPreset;
     if (autoAddPreset) {
       commands.push('serve');
     }
   } catch (error) {
-    if (
-      error.code === 'MODULE_NOT_FOUND' &&
-      error.requireStack[0] === __filename
-    ) {
+    if (isSafeError(error)) {
       // do nothing.
     }
   }
 
-  errorHandle(function main() {
-    const readConfig = require('@best-shot/cli/lib/read-config');
+  errorHandle(() => {
+    const readConfig = require('@best-shot/cli/lib/read-config.cjs');
 
     const rootPath = process.cwd();
     const writeFile = makeWriteFile(rootPath, stamp);

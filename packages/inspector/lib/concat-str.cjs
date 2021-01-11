@@ -1,9 +1,9 @@
-const sortObject = require('sort-object');
+const sortKeys = require('sort-keys');
 const { stringify } = require('javascript-stringify');
 
 function formatJs(code) {
   try {
-    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+    // eslint-disable-next-line import/no-extraneous-dependencies
     const { format } = require('prettier');
     return format(code, {
       parser: 'babel',
@@ -15,7 +15,7 @@ function formatJs(code) {
 }
 
 function formatJson(json) {
-  return JSON.stringify(sortObject(json), null, '  ');
+  return JSON.stringify(sortKeys(json, { deep: true }), null, '  ');
 }
 
 module.exports = function concatStr({ input, output, schema, stamp }) {
@@ -28,7 +28,7 @@ module.exports = function concatStr({ input, output, schema, stamp }) {
 /* eslint-disable */
 exports.schema = ${formatJson(schema)}
 
-exports.input = ${stringify(sortObject(input))}
+exports.input = ${stringify(sortKeys(input, { deep: true }))}
 
 exports.config = ${output.toString()}
 `);

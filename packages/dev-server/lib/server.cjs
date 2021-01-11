@@ -6,8 +6,8 @@ const log = require('webpack-log');
 
 const launchMiddleware = require('launch-editor-middleware');
 
-const waitPage = require('./middleware/wait-page/index.cjs');
-const notFound = require('./middleware/not-found/index.cjs');
+const waitPage = require('../middleware/wait-page/index.cjs');
+const notFound = require('../middleware/not-found/index.cjs');
 
 module.exports = function DevServer(compiler, options) {
   waitPage.apply(compiler);

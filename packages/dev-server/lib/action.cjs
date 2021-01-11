@@ -65,7 +65,7 @@ module.exports = function action({ _: [command] }) {
     }
 
     if (shouldServe.length > 0) {
-      const DevServer = require('..');
+      const DevServer = require('./server.cjs');
 
       shouldServe.forEach((config) => {
         const compiler = createCompiler(config);

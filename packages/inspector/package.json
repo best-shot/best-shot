@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {

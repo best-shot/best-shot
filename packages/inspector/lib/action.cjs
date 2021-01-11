@@ -7,7 +7,9 @@ const makeWriteFile = require('./write-file.cjs');
 
 function isSafeError(error) {
   return (
-    error.code === 'MODULE_NOT_FOUND' && error.requireStack[0] === __filename
+    error.code === 'MODULE_NOT_FOUND' &&
+    error.requireStack &&
+    error.requireStack[0] === __filename
   );
 }
 
@@ -26,8 +28,8 @@ module.exports = function action({ stamp = 'none' }) {
       commands.push('serve');
     }
   } catch (error) {
-    if (isSafeError(error)) {
-      // do nothing.
+    if (!isSafeError(error)) {
+      throw error;
     }
   }
 

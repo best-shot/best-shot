@@ -17,7 +17,6 @@ This preset includes the following packages:
 - micro-tpl-loader
 - html-webpack-plugin
 - webpack-subresource-integrity
-- raw-loader / yaml-loader
 
 ## Installation
 

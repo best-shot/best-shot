@@ -14,9 +14,10 @@ A `best-shot` preset for asset.
 
 This preset offer the following features:
 
-- import `jpg` `jpeg` `png` `gif` `svg`
-- import `woff` `woff2` `otf` `eot` `ttf`
+- import `jpg` / `jpeg` / `png` / `gif` / `svg`
+- import `woff` / `woff2` / `otf` / `eot` / `ttf`
 - Use `imagemin` in production mode
+- export `yml` / `yaml` / `txt` / `json` to standalone file
 
 ## Installation
 
@@ -35,7 +36,19 @@ module.exports = {
 
 ## Tips
 
-### The `?mutable` resourceQuery
+### Standalone data file output
+
+For `yml` / `yaml` / `txt` / `json` format:
+
+```js
+import('./sample.json');
+// { foo: 'bar' }
+
+import('./sample.[hash].json');
+// sample.xxxxxxxx.json
+```
+
+### The `mutable` resourceQuery for image
 
 Generate mutable resources filename:
 
@@ -53,7 +66,7 @@ In China mainland, use [bin-wrapper-china](https://github.com/best-shot/bin-wrap
 
 Otherwise, you can replace `gifsicle/jpegtran-bin/optipng-bin` with any empty package by using [yarn resolutions](https://classic.yarnpkg.com/en/docs/selective-version-resolutions), `best-shot` will disable them automatically.
 
-```json
+```jsonc
 // package.json
 {
   "resolutions": {

@@ -8,7 +8,6 @@ const imageRegexp = extToRegexp({
 
 function autoDetect(name, options, packageName = name) {
   try {
-    // eslint-disable-next-line global-require, import/no-dynamic-require
     if (require(`${packageName}/package.json`).name === packageName) {
       return [name, options];
     }

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-asset",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A `best-shot` preset for asset",
   "license": "MIT",
   "author": {
@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.js",
+  "main": "index.cjs",
   "dependencies": {
     "ext-to-regexp": "^0.0.8",
     "file-loader": "^6.2.0",
@@ -34,13 +34,15 @@
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^8.0.0",
-    "svgo-config": "^0.1.0"
+    "raw-loader": "^4.0.2",
+    "svgo-config": "^0.1.0",
+    "yaml-loader": "^0.6.0"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.3.2"
   },
   "engines": {
-    "node": "^10.18 || ^12.14 || ^14"
+    "node": "^12.18 || ^14"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

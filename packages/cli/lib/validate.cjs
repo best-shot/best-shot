@@ -7,12 +7,25 @@ function hasUniqueNames(config) {
   );
 }
 
+const obj = {
+  type: 'object',
+  properties: {
+    presets: {
+      type: 'array',
+      uniqueItems: true,
+      items: {
+        type: 'string',
+      },
+    },
+  },
+};
+
 const schema = {
   oneOf: [
-    { type: 'object' },
+    obj,
     {
       type: 'array',
-      items: { type: 'object' },
+      items: obj,
       maxItems: 8,
       minItems: 1,
     },

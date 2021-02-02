@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -34,15 +34,15 @@
     "cheetor": "^0.4.1",
     "configstore": "^5.0.1",
     "import-local": "^3.0.2",
-    "is-installed-globally": "^0.3.2",
+    "is-installed-globally": "^0.4.0",
     "prompts": "^2.4.0",
     "slash": "^3.0.0",
     "v8-compile-cache": "^2.2.0",
     "webpackbar": "^5.0.0-3"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.3.2",
-    "webpack": "^4.45.0 || ^5.12.3"
+    "@best-shot/core": "^0.3.3",
+    "webpack": "^4.45.0 || ^5.19.0"
   },
   "engines": {
     "node": "^12.14 || ^14"

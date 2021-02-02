@@ -8,7 +8,7 @@ const {
 } = require('../packages/core/built-in/apply-entry');
 const {
   schema: properties2,
-} = require('../packages/core/built-in/apply-define');
+} = require('../packages/core/built-in/apply-define.cjs');
 
 const example = {
   mode: 'development',

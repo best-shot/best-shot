@@ -13,7 +13,7 @@ const displayName = 'define';
 
 exports.name = displayName;
 
-exports.apply = function apply({ config: { define } }) {
+exports.apply = function applyDefine({ config: { define } }) {
   return (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');

@@ -1,8 +1,8 @@
 const WebpackChain = require('webpack-chain');
-const { importPresets } = require('./lib/presets');
+const { importPresets } = require('./lib/presets.cjs');
 const Stack = require('./lib/stack');
 const Schema = require('./lib/schema');
-const builtIn = require('./built-in');
+const builtIn = require('./built-in/index.cjs');
 
 module.exports = class BestShot {
   constructor({ name, rootPath = process.cwd(), presets = [] } = {}) {

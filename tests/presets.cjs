@@ -2,7 +2,7 @@ const test = require('ava').default;
 
 const BestShot = require('../packages/core');
 
-const builtIn = require('../packages/core/built-in');
+const builtIn = require('../packages/core/built-in/index.cjs');
 
 test('Right presets enum', (t) => {
   const io = new BestShot({ presets: ['babel'] });

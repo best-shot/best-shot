@@ -3,7 +3,7 @@ const applyResolve = require('./apply-resolve');
 const applyTersor = require('./apply-tersor');
 const applyEntry = require('./apply-entry');
 const applyOther = require('./apply-other');
-const applyDefine = require('./apply-define');
+const applyDefine = require('./apply-define.cjs');
 
 module.exports = [
   applyBasic,

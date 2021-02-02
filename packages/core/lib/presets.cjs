@@ -9,16 +9,22 @@ const allowPresets = [
   'web',
 ];
 
-function getIndex(item) {
-  const index = allowPresets.indexOf(item);
-  return index !== -1 ? -1 : index;
-}
-
-function sortPresets([...data]) {
-  data.sort((a, b) =>
-    allowPresets.includes(a) ? getIndex(a) - getIndex(b) : data.indexOf(a),
-  );
-  return data;
+function sortPresets(data) {
+  const io = [...new Set(data)];
+  io.sort((next, prev) => {
+    const P = allowPresets.indexOf(prev);
+    const N = allowPresets.indexOf(next);
+    return P === -1 && N === -1
+      ? 0
+      : P === -1
+      ? -1
+      : N === -1
+      ? 1
+      : N < P
+      ? -1
+      : 1;
+  });
+  return io;
 }
 
 function checkPresets(presets) {
@@ -33,7 +39,6 @@ function importPresets(presets) {
     const sorted = sortPresets(presets);
     const io = sorted
       .map((preset) => `@best-shot/preset-${preset}`)
-      // eslint-disable-next-line global-require, import/no-dynamic-require
       .map((name) => require(name));
     return io;
   } catch (error) {

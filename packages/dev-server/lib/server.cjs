@@ -43,7 +43,7 @@ module.exports = function DevServer(compiler, options) {
     },
   });
 
-  getPort({ port: options.port })
+  getPort({ port: [options.port, 1234, 5678] })
     .then((port) => {
       Server.listen(port, options.host);
     })

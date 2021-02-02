@@ -27,5 +27,6 @@ npx -c best-shot serve [options]
 ## Features
 
 - features of webpack-dev-server
+- auto fallback to available port
 - show a wait page when bundling
 - open source file in vscode

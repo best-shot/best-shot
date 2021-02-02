@@ -33,14 +33,16 @@ module.exports = function action({ stamp = 'none' }) {
     }
   }
 
-  errorHandle(() => {
+  errorHandle(async () => {
     const readConfig = require('@best-shot/cli/lib/read-config.cjs');
 
     const rootPath = process.cwd();
     const writeFile = makeWriteFile(rootPath, stamp);
 
-    commands.forEach(async (command) => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const command of commands) {
       const mode = commandMode(command);
+      // eslint-disable-next-line no-await-in-loop
       const configs = await readConfig(rootPath, false)({ command });
 
       if (command === 'serve') {
@@ -80,6 +82,6 @@ module.exports = function action({ stamp = 'none' }) {
           }),
         });
       });
-    });
+    }
   });
 };

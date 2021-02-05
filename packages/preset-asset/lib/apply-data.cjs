@@ -12,10 +12,6 @@ function outputFile(ext = '[ext]') {
   };
 }
 
-function yaml2json(rule) {
-  rule.type('json').use('yaml-loader').loader('yaml-loader');
-}
-
 module.exports = function applyData(chain) {
   chain.module
     .rule('json')
@@ -35,20 +31,17 @@ module.exports = function applyData(chain) {
     .test(extToRegexp({ extname: ['yaml', 'yml'] }));
 
   yaml
-    .oneOf('external/yaml-to-json')
-    .test(/\.\[hash]/)
-    .resourceQuery(/json/)
-    .batch(yaml2json)
-    .batch(outputFile('json'));
-
-  yaml
     .oneOf('external')
     .test(/\.\[hash]/)
-    .batch(outputFile());
+    .batch(outputFile('json'))
+    .use('yaml-loader')
+    .loader('yaml-loader');
 
   yaml // align
     .oneOf('internal')
-    .batch(yaml2json);
+    .type('json')
+    .use('yaml-loader')
+    .loader('yaml-loader');
 
   // ----------
 

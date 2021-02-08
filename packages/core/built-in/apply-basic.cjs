@@ -40,6 +40,8 @@ exports.apply = function applyBasic({
       chain.optimization.set('moduleIds', type);
     }
 
+    const name = chain.get('name');
+
     chain.output
       .publicPath(publicPath)
       .filename('[name].js')
@@ -47,10 +49,15 @@ exports.apply = function applyBasic({
         resolve(
           context,
           outputPath
+            .replace(/\[config-name]/g, name || '')
             .replace(/\[mode]/g, mode)
             .replace(/\[mode:shorthand]/g, shorthand[mode]),
         ),
       );
+
+    chain.output.when(name, (output) => {
+      output.path(output.get('path'));
+    });
 
     chain.node.merge({
       __dirname: true,

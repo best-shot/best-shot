@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11", "@babel/code-frame@^7.12.13":
+"@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13":
   version "7.12.13"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2fcode-frame/-/code-frame-7.12.13.tgz#dcfc826beef65e75c50e21d3837d7d95798dd658"
   integrity sha512-HV1Cm0Q3ZrpCR93tkWOYiuYIgLxZXZFVG2VgK+MBWjUqZTundupbfx2aXarXuw5Ko5aMcjtJgbSs4vUGBS5v6g==
@@ -35,7 +35,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/generator@^7.12.10", "@babel/generator@^7.12.11", "@babel/generator@^7.12.13":
+"@babel/generator@^7.12.13":
   version "7.12.15"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2fgenerator/-/generator-7.12.15.tgz#4617b5d0b25cc572474cc1aafee1edeaf9b5368f"
   integrity sha512-6F2xHxBiFXWNSGb7vyCUTBF8RCLY66rS0zEPcP8t/nQyXjha5EuK4z7H5o7fWG8B4M7y6mqVWq1J+1PuwRhecQ==
@@ -122,7 +122,7 @@
   dependencies:
     "@babel/types" "^7.10.4"
 
-"@babel/helper-function-name@^7.10.4", "@babel/helper-function-name@^7.12.11", "@babel/helper-function-name@^7.12.13":
+"@babel/helper-function-name@^7.10.4", "@babel/helper-function-name@^7.12.13":
   version "7.12.13"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2fhelper-function-name/-/helper-function-name-7.12.13.tgz#93ad656db3c3c2232559fd7b2c3dbdcbe0eb377a"
   integrity sha512-TZvmPn0UOqmvi5G4vvw0qZTpVptGkB1GL61R6lKvrSdIxGm5Pky7Q3fpKiIkQCAtRCBUwB0PaThlx9vebCDSwA==
@@ -131,7 +131,7 @@
     "@babel/template" "^7.12.13"
     "@babel/types" "^7.12.13"
 
-"@babel/helper-get-function-arity@^7.12.10", "@babel/helper-get-function-arity@^7.12.13":
+"@babel/helper-get-function-arity@^7.12.13":
   version "7.12.13"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2fhelper-get-function-arity/-/helper-get-function-arity-7.12.13.tgz#bc63451d403a3b3082b97e1d8b3fe5bd4091e583"
   integrity sha512-DjEVzQNz5LICkzN0REdpD5prGoidvbdYk1BVgRUOINaWJP2t6avB27X1guXK1kXNrX0WMfsrm1A/ZBthYuIMQg==
@@ -226,7 +226,7 @@
   dependencies:
     "@babel/types" "^7.12.1"
 
-"@babel/helper-split-export-declaration@^7.10.4", "@babel/helper-split-export-declaration@^7.11.0", "@babel/helper-split-export-declaration@^7.12.11", "@babel/helper-split-export-declaration@^7.12.13":
+"@babel/helper-split-export-declaration@^7.10.4", "@babel/helper-split-export-declaration@^7.12.13":
   version "7.12.13"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2fhelper-split-export-declaration/-/helper-split-export-declaration-7.12.13.tgz#e9430be00baf3e88b0e13e6f9d4eaf2136372b05"
   integrity sha512-tCJDltF83htUtXx5NLcaDqRmknv652ZWCHyoTETf1CXYJdPC7nohZohjUgieXhv0hTJdRf2FjDueFehdNucpzg==
@@ -253,7 +253,7 @@
     "@babel/traverse" "^7.10.4"
     "@babel/types" "^7.10.4"
 
-"@babel/helpers@^7.12.13", "@babel/helpers@^7.12.5":
+"@babel/helpers@^7.12.13":
   version "7.12.13"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2fhelpers/-/helpers-7.12.13.tgz#3c75e993632e4dadc0274eae219c73eb7645ba47"
   integrity sha512-oohVzLRZ3GQEk4Cjhfs9YkJA4TdIDTObdBEZGrd6F/T0GPSnuV6l22eMcxlvcvzVIPH3VTtxbseudM1zIE+rPQ==
@@ -262,7 +262,7 @@
     "@babel/traverse" "^7.12.13"
     "@babel/types" "^7.12.13"
 
-"@babel/highlight@^7.10.4", "@babel/highlight@^7.12.13":
+"@babel/highlight@^7.12.13":
   version "7.12.13"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2fhighlight/-/highlight-7.12.13.tgz#8ab538393e00370b26271b01fa08f7f27f2e795c"
   integrity sha512-kocDQvIbgMKlWxXe9fof3TQ+gkIPOUSEYhJjqUjvKMez3krV7vbzYCDq39Oj11UAVK7JqPVGQPlgE85dPNlQww==
@@ -271,7 +271,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.12.10", "@babel/parser@^7.12.11", "@babel/parser@^7.12.13", "@babel/parser@^7.12.7", "@babel/parser@^7.7.0":
+"@babel/parser@^7.12.13", "@babel/parser@^7.7.0":
   version "7.12.15"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2fparser/-/parser-7.12.15.tgz#2b20de7f0b4b332d9b119dd9c33409c538b8aacf"
   integrity sha512-AQBOU2Z9kWwSZMd6lNjCX0GUgFonL1wAM1db8L8PMk9UDaGsRCArBkU4Sc+UCM3AE4hjbXx+h58Lb3QT4oRmrA==
@@ -891,7 +891,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/template@^7.10.4", "@babel/template@^7.12.13", "@babel/template@^7.12.7":
+"@babel/template@^7.10.4", "@babel/template@^7.12.13":
   version "7.12.13"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2ftemplate/-/template-7.12.13.tgz#530265be8a2589dbb37523844c5bcb55947fb327"
   integrity sha512-/7xxiGA57xMo/P2GVvdEumr8ONhFOhfgq2ihK3h1e6THqzTAkHbkXgB0xI9yeTfIUoH3+oAeHhqm/I43OTbbjA==
@@ -900,7 +900,7 @@
     "@babel/parser" "^7.12.13"
     "@babel/types" "^7.12.13"
 
-"@babel/traverse@^7.10.4", "@babel/traverse@^7.12.1", "@babel/traverse@^7.12.10", "@babel/traverse@^7.12.13", "@babel/traverse@^7.12.5", "@babel/traverse@^7.7.0":
+"@babel/traverse@^7.10.4", "@babel/traverse@^7.12.13", "@babel/traverse@^7.7.0":
   version "7.12.13"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2ftraverse/-/traverse-7.12.13.tgz#689f0e4b4c08587ad26622832632735fb8c4e0c0"
   integrity sha512-3Zb4w7eE/OslI0fTp8c7b286/cQps3+vdLW3UcwC8VSJC6GbKn55aeVVu2QJNuCDoeKyptLOFrPq8WqZZBodyA==
@@ -915,7 +915,7 @@
     globals "^11.1.0"
     lodash "^4.17.19"
 
-"@babel/types@^7.10.4", "@babel/types@^7.10.5", "@babel/types@^7.12.1", "@babel/types@^7.12.10", "@babel/types@^7.12.11", "@babel/types@^7.12.12", "@babel/types@^7.12.13", "@babel/types@^7.12.5", "@babel/types@^7.12.7", "@babel/types@^7.4.4", "@babel/types@^7.7.0":
+"@babel/types@^7.10.4", "@babel/types@^7.10.5", "@babel/types@^7.12.1", "@babel/types@^7.12.10", "@babel/types@^7.12.11", "@babel/types@^7.12.12", "@babel/types@^7.12.13", "@babel/types@^7.4.4", "@babel/types@^7.7.0":
   version "7.12.13"
   resolved "https://mirrors.cloud.tencent.com/npm/@babel%2ftypes/-/types-7.12.13.tgz#8be1aa8f2c876da11a9cf650c0ecf656913ad611"
   integrity sha512-oKrdZTld2im1z8bDwTOQvUbxKwE+854zc16qWZQlcTqMN00pWxHQ4ZeOq0yDMnisOpRykH2/5Qqcrk/OlbAjiQ==
@@ -1114,10 +1114,10 @@
   dependencies:
     "@commitlint/config-conventional" "^11.0.0"
 
-"@nice-move/eslint-config-base@^0.5.20":
-  version "0.5.20"
-  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2feslint-config-base/-/eslint-config-base-0.5.20.tgz#0cfd38998b4bf28f306ccdcf4c85194b0dd9dae2"
-  integrity sha512-NvzOy92DqGINMUX5tT95i/ccOc5nz2o990vN4ECNGzy78jL88CEGr1obqbimEOS072AMOlEd6Ly8nT5Ws1ZouA==
+"@nice-move/eslint-config-base@^0.5.21":
+  version "0.5.21"
+  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2feslint-config-base/-/eslint-config-base-0.5.21.tgz#635e7b2d416b66a094790fb2eeaddf6042ff8da5"
+  integrity sha512-CKdArtIhRJCKGBKkS1rcZbRnSYfUY/mtUbHC5voFIA5YXJCqkuMes2a3GiGnURWK8x0eCQ0cXRuLkpmw9Wq6bQ==
   dependencies:
     eslint-config-airbnb-base "^14.2.1"
     eslint-config-prettier "^7.2.0"
@@ -1166,20 +1166,20 @@
     stylelint-formatter-pretty "^2.1.1"
     yarn-deduplicate "^3.1.0"
 
-"@nice-move/prettier-config@^0.3.5":
-  version "0.3.5"
-  resolved "https://registry.npm.taobao.org/@nice-move/prettier-config/download/@nice-move/prettier-config-0.3.5.tgz#97fbbb4159d317186d58b1849f59cf3a984ddce4"
-  integrity "sha1-l/u7QVnTFxhtWLGEn1nPOphN3OQ= sha512-DzDqRR/ZrD/8PDErG2W7QT2ohwafeGeidLG1dVcQjyiStw4x4o0NFtoz1nddo/iYMMhDykQUFDfWbp9s52vRcQ=="
+"@nice-move/prettier-config@^0.4.0":
+  version "0.4.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fprettier-config/-/prettier-config-0.4.0.tgz#b8581da4d6df382252af25f04ed119abf9c4a7ea"
+  integrity sha512-fST0fu4pOmQDbn28QS5YyZq/bnsKqtivwPfwQkoto8DFnrp/2c9ZyxwUVwW2d3F7N0WJPpTglBM/M0+JyKlzHQ==
   dependencies:
-    "@nice-move/prettier-plugin-package-json" "^0.3.2"
-    "@prettier/plugin-xml" "^0.12.0"
+    "@nice-move/prettier-plugin-package-json" "^0.4.0"
+    "@prettier/plugin-xml" "^0.13.0"
     prettier-plugin-ini "^0.3.1"
     prettier-plugin-toml "^0.3.1"
 
-"@nice-move/prettier-plugin-package-json@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.npm.taobao.org/@nice-move/prettier-plugin-package-json/download/@nice-move/prettier-plugin-package-json-0.3.2.tgz#81ae6ddd33571b4f25e3cef63f3f2a0f8c6bec3f"
-  integrity "sha1-ga5t3TNXG08l4872Pz8qD4xr7D8= sha512-5PBVQ28mWssyqqa0+rNOZmDBGYPUn31aigtlSZZ7I6cTZZUE+/z0+xdgopzYxXpRulmBpTXRHvE26HX9DQy4UA=="
+"@nice-move/prettier-plugin-package-json@^0.4.0":
+  version "0.4.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fprettier-plugin-package-json/-/prettier-plugin-package-json-0.4.0.tgz#ccc8658c4a74f01c5015b6b957de9defe253dc64"
+  integrity sha512-KUzX5dqrI0CGADB6CQWKSZnPF63B9S2SxB62QUqaBzLISOAHqAI9xsUw4xBrntKP7IZfewvc6Gdn1WXIOKw0fQ==
   dependencies:
     normalize-package-data "^3.0.0"
     npm-normalize-package-bin "^1.0.1"
@@ -1241,10 +1241,10 @@
   resolved "https://mirrors.cloud.tencent.com/npm/@polka%2furl/-/url-1.0.0-next.11.tgz#aeb16f50649a91af79dbe36574b66d0f9e4d9f71"
   integrity sha512-3NsZsJIA/22P3QUyrEDNA2D133H4j224twJrdipXN38dpnIOzAbUDtOwkcJ5pXmn75w7LSQDjA4tO9dm1XlqlA==
 
-"@prettier/plugin-xml@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.npm.taobao.org/@prettier/plugin-xml/download/@prettier/plugin-xml-0.12.0.tgz#975522ac9216e66b0f5d240b4b5a8109c423d427"
-  integrity "sha1-l1UirJIW5msPXSQLS1qBCcQj1Cc= sha512-196oXlmim2SiqeG1jQO5aS/nChI85DvyfIQTBkOiVHHev2j15x4TVxOMGAWHkqdlD8pmCg/KmX8SfFIyT2L7tA=="
+"@prettier/plugin-xml@^0.13.0":
+  version "0.13.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/@prettier%2fplugin-xml/-/plugin-xml-0.13.0.tgz#0927ab554668de0a9c6c5d15c5f94a9346c79a01"
+  integrity sha512-kjC8ZoqrNdSGyUfGS0KGxmA2YxI/mpO2bQtOsg8663DISyfvkN/1LoR8nO+0BaAKkGWhP2rzgk6rqiSEQz8vQw==
   dependencies:
     "@xml-tools/parser" "^1.0.2"
     prettier ">=1.10"
@@ -5379,10 +5379,10 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.npm.taobao.org/functional-red-black-tree/download/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity "sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc= sha512-dsKNQNdj6xA3T+QlADDA7mOSlX0qiMINjn0cgr+eGHGsbSHzTabcIogz2+p/iqP1Xs6EP/sS2SbqH+brGTbq0g=="
 
-garou@^0.1.11:
-  version "0.1.11"
-  resolved "https://mirrors.cloud.tencent.com/npm/garou/-/garou-0.1.11.tgz#15bf3dd50e4dea581afa9d798b3ddd4207bcbdf5"
-  integrity sha512-F84Pxhzre0UjoYgQGSrvdfbSjBY813nUtFc7yeW9OK+2WuEORkI1KCpYv4sQv8yL78juGBTe6eXoI3kONzXC1w==
+garou@^0.1.12:
+  version "0.1.12"
+  resolved "https://mirrors.cloud.tencent.com/npm/garou/-/garou-0.1.12.tgz#16a2e701ed006a3863f683c9a19c59365e982dfc"
+  integrity sha512-lEjF6XxDwmYXW+Y25TG00hmDV4dhvXF7bI/DUWUcncBI/JTLyyg4fTTG6DdDvmY3u7rnPr5K6dHyG/yPlOng0A==
   dependencies:
     cheetor "^0.4.1"
     eslint "^7.19.0"
@@ -12192,8 +12192,8 @@ vue-template-es2015-compiler@^1.9.0:
 
 vue@^2.6.12:
   version "2.6.12"
-  resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
-  integrity "sha1-9evU+mvShpQD4pqJau1JBEVskSM= sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg=="
+  resolved "https://mirrors.cloud.tencent.com/npm/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
+  integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
 
 watchpack-chokidar2@^2.0.1:
   version "2.0.1"

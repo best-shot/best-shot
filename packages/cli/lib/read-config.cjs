@@ -40,11 +40,14 @@ module.exports = function readConfig(
 
     validate(config);
 
-    if (typeof config === 'object' && !config.outputPath) {
-      config.outputPath = slash('.best-shot/build/');
-    }
-
     const configs = Array.isArray(config) ? config : [config];
+
+    configs.forEach((conf) => {
+      if (!conf.outputPath) {
+        // eslint-disable-next-line no-param-reassign
+        conf.outputPath = slash('.best-shot/build/[config-name]');
+      }
+    });
 
     if (interactive && configs.length > 1) {
       return prompt(configs);

@@ -1,4 +1,4 @@
-const applyBasic = require('./apply-basic');
+const applyBasic = require('./apply-basic.cjs');
 const applyResolve = require('./apply-resolve');
 const applyTersor = require('./apply-tersor');
 const applyEntry = require('./apply-entry');

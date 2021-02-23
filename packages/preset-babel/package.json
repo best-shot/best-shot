@@ -1,6 +1,7 @@
 {
+  "private": false,
   "name": "@best-shot/preset-babel",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -13,6 +14,7 @@
     "compiler",
     "core-js",
     "env",
+    "javascript",
     "polyfill",
     "preset",
     "script",
@@ -20,7 +22,6 @@
     "targets",
     "transform",
     "usage",
-    "useBuiltIns",
     "webpack"
   ],
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-babel",
@@ -32,23 +33,24 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.js",
+  "main": "index.cjs",
   "dependencies": {
     "babel-loader": "^8.2.2",
-    "babel-preset-evergreen": "^0.4.3",
+    "babel-preset-evergreen": "^0.6.0",
     "ext-to-regexp": "^0.0.8",
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.12.9",
-    "@best-shot/core": "^0.2.17 || ^0.3.1",
-    "core-js": "^3.8.1",
-    "webpack": "^4.44.2 || ^5.10.0"
+    "@babel/core": "^7.13.1",
+    "@best-shot/core": "^0.3.5",
+    "core-js": "^3.9.0",
+    "webpack": "^4.46.0 || ^5.24.0"
   },
   "engines": {
-    "node": "^10.18 || ^12.14 || ^14"
+    "node": "^12.18 || ^14"
   },
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "x-readme": {

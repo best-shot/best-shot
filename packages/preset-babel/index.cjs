@@ -3,6 +3,12 @@ const slashToRegexp = require('slash-to-regexp');
 const { version } = require('webpack/package.json');
 
 const { relative } = require('@best-shot/core/lib/path');
+const { loadConfig, defaults } = require('browserslist');
+
+function getList(path) {
+  const config = loadConfig({ path });
+  return config && config.length > 0 ? config : defaults;
+}
 
 exports.name = 'preset-babel';
 
@@ -24,11 +30,12 @@ exports.apply = function applyBabel({ config: { polyfill = false } }) {
       .loader('babel-loader')
       .options({
         babelrc: false,
+        cacheDirectory: UseCache,
+        compact: mode === 'production',
         envName: mode,
         sourceType: 'unambiguous',
-        cacheDirectory: UseCache,
+        targets: getList(context),
         ...(UseCache ? { cacheCompression: false } : undefined),
-        compact: mode === 'production',
         presets: [['evergreen', { polyfill }]],
         ...(version.startsWith('4.')
           ? {

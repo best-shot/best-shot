@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@best-shot/preset-babel",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -36,7 +36,8 @@
   "main": "index.cjs",
   "dependencies": {
     "babel-loader": "^8.2.2",
-    "babel-preset-evergreen": "^0.6.0",
+    "babel-preset-evergreen": "^0.7.0",
+    "browserslist": "^4.16.3",
     "ext-to-regexp": "^0.0.8",
     "slash-to-regexp": "^0.0.4"
   },

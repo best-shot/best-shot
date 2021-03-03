@@ -14,11 +14,17 @@ A `best-shot` preset for stylesheet.
 
 This preset offer the following features:
 
-- CSS Modules
-- `less` / `sass` syntax
+- [CSS Modules] support
+- [Less] / [Sass] syntax support
+- [PostCSS] v7 support
 - Use [postcss-preset-evergreen] by default
-- Use `cssnano` in production mode
+- Use [cssnano] in production mode
 
+[css modules]: https://github.com/css-modules/css-modules
+[cssnano]: https://cssnano.co/
+[sass]: https://sass-lang.com/
+[less]: http://lesscss.org/
+[postcss]: https://github.com/postcss/postcss
 [postcss-preset-evergreen]: https://github.com/best-shot/postcss-preset-evergreen
 
 ## Installation
@@ -38,7 +44,7 @@ module.exports = {
 
 ### CSS Modules support
 
-Use `[name].module.[extname]` as filename. [Learn more](https://github.com/css-modules/css-modules)
+Use `[name].module.[extname]` as filename.
 
 ```js
 import { foo } from './foo.module.css';
@@ -60,7 +66,7 @@ Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-m
 
 ### Load custom `postcss` config
 
-Disable internal options first.
+Disable internal options:
 
 ```cjs
 // example: .best-shot/config.cjs
@@ -78,7 +84,7 @@ module.exports = {
 };
 ```
 
-Write your config in any way. See <https://github.com/michael-ciniawsky/postcss-load-config>
+Write your config in any way. See <https://github.com/postcss/postcss-load-config>
 
 ```cjs
 // example: postcss.config.cjs

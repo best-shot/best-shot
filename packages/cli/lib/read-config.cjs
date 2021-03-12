@@ -33,7 +33,7 @@ module.exports = function readConfig(
   rootPath,
   interactive = process.stdout.isTTY,
 ) {
-  return async function func({ command }) {
+  return async function func({ command, configName }) {
     let config = await requireConfig(rootPath);
 
     config = typeof config === 'function' ? config({ command }) : config;
@@ -50,7 +50,7 @@ module.exports = function readConfig(
     });
 
     if (interactive && configs.length > 1) {
-      return prompt(configs);
+      return prompt(configs, configName);
     }
 
     return configs;

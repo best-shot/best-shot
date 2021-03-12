@@ -1,16 +1,26 @@
 const { resolve } = require('path');
 const prompts = require('prompts');
+const { cyan } = require('chalk');
 const Configstore = require('configstore');
 
-module.exports = function prompt(configs) {
+module.exports = function prompt(configs, configName) {
   const cache = new Configstore(
     '',
     {},
     {
-      configPath: resolve(process.cwd(), 'node_modules/.cache/best-shot/prompt.json'),
+      configPath: resolve(
+        process.cwd(),
+        'node_modules/.cache/best-shot/prompt.json',
+      ),
     },
   );
   const names = configs.map(({ name }) => name);
+
+  if (configName && names.includes(configName)) {
+    console.log(cyan('CONFIG-NAME:'), configName);
+    return Promise.resolve(configs.filter(({ name }) => configName === name));
+  }
+
   const temp = cache.get('prompt') || names;
 
   return prompts(

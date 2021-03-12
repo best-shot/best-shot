@@ -5,12 +5,12 @@ const { commandMode, commands } = require('./lib/utils.cjs');
 
 new Cheetor()
   .website('https://www.npmjs.com/org/best-shot')
-  .commandSmart('@best-shot/dev-server')
+  .commandSafe('@best-shot/dev-server')
   .command('./cmd/watch.cjs')
   .command('./cmd/dev.cjs')
   .command('./cmd/prod.cjs')
-  .commandSmart('@best-shot/analyzer')
-  .commandSmart('@best-shot/inspector')
+  .commandSafe('@best-shot/analyzer')
+  .commandSafe('@best-shot/inspector')
   .middleware([
     ({ _: [command = 'dev'] }) => {
       console.log(cyan('BEST-SHOT:'), command, '-'.repeat(20));

@@ -1,6 +1,6 @@
 const { errorHandle } = require('./utils.cjs');
 
-module.exports = function action({ _: [command], progress }) {
+module.exports = function action({ _: [command], progress, configName }) {
   errorHandle(async () => {
     const readConfig = require('./read-config.cjs');
     const createConfig = require('./create-config.cjs');
@@ -8,7 +8,7 @@ module.exports = function action({ _: [command], progress }) {
 
     const applyProgress = require('./apply-progress.cjs');
 
-    const configs = await readConfig()({ command });
+    const configs = await readConfig()({ command, configName });
 
     const result = configs.map((config) =>
       createConfig(config, {

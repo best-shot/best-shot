@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "@best-shot/core": "^0.3.2",
-    "webpack": "^4.45.0"
+    "webpack": "^4.46.0"
   },
   "engines": {
     "node": "^12.14 || ^14"

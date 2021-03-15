@@ -8,8 +8,13 @@ exports.builder = (cli) => {
   cli.option('config-name', {
     describe: 'Name for multi config',
     alias: 'n',
-    type: 'string',
-    coerce: (value) => (value ? value.trim() : undefined),
+    type: 'array',
+    coerce: (values = []) =>
+      values.length > 0
+        ? values
+            .map((value) => (value ? value.trim() : undefined))
+            .filter(Boolean)
+        : undefined,
     requiresArg: true,
   });
 };

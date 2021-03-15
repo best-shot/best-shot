@@ -3,7 +3,7 @@ const prompts = require('prompts');
 const { cyan } = require('chalk');
 const Configstore = require('configstore');
 
-module.exports = function prompt(configs, configName) {
+module.exports = function prompt(configs, configNames) {
   const cache = new Configstore(
     '',
     {},
@@ -16,9 +16,15 @@ module.exports = function prompt(configs, configName) {
   );
   const names = configs.map(({ name }) => name);
 
-  if (configName && names.includes(configName)) {
-    console.log(cyan('CONFIG-NAME:'), configName);
-    return Promise.resolve(configs.filter(({ name }) => configName === name));
+  if (configNames && configNames.length > 0) {
+    const selected = configNames.filter((name) => names.includes(name));
+
+    if (selected.length > 0) {
+      console.log(cyan('CONFIG-NAME:'), selected.join(', '));
+      return Promise.resolve(
+        configs.filter(({ name }) => selected.includes(name)),
+      );
+    }
   }
 
   const temp = cache.get('prompt') || names;

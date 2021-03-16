@@ -1,9 +1,8 @@
 const { resolve } = require('path');
 const prompts = require('prompts');
-const { cyan } = require('chalk');
 const Configstore = require('configstore');
 
-module.exports = function prompt(configs, configNames) {
+module.exports = function prompt(configs) {
   const cache = new Configstore(
     '',
     {},
@@ -15,18 +14,6 @@ module.exports = function prompt(configs, configNames) {
     },
   );
   const names = configs.map(({ name }) => name);
-
-  if (configNames && configNames.length > 0) {
-    const selected = configNames.filter((name) => names.includes(name));
-
-    if (selected.length > 0) {
-      console.log(cyan('CONFIG-NAME:'), selected.join(', '));
-      return Promise.resolve(
-        configs.filter(({ name }) => selected.includes(name)),
-      );
-    }
-  }
-
   const temp = cache.get('prompt') || names;
 
   return prompts(

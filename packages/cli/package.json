@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -42,7 +42,7 @@
   },
   "peerDependencies": {
     "@best-shot/core": "^0.3.5",
-    "webpack": "^4.46.0 || ^5.25.1"
+    "webpack": "^4.46.0 || ^5.26.0"
   },
   "engines": {
     "node": "^12.18 || ^14"

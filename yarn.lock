@@ -1115,10 +1115,10 @@
   dependencies:
     "@commitlint/config-conventional" "^12.0.1"
 
-"@nice-move/eslint-config-base@^0.5.27":
-  version "0.5.27"
-  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2feslint-config-base/-/eslint-config-base-0.5.27.tgz#8c855c660d4d88d47cd84c53e3d647924bdbc89c"
-  integrity sha512-n4yfdGglz6rAmTjT0CnA/5ek+vJ6HB7SAWxKJ9eZoplemMn/rDjqUaeIxWUKOFAWUJA3EkyRqvcH52kajqLxug==
+"@nice-move/eslint-config-base@^0.5.28":
+  version "0.5.28"
+  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2feslint-config-base/-/eslint-config-base-0.5.28.tgz#deca59f524762b2066d861e515b7c55527e5f3fe"
+  integrity sha512-ANpgjwLpPmCCGVAylLQG8WlpusruxSwh+G65p++9B30hN8jnobolmSTguZTdS4gtOmpSNI6VJ00GE1pn5ZZoeg==
   dependencies:
     eslint-config-airbnb-base "^14.2.1"
     eslint-config-prettier "^8.1.0"
@@ -1183,14 +1183,14 @@
     npm-normalize-package-bin "^1.0.1"
     prettier-package-json "^2.1.3"
 
-"@nice-move/stylelint-config@^0.5.5":
-  version "0.5.5"
-  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fstylelint-config/-/stylelint-config-0.5.5.tgz#801216fe678e188718441c0db0e97cc35880969e"
-  integrity sha512-yT2HIYoei02rxS7+XzklA0C161mbatxxlcsq4JKRv7L5x/NcqTYvH1l6hb7mtR4aftYNLkdFqYKivIXNnR7/hA==
+"@nice-move/stylelint-config@^0.5.6":
+  version "0.5.6"
+  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fstylelint-config/-/stylelint-config-0.5.6.tgz#adae5a6e4f5b099422f16c03a6dda738f1741d2e"
+  integrity sha512-vMlkc9cRET3pQQsn1uXObvtO6woRyddls01CC4O9ntH4cNeEWZp5PafVicu1ilI+1HoXsft/XUg4PMtN/zzlHQ==
   dependencies:
     stylelint-config-css-modules "^2.2.0"
     stylelint-config-prettier "^8.0.2"
-    stylelint-config-standard "^20.0.0"
+    stylelint-config-standard "^21.0.0"
     stylelint-declaration-block-no-ignored-properties "^2.3.0"
     stylelint-scss "^3.19.0"
 
@@ -5121,7 +5121,7 @@ get-caller-file@^2.0.1, get-caller-file@^2.0.5:
   resolved "https://registry.npm.taobao.org/get-caller-file/download/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
   integrity "sha1-T5RBKoLbMvNuOwuXQfipf+sDH34= sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg=="
 
-get-intrinsic@^1.0.0, get-intrinsic@^1.0.1, get-intrinsic@^1.0.2, get-intrinsic@^1.1.1:
+get-intrinsic@^1.0.1, get-intrinsic@^1.0.2, get-intrinsic@^1.1.1:
   version "1.1.1"
   resolved "https://mirrors.cloud.tencent.com/npm/get-intrinsic/-/get-intrinsic-1.1.1.tgz#15f59f376f855c446963948f0d24cd3637b4abc6"
   integrity sha512-kWZrnVM42QCiEA2Ig1bG8zjoIMOgxWwYCEeNdwY6Tv/cOSeGpcoX4pXHfKUxNKVoArnrEr2e9srnAxxGIraS9Q==
@@ -6152,7 +6152,7 @@ is-buffer@^2.0.0:
   resolved "https://registry.npm.taobao.org/is-buffer/download/is-buffer-2.0.4.tgz#3e572f23c8411a5cfd9557c849e3665e0b290623"
   integrity "sha1-PlcvI8hBGlz9lVfISeNmXgspBiM= sha512-Kq1rokWXOPXWuaMAqZiJW4XxsmD9zGx9q4aePabbn3qCRGedtH7Cm+zV8WETitMfu1wdh+Rvd6w5egwSngUX2A=="
 
-is-callable@^1.1.4, is-callable@^1.2.0, is-callable@^1.2.2, is-callable@^1.2.3:
+is-callable@^1.1.4, is-callable@^1.2.3:
   version "1.2.3"
   resolved "https://mirrors.cloud.tencent.com/npm/is-callable/-/is-callable-1.2.3.tgz#8b1e0500b73a1d76c70487636f368e519de8db8e"
   integrity sha512-J1DcMe8UYTBSrKezuIUTUwjXsho29693unXM2YhJUTR2txK/eG47bvNa/wipPFmZFgr/N6f1GA66dv0mEyTIyQ==
@@ -6340,7 +6340,7 @@ is-natural-number@^4.0.1:
   resolved "https://registry.npm.taobao.org/is-natural-number/download/is-natural-number-4.0.1.tgz#ab9d76e1db4ced51e35de0c72ebecf09f734cde8"
   integrity "sha1-q5124dtM7VHjXeDHLr7PCfc0zeg= sha512-Y4LTamMe0DDQIIAlaer9eKebAlDSV6huy+TWhJVPlzZh2o4tRP5SQWFlLn5N0To4mDD22/qdOq+veo1cSISLgQ=="
 
-is-negative-zero@^2.0.0, is-negative-zero@^2.0.1:
+is-negative-zero@^2.0.1:
   version "2.0.1"
   resolved "https://mirrors.cloud.tencent.com/npm/is-negative-zero/-/is-negative-zero-2.0.1.tgz#3de746c18dda2319241a53675908d8f766f11c24"
   integrity sha512-2z6JzQvZRa9A2Y7xC6dQQm4FSTSTNWjKIYYTt4246eMTJmIo0Q+ZyOsU66X8lxK1AbB92dFeglPLrhwpeRKO6w==
@@ -6438,7 +6438,7 @@ is-promise@^4.0.0:
   resolved "https://registry.npm.taobao.org/is-promise/download/is-promise-4.0.0.tgz#42ff9f84206c1991d26debf520dd5c01042dd2f3"
   integrity "sha1-Qv+fhCBsGZHSbev1IN1cAQQt0vM= sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ=="
 
-is-regex@^1.0.4, is-regex@^1.1.0, is-regex@^1.1.1, is-regex@^1.1.2:
+is-regex@^1.0.4, is-regex@^1.1.2:
   version "1.1.2"
   resolved "https://mirrors.cloud.tencent.com/npm/is-regex/-/is-regex-1.1.2.tgz#81c8ebde4db142f2cf1c53fc86d6a45788266251"
   integrity sha512-axvdhb5pdhEVThqJzYXwMlVuZwC+FF2DpcOhTS+y/8jVq4trxyPgfcwIxIKiyeuLlSQYKkmUaPQJ8ZE4yNKXDg==
@@ -7440,11 +7440,6 @@ micromustache@^5.4.0:
   resolved "https://registry.npm.taobao.org/micromustache/download/micromustache-5.4.0.tgz#bab1e3b584ee7239e54fc25e099fcf0d5fe85741"
   integrity "sha1-urHjtYTucjnlT8JeCZ/PDV/oV0E= sha512-NhRZ5+PkfxsZ7vDpwxfQ8+q2mvG3u1r8DVcJHwPdkJA2b714UGBqoh7V1Oq1NlKlaAN0nwlgOFZzrLUortVBnQ=="
 
-mime-db@1.44.0:
-  version "1.44.0"
-  resolved "https://registry.npm.taobao.org/mime-db/download/mime-db-1.44.0.tgz#fa11c5eb0aca1334b4233cb4d52f10c5a6272f92"
-  integrity "sha1-+hHF6wrKEzS0Izy01S8QxaYnL5I= sha512-/NOTfLrsPBVeH7YtFPgsVWveuL+4SjjYxaQ1xtM1KMFj7HdxlBlxeyNLzhyJVx7r4rZGJAZ/6lkKCitSc/Nmpg=="
-
 mime-db@1.46.0, "mime-db@>= 1.43.0 < 2", mime-db@^1.28.0:
   version "1.46.0"
   resolved "https://mirrors.cloud.tencent.com/npm/mime-db/-/mime-db-1.46.0.tgz#6267748a7f799594de3cbc8cde91def349661cee"
@@ -7830,7 +7825,7 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-inspect@^1.7.0, object-inspect@^1.8.0, object-inspect@^1.9.0:
+object-inspect@^1.9.0:
   version "1.9.0"
   resolved "https://mirrors.cloud.tencent.com/npm/object-inspect/-/object-inspect-1.9.0.tgz#c90521d74e1127b67266ded3394ad6116986533a"
   integrity sha512-i3Bp9iTqwhaLZBxGkRfo5ZbE07BQRT7MGu8+nNgwW9ItGp1TzCTw2DLEoWwjClxBjOFI/hWljTAmYGCEwmtnOw==
@@ -7855,7 +7850,7 @@ object-visit@^1.0.0:
   dependencies:
     isobject "^3.0.0"
 
-object.assign@^4.1.0, object.assign@^4.1.1, object.assign@^4.1.2:
+object.assign@^4.1.0, object.assign@^4.1.2:
   version "4.1.2"
   resolved "https://registry.npm.taobao.org/object.assign/download/object.assign-4.1.2.tgz#0ed54a342eceb37b38ff76eb831a0e788cb63940"
   integrity "sha1-DtVKNC7Os3s4/3brgxoOeIy2OUA= sha512-ixT2L5THXsApyiUPYKmW+2EHpXXe5Ii3M+f4e+aJFAHao5amFRW6J0OO6c/LU8Be47utCx2GL89hxGB6XSmKuQ=="
@@ -10425,7 +10420,7 @@ string.prototype.matchall@^4.0.2:
     regexp.prototype.flags "^1.3.0"
     side-channel "^1.0.3"
 
-string.prototype.trimend@^1.0.1, string.prototype.trimend@^1.0.4:
+string.prototype.trimend@^1.0.4:
   version "1.0.4"
   resolved "https://mirrors.cloud.tencent.com/npm/string.prototype.trimend/-/string.prototype.trimend-1.0.4.tgz#e75ae90c2942c63504686c18b287b4a0b1a45f80"
   integrity sha512-y9xCjw1P23Awk8EvTpcyL2NIr1j7wJ39f+k6lvRnSMz+mz9CGz9NYPelDk42kOz6+ql8xjfK8oYzy3jAP5QU5A==
@@ -10433,7 +10428,7 @@ string.prototype.trimend@^1.0.1, string.prototype.trimend@^1.0.4:
     call-bind "^1.0.2"
     define-properties "^1.1.3"
 
-string.prototype.trimstart@^1.0.1, string.prototype.trimstart@^1.0.4:
+string.prototype.trimstart@^1.0.4:
   version "1.0.4"
   resolved "https://mirrors.cloud.tencent.com/npm/string.prototype.trimstart/-/string.prototype.trimstart-1.0.4.tgz#b36399af4ab2999b4c9c648bd7a3fb2bb26feeed"
   integrity sha512-jh6e984OBfvxS50tdY2nRZnoC5/mLFKOREQfw8t5yytkoUsJRNxvI/E39qu1sD0OtWI3OC0XgKSmcWwziwYuZw==
@@ -10591,17 +10586,17 @@ stylelint-config-prettier@^8.0.2:
   resolved "https://registry.npm.taobao.org/stylelint-config-prettier/download/stylelint-config-prettier-8.0.2.tgz#da9de33da4c56893cbe7e26df239a7374045e14e"
   integrity "sha1-2p3jPaTFaJPL5+Jt8jmnN0BF4U4= sha512-TN1l93iVTXpF9NJstlvP7nOu9zY2k+mN0NSFQ/VEGz15ZIP9ohdDZTtCWHs5LjctAhSAzaILULGbgiM0ItId3A=="
 
-stylelint-config-recommended@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npm.taobao.org/stylelint-config-recommended/download/stylelint-config-recommended-3.0.0.tgz#e0e547434016c5539fe2650afd58049a2fd1d657"
-  integrity "sha1-4OVHQ0AWxVOf4mUK/VgEmi/R1lc= sha512-F6yTRuc06xr1h5Qw/ykb2LuFynJ2IxkKfCMf+1xqPffkxh0S09Zc902XCffcsw/XMFq/OzQ1w54fLIDtmRNHnQ=="
+stylelint-config-recommended@^4.0.0:
+  version "4.0.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/stylelint-config-recommended/-/stylelint-config-recommended-4.0.0.tgz#665a0034065e6704d5032ba51bf4efa37d328ef9"
+  integrity sha512-sgna89Ng+25Hr9kmmaIxpGWt2LStVm1xf1807PdcWasiPDaOTkOHRL61sINw0twky7QMzafCGToGDnHT/kTHtQ==
 
-stylelint-config-standard@^20.0.0:
-  version "20.0.0"
-  resolved "https://registry.npm.taobao.org/stylelint-config-standard/download/stylelint-config-standard-20.0.0.tgz#06135090c9e064befee3d594289f50e295b5e20d"
-  integrity "sha1-BhNQkMngZL7+49WUKJ9Q4pW14g0= sha512-IB2iFdzOTA/zS4jSVav6z+wGtin08qfj+YyExHB3LF9lnouQht//YyB0KZq9gGz5HNPkddHOzcY8HsUey6ZUlA=="
+stylelint-config-standard@^21.0.0:
+  version "21.0.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/stylelint-config-standard/-/stylelint-config-standard-21.0.0.tgz#4942cfa27301eb6702fa8fc46a44da35d1a5cfd7"
+  integrity sha512-Yf6mx5oYEbQQJxWuW7X3t1gcxqbUx52qC9SMS3saC2ruOVYEyqmr5zSW6k3wXflDjjFrPhar3kp68ugRopmlzg==
   dependencies:
-    stylelint-config-recommended "^3.0.0"
+    stylelint-config-recommended "^4.0.0"
 
 stylelint-declaration-block-no-ignored-properties@^2.3.0:
   version "2.3.0"
@@ -11796,10 +11791,10 @@ webpack-subresource-integrity@^1.5.2:
   dependencies:
     webpack-sources "^1.3.0"
 
-webpack@^5.25.1:
-  version "5.25.1"
-  resolved "https://mirrors.cloud.tencent.com/npm/webpack/-/webpack-5.25.1.tgz#d3564440ed2569253fa45864405a313916bef6f6"
-  integrity sha512-dzFTJwehoLZkeHUkvMSwAgVdGL+PerfX0mke9tOWjJs4OzFctkxCqD8Zj5J387jLkC4gNqSin0/EurhH28boCg==
+webpack@^5.26.0:
+  version "5.26.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/webpack/-/webpack-5.26.0.tgz#269841ed7b5c6522221aa27f7efceda04c8916d7"
+  integrity sha512-9kQATUOGQBkqzNKFmFON4KXZDsXnE7xk58tBxca8aCi+6/QhAbmWIvtGqBL66XIsBFpomFH0/0KyCaySo0ta2g==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.46"

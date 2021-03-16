@@ -1,5 +1,6 @@
 const { resolve } = require('path');
 const slash = require('slash');
+const { cyan } = require('chalk');
 
 const prompt = require('./prompt.cjs');
 const validate = require('./validate.cjs');
@@ -49,8 +50,17 @@ module.exports = function readConfig(
       }
     });
 
+    if (configName && configName.length > 0) {
+      const names = configs.map(({ name }) => name);
+      const matched = configName.filter((name) => names.includes(name));
+      if (matched.length > 0) {
+        console.log(cyan('CONFIG-NAME:'), matched.join(', '));
+        return configs.filter(({ name }) => matched.includes(name));
+      }
+    }
+
     if (interactive && configs.length > 1) {
-      return prompt(configs, configName);
+      return prompt(configs);
     }
 
     return configs;

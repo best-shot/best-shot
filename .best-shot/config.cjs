@@ -1,3 +1,8 @@
-module.exports = {
-  presets: ['asset'],
-};
+module.exports = [
+  {
+    name: 'x',
+  },
+  {
+    name: 'y',
+  },
+];

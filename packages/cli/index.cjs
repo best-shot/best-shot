@@ -6,9 +6,9 @@ const { commandMode, commands } = require('./lib/utils.cjs');
 new Cheetor()
   .website('https://www.npmjs.com/org/best-shot')
   .commandSafe('@best-shot/dev-server')
-  .command('./cmd/watch.cjs')
-  .command('./cmd/dev.cjs')
-  .command('./cmd/prod.cjs')
+  .commandForm('./cmd/watch.cjs')
+  .commandForm('./cmd/dev.cjs')
+  .commandForm('./cmd/prod.cjs')
   .commandSafe('@best-shot/analyzer')
   .commandSafe('@best-shot/inspector')
   .middleware([

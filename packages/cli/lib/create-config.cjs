@@ -22,5 +22,6 @@ module.exports = function createConfig(
     })
     .when(typeof chain === 'function', chain)
     .when(batch, batch)
+    .delete('watch')
     .toConfig();
 };

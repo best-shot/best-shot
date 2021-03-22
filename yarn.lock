@@ -1164,22 +1164,22 @@
     stylelint-formatter-pretty "^2.1.1"
     yarn-deduplicate "^3.1.0"
 
-"@nice-move/prettier-config@^0.4.1":
-  version "0.4.1"
-  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fprettier-config/-/prettier-config-0.4.1.tgz#6d2a7ee6cac9da1e2e65d0d07d0fb57a9a6290d4"
-  integrity sha512-1FxxGT+/r4RYW2iN6O5m5/rulOVm3+WRJp1kII/XOkvpsX6wOenkb5hTXbmoWeXFmVBUgj5PQYewubG7xsPBkA==
+"@nice-move/prettier-config@^0.4.2":
+  version "0.4.2"
+  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fprettier-config/-/prettier-config-0.4.2.tgz#44cd733f2f8685a5c2e43f39151ba82f7009a259"
+  integrity sha512-6lJoQZRVpNoAPNuaGRP8tymJtOw2uwpGxg3MHaIwpT/+NfLaJ0huOUjyPvydR7dYu0kMh5Stxz65VPXta1mStg==
   dependencies:
-    "@nice-move/prettier-plugin-package-json" "^0.4.0"
-    "@prettier/plugin-xml" "^0.13.0"
+    "@nice-move/prettier-plugin-package-json" "^0.4.1"
+    "@prettier/plugin-xml" "^0.13.1"
     prettier-plugin-ini "^0.3.1"
     prettier-plugin-toml "^0.3.1"
 
-"@nice-move/prettier-plugin-package-json@^0.4.0":
-  version "0.4.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fprettier-plugin-package-json/-/prettier-plugin-package-json-0.4.0.tgz#ccc8658c4a74f01c5015b6b957de9defe253dc64"
-  integrity sha512-KUzX5dqrI0CGADB6CQWKSZnPF63B9S2SxB62QUqaBzLISOAHqAI9xsUw4xBrntKP7IZfewvc6Gdn1WXIOKw0fQ==
+"@nice-move/prettier-plugin-package-json@^0.4.1":
+  version "0.4.1"
+  resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fprettier-plugin-package-json/-/prettier-plugin-package-json-0.4.1.tgz#e675b71cfc602fbe65ecb2395cefe629a63ca9d0"
+  integrity sha512-0MuMK3FZRTQpi7JjM5AScnyrwCgNkWDDhR/+cYdE4U4Fiby8u6XhsUUdI+QPiGV37N2qdJov7+QRNMxGS6omTw==
   dependencies:
-    normalize-package-data "^3.0.0"
+    normalize-package-data "^3.0.2"
     npm-normalize-package-bin "^1.0.1"
     prettier-package-json "^2.1.3"
 
@@ -1239,10 +1239,10 @@
   resolved "https://mirrors.cloud.tencent.com/npm/@polka%2furl/-/url-1.0.0-next.11.tgz#aeb16f50649a91af79dbe36574b66d0f9e4d9f71"
   integrity sha512-3NsZsJIA/22P3QUyrEDNA2D133H4j224twJrdipXN38dpnIOzAbUDtOwkcJ5pXmn75w7LSQDjA4tO9dm1XlqlA==
 
-"@prettier/plugin-xml@^0.13.0":
-  version "0.13.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/@prettier%2fplugin-xml/-/plugin-xml-0.13.0.tgz#0927ab554668de0a9c6c5d15c5f94a9346c79a01"
-  integrity sha512-kjC8ZoqrNdSGyUfGS0KGxmA2YxI/mpO2bQtOsg8663DISyfvkN/1LoR8nO+0BaAKkGWhP2rzgk6rqiSEQz8vQw==
+"@prettier/plugin-xml@^0.13.1":
+  version "0.13.1"
+  resolved "https://mirrors.cloud.tencent.com/npm/@prettier%2fplugin-xml/-/plugin-xml-0.13.1.tgz#fb1c265fb8256c509da187b5a530c3eb2bf80091"
+  integrity sha512-jJbjvFEsxOT2Jhv2yydOvJbnSREJy+OECwHyZaYr05jLXlJeBrzy5YY1fDYpwTfKk1B2YqNExXI+x3Zm5yGfeA==
   dependencies:
     "@xml-tools/parser" "^1.0.2"
     prettier ">=1.10"
@@ -2693,6 +2693,14 @@ cheetor@^0.5.0:
   version "0.5.0"
   resolved "https://mirrors.cloud.tencent.com/npm/cheetor/-/cheetor-0.5.0.tgz#13b5e78f7760d88762ef3f1569fc991d0b65d5cb"
   integrity sha512-us+BthCv+NWfVrXdswQOGS3Hz4rmt+HGNKXzEnnIa6MuVKdjb2t6bD4QM3S2Eh/+o0Mfr+PAlXy7nmnmsRAZTA==
+  dependencies:
+    chalk "^4.1.0"
+    yargs "^16.2.0"
+
+cheetor@^0.6.0:
+  version "0.6.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/cheetor/-/cheetor-0.6.0.tgz#f4e5ce291f42c0266af456b432bde050da05c633"
+  integrity sha512-W31LcgIqYnoh7sSUyfGXkd0YjZBukRi/4yhY9AQ+pPkD8eExlHUcFGTq2uXLGOYPHSdBFVnLXvrBGktCtdVs3g==
   dependencies:
     chalk "^4.1.0"
     yargs "^16.2.0"
@@ -5602,6 +5610,13 @@ hosted-git-info@^3.0.6:
   dependencies:
     lru-cache "^6.0.0"
 
+hosted-git-info@^4.0.1:
+  version "4.0.1"
+  resolved "https://mirrors.cloud.tencent.com/npm/hosted-git-info/-/hosted-git-info-4.0.1.tgz#710ef5452ea429a844abc33c981056e7371edab7"
+  integrity sha512-eT7NrxAsppPRQEBSwKSosReE+v8OzABwEScQYk5d4uxaEPlzxTIku7LINXtBGalthkLhJnq5lBI89PfK43zAKg==
+  dependencies:
+    lru-cache "^6.0.0"
+
 hpack.js@^2.1.6:
   version "2.1.6"
   resolved "https://registry.npm.taobao.org/hpack.js/download/hpack.js-2.1.6.tgz#87774c0949e513f42e84575b3c45681fade2a0b2"
@@ -7714,14 +7729,14 @@ normalize-package-data@^2.3.2, normalize-package-data@^2.3.4, normalize-package-
     semver "2 || 3 || 4 || 5"
     validate-npm-package-license "^3.0.1"
 
-normalize-package-data@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npm.taobao.org/normalize-package-data/download/normalize-package-data-3.0.0.tgz#1f8a7c423b3d2e85eb36985eaf81de381d01301a"
-  integrity "sha1-H4p8Qjs9LoXrNpher4HeOB0BMBo= sha512-6lUjEI0d3v6kFrtgA/lOx4zHCWULXsFNIjHolnZCKCTLA6m/G625cdn3O7eNmT0iD3jfo6HZ9cdImGZwf21prw=="
+normalize-package-data@^3.0.0, normalize-package-data@^3.0.2:
+  version "3.0.2"
+  resolved "https://mirrors.cloud.tencent.com/npm/normalize-package-data/-/normalize-package-data-3.0.2.tgz#cae5c410ae2434f9a6c1baa65d5bc3b9366c8699"
+  integrity sha512-6CdZocmfGaKnIHPVFhJJZ3GuR8SsLKvDANFp47Jmy51aKIr8akjAWTSxtpI+MBgBFdSMRyo4hMpDlT6dTffgZg==
   dependencies:
-    hosted-git-info "^3.0.6"
-    resolve "^1.17.0"
-    semver "^7.3.2"
+    hosted-git-info "^4.0.1"
+    resolve "^1.20.0"
+    semver "^7.3.4"
     validate-npm-package-license "^3.0.1"
 
 normalize-path@^2.1.1:
@@ -9686,7 +9701,7 @@ resolve-url@^0.2.1:
   resolved "https://registry.npm.taobao.org/resolve-url/download/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity "sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo= sha512-ZuF55hVUQaaczgOIwqWzkEcEidmlD/xl44x1UZnhOXcYuFN2S6+rcxpG+C1N3So0wvNI3DmJICUFfu2SxhBmvg=="
 
-resolve@^1.10.0, resolve@^1.10.1, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.9.0:
+resolve@^1.10.0, resolve@^1.10.1, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.20.0, resolve@^1.9.0:
   version "1.20.0"
   resolved "https://mirrors.cloud.tencent.com/npm/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
   integrity sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==
@@ -11791,10 +11806,10 @@ webpack-subresource-integrity@^1.5.2:
   dependencies:
     webpack-sources "^1.3.0"
 
-webpack@^5.26.0:
-  version "5.26.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/webpack/-/webpack-5.26.0.tgz#269841ed7b5c6522221aa27f7efceda04c8916d7"
-  integrity sha512-9kQATUOGQBkqzNKFmFON4KXZDsXnE7xk58tBxca8aCi+6/QhAbmWIvtGqBL66XIsBFpomFH0/0KyCaySo0ta2g==
+webpack@^5.27.1:
+  version "5.27.1"
+  resolved "https://mirrors.cloud.tencent.com/npm/webpack/-/webpack-5.27.1.tgz#6808fb6e45e35290cdb8ae43c7a10884839a3079"
+  integrity sha512-rxIDsPZ3Apl3JcqiemiLmWH+hAq04YeOXqvCxNZOnTp8ZgM9NEPtbu4CaMfMEf9KShnx/Ym8uLGmM6P4XnwCoA==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.46"

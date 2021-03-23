@@ -1,8 +1,8 @@
 const applyBasic = require('./apply-basic.cjs');
-const applyResolve = require('./apply-resolve');
-const applyTersor = require('./apply-tersor');
-const applyEntry = require('./apply-entry');
-const applyOther = require('./apply-other');
+const applyResolve = require('./apply-resolve.cjs');
+const applyTersor = require('./apply-tersor.cjs');
+const applyEntry = require('./apply-entry.cjs');
+const applyOther = require('./apply-other.cjs');
 const applyDefine = require('./apply-define.cjs');
 
 module.exports = [

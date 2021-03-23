@@ -1,11 +1,11 @@
 const test = require('ava').default;
 
 const BestShot = require('../packages/core');
-const Schema = require('../packages/core/lib/schema');
+const Schema = require('../packages/core/lib/schema.cjs');
 
 const {
   schema: properties1,
-} = require('../packages/core/built-in/apply-entry');
+} = require('../packages/core/built-in/apply-entry.cjs');
 const {
   schema: properties2,
 } = require('../packages/core/built-in/apply-define.cjs');

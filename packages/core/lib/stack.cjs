@@ -9,6 +9,8 @@ module.exports = class Stack {
   }
 
   setup(callback) {
-    return this.store.forEach((apply) => callback(apply));
+    return this.store.forEach((apply) => {
+      callback(apply);
+    });
   }
 };

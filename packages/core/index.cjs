@@ -1,7 +1,7 @@
 const WebpackChain = require('webpack-chain');
 const { importPresets } = require('./lib/presets.cjs');
-const Stack = require('./lib/stack');
-const Schema = require('./lib/schema');
+const Stack = require('./lib/stack.cjs');
+const Schema = require('./lib/schema.cjs');
 const builtIn = require('./built-in/index.cjs');
 
 module.exports = class BestShot {

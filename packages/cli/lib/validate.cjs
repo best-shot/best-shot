@@ -1,4 +1,7 @@
-const coreValidate = require('@best-shot/core/lib/validate');
+const {
+  validate: coreValidate,
+  ConfigError,
+} = require('@best-shot/core/lib/validate.cjs');
 
 function hasUniqueNames(config) {
   return (
@@ -37,6 +40,6 @@ module.exports = function validate(config) {
   coreValidate({ schema, data: config });
 
   if (hasUniqueNames(config)) {
-    throw new coreValidate.ConfigError('every config[x].name should be unique');
+    throw new ConfigError('every config[x].name should be unique');
   }
 };

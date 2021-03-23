@@ -1,15 +1,11 @@
 const { resolve } = require('path');
 
-const { version } = require('webpack/package.json');
-
 exports.name = 'basic';
 
 const shorthand = {
   development: 'dev',
   production: 'prod',
 };
-
-const is5 = version.startsWith('5.');
 
 exports.apply = function applyBasic({
   config: { publicPath, outputPath, target },
@@ -35,11 +31,6 @@ exports.apply = function applyBasic({
 
     chain.optimization.minimize(mode === 'production');
 
-    if (!is5) {
-      const type = mode === 'production' ? 'hashed' : 'named';
-      chain.optimization.set('moduleIds', type);
-    }
-
     const name = chain.get('name');
 
     chain.output
@@ -63,13 +54,6 @@ exports.apply = function applyBasic({
       __dirname: true,
       __filename: true,
       global: false,
-      ...(is5
-        ? undefined
-        : {
-            Buffer: false,
-            process: false,
-            setImmediate: false,
-          }),
     });
   };
 };
@@ -92,19 +76,14 @@ exports.schema = {
     oneOf: [{ const: '' }, { pattern: '\\/$' }],
   },
   target: {
-    default: is5 ? undefined : 'web',
     title: 'Same as `target` of `webpack` configuration',
-    ...(is5
-      ? {
-          oneOf: [
-            string,
-            {
-              type: 'array',
-              uniqueItems: true,
-              items: string,
-            },
-          ],
-        }
-      : string),
+    oneOf: [
+      string,
+      {
+        type: 'array',
+        uniqueItems: true,
+        items: string,
+      },
+    ],
   },
 };

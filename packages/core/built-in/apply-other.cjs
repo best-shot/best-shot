@@ -12,7 +12,7 @@ exports.apply = function applyOther({ config: { copy } }) {
       chain.plugin('clean').use(CleanWebpackPlugin);
     }
 
-    if (copy && copy.length !== 0) {
+    if (copy && copy.length > 0) {
       chain.plugin('copy').use(CopyWebpack, [copy]);
     }
   };

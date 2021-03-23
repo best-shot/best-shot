@@ -31,7 +31,6 @@ exports.apply = function applyTersor({ config: { terser = {} } }) {
 
       chain.optimization.minimizer('terser').use(TerserPlugin, [
         {
-          cache: false,
           extractComments: false,
           terserOptions: deepMerge(
             {

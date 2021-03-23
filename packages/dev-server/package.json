@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -31,23 +31,23 @@
   },
   "main": "index.cjs",
   "dependencies": {
-    "@best-shot/preset-serve": "^0.4.0",
+    "@best-shot/preset-serve": "^0.5.0",
     "chalk": "^4.1.0",
-    "ejs": "^3.1.5",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "get-port": "^5.1.1",
     "launch-editor-middleware": "^2.2.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "webpack-dev-server": "^3.11.2",
     "webpack-dev-server-waitpage": "^2.1.1",
     "webpack-log": "^2.0.0"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.9.1",
-    "webpack": "^4.45.0 || ^5.19.0"
+    "@best-shot/cli": "^0.10.0",
+    "webpack": "^5.27.2"
   },
   "engines": {
-    "node": "^12.14 || ^14"
+    "node": "^12.18 || ^14"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

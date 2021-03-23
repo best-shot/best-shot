@@ -43,6 +43,9 @@ exports.apply = function applyServe({ config: { devServer = {} } }) {
 };
 
 exports.schema = {
+  target: {
+    default: 'web',
+  },
   devServer: {
     description: 'Options of devServer',
     type: 'object',

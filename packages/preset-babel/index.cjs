@@ -1,6 +1,5 @@
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
-const { version } = require('webpack/package.json');
 
 const { relative } = require('@best-shot/core/lib/path');
 const { loadConfig, defaults } = require('browserslist');
@@ -21,11 +20,9 @@ exports.apply = function applyBabel({ config: { polyfill = false } }) {
     chain.module
       .rule('babel')
       .test(extToRegexp({ extname: ['js', 'mjs', 'cjs'] }))
-      .when(version.startsWith('5.'), (rule) =>
-        rule.merge({
-          resolve: { fullySpecified: false },
-        }),
-      )
+      .merge({
+        resolve: { fullySpecified: false },
+      })
       .use('babel-loader')
       .loader('babel-loader')
       .options({
@@ -37,15 +34,6 @@ exports.apply = function applyBabel({ config: { polyfill = false } }) {
         targets: getList(context),
         ...(UseCache ? { cacheCompression: false } : undefined),
         presets: [['evergreen', { polyfill }]],
-        ...(version.startsWith('4.')
-          ? {
-              plugins: [
-                // for webpack v4
-                '@babel/proposal-optional-chaining',
-                '@babel/proposal-nullish-coalescing-operator',
-              ],
-            }
-          : undefined),
       });
 
     const isServing = chain.devServer.entries() !== undefined;

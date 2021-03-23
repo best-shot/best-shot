@@ -27,6 +27,7 @@ const fallback = {
 exports.setHtml = function setHtml({ html = {}, define, sri }) {
   return (chain) => {
     const mode = chain.get('mode');
+    const watch = chain.get('watch');
     const context = chain.get('context');
     const publicPath = chain.output.get('publicPath');
     const minimize = chain.optimization.get('minimize');
@@ -40,6 +41,7 @@ exports.setHtml = function setHtml({ html = {}, define, sri }) {
             {
               template: './src/index.html',
               title: 'BEST-SHOT Project',
+              cache: watch,
             },
             index > 0 ? page[0] : {},
             options,
@@ -49,8 +51,6 @@ exports.setHtml = function setHtml({ html = {}, define, sri }) {
                 title: options.title || fallback.title,
                 ...(define && { define }),
               },
-              scriptLoading: 'defer',
-              inject: 'head',
               minify: minimize ? htmlMinifier : false,
             },
           ],

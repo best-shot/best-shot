@@ -51,7 +51,6 @@ module.exports = function applyImage(chain) {
   if (minimize) {
     chain.optimization.minimizer('imagemin').use(ImageMinimizerPlugin, [
       {
-        cache: false,
         test: imageRegexp,
         minimizerOptions: {
           plugins: [

@@ -1,7 +1,7 @@
 const deepmerge = require('deepmerge');
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
-const SubresourceIntegrityPlugin = require('webpack-subresource-integrity');
+const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { relative } = require('@best-shot/core/lib/path');
 
@@ -64,9 +64,7 @@ exports.setHtml = function setHtml({ html = {}, define, sri }) {
 
       chain
         .plugin('subresource-integrity')
-        .use(SubresourceIntegrityPlugin, [
-          { hashFuncNames: ['sha512', 'sha384', 'sha256'] },
-        ]);
+        .use(SubresourceIntegrityPlugin, [{ enabled: true }]);
     }
 
     chain.module

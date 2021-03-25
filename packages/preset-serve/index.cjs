@@ -4,23 +4,28 @@ function isRelative(publicPath) {
   return ['', './'].includes(publicPath);
 }
 
-exports.apply = function applyServe({ config: { devServer = {} } }) {
+exports.apply = function applyServe({
+  config: { devServer = {}, lazyCompilation },
+}) {
   return (chain) => {
-    // @ts-ignore
-    const { historyApiFallback } = devServer;
-
     const globalPublicPath = chain.output.get('publicPath');
 
+    // @ts-ignore
     const {
       // @ts-ignore
       publicPath = isRelative(globalPublicPath) ? '/' : globalPublicPath,
+      historyApiFallback,
+      hot,
     } = devServer;
+
+    if (hot && lazyCompilation !== undefined) {
+      chain.merge({ experiments: { lazyCompilation } });
+    }
 
     chain.devServer
       .stats(chain.get('stats'))
       .merge(devServer)
-      // @ts-ignore
-      .when(devServer.hot === false, (config) => config.hotOnly(false))
+      .when(hot === false, (config) => config.hotOnly(false))
       .publicPath(publicPath)
       .historyApiFallback(
         // publicPath !== '/' 的需要特别处理
@@ -45,6 +50,10 @@ exports.apply = function applyServe({ config: { devServer = {} } }) {
 exports.schema = {
   target: {
     default: 'web',
+  },
+  lazyCompilation: {
+    description:
+      'See: https://webpack.js.org/configuration/experiments/#experimentslazycompilation',
   },
   devServer: {
     description: 'Options of devServer',

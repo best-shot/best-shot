@@ -12,13 +12,18 @@ const notFound = require('../middleware/not-found/index.cjs');
 module.exports = function DevServer(compiler, options) {
   waitPage.apply(compiler);
 
+  const logger = log({ name: 'wds' });
+
   if (
     options.historyApiFallback === true &&
     !compiler.options.output.publicPath.startsWith('/')
   ) {
-    const logger = log({ name: 'wds' });
     logger.warn("output.publicPath didn't starts with '/'");
     logger.warn('historyApiFallback might caught assets error');
+  }
+
+  if (compiler.options.experiments.lazyCompilation) {
+    logger.info('lazy compilation is enabled');
   }
 
   const Server = new WebpackDevServer(compiler, {

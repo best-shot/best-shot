@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 exports.name = 'other';
 
-exports.apply = function applyOther({ config: { copy } }) {
+exports.apply = function applyOther({ config: { copy, node } }) {
   return (chain) => {
     const watch = chain.get('watch');
 
@@ -15,6 +15,8 @@ exports.apply = function applyOther({ config: { copy } }) {
     if (copy && copy.length > 0) {
       chain.plugin('copy').use(CopyWebpack, [copy]);
     }
+
+    chain.node.merge(node);
   };
 };
 
@@ -28,5 +30,20 @@ exports.schema = {
         const: false,
       },
     ],
+  },
+  node: {
+    type: 'object',
+    default: {},
+    properties: {
+      __dirname: {
+        default: true,
+      },
+      __filename: {
+        default: true,
+      },
+      global: {
+        default: false,
+      },
+    },
   },
 };

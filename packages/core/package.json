@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -40,7 +40,7 @@
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {
-    "webpack": "^5.27.2"
+    "webpack": "^5.28.0"
   },
   "engines": {
     "node": "^12.18 || ^14"

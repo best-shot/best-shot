@@ -49,12 +49,6 @@ exports.apply = function applyBasic({
     chain.output.when(name, (output) => {
       output.path(output.get('path'));
     });
-
-    chain.node.merge({
-      __dirname: true,
-      __filename: true,
-      global: false,
-    });
   };
 };
 

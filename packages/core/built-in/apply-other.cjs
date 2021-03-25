@@ -1,22 +1,27 @@
-const { CopyWebpack } = require('copy-webpack');
 const { schema } = require('copy-webpack/lib/schema');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 exports.name = 'other';
 
-exports.apply = function applyOther({ config: { copy, node } }) {
+exports.apply = function applyOther({ config: { copy, node, provide } }) {
   return (chain) => {
+    chain.node.merge(node);
+
     const watch = chain.get('watch');
 
     if (!watch) {
+      const { CleanWebpackPlugin } = require('clean-webpack-plugin');
       chain.plugin('clean').use(CleanWebpackPlugin);
     }
 
     if (copy && copy.length > 0) {
+      const { CopyWebpack } = require('copy-webpack');
       chain.plugin('copy').use(CopyWebpack, [copy]);
     }
 
-    chain.node.merge(node);
+    if (provide && Object.values(provide).some((item) => item !== undefined)) {
+      const { ProvidePlugin } = require('webpack');
+      chain.plugin('provide').use(ProvidePlugin, [provide]);
+    }
   };
 };
 
@@ -45,5 +50,8 @@ exports.schema = {
         default: false,
       },
     },
+  },
+  provide: {
+    type: 'object',
   },
 };

@@ -14,8 +14,8 @@ jobs:
           - windows-latest
           - ubuntu-latest
         node:
-          - 12.18.0
-          - 14.0.0
+          - 12.15.3
+          - 14.15.3
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout

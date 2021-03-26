@@ -8,11 +8,8 @@ module.exports = function applyFont(chain) {
         extname: ['woff', 'woff2', 'otf', 'eot', 'ttf'],
       }),
     )
-    .use('file-loader')
-    .loader('file-loader')
-    .options({
-      name: '[name].[contenthash:8].[ext]',
-      outputPath: 'font',
-      esModule: false,
+    .type('asset/resource')
+    .set('generator', {
+      filename: 'font/[name].[contenthash:8][ext]',
     });
 };

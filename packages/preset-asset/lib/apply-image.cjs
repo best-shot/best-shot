@@ -27,24 +27,22 @@ module.exports = function applyImage(chain) {
       rule
         .oneOf('mutable')
         .resourceQuery(/mutable/)
-        .use('file-loader')
-        .loader('file-loader')
-        .options({
-          name: '[path][name].[ext]',
-          outputPath: (url) => url.replace(/^src\//, ''),
-          esModule: false,
+        .type('asset/resource')
+        .set('generator', {
+          filename: (args) => {
+            // eslint-disable-next-line no-param-reassign
+            args.filename = args.filename.replace(/^src\//, '');
+            return '[path][name][ext]';
+          },
         });
 
       rule
         .oneOf('immutable')
-        .use('file-loader')
-        .loader('file-loader')
-        .options({
-          name: minimize
-            ? '[name].min.[contenthash:8].[ext]'
-            : '[name].[contenthash:8].[ext]',
-          outputPath: 'image',
-          esModule: false,
+        .type('asset/resource')
+        .set('generator', {
+          filename: minimize
+            ? 'image/[name].min.[contenthash:8][ext]'
+            : 'image/[name].[contenthash:8][ext]',
         });
     });
 

@@ -2,13 +2,15 @@ const extToRegexp = require('ext-to-regexp');
 
 function outputFile(ext = '[ext]') {
   return (rule) => {
-    rule
-      .use('file-loader')
-      .loader('file-loader')
-      .options({
-        name: `[path][name].[contenthash:8].${ext}`,
-        outputPath: (name) => name.replace(/^src\//, '').replace('.[hash]', ''),
-      });
+    rule.type('asset/resource').set('generator', {
+      filename: (args) => {
+        args.filename = args.filename
+          .replace(/^src\//, '')
+          .replace('.[hash]', '');
+
+        return `[path][name].[contenthash:8]${ext}`;
+      },
+    });
   };
 }
 
@@ -33,7 +35,7 @@ module.exports = function applyData(chain) {
   yaml
     .oneOf('external')
     .test(/\.\[hash]/)
-    .batch(outputFile('json'))
+    .batch(outputFile('.json'))
     .use('yaml-loader')
     .loader('yaml-loader');
 
@@ -56,6 +58,5 @@ module.exports = function applyData(chain) {
 
   text // align
     .oneOf('internal')
-    .use('raw-loader')
-    .loader('raw-loader');
+    .type('asset/source');
 };

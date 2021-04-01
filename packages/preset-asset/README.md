@@ -16,7 +16,7 @@ This preset offer the following features:
 
 - import `jpg` / `jpeg` / `png` / `gif` / `svg`
 - import `woff` / `woff2` / `otf` / `eot` / `ttf`
-- Use `imagemin` in production mode
+- Use `imagemin` in production mode (disable until the error fixed)
 - export `yml` / `yaml` / `txt` / `json` to standalone file
 
 ## Installation

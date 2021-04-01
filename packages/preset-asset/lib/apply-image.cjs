@@ -1,21 +1,21 @@
 const extToRegexp = require('ext-to-regexp');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const svgoConfig = require('svgo-config/config.json');
+// const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+// const svgoConfig = require('svgo-config/config.json');
 
 const imageRegexp = extToRegexp({
   extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
 });
 
-function autoDetect(name, options, packageName = name) {
-  try {
-    if (require(`${packageName}/package.json`).name === packageName) {
-      return [name, options];
-    }
-    return false;
-  } catch {
-    return false;
-  }
-}
+// function autoDetect(name, options, packageName = name) {
+//   try {
+//     if (require(`${packageName}/package.json`).name === packageName) {
+//       return [name, options];
+//     }
+//     return false;
+//   } catch {
+//     return false;
+//   }
+// }
 
 module.exports = function applyImage(chain) {
   const minimize = chain.optimization.get('minimize');
@@ -46,19 +46,19 @@ module.exports = function applyImage(chain) {
         });
     });
 
-  if (minimize) {
-    chain.optimization.minimizer('imagemin').use(ImageMinimizerPlugin, [
-      {
-        test: imageRegexp,
-        minimizerOptions: {
-          plugins: [
-            autoDetect('gifsicle', { interlaced: true }),
-            autoDetect('jpegtran', { progressive: true }, 'jpegtran-bin'),
-            autoDetect('optipng', { optimizationLevel: 5 }, 'optipng-bin'),
-            ['svgo', svgoConfig],
-          ].filter(Boolean),
-        },
-      },
-    ]);
-  }
+  // if (minimize) {
+  //   chain.optimization.minimizer('imagemin').use(ImageMinimizerPlugin, [
+  //     {
+  //       test: imageRegexp,
+  //       minimizerOptions: {
+  //         plugins: [
+  //           autoDetect('gifsicle', { interlaced: true }),
+  //           autoDetect('jpegtran', { progressive: true }, 'jpegtran-bin'),
+  //           autoDetect('optipng', { optimizationLevel: 5 }, 'optipng-bin'),
+  //           ['svgo', svgoConfig],
+  //         ].filter(Boolean),
+  //       },
+  //     },
+  //   ]);
+  // }
 };

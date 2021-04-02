@@ -1,17 +1,10 @@
-const { schema } = require('copy-webpack/lib/schema');
+const { schema } = require('copy-webpack/lib/schema.cjs');
 
 exports.name = 'other';
 
 exports.apply = function applyOther({ config: { copy, node, provide } }) {
   return (chain) => {
     chain.node.merge(node);
-
-    const watch = chain.get('watch');
-
-    if (!watch) {
-      const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-      chain.plugin('clean').use(CleanWebpackPlugin);
-    }
 
     if (copy && copy.length > 0) {
       const { CopyWebpack } = require('copy-webpack');

@@ -46,9 +46,9 @@ exports.apply = function applyBasic({
         ),
       );
 
-    chain.output.when(name, (output) => {
-      output.path(output.get('path'));
-    });
+    if (!watch) {
+      chain.output.set('clean', true);
+    }
   };
 };
 

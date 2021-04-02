@@ -40,9 +40,7 @@ exports.apply = function applyEnv() {
 
     const GIT_HASH = getGitHash();
 
-    if (GIT_HASH) {
-      data['BEST_SHOT.GIT_HASH'] = GIT_HASH;
-    }
+    data['BEST_SHOT.GIT_HASH'] = GIT_HASH;
 
     if (Object.values(data).length > 0) {
       const sorted = sortKeys(data, { deep: true });

@@ -36,7 +36,7 @@ function getGitHash() {
   try {
     return git.commitHash();
   } catch {
-    return '';
+    return 'noop';
   }
 }
 

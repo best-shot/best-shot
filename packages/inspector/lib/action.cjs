@@ -14,7 +14,7 @@ function isSafeError(error) {
 }
 
 module.exports = function action({ stamp = 'none' }) {
-  console.log('Output files ...');
+  console.log('best-shot', 'output files ...');
 
   const commands = ['watch', 'dev', 'prod'];
 

@@ -31,14 +31,14 @@
     "yaml-loader": "^0.6.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.4.2"
+    "@best-shot/core": "^0.4.3"
   },
   "engines": {
-    "node": "^12.15.3 || ^14.15.3"
+    "node": "^12.15.0 || ^14.15.3"
   },
   "disabledDependencies": {
     "svgo": "^2.3.0",
-    "svgo-config": "^0.2.2",
+    "svgo-config": "^0.2.3",
     "image-minimizer-webpack-plugin": "^2.2.0",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-jpegtran": "^7.0.0",

@@ -47,7 +47,7 @@
     "webpack": "^5.28.0"
   },
   "engines": {
-    "node": "^12.18 || ^14"
+    "node": "^12.15.0 || ^14.15.3"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

@@ -34,7 +34,6 @@ module.exports = function applyStylesheet(esModule = true) {
     if (minimize) {
       chain.optimization.minimizer('css-minimizer').use(CssMinimizerPlugin, [
         {
-          sourceMap: !['eval', false].includes(chain.get('devtool')),
           minimizerOptions: {
             preset: ['default', { discardComments: { removeAll: true } }],
           },

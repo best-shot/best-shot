@@ -16,7 +16,7 @@ This preset offer the following features:
 
 - [CSS Modules] support
 - [Less] / [Sass] syntax support
-- [PostCSS] v7 support
+- [PostCSS] support
 - Use [postcss-preset-evergreen] by default
 - Use [cssnano] in production mode
 

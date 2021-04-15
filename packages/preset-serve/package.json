@@ -1,7 +1,7 @@
 {
   "name": "@best-shot/preset-serve",
-  "version": "0.5.1",
-  "description": "A `best-shot` preset for `dev-server` options",
+  "version": "0.5.2",
+  "description": "A `best-shot` preset for `dev-server` integrated",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -11,6 +11,9 @@
     "best-shot",
     "dev-server",
     "hmr",
+    "hot-reload",
+    "lazy-compilation",
+    "lazy-compile",
     "serve",
     "server",
     "webpack"
@@ -26,7 +29,7 @@
   },
   "main": "index.cjs",
   "peerDependencies": {
-    "@best-shot/core": "^0.4.1"
+    "@best-shot/core": "^0.4.3"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

@@ -30,3 +30,7 @@ npx -c best-shot serve [options]
 - auto fallback to available port
 - show a wait page when bundling
 - open source file in vscode
+
+## Related
+
+- [@best-shot/preset-serve](../preset-serve)

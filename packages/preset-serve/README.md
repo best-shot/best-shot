@@ -1,6 +1,6 @@
 # @best-shot/preset-serve <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
-A `best-shot` preset for `dev-server` options.
+A `best-shot` preset for `dev-server` integrated.
 
 [![npm][npm-badge]][npm-url]
 [![github][github-badge]][github-url]
@@ -24,6 +24,13 @@ npm install @best-shot/preset-serve --save-dev
 // example: .best-shot/config.js
 module.exports = {
   presets: ['serve'],
-  lazyCompilation: true
+  lazyCompilation: false, // true by default
+  devServer: {
+    // ...
+  }
 };
 ```
+
+## Related
+
+- [@best-shot/dev-server](../dev-server)

@@ -18,8 +18,18 @@ exports.apply = function applyServe({
       hot,
     } = devServer;
 
-    if (hot && lazyCompilation !== undefined) {
-      chain.merge({ experiments: { lazyCompilation } });
+    if (hot && lazyCompilation) {
+      chain.merge({
+        experiments: {
+          lazyCompilation:
+            lazyCompilation === true
+              ? {
+                  entries:
+                    Object.keys(chain.entryPoints.entries() || {}).length > 1,
+                }
+              : lazyCompilation,
+        },
+      });
     }
 
     chain.devServer
@@ -52,11 +62,14 @@ exports.schema = {
     default: 'web',
   },
   lazyCompilation: {
+    default: true,
+    title: 'Options for `experiments.lazyCompilation`',
     description:
       'See: https://webpack.js.org/configuration/experiments/#experimentslazycompilation',
+    oneOf: [{ type: 'boolean' }, { type: 'object' }],
   },
   devServer: {
-    description: 'Options of devServer',
+    description: 'Options for `devServer`',
     type: 'object',
     default: {},
     properties: {

@@ -22,7 +22,13 @@ module.exports = function DevServer(compiler, options) {
     logger.warn('historyApiFallback might caught assets error');
   }
 
-  if (compiler.options.experiments.lazyCompilation) {
+  const { lazyCompilation } = compiler.options.experiments;
+
+  if (
+    lazyCompilation === true ||
+    lazyCompilation.imports ||
+    lazyCompilation.entries
+  ) {
     logger.info('lazy compilation is enabled');
   }
 

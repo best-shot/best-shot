@@ -34,3 +34,4 @@ npx -c best-shot serve [options]
 ## Related
 
 - [@best-shot/preset-serve](../preset-serve)
+- [@best-shot/cli](../cli)

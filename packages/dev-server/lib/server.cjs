@@ -26,8 +26,8 @@ module.exports = function DevServer(compiler, options) {
 
   if (
     lazyCompilation === true ||
-    lazyCompilation.imports ||
-    lazyCompilation.entries
+    (lazyCompilation !== false &&
+      !(lazyCompilation.imports === false && lazyCompilation.entries === false))
   ) {
     logger.info('lazy compilation is enabled');
   }

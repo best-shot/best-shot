@@ -1134,20 +1134,20 @@
   dependencies:
     "@commitlint/config-conventional" "^12.1.1"
 
-"@nice-move/eslint-config-base@^0.5.30":
-  version "0.5.30"
-  resolved "https://registry.yarnpkg.com/@nice-move/eslint-config-base/-/eslint-config-base-0.5.30.tgz#e731cd136c0dfa4f772910ab45c0847c64757af2"
-  integrity sha512-MzdIOAbfBrELMQpAaP/+17/MlA995KKz25Ervryo6BMFupWWcFiUpnpJo0twLLEQ0JQ2Ybk2Ec4zT6RRSSc/tQ==
+"@nice-move/eslint-config-base@^0.5.31":
+  version "0.5.31"
+  resolved "https://registry.yarnpkg.com/@nice-move/eslint-config-base/-/eslint-config-base-0.5.31.tgz#7e678d6f81a9347da7f59dfbdaf87c24dfd1e3d9"
+  integrity sha512-IFyfonfvGQtTJCCuXZ3i0n9yVAbCd0fY66FAC5WfCupHNyrFRy67Gi/DLWtbJ+1PBNAurmy1C3EpBj5tGmCzBg==
   dependencies:
     eslint-config-airbnb-base "^14.2.1"
-    eslint-config-prettier "^8.1.0"
+    eslint-config-prettier "^8.2.0"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-html "^6.1.2"
     eslint-plugin-import "^2.22.1"
     eslint-plugin-markdown "^2.0.1"
     eslint-plugin-node "^11.1.0"
     eslint-plugin-promise "^5.1.0"
-    eslint-plugin-unicorn "^29.0.0"
+    eslint-plugin-unicorn "^30.0.0"
 
 "@nice-move/init@^0.1.25":
   version "0.1.25"
@@ -3977,10 +3977,10 @@ eslint-config-airbnb-base@^14.2.1:
     object.assign "^4.1.2"
     object.entries "^1.1.2"
 
-eslint-config-prettier@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.1.0.tgz#4ef1eaf97afe5176e6a75ddfb57c335121abc5a6"
-  integrity sha512-oKMhGv3ihGbCIimCAjqkdzx2Q+jthoqnXSP+d86M9tptwugycmTFdVR4IpLgq2c4SHifbwO90z2fQ8/Aio73yw==
+eslint-config-prettier@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.2.0.tgz#78de77d63bca8e9e59dae75a614b5299925bb7b3"
+  integrity sha512-dWV9EVeSo2qodOPi1iBYU/x6F6diHv8uujxbxr77xExs3zTAlNXvVZKiyLsQGNz7yPV2K49JY5WjPzNIuDc2Bw==
 
 eslint-formatter-pretty@^4.0.0:
   version "4.0.0"
@@ -4121,10 +4121,10 @@ eslint-plugin-sort-class-members@^1.11.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-sort-class-members/-/eslint-plugin-sort-class-members-1.11.0.tgz#4290c57eba8991521fbca3430e002da8ab860729"
   integrity sha512-kobZtUOyzyYVotc/GDnlmQ6sSaxYuVElwEowD5RQ6Kajq4Lfb3CPE1THaXbDl97HLNthThRZWtdNx1GrFhCm7Q==
 
-eslint-plugin-unicorn@^29.0.0:
-  version "29.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-29.0.0.tgz#7c97cdb5afe932e9f8dc34108e4a5a2a2fbb1906"
-  integrity sha512-R9jGLKb2p6LuOixviByGlH2mkfY72EBELXAPeUufveebN0M2Woa7B7dUO3gN2xPn/+eGjrIm4I2u7dDtr9G4iA==
+eslint-plugin-unicorn@^30.0.0:
+  version "30.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-30.0.0.tgz#45d3d138f444eff527e8c00f7a9299bcfcb5051b"
+  integrity sha512-ZKbE48Ep99z/3geLpkBfv+jNrzr2k7bLqCC/RfZOekZzAvn2/ECDE/d8zGdW1YxHmIC9pevQvm8Pl89v9GEIVw==
   dependencies:
     ci-info "^3.1.1"
     clean-regexp "^1.0.0"
@@ -4132,13 +4132,13 @@ eslint-plugin-unicorn@^29.0.0:
     eslint-utils "^2.1.0"
     eslint-visitor-keys "^2.0.0"
     import-modules "^2.1.0"
-    lodash "^4.17.20"
+    lodash "^4.17.21"
     pluralize "^8.0.0"
     read-pkg-up "^7.0.1"
     regexp-tree "^0.1.23"
     reserved-words "^0.1.2"
     safe-regex "^2.1.1"
-    semver "^7.3.4"
+    semver "^7.3.5"
 
 eslint-plugin-vue@^7.9.0:
   version "7.9.0"
@@ -10698,7 +10698,7 @@ web-namespaces@^1.0.0:
   resolved "https://registry.yarnpkg.com/web-namespaces/-/web-namespaces-1.1.4.tgz#bc98a3de60dadd7faefc403d1076d529f5e030ec"
   integrity sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==
 
-webpack-bundle-analyzer@^4.4.0:
+webpack-bundle-analyzer@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-4.4.1.tgz#c71fb2eaffc10a4754d7303b224adb2342069da1"
   integrity sha512-j5m7WgytCkiVBoOGavzNokBOqxe6Mma13X1asfVYtKWM3wxBiRRu1u1iG0Iol5+qp9WgyhkMmBAcvjEfJ2bdDw==

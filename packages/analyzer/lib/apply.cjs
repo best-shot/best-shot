@@ -15,6 +15,8 @@ module.exports = function apply(chain) {
 
   chain.optimization.runtimeChunk('single').concatenateModules(false);
 
+  chain.delete('recordsPath');
+
   function getReportPath(filename) {
     return resolve(rootPath, '.best-shot', 'stats', name, filename);
   }

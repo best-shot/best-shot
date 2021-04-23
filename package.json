@@ -21,8 +21,8 @@
     "build": "best-shot prod",
     "dev": "best-shot dev",
     "inspect": "best-shot inspect",
-    "postinstall": "git config core.hooksPath .hooks",
     "lint": "nice-move lint",
+    "prepare": "git config core.hooksPath .hooks",
     "serve": "best-shot serve",
     "test": "ava --verbose",
     "watch": "best-shot watch"
@@ -40,7 +40,7 @@
     "@babel/core": "^7.13.14",
     "@nice-move/cli": "^0.5.21",
     "@nice-move/commitlint-config": "^0.1.2",
-    "@nice-move/eslint-config-base": "^0.5.30",
+    "@nice-move/eslint-config-base": "^0.5.31",
     "@nice-move/prettier-config": "^0.4.3",
     "@nice-move/stylelint-config": "^0.5.7",
     "@types/react": "^17.0.3",

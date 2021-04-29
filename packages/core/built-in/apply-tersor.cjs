@@ -1,4 +1,3 @@
-const TerserPlugin = require('terser-webpack-plugin');
 const deepMerge = require('deepmerge');
 const browserslist = require('browserslist');
 
@@ -29,6 +28,7 @@ exports.apply = function applyTersor({ config: { terser = {} } }) {
     if (minimize) {
       const context = chain.get('context');
 
+      const TerserPlugin = require('terser-webpack-plugin');
       chain.optimization.minimizer('terser').use(TerserPlugin, [
         {
           extractComments: false,

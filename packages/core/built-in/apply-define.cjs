@@ -1,4 +1,3 @@
-const { DefinePlugin } = require('webpack');
 const mapValues = require('lodash/mapValues');
 const pickBy = require('lodash/pickBy');
 
@@ -18,6 +17,8 @@ exports.apply = function applyDefine({ config: { define } }) {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
     const name = chain.get('name');
+
+    const { DefinePlugin } = require('webpack');
 
     chain.plugin(displayName).use(DefinePlugin, [
       variables({

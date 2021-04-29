@@ -8,11 +8,7 @@ module.exports = class Schema {
       $schema: 'http://json-schema.org/draft-07/schema#',
       description: 'Configuration of best-shot',
       type: 'object',
-      properties: {
-        experimental: {
-          type: 'object',
-        },
-      },
+      properties: {},
     };
     return this;
   }

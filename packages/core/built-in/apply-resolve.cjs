@@ -1,5 +1,3 @@
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-
 exports.name = 'resolve';
 
 exports.apply = function applyResolve() {
@@ -11,6 +9,7 @@ exports.apply = function applyResolve() {
 
     chain.resolveLoader.modules.prepend('node_modules');
 
+    const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
     chain.plugin('case-sensitive-paths').use(CaseSensitivePathsPlugin);
   };
 };

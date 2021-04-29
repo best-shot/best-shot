@@ -2,7 +2,13 @@ const { schema } = require('copy-webpack/lib/schema.cjs');
 
 exports.name = 'other';
 
-exports.apply = function applyOther({ config: { copy, node, provide } }) {
+function notEmpty(object) {
+  return object && Object.values(object).some((item) => item !== undefined);
+}
+
+exports.apply = function applyOther({
+  config: { copy, node, provide, alias },
+}) {
   return (chain) => {
     chain.node.merge(node);
 
@@ -11,9 +17,13 @@ exports.apply = function applyOther({ config: { copy, node, provide } }) {
       chain.plugin('copy').use(CopyWebpack, [copy]);
     }
 
-    if (provide && Object.values(provide).some((item) => item !== undefined)) {
+    if (notEmpty(provide)) {
       const { ProvidePlugin } = require('webpack');
       chain.plugin('provide').use(ProvidePlugin, [provide]);
+    }
+
+    if (notEmpty(alias)) {
+      chain.resolve.alias.merge(alias);
     }
   };
 };
@@ -45,6 +55,9 @@ exports.schema = {
     },
   },
   provide: {
+    type: 'object',
+  },
+  alias: {
     type: 'object',
   },
 };

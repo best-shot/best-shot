@@ -44,3 +44,8 @@ It is not 100% safe, you can enable them manually.
   "plugins": ["@babel/transform-react-constant-elements"]
 }
 ```
+
+## Related
+
+- [@best-shot/preset-babel](../preset-babel)
+- [@best-shot/core](../core)

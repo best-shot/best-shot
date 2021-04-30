@@ -36,6 +36,10 @@ module.exports = {
 
 ## Options
 
+### targets
+
+Can't be specify directly, always using `browserslist.loadConfig() || browserslist.defaults`.
+
 ### polyfill
 
 - type: [ false, 'global', 'pure' ]
@@ -45,17 +49,13 @@ How `babel` handles polyfills. `pure` is an experimental option.
 
 References: <https://github.com/babel/babel/issues/10008>
 
-Install `core-js@3` as a top-level dependency when specifying 'global' or 'pure'.
-
-```bash
-npm install core-js@3 --save
-```
-
-### targets
-
-Can't be specify directly, always using `browserslist.loadConfig() || browserslist.defaults`.
-
 ## Tips
+
+You might need to pin `core-js@3` when your project dependency tree has `core-js@2`:
+
+```sh
+npm install core-js@3
+```
 
 ### Create custom babel configuration
 
@@ -67,3 +67,8 @@ References: <https://babeljs.io/docs/en/configuration>
   "plugins": ["lodash", "macros"]
 }
 ```
+
+## Related
+
+- [@best-shot/preset-react](../preset-react)
+- [@best-shot/core](../core)

@@ -18,7 +18,7 @@ exports.apply = function applyServe({
       hot,
     } = devServer;
 
-    if (hot && lazyCompilation) {
+    if (hot && lazyCompilation !== false) {
       chain.merge({
         experiments: {
           lazyCompilation:
@@ -62,11 +62,17 @@ exports.schema = {
     default: 'web',
   },
   lazyCompilation: {
-    default: true,
     title: 'Options for `experiments.lazyCompilation`',
     description:
       'See: https://webpack.js.org/configuration/experiments/#experimentslazycompilation',
-    oneOf: [{ type: 'boolean' }, { type: 'object' }],
+    oneOf: [
+      {
+        type: 'boolean',
+      },
+      {
+        type: 'object',
+      },
+    ],
   },
   devServer: {
     description: 'Options for `devServer`',

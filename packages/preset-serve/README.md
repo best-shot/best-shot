@@ -34,3 +34,4 @@ module.exports = {
 ## Related
 
 - [@best-shot/dev-server](../dev-server)
+- [@best-shot/core](../core)

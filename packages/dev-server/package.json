@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -31,7 +31,7 @@
   },
   "main": "index.cjs",
   "dependencies": {
-    "@best-shot/preset-serve": "^0.5.2",
+    "@best-shot/preset-serve": "^0.6.0",
     "chalk": "^4.1.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.10.0",
-    "webpack": "^5.35.0"
+    "webpack": "^5.36.1"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

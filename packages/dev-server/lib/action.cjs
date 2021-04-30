@@ -9,10 +9,6 @@ module.exports = function action({ _: [command] }) {
 
     const configs = await readConfig()({ command });
 
-    const { autoAddPreset } = require('./utils.cjs');
-
-    autoAddPreset(configs);
-
     const result = configs.map((config) =>
       // @ts-ignore
       createConfig(config, {
@@ -41,8 +37,9 @@ module.exports = function action({ _: [command] }) {
 
       const compiler = createCompiler(shouldWatch);
 
-      const { watchOptions } =
-        shouldWatch.find((config) => config.watchOptions) || {};
+      const watchOptions = shouldWatch.map(
+        (config) => config.watchOptions || {},
+      );
       const { stats: statsConfig } =
         shouldWatch.find(({ stats }) => stats) || {};
 

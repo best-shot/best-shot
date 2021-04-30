@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-serve",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "A `best-shot` preset for `dev-server` integrated",
   "license": "MIT",
   "author": {
@@ -29,7 +29,7 @@
   },
   "main": "index.cjs",
   "peerDependencies": {
-    "@best-shot/core": "^0.4.3"
+    "@best-shot/core": "^0.4.4"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

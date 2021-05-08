@@ -18,15 +18,9 @@ module.exports = function action({ stamp = 'none' }) {
 
   const commands = ['watch', 'dev', 'prod'];
 
-  let autoAddPreset;
-
   try {
-    // eslint-disable-next-line import/no-extraneous-dependencies
-    autoAddPreset = require('@best-shot/dev-server/lib/utils.cjs')
-      .autoAddPreset;
-    if (autoAddPreset) {
-      commands.push('serve');
-    }
+    require.resolve('@best-shot/dev-server/package.json');
+    commands.push('serve');
   } catch (error) {
     if (!isSafeError(error)) {
       throw error;
@@ -39,15 +33,10 @@ module.exports = function action({ stamp = 'none' }) {
     const rootPath = process.cwd();
     const writeFile = makeWriteFile(rootPath, stamp);
 
-    // eslint-disable-next-line no-restricted-syntax
     for (const command of commands) {
       const mode = commandMode(command);
       // eslint-disable-next-line no-await-in-loop
       const configs = await readConfig(rootPath, false)({ command });
-
-      if (command === 'serve') {
-        autoAddPreset(configs);
-      }
 
       configs.forEach((config) => {
         const { chain, name, presets = [], ...rest } = config;

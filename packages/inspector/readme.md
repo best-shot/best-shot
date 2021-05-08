@@ -23,3 +23,8 @@ npm install @best-shot/cli @best-shot/inspector --save-dev
 ```bash
 npx -c best-shot inspect [options]
 ```
+
+## Related
+
+- [@best-shot/cli](../cli)
+- [@best-shot/dev-server](../dev-server)

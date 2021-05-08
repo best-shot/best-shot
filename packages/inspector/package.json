@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -10,6 +10,8 @@
   "keywords": [
     "best-shot",
     "cli",
+    "config",
+    "debug",
     "generate",
     "inspector",
     "stringify",
@@ -26,13 +28,13 @@
   },
   "main": "index.cjs",
   "dependencies": {
-    "fs-extra": "^9.1.0",
-    "javascript-stringify": "^2.0.1",
+    "fs-extra": "^10.0.0",
+    "javascript-stringify": "^2.1.0",
     "sort-keys": "^4.2.0"
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.10.0",
-    "@best-shot/core": "^0.4.3"
+    "@best-shot/core": "^0.4.4"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

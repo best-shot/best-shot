@@ -12,6 +12,13 @@ DevServer support of `@best-shot/cli`.
 [github-badge]: https://img.shields.io/npm/l/@best-shot/dev-server.svg?style=flat-square&colorB=blue&logo=github
 [node-badge]: https://img.shields.io/node/v/@best-shot/dev-server.svg?style=flat-square&colorB=green&logo=node.js
 
+## Features
+
+- features of webpack-dev-server
+- auto fallback to available port
+- show a wait page when bundling
+- open source file in vscode
+
 ## Installation
 
 ```bash
@@ -24,12 +31,14 @@ npm install @best-shot/cli @best-shot/dev-server --save-dev
 npx -c best-shot serve [options]
 ```
 
-## Features
-
-- features of webpack-dev-server
-- auto fallback to available port
-- show a wait page when bundling
-- open source file in vscode
+```cjs
+module.exports = {
+  presets: [
+    // without this will fallback to `watch` mode
+    'serve'
+  ]
+};
+```
 
 ## Related
 

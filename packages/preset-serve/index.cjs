@@ -62,6 +62,7 @@ exports.schema = {
     default: 'web',
   },
   lazyCompilation: {
+    default: true,
     title: 'Options for `experiments.lazyCompilation`',
     description:
       'See: https://webpack.js.org/configuration/experiments/#experimentslazycompilation',

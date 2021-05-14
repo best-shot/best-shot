@@ -3,12 +3,12 @@ const Cheetor = require('cheetor');
 
 const { commandMode, commands } = require('./lib/utils.cjs');
 
-new Cheetor()
+new Cheetor('./package.json')
   .website('https://www.npmjs.com/org/best-shot')
   .commandSafe('@best-shot/dev-server')
-  .commandForm('./cmd/watch.cjs')
-  .commandForm('./cmd/dev.cjs')
-  .commandForm('./cmd/prod.cjs')
+  .commandFrom('./cmd/watch.cjs')
+  .commandFrom('./cmd/dev.cjs')
+  .commandFrom('./cmd/prod.cjs')
   .commandSafe('@best-shot/analyzer')
   .commandSafe('@best-shot/inspector')
   .middleware([

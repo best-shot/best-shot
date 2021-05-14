@@ -37,7 +37,7 @@ module.exports = function readConfig(
   return async function func({ command, configName }) {
     let config = await requireConfig(rootPath);
 
-    config = typeof config === 'function' ? config({ command }) : config;
+    config = typeof config === 'function' ? await config({ command }) : config;
 
     validate(config);
 

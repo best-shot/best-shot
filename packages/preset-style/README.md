@@ -94,3 +94,9 @@ module.exports = {
   }
 };
 ```
+
+## Related
+
+- [@best-shot/preset-asset](../preset-asset)
+- [@best-shot/preset-web](../preset-asset)
+- [@best-shot/core](../core)

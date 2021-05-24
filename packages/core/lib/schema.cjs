@@ -1,6 +1,5 @@
 const deepmerge = require('deepmerge');
-
-const { validate } = require('./validate.cjs');
+const { validate } = require('@best-shot/validator');
 
 module.exports = class Schema {
   constructor() {

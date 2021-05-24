@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -26,23 +26,26 @@
   },
   "main": "index.cjs",
   "dependencies": {
-    "ajv": "^6.12.6",
-    "better-ajv-errors": "^0.7.0",
-    "browserslist": "^4.16.5",
+    "@best-shot/validator": "^0.1.0",
+    "browserslist": "^4.16.6",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "chalk": "^4.1.1",
     "copy-webpack": "^2.0.1",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
     "slash": "^3.0.0",
-    "terser-webpack-plugin": "^5.1.1",
+    "terser-webpack-plugin": "^5.1.2",
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {
-    "webpack": "^5.36.1"
+    "webpack": "^5.37.1"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

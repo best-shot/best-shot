@@ -1,0 +1,45 @@
+{
+  "name": "@best-shot/validator",
+  "version": "0.1.0",
+  "description": "Config validator of 'best-shot'",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "keywords": [
+    "ajv",
+    "best-shot",
+    "config",
+    "json",
+    "json-schema",
+    "schema",
+    "validate",
+    "validator"
+  ],
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/validator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/best-shot/best-shot.git",
+    "directory": "packages/validator"
+  },
+  "bugs": {
+    "url": "https://github.com/best-shot/best-shot/issues"
+  },
+  "main": "index.cjs",
+  "dependencies": {
+    "ajv": "^8.5.0",
+    "ajv-formats": "^2.1.0",
+    "ajv-keywords": "^5.0.0"
+  },
+  "engines": {
+    "node": "^12.15.0 || ^14.15.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "x-readme": {
+    "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"
+  }
+}

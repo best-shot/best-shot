@@ -1,12 +1,15 @@
 const extToRegexp = require('ext-to-regexp');
 
+const { nonAscii } = require('./utils.cjs');
+
 function outputFile(ext = '[ext]') {
   return (rule) => {
     rule.type('asset/resource').set('generator', {
       filename: (args) => {
-        args.filename = args.filename
-          .replace(/^src\//, '')
-          .replace('.[hash]', '');
+        // eslint-disable-next-line no-param-reassign
+        args.filename = nonAscii(
+          args.filename.replace(/^src\//, '').replace('.[hash]', ''),
+        );
 
         return `[path][name].[contenthash:8]${ext}`;
       },

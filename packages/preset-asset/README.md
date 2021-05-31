@@ -60,6 +60,12 @@ import('./header/header-bg.png');
 // image/header-bg.min.xxxxxxxx.png
 ```
 
+### Preprocess non-ascii character
+
+```plain
+天地人-abc.jpg -> 4273f2f7-abc.jpg
+```
+
 ### Installing troubleshooting
 
 In China mainland, use [bin-wrapper-china](https://github.com/best-shot/bin-wrapper-china) might help.

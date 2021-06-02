@@ -55,26 +55,8 @@ module.exports = {
 
 This preset will override `options.asset.esModule` to `false`.
 
-### Add `JSX` support
+## Related
 
-```bash
-npm install @best-shot/preset-babel --save-dev
-```
-
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
-  presets: ['babel', 'vue']
-};
-```
-
-```bash
-npm install @vue/babel-preset-jsx --save-dev
-```
-
-```cjs
-// example: babel.config.cjs
-module.exports = {
-  presets: ['@vue/jsx']
-};
-```
+- [@best-shot/preset-style](../preset-style)
+- [@best-shot/preset-web](../preset-web)
+- [@best-shot/core](../core)

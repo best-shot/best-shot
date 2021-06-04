@@ -27,8 +27,8 @@ npm install @best-shot/preset-asset --save-dev
 
 ## Usage
 
-```js
-// example: .best-shot/config.js
+```cjs
+// example: .best-shot/config.cjs
 module.exports = {
   presets: ['asset']
 };
@@ -81,3 +81,9 @@ Otherwise, you can replace `gifsicle/jpegtran-bin/optipng-bin` with any empty pa
   }
 }
 ```
+
+## Related
+
+- [@best-shot/preset-style](../preset-style)
+- [@best-shot/preset-web](../preset-web)
+- [@best-shot/core](../core)

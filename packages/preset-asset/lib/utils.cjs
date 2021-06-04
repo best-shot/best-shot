@@ -11,4 +11,7 @@ module.exports = {
         )
       : name;
   },
+  removeRoot(name) {
+    return name.replace(/^(src|packages)\//, '');
+  },
 };

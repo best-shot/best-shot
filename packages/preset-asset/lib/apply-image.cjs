@@ -1,6 +1,6 @@
 const extToRegexp = require('ext-to-regexp');
 
-const { nonAscii } = require('./utils.cjs');
+const { nonAscii, removeRoot } = require('./utils.cjs');
 
 const imageRegexp = extToRegexp({
   extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
@@ -31,7 +31,7 @@ module.exports = function applyImage(chain) {
         .set('generator', {
           filename: (args) => {
             // eslint-disable-next-line no-param-reassign
-            args.filename = nonAscii(args.filename.replace(/^src\//, ''));
+            args.filename = nonAscii(removeRoot(args.filename));
             return '[path][name][ext]';
           },
         });

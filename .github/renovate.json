@@ -1,12 +1,5 @@
 {
   "extends": [
-    "config:base",
-    "group:allNonMajor",
-    "schedule:daily",
-    ":unpublishSafe",
-    ":prNotPending",
-    ":rebaseStalePrs",
-    ":disableMajorUpdates"
-  ],
-  "rangeStrategy": "bump"
+    "github>airkro/renovate-config"
+  ]
 }

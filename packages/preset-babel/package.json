@@ -37,14 +37,14 @@
   "dependencies": {
     "babel-loader": "^8.2.2",
     "babel-preset-evergreen": "^0.8.0",
-    "browserslist": "^4.16.5",
+    "browserslist": "^4.16.6",
     "ext-to-regexp": "^0.0.8",
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.14.0",
+    "@babel/core": "^7.14.3",
     "@best-shot/core": "^0.4.4",
-    "webpack": "^5.36.1"
+    "webpack": "^5.38.1"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

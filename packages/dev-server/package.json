@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.10.0",
-    "webpack": "^5.36.2"
+    "webpack": "^5.38.1"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

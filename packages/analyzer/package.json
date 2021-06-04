@@ -27,7 +27,7 @@
   },
   "main": "index.cjs",
   "dependencies": {
-    "webpack-bundle-analyzer": "^4.4.1"
+    "webpack-bundle-analyzer": "^4.4.2"
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.10.0",

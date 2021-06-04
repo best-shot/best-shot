@@ -37,7 +37,7 @@
   "dependencies": {
     "babel-loader": "^8.2.2",
     "babel-preset-evergreen": "^0.8.0",
-    "browserslist": "^4.16.5",
+    "browserslist": "^4.16.6",
     "ext-to-regexp": "^0.0.8",
     "slash-to-regexp": "^0.0.4"
   },

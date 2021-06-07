@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.1",
-    "cheetor": "^0.9.0",
+    "cheetor": "^0.9.1",
     "configstore": "^5.0.1",
     "is-installed-globally": "^0.4.0",
     "prompts": "^2.4.1",

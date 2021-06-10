@@ -4,13 +4,19 @@ const { notEmpty } = require('../lib/utils.cjs');
 
 exports.name = 'other';
 
-exports.apply = function applyOther({ config: { copy, node, provide } }) {
+exports.apply = function applyOther({
+  config: { copy, node, provide, externals },
+}) {
   return (chain) => {
     chain.node.merge(node);
 
     if (copy && copy.length > 0) {
       const { CopyWebpack } = require('copy-webpack');
       chain.plugin('copy').use(CopyWebpack, [copy]);
+    }
+
+    if (notEmpty(externals)) {
+      chain.externals.merge(externals);
     }
 
     if (notEmpty(provide)) {
@@ -47,6 +53,9 @@ exports.schema = {
     },
   },
   provide: {
+    type: 'object',
+  },
+  externals: {
     type: 'object',
   },
 };

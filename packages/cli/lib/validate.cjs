@@ -1,7 +1,4 @@
-const {
-  validate: coreValidate,
-  ConfigError,
-} = require('@best-shot/core/lib/validate.cjs');
+const { validate: coreValidate, ConfigError } = require('@best-shot/validator');
 
 function hasUniqueNames(config) {
   return (

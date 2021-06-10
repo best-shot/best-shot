@@ -1,4 +1,4 @@
-const { relative } = require('@best-shot/core/lib/path');
+const { relative } = require('path');
 
 exports.apply = function applyAsset() {
   return (chain) => {

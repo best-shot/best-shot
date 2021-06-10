@@ -8,7 +8,9 @@ exports.apply = function applyOther({
   config: { copy, node, provide, externals },
 }) {
   return (chain) => {
-    chain.node.merge(node);
+    if (node) {
+      chain.node.merge(node);
+    }
 
     if (copy && copy.length > 0) {
       const { CopyWebpack } = require('copy-webpack');
@@ -36,21 +38,6 @@ exports.schema = {
         const: false,
       },
     ],
-  },
-  node: {
-    type: 'object',
-    default: {},
-    properties: {
-      __dirname: {
-        default: true,
-      },
-      __filename: {
-        default: true,
-      },
-      global: {
-        default: false,
-      },
-    },
   },
   provide: {
     type: 'object',

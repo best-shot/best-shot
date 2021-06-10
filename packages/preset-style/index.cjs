@@ -1,4 +1,4 @@
-const { relative } = require('@best-shot/core/lib/path');
+const { relative } = require('path');
 
 const applyScssLess = require('./lib/apply-scss-less.cjs');
 const applyStylesheet = require('./lib/apply-stylesheet.cjs');

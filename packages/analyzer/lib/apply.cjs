@@ -1,9 +1,7 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const applyProgress = require('@best-shot/cli/lib/apply-progress.cjs');
 
-const { resolve: Resolve } = require('path');
-
-const { resolve } = require('@best-shot/core/lib/path');
+const { resolve } = require('path');
 
 module.exports = function apply(chain) {
   const rootPath = chain.get('context');
@@ -11,7 +9,7 @@ module.exports = function apply(chain) {
 
   applyProgress(chain);
 
-  chain.output.path(Resolve(rootPath, `.best-shot/temp/${name}`));
+  chain.output.path(resolve(rootPath, `.best-shot/temp/${name}`));
 
   chain.optimization.runtimeChunk('single').concatenateModules(false);
 

@@ -1,7 +1,7 @@
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 
-const { relative } = require('@best-shot/core/lib/path');
+const { relative } = require('path');
 const { loadConfig, defaults } = require('browserslist');
 
 function getList(path) {

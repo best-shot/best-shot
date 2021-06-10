@@ -29,6 +29,7 @@
     "best-shot": "bin/index.mjs"
   },
   "dependencies": {
+    "@best-shot/validator": "0.1.0",
     "chalk": "^4.1.1",
     "cheetor": "^0.9.1",
     "configstore": "^5.0.1",
@@ -39,8 +40,8 @@
     "webpackbar": "^5.0.0-3"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.4.4",
-    "webpack": "^5.37.1"
+    "@best-shot/core": "^0.4.8",
+    "webpack": "^5.38.1"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

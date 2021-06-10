@@ -3,7 +3,7 @@ const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { relative } = require('@best-shot/core/lib/path');
+const { relative } = require('path');
 
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 

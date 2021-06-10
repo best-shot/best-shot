@@ -1,7 +1,7 @@
 const extToRegexp = require('ext-to-regexp');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const { relative } = require('@best-shot/core/lib/path');
+const { relative } = require('path');
 
 exports.name = 'preset-vue';
 

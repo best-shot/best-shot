@@ -15,8 +15,8 @@ exports.apply = function applyOther({
       chain.plugin('copy').use(CopyWebpack, [copy]);
     }
 
-    if (notEmpty(externals)) {
-      chain.externals.merge(externals);
+    if (externals) {
+      chain.externals(externals);
     }
 
     if (notEmpty(provide)) {
@@ -53,9 +53,6 @@ exports.schema = {
     },
   },
   provide: {
-    type: 'object',
-  },
-  externals: {
     type: 'object',
   },
 };

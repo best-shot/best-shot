@@ -42,7 +42,7 @@
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.14.3",
+    "@babel/core": "^7.14.5",
     "@best-shot/core": "^0.4.4",
     "webpack": "^5.36.2"
   },

@@ -1153,7 +1153,7 @@
   resolved "https://registry.yarnpkg.com/@nice-labs/git-rev/-/git-rev-3.5.0.tgz#997edfb9d1831dd5d6593512c46fb3064c30ea0c"
   integrity sha512-Ea0kEEqm3Du1JfNL6SiUHyO9BwctA+eY9GFHYxegb8S0rjaXMUGFWo99ONfPBkN3wjpG0z9sw96x+jLGePraEw==
 
-"@nice-move/cli@^0.5.23":
+"@nice-move/cli@^0.5.25":
   version "0.5.25"
   resolved "https://registry.yarnpkg.com/@nice-move/cli/-/cli-0.5.25.tgz#c69371fe081969dff369a20fc4c211869e67b22e"
   integrity sha512-QWTR7Gn4H4uqCl10Fa+cpmGKb9b6X2IgaO0R6cyh0jXsj4SDcgDIOKl43wTJVE/DvgRhWm9ERiAqEVwfbGClwA==

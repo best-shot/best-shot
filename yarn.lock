@@ -1220,7 +1220,7 @@
     tiny-version-compare "^3.0.1"
     yarn-deduplicate "^3.1.0"
 
-"@nice-move/prettier-config@^0.4.4":
+"@nice-move/prettier-config@^0.4.6":
   version "0.4.6"
   resolved "https://registry.yarnpkg.com/@nice-move/prettier-config/-/prettier-config-0.4.6.tgz#ef72d642927e24b5f55fa8758cacf7b71145d6c2"
   integrity sha512-rUplPKRExBkjmoeBfhhdgxGBzBmihfZQGSQ0h8DyU/UPimRNkIVE7XbGzobpwk9/Z8inkY0YrpdNnOtunRtbWA==

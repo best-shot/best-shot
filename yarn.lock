@@ -4915,7 +4915,7 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-garou@^0.1.28:
+garou@^0.1.29:
   version "0.1.29"
   resolved "https://registry.yarnpkg.com/garou/-/garou-0.1.29.tgz#3a89164fd76c5c6646fdb31b83dcb16194ce15ae"
   integrity sha512-phOHLemZPo6taO3euBX+pIXf4acuDgU+tt8/D3eNhQ017BdbRnvS7NPGkje2VkgCqoxFsaUn7eM31yDB0kc4Rw==

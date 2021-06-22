@@ -15,8 +15,9 @@ A `best-shot` preset for babel compiler.
 
 This preset uses [babel-preset-evergreen] by default. It can transform:
 
-- ECMAScript 2021 syntax
-- Class static properties
+- ECMAScript 2021: `*.js`
+- node modules: `*.mjs` / `*.cjs`
+- typescript: `*.ts`
 
 ## Installation
 
@@ -26,8 +27,8 @@ npm install @best-shot/preset-babel --save-dev
 
 ## Usage
 
-```js
-// example: .best-shot/config.js
+```cjs
+// example: .best-shot/config.cjs
 module.exports = {
   presets: ['babel'],
   polyfill: 'global'
@@ -57,6 +58,11 @@ You might need to pin `core-js@3` when your project dependency tree has `core-js
 npm install core-js@3
 ```
 
+### JSX support
+
+- Use [@best-shot/preset-react] to support react jsx syntax.
+- [@best-shot/preset-vue] is not support jsx yet.
+
 ### Create custom babel configuration
 
 References: <https://babeljs.io/docs/en/configuration>
@@ -70,5 +76,9 @@ References: <https://babeljs.io/docs/en/configuration>
 
 ## Related
 
-- [@best-shot/preset-react](../preset-react)
+[@best-shot/preset-react]: ../preset-react
+[@best-shot/preset-vue]: ../preset-vue
+
+- [@babel/preset-typescript](https://babeljs.io/docs/babel-preset-typescript)
+- [@best-shot/preset-react]
 - [@best-shot/core](../core)

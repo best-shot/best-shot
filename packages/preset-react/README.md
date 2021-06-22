@@ -14,9 +14,10 @@ A `best-shot` preset for react project.
 
 This preset offer the following features:
 
-- [React](https://reactjs.org/) (16.x) framework and JSX syntax support.
+- [React](https://reactjs.org/) framework and JSX syntax support.
 - Use [react-refresh](https://github.com/pmmmwh/react-refresh-webpack-plugin) to support hot module reload.
 - Remove react/airbnb propTypes in `production` mode.
+- JSX syntax in typescript: `*.tsx`
 
 ## Installation
 
@@ -26,8 +27,8 @@ npm install @best-shot/preset-react --save-dev
 
 ## Usage
 
-```js
-// example: .best-shot/config.js
+```cjs
+// example: .best-shot/config.cjs
 module.exports = {
   presets: ['babel', 'react']
 };

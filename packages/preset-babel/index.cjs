@@ -1,3 +1,5 @@
+'use strict';
+
 const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 
@@ -19,7 +21,7 @@ exports.apply = function applyBabel({ config: { polyfill = false } }) {
 
     chain.module
       .rule('babel')
-      .test(extToRegexp({ extname: ['js', 'mjs', 'cjs'] }))
+      .test(extToRegexp({ extname: ['js', 'mjs', 'cjs', 'ts'] }))
       .merge({
         resolve: { fullySpecified: false },
       })
@@ -33,7 +35,7 @@ exports.apply = function applyBabel({ config: { polyfill = false } }) {
         sourceType: 'unambiguous',
         targets: getList(context),
         ...(UseCache ? { cacheCompression: false } : undefined),
-        presets: [['evergreen', { polyfill }]],
+        presets: [['evergreen', { polyfill }], '@babel/typescript'],
       });
 
     const isServing = chain.devServer.entries() !== undefined;

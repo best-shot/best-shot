@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
-  presets: ['serve'],
+  presets: ['babel', 'react'],
 };

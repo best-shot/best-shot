@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@best-shot/preset-babel",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -35,16 +35,17 @@
   },
   "main": "index.cjs",
   "dependencies": {
+    "@babel/preset-typescript": "^7.14.5",
     "babel-loader": "^8.2.2",
-    "babel-preset-evergreen": "^0.8.0",
+    "babel-preset-evergreen": "^0.8.1",
     "browserslist": "^4.16.6",
-    "ext-to-regexp": "^0.0.8",
+    "ext-to-regexp": "^0.1.0",
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.14.5",
-    "@best-shot/core": "^0.4.4",
-    "webpack": "^5.36.2"
+    "@babel/core": "^7.14.6",
+    "@best-shot/core": "^0.4.8",
+    "webpack": "^5.37.0"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

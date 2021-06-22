@@ -1,10 +1,12 @@
+'use strict';
+
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 exports.name = 'preset-react';
 
 function airbnb() {
   try {
-    return !!require.resolve('airbnb-prop-types/package.json');
+    return Boolean(require.resolve('airbnb-prop-types/package.json'));
   } catch {
     return false;
   }
@@ -21,7 +23,7 @@ exports.apply = function applyReact({ config: { polyfill = false } }) {
 
     chain.module
       .rule('babel')
-      .test(fileRegexp.add('jsx'))
+      .test(fileRegexp.add('jsx', 'tsx'))
       .use('babel-loader')
       .tap(({ presets = [], plugins = [], ...options }) => ({
         ...options,

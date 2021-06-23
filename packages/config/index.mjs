@@ -16,7 +16,7 @@ function isSafeError(error) {
 
 async function readConfigFile(filename, rootPath = process.cwd()) {
   return import(pathToFileURL(resolve(rootPath, '.best-shot', filename)))
-    .then(({ default: D, config }) => config ?? D)
+    .then(({ default: config }) => config)
     .catch((error) => {
       if (isSafeError(error)) {
         return;

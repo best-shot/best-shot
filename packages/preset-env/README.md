@@ -29,9 +29,9 @@ npm install @best-shot/preset-env --save-dev
 
 ## Usage
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   presets: ['env'],
   define: {
     WHATEVER: 'abc'
@@ -54,9 +54,9 @@ APPID = "987654321"
 SERVICE_URL = "http://mock.dev/"
 ```
 
-```cjs
+```mjs
 // output: production mode
-module.exports = {
+export const production = {
   plugins: [
     new DefinePlugin({
       APPID: '"123456789"',
@@ -67,7 +67,7 @@ module.exports = {
 };
 
 // output: development mode
-module.exports = {
+export const development = {
   plugins: [
     new DefinePlugin({
       APPID: '"987654321"',
@@ -78,7 +78,7 @@ module.exports = {
 };
 
 // output: serve command
-module.exports = {
+export const serve = {
   plugins: [
     new DefinePlugin({
       APPID: '"987654321"',
@@ -104,8 +104,8 @@ console = "xyz"
 
 If a `process.cwd()` is a git repository, `GIT_HASH` will be injected to your config too.
 
-```cjs
-module.exports = {
+```mjs
+export default {
   plugins: [
     new DefinePlugin({
       'BEST_SHOT.GIT_HASH': '"xxxxxxxxxxxxxxxxxxxx"'

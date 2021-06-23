@@ -20,9 +20,9 @@ npm install @best-shot/preset-electron --save-dev
 
 ## Usage
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = [
+```mjs
+// example: .best-shot/config.mjs
+export default [
   {
     name: 'main',
     presets: ['electron'],

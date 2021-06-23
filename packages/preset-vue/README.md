@@ -25,9 +25,9 @@ npm install @best-shot/preset-vue --save-dev
 
 ## Usage
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   presets: ['vue']
 };
 ```
@@ -46,9 +46,9 @@ See: [vue-template-compiler#options](https://github.com/vuejs/vue/tree/dev/packa
 npm install @best-shot/preset-style --save-dev
 ```
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   presets: ['style', 'vue']
 };
 ```

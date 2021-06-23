@@ -26,9 +26,9 @@ npm install @best-shot/preset-web --save-dev
 
 ## Usage
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   presets: ['web']
 };
 ```
@@ -45,9 +45,9 @@ See Options in [@best-shot/preset-babel](../preset-babel)
 
 Subresource Integrity (SRI) is enable by default.
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   presets: ['web'],
   sri: false // To disable it
 };
@@ -55,9 +55,9 @@ module.exports = {
 
 ### Split Chunks
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   presets: ['web'],
   vendors: {
     common: ['lodash', 'axios']
@@ -67,9 +67,9 @@ module.exports = {
 
 ### Multiple Page Application
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   presets: ['web'],
   html: [
     {

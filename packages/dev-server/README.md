@@ -31,8 +31,8 @@ npm install @best-shot/cli @best-shot/dev-server --save-dev
 npx -c best-shot serve [options]
 ```
 
-```cjs
-module.exports = {
+```mjs
+export default {
   presets: [
     // without this will fallback to `watch` mode
     'serve'

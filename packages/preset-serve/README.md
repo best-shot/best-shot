@@ -20,9 +20,9 @@ npm install @best-shot/preset-serve --save-dev
 
 ## Usage
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   presets: ['serve'],
   lazyCompilation: false, // true by default
   devServer: {

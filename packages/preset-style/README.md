@@ -35,9 +35,9 @@ npm install @best-shot/preset-style --save-dev
 
 ## Usage
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   presets: ['style']
 };
 ```
@@ -68,9 +68,9 @@ Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-m
 
 Disable internal options:
 
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
+```mjs
+// example: .best-shot/config.mjs
+export default {
   webpackChain(config) {
     config.module
       .rule('style')
@@ -86,9 +86,9 @@ module.exports = {
 
 Write your config in any way. See <https://github.com/postcss/postcss-load-config>
 
-```cjs
-// example: postcss.config.cjs
-module.exports = {
+```mjs
+// example: postcss.config.mjs
+export default {
   plugins: {
     'postcss-preset-env': {}
   }

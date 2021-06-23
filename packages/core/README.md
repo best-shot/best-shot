@@ -28,8 +28,8 @@ npm install @best-shot/core --save-dev
 
 ## Usage
 
-```cjs
-const BestShot = require('@best-shot/core');
+```mjs
+import BestShot from '@best-shot/core';
 
 new BestShot({ presets: ['babel'] }).load({
   mode: 'production',

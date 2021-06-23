@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-env",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A `best-shot` preset for env variables",
   "license": "MIT",
   "author": {

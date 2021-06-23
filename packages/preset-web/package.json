@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-web",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "A `best-shot` preset for web project",
   "license": "MIT",
   "author": {
@@ -33,7 +33,7 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "ext-to-regexp": "^0.1.0",
-    "html-webpack-plugin": "^5.3.1",
+    "html-webpack-plugin": "^5.3.2",
     "micro-tpl-loader": "^0.0.1",
     "slash-to-regexp": "^0.0.4",
     "suffix": "^1.0.0",

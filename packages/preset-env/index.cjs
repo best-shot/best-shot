@@ -47,7 +47,6 @@ exports.apply = function applyEnv() {
     if (Object.values(data).length > 0) {
       const sorted = sortKeys(data, { deep: true });
 
-      // @ts-ignore
       logger(sorted);
 
       const result = mapValues(sorted, (value) => JSON.stringify(value));

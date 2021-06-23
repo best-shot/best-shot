@@ -1,6 +1,4 @@
-'use strict';
-
-const { validate: coreValidate, ConfigError } = require('@best-shot/validator');
+import { ConfigError, validate as coreValidate } from '@best-shot/validator';
 
 function hasUniqueNames(config) {
   return (
@@ -34,11 +32,10 @@ const schema = {
   ],
 };
 
-module.exports = function validate(config) {
-  // @ts-ignore
+export function validate(config) {
   coreValidate({ schema, data: config });
 
   if (hasUniqueNames(config)) {
     throw new ConfigError('every config[x].name should be unique');
   }
-};
+}

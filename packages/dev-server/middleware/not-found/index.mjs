@@ -1,13 +1,14 @@
-'use strict';
+import { compile } from 'ejs';
+import { Router } from 'express';
+import { readFileSync } from 'fs';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
-const { resolve } = require('path');
-const { Router } = require('express');
-const { compile } = require('ejs');
-const { readFileSync } = require('fs');
-
-const { isRaw } = require('../../lib/utils.cjs');
+import { isRaw } from '../../lib/utils.mjs';
 
 const router = Router({ strict: true });
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 router.get(
   '/.best-shot/:name(404.svg|logo.svg|logo.png)',
@@ -24,7 +25,7 @@ router.use(({ method, url }, res, next) => {
   }
 });
 
-module.exports = function notFound({ publicPath: path = '/' }) {
+export function notFound({ publicPath: path = '/' }) {
   const render = compile(
     readFileSync(resolve(__dirname, '404.html'), {
       encoding: 'utf-8',
@@ -54,4 +55,4 @@ module.exports = function notFound({ publicPath: path = '/' }) {
   });
 
   return router;
-};
+}

@@ -2,7 +2,7 @@
 
 const { readFileSync } = require('fs');
 const pickBy = require('lodash/pickBy');
-// @ts-ignore
+
 const tomlParser = require('@iarna/toml/parse');
 const yaml = require('js-yaml');
 const ini = require('ini');
@@ -66,7 +66,6 @@ const parser = {
   yaml: (str) => yaml.load(str),
 };
 
-// @ts-ignore
 function parseConfig({ path, name, type } = {}) {
   if (!path) {
     return {};

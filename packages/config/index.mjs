@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
 import { prompt } from './prompt.mjs';
-import validate from './validate.cjs';
+import { validate } from './validate.mjs';
 
 const { cyan } = chalk;
 

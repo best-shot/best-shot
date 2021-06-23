@@ -42,7 +42,6 @@ exports.apply = function applyReact({ config: { polyfill = false } }) {
           ...plugins,
           ...(mode === 'production'
             ? [
-                // @ts-ignore
                 ...(polyfill !== 'pure'
                   ? ['@babel/transform-react-inline-elements']
                   : []),

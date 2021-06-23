@@ -1,17 +1,12 @@
-'use strict';
+import getPort from 'get-port';
+import launchMiddleware from 'launch-editor-middleware';
+import WebpackDevServer from 'webpack-dev-server';
+import log from 'webpack-log';
 
-const WebpackDevServer = require('webpack-dev-server');
+import { notFound } from '../middleware/not-found/index.mjs';
+import * as waitPage from '../middleware/wait-page/index.mjs';
 
-const getPort = require('get-port');
-
-const log = require('webpack-log');
-
-const launchMiddleware = require('launch-editor-middleware');
-
-const waitPage = require('../middleware/wait-page/index.cjs');
-const notFound = require('../middleware/not-found/index.cjs');
-
-module.exports = function DevServer(compiler, options) {
+export function DevServer(compiler, options) {
   waitPage.apply(compiler);
 
   const logger = log({ name: 'wds' });
@@ -37,7 +32,6 @@ module.exports = function DevServer(compiler, options) {
   const Server = new WebpackDevServer(compiler, {
     ...options,
     before(app, server) {
-      // @ts-ignore
       app.use(waitPage.middleware(server));
 
       if (process.env.TERM_PROGRAM === 'vscode') {
@@ -65,4 +59,4 @@ module.exports = function DevServer(compiler, options) {
     });
 
   return Server;
-};
+}

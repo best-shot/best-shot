@@ -12,9 +12,7 @@ exports.apply = function applyServe({
   return (chain) => {
     const globalPublicPath = chain.output.get('publicPath');
 
-    // @ts-ignore
     const {
-      // @ts-ignore
       publicPath = isRelative(globalPublicPath) ? '/' : globalPublicPath,
       historyApiFallback,
       hot,

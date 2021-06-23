@@ -16,7 +16,6 @@ export function action({ _: [command] }) {
     const configs = await readConfig()({ command });
 
     const result = configs.map((config) =>
-      // @ts-ignore
       createConfig(config, {
         watch: true,
         command,
@@ -27,7 +26,6 @@ export function action({ _: [command] }) {
     const shouldWatch = [];
 
     result.forEach((config) => {
-      // @ts-ignore
       if (config.devServer) {
         shouldServe.push(config);
       } else {
@@ -68,7 +66,7 @@ export function action({ _: [command] }) {
     }
 
     if (shouldServe.length > 0) {
-      const { default: DevServer } = await import('./server.cjs');
+      const { DevServer } = await import('./server.mjs');
 
       shouldServe.forEach((config) => {
         const compiler = createCompiler(config);

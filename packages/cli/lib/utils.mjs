@@ -10,6 +10,9 @@ export async function errorHandle(callback) {
     if (error.detail) {
       console.log(error.detail);
     }
+    if (error.stack) {
+      console.log(error.stack);
+    }
     process.exitCode = 1;
   }
 }

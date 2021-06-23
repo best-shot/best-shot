@@ -1,7 +1,9 @@
-const { join } = require('path');
-const { outputFileSync } = require('fs-extra');
+import fs from 'fs-extra';
+import { join } from 'path';
 
-module.exports = function makeWriteFile(rootPath, stamp) {
+const { outputFileSync } = fs;
+
+export function makeWriteFile(rootPath, stamp) {
   return function writeFile({ name, data }) {
     const fileName = join(rootPath, '.best-shot', 'inspect', stamp, name);
 
@@ -12,4 +14,4 @@ module.exports = function makeWriteFile(rootPath, stamp) {
       console.error(error);
     }
   };
-};
+}

@@ -1,12 +1,16 @@
-const { errorHandle } = require('@best-shot/cli/lib/utils.cjs');
+import { errorHandle } from '@best-shot/cli/lib/utils.mjs';
 
-module.exports = function action({ _: [command] }) {
+export function action({ _: [command] }) {
   errorHandle(async () => {
-    const readConfig = require('@best-shot/cli/lib/read-config.cjs');
-    const createConfig = require('@best-shot/cli/lib/create-config.cjs');
-    const createCompiler = require('@best-shot/cli/lib/create-compiler.cjs');
+    const { readConfig } = await import('@best-shot/config');
+    const { createConfig } = await import(
+      '@best-shot/cli/lib/create-config.mjs'
+    );
+    const { createCompiler } = await import(
+      '@best-shot/cli/lib/create-compiler.mjs'
+    );
 
-    const applyAnalyzer = require('./apply.cjs');
+    const applyAnalyzer = await import('./apply.cjs');
 
     const configs = await readConfig()({ command });
 
@@ -37,4 +41,4 @@ module.exports = function action({ _: [command] }) {
 
     compiler.run(showStats);
   });
-};
+}

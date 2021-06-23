@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -29,9 +29,11 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.cjs",
+  "main": "./index.mjs",
+  "exports": "./index.mjs",
   "dependencies": {
-    "@best-shot/preset-serve": "^0.6.1",
+    "@best-shot/config": "0.1.0",
+    "@best-shot/preset-serve": "^0.6.2",
     "chalk": "^4.1.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
@@ -43,8 +45,8 @@
     "webpack-log": "^2.0.0"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.10.0",
-    "webpack": "^5.36.2"
+    "@best-shot/cli": "^0.11.0",
+    "webpack": "^5.40.0"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

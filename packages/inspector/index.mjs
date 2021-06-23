@@ -1,10 +1,8 @@
-const action = require('./lib/action.cjs');
+export const command = 'inspect';
 
-exports.command = 'inspect';
+export const describe = 'Output all configuration for inspection';
 
-exports.describe = 'Output all configuration for inspection';
-
-exports.builder = {
+export const builder = {
   stamp: {
     coerce(value) {
       return value === 'auto' ? Date.now().toString() : value;
@@ -16,4 +14,4 @@ exports.builder = {
   },
 };
 
-exports.handler = action;
+export { action as handler } from './lib/action.mjs';

@@ -1,34 +1,21 @@
-const BestShot = require('@best-shot/core');
+import { commandMode, errorHandle } from '@best-shot/cli/lib/utils.mjs';
+import BestShot from '@best-shot/core';
 
-const { errorHandle, commandMode } = require('@best-shot/cli/lib/utils.cjs');
+import { concatStr } from './concat-str.mjs';
+import { isInstalled } from './utils.cjs';
+import { makeWriteFile } from './write-file.mjs';
 
-const concatStr = require('./concat-str.cjs');
-const makeWriteFile = require('./write-file.cjs');
-
-function isSafeError(error) {
-  return (
-    error.code === 'MODULE_NOT_FOUND' &&
-    error.requireStack &&
-    error.requireStack[0] === __filename
-  );
-}
-
-module.exports = function action({ stamp = 'none' }) {
+export function action({ stamp = 'none' }) {
   console.log('best-shot', 'output files ...');
 
   const commands = ['watch', 'dev', 'prod'];
 
-  try {
-    require.resolve('@best-shot/dev-server/package.json');
+  if (isInstalled('@best-shot/dev-server/package.json')) {
     commands.push('serve');
-  } catch (error) {
-    if (!isSafeError(error)) {
-      throw error;
-    }
   }
 
   errorHandle(async () => {
-    const readConfig = require('@best-shot/cli/lib/read-config.cjs');
+    const { readConfig } = await import('@best-shot/config');
 
     const rootPath = process.cwd();
     const writeFile = makeWriteFile(rootPath, stamp);
@@ -38,7 +25,7 @@ module.exports = function action({ stamp = 'none' }) {
       // eslint-disable-next-line no-await-in-loop
       const configs = await readConfig(rootPath, false)({ command });
 
-      configs.forEach((config) => {
+      configs.forEach(async (config) => {
         const { chain, name, presets = [], ...rest } = config;
 
         const io = new BestShot({
@@ -53,7 +40,7 @@ module.exports = function action({ stamp = 'none' }) {
 
         writeFile({
           name: name ? `${name}/${command}.js` : `${command}.js`,
-          data: concatStr({
+          data: await concatStr({
             stamp,
             input: {
               watch,
@@ -73,4 +60,4 @@ module.exports = function action({ stamp = 'none' }) {
       });
     }
   });
-};
+}

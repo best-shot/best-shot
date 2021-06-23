@@ -1,10 +1,12 @@
-const sortKeys = require('sort-keys');
-const { stringify } = require('javascript-stringify');
+import { stringify } from 'javascript-stringify';
+import sortKeys from 'sort-keys';
 
-function formatter(code) {
+async function formatter(code) {
   try {
-    // eslint-disable-next-line import/no-extraneous-dependencies
-    const { format } = require('prettier');
+    const {
+      default: { format },
+      // eslint-disable-next-line import/no-extraneous-dependencies
+    } = await import('prettier');
     return format(code, {
       parser: 'babel',
       singleQuote: true,
@@ -38,7 +40,7 @@ function js2string(code) {
   return stringify(io);
 }
 
-module.exports = function concatStr({ input, output, schema, stamp }) {
+export function concatStr({ input, output, schema, stamp }) {
   return formatter(`
 // Generate by \`best-shot\`
 // repository: https://github.com/best-shot/best-shot
@@ -52,4 +54,4 @@ exports.input = ${js2string(input)}
 
 exports.config = ${output.toString()}
 `);
-};
+}

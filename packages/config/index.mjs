@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 import { prompt } from './prompt.mjs';
 import validate from './validate.cjs';
@@ -15,7 +15,7 @@ function isSafeError(error) {
 }
 
 async function readConfigFile(filename, rootPath = process.cwd()) {
-  return import(resolve(rootPath, '.best-shot', filename))
+  return import(pathToFileURL(resolve(rootPath, '.best-shot', filename)))
     .then(({ default: D, config }) => config ?? D)
     .catch((error) => {
       if (isSafeError(error)) {

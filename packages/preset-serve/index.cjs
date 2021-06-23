@@ -1,3 +1,5 @@
+'use strict';
+
 exports.name = 'preset-serve';
 
 function isRelative(publicPath) {

@@ -1,11 +1,17 @@
-const { cyan } = require('chalk');
-const { errorHandle } = require('@best-shot/cli/lib/utils.cjs');
+import { errorHandle } from '@best-shot/cli/lib/utils.mjs';
+import chalk from 'chalk';
 
-module.exports = function action({ _: [command] }) {
+const { cyan } = chalk;
+
+export function action({ _: [command] }) {
   errorHandle(async () => {
-    const readConfig = require('@best-shot/cli/lib/read-config.cjs');
-    const createConfig = require('@best-shot/cli/lib/create-config.cjs');
-    const createCompiler = require('@best-shot/cli/lib/create-compiler.cjs');
+    const { readConfig } = await import('@best-shot/config');
+    const { createConfig } = await import(
+      '@best-shot/cli/lib/create-config.mjs'
+    );
+    const { createCompiler } = await import(
+      '@best-shot/cli/lib/create-compiler.mjs'
+    );
 
     const configs = await readConfig()({ command });
 
@@ -62,7 +68,7 @@ module.exports = function action({ _: [command] }) {
     }
 
     if (shouldServe.length > 0) {
-      const DevServer = require('./server.cjs');
+      const { default: DevServer } = await import('./server.cjs');
 
       shouldServe.forEach((config) => {
         const compiler = createCompiler(config);
@@ -70,4 +76,4 @@ module.exports = function action({ _: [command] }) {
       });
     }
   });
-};
+}

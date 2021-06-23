@@ -1,17 +1,17 @@
-import pkg from 'chalk';
+import chalk from 'chalk';
 import { Cheetor } from 'cheetor';
 
-import { commandMode, commands } from './lib/utils.cjs';
+import { commandMode, commands } from './lib/utils.mjs';
 
-const { cyan, green } = pkg;
+const { cyan, green } = chalk;
 
 export function action() {
   new Cheetor('../package.json', import.meta.url)
     .website('https://www.npmjs.com/org/best-shot')
     .commandSafe('@best-shot/dev-server')
-    .commandFrom('../cmd/watch.cjs')
-    .commandFrom('../cmd/dev.cjs')
-    .commandFrom('../cmd/prod.cjs')
+    .commandFrom('../cmd/watch.mjs')
+    .commandFrom('../cmd/dev.mjs')
+    .commandFrom('../cmd/prod.mjs')
     .commandSafe('@best-shot/analyzer')
     .commandSafe('@best-shot/inspector')
     .middleware([
@@ -26,6 +26,5 @@ export function action() {
     .effect(({ scriptName }) => {
       process.title = scriptName;
     })
-    // @ts-ignore
     .setup();
 }

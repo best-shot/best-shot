@@ -1,10 +1,9 @@
 [
   "**/.{babel,postcss,browserslist}rc",
-  "**/.{babel,postcss}rc.json",
-  "**/babel.config.*",
-  "**/postcss{rc,.config}.*",
-  ".best-shot/{config,custom,diy}/*",
-  ".best-shot/{config,env,preset,plugin,tool}.*",
+  "**/.{babel,postcss,browserslist}rc.{json,yml,yaml}",
+  "**/{babel,postcss,browserslist}.config.*",
+  ".best-shot/{config,custom,diy,tool}/*",
+  ".best-shot/{config,env}.*",
   "{browserslist,package.json}",
   "{js,ts}config.json"
 ]

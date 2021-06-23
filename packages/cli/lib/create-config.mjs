@@ -1,11 +1,8 @@
-const BestShot = require('@best-shot/core');
+import BestShot from '@best-shot/core';
 
-const { commandMode } = require('./utils.cjs');
+import { commandMode } from './utils.mjs';
 
-module.exports = function createConfig(
-  config,
-  { command, batch, watch = false },
-) {
+export function createConfig(config, { command, batch, watch = false }) {
   const { name, chain, presets = [], ...rest } = config;
 
   return new BestShot({
@@ -24,4 +21,4 @@ module.exports = function createConfig(
     .when(batch, batch)
     .delete('watch')
     .toConfig();
-};
+}

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-yarn nice-move lint
-yarn ava --fail-fast
+npm run lint
+npm test

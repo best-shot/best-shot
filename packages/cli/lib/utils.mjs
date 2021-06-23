@@ -1,6 +1,8 @@
-const { red } = require('chalk');
+import chalk from 'chalk';
 
-async function errorHandle(callback) {
+const { red } = chalk;
+
+export async function errorHandle(callback) {
   try {
     await callback();
   } catch (error) {
@@ -12,7 +14,7 @@ async function errorHandle(callback) {
   }
 }
 
-const commands = {
+export const commands = {
   dev: 'development',
   serve: 'development',
   watch: 'development',
@@ -20,12 +22,6 @@ const commands = {
   analyze: 'production',
 };
 
-function commandMode(command) {
+export function commandMode(command) {
   return commands[command] || 'development';
 }
-
-module.exports = {
-  commands,
-  commandMode,
-  errorHandle,
-};

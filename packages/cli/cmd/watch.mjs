@@ -1,10 +1,8 @@
-const action = require('../lib/action.cjs');
+export const command = 'watch';
 
-exports.command = 'watch';
+export const describe = 'Same as `dev` command in watch mode';
 
-exports.describe = 'Same as `dev` command in watch mode';
-
-exports.builder = (cli) => {
+export function builder(cli) {
   cli.option('config-name', {
     describe: 'Name for multi config',
     alias: 'n',
@@ -17,6 +15,6 @@ exports.builder = (cli) => {
         : undefined,
     requiresArg: true,
   });
-};
+}
 
-exports.handler = action;
+export { action as handler } from '../lib/action.mjs';

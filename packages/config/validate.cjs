@@ -1,3 +1,5 @@
+'use strict';
+
 const { validate: coreValidate, ConfigError } = require('@best-shot/validator');
 
 function hasUniqueNames(config) {

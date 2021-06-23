@@ -1,8 +1,8 @@
-const { resolve } = require('path');
-const prompts = require('prompts');
-const Configstore = require('configstore');
+import Configstore from 'configstore';
+import { resolve } from 'path';
+import prompts from 'prompts';
 
-module.exports = function prompt(configs) {
+export function prompt(configs) {
   const cache = new Configstore(
     '',
     {},
@@ -39,4 +39,4 @@ module.exports = function prompt(configs) {
     cache.set('prompt', tasks);
     return configs.filter(({ name }) => tasks.includes(name));
   });
-};
+}

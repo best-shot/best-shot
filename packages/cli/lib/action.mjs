@@ -1,12 +1,11 @@
-const { errorHandle } = require('./utils.cjs');
+import { errorHandle } from './utils.mjs';
 
-module.exports = function action({ _: [command], progress, configName }) {
+export function action({ _: [command], progress, configName }) {
   errorHandle(async () => {
-    const readConfig = require('./read-config.cjs');
-    const createConfig = require('./create-config.cjs');
-    const createCompiler = require('./create-compiler.cjs');
-
-    const applyProgress = require('./apply-progress.cjs');
+    const { readConfig } = await import('@best-shot/config');
+    const { createConfig } = await import('./create-config.mjs');
+    const { createCompiler } = await import('./create-compiler.mjs');
+    const { applyProgress } = await import('./apply-progress.mjs');
 
     const configs = await readConfig()({ command, configName });
 
@@ -44,4 +43,4 @@ module.exports = function action({ _: [command], progress, configName }) {
       compiler.watch(watchOptions, showStats);
     }
   });
-};
+}

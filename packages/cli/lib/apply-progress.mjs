@@ -1,4 +1,4 @@
-module.exports = function applyProgress(chain) {
+export function applyProgress(chain) {
   const name = chain.get('name');
 
   chain.plugin('progress-bar').use('webpackbar', [
@@ -7,4 +7,4 @@ module.exports = function applyProgress(chain) {
       reporter: 'profile',
     },
   ]);
-};
+}

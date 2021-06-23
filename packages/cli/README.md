@@ -21,7 +21,7 @@ npm install @best-shot/cli --save-dev
 ## Usage
 
 ```bash
-npx -c best-shot <command> [options]
+npx --no-install best-shot <command> [options]
 ```
 
 ## Commands

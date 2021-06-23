@@ -32,7 +32,7 @@
   "main": "./index.mjs",
   "exports": "./index.mjs",
   "dependencies": {
-    "@best-shot/config": "0.1.0",
+    "@best-shot/config": "0.0.0",
     "@best-shot/preset-serve": "^0.6.2",
     "chalk": "^4.1.1",
     "ejs": "^3.1.6",

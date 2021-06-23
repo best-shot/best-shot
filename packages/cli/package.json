@@ -29,7 +29,7 @@
     "best-shot": "bin/index.mjs"
   },
   "dependencies": {
-    "@best-shot/config": "0.1.0",
+    "@best-shot/config": "0.0.0",
     "chalk": "^4.1.1",
     "cheetor": "^0.10.2",
     "is-installed-globally": "^0.4.0",

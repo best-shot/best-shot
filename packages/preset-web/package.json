@@ -32,7 +32,7 @@
   "main": "index.cjs",
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "ext-to-regexp": "^0.0.8",
+    "ext-to-regexp": "^0.1.0",
     "html-webpack-plugin": "^5.3.1",
     "micro-tpl-loader": "^0.0.1",
     "slash-to-regexp": "^0.0.4",
@@ -40,8 +40,8 @@
     "webpack-subresource-integrity": "5.0.0-alpha.5"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.4.0",
-    "webpack": "^5.27.2"
+    "@best-shot/core": "^0.4.8 || ^0.5.0",
+    "webpack": "^5.40.0"
   },
   "engines": {
     "node": "^12.20.0 || ^14.15.3"

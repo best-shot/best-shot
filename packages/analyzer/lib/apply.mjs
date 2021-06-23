@@ -1,9 +1,8 @@
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const applyProgress = require('@best-shot/cli/lib/apply-progress.cjs');
+import { applyProgress } from '@best-shot/cli/lib/apply-progress.mjs';
+import { resolve } from 'path';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-const { resolve } = require('path');
-
-module.exports = function apply(chain) {
+export function applyAnalyzer(chain) {
   const rootPath = chain.get('context');
   const name = chain.get('name') || '';
 
@@ -28,4 +27,4 @@ module.exports = function apply(chain) {
       statsFilename: getReportPath('stats.json'),
     },
   ]);
-};
+}

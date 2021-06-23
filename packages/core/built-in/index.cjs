@@ -1,3 +1,5 @@
+'use strict';
+
 const applyBasic = require('./apply-basic.cjs');
 const applyResolve = require('./apply-resolve.cjs');
 const applyTersor = require('./apply-tersor.cjs');

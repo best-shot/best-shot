@@ -1,3 +1,5 @@
+'use strict';
+
 const { inspect } = require('util');
 const { cyan, level } = require('chalk');
 const mapValues = require('lodash/mapValues');

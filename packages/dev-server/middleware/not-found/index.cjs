@@ -1,3 +1,5 @@
+'use strict';
+
 const { resolve } = require('path');
 const { Router } = require('express');
 const { compile } = require('ejs');

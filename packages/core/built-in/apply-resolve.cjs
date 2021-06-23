@@ -1,3 +1,5 @@
+'use strict';
+
 exports.name = 'resolve';
 
 const { notEmpty } = require('../lib/utils.cjs');

@@ -1,3 +1,5 @@
+'use strict';
+
 const crypto = require('crypto');
 
 // eslint-disable-next-line no-control-regex

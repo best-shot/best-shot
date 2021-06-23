@@ -1,3 +1,5 @@
+'use strict';
+
 const { schema } = require('copy-webpack/lib/schema.cjs');
 
 const { notEmpty } = require('../lib/utils.cjs');

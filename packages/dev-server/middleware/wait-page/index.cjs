@@ -1,3 +1,5 @@
+'use strict';
+
 const webpackDevServerWaitpage = require('webpack-dev-server-waitpage');
 
 const { isRaw } = require('../../lib/utils.cjs');

@@ -1,3 +1,5 @@
+'use strict';
+
 class ConfigError extends Error {
   constructor(message, detail) {
     super(message);

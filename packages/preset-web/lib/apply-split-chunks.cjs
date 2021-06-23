@@ -1,3 +1,5 @@
+'use strict';
+
 const slashToRegexp = require('slash-to-regexp');
 const { MinChunkSizePlugin } = require('webpack').optimize;
 

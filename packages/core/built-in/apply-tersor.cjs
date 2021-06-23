@@ -1,3 +1,5 @@
+'use strict';
+
 const deepMerge = require('deepmerge');
 const browserslist = require('browserslist');
 

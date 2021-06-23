@@ -1,3 +1,5 @@
+'use strict';
+
 const { HotModuleReplacementPlugin } = require('webpack');
 const NodeHmrPlugin = require('node-hmr-plugin');
 const slash = require('slash');

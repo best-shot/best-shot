@@ -1,3 +1,5 @@
+'use strict';
+
 const { readFileSync } = require('fs');
 const pickBy = require('lodash/pickBy');
 // @ts-ignore

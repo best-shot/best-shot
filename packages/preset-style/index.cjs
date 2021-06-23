@@ -1,3 +1,5 @@
+'use strict';
+
 const { relative } = require('path');
 
 const applyScssLess = require('./lib/apply-scss-less.cjs');

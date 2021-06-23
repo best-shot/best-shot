@@ -1,3 +1,5 @@
+'use strict';
+
 const extToRegexp = require('ext-to-regexp');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 

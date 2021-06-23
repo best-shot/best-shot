@@ -48,7 +48,7 @@
     "webpack": "^5.37.0"
   },
   "engines": {
-    "node": "^12.15.0 || ^14.15.3"
+    "node": "^12.20.0 || ^14.15.3"
   },
   "publishConfig": {
     "access": "public",

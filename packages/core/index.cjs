@@ -1,3 +1,5 @@
+'use strict';
+
 const WebpackChain = require('webpack-chain');
 const { importPresets } = require('./lib/presets.cjs');
 const Stack = require('./lib/stack.cjs');

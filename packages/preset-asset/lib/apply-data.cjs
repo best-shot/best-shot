@@ -1,3 +1,5 @@
+'use strict';
+
 const extToRegexp = require('ext-to-regexp');
 
 const { nonAscii, removeRoot } = require('./utils.cjs');

@@ -1,3 +1,5 @@
+'use strict';
+
 const mapValues = require('lodash/mapValues');
 const pickBy = require('lodash/pickBy');
 

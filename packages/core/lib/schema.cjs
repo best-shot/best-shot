@@ -1,3 +1,5 @@
+'use strict';
+
 const deepmerge = require('deepmerge');
 const { validate } = require('@best-shot/validator');
 

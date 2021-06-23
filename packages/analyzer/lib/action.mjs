@@ -10,7 +10,7 @@ export function action({ _: [command] }) {
       '@best-shot/cli/lib/create-compiler.mjs'
     );
 
-    const applyAnalyzer = await import('./apply.cjs');
+    const { applyAnalyzer } = await import('./apply.mjs');
 
     const configs = await readConfig()({ command });
 

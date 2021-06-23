@@ -58,7 +58,7 @@
     "bin-wrapper": "npm:bin-wrapper-china"
   },
   "engines": {
-    "node": "^12.15.0 || ^14.15.3"
+    "node": "^12.20.0 || ^14.15.3"
   },
   "commitlint": {
     "extends": "@nice-move/commitlint-config"

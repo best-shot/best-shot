@@ -1,6 +1,8 @@
+'use strict';
+
 const test = require('ava').default;
 
-const BestShot = require('../packages/core');
+const BestShot = require('../packages/core/index.cjs');
 
 const builtIn = require('../packages/core/built-in/index.cjs');
 

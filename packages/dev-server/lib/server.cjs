@@ -1,3 +1,5 @@
+'use strict';
+
 const WebpackDevServer = require('webpack-dev-server');
 
 const getPort = require('get-port');

@@ -24,7 +24,7 @@
     "lint": "nice-move lint",
     "prepare": "git config core.hooksPath .hooks",
     "serve": "best-shot serve",
-    "test": "ava --verbose",
+    "test": "ava --fail-fast",
     "watch": "best-shot watch"
   },
   "workspaces": [
@@ -36,10 +36,10 @@
     "vue": "^2.6.14"
   },
   "devDependencies": {
-    "@babel/core": "7.14.6",
-    "@nice-move/cli": "0.5.26",
+    "@babel/core": "^7.14.6",
+    "@nice-move/cli": "^0.5.27",
     "@nice-move/commitlint-config": "^0.1.3",
-    "@nice-move/eslint-config-base": "0.5.43",
+    "@nice-move/eslint-config-base": "^0.5.45",
     "@nice-move/prettier-config": "^0.4.7",
     "@nice-move/stylelint-config": "^0.5.8",
     "@types/react": "^17.0.11",
@@ -47,18 +47,18 @@
     "commitlint": "^12.1.4",
     "eslint": "^7.29.0",
     "eslint-plugin-ava": "^12.0.0",
-    "garou": "^0.1.29",
-    "prettier": "2.3.2",
+    "garou": "^0.1.30",
+    "prettier": "^2.3.2",
     "stylelint": "^13.13.1",
     "typescript": "^4.3.4",
-    "webpack": "^5.40.0",
+    "webpack": "^5.41.1",
     "webpack-cli": "^4.7.2"
   },
   "resolutions": {
     "bin-wrapper": "npm:bin-wrapper-china"
   },
   "engines": {
-    "node": "^12.20.0 || ^14.15.3"
+    "node": "^12.22.0 || ^14.17.0"
   },
   "commitlint": {
     "extends": "@nice-move/commitlint-config"

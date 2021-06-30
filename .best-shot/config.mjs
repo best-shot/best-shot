@@ -1,4 +1,7 @@
 export default {
-  presets: ['style'],
-  entry: './src/index.css',
+  presets: ['web'],
+  entry: './src/index.html',
+  define: {
+    test: 123456789,
+  },
 };

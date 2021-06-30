@@ -7,7 +7,11 @@ const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { relative } = require('path');
 
-const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
+function mergeAll(...options) {
+  return deepmerge.all(options, {
+    arrayMerge: (destinationArray, sourceArray) => sourceArray,
+  });
+}
 
 const htmlMinifier = {
   collapseWhitespace: true,
@@ -21,42 +25,26 @@ const htmlMinifier = {
   useShortDoctype: true,
 };
 
-const fallback = {
-  template: './src/index.html',
-  title: 'BEST-SHOT Project',
-};
-
 exports.setHtml = function setHtml({ html = {}, define, sri }) {
   return (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
     const context = chain.get('context');
-    const publicPath = chain.output.get('publicPath');
     const minimize = chain.optimization.get('minimize');
 
     const page = Array.isArray(html) ? html : [html];
 
     page.forEach((options, index) => {
       chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
-        deepmerge.all(
-          [
-            {
-              template: './src/index.html',
-              title: 'BEST-SHOT Project',
-              cache: watch,
-            },
-            index > 0 ? page[0] : {},
-            options,
-            {
-              templateParameters: {
-                publicPath,
-                title: options.title || fallback.title,
-                ...(define && { define }),
-              },
-              minify: minimize ? htmlMinifier : false,
-            },
-          ],
-          { arrayMerge: overwriteMerge },
+        mergeAll(
+          {
+            ...(define && { templateParameters: { define } }),
+            template: './src/index.html',
+            cache: watch,
+          },
+          index > 0 ? page[0] : {},
+          options,
+          { minify: minimize ? htmlMinifier : false },
         ),
       ]);
     });

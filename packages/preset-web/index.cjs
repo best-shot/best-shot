@@ -70,7 +70,6 @@ const items = {
 
 exports.schema = {
   html: {
-    default: {},
     oneOf: [
       items,
       {

@@ -92,13 +92,9 @@ module.exports = function applyStylesheet(esModule = true) {
     }
 
     function takeOptions(loader) {
-      loader.options(
-        esModule
-          ? {
-              modules: { namedExport: true },
-            }
-          : { esModule: false },
-      );
+      if (!esModule) {
+        loader.options({ esModule: false });
+      }
     }
 
     chain.module.rule('style').when(

@@ -5,6 +5,9 @@ const extToRegexp = require('ext-to-regexp');
 const slashToRegexp = require('slash-to-regexp');
 const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {
+  default: HtmlWebpackInjectPlugin,
+} = require('html-webpack-inject-plugin');
 const { relative } = require('path');
 
 function mergeAll(...options) {
@@ -25,7 +28,7 @@ const htmlMinifier = {
   useShortDoctype: true,
 };
 
-exports.setHtml = function setHtml({ html = {}, define, sri }) {
+exports.setHtml = function setHtml({ html = {}, inject = [], define, sri }) {
   return (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
@@ -48,6 +51,15 @@ exports.setHtml = function setHtml({ html = {}, define, sri }) {
         ),
       ]);
     });
+
+    if (inject.length > 0) {
+      chain.plugin('inject').use(HtmlWebpackInjectPlugin, [
+        {
+          prepend: true,
+          externals: inject,
+        },
+      ]);
+    }
 
     if (mode === 'production' && sri) {
       chain.output.crossOriginLoading('anonymous');

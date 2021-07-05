@@ -55,9 +55,9 @@ export default {
 
 ### Split Chunks
 
-```mjs
-// example: .best-shot/config.mjs
-export default {
+```cjs
+// example: .best-shot/config.cjs
+module.exports = {
   presets: ['web'],
   vendors: {
     common: ['lodash', 'axios']

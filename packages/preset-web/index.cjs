@@ -16,7 +16,9 @@ function addMin(filename) {
 
 exports.name = 'preset-web';
 
-exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
+exports.apply = function applyWeb({
+  config: { html, inject, vendors, define, sri },
+}) {
   return (chain) => {
     const mode = chain.get('mode');
     const hot = chain.devServer.get('hot') || false;
@@ -45,7 +47,7 @@ exports.apply = function applyWeb({ config: { html, vendors, define, sri } }) {
         }),
       )
       .batch(splitChunks({ vendors }))
-      .batch(setHtml({ sri, html, define }));
+      .batch(setHtml({ sri, html, define, inject }));
   };
 };
 
@@ -80,6 +82,13 @@ exports.schema = {
         title: 'Options group of HtmlWebpackPlugin',
       },
     ],
+  },
+  inject: {
+    type: 'array',
+    uniqueItems: true,
+    items: {
+      type: 'object',
+    },
   },
   polyfill: {
     default: polyfill(),

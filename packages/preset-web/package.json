@@ -33,7 +33,7 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "ext-to-regexp": "^0.1.0",
-    "html-loader": "^2.1.2",
+    "html-webpack-inject-plugin": "^5.0.0",
     "html-webpack-plugin": "^5.3.2",
     "micro-tpl-loader": "^0.0.1",
     "slash-to-regexp": "^0.0.4",
@@ -42,7 +42,7 @@
   },
   "peerDependencies": {
     "@best-shot/core": "^0.4.8 || ^0.5.0",
-    "webpack": "^5.40.0"
+    "webpack": "^5.42.0"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0"

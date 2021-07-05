@@ -1511,7 +1511,7 @@
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
-"@typescript-eslint/parser@^4.28.0":
+"@typescript-eslint/parser@^4.28.0", "@typescript-eslint/parser@^4.28.1":
   version "4.28.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.28.1.tgz#5181b81658414f47291452c15bf6cd44a32f85bd"
   integrity sha512-UjrMsgnhQIIK82hXGaD+MCN8IfORS1CbMdu7VlZbYa8LCZtbZjJA26De4IPQB7XYZbL8gJ99KWNj0l6WD0guJg==
@@ -2750,6 +2750,14 @@ cheetor@^0.10.2:
     chalk "^4.1.1"
     yargs "^17.0.1"
 
+cheetor@^0.11.2:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/cheetor/-/cheetor-0.11.3.tgz#ded69b26b08095d2c74cb5ccd93db940cecc41b6"
+  integrity sha512-krTvgssEPeTAobpKWWZvweAjxBBW8VFj2uIu6LigUuApYnhOiHQEcSPH3fS+RT4bVloW+RKZUEpIp2GYMFU2cg==
+  dependencies:
+    chalk "^4.1.1"
+    yargs "^17.0.1"
+
 chevrotain@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/chevrotain/-/chevrotain-4.1.1.tgz#e1e601bf099e96e6a3377671b7d5a40c631cf8ce"
@@ -2813,7 +2821,7 @@ ci-info@^2.0.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
 
-ci-info@^3.0.0, ci-info@^3.1.1:
+ci-info@^3.0.0, ci-info@^3.1.1, ci-info@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-3.2.0.tgz#2876cb948a498797b5236f0095bc057d0dca38b6"
   integrity sha512-dVqRX7fLUm8J6FgHJ418XuIgDLZDkYcDFTeL6TA2gt5WlIZUQrrH6EZrNClwT/H0FateUsZkGIOPRrLbP+PR9A==
@@ -4322,6 +4330,24 @@ eslint-plugin-unicorn@^33.0.1:
     safe-regex "^2.1.1"
     semver "^7.3.5"
 
+eslint-plugin-unicorn@^34.0.1:
+  version "34.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-34.0.1.tgz#e31cfaf487591599ff1f1b1e74776cce59dcc3ae"
+  integrity sha512-GUBtRYRhPVOW/GDu6QtOjrneSZxY/MulOT8puJU+47VKCzNmMgS/iHO2gZqoQ7KPMrpNYlebUlvCWy3IR1USVQ==
+  dependencies:
+    ci-info "^3.2.0"
+    clean-regexp "^1.0.0"
+    eslint-template-visitor "^2.3.2"
+    eslint-utils "^3.0.0"
+    is-builtin-module "^3.1.0"
+    lodash "^4.17.21"
+    pluralize "^8.0.0"
+    read-pkg-up "^7.0.1"
+    regexp-tree "^0.1.23"
+    reserved-words "^0.1.2"
+    safe-regex "^2.1.1"
+    semver "^7.3.5"
+
 eslint-plugin-vue@^7.12.1:
   version "7.12.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-7.12.1.tgz#ef6499ce4fe0566659c8e12c71713f5308630a76"
@@ -5038,26 +5064,26 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-garou@^0.1.30:
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/garou/-/garou-0.1.30.tgz#37a5d8849494f58311117dbf8ab4d57e1d79413c"
-  integrity sha512-7wAoB6BEzJ9BDp/7VHmVFaE/vZ68htpKEI760z0YkG/V1xcuyrVZwmyaEHsvfsNc20fLQnAfjTaeH0XOjy6qAg==
+garou@^0.1.31:
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/garou/-/garou-0.1.31.tgz#88788fde36e651dadbcf02fe274535b2abad1ea7"
+  integrity sha512-zO/tVTNUOR7kDZt75AganP8m162L1Nl7KowsgRqouQfw1IVTc3SI0aC1FjSzFp8cAnx2W7tpClsNxc2lF8Wp9Q==
   dependencies:
-    "@typescript-eslint/parser" "^4.28.0"
-    cheetor "^0.10.2"
+    "@typescript-eslint/parser" "^4.28.1"
+    cheetor "^0.11.2"
     eslint "^7.29.0"
     eslint-plugin-html "^6.1.2"
     eslint-plugin-import "^2.23.4"
     eslint-plugin-react "^7.24.0"
     eslint-plugin-simple-import-sort "^7.0.0"
     eslint-plugin-sort-class-members "^1.11.0"
-    eslint-plugin-unicorn "^33.0.1"
+    eslint-plugin-unicorn "^34.0.1"
     eslint-plugin-vue "^7.12.1"
     fs-chain "^8.0.1"
     globby "^11.0.4"
     rehype "^11.0.0"
     rehype-sort-attributes "^3.0.2"
-    slash "^3.0.0"
+    slash "^4.0.0"
     stylelint "^13.13.1"
     stylelint-order "^4.1.0"
 
@@ -9702,6 +9728,11 @@ slash@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
+
+slash@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
+  integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
 
 slice-ansi@^3.0.0:
   version "3.0.0"

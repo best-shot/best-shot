@@ -32,7 +32,7 @@ exports.apply = function apply() {
           config
             .entry(key)
             .prepend('webpack/hot/poll?5000')
-            .prepend('@best-shot/preset-electron/reboot.cjs');
+            .prepend('@best-shot/preset-electron/reboot.mjs');
         });
       }
     }

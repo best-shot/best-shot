@@ -53,12 +53,9 @@ exports.setHtml = function setHtml({ html = {}, inject = [], define, sri }) {
     });
 
     if (inject.length > 0) {
-      chain.plugin('inject').use(HtmlWebpackInjectPlugin, [
-        {
-          prepend: true,
-          externals: inject,
-        },
-      ]);
+      chain
+        .plugin('inject')
+        .use(HtmlWebpackInjectPlugin, [{ externals: inject }]);
     }
 
     if (mode === 'production' && sri) {

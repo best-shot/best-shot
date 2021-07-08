@@ -29,7 +29,34 @@ npm install @best-shot/preset-web --save-dev
 ```mjs
 // example: .best-shot/config.mjs
 export default {
-  presets: ['web']
+  presets: ['web'],
+  html: {
+    // See: https://github.com/jantimon/html-webpack-plugin#options
+  }
+};
+```
+
+## Options
+
+```mjs
+// example: .best-shot/config.mjs
+export default {
+  presets: ['web'],
+  sri: false, // Subresource Integrity, enable by default
+  vendors: {
+    // Split Chunks
+    common: ['lodash', 'axios']
+  },
+  html: [
+    // Multiple Page Application
+    {
+      filename: './src/index.html',
+      title: 'Hello world!'
+    },
+    {
+      filename: './src/intro.html'
+    }
+  ]
 };
 ```
 
@@ -39,46 +66,9 @@ export default {
 
 This preset use `global` as `options.polyfill`.
 
-See Options in [@best-shot/preset-babel](../preset-babel)
+See Options in [@best-shot/preset-babel](../preset-babel#polyfill)
 
-### Subresource Integrity
+## Related
 
-Subresource Integrity (SRI) is enable by default.
-
-```mjs
-// example: .best-shot/config.mjs
-export default {
-  presets: ['web'],
-  sri: false // To disable it
-};
-```
-
-### Split Chunks
-
-```cjs
-// example: .best-shot/config.cjs
-module.exports = {
-  presets: ['web'],
-  vendors: {
-    common: ['lodash', 'axios']
-  }
-};
-```
-
-### Multiple Page Application
-
-```mjs
-// example: .best-shot/config.mjs
-export default {
-  presets: ['web'],
-  html: [
-    {
-      filename: './src/index.html', // default
-      title: 'Hello world!'
-    },
-    {
-      filename: './src/intro.html'
-    }
-  ]
-};
-```
+- [@best-shot/preset-style](../preset-style)
+- [@best-shot/core](../core)

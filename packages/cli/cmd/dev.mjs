@@ -1,12 +1,8 @@
-import chalk from 'chalk';
-
 import { builder as baseBuilder, handler } from './watch.mjs';
-
-const { cyan } = chalk;
 
 export const command = 'dev';
 
-export const describe = `Bundle files in ${cyan('development')} mode`;
+export const describe = 'Bundle files in development mode';
 
 export function builder(cli) {
   baseBuilder(cli);

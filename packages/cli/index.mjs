@@ -6,7 +6,7 @@ import { commandMode, commands } from './lib/utils.mjs';
 const { cyan, green } = chalk;
 
 export function action() {
-  new Cheetor('../package.json', import.meta.url)
+  new Cheetor('./package.json', import.meta.url)
     .website('https://www.npmjs.com/org/best-shot')
     .commandSafe('@best-shot/dev-server')
     .commandFrom('../cmd/watch.mjs')
@@ -23,8 +23,5 @@ export function action() {
         }
       },
     ])
-    .effect(({ scriptName }) => {
-      process.title = scriptName;
-    })
     .setup();
 }

@@ -1,62 +1,85 @@
-import getPort from 'get-port';
+import { createRequire } from 'module';
+
 import launchMiddleware from 'launch-editor-middleware';
 import WebpackDevServer from 'webpack-dev-server';
-import log from 'webpack-log';
 
 import { notFound } from '../middleware/not-found/index.mjs';
 import * as waitPage from '../middleware/wait-page/index.mjs';
 
-export function DevServer(compiler, options) {
+function handleAuto(publicPath) {
+  return publicPath === 'auto' ? '/' : publicPath;
+}
+
+class BestShotDevServer extends WebpackDevServer {
+  // https://github.com/webpack/webpack-dev-server/blob/fd2a4e3ea78d877e9a4a7cdf343ef71e55f0cc57/lib/Server.js#L846
+  setupHistoryApiFallbackFeature() {
+    const requireLazy = createRequire(import.meta.url);
+    const historyApiFallback = requireLazy('connect-history-api-fallback');
+
+    const options =
+      typeof this.options.historyApiFallback !== 'boolean'
+        ? this.options.historyApiFallback
+        : {};
+
+    let logger;
+
+    if (typeof options.verbose === 'undefined') {
+      logger = this.logger.log.bind(
+        this.logger,
+        '[connect-history-api-fallback]',
+      );
+    }
+
+    const {
+      devMiddleware: {
+        publicPath = this.compiler.options.output.publicPath,
+      } = {},
+    } = this.options;
+
+    if (publicPath.startsWith('/')) {
+      this.app.use(publicPath, historyApiFallback({ logger, ...options }));
+    } else {
+      this.app.use(historyApiFallback({ logger, ...options }));
+    }
+  }
+}
+
+export function DevServer(
+  compiler,
+  { onAfterSetupMiddleware, onBeforeSetupMiddleware, ...options },
+) {
   waitPage.apply(compiler);
 
-  const logger = log({ name: 'wds' });
+  process.env.WEBPACK_DEV_SERVER_BASE_PORT = 1234;
 
-  if (
-    options.historyApiFallback === true &&
-    !compiler.options.output.publicPath.startsWith('/')
-  ) {
-    logger.warn("output.publicPath didn't starts with '/'");
-    logger.warn('historyApiFallback might caught assets error');
-  }
+  const publicPath = handleAuto(
+    options.publicPath || compiler.options.output.publicPath,
+  );
 
-  const { experiments: { lazyCompilation = false } = {} } = compiler.options;
-
-  if (
-    lazyCompilation === true ||
-    (lazyCompilation !== false &&
-      !(lazyCompilation.imports === false && lazyCompilation.entries === false))
-  ) {
-    logger.info('lazy compilation is enabled');
-  }
-
-  const Server = new WebpackDevServer(compiler, {
+  const Server = new BestShotDevServer(compiler, {
     ...options,
-    before(app, server) {
-      app.use(waitPage.middleware(server));
-
+    onBeforeSetupMiddleware(server) {
       if (process.env.TERM_PROGRAM === 'vscode') {
-        app.use('/__open-in-editor', launchMiddleware('code'));
+        server.app.use('/__open-in-editor', launchMiddleware('code'));
       }
-
-      if (typeof options.before === 'function') {
-        options.before(app, server);
+      if (typeof onBeforeSetupMiddleware === 'function') {
+        onBeforeSetupMiddleware(server);
       }
+      server.app.use(waitPage.middleware(server));
     },
-    after(app, server) {
-      if (typeof options.after === 'function') {
-        options.after(app, server);
+    onAfterSetupMiddleware(server) {
+      if (typeof onAfterSetupMiddleware === 'function') {
+        onAfterSetupMiddleware(server);
       }
-      app.use(notFound({ publicPath: options.publicPath }));
+      server.app.use(
+        notFound({
+          publicPath: publicPath.startsWith('/') ? publicPath : '/',
+        }),
+      );
     },
   });
 
-  getPort({ port: [options.port, 1234, 5678] })
-    .then((port) => {
-      Server.listen(port, options.host);
-    })
-    .catch(() => {
-      Server.listen(options.port, options.host);
-    });
+  Server.listen();
 
   return Server;
 }

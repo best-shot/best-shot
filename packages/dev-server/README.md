@@ -14,10 +14,11 @@ DevServer support of `@best-shot/cli`.
 
 ## Features
 
-- features of webpack-dev-server
-- auto fallback to available port
-- show a wait page when bundling
-- open source file in vscode
+- All Features of webpack-dev-server@4
+- Hook `historyApiFallback` into `devMiddleware.publicPath`
+- Show a wait page when bundling
+- Provide a 404 page
+- Open source file in vscode (from vue-devtools)
 
 ## Installation
 
@@ -28,15 +29,19 @@ npm install @best-shot/cli @best-shot/dev-server --save-dev
 ## Usage
 
 ```bash
-npx -c best-shot serve [options]
+npx --no-install best-shot serve [options]
 ```
 
 ```mjs
+// example: .best-shot/config.mjs
 export default {
   presets: [
     // without this will fallback to `watch` mode
     'serve'
-  ]
+  ],
+  devServer: {
+    // ...
+  }
 };
 ```
 

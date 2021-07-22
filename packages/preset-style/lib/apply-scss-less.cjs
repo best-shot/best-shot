@@ -18,12 +18,14 @@ module.exports = function applyScssLess(less) {
       .loader('resolve-url-loader')
       .options({
         sourceMap: !['eval', false].includes(chain.get('devtool')),
-        keepQuery: true,
         removeCR: true,
       })
       .end()
       .use('sass-loader')
-      .loader('sass-loader');
+      .loader('sass-loader')
+      .options({
+        sourceMap: true,
+      });
 
     chain.module
       .rule('less')

@@ -10332,7 +10332,7 @@ webpack-subresource-integrity@5.0.0-alpha.5:
   dependencies:
     typed-assert "^1.0.4"
 
-webpack@^5.45.1:
+webpack@^5.46.0:
   version "5.46.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.46.0.tgz#105d20d96f79db59b316b0ae54316f0f630314b5"
   integrity sha512-qxD0t/KTedJbpcXUmvMxY5PUvXDbF8LsThCzqomeGaDlCA6k998D8yYVwZMvO8sSM3BTEOaD4uzFniwpHaTIJw==

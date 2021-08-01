@@ -29,7 +29,7 @@
     "@best-shot/validator": "^0.1.0",
     "browserslist": "^4.16.6",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "copy-webpack": "^2.0.2",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",

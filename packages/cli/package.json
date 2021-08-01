@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@best-shot/config": "0.0.0",
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "cheetor": "^0.12.1",
     "is-installed-globally": "^0.4.0",
     "v8-compile-cache": "^2.3.0",

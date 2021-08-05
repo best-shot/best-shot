@@ -9890,7 +9890,7 @@ type-is@~1.6.17, type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typed-assert@^1.0.4:
+typed-assert@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/typed-assert/-/typed-assert-1.0.8.tgz#4bf9f1ce7f3f974d09c3afd7c68d12e1391a233c"
   integrity sha512-5NkbXZUlmCE73Fs7gvkp1XXJWHYetPkg60QnQ2NXQmBYNFxbBr2zA8GCtaH4K2s2WhOmSlgiSTmrjrcm5tnM5g==
@@ -10360,12 +10360,12 @@ webpack-sources@^3.1.1:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.1.2.tgz#614c962ac45dfac7f0f482052db8324a6e0dc274"
   integrity sha512-//DeuK5SzM6yFRXNOGK+4tX7QB8PghkL8kFBPyqSlN62oJOUkmby8ptV7+IBGH6BkIuIw5Rjd7OvvwZaoiF4ag==
 
-webpack-subresource-integrity@5.0.0-alpha.5:
-  version "5.0.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/webpack-subresource-integrity/-/webpack-subresource-integrity-5.0.0-alpha.5.tgz#c674f7c536caa389c99ebfb4e3c80fe16bc40d44"
-  integrity sha512-bZVkt3W7wbvNXoM+vHNNTB9V6z0Xce1MJRcMeK7EwY0Nf4RpOxp8S5APRWKWDZX6ufxIZ9MZo8aISZRUcvO3uA==
+webpack-subresource-integrity@5.0.0-rc.1:
+  version "5.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/webpack-subresource-integrity/-/webpack-subresource-integrity-5.0.0-rc.1.tgz#90dd252c3fea2d73e782610e05e27397a3e374e7"
+  integrity sha512-sr6Bgl9nODTBayuz6CSMD8sOLayQt1OmGgQAj2pwqjRnhZRJ3Bpy3uBXUYJN5UHq3ca3KpJ7Qk9epOYUpSegtw==
   dependencies:
-    typed-assert "^1.0.4"
+    typed-assert "^1.0.8"
 
 webpack@^5.47.1:
   version "5.47.1"

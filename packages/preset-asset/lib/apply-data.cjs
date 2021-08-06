@@ -41,12 +41,17 @@ module.exports = function applyData(chain) {
     .oneOf('external')
     .test(/\.\[hash]/)
     .batch(outputFile('.json'))
-    .use('yaml-loader')
-    .loader('yaml-loader');
+    .end()
 
-  yaml // align
     .oneOf('internal')
+    .set('dependency', { not: ['url'] })
     .type('json')
+    .end()
+
+    .oneOf('url')
+    .batch(outputFile('.json'))
+    .end()
+
     .use('yaml-loader')
     .loader('yaml-loader');
 

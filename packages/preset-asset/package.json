@@ -27,6 +27,7 @@
   },
   "main": "index.cjs",
   "dependencies": {
+    "@sindresorhus/transliterate": "^0.1.2",
     "ext-to-regexp": "^0.1.0",
     "image-minimizer-webpack-plugin": "^2.2.0",
     "imagemin-gifsicle": "^7.0.0",
@@ -38,7 +39,7 @@
     "yaml-loader": "^0.6.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.4.8 || ^0.5.0"
+    "@best-shot/core": "^0.5.0"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0"

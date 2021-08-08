@@ -36,7 +36,7 @@
     "vue": "^2.6.14"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.8",
+    "@babel/core": "^7.15.0",
     "@nice-move/cli": "^0.5.28",
     "@nice-move/commitlint-config": "^0.1.4",
     "@nice-move/eslint-config-base": "^0.5.58",

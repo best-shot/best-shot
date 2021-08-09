@@ -16,9 +16,20 @@ function addMin(filename) {
 
 exports.name = 'preset-web';
 
+function isInstalled() {
+  try {
+    require.resolve('@road-to-rome/webpack-plugin/package.json');
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 exports.apply = function applyWeb({
-  config: { html, inject, vendors, define, sri },
+  config: { html, inject, vendors, define, sri, rtr },
 }) {
+  const targets = ['web', 'browserslist'];
+
   return (chain) => {
     const mode = chain.get('mode');
     const hot = chain.devServer.get('hot') || false;
@@ -40,7 +51,7 @@ exports.apply = function applyWeb({
           publicPath.endsWith('/') &&
           (['web', 'browserslist', undefined].includes(target) ||
             (Array.isArray(target) &&
-              target.some((item) => ['web', 'browserslist'].includes(item)))),
+              target.some((item) => targets.includes(item)))),
         setOutputName({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,
@@ -48,6 +59,10 @@ exports.apply = function applyWeb({
       )
       .batch(splitChunks({ vendors }))
       .batch(setHtml({ sri, html, define, inject }));
+
+    if (isInstalled()) {
+      chain.plugin('road-to-rome').use('@road-to-rome/webpack-plugin', [rtr]);
+    }
   };
 };
 
@@ -56,15 +71,6 @@ const regexpFormat = {
   minLength: 1,
   type: 'string',
 };
-
-function polyfill() {
-  try {
-    // eslint-disable-next-line import/no-extraneous-dependencies
-    return require('@best-shot/preset-babel').schema.polyfill.enum[1];
-  } catch {
-    return false;
-  }
-}
 
 const items = {
   type: 'object',
@@ -91,7 +97,7 @@ exports.schema = {
     },
   },
   polyfill: {
-    default: polyfill(),
+    default: 'usage',
   },
   sri: {
     default: true,
@@ -111,4 +117,5 @@ exports.schema = {
     },
     type: 'object',
   },
+  rtr: {},
 };

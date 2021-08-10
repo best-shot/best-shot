@@ -28,8 +28,6 @@ function isInstalled() {
 exports.apply = function applyWeb({
   config: { html, inject, vendors, define, sri, rtr },
 }) {
-  const targets = ['web', 'browserslist'];
-
   return (chain) => {
     const mode = chain.get('mode');
     const hot = chain.devServer.get('hot') || false;
@@ -40,18 +38,10 @@ exports.apply = function applyWeb({
       mode === 'production' ? false : serve ? 'eval-source-map' : 'source-map',
     );
 
-    const target = chain.get('target');
-    const publicPath = chain.output.get('publicPath');
-
     chain
       .when(minimize, setOutputName({ style: addMin, script: addMin }))
       .when(!hot, setOutputName({ style: addHash, script: addHash }))
-      .when(
-        publicPath.startsWith('/') &&
-          publicPath.endsWith('/') &&
-          (['web', 'browserslist', undefined].includes(target) ||
-            (Array.isArray(target) &&
-              target.some((item) => targets.includes(item)))),
+      .bacth(
         setOutputName({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,
@@ -97,7 +87,7 @@ exports.schema = {
     },
   },
   polyfill: {
-    default: 'usage',
+    default: 'global',
   },
   sri: {
     default: true,

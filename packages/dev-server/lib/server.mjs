@@ -56,30 +56,33 @@ export function DevServer(
     options.publicPath || compiler.options.output.publicPath,
   );
 
-  const Server = new BestShotDevServer(compiler, {
-    ...options,
-    onBeforeSetupMiddleware(server) {
-      if (process.env.TERM_PROGRAM === 'vscode') {
-        server.app.use('/__open-in-editor', launchMiddleware('code'));
-      }
-      if (typeof onBeforeSetupMiddleware === 'function') {
-        onBeforeSetupMiddleware(server);
-      }
-      server.app.use(waitPage.middleware(server));
+  const Server = new BestShotDevServer(
+    {
+      ...options,
+      onBeforeSetupMiddleware(server) {
+        if (process.env.TERM_PROGRAM === 'vscode') {
+          server.app.use('/__open-in-editor', launchMiddleware('code'));
+        }
+        if (typeof onBeforeSetupMiddleware === 'function') {
+          onBeforeSetupMiddleware(server);
+        }
+        server.app.use(waitPage.middleware(server));
+      },
+      onAfterSetupMiddleware(server) {
+        if (typeof onAfterSetupMiddleware === 'function') {
+          onAfterSetupMiddleware(server);
+        }
+        server.app.use(
+          notFound({
+            publicPath: publicPath.startsWith('/') ? publicPath : '/',
+          }),
+        );
+      },
     },
-    onAfterSetupMiddleware(server) {
-      if (typeof onAfterSetupMiddleware === 'function') {
-        onAfterSetupMiddleware(server);
-      }
-      server.app.use(
-        notFound({
-          publicPath: publicPath.startsWith('/') ? publicPath : '/',
-        }),
-      );
-    },
-  });
+    compiler,
+  );
 
-  Server.listen();
+  Server.start();
 
   return Server;
 }

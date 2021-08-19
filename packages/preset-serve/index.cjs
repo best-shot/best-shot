@@ -58,6 +58,9 @@ exports.schema = {
       hot: {
         default: 'only',
       },
+      static: {
+        default: false,
+      },
     },
   },
 };

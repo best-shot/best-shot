@@ -86,9 +86,9 @@ export default {
 
 Write your config in any way. See <https://github.com/postcss/postcss-load-config>
 
-```mjs
-// example: postcss.config.mjs
-export default {
+```cjs
+// example: postcss.config.cjs
+module.exports = {
   plugins: {
     'postcss-preset-env': {}
   }

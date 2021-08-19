@@ -25,7 +25,6 @@ exports.apply = function applyDefine({ config: { define } }) {
     chain.plugin(displayName).use(DefinePlugin, [
       variables({
         ...define,
-        'process.env.NODE_ENV': mode,
         'BEST_SHOT.MODE': mode,
         'BEST_SHOT.WATCHING': watch,
         'BEST_SHOT.CONFIG_NAME': name,

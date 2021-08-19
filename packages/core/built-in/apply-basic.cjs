@@ -23,15 +23,20 @@ exports.apply = function applyBasic({
     const mode = chain.get('mode');
     const watch = chain.get('watch');
 
+    chain.optimization
+      .removeAvailableModules(true)
+      .minimize(mode === 'production');
+
     if (watch) {
       chain.watchOptions({ ignored: /node_modules/ });
       chain.output.pathinfo(false);
-      chain.optimization.removeAvailableModules(false).removeEmptyChunks(false);
+      chain.optimization
+        .removeAvailableModules(false)
+        .removeEmptyChunks(false)
+        .set('innerGraph', false);
     }
 
     chain.module.strictExportPresence(!watch);
-
-    chain.optimization.minimize(mode === 'production');
 
     const name = chain.get('name');
 

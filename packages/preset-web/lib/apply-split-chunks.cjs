@@ -7,13 +7,9 @@ const { join } = require('path');
 
 function mapValues(obj, func) {
   const arr = Object.entries(obj);
-  return arr.reduce(
-    (io, [key, value], index) => ({
-      ...io,
-      [key]: func(value, key, index, arr.length),
-    }),
-    {},
-  );
+  return Object.fromEntries(arr.map(
+    ( [key, value], index) => [key, func(value, key, index, arr.length)],
+  ));
 }
 
 const force = {
@@ -72,9 +68,14 @@ exports.splitChunks = function splitChunks({ vendors = {} }) {
         .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
 
       const name = chain.get('name') || '';
-      const rootPath = chain.get('context');
+
       chain.recordsPath(
-        join(rootPath, '.best-shot', 'stats', name, 'records.json'),
+        join(
+          process.cwd(),
+          'node_modules/.cache/best-shot/stats',
+          name,
+          'records.json',
+        ),
       );
     }
   };

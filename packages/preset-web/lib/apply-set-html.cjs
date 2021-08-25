@@ -61,9 +61,7 @@ exports.setHtml = function setHtml({ html = {}, inject = [], define, sri }) {
     if (mode === 'production' && sri) {
       chain.output.crossOriginLoading('anonymous');
 
-      chain
-        .plugin('subresource-integrity')
-        .use(SubresourceIntegrityPlugin, [{ enabled: true }]);
+      chain.plugin('subresource-integrity').use(SubresourceIntegrityPlugin);
     }
 
     chain.module

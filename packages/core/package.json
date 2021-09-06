@@ -33,7 +33,7 @@
     "copy-webpack": "^2.0.2",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
-    "terser-webpack-plugin": "^5.1.4",
+    "terser-webpack-plugin": "^5.2.3",
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {

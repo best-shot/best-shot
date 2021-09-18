@@ -34,7 +34,7 @@
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^9.0.0",
-    "svgo": "^2.5.0",
+    "svgo": "^2.6.1",
     "svgo-config": "^0.2.3",
     "yaml-loader": "^0.6.0"
   },

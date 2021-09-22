@@ -12,7 +12,9 @@ function airbnb() {
   }
 }
 
-exports.apply = function applyReact({ config: { polyfill = false } }) {
+exports.apply = function applyReact({
+  config: { polyfill: old = false, babel: { polyfill = old } = {} },
+}) {
   return (chain) => {
     const mode = chain.get('mode') || 'development';
     const useHot = chain.devServer.get('hot') || false;

@@ -31,7 +31,9 @@ npm install @best-shot/preset-babel --save-dev
 // example: .best-shot/config.mjs
 export default {
   presets: ['babel'],
-  polyfill: 'global'
+  babel: {
+    polyfill: 'global'
+  }
 };
 ```
 
@@ -41,7 +43,7 @@ export default {
 
 Can't be specify directly, always using `browserslist.loadConfig() || browserslist.defaults`.
 
-### polyfill
+### babel.polyfill
 
 - type: [ false, 'global', 'pure' ]
 - default: false
@@ -49,6 +51,13 @@ Can't be specify directly, always using `browserslist.loadConfig() || browsersli
 How `babel` handles polyfills. `pure` is an experimental option.
 
 References: <https://github.com/babel/babel/issues/10008>
+
+### babel.env
+
+- enum: [ 'auto', 'always' ]
+- default: 'always'
+
+When 'auto', `babel-preset-evergreen` will skip in watch mode
 
 ## Tips
 

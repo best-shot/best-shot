@@ -13,11 +13,18 @@ function getList(path) {
 
 exports.name = 'preset-babel';
 
-exports.apply = function applyBabel({ config: { polyfill = false } }) {
+exports.apply = function applyBabel({
+  config: {
+    polyfill: old = false,
+    babel: { polyfill = old, env = 'always' } = {},
+  },
+}) {
   return (chain) => {
     const mode = chain.get('mode');
     const context = chain.get('context');
-    const UseCache = chain.get('watch');
+    const watch = chain.get('watch');
+
+    const skip = env === 'auto' && watch;
 
     chain.module
       .rule('babel')
@@ -29,13 +36,15 @@ exports.apply = function applyBabel({ config: { polyfill = false } }) {
       .loader('babel-loader')
       .options({
         babelrc: false,
-        cacheDirectory: UseCache,
+        cacheCompression: false,
+        cacheDirectory: watch,
         compact: mode === 'production',
         envName: mode,
         sourceType: 'unambiguous',
         targets: getList(context),
-        ...(UseCache ? { cacheCompression: false } : undefined),
-        presets: [['evergreen', { polyfill }], '@babel/typescript'],
+        presets: skip
+          ? ['@babel/typescript']
+          : [['evergreen', { polyfill }], '@babel/typescript'],
       });
 
     const isServing = chain.devServer.entries() !== undefined;
@@ -44,9 +53,11 @@ exports.apply = function applyBabel({ config: { polyfill = false } }) {
       .rule('babel')
       .exclude.add(
         slashToRegexp(
-          isServing
+          skip
+            ? '/node_modules/'
+            : isServing
             ? '/node_modules/webpack(-dev-server)?/'
-            : '/node_modules/webpack/',
+            : '/node_modules/webpack/buildin/',
         ),
       )
       .when(polyfill, (exclude) =>
@@ -60,8 +71,24 @@ exports.apply = function applyBabel({ config: { polyfill = false } }) {
 exports.schema = {
   polyfill: {
     default: false,
-    description: 'References: <https://github.com/babel/babel/issues/10008>',
-    enum: [false, 'global', 'pure'],
-    title: 'How `babel` handles polyfills',
+    description: 'Use `babel.polyfill` instead',
+  },
+  babel: {
+    type: 'object',
+    properties: {
+      polyfill: {
+        // default: false,
+        description:
+          'References: <https://github.com/babel/babel/issues/10008>',
+        enum: [false, 'global', 'pure'],
+        title: 'How `babel` handles polyfills',
+      },
+      env: {
+        default: 'always',
+        enum: ['auto', 'always'],
+        description:
+          "When 'auto', `babel-preset-evergreen` will skip in watch mode",
+      },
+    },
   },
 };

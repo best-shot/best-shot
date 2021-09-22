@@ -86,8 +86,12 @@ exports.schema = {
       type: 'object',
     },
   },
-  polyfill: {
-    default: 'global',
+  babel: {
+    properties: {
+      polyfill: {
+        default: 'global',
+      },
+    },
   },
   sri: {
     default: true,

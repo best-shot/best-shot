@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@best-shot/preset-babel",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -43,8 +43,8 @@
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.15.0",
-    "@best-shot/core": "^0.4.8 || ^0.5.0"
+    "@babel/core": "^7.15.5",
+    "@best-shot/core": "^0.5.1"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0"

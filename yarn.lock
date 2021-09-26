@@ -6889,7 +6889,7 @@ multimap@^1.1.0:
   resolved "https://registry.yarnpkg.com/multimap/-/multimap-1.1.0.tgz#5263febc085a1791c33b59bb3afc6a76a2a10ca8"
   integrity sha512-0ZIR9PasPxGXmRsEF8jsDzndzHDj7tIav+JUmvIFB/WHswliFnquxECT/De7GR4yg99ky/NlRKJT82G1y271bw==
 
-nanocolors@^0.1.0, nanocolors@^0.1.5:
+nanocolors@^0.1.0, nanocolors@^0.1.12, nanocolors@^0.1.5:
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/nanocolors/-/nanocolors-0.1.12.tgz#8577482c58cbd7b5bb1681db4cf48f11a87fd5f6"
   integrity sha512-2nMHqg1x5PU+unxX7PGY7AuYxl2qDx7PSrTRjizr8sxdd3l/3hBuWWaki62qmtYm2U5i4Z5E7GbjlyDFhs9/EQ==
@@ -9620,7 +9620,7 @@ svgo-config@^0.2.3:
   resolved "https://registry.yarnpkg.com/svgo-config/-/svgo-config-0.2.3.tgz#85ef9b4ac11a2390bab6b981b1faa98e62a067fe"
   integrity sha512-DsAi/BBaGbZWC7oBeep+x9HglW/E1w8kXc+rEzgKGv9uCWbmPTI5DcBohnbct7R4kqzetXxtTV4E34ASDeCiAw==
 
-svgo@^2.1.0, svgo@^2.3.0, svgo@^2.6.1:
+svgo@^2.1.0, svgo@^2.3.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-2.6.1.tgz#60b613937e0081028cffc2369090e366b08f1f0e"
   integrity sha512-SDo274ymyG1jJ3HtCr3hkfwS8NqWdF0fMr6xPlrJ5y2QMofsQxIEFWgR1epwb197teKGgnZbzozxvJyIeJpE2Q==
@@ -9631,6 +9631,19 @@ svgo@^2.1.0, svgo@^2.3.0, svgo@^2.6.1:
     css-select "^4.1.3"
     css-tree "^1.1.3"
     csso "^4.2.0"
+    stable "^0.1.8"
+
+svgo@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/svgo/-/svgo-2.7.0.tgz#e164cded22f4408fe4978f082be80159caea1e2d"
+  integrity sha512-aDLsGkre4fTDCWvolyW+fs8ZJFABpzLXbtdK1y71CKnHzAnpDxKXPj2mNKj+pyOXUCzFHzuxRJ94XOFygOWV3w==
+  dependencies:
+    "@trysound/sax" "0.2.0"
+    commander "^7.2.0"
+    css-select "^4.1.3"
+    css-tree "^1.1.3"
+    csso "^4.2.0"
+    nanocolors "^0.1.12"
     stable "^0.1.8"
 
 table@^6.0.9, table@^6.6.0:

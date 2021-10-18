@@ -87,6 +87,7 @@ exports.schema = {
     },
   },
   babel: {
+    type: 'object',
     properties: {
       polyfill: {
         default: 'global',

@@ -64,7 +64,7 @@ export default {
 
 ### Polyfill
 
-This preset use `global` as `options.polyfill`.
+This preset use `global` as `options.babel.polyfill`.
 
 See Options in [@best-shot/preset-babel](../preset-babel#polyfill)
 

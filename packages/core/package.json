@@ -37,7 +37,7 @@
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {
-    "webpack": "^5.40.0"
+    "webpack": "^5.58.0"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0"

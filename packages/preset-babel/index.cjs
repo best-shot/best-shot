@@ -74,10 +74,11 @@ exports.schema = {
     description: 'Use `babel.polyfill` instead',
   },
   babel: {
+    default: {},
     type: 'object',
     properties: {
       polyfill: {
-        // default: false,
+        default: false,
         description:
           'References: <https://github.com/babel/babel/issues/10008>',
         enum: [false, 'global', 'pure'],

@@ -3,12 +3,19 @@
 exports.name = 'preset-serve';
 
 exports.apply = function applyServe({
-  config: { devServer, lazyCompilation },
+  config: {
+    devServer,
+    lazyCompilation: fallback,
+    experiments: { lazyCompilation = fallback } = {},
+  },
 }) {
   return (chain) => {
     if (lazyCompilation !== false) {
+      const experiments = chain.get('experiments');
+
       chain.merge({
         experiments: {
+          ...experiments,
           lazyCompilation:
             lazyCompilation === true
               ? {
@@ -27,20 +34,6 @@ exports.apply = function applyServe({
 };
 
 exports.schema = {
-  lazyCompilation: {
-    default: true,
-    title: 'Options for `experiments.lazyCompilation`',
-    description:
-      'See: https://webpack.js.org/configuration/experiments/#experimentslazycompilation',
-    oneOf: [
-      {
-        type: 'boolean',
-      },
-      {
-        type: 'object',
-      },
-    ],
-  },
   devServer: {
     description: 'Options for `devServer`',
     type: 'object',

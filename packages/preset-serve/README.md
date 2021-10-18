@@ -24,7 +24,9 @@ npm install @best-shot/preset-serve --save-dev
 // example: .best-shot/config.mjs
 export default {
   presets: ['serve'],
-  lazyCompilation: false, // true by default
+  experiments: {
+    lazyCompilation: false // true by default
+  },
   devServer: {
     // ...
   }

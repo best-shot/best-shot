@@ -43,7 +43,7 @@
     "mini-css-extract-plugin": "^2.3.0",
     "postcss": "^8.3.11",
     "postcss-loader": "^6.1.1",
-    "postcss-preset-evergreen": "^0.3.1",
+    "postcss-preset-evergreen": "^0.3.2",
     "resolve-url-loader": "^4.0.0",
     "sass": "^1.43.2",
     "sass-loader": "^12.1.0",
@@ -54,7 +54,7 @@
     "@best-shot/core": "^0.5.1"
   },
   "engines": {
-    "node": "^12.22.0 || ^14.17.0"
+    "node": "^12.22.0 || ^14.17.0 || >=16.13.0"
   },
   "publishConfig": {
     "access": "public",

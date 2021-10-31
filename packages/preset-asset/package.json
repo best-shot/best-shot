@@ -35,14 +35,14 @@
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^9.0.0",
     "svgo": "^2.7.0",
-    "svgo-config": "^0.2.3",
+    "svgo-config": "^0.3.0",
     "yaml-loader": "^0.6.0"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.5.0"
   },
   "engines": {
-    "node": "^12.22.0 || ^14.17.0"
+    "node": "^12.22.0 || ^14.17.0 || >=16.13.0"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

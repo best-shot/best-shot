@@ -35,19 +35,19 @@
   },
   "main": "index.cjs",
   "dependencies": {
-    "@babel/preset-typescript": "^7.15.0",
+    "@babel/preset-typescript": "^7.16.0",
     "babel-loader": "^8.2.3",
-    "babel-preset-evergreen": "^0.8.4",
+    "babel-preset-evergreen": "^0.8.5",
     "browserslist": "^4.17.5",
     "ext-to-regexp": "^0.1.0",
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.15.8",
+    "@babel/core": "^7.16.0",
     "@best-shot/core": "^0.5.1"
   },
   "engines": {
-    "node": "^12.22.0 || ^14.17.0"
+    "node": "^12.22.0 || ^14.17.0 || >=16.13.0"
   },
   "publishConfig": {
     "access": "public",

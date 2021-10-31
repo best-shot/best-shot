@@ -37,7 +37,7 @@
     "vue": "^2.6.14 || ^3.2.0"
   },
   "engines": {
-    "node": "^12.22.0 || ^14.17.0 || ^16.20.0"
+    "node": "^12.22.0 || ^14.17.0 || >=16.13.0"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

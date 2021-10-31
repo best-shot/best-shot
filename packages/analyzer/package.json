@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "./index.mjs",
+  "main": "index.mjs",
   "exports": "./index.mjs",
   "dependencies": {
     "@best-shot/config": "0.0.0",
@@ -36,7 +36,7 @@
     "@best-shot/core": "^0.5.0"
   },
   "engines": {
-    "node": "^12.22.0 || ^14.17.0"
+    "node": "^12.22.0 || ^14.17.0 || >=16.13.0"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

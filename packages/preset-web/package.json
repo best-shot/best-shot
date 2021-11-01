@@ -33,7 +33,7 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "ext-to-regexp": "^0.1.0",
-    "html-webpack-inject-plugin": "^5.0.0",
+    "html-webpack-inject-plugin": "^5.0.1",
     "html-webpack-plugin": "^5.5.0",
     "micro-tpl-loader": "^0.0.1",
     "slash-to-regexp": "^0.0.4",

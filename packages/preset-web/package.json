@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-web",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "description": "A `best-shot` preset for web project",
   "license": "MIT",
   "author": {
@@ -38,10 +38,10 @@
     "micro-tpl-loader": "^0.0.1",
     "slash-to-regexp": "^0.0.4",
     "suffix": "^1.0.0",
-    "webpack-subresource-integrity": "5.0.0"
+    "webpack-subresource-integrity": "^5.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.5.1",
+    "@best-shot/core": "^0.5.3",
     "webpack": "^5.58.0"
   },
   "engines": {

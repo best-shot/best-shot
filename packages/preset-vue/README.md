@@ -14,8 +14,9 @@ A `best-shot` preset for Vue project.
 
 This preset offer the following features:
 
-- [Vue](https://vuejs.org/) (2.x) framework support
+- [Vue](https://vuejs.org/) (2.x/3.x) framework support
 - Vue [Single-File Component (SFC) Spec](https://vue-loader.vuejs.org/spec.html) support
+- Vue 3 [migration build](https://v3.vuejs.org/guide/migration/migration-build.html) support
 
 ## Installation
 
@@ -28,11 +29,38 @@ npm install @best-shot/preset-vue --save-dev
 ```mjs
 // example: .best-shot/config.mjs
 export default {
-  presets: ['vue']
+  presets: ['vue'],
+  vue: {
+    // shadowMode
+    // transformAssetUrls
+    // compilerOptions
+  }
 };
 ```
 
 ## Tips
+
+### Vue 3 migration build support
+
+```sh
+npm install @vue/compat --save
+```
+
+`@vue/compat` will become the alias of `vue` automatically.
+
+```mjs
+// example: .best-shot/config.mjs
+export default {
+  presets: ['vue'],
+  vue: {
+    compilerOptions: {
+      compatConfig: {
+        MODE: 2
+      }
+    }
+  }
+};
+```
 
 ### Whitespace options override
 

@@ -4,6 +4,8 @@ const extToRegexp = require('ext-to-regexp');
 
 const { relative } = require('path');
 
+const { reaching } = require('settingz');
+
 exports.name = 'preset-vue';
 
 function isVue2() {
@@ -17,7 +19,11 @@ function isVue2() {
   }
 }
 
-exports.apply = function apply() {
+exports.apply = function apply({
+  config: {
+    vue: { compilerOptions = {}, transformAssetUrls, shadowMode } = {},
+  },
+}) {
   return (chain) => {
     const context = chain.get('context');
 
@@ -30,12 +36,25 @@ exports.apply = function apply() {
       .loader(IsVue2 ? '@best-shot/vue-loader' : 'vue-loader')
       .options({
         hotReload: chain.devServer.get('hot') || false,
+        ...(transformAssetUrls && { transformAssetUrls }),
+        ...(shadowMode && { shadowMode }),
         compilerOptions: {
           whitespace: 'condense',
+          ...compilerOptions,
         },
       });
 
     chain.resolveLoader.modules.prepend(relative(context, module.paths[0]));
+
+    const { dependencies = {}, devDependencies = {} } =
+      reaching('./package.json');
+
+    const compat =
+      dependencies['@vue/compat'] || devDependencies['@vue/compat'];
+
+    if (compat) {
+      chain.resolve.alias.set('vue', '@vue/compat');
+    }
 
     const VueLoaderPlugin = IsVue2
       ? require('@best-shot/vue-loader/lib/plugin')
@@ -47,9 +66,25 @@ exports.apply = function apply() {
 
 exports.schema = {
   asset: {
+    type: 'object',
     properties: {
       esModule: {
         default: false,
+      },
+    },
+  },
+  vue: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      compilerOptions: {
+        type: 'object',
+      },
+      transformAssetUrls: {
+        type: 'object',
+      },
+      shadowMode: {
+        type: 'boolean',
       },
     },
   },

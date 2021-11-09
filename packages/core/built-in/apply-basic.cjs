@@ -74,7 +74,7 @@ exports.schema = {
     default: '',
     title: 'Same as `output.publicPath` of `webpack` configuration',
     type: 'string',
-    oneOf: [{ const: '' }, { pattern: '\\/$' }],
+    oneOf: [{ const: '' }, { const: 'auto' }, { pattern: '\\/$' }],
   },
   target: {
     title: 'Same as `target` of `webpack` configuration',

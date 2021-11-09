@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -27,13 +27,13 @@
   "main": "index.cjs",
   "dependencies": {
     "@best-shot/validator": "^0.1.1",
-    "browserslist": "^4.17.5",
+    "browserslist": "^4.17.6",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "chalk": "^4.1.2",
     "copy-webpack": "^2.0.3",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
-    "terser-webpack-plugin": "^5.2.4",
+    "terser-webpack-plugin": "^5.2.5",
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {

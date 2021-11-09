@@ -5,7 +5,7 @@ exports.name = 'preset-serve';
 exports.apply = function applyServe({
   config: {
     devServer,
-    lazyCompilation: fallback,
+    lazyCompilation: fallback, // TODO: remove in next major version
     experiments: { lazyCompilation = fallback } = {},
   },
 }) {
@@ -53,6 +53,14 @@ exports.schema = {
       },
       static: {
         default: false,
+      },
+    },
+  },
+  experiments: {
+    type: 'object',
+    properties: {
+      lazyCompilation: {
+        default: true,
       },
     },
   },

@@ -6,10 +6,6 @@ import WebpackDevServer from 'webpack-dev-server';
 import { notFound } from '../middleware/not-found/index.mjs';
 import * as waitPage from '../middleware/wait-page/index.mjs';
 
-function handleAuto(publicPath) {
-  return publicPath === 'auto' ? '/' : publicPath;
-}
-
 class BestShotDevServer extends WebpackDevServer {
   // https://github.com/webpack/webpack-dev-server/blob/fd2a4e3ea78d877e9a4a7cdf343ef71e55f0cc57/lib/Server.js#L846
   setupHistoryApiFallbackFeature() {
@@ -52,9 +48,7 @@ export function DevServer(
 
   process.env.WEBPACK_DEV_SERVER_BASE_PORT = 1234;
 
-  const publicPath = handleAuto(
-    options.publicPath || compiler.options.output.publicPath,
-  );
+  const publicPath = options.publicPath || compiler.options.output.publicPath;
 
   const Server = new BestShotDevServer(
     {

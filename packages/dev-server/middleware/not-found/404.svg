@@ -9,8 +9,8 @@
       gradientUnits="objectBoundingBox"
     >
       <stop offset="0" stop-color="#fff" stop-opacity="0" />
-      <stop offset=".4" stop-color="#f3f3f3" stop-opacity=".25" />
-      <stop offset="1" stop-color="#aa9" />
+      <stop offset=".5" stop-color="#f3f3f3" stop-opacity=".125" />
+      <stop offset="1" stop-color="#aa9" stop-opacity=".75" />
     </linearGradient>
   </defs>
   <path

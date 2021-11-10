@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.12.5",
+  "version": "0.12.6",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -32,11 +32,11 @@
   "main": "index.mjs",
   "exports": {
     ".": "./index.mjs",
-    "./": "./"
+    "./*": "./*"
   },
   "dependencies": {
     "@best-shot/config": "^0.1.1",
-    "@best-shot/preset-serve": "^0.7.4",
+    "@best-shot/preset-serve": "^0.7.5",
     "chalk": "^4.1.2",
     "connect-history-api-fallback": "^1.6.0",
     "ejs": "^3.1.6",

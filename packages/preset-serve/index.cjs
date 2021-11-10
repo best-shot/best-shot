@@ -58,6 +58,7 @@ exports.schema = {
   },
   experiments: {
     type: 'object',
+    default: {},
     properties: {
       lazyCompilation: {
         default: true,

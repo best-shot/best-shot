@@ -1,16 +1,9 @@
-'use strict';
+import test from 'ava';
 
-const test = require('ava').default;
-
-const BestShot = require('../packages/core/index.cjs');
-const Schema = require('../packages/core/lib/schema.cjs');
-
-const {
-  schema: properties1,
-} = require('../packages/core/built-in/apply-entry.cjs');
-const {
-  schema: properties2,
-} = require('../packages/core/built-in/apply-define.cjs');
+import define from '../packages/core/built-in/apply-define.cjs';
+import entry from '../packages/core/built-in/apply-entry.cjs';
+import BestShot from '../packages/core/index.cjs';
+import Schema from '../packages/core/lib/schema.cjs';
 
 const example = {
   mode: 'development',
@@ -34,7 +27,7 @@ test('toString', (t) => {
 test('toSchema', (t) => {
   const schema = new BestShot().schema.toObject();
   const baseSchema = new Schema().schema;
-  Object.assign(baseSchema.properties, properties1, properties2);
+  Object.assign(baseSchema.properties, entry.schema, define.schema);
   t.like(schema, baseSchema);
 });
 

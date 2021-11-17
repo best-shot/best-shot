@@ -1,10 +1,7 @@
-'use strict';
+import test from 'ava';
 
-const test = require('ava').default;
-
-const BestShot = require('../packages/core/index.cjs');
-
-const builtIn = require('../packages/core/built-in/index.cjs');
+import builtIn from '../packages/core/built-in/index.cjs';
+import BestShot from '../packages/core/index.cjs';
 
 test('Right presets enum', (t) => {
   const io = new BestShot({ presets: ['babel'] });

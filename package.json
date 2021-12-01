@@ -42,7 +42,7 @@
     "@nice-move/eslint-config-base": "^0.5.69",
     "@nice-move/prettier-config": "^0.5.1",
     "@nice-move/stylelint-config": "^0.6.10",
-    "@types/react": "^17.0.35",
+    "@types/react": "^17.0.37",
     "ava": "^3.15.0",
     "commitlint": "^14.1.0",
     "eslint": "^7.32.0",

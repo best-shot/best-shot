@@ -5227,10 +5227,10 @@ html-void-elements@^2.0.0:
   resolved "https://registry.yarnpkg.com/html-void-elements/-/html-void-elements-2.0.0.tgz#ea71bae0dd33de675cdda3c4ace1bc7584bb1071"
   integrity sha512-4OYzQQsBt0G9bJ/nM9/DDsjm4+fVdzAaPJJcWk5QwA3GIAPxQEeOR0rsI8HbDHQz5Gta8pVvGnnTNSbZVEVvkQ==
 
-html-webpack-inject-plugin@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/html-webpack-inject-plugin/-/html-webpack-inject-plugin-5.1.1.tgz#b402efc32bc637082a724feb6a9a097d27436992"
-  integrity sha512-LMh94C6GP1wEbNOEyEybSBvV6M2JGHlEi7nhhooxIhLZeBV2+qI28YbmVU6ICtfuT6V9SJBK/boBjqhyUj6VMg==
+html-webpack-inject-plugin@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/html-webpack-inject-plugin/-/html-webpack-inject-plugin-5.2.3.tgz#5c4caf4455639d3d92ccdbeaa7c153c77859c4a1"
+  integrity sha512-RtkbXr05I1g/swlOUDI63kldbWdwfzPiYa3zNvZCMvdQ4ptnX3qqof+mOxsgaajMU+Y16fZXA95gM7wk08cvAQ==
 
 html-webpack-plugin@^5.5.0:
   version "5.5.0"

@@ -33,7 +33,7 @@
     "@babel/plugin-transform-react-constant-elements": "^7.16.0",
     "@babel/plugin-transform-react-inline-elements": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "react-refresh": "^0.10.0"
   },

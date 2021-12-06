@@ -8833,6 +8833,11 @@ settingz@^0.1.0:
   resolved "https://registry.yarnpkg.com/settingz/-/settingz-0.1.0.tgz#6ef69bf6c861a8dac1aa5b126fea73d11c2b2687"
   integrity sha512-4E4Uhw6idy97VunUeJ9Oizis02nKV+hA4DnmXTG1RO6l3Kyzp3HtzSgOsNJ1ahNvdeUFApjhsE4P/ULA7r/ZDw==
 
+settingz@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/settingz/-/settingz-0.1.2.tgz#8ea7d04493f73d718e93afa6ea32acbcf2cdc0bc"
+  integrity sha512-qVtDiZxpi2ol+/aJ7Jlf8sDAVLCfYQ7cuEs9dv4u85p9Dlh1BEhVmTlKm/Wpgj+LBjEnfcvSyg+oCCjdWmXRUw==
+
 shallow-clone@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/shallow-clone/-/shallow-clone-3.0.1.tgz#8f2981ad92531f55035b01fb230769a40e02efa3"

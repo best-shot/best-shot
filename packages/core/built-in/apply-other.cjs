@@ -6,8 +6,19 @@ const { notEmpty } = require('../lib/utils.cjs');
 
 exports.name = 'other';
 
+function objectSize(object) {
+  return Object.keys(object || {}).length > 1;
+}
+
 exports.apply = function applyOther({
-  config: { copy, node, provide, externals },
+  config: {
+    copy,
+    node,
+    provide,
+    externals,
+    devServer,
+    experiments: { lazyCompilation } = {},
+  },
 }) {
   return (chain) => {
     if (node) {
@@ -23,9 +34,32 @@ exports.apply = function applyOther({
       chain.externals(externals);
     }
 
+    if (devServer) {
+      chain.merge({
+        devServer: {
+          client: { logging: 'warn' },
+          ...devServer,
+        },
+      });
+    }
+
     if (notEmpty(provide)) {
       const { ProvidePlugin } = require('webpack');
       chain.plugin('provide').use(ProvidePlugin, [provide]);
+    }
+
+    if (lazyCompilation !== false) {
+      const experiments = chain.get('experiments');
+
+      chain.merge({
+        experiments: {
+          ...experiments,
+          lazyCompilation:
+            lazyCompilation === true
+              ? { entries: objectSize(chain.entryPoints.entries()) > 1 }
+              : lazyCompilation,
+        },
+      });
     }
   };
 };
@@ -34,14 +68,18 @@ exports.schema = {
   copy: {
     title: 'Paths to place static file without compile',
     default: false,
-    oneOf: [
-      ...schema.oneOf,
-      {
-        const: false,
-      },
-    ],
+    oneOf: [...schema.oneOf, { const: false }],
   },
   provide: {
     type: 'object',
+  },
+  experiments: {
+    type: 'object',
+    default: {},
+    properties: {
+      lazyCompilation: {
+        default: true,
+      },
+    },
   },
 };

@@ -7,20 +7,15 @@ import { notFound } from '../middleware/not-found/index.mjs';
 import * as waitPage from '../middleware/wait-page/index.mjs';
 
 class BestShotDevServer extends WebpackDevServer {
-  // https://github.com/webpack/webpack-dev-server/blob/fd2a4e3ea78d877e9a4a7cdf343ef71e55f0cc57/lib/Server.js#L846
+  // https://github.com/webpack/webpack-dev-server/blob/79a169baa3eeaf71df068de5d9c6150684dfe35f/lib/Server.js#L1556
   setupHistoryApiFallbackFeature() {
-    const requireLazy = createRequire(import.meta.url);
-    const historyApiFallback = requireLazy('connect-history-api-fallback');
+    const { historyApiFallback } = this.options;
 
-    const options =
-      typeof this.options.historyApiFallback !== 'boolean'
-        ? this.options.historyApiFallback
-        : {};
-
-    let logger;
-
-    if (typeof options.verbose === 'undefined') {
-      logger = this.logger.log.bind(
+    if (
+      typeof historyApiFallback.logger === 'undefined' &&
+      !historyApiFallback.verbose
+    ) {
+      historyApiFallback.logger = this.logger.log.bind(
         this.logger,
         '[connect-history-api-fallback]',
       );
@@ -32,10 +27,15 @@ class BestShotDevServer extends WebpackDevServer {
       } = {},
     } = this.options;
 
+    const requireLazy = createRequire(import.meta.url);
+    const connectHistoryApiFallback = requireLazy(
+      'connect-history-api-fallback',
+    );
+
     if (publicPath.startsWith('/')) {
-      this.app.use(publicPath, historyApiFallback({ logger, ...options }));
+      this.app.use(publicPath, connectHistoryApiFallback(historyApiFallback));
     } else {
-      this.app.use(historyApiFallback({ logger, ...options }));
+      this.app.use(connectHistoryApiFallback(historyApiFallback));
     }
   }
 }
@@ -49,6 +49,15 @@ export function DevServer(
   process.env.WEBPACK_DEV_SERVER_BASE_PORT = 1234;
 
   const publicPath = options.publicPath || compiler.options.output.publicPath;
+
+  /* eslint-disable no-param-reassign */
+  if (options.hot === undefined) {
+    options.hot = 'only';
+  }
+  if (options.static === undefined) {
+    options.static = false;
+  }
+  /* eslint-enable no-param-reassign */
 
   const Server = new BestShotDevServer(
     {

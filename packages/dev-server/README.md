@@ -35,17 +35,15 @@ npx --no-install best-shot serve [options]
 ```mjs
 // example: .best-shot/config.mjs
 export default {
-  presets: [
-    // without this will fallback to `watch` mode
-    'serve'
-  ],
+  experiments: {
+    lazyCompilation: false // true by default
+  },
   devServer: {
-    // ...
+    // without this will fallback to `watch` mode
   }
 };
 ```
 
 ## Related
 
-- [@best-shot/preset-serve](../preset-serve)
 - [@best-shot/cli](../cli)

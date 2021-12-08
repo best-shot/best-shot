@@ -28,13 +28,7 @@ export function action({ stamp = 'none' }) {
       configs.forEach(async (config) => {
         const { chain, name, presets = [], ...rest } = config;
 
-        const io = new BestShot({
-          name,
-          presets:
-            command === 'serve'
-              ? presets
-              : presets.filter((item) => item !== 'serve'),
-        });
+        const io = new BestShot({ name, presets });
 
         const watch = ['watch', 'serve'].includes(command);
 

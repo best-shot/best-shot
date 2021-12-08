@@ -5,13 +5,7 @@ import { commandMode } from './utils.mjs';
 export function createConfig(config, { command, batch, watch = false }) {
   const { name, chain, presets = [], ...rest } = config;
 
-  return new BestShot({
-    name,
-    presets:
-      command === 'serve'
-        ? presets
-        : presets.filter((item) => item !== 'serve'),
-  })
+  return new BestShot({ name, presets })
     .setup({
       watch,
       mode: commandMode(command),

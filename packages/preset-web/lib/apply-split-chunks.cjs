@@ -3,8 +3,6 @@
 const slashToRegexp = require('slash-to-regexp');
 const { MinChunkSizePlugin } = require('webpack').optimize;
 
-const { join } = require('path');
-
 function mapValues(obj, func) {
   const arr = Object.entries(obj);
   return Object.fromEntries(
@@ -70,15 +68,8 @@ exports.splitChunks = function splitChunks({ vendors = {} }) {
         .plugin('min-chunk-size')
         .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
 
-      const name = chain.get('name') || '';
-
-      chain.recordsPath(
-        join(
-          process.cwd(),
-          'node_modules/.cache/best-shot/records',
-          `${name}.json`,
-        ),
-      );
+      const { cachePath } = chain.get('x');
+      chain.recordsPath(cachePath('records.json'));
     }
   };
 };

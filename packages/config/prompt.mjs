@@ -1,17 +1,12 @@
+import { cachePath } from '@best-shot/core/lib/utils.cjs';
 import Configstore from 'configstore';
-import { resolve } from 'path';
 import prompts from 'prompts';
 
 export function prompt(configs) {
   const cache = new Configstore(
     '',
     {},
-    {
-      configPath: resolve(
-        process.cwd(),
-        'node_modules/.cache/best-shot/prompt.json',
-      ),
-    },
+    { configPath: cachePath('prompt.json') },
   );
   const names = configs.map(({ name }) => name);
   const temp = cache.get('prompt') || names;

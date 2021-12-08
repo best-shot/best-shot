@@ -5,7 +5,7 @@ const pickBy = require('lodash/pickBy');
 
 function variables(object) {
   return mapValues(
-    pickBy(object, (item) => item !== undefined),
+    pickBy(object, (item) => item !== undefined && item !== ''),
     (value) => JSON.stringify(value),
   );
 }

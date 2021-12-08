@@ -38,7 +38,7 @@ exports.apply = function applyBasic({
 
     chain.module.strictExportPresence(!watch);
 
-    const name = chain.get('name');
+    const name = chain.get('name') || '';
 
     chain.output
       .publicPath(publicPath)
@@ -47,7 +47,7 @@ exports.apply = function applyBasic({
         resolve(
           context,
           outputPath
-            .replace(/\[config-name]/g, name || '')
+            .replace(/\[config-name]/g, name)
             .replace(/\[mode]/g, mode)
             .replace(/\[mode:shorthand]/g, shorthand[mode]),
         ),

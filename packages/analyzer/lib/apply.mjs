@@ -1,20 +1,12 @@
-import { resolve } from 'path';
-
 import { applyProgress } from '@best-shot/cli/lib/apply-progress.mjs';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-const cwd = process.cwd();
-
-function cachePath(type, name) {
-  return resolve(cwd, 'node_modules/.cache/best-shot', type, name);
-}
-
 export function applyAnalyzer(chain) {
-  const name = chain.get('name') || '';
+  const { cachePath } = chain.get('x');
 
   applyProgress(chain);
 
-  chain.output.path(cachePath('build', name));
+  chain.output.path(cachePath('build'));
 
   chain.optimization.runtimeChunk('single').concatenateModules(false);
 
@@ -24,8 +16,8 @@ export function applyAnalyzer(chain) {
     {
       analyzerMode: 'static',
       generateStatsFile: true,
-      reportFilename: cachePath('stats', `${name}.html`),
-      statsFilename: cachePath('stats', `${name}.json`),
+      reportFilename: cachePath('stats.html'),
+      statsFilename: cachePath('stats.json'),
     },
   ]);
 }

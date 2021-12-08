@@ -6104,11 +6104,6 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-main-root@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/main-root/-/main-root-1.0.3.tgz#96fb17a6fed04f37b94d097e96fd3ba5decefc5b"
-  integrity sha512-lFSJCwkcOwI8Ui8XkaQX14wlHkX0lTKXrRNg6JfYbNEC6IWoYEoHj+Is4BVzd8ln43D5oVxla5oOIZ3HIgGM8Q==
-
 make-dir@^1.0.0, make-dir@^1.2.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"

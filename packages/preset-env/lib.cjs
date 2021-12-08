@@ -3,7 +3,7 @@
 const { readFileSync } = require('fs');
 const pickBy = require('lodash/pickBy');
 
-const tomlParser = require('@iarna/toml/parse');
+const toml = require('@ltd/j-toml');
 const yaml = require('js-yaml');
 const ini = require('ini');
 const { default: git } = require('@nice-labs/git-rev');
@@ -17,7 +17,6 @@ function ensureConfig(type, rootPath) {
       name: filename,
       path: require.resolve(`./${filename}`, { paths: [rootPath] }),
     };
-    // eslint-disable-next-line no-empty
   } catch {}
 }
 
@@ -62,7 +61,7 @@ function mergeParams(
 const parser = {
   ini: (str) => ini.parse(str),
   json: (str) => JSON.parse(str),
-  toml: (str) => tomlParser(str),
+  toml: (str) => toml.parse(str),
   yaml: (str) => yaml.load(str),
 };
 

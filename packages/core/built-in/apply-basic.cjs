@@ -4,13 +4,8 @@ const { resolve } = require('path');
 
 exports.name = 'basic';
 
-const shorthand = {
-  development: 'dev',
-  production: 'prod',
-};
-
 exports.apply = function applyBasic({
-  config: { publicPath, outputPath, target },
+  config: { output: { publicPath, path } = {}, target },
 }) {
   return (chain) => {
     chain.amd(false);
@@ -40,16 +35,16 @@ exports.apply = function applyBasic({
 
     const name = chain.get('name') || '';
 
+    if (publicPath !== undefined) {
+      chain.output.publicPath(publicPath);
+    }
+
     chain.output
-      .publicPath(publicPath)
       .filename('[name].js')
       .path(
         resolve(
           context,
-          outputPath
-            .replace(/\[config-name]/g, name)
-            .replace(/\[mode]/g, mode)
-            .replace(/\[mode:shorthand]/g, shorthand[mode]),
+          path.replace(/\[config-name]/g, name).replace(/\[mode]/g, mode),
         ),
       );
 
@@ -62,19 +57,18 @@ exports.apply = function applyBasic({
 const string = { type: 'string' };
 
 exports.schema = {
-  outputPath: {
-    default: 'dist',
-    description:
-      'It can be a relative path. Additional placeholder: [mode]/[mode:shorthand]/',
-    minLength: 3,
-    title: 'Same as `output.path` of `webpack`',
-    type: 'string',
-  },
-  publicPath: {
-    default: '',
-    title: 'Same as `output.publicPath` of `webpack` configuration',
-    type: 'string',
-    oneOf: [{ const: '' }, { const: 'auto' }, { pattern: '\\/$' }],
+  output: {
+    type: 'object',
+    default: {},
+    properties: {
+      path: {
+        default: 'dist',
+        description:
+          'It can be a relative path. Additional placeholder: [mode][config-name]',
+        minLength: 3,
+        type: 'string',
+      },
+    },
   },
   target: {
     title: 'Same as `target` of `webpack` configuration',

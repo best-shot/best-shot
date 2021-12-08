@@ -8,7 +8,6 @@ import Schema from '../packages/core/lib/schema.cjs';
 const example = {
   mode: 'development',
   output: {
-    publicPath: '',
     filename: '[name].js',
   },
 };

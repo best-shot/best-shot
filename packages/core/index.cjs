@@ -3,40 +3,13 @@
 const { importPresets } = require('./lib/presets.cjs');
 const Stack = require('./lib/stack.cjs');
 const Schema = require('./lib/schema.cjs');
-const { cachePath } = require('./lib/utils.cjs');
+const BaseChain = require('./lib/chain.cjs');
 const builtIn = require('./built-in/index.cjs');
 
 const cwd = process.cwd();
 
-function BaseChain(name, rootPath) {
-  const WebpackChain = require('webpack-chain');
-
-  class Chain extends WebpackChain {
-    toConfig() {
-      super.delete('x');
-      return super.toConfig();
-    }
-
-    toString() {
-      super.delete('x');
-      return super.toString();
-    }
-  }
-
-  const chain = new Chain().name(name).context(rootPath);
-
-  chain.set('x', {
-    cachePath: (...args) => {
-      const configName = chain.get('name') || 'default';
-      return cachePath(configName, ...args);
-    },
-  });
-
-  return chain;
-}
-
 module.exports = class BestShot {
-  constructor({ name = 'best-shot', rootPath = cwd, presets = [] } = {}) {
+  constructor({ name, rootPath = cwd, presets = [] } = {}) {
     this.chain = BaseChain(name, rootPath);
     this.schema = new Schema();
     this.stack = new Stack();

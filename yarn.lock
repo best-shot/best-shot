@@ -1214,10 +1214,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
-"@iarna/toml@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
-  integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
+"@ltd/j-toml@^1.24.0":
+  version "1.24.0"
+  resolved "https://registry.yarnpkg.com/@ltd/j-toml/-/j-toml-1.24.0.tgz#4c993610586964fb21fd38a84bb41913f6e4f5ff"
+  integrity sha512-XWEvSNLJ2YeCvlNDd/DQfTMldJqBZWX8+RKgPMY2i3MShqsB9XvtY2UfHqcuPb+eRrNO1WR7w4xlNfzCzop+Ig==
 
 "@nice-labs/git-rev@^3.5.0":
   version "3.5.0"

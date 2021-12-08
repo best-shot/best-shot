@@ -1,6 +1,7 @@
-import chalk from 'chalk';
 import { resolve } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
+
+import chalk from 'chalk';
 
 import { prompt } from './prompt.mjs';
 import { validate } from './validate.mjs';
@@ -40,9 +41,9 @@ export async function getConfigs(rootPath, { command }) {
   const configs = Array.isArray(io) ? io : [io];
 
   configs.forEach((conf) => {
-    if (!conf.outputPath) {
+    if (!conf?.output?.path) {
       // eslint-disable-next-line no-param-reassign
-      conf.outputPath = '.best-shot/build/[config-name]';
+      conf.output.path = '.best-shot/build/[config-name]';
     }
   });
 

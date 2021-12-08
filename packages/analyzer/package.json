@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.11.2",
-    "@best-shot/core": "^0.5.3"
+    "@best-shot/core": "^0.5.4"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.13.0"

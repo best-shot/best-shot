@@ -39,6 +39,13 @@ export function action({ _: [command] }) {
 
     const compiler = createCompiler(result);
 
-    compiler.run(showStats);
+    compiler.run((error, stats) => {
+      showStats(error, stats);
+      compiler.close((exitError) => {
+        if (exitError) {
+          throw exitError;
+        }
+      });
+    });
   });
 }

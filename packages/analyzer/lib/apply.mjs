@@ -1,30 +1,31 @@
-import { applyProgress } from '@best-shot/cli/lib/apply-progress.mjs';
 import { resolve } from 'path';
+
+import { applyProgress } from '@best-shot/cli/lib/apply-progress.mjs';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
+const cwd = process.cwd();
+
+function cachePath(type, name) {
+  return resolve(cwd, 'node_modules/.cache/best-shot', type, name);
+}
+
 export function applyAnalyzer(chain) {
-  const rootPath = chain.get('context');
   const name = chain.get('name') || '';
 
   applyProgress(chain);
 
-  chain.output.path(resolve(rootPath, `.best-shot/temp/${name}`));
+  chain.output.path(cachePath('build', name));
 
   chain.optimization.runtimeChunk('single').concatenateModules(false);
 
   chain.delete('recordsPath');
 
-  function getReportPath(filename) {
-    return resolve(rootPath, '.best-shot', 'stats', name, filename);
-  }
-
   chain.plugin('bundle-analyzer').use(BundleAnalyzerPlugin, [
     {
       analyzerMode: 'static',
       generateStatsFile: true,
-      openAnalyzer: false,
-      reportFilename: getReportPath('report.html'),
-      statsFilename: getReportPath('stats.json'),
+      reportFilename: cachePath('stats', `${name}.html`),
+      statsFilename: cachePath('stats', `${name}.json`),
     },
   ]);
 }

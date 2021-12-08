@@ -36,7 +36,14 @@ export function action({ _: [command], progress, configName }) {
     const compiler = createCompiler(result);
 
     if (command !== 'watch') {
-      compiler.run(showStats);
+      compiler.run((error, stats) => {
+        showStats(error, stats);
+        compiler.close((exitError) => {
+          if (exitError) {
+            throw exitError;
+          }
+        });
+      });
     } else {
       const { watchOptions } =
         result.find((config) => config.watchOptions) || {};

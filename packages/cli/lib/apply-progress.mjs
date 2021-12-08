@@ -3,7 +3,7 @@ export function applyProgress(chain) {
 
   chain.plugin('progress-bar').use('webpackbar', [
     {
-      name: name || 'BEST-SHOT',
+      name: name ? name.toUpperCase() : 'BEST-SHOT',
       reporter: 'profile',
     },
   ]);

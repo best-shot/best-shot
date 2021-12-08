@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.cjs",
+  "main": "index.mjs",
   "dependencies": {
     "@best-shot/vue-loader": "^15.9.8",
     "css-loader": "^6.5.1",
@@ -34,7 +34,7 @@
     "vue-template-compiler": "^2.6.14"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.5.3",
+    "@best-shot/core": "^0.5.4",
     "vue": "^2.6.14 || ^3.2.21"
   },
   "engines": {

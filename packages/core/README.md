@@ -29,16 +29,18 @@ npm install @best-shot/core --save-dev
 ## Usage
 
 ```mjs
-import BestShot from '@best-shot/core';
+import { BestShot } from '@best-shot/core';
 
-new BestShot({ presets: ['babel'] }).load({
+new BestShot().setup({
+  presets: ['babel'],
   mode: 'production',
   config: {
     polyfill: 'usage'
   }
 });
 
-new BestShot({ presets: ['style'] }).load({
+new BestShot().setup({
+  presets: ['style'],
   mode: 'development',
   watch: true
 });

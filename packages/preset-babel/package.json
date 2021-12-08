@@ -33,7 +33,7 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.cjs",
+  "main": "index.mjs",
   "dependencies": {
     "@babel/preset-typescript": "^7.16.0",
     "babel-loader": "^8.2.3",
@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.16.0",
-    "@best-shot/core": "^0.5.2"
+    "@best-shot/core": "^0.5.4"
   },
   "engines": {
     "node": "^14.17.0 || >=16.13.0"

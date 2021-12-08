@@ -1,8 +1,8 @@
 import { commandMode, errorHandle } from '@best-shot/cli/lib/utils.mjs';
-import BestShot from '@best-shot/core';
+import { BestShot } from '@best-shot/core';
+import { isReachable } from 'settingz';
 
 import { concatStr } from './concat-str.mjs';
-import { isInstalled } from './utils.cjs';
 import { makeWriteFile } from './write-file.mjs';
 
 export function action({ stamp = 'none' }) {
@@ -10,7 +10,7 @@ export function action({ stamp = 'none' }) {
 
   const commands = ['watch', 'dev', 'prod'];
 
-  if (isInstalled('@best-shot/dev-server/package.json')) {
+  if (isReachable('@best-shot/dev-server/package.json')) {
     commands.push('serve');
   }
 
@@ -22,13 +22,12 @@ export function action({ stamp = 'none' }) {
 
     for (const command of commands) {
       const mode = commandMode(command);
-      // eslint-disable-next-line no-await-in-loop
       const configs = await readConfig(rootPath, false)({ command });
 
       configs.forEach(async (config) => {
         const { chain, name, presets = [], ...rest } = config;
 
-        const io = new BestShot({ name, presets });
+        const io = new BestShot({ name });
 
         const watch = ['watch', 'serve'].includes(command);
 
@@ -46,8 +45,16 @@ export function action({ stamp = 'none' }) {
               ...(chain ? { chain } : undefined),
             },
             schema: io.schema.toObject(),
-            output: io
-              .setup({ watch, mode, config: rest })
+            output: (
+              await io.setup({
+                watch,
+                serve: command === 'serve',
+                mode,
+                presets,
+                config: rest,
+              })
+            )
+              // eslint-disable-next-line unicorn/no-await-expression-member
               .when(typeof chain === 'function', chain),
           }),
         });

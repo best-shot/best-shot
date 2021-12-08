@@ -1,36 +1,26 @@
-'use strict';
+import { inspect } from 'util';
 
-const { inspect } = require('util');
-const { cyan, level } = require('chalk');
-const mapValues = require('lodash/mapValues');
+import chalk from 'chalk';
+import mapValues from 'lodash/mapValues.js';
+import sortKeys from 'sort-keys';
 
-const sortKeys = require('sort-keys');
-const { DefinePlugin } = require('webpack');
-
-const {
-  findConfig,
-  getGitHash,
-  mergeParams,
-  parseConfig,
-} = require('./lib.cjs');
-
-exports.name = 'preset-env';
+import { findConfig, getGitHash, mergeParams, parseConfig } from './lib.cjs';
 
 function pretty(data) {
   return inspect(data, {
     compact: false,
-    colors: Boolean(level),
+    colors: Boolean(chalk.level),
     breakLength: 80,
     depth: 20,
   });
 }
 
 function logger({ 'BEST_SHOT.GIT_HASH': x, ...data }) {
-  console.log(cyan`PRESET-ENV`, pretty(data));
+  console.log(chalk.cyan`PRESET-ENV`, pretty(data));
 }
 
-exports.apply = function applyEnv() {
-  return (chain) => {
+export function apply() {
+  return async (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
     const context = chain.get('context');
@@ -57,8 +47,14 @@ exports.apply = function applyEnv() {
             sortKeys({ ...result, ...options }, { deep: true }),
           ]);
       } else {
+        const {
+          default: { DefinePlugin },
+        } = await import('webpack');
+
         chain.plugin('define').use(DefinePlugin, [result]);
       }
     }
   };
-};
+}
+
+export const name = 'preset-env';

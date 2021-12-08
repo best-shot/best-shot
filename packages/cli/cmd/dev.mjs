@@ -1,4 +1,4 @@
-import { builder as baseBuilder, handler } from './watch.mjs';
+import { builder as baseBuilder } from './watch.mjs';
 
 export const command = 'dev';
 
@@ -15,4 +15,4 @@ export function builder(cli) {
   });
 }
 
-export { handler };
+export { handler } from './watch.mjs';

@@ -1,16 +1,12 @@
-'use strict';
+import { relative, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
-const extToRegexp = require('ext-to-regexp');
-
-const { relative } = require('path');
-
-const { reaching } = require('settingz');
-
-exports.name = 'preset-vue';
+import extToRegexp from 'ext-to-regexp';
+import { reaching } from 'settingz';
 
 function isVue2() {
   try {
-    if (require('vue/package.json').version.startsWith('2')) {
+    if (reaching('vue/package.json').version.startsWith('2')) {
       return true;
     }
     return false;
@@ -19,12 +15,12 @@ function isVue2() {
   }
 }
 
-exports.apply = function apply({
+export function apply({
   config: {
     vue: { compilerOptions = {}, transformAssetUrls, shadowMode } = {},
   },
 }) {
-  return (chain) => {
+  return async (chain) => {
     const context = chain.get('context');
 
     const IsVue2 = isVue2();
@@ -35,7 +31,7 @@ exports.apply = function apply({
       .use('vue-loader')
       .loader(IsVue2 ? '@best-shot/vue-loader' : 'vue-loader')
       .options({
-        hotReload: chain.devServer.get('hot') || false,
+        hotReload: Boolean(chain.devServer.get('hot')) || false,
         ...(transformAssetUrls && { transformAssetUrls }),
         ...(shadowMode && { shadowMode }),
         compilerOptions: {
@@ -44,7 +40,12 @@ exports.apply = function apply({
         },
       });
 
-    chain.resolveLoader.modules.prepend(relative(context, module.paths[0]));
+    chain.resolveLoader.modules.prepend(
+      relative(
+        context,
+        resolve(fileURLToPath(import.meta.url), '../node_modules'),
+      ),
+    );
 
     const { dependencies = {}, devDependencies = {} } =
       reaching('./package.json');
@@ -56,15 +57,18 @@ exports.apply = function apply({
       chain.resolve.alias.set('vue', '@vue/compat');
     }
 
+    /* eslint-disable unicorn/no-await-expression-member */
     const VueLoaderPlugin = IsVue2
-      ? require('@best-shot/vue-loader/lib/plugin')
-      : require('vue-loader/dist/plugin').default;
+      ? (await import('@best-shot/vue-loader/lib/plugin.js')).default
+      : (await import('vue-loader/dist/plugin.js')).default.default;
 
     chain.plugin('vue-loader').use(VueLoaderPlugin);
   };
-};
+}
 
-exports.schema = {
+export const name = 'preset-vue';
+
+export const schema = {
   asset: {
     type: 'object',
     properties: {

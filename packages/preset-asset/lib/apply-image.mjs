@@ -1,25 +1,13 @@
-'use strict';
+import extToRegexp from 'ext-to-regexp';
+import { reaching } from 'settingz';
 
-const extToRegexp = require('ext-to-regexp');
-
-const { nonAscii, removeRoot } = require('./utils.cjs');
+import { nonAscii, removeRoot } from './utils.mjs';
 
 const imageRegexp = extToRegexp({
   extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
 });
 
-function autoDetect(name, options, packageName = name) {
-  try {
-    if (require(`${packageName}/package.json`).name === packageName) {
-      return [name, options];
-    }
-    return false;
-  } catch {
-    return false;
-  }
-}
-
-module.exports = function applyImage(chain) {
+export async function applyImage(chain) {
   const minimize = chain.optimization.get('minimize');
 
   chain.module
@@ -53,20 +41,25 @@ module.exports = function applyImage(chain) {
     });
 
   if (minimize) {
-    const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-    const svgoConfig = require('svgo-config/config.json');
+    const { default: ImageMinimizerPlugin } = await import(
+      'image-minimizer-webpack-plugin'
+    );
+    const svgoConfig = reaching('svgo-config/config.json');
+
     chain.optimization.minimizer('imagemin').use(ImageMinimizerPlugin, [
       {
         test: imageRegexp,
-        minimizerOptions: {
-          plugins: [
-            autoDetect('gifsicle', { interlaced: true }),
-            autoDetect('jpegtran', { progressive: true }, 'jpegtran-bin'),
-            autoDetect('optipng', { optimizationLevel: 5 }, 'optipng-bin'),
-            ['svgo', svgoConfig],
-          ].filter(Boolean),
+        minimizer: {
+          options: {
+            plugins: [
+              ['gifsicle', { interlaced: true }],
+              ['jpegtran', { progressive: true }],
+              ['optipng', { optimizationLevel: 5 }],
+              ['svgo', svgoConfig],
+            ],
+          },
         },
       },
     ]);
   }
-};
+}

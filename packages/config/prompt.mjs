@@ -1,4 +1,4 @@
-import { cachePath } from '@best-shot/core/lib/utils.cjs';
+import { cachePath } from '@best-shot/core/lib/utils.mjs';
 import Configstore from 'configstore';
 import prompts from 'prompts';
 

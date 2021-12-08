@@ -1,10 +1,9 @@
-'use strict';
+import { isReachable } from 'settingz';
+import suffix from 'suffix';
 
-const suffix = require('suffix');
-
-const { setOutputName } = require('./lib/apply-set-output-name.cjs');
-const { splitChunks } = require('./lib/apply-split-chunks.cjs');
-const { setHtml } = require('./lib/apply-set-html.cjs');
+import { setHtml } from './lib/apply-set-html.mjs';
+import { setOutputName } from './lib/apply-set-output-name.mjs';
+import { splitChunks } from './lib/apply-split-chunks.mjs';
 
 function addHash(filename) {
   return suffix(filename, '.[contenthash:8]');
@@ -14,25 +13,12 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
-exports.name = 'preset-web';
-
-function isInstalled() {
-  try {
-    require.resolve('@road-to-rome/webpack-plugin/package.json');
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-exports.apply = function applyWeb({
-  config: { html, inject, vendors, define, rtr },
-}) {
-  return (chain) => {
+export function apply({ config: { html, inject, vendors, define, rtr } }) {
+  return async (chain) => {
     const mode = chain.get('mode');
-    const hot = chain.devServer.get('hot') || false;
     const minimize = chain.optimization.get('minimize');
     const serve = chain.devServer.entries() !== undefined;
+    const hot = (serve && chain.devServer.get('hot')) || false;
 
     chain.devtool(
       mode === 'production' ? false : serve ? 'eval-source-map' : 'source-map',
@@ -46,15 +32,19 @@ exports.apply = function applyWeb({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,
         }),
-      )
-      .batch(splitChunks({ vendors }))
-      .batch(setHtml({ html, define, inject }));
+      );
 
-    if (isInstalled()) {
+    await splitChunks({ vendors })(chain);
+
+    await setHtml({ html, define, inject })(chain);
+
+    if (isReachable('@road-to-rome/webpack-plugin/package.json')) {
       chain.plugin('road-to-rome').use('@road-to-rome/webpack-plugin', [rtr]);
     }
   };
-};
+}
+
+export const name = 'preset-web';
 
 const regexpFormat = {
   format: 'regex',
@@ -66,7 +56,7 @@ const items = {
   type: 'object',
 };
 
-exports.schema = {
+export const schema = {
   html: {
     oneOf: [
       items,
@@ -87,6 +77,7 @@ exports.schema = {
     },
   },
   babel: {
+    default: {},
     type: 'object',
     properties: {
       polyfill: {

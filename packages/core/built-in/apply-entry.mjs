@@ -1,8 +1,4 @@
-'use strict';
-
-exports.name = 'entry';
-
-exports.apply = function applyEntry({ config: { entry } }) {
+export function apply({ config: { entry } }) {
   return (config) => {
     if (entry) {
       config.merge({
@@ -13,7 +9,7 @@ exports.apply = function applyEntry({ config: { entry } }) {
       });
     }
   };
-};
+}
 
 const items = {
   minLength: 1,
@@ -30,7 +26,9 @@ const oneOf = [
   },
 ];
 
-exports.schema = {
+export const name = 'entry';
+
+export const schema = {
   entry: {
     oneOf: [
       ...oneOf,

@@ -1,9 +1,7 @@
-'use strict';
+import { validate } from '@best-shot/validator';
+import deepmerge from 'deepmerge';
 
-const deepmerge = require('deepmerge');
-const { validate } = require('@best-shot/validator');
-
-module.exports = class Schema {
+export class Schema {
   constructor() {
     this.schema = {
       $schema: 'http://json-schema.org/draft-07/schema#',
@@ -23,6 +21,7 @@ module.exports = class Schema {
   }
 
   validate(data) {
-    return validate({ data, schema: this.schema });
+    const { schema } = this;
+    return validate({ data, schema });
   }
-};
+}

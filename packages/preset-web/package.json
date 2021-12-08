@@ -29,20 +29,21 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.cjs",
+  "main": "index.mjs",
   "dependencies": {
     "deepmerge": "^4.2.2",
     "ext-to-regexp": "^0.1.0",
     "html-webpack-inject-plugin": "^5.2.3",
     "html-webpack-plugin": "^5.5.0",
     "micro-tpl-loader": "^0.0.1",
+    "settingz": "^0.1.2",
     "slash-to-regexp": "^0.0.4",
     "suffix": "^1.0.0",
     "webpack-subresource-integrity": "^5.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.5.3",
-    "webpack": "^5.58.0"
+    "@best-shot/core": "^0.5.4",
+    "webpack": "^5.65.0"
   },
   "engines": {
     "node": "^14.17.0 || >=16.13.0"

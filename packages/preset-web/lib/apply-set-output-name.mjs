@@ -1,6 +1,4 @@
-'use strict';
-
-exports.setOutputName = function setOutputName({ script, style }) {
+export function setOutputName({ script, style }) {
   return (chain) => {
     const jsFilename = chain.output.get('filename');
 
@@ -18,4 +16,4 @@ exports.setOutputName = function setOutputName({ script, style }) {
         ]);
     }
   };
-};
+}

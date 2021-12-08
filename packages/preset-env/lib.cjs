@@ -61,7 +61,7 @@ function mergeParams(
 const parser = {
   ini: (str) => ini.parse(str),
   json: (str) => JSON.parse(str),
-  toml: (str) => toml.parse(str),
+  toml: (str) => toml.parse(str, { bigint: false }),
   yaml: (str) => yaml.load(str),
 };
 

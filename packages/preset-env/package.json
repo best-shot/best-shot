@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/airkro/best-shot/issues"
   },
-  "main": "index.cjs",
+  "main": "index.mjs",
   "dependencies": {
     "@ltd/j-toml": "^1.24.0",
     "@nice-labs/git-rev": "^3.5.0",
@@ -38,11 +38,11 @@
     "ini": "^2.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "sort-keys": "^4.2.0"
+    "sort-keys": "^5.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.5.3",
-    "webpack": "^5.58.0"
+    "@best-shot/core": "^0.5.4",
+    "webpack": "^5.65.0"
   },
   "engines": {
     "node": "^14.17.0 || >=16.13.0"

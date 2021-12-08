@@ -1,8 +1,6 @@
-'use strict';
+import extToRegexp from 'ext-to-regexp';
 
-const extToRegexp = require('ext-to-regexp');
-
-const { nonAscii, removeRoot } = require('./utils.cjs');
+import { nonAscii, removeRoot } from './utils.mjs';
 
 function outputFile(ext = '[ext]') {
   return (rule) => {
@@ -19,7 +17,7 @@ function outputFile(ext = '[ext]') {
   };
 }
 
-module.exports = function applyData(chain) {
+export function applyData(chain) {
   chain.module
     .rule('json')
     .test(
@@ -69,4 +67,4 @@ module.exports = function applyData(chain) {
   text // align
     .oneOf('internal')
     .type('asset/source');
-};
+}

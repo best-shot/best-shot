@@ -48,10 +48,10 @@ export function concatStr({ input, output, schema, stamp }) {
 // stamp: ${stamp}
 
 /* eslint-disable */
-exports.schema = ${json2string(schema)}
+export const schema = ${json2string(schema)}
 
-exports.input = ${js2string(input)}
+export const input = ${js2string(input)}
 
-exports.config = ${output.toString()}
+export const config = ${output.toString()}
 `);
 }

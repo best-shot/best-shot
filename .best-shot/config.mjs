@@ -1,15 +1,4 @@
 export default {
-  presets: ['asset', 'web', 'style'],
-  terser: {
-    compress: {
-      drop_console: false,
-    },
-  },
+  presets: ['asset', 'web', 'style', 'babel', 'react', 'env'],
   devServer: {},
-  output: {
-    publicPath: '/',
-  },
-  chain(config) {
-    config.devtool(false);
-  },
 };

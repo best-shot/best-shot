@@ -1,27 +1,11 @@
-'use strict';
+import { isReachable } from 'settingz';
 
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-
-exports.name = 'preset-react';
-
-function airbnb() {
-  try {
-    return Boolean(require.resolve('airbnb-prop-types/package.json'));
-  } catch {
-    return false;
-  }
-}
-
-exports.apply = function applyReact({
-  config: { polyfill: old = false, babel: { polyfill = old } = {} },
-}) {
-  return (chain) => {
+export function apply({ config: { babel: { polyfill = false } = {} } }) {
+  return async (chain) => {
     const mode = chain.get('mode') || 'development';
     const useHot = chain.devServer.get('hot') || false;
 
     const fileRegexp = chain.module.rule('babel').get('test');
-
-    chain.resolve.extensions.prepend('.jsx');
 
     chain.module
       .rule('babel')
@@ -47,7 +31,7 @@ exports.apply = function applyReact({
                 ...(polyfill !== 'pure'
                   ? ['@babel/transform-react-inline-elements']
                   : []),
-                airbnb()
+                isReachable('airbnb-prop-types/package.json')
                   ? [
                       'transform-react-remove-prop-types',
                       { additionalLibraries: ['airbnb-prop-types'] },
@@ -60,8 +44,14 @@ exports.apply = function applyReact({
       }));
 
     if (useHot) {
-      chain.optimization.runtimeChunk('single');
-      chain.plugin('react-refresh').use(ReactRefreshWebpackPlugin);
+      chain.optimization.runtimeChunk('single'); // TODO
+
+      const { default: ReactRefreshPlugin } = await import(
+        '@pmmmwh/react-refresh-webpack-plugin'
+      );
+      chain.plugin('react-refresh').use(ReactRefreshPlugin);
     }
   };
-};
+}
+
+export const name = 'preset-react';

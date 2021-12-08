@@ -1,11 +1,7 @@
-'use strict';
-
-const deepMerge = require('deepmerge');
-const browserslist = require('browserslist');
+import browserslist from 'browserslist';
+import deepMerge from 'deepmerge';
 
 const displayName = 'tersor';
-
-exports.name = displayName;
 
 function haveSafari10(path) {
   const config = browserslist.loadConfig({ path });
@@ -23,14 +19,15 @@ function haveSafari10(path) {
 
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
-exports.apply = function applyTersor({ config: { terser = {} } }) {
-  return (chain) => {
+export function apply({ config: { terser = {} } }) {
+  return async (chain) => {
     const minimize = chain.optimization.get('minimize');
 
     if (minimize) {
       const context = chain.get('context');
 
-      const TerserPlugin = require('terser-webpack-plugin');
+      const { default: TerserPlugin } = await import('terser-webpack-plugin');
+
       chain.optimization.minimizer('terser').use(TerserPlugin, [
         {
           extractComments: false,
@@ -52,9 +49,11 @@ exports.apply = function applyTersor({ config: { terser = {} } }) {
       ]);
     }
   };
-};
+}
 
-exports.schema = {
+export const name = displayName;
+
+export const schema = {
   terser: {
     title: 'terserOptions',
     type: 'object',

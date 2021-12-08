@@ -1,14 +1,9 @@
-'use strict';
+import { relative, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
-const deepmerge = require('deepmerge');
-const extToRegexp = require('ext-to-regexp');
-const slashToRegexp = require('slash-to-regexp');
-const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {
-  default: HtmlWebpackInjectPlugin,
-} = require('html-webpack-inject-plugin');
-const { relative } = require('path');
+import deepmerge from 'deepmerge';
+import extToRegexp from 'ext-to-regexp';
+import slashToRegexp from 'slash-to-regexp';
 
 function mergeAll(...options) {
   return deepmerge.all(options, {
@@ -28,14 +23,16 @@ const htmlMinifier = {
   useShortDoctype: true,
 };
 
-exports.setHtml = function setHtml({ html = {}, inject = [], define }) {
-  return (chain) => {
+export function setHtml({ html = {}, inject = [], define }) {
+  return async (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
     const context = chain.get('context');
     const minimize = chain.optimization.get('minimize');
 
     const page = Array.isArray(html) ? html : [html];
+
+    const { default: HtmlWebpackPlugin } = await import('html-webpack-plugin');
 
     page.forEach((options, index) => {
       chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
@@ -53,6 +50,10 @@ exports.setHtml = function setHtml({ html = {}, inject = [], define }) {
     });
 
     if (inject.length > 0) {
+      const { default: HtmlWebpackInjectPlugin } = await import(
+        'html-webpack-inject-plugin'
+      );
+
       chain
         .plugin('inject')
         .use(HtmlWebpackInjectPlugin, [{ externals: inject }]);
@@ -60,6 +61,10 @@ exports.setHtml = function setHtml({ html = {}, inject = [], define }) {
 
     if (mode === 'production') {
       chain.output.crossOriginLoading('anonymous');
+
+      const { SubresourceIntegrityPlugin } = await import(
+        'webpack-subresource-integrity'
+      );
 
       chain.plugin('subresource-integrity').use(SubresourceIntegrityPlugin);
     }
@@ -70,12 +75,17 @@ exports.setHtml = function setHtml({ html = {}, inject = [], define }) {
       .use('micro-tpl-loader')
       .loader('micro-tpl-loader');
 
-    chain.resolveLoader.modules.prepend(relative(context, module.paths[1]));
+    chain.resolveLoader.modules.prepend(
+      relative(
+        context,
+        resolve(fileURLToPath(import.meta.url), '../../node_modules'),
+      ),
+    );
 
-    if (chain.module.rules.has('babel')) {
+    if (!watch && chain.module.rules.has('babel')) {
       chain.module
         .rule('babel')
         .exclude.add(slashToRegexp('/node_modules/micromustache/'));
     }
   };
-};
+}

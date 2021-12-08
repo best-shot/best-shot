@@ -1,10 +1,8 @@
-'use strict';
+import extToRegexp from 'ext-to-regexp';
 
-const extToRegexp = require('ext-to-regexp');
+import { nonAscii } from './utils.mjs';
 
-const { nonAscii } = require('./utils.cjs');
-
-module.exports = function applyFont(chain) {
+export function applyFont(chain) {
   chain.module
     .rule('font')
     .test(
@@ -20,4 +18,4 @@ module.exports = function applyFont(chain) {
         return 'font/[name].[contenthash:8][ext]';
       },
     });
-};
+}

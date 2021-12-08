@@ -1,13 +1,11 @@
-'use strict';
-
-const extToRegexp = require('ext-to-regexp');
+import extToRegexp from 'ext-to-regexp';
 
 function addExtname(rule) {
   const regexp = rule.get('test');
   rule.test(regexp.add('scss', 'sass', 'less'));
 }
 
-module.exports = function applyScssLess(less) {
+export function applyScssLess(less) {
   return (chain) => {
     chain.module.rule('style').batch(addExtname);
 
@@ -39,4 +37,4 @@ module.exports = function applyScssLess(less) {
         },
       });
   };
-};
+}

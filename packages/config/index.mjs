@@ -37,11 +37,15 @@ async function requireConfig(rootPath) {
 export async function getConfigs(rootPath, { command }) {
   const config = await requireConfig(rootPath);
   const io = typeof config === 'function' ? await config({ command }) : config;
-  validate(io);
+  await validate(io);
   const configs = Array.isArray(io) ? io : [io];
 
   configs.forEach((conf) => {
-    if (!conf?.output?.path) {
+    if (!conf.output) {
+      // eslint-disable-next-line no-param-reassign
+      conf.output = {};
+    }
+    if (!conf.output?.path) {
       // eslint-disable-next-line no-param-reassign
       conf.output.path = '.best-shot/build/[config-name]';
     }

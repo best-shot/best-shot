@@ -27,13 +27,15 @@ npm install @best-shot/validator --save-dev
 ## Usage
 
 ```mjs
-import validator from '@best-shot/validator';
+import { validate } from '@best-shot/validator';
 
-try {
-  const result = validator.validate({ data, schema });
-} catch (error) {
-  console.warn(error.detail);
-}
+validate({ data, schema })
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.warn(error.detail);
+  });
 ```
 
 ## Related

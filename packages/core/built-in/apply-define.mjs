@@ -1,7 +1,5 @@
-'use strict';
-
-const mapValues = require('lodash/mapValues');
-const pickBy = require('lodash/pickBy');
+import mapValues from 'lodash/mapValues.js';
+import pickBy from 'lodash/pickBy.js';
 
 function variables(object) {
   return mapValues(
@@ -12,15 +10,15 @@ function variables(object) {
 
 const displayName = 'define';
 
-exports.name = displayName;
-
-exports.apply = function applyDefine({ config: { define } }) {
-  return (chain) => {
+export function apply({ config: { define } }) {
+  return async (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
     const name = chain.get('name');
 
-    const { DefinePlugin } = require('webpack');
+    const {
+      default: { DefinePlugin },
+    } = await import('webpack');
 
     chain.plugin(displayName).use(DefinePlugin, [
       variables({
@@ -31,9 +29,11 @@ exports.apply = function applyDefine({ config: { define } }) {
       }),
     ]);
   };
-};
+}
 
-exports.schema = {
+export const name = displayName;
+
+export const schema = {
   define: {
     title: 'Options of DefinePlugin',
     description: 'transform by `JSON.stringify`',

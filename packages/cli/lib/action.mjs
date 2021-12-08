@@ -9,13 +9,15 @@ export function action({ _: [command], progress, configName }) {
 
     const configs = await readConfig()({ command, configName });
 
-    const result = configs.map((config) =>
-      createConfig(config, {
+    const result = [];
+    for (const config of configs) {
+      const io = await createConfig(config, {
         watch: command === 'watch',
         command,
         batch: progress ? applyProgress : undefined,
-      }),
-    );
+      });
+      result.push(io);
+    }
 
     const { stats: statsConfig } = result.find(({ stats }) => stats) || {};
 

@@ -1,11 +1,11 @@
-'use strict';
+import { createRequire } from 'module';
 
-const { HotModuleReplacementPlugin } = require('webpack');
-const NodeHmrPlugin = require('node-hmr-plugin');
-const slash = require('slash');
+import slash from 'slash';
 
-exports.apply = function apply() {
-  return (config) => {
+const require = createRequire(import.meta.url);
+
+export function apply() {
+  return async (config) => {
     if (['electron-main', 'electron-renderer'].includes(config.get('target'))) {
       config.node.merge({ __dirname: false, __filename: false });
     }
@@ -20,11 +20,14 @@ exports.apply = function apply() {
       //   .loader('node-loader');
 
       if (config.get('watch')) {
+        const { HotModuleReplacementPlugin } = await import('webpack');
         config.plugin('hmr-caller').use(HotModuleReplacementPlugin);
+
+        const NodeHmrPlugin = await import('node-hmr-plugin');
+
         config.plugin('electron-caller').use(NodeHmrPlugin, [
           {
             cmd: `${slash(require.resolve('electron/cli.js'))} {app}`,
-            restartOnExitCodes: [1, 99],
           },
         ]);
 
@@ -37,4 +40,4 @@ exports.apply = function apply() {
       }
     }
   };
-};
+}

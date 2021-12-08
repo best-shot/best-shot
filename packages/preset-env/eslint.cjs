@@ -1,7 +1,6 @@
 'use strict';
 
 const mapValues = require('lodash/mapValues');
-const sortKeys = require('sort-keys');
 
 const { findConfig, parseConfig, filterData } = require('./lib.cjs');
 
@@ -20,9 +19,9 @@ const envObject = mapValues(
   () => 'readonly',
 );
 
-const globals = sortKeys({
+const globals = {
   ...envObject,
   BEST_SHOT: 'readonly',
-});
+};
 
 module.exports = { globals };

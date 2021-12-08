@@ -1,10 +1,6 @@
-'use strict';
+import { resolve } from 'path';
 
-const { resolve } = require('path');
-
-exports.name = 'basic';
-
-exports.apply = function applyBasic({
+export function apply({
   config: { output: { publicPath, path } = {}, target },
 }) {
   return (chain) => {
@@ -35,10 +31,6 @@ exports.apply = function applyBasic({
 
     const name = chain.get('name') || '';
 
-    if (publicPath !== undefined) {
-      chain.output.publicPath(publicPath);
-    }
-
     chain.output
       .filename('[name].js')
       .path(
@@ -48,15 +40,18 @@ exports.apply = function applyBasic({
         ),
       );
 
+    if (publicPath !== undefined) {
+      chain.output.publicPath(publicPath);
+    }
     if (!watch) {
       chain.output.set('clean', true);
     }
   };
-};
+}
 
-const string = { type: 'string' };
+export const name = 'basic';
 
-exports.schema = {
+export const schema = {
   output: {
     type: 'object',
     default: {},
@@ -69,16 +64,5 @@ exports.schema = {
         type: 'string',
       },
     },
-  },
-  target: {
-    title: 'Same as `target` of `webpack` configuration',
-    oneOf: [
-      string,
-      {
-        type: 'array',
-        uniqueItems: true,
-        items: string,
-      },
-    ],
   },
 };

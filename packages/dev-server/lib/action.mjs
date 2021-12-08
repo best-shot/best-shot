@@ -15,12 +15,15 @@ export function action({ _: [command] }) {
 
     const configs = await readConfig()({ command });
 
-    const result = configs.map((config) =>
-      createConfig(config, {
+    const result = [];
+    for (const config of configs) {
+      const io = await createConfig(config, {
         watch: true,
+        serve: Boolean(config.devServer),
         command,
-      }),
-    );
+      });
+      result.push(io);
+    }
 
     const shouldServe = [];
     const shouldWatch = [];

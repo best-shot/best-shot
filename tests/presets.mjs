@@ -1,18 +1,17 @@
 import test from 'ava';
 
-import builtIn from '../packages/core/built-in/index.cjs';
-import BestShot from '../packages/core/index.cjs';
+import { builtIn } from '../packages/core/built-in/index.mjs';
+import { BestShot } from '../packages/core/index.mjs';
 
 test('Right presets enum', (t) => {
-  const io = new BestShot({ presets: ['babel'] });
-  t.is(io.stack.store.size, 1 + builtIn.length);
+  const io = new BestShot();
+  t.is(io.stack.size, builtIn.length);
 });
 
-test('Prevent React and Vue', (t) => {
-  t.throws(
-    () => {
-      // eslint-disable-next-line no-new
-      new BestShot({ presets: ['vue', 'react'] });
+test('Prevent React and Vue', async (t) => {
+  await t.throwsAsync(
+    async () => {
+      await new BestShot().setup({ presets: ['vue', 'react'] });
     },
     {
       instanceOf: Error,
@@ -21,14 +20,12 @@ test('Prevent React and Vue', (t) => {
   );
 });
 
-test('More presets', (t) => {
+test('More presets', async (t) => {
   const presets = ['babel', 'style', 'vue'];
 
-  const io = new BestShot({ presets });
+  const chain = await new BestShot().setup({ presets });
 
-  t.is(io.stack.store.size, presets.length + builtIn.length);
-
-  const { rules } = io.setup().module;
+  const { rules } = chain.module;
 
   t.is(rules.has('babel'), true);
   t.is(rules.has('style'), true);

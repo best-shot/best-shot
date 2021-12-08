@@ -1,9 +1,9 @@
 import test from 'ava';
 
-import define from '../packages/core/built-in/apply-define.cjs';
-import entry from '../packages/core/built-in/apply-entry.cjs';
-import BestShot from '../packages/core/index.cjs';
-import Schema from '../packages/core/lib/schema.cjs';
+import * as define from '../packages/core/built-in/apply-define.mjs';
+import * as entry from '../packages/core/built-in/apply-entry.mjs';
+import { BestShot } from '../packages/core/index.mjs';
+import { Schema } from '../packages/core/lib/schema.mjs';
 
 const example = {
   mode: 'development',
@@ -12,13 +12,15 @@ const example = {
   },
 };
 
-test('toConfig', (t) => {
-  const config = new BestShot().setup().toConfig();
+test('toConfig', async (t) => {
+  const chain = await new BestShot().setup();
+  const config = chain.toConfig();
   t.like(config, example);
 });
 
-test('toString', (t) => {
-  const config = new BestShot().setup().toString();
+test('toString', async (t) => {
+  const chain = await new BestShot().setup();
+  const config = chain.toString();
   t.regex(config, /^{/);
   t.regex(config, /}$/);
 });
@@ -30,16 +32,21 @@ test('toSchema', (t) => {
   t.like(schema, baseSchema);
 });
 
-test('entryPoints', (t) => {
-  const stringEntry = new BestShot()
-    .setup({ config: { entry: 'index.js' } })
-    .toConfig().entry;
-  const arrayEntry = new BestShot()
-    .setup({ config: { entry: ['index.js'] } })
-    .toConfig().entry;
-  const objectEntry = new BestShot()
-    .setup({ config: { entry: { main: 'index.js' } } })
-    .toConfig().entry;
+test('entryPoints', async (t) => {
+  const chain1 = await new BestShot().setup({
+    config: { entry: 'index.js' },
+  });
+  const stringEntry = chain1.toConfig().entry;
+
+  const chain2 = await new BestShot().setup({
+    config: { entry: ['index.js'] },
+  });
+  const arrayEntry = chain2.toConfig().entry;
+
+  const chain3 = await new BestShot().setup({
+    config: { entry: { main: 'index.js' } },
+  });
+  const objectEntry = chain3.toConfig().entry;
 
   t.deepEqual(stringEntry, arrayEntry);
   t.deepEqual(stringEntry, objectEntry);

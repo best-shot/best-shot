@@ -22,14 +22,14 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.cjs",
+  "main": "index.mjs",
   "dependencies": {
     "node-hmr-plugin": "^1.0.1",
-    "slash": "^3.0.0"
+    "slash": "^4.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.5.2",
-    "webpack": "^5.58.0"
+    "@best-shot/core": "^0.5.4",
+    "webpack": "^5.65.0"
   },
   "engines": {
     "node": "^14.17.0 || >=16.13.0"

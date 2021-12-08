@@ -28,17 +28,18 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
-  "main": "index.cjs",
+  "main": "index.mjs",
   "dependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.16.0",
     "@babel/plugin-transform-react-inline-elements": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "react-refresh": "^0.10.0"
+    "react-refresh": "^0.11.0",
+    "settingz": "^0.1.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.5.2",
+    "@best-shot/core": "^0.5.4",
     "@best-shot/preset-babel": "^0.9.6",
     "react": "^16.14.0 || ^17.0.2",
     "react-dom": "^16.14.0 || ^17.0.2"

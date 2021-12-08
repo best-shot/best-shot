@@ -1,5 +1,3 @@
-'use strict';
-
 const allowPresets = ['babel', 'style', 'asset', 'react', 'vue', 'env', 'web'];
 
 function sortPresets(data) {
@@ -26,22 +24,13 @@ function checkPresets(presets) {
   }
 }
 
-function importPresets(presets) {
+export function importPresets(presets) {
   checkPresets(presets);
   try {
     const sorted = sortPresets(presets);
-    return sorted
-      .map((preset) => `@best-shot/preset-${preset}`)
-      .map((name) => require(name));
+    return sorted.map((preset) => () => import(`@best-shot/preset-${preset}`));
   } catch (error) {
     console.error(error);
     throw new Error('Import presets fail.');
   }
 }
-
-module.exports = {
-  allowPresets,
-  checkPresets,
-  sortPresets,
-  importPresets,
-};

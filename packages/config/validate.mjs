@@ -32,8 +32,8 @@ const schema = {
   ],
 };
 
-export function validate(config) {
-  coreValidate({ schema, data: config });
+export async function validate(config) {
+  await coreValidate({ schema, data: config });
 
   if (hasUniqueNames(config)) {
     throw new ConfigError('every config[x].name should be unique');

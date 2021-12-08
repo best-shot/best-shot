@@ -42,7 +42,6 @@ export default {
 // example: .best-shot/config.mjs
 export default {
   presets: ['web'],
-  sri: false, // Subresource Integrity, enable by default
   vendors: {
     // Split Chunks
     common: ['lodash', 'axios']

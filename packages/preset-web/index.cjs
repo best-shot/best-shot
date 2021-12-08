@@ -26,7 +26,7 @@ function isInstalled() {
 }
 
 exports.apply = function applyWeb({
-  config: { html, inject, vendors, define, sri, rtr },
+  config: { html, inject, vendors, define, rtr },
 }) {
   return (chain) => {
     const mode = chain.get('mode');
@@ -48,7 +48,7 @@ exports.apply = function applyWeb({
         }),
       )
       .batch(splitChunks({ vendors }))
-      .batch(setHtml({ sri, html, define, inject }));
+      .batch(setHtml({ html, define, inject }));
 
     if (isInstalled()) {
       chain.plugin('road-to-rome').use('@road-to-rome/webpack-plugin', [rtr]);
@@ -93,10 +93,6 @@ exports.schema = {
         default: 'global',
       },
     },
-  },
-  sri: {
-    default: true,
-    type: 'boolean',
   },
   vendors: {
     additionalProperties: {

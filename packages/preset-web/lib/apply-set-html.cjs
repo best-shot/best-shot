@@ -28,7 +28,7 @@ const htmlMinifier = {
   useShortDoctype: true,
 };
 
-exports.setHtml = function setHtml({ html = {}, inject = [], define, sri }) {
+exports.setHtml = function setHtml({ html = {}, inject = [], define }) {
   return (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
@@ -58,7 +58,7 @@ exports.setHtml = function setHtml({ html = {}, inject = [], define, sri }) {
         .use(HtmlWebpackInjectPlugin, [{ externals: inject }]);
     }
 
-    if (mode === 'production' && sri) {
+    if (mode === 'production') {
       chain.output.crossOriginLoading('anonymous');
 
       chain.plugin('subresource-integrity').use(SubresourceIntegrityPlugin);

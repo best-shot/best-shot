@@ -7,9 +7,12 @@ const { join } = require('path');
 
 function mapValues(obj, func) {
   const arr = Object.entries(obj);
-  return Object.fromEntries(arr.map(
-    ( [key, value], index) => [key, func(value, key, index, arr.length)],
-  ));
+  return Object.fromEntries(
+    arr.map(([key, value], index) => [
+      key,
+      func(value, key, index, arr.length),
+    ]),
+  );
 }
 
 const force = {
@@ -72,9 +75,8 @@ exports.splitChunks = function splitChunks({ vendors = {} }) {
       chain.recordsPath(
         join(
           process.cwd(),
-          'node_modules/.cache/best-shot/stats',
-          name,
-          'records.json',
+          'node_modules/.cache/best-shot/records',
+          `${name}.json`,
         ),
       );
     }

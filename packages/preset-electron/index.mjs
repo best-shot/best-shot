@@ -6,7 +6,7 @@ const require = createRequire(import.meta.url);
 
 export function apply() {
   return async (config) => {
-    if (['electron-main', 'electron-renderer'].includes(config.get('target'))) {
+    if (['electron-main'].includes(config.get('target'))) {
       config.node.merge({ __dirname: false, __filename: false });
     }
 
@@ -20,10 +20,13 @@ export function apply() {
       //   .loader('node-loader');
 
       if (config.get('watch')) {
-        const { HotModuleReplacementPlugin } = await import('webpack');
+        const {
+          default: { HotModuleReplacementPlugin },
+        } = await import('webpack');
+
         config.plugin('hmr-caller').use(HotModuleReplacementPlugin);
 
-        const NodeHmrPlugin = await import('node-hmr-plugin');
+        const { default: NodeHmrPlugin } = await import('node-hmr-plugin');
 
         config.plugin('electron-caller').use(NodeHmrPlugin, [
           {

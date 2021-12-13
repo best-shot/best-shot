@@ -6,7 +6,6 @@ const pickBy = require('lodash/pickBy');
 const toml = require('@ltd/j-toml');
 const yaml = require('js-yaml');
 const ini = require('ini');
-const { default: git } = require('@nice-labs/git-rev');
 
 // eslint-disable-next-line consistent-return
 function ensureConfig(type, rootPath) {
@@ -31,14 +30,6 @@ function findConfig(rootPath) {
 
 function filterData(data) {
   return pickBy(data, (item) => item !== undefined);
-}
-
-function getGitHash() {
-  try {
-    return git.commitHash();
-  } catch {
-    return 'noop';
-  }
 }
 
 function mergeParams(
@@ -80,7 +71,6 @@ function parseConfig({ path, name, type } = {}) {
 }
 
 module.exports = {
-  getGitHash,
   filterData,
   findConfig,
   mergeParams,

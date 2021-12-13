@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import mapValues from 'lodash/mapValues.js';
 import sortKeys from 'sort-keys';
 
-import { findConfig, getGitHash, mergeParams, parseConfig } from './lib.cjs';
+import { findConfig, mergeParams, parseConfig } from './lib.cjs';
 
 function pretty(data) {
   return inspect(data, {
@@ -15,7 +15,7 @@ function pretty(data) {
   });
 }
 
-function logger({ 'BEST_SHOT.GIT_HASH': x, ...data }) {
+function logger(data) {
   console.log(chalk.cyan`PRESET-ENV`, pretty(data));
 }
 
@@ -29,10 +29,6 @@ export function apply() {
     const configFile = findConfig(context);
     const configObject = parseConfig(configFile);
     const data = mergeParams({ mode, serve, watch }, configObject);
-
-    const GIT_HASH = getGitHash();
-
-    data['BEST_SHOT.GIT_HASH'] = GIT_HASH;
 
     if (Object.values(data).length > 0) {
       const sorted = sortKeys(data, { deep: true });

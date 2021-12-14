@@ -3,16 +3,16 @@ import { reaching } from 'settingz';
 
 import { nonAscii, removeRoot } from './utils.mjs';
 
-const imageRegexp = extToRegexp({
-  extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
-});
-
 export async function applyImage(chain) {
   const minimize = chain.optimization.get('minimize');
 
   chain.module
     .rule('image')
-    .test(imageRegexp)
+    .test(
+      extToRegexp({
+        extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
+      }),
+    )
     .batch((rule) => {
       rule
         .oneOf('mutable')
@@ -44,19 +44,45 @@ export async function applyImage(chain) {
     const { default: ImageMinimizerPlugin } = await import(
       'image-minimizer-webpack-plugin'
     );
+
     const svgoConfig = reaching('svgo-config/config.json');
 
     chain.optimization.minimizer('imagemin').use(ImageMinimizerPlugin, [
       {
-        test: imageRegexp,
+        test: extToRegexp({ extname: ['svg'] }),
         minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
             plugins: [
               ['gifsicle', { interlaced: true }],
-              ['jpegtran', { progressive: true }],
-              ['optipng', { optimizationLevel: 5 }],
               ['svgo', svgoConfig],
             ],
+          },
+        },
+      },
+    ]);
+
+    const { gifMinify } = await import('./gif-minify.mjs');
+
+    chain.optimization.minimizer('gifsicle').use(ImageMinimizerPlugin, [
+      {
+        test: extToRegexp({ extname: ['gif'] }),
+        minimizer: {
+          implementation: gifMinify,
+          options: {
+            interlaced: true,
+          },
+        },
+      },
+    ]);
+
+    chain.optimization.minimizer('squoosh').use(ImageMinimizerPlugin, [
+      {
+        test: extToRegexp({ extname: ['jpg', 'jpeg', 'png'] }),
+        minimizer: {
+          implementation: ImageMinimizerPlugin.squooshMinify,
+          options: {
+            encodeOptions: {},
           },
         },
       },

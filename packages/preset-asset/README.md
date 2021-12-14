@@ -14,10 +14,10 @@ A `best-shot` preset for asset.
 
 This preset offer the following features:
 
-- import `jpg` / `jpeg` / `png` / `gif` / `svg`
-- import `woff` / `woff2` / `otf` / `eot` / `ttf`
-- Use `imagemin` in production mode (disable until the error fixed)
-- export `yml` / `yaml` / `txt` / `json` to standalone file
+- export `yml` / `yaml` / `txt` / `json` to data or standalone file
+- bundle `jpg` / `jpeg` / `png` / `gif` / `svg`
+- bundle `woff` / `woff2` / `otf` / `eot` / `ttf`
+- image minify in production mode
 
 ## Installation
 
@@ -64,22 +64,6 @@ import('./header/header-bg.png');
 
 ```plain
 天地人-abc.jpg -> 4273f2f7-abc.jpg
-```
-
-### Installing troubleshooting
-
-In China mainland, use [bin-wrapper-china](https://github.com/best-shot/bin-wrapper-china) might help.
-
-Otherwise, you can replace `gifsicle/jpegtran-bin/optipng-bin` with any empty package by using [yarn resolutions](https://classic.yarnpkg.com/en/docs/selective-version-resolutions), `best-shot` will disable them automatically.
-
-```jsonc
-// package.json
-{
-  "resolutions": {
-    "bin-wrapper": "npm:bin-wrapper-china",
-    "gifsicle": "npm:some-empty-package"
-  }
-}
 ```
 
 ## Related

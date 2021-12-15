@@ -35,7 +35,7 @@
     "ext-to-regexp": "^0.1.0",
     "html-webpack-inject-plugin": "^5.2.3",
     "html-webpack-plugin": "^5.5.0",
-    "micro-tpl-loader": "^0.0.1",
+    "micro-tpl-loader": "^0.1.0",
     "settingz": "^0.1.2",
     "slash-to-regexp": "^0.0.4",
     "suffix": "^1.0.0",

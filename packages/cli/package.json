@@ -37,8 +37,8 @@
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.5.3",
-    "webpack": "^5.58.0"
+    "@best-shot/core": "^0.5.4",
+    "webpack": "^5.65.0"
   },
   "engines": {
     "node": "^14.17.0 || >=16.13.0"

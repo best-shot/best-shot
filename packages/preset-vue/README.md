@@ -81,8 +81,6 @@ export default {
 };
 ```
 
-This preset will override `options.asset.esModule` to `false`.
-
 ## Related
 
 - [@best-shot/preset-style](../preset-style)

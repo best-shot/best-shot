@@ -1,19 +1,16 @@
 import extToRegexp from 'ext-to-regexp';
 import slashToRegexp from 'slash-to-regexp';
 
-function applyOneOf({ auto = false, esModule = true, mode }) {
+function applyOneOf({ auto = false, mode }) {
   return (rule) => {
     rule
       .use('css-loader')
       .loader('css-loader')
       .options({
-        ...(!esModule ? { esModule: false } : undefined),
         importLoaders: 3,
         modules: {
           ...(auto ? { auto } : undefined),
-          ...(esModule
-            ? { namedExport: true }
-            : { exportLocalsConvention: 'camelCaseOnly' }),
+          namedExport: true,
           localIdentName: {
             development: '[path][name]__[local]',
             production: '[local]_[hash:base64:8]',
@@ -23,7 +20,7 @@ function applyOneOf({ auto = false, esModule = true, mode }) {
   };
 }
 
-export async function applyStylesheet(chain, esModule = true) {
+export async function applyStylesheet(chain) {
   const minimize = chain.optimization.get('minimize');
 
   if (minimize) {
@@ -51,11 +48,11 @@ export async function applyStylesheet(chain, esModule = true) {
   parent
     .oneOf('css-modules-by-query')
     .resourceQuery(/module/)
-    .batch(applyOneOf({ mode, esModule }));
+    .batch(applyOneOf({ mode }));
 
   parent
     .oneOf('css-modules-by-filename')
-    .batch(applyOneOf({ mode, esModule, auto: true }));
+    .batch(applyOneOf({ mode, auto: true }));
 
   chain.module
     .rule('style')
@@ -82,12 +79,6 @@ export async function applyStylesheet(chain, esModule = true) {
     }
   }
 
-  function takeOptions(loader) {
-    if (!esModule) {
-      loader.options({ esModule: false });
-    }
-  }
-
   if (extract) {
     const { default: MiniCssExtractPlugin } = await import(
       'mini-css-extract-plugin'
@@ -96,8 +87,7 @@ export async function applyStylesheet(chain, esModule = true) {
     chain.module
       .rule('style')
       .use('extract-css')
-      .loader(MiniCssExtractPlugin.loader)
-      .batch(takeOptions);
+      .loader(MiniCssExtractPlugin.loader);
 
     chain.plugin('extract-css').use(MiniCssExtractPlugin, [
       {
@@ -107,10 +97,6 @@ export async function applyStylesheet(chain, esModule = true) {
       },
     ]);
   } else {
-    chain.module
-      .rule('style')
-      .use('style-loader')
-      .loader('style-loader')
-      .batch(takeOptions);
+    chain.module.rule('style').use('style-loader').loader('style-loader');
   }
 }

@@ -69,14 +69,6 @@ export function apply({
 export const name = 'preset-vue';
 
 export const schema = {
-  asset: {
-    type: 'object',
-    properties: {
-      esModule: {
-        default: false,
-      },
-    },
-  },
   vue: {
     type: 'object',
     additionalProperties: false,

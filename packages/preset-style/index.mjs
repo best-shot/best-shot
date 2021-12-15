@@ -4,11 +4,11 @@ import { fileURLToPath } from 'url';
 import { applyScssLess } from './lib/apply-scss-less.mjs';
 import { applyStylesheet } from './lib/apply-stylesheet.mjs';
 
-export function apply({ config: { less, asset: { esModule = true } = {} } }) {
+export function apply({ config: { less } }) {
   return async (chain) => {
     const context = chain.get('context');
 
-    await applyStylesheet(chain, esModule);
+    await applyStylesheet(chain);
 
     applyScssLess(less)(chain);
 
@@ -24,16 +24,6 @@ export function apply({ config: { less, asset: { esModule = true } = {} } }) {
 export const schema = {
   less: {
     type: 'object',
-  },
-  asset: {
-    type: 'object',
-    default: {},
-    properties: {
-      esModule: {
-        type: 'boolean',
-        default: true,
-      },
-    },
   },
 };
 

@@ -3,6 +3,8 @@ import { fileURLToPath, pathToFileURL } from 'url';
 
 import chalk from 'chalk';
 
+import { getEnv } from './env/index.mjs';
+
 import { prompt } from './prompt.mjs';
 import { validate } from './validate.mjs';
 
@@ -36,9 +38,18 @@ async function requireConfig(rootPath) {
 
 export async function getConfigs(rootPath, { command }) {
   const config = await requireConfig(rootPath);
+
   const io = typeof config === 'function' ? await config({ command }) : config;
+
   await validate(io);
+
   const configs = Array.isArray(io) ? io : [io];
+
+  const envs = getEnv(rootPath, {
+    mode: command === 'prod' ? 'production' : 'development',
+    watch: command === 'watch',
+    serve: command === 'serve',
+  });
 
   configs.forEach((conf) => {
     if (!conf.output) {
@@ -48,6 +59,14 @@ export async function getConfigs(rootPath, { command }) {
     if (!conf.output?.path) {
       // eslint-disable-next-line no-param-reassign
       conf.output.path = '.best-shot/build/[config-name]';
+    }
+
+    if (envs) {
+      // eslint-disable-next-line no-param-reassign
+      conf.define = {
+        ...conf.define,
+        ...envs,
+      };
     }
   });
 

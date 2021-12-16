@@ -18,6 +18,12 @@ Config reader of '@best-shot/cli'.
 npm install @best-shot/config --save-dev
 ```
 
+## Usage
+
+### Env variables
+
+See [Env variables](./env/README.md)
+
 ## Related
 
 - [@best-shot/core](../core)

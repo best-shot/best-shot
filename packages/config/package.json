@@ -9,7 +9,15 @@
   },
   "keywords": [
     "best-shot",
-    "config"
+    "branch",
+    "conf",
+    "config",
+    "configuration",
+    "define",
+    "env",
+    "environment",
+    "settings",
+    "variables"
   ],
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/config",
   "repository": {
@@ -24,9 +32,14 @@
   "exports": "./index.mjs",
   "dependencies": {
     "@best-shot/validator": "^0.1.1",
+    "@ltd/j-toml": "^1.24.0",
+    "@nice-labs/git-rev": "^3.5.0",
     "chalk": "^4.1.2",
     "configstore": "^6.0.0",
-    "prompts": "^2.4.2"
+    "ini": "^2.0.0",
+    "lodash": "^4.17.21",
+    "prompts": "^2.4.2",
+    "yaml": "^1.10.2"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.5.4"

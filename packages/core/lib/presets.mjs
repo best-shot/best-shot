@@ -1,4 +1,4 @@
-const allowPresets = ['babel', 'style', 'asset', 'react', 'vue', 'env', 'web'];
+const allowPresets = ['babel', 'style', 'asset', 'react', 'vue', 'web'];
 
 function sortPresets(data) {
   const io = [...new Set(data)];

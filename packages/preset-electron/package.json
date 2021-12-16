@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-electron",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "A `best-shot` preset for `electron` project",
   "license": "MIT",
   "author": {
@@ -28,7 +28,7 @@
     "slash": "^4.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.5.4",
+    "@best-shot/core": "^0.6.0",
     "webpack": "^5.65.0"
   },
   "engines": {

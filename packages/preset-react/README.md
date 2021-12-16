@@ -39,7 +39,7 @@ export default {
 This preset contains some optimization transform.
 It is not 100% safe, you can enable them manually.
 
-```json
+```jsonc
 // example: babel.config.json
 {
   "plugins": ["@babel/transform-react-constant-elements"]

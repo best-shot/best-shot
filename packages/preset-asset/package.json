@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-asset",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "A `best-shot` preset for asset",
   "license": "MIT",
   "author": {
@@ -40,7 +40,7 @@
     "yaml-loader": "^0.6.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.5.4"
+    "@best-shot/core": "^0.6.0"
   },
   "engines": {
     "node": "^14.17.0 || >=16.13.0"

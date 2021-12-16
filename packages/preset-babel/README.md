@@ -76,7 +76,7 @@ npm install core-js@3
 
 References: <https://babeljs.io/docs/en/configuration>
 
-```json
+```jsonc
 // example: babel.config.json
 {
   "plugins": ["lodash", "macros"]

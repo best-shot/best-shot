@@ -47,8 +47,8 @@ export default {
 Use `[name].module.[extname]` as filename.
 
 ```js
-import { foo } from './foo.module.css';
 import { bar } from './bar.module.scss';
+import { foo } from './foo.module.css';
 ```
 
 Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-modules.html)

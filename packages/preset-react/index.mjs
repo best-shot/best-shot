@@ -44,7 +44,7 @@ export function apply({ config: { babel: { polyfill = false } = {} } }) {
       }));
 
     if (useHot) {
-      chain.optimization.runtimeChunk('single'); // TODO
+      chain.optimization.runtimeChunk('single');
 
       const { default: ReactRefreshPlugin } = await import(
         '@pmmmwh/react-refresh-webpack-plugin'

@@ -2,20 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="renderer" content="webkit" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="webkit" name="renderer" />
     <meta
-      name="viewport"
       content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover"
+      name="viewport"
     />
     <title>Page not found</title>
-    <link type="image/png" href="/.best-shot/logo.png" rel="shortcut icon" />
+    <link href="/.best-shot/logo.png" rel="shortcut icon" type="image/png" />
     <style>
       html {
         min-width: 300px;
         height: 100%;
         min-height: 300px;
-        /* stylelint-disable property-no-vendor-prefix */
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -33,9 +32,9 @@
         align-items: center;
         justify-content: center;
         margin: 0;
-        height: 100%;
-        color: #999;
         background-color: white;
+        height: 100%;
+        color: #999999;
         font-family: -apple-system, BlinkMacSystemFont, roboto, 'Segoe UI',
           Segoe, Helvetica, Arial, monospace;
       }
@@ -77,14 +76,14 @@
       }
 
       a {
-        color: #93f;
+        color: #9933ff;
         text-decoration: none;
         cursor: pointer;
       }
 
       @media (prefers-color-scheme: dark) {
         body {
-          background-color: #222;
+          background-color: #222222;
         }
       }
     </style>
@@ -93,21 +92,21 @@
     <div style="flex: 3"></div>
     <div style="text-align: right">
       <h1>
-        <img src="/.best-shot/logo.svg" alt="logo" class="logo" />
+        <img alt="logo" class="logo" src="/.best-shot/logo.svg" />
         <span class="text">BEST SHOT</span>
       </h1>
       <p>Page not found</p>
       [? if (publicPath) { ?]
       <p>
         Back to
-        <a rel="noopener noreferrer" href="[?= publicPath ?]">
+        <a href="[?= publicPath ?]" rel="noopener noreferrer">
           [?= publicPath ?]
         </a>
       </p>
       [? } ?]
     </div>
     <div style="flex: 2"></div>
-    <img src="/.best-shot/404.svg" alt="404" class="not-found" />
+    <img alt="404" class="not-found" src="/.best-shot/404.svg" />
 
     <div style="flex: 8"></div>
   </body>

@@ -43,21 +43,21 @@ SERVICE_URL = "http://mock.dev/"
 
 ```mjs
 // output: production mode
-export const production = {
+config.define = {
   APPID: '"123456789"',
   SERVICE_URL: '"https://sample.org/"',
   WHATEVER: '"abc"'
 };
 
 // output: development mode
-export const development = {
+config.define = {
   APPID: '"987654321"',
   SERVICE_URL: '"http://sample.dev/"',
   WHATEVER: '"abc"'
 };
 
 // output: serve command
-export const serve = {
+config.define = {
   APPID: '"987654321"',
   SERVICE_URL: '"http://mock.dev/"',
   WHATEVER: '"abc"'
@@ -80,9 +80,7 @@ console = "xyz"
 If a `process.cwd()` is a git repository, `GIT_HASH` will be injected to your config too.
 
 ```mjs
-const config = {
-  define: {
-    'BEST_SHOT.GIT_HASH': '"xxxxxxxxxxxxxxxxxxxx"'
-  }
+config.define = {
+  'BEST_SHOT.GIT_HASH': '"xxxxxxxxxxxxxxxxxxxx"'
 };
 ```

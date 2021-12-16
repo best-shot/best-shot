@@ -1,8 +1,9 @@
-import { compile } from 'ejs';
-import { Router } from 'express';
 import { readFileSync } from 'fs';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+
+import { compile } from 'ejs';
+import { Router } from 'express';
 
 import { isRaw } from '../../lib/utils.mjs';
 

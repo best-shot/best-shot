@@ -41,7 +41,7 @@
     "@nice-move/commitlint-config": "^0.4.0",
     "@nice-move/eslint-config-base": "^0.5.75",
     "@nice-move/prettier-config": "^0.5.1",
-    "@nice-move/stylelint-config": "^0.6.11",
+    "@nice-move/stylelint-config": "^0.6.12",
     "@types/react": "^17.0.37",
     "ava": "^3.15.0",
     "commitlint": "^15.0.0",
@@ -66,6 +66,11 @@
     "rules": {
       "no-await-in-loop": 0
     }
+  },
+  "garou": {
+    "ignore": [
+      "**/404.html"
+    ]
   },
   "prettier": "@nice-move/prettier-config",
   "stylelint": {

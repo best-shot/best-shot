@@ -1,5 +1,6 @@
-import fs from 'fs-extra';
 import { join } from 'path';
+
+import fs from 'fs-extra';
 
 const { outputFileSync } = fs;
 

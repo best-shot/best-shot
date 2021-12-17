@@ -1,4 +1,3 @@
-import { isReachable } from 'settingz';
 import suffix from 'suffix';
 
 import { setHtml } from './lib/apply-set-html.mjs';
@@ -13,7 +12,7 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
-export function apply({ config: { html, inject, vendors, define, rtr } }) {
+export function apply({ config: { html, inject, vendors, define } }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const minimize = chain.optimization.get('minimize');
@@ -37,10 +36,6 @@ export function apply({ config: { html, inject, vendors, define, rtr } }) {
     await splitChunks({ vendors })(chain);
 
     await setHtml({ html, define, inject })(chain);
-
-    if (isReachable('@road-to-rome/webpack-plugin/package.json')) {
-      chain.plugin('road-to-rome').use('@road-to-rome/webpack-plugin', [rtr]);
-    }
   };
 }
 
@@ -99,5 +94,4 @@ export const schema = {
     },
     type: 'object',
   },
-  rtr: {},
 };

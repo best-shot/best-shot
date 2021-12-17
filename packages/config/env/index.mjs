@@ -33,7 +33,11 @@ export function getEnv(root, { mode, serve, watch }) {
 
   const data = mergeParams({ mode, serve, watch }, configObject);
 
-  console.log(chalk.gyan('ENV'), pretty(data));
+  const empty = Object.keys(data).length === 0;
 
-  return Object.keys(data).length > 0 ? data : undefined;
+  if (!empty) {
+    console.log(chalk.cyan('DEFINE/ENV'), pretty(data));
+  }
+
+  return empty ? undefined : data;
 }

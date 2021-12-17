@@ -2,17 +2,11 @@ import { relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 import extToRegexp from 'ext-to-regexp';
-import { reaching } from 'settingz';
+import { getPkg, haveLocalDependencies } from 'settingz';
 
 function isVue2() {
-  try {
-    if (reaching('vue/package.json').version.startsWith('2')) {
-      return true;
-    }
-    return false;
-  } catch {
-    return false;
-  }
+  const { vue = '' } = getPkg('dependencies');
+  return !vue || /^[\^~]?2\./.test(vue);
 }
 
 export function apply({
@@ -47,13 +41,7 @@ export function apply({
       ),
     );
 
-    const { dependencies = {}, devDependencies = {} } =
-      reaching('./package.json');
-
-    const compat =
-      dependencies['@vue/compat'] || devDependencies['@vue/compat'];
-
-    if (compat) {
+    if (haveLocalDependencies('@vue/compat')) {
       chain.resolve.alias.set('vue', '@vue/compat');
     }
 

@@ -1,5 +1,4 @@
 import extToRegexp from 'ext-to-regexp';
-import { reaching } from 'settingz';
 
 import { nonAscii, removeRoot } from './utils.mjs';
 
@@ -45,7 +44,7 @@ export async function applyImage(chain) {
       'image-minimizer-webpack-plugin'
     );
 
-    const svgoConfig = reaching('svgo-config/config.json');
+    const { default: svgoConfig } = await import('svgo-config/lib/config.mjs');
 
     chain.optimization.minimizer('imagemin').use(ImageMinimizerPlugin, [
       {

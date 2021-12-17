@@ -1,6 +1,5 @@
 import { commandMode, errorHandle } from '@best-shot/cli/lib/utils.mjs';
 import { BestShot } from '@best-shot/core';
-import { isReachable } from 'settingz';
 
 import { concatStr } from './concat-str.mjs';
 import { makeWriteFile } from './write-file.mjs';
@@ -8,11 +7,7 @@ import { makeWriteFile } from './write-file.mjs';
 export function action({ stamp = 'none' }) {
   console.log('best-shot', 'output files ...');
 
-  const commands = ['watch', 'dev', 'prod'];
-
-  if (isReachable('@best-shot/dev-server/package.json')) {
-    commands.push('serve');
-  }
+  const commands = ['watch', 'dev', 'prod', 'serve'];
 
   errorHandle(async () => {
     const { readConfig } = await import('@best-shot/config');

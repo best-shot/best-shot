@@ -1,4 +1,4 @@
-import { isReachable } from 'settingz';
+import { haveLocalDependencies } from 'settingz';
 
 export function apply({ config: { babel: { polyfill = false } = {} } }) {
   return async (chain) => {
@@ -31,7 +31,7 @@ export function apply({ config: { babel: { polyfill = false } = {} } }) {
                 ...(polyfill !== 'pure'
                   ? ['@babel/transform-react-inline-elements']
                   : []),
-                isReachable('airbnb-prop-types/package.json')
+                haveLocalDependencies('airbnb-prop-types/package.json')
                   ? [
                       'transform-react-remove-prop-types',
                       { additionalLibraries: ['airbnb-prop-types'] },

@@ -2,6 +2,12 @@ import extToRegexp from 'ext-to-regexp';
 
 import { nonAscii, removeRoot } from './utils.mjs';
 
+const notDataUrlText = (_, sourcePath) => {
+  return sourcePath && sourcePath.startsWith('data:')
+    ? sourcePath.startsWith('data:image/')
+    : true;
+};
+
 export async function applyImage(chain) {
   const minimize = chain.optimization.get('minimize');
 
@@ -51,11 +57,9 @@ export async function applyImage(chain) {
         test: extToRegexp({ extname: ['svg'] }),
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
+          filter: notDataUrlText,
           options: {
-            plugins: [
-              ['gifsicle', { interlaced: true }],
-              ['svgo', svgoConfig],
-            ],
+            plugins: [['svgo', svgoConfig]],
           },
         },
       },
@@ -68,6 +72,7 @@ export async function applyImage(chain) {
         test: extToRegexp({ extname: ['gif'] }),
         minimizer: {
           implementation: gifMinify,
+          filter: notDataUrlText,
           options: {
             interlaced: true,
           },
@@ -80,6 +85,7 @@ export async function applyImage(chain) {
         test: extToRegexp({ extname: ['jpg', 'jpeg', 'png'] }),
         minimizer: {
           implementation: ImageMinimizerPlugin.squooshMinify,
+          filter: notDataUrlText,
           options: {
             encodeOptions: {},
           },

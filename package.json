@@ -39,7 +39,7 @@
     "@babel/core": "^7.16.5",
     "@nice-move/cli": "^0.6.0",
     "@nice-move/commitlint-config": "^0.4.0",
-    "@nice-move/eslint-config-base": "^0.5.75",
+    "@nice-move/eslint-config-base": "^0.5.76",
     "@nice-move/prettier-config": "^0.5.1",
     "@nice-move/stylelint-config": "^0.6.12",
     "@types/react": "^17.0.37",
@@ -62,10 +62,7 @@
     "extends": "@nice-move/commitlint-config"
   },
   "eslintConfig": {
-    "extends": "@nice-move/eslint-config-base",
-    "rules": {
-      "no-await-in-loop": 0
-    }
+    "extends": "@nice-move/eslint-config-base"
   },
   "garou": {
     "ignore": [

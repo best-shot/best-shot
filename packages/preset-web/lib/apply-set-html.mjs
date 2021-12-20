@@ -23,7 +23,7 @@ const htmlMinifier = {
   useShortDoctype: true,
 };
 
-export function setHtml({ html = {}, inject = [], define }) {
+export function setHtml({ html = {}, inject = [] }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
@@ -38,7 +38,6 @@ export function setHtml({ html = {}, inject = [], define }) {
       chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
         mergeAll(
           {
-            ...(define && { templateParameters: { define } }),
             template: './src/index.html',
             cache: watch,
           },
@@ -50,9 +49,9 @@ export function setHtml({ html = {}, inject = [], define }) {
     });
 
     if (inject.length > 0) {
-      const { default: HtmlWebpackInjectPlugin } = await import(
-        'html-webpack-inject-plugin'
-      );
+      const {
+        default: { default: HtmlWebpackInjectPlugin },
+      } = await import('html-webpack-inject-plugin');
 
       chain
         .plugin('inject')

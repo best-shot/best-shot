@@ -12,7 +12,7 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
-export function apply({ config: { html, inject, vendors, define } }) {
+export function apply({ config: { html, inject, vendors } }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const minimize = chain.optimization.get('minimize');
@@ -35,7 +35,7 @@ export function apply({ config: { html, inject, vendors, define } }) {
 
     await splitChunks({ vendors })(chain);
 
-    await setHtml({ html, define, inject })(chain);
+    await setHtml({ html, inject })(chain);
   };
 }
 

@@ -29,7 +29,7 @@ export function getEnv(root, { mode, serve, watch }) {
 
   const GIT_HASH = getGitHash();
 
-  configObject.GIT_HASH = GIT_HASH;
+  configObject['BEST_SHOT.GIT_HASH'] = GIT_HASH;
 
   const data = mergeParams({ mode, serve, watch }, configObject);
 

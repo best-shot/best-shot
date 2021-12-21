@@ -14,7 +14,7 @@ DevServer support of `@best-shot/cli`.
 
 ## Features
 
-- All Features of webpack-dev-server@4
+- All Features of [webpack-dev-server@4](https://webpack.js.org/configuration/dev-server/)
 - Hook `historyApiFallback` into `devMiddleware.publicPath`
 - Show a wait page when bundling
 - Provide a 404 page
@@ -43,6 +43,13 @@ export default {
   }
 };
 ```
+
+## Tips
+
+### Difference with webpack-dev-server
+
+- `options.static` is `false` by default.
+- `options.hot` is `only` by default.
 
 ## Related
 

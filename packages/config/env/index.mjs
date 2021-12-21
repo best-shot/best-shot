@@ -35,7 +35,7 @@ export function getEnv(root, { mode, serve, watch }) {
     console.log(chalk.cyan('DEFINE/ENV'), pretty(data));
   }
 
-  const io = empty ? undefined : data;
+  const io = empty ? {} : data;
 
   const GIT_HASH = getGitHash();
 

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/config",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Config reader of '@best-shot/cli'",
   "license": "MIT",
   "author": {

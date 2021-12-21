@@ -19,7 +19,10 @@ function isSafeError(error) {
 
 async function readConfigFile(filename, rootPath = process.cwd()) {
   return import(pathToFileURL(resolve(rootPath, '.best-shot', filename)))
-    .then(({ default: config }) => config)
+    .then(({ default: old, config = old, sideEffect }) => ({
+      config,
+      sideEffect,
+    }))
     .catch((error) => {
       if (isSafeError(error)) {
         return;
@@ -37,7 +40,11 @@ async function requireConfig(rootPath) {
 }
 
 export async function getConfigs(rootPath, { command }) {
-  const config = await requireConfig(rootPath);
+  const { config, sideEffect } = await requireConfig(rootPath);
+
+  if (typeof sideEffect === 'function') {
+    await sideEffect({ command });
+  }
 
   const io = typeof config === 'function' ? await config({ command }) : config;
 
@@ -73,7 +80,10 @@ export async function getConfigs(rootPath, { command }) {
   return configs;
 }
 
-export function readConfig(rootPath, interactive = process.stdout.isTTY) {
+export function readConfig(
+  rootPath = process.cwd(),
+  interactive = process.stdout.isTTY,
+) {
   return async function func({ command, configName }) {
     const configs = await getConfigs(rootPath, { command });
 

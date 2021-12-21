@@ -27,10 +27,6 @@ export function getEnv(root, { mode, serve, watch }) {
 
   const configObject = parseConfig(configFile);
 
-  const GIT_HASH = getGitHash();
-
-  configObject['BEST_SHOT.GIT_HASH'] = GIT_HASH;
-
   const data = mergeParams({ mode, serve, watch }, configObject);
 
   const empty = Object.keys(data).length === 0;
@@ -39,5 +35,11 @@ export function getEnv(root, { mode, serve, watch }) {
     console.log(chalk.cyan('DEFINE/ENV'), pretty(data));
   }
 
-  return empty ? undefined : data;
+  const io = empty ? undefined : data;
+
+  const GIT_HASH = getGitHash();
+
+  io['BEST_SHOT.GIT_HASH'] = GIT_HASH;
+
+  return io;
 }

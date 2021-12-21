@@ -1,7 +1,7 @@
 [
-  "**/.{babel,postcss,browserslist}rc",
-  "**/.{babel,postcss,browserslist}rc.{json,yml,yaml}",
-  "**/{babel,postcss,browserslist}.config.*",
+  "**/.*rc",
+  "**/.*rc.{json,yml,yaml}",
+  "**/*.config.*",
   ".best-shot/{config,custom,diy,tool}/*",
   ".best-shot/{config,env}.*",
   "{browserslist,package.json}",

@@ -6,9 +6,15 @@
     ".best-shot/temp/"
   ],
   "eslint": [
-    "**/.best-shot/{build|inspect|stats|temp}/"
+    "**/.best-shot/build/*",
+    "**/.best-shot/inspect/*",
+    "**/.best-shot/stats/*",
+    "**/.best-shot/temp/*"
   ],
   "stylelint": [
-    ".best-shot/(build|inspect|stats|temp)/*"
+    "**/.best-shot/build/*",
+    "**/.best-shot/inspect/*",
+    "**/.best-shot/stats/*",
+    "**/.best-shot/temp/*"
   ]
 }

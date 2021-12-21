@@ -6,6 +6,14 @@ const notDataUrlText = (_, sourcePath) => {
   return sourcePath ? !sourcePath.startsWith('data:') : true;
 };
 
+function squooshWrapper(implementation) {
+  return (...args) => {
+    const io = implementation(...args);
+    delete globalThis.navigator;
+    return io;
+  };
+}
+
 export async function applyImage(chain) {
   const minimize = chain.optimization.get('minimize');
 
@@ -76,7 +84,7 @@ export async function applyImage(chain) {
       {
         test: extToRegexp({ extname: ['jpg', 'jpeg', 'png'] }),
         minimizer: {
-          implementation: ImageMinimizerPlugin.squooshMinify,
+          implementation: squooshWrapper(ImageMinimizerPlugin.squooshMinify),
           filter: notDataUrlText,
         },
       },

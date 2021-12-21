@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
@@ -40,7 +40,7 @@
   },
   "peerDependencies": {
     "@best-shot/core": "^0.6.0",
-    "@best-shot/preset-babel": "^0.10.0",
+    "@best-shot/preset-babel": "^0.10.0 || ^0.11.0",
     "react": "^16.14.0 || ^17.0.2",
     "react-dom": "^16.14.0 || ^17.0.2"
   },

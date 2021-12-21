@@ -54,8 +54,8 @@ References: <https://github.com/babel/babel/issues/10008>
 
 ### babel.env
 
-- enum: [ false, 'always' ]
-- default: false
+- enum: [ 'auto', 'always' ]
+- default: 'auto'
 
 When 'always', `babel-preset-evergreen` will enabled in watch mode
 

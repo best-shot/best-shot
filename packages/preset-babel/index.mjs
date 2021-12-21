@@ -11,7 +11,7 @@ function getList(path) {
 }
 
 export function apply({
-  config: { babel: { polyfill = false, env = false } = {} },
+  config: { babel: { polyfill = false, env = 'auto' } = {} },
 }) {
   return (chain) => {
     const mode = chain.get('mode');
@@ -35,7 +35,7 @@ export function apply({
         sourceType: 'unambiguous',
         targets: getList(context),
         presets:
-          watch && env === false
+          watch && env === 'auto'
             ? ['@babel/typescript']
             : [['evergreen', { polyfill }], '@babel/typescript'],
       });
@@ -85,8 +85,8 @@ export const schema = {
         title: 'How `babel` handles polyfills',
       },
       env: {
-        default: false,
-        enum: ['always', false],
+        default: 'auto',
+        enum: ['always', 'auto'],
         description:
           "When 'always', `babel-preset-evergreen` will enabled in watch mode",
       },

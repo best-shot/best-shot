@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs';
+import { createRequire } from 'module';
 import { resolve } from 'path';
 
 // eslint-disable-next-line import/namespace, import/named
@@ -7,14 +8,17 @@ import { parse as iniParse } from 'ini';
 import pickBy from 'lodash/pickBy.js';
 import yaml from 'yaml';
 
+const Require = createRequire(import.meta.url);
+
 // eslint-disable-next-line consistent-return
 function ensureConfig(type, rootPath) {
   try {
     const filename = `.best-shot/env.${type}`;
+
     return {
       type,
       name: filename,
-      path: resolve(rootPath, filename),
+      path: Require.resolve(resolve(rootPath, filename)),
     };
   } catch {}
 }
@@ -49,11 +53,21 @@ export function mergeParams(
   );
 }
 
+function wrap(string, parser) {
+  const io = string.trim();
+
+  return io ? parser(io) : {};
+}
+
+function pure(object) {
+  return JSON.parse(JSON.stringify(object));
+}
+
 const parser = {
-  ini: (str) => iniParse(str),
+  ini: (str) => pure(iniParse(str)),
   json: (str) => JSON.parse(str),
-  toml: (str) => tomlParse(str, { bigint: false }),
-  yaml: (str) => yaml.parse(str),
+  toml: (str) => pure(tomlParse(str, { bigint: false })),
+  yaml: (str) => pure(yaml.parse(str)),
 };
 
 export function parseConfig({ path, name, type } = {}) {
@@ -63,7 +77,8 @@ export function parseConfig({ path, name, type } = {}) {
 
   try {
     const data = readFileSync(path, 'utf8');
-    return parser[type](data);
+
+    return wrap(data, parser[type]);
   } catch (error) {
     console.error(error);
     throw new Error(`Parse \`${name}\` fail`);

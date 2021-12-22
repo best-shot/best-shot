@@ -44,36 +44,27 @@ SERVICE_URL = "http://mock.dev/"
 ```mjs
 // output: production mode
 config.define = {
-  APPID: '"123456789"',
-  SERVICE_URL: '"https://sample.org/"',
+  'BEST_SHOT.ENV.APPID': '"123456789"',
+  'BEST_SHOT.ENV.SERVICE_URL': '"https://sample.org/"',
   WHATEVER: '"abc"'
 };
 
 // output: development mode
 config.define = {
-  APPID: '"987654321"',
-  SERVICE_URL: '"http://sample.dev/"',
+  'BEST_SHOT.ENV.APPID': '"987654321"',
+  'BEST_SHOT.ENV.SERVICE_URL': '"http://sample.dev/"',
   WHATEVER: '"abc"'
 };
 
 // output: serve command
 config.define = {
-  APPID: '"987654321"',
-  SERVICE_URL: '"http://mock.dev/"',
+  'BEST_SHOT.ENV.APPID': '"987654321"',
+  'BEST_SHOT.ENV.SERVICE_URL': '"http://mock.dev/"',
   WHATEVER: '"abc"'
 };
 ```
 
 ## Tips
-
-### Namespace safety
-
-Don't use built-in module name like:
-
-```ini
-__dirname = 123456
-console = "xyz"
-```
 
 ### Git hash inject
 

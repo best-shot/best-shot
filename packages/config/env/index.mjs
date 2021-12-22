@@ -2,6 +2,7 @@ import { inspect } from 'util';
 
 import { Git } from '@nice-labs/git-rev/dist/git.js';
 import chalk from 'chalk';
+import flatten from 'flat';
 
 import { findConfig, mergeParams, parseConfig } from './lib.mjs';
 
@@ -35,11 +36,20 @@ export function getEnv(root, { mode, serve, watch }) {
     console.log(chalk.cyan('DEFINE/ENV'), pretty(data));
   }
 
-  const io = empty ? {} : data;
-
   const GIT_HASH = getGitHash();
 
-  io['BEST_SHOT.GIT_HASH'] = GIT_HASH;
+  console.log(data);
 
-  return io;
+  return flatten(
+    {
+      BEST_SHOT: {
+        ...(empty ? undefined : { ENV: data }),
+        GIT_HASH,
+      },
+    },
+    {
+      safe: true,
+      maxDepth: 3,
+    },
+  );
 }

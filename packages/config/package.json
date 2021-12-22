@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/config",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Config reader of '@best-shot/cli'",
   "license": "MIT",
   "author": {
@@ -36,6 +36,7 @@
     "@nice-labs/git-rev": "^3.5.0",
     "chalk": "^4.1.2",
     "configstore": "^6.0.0",
+    "flat": "^5.0.2",
     "ini": "^2.0.0",
     "lodash": "^4.17.21",
     "prompts": "^2.4.2",

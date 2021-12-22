@@ -27,19 +27,16 @@ async function readConfigFile(filename, rootPath = process.cwd()) {
       if (isSafeError(error)) {
         return;
       }
+
       throw error;
     });
 }
 
 async function requireConfig(rootPath) {
-  return (
-    (await readConfigFile('config.mjs', rootPath)) ||
-    (await readConfigFile('config.cjs', rootPath)) ||
-    {}
-  );
+  return (await readConfigFile('config.mjs', rootPath)) || {};
 }
 
-export async function getConfigs(rootPath, { command }) {
+async function getConfigs(rootPath, { command }) {
   const { config, sideEffect } = await requireConfig(rootPath);
 
   if (typeof sideEffect === 'function') {
@@ -52,25 +49,25 @@ export async function getConfigs(rootPath, { command }) {
 
   const configs = Array.isArray(io) ? io : [io];
 
-  const envs = getEnv(rootPath, {
-    mode: command === 'prod' ? 'production' : 'development',
-    watch: command === 'watch',
-    serve: command === 'serve',
-  });
-
-  configs.forEach((conf) => {
+  configs.forEach((conf, index) => {
     if (!conf.output) {
       // eslint-disable-next-line no-param-reassign
       conf.output = {};
     }
+
     if (!conf.output?.path) {
       // eslint-disable-next-line no-param-reassign
       conf.output.path = '.best-shot/build/[config-name]';
     }
 
+    const envs = getEnv(rootPath, {
+      mode: command === 'prod' ? 'production' : 'development',
+      watch: command === 'watch',
+      serve: command === 'serve',
+    });
+
     if (envs) {
-      // eslint-disable-next-line no-param-reassign
-      conf.define = {
+      configs[index].define = {
         ...conf.define,
         ...envs,
       };
@@ -90,8 +87,10 @@ export function readConfig(
     if (configName && configName.length > 0) {
       const names = configs.map(({ name }) => name);
       const matched = configName.filter((name) => names.includes(name));
+
       if (matched.length > 0) {
         console.log(cyan('CONFIG-NAME:'), matched.join(', '));
+
         return configs.filter(({ name }) => matched.includes(name));
       }
     }

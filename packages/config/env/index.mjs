@@ -38,8 +38,6 @@ export function getEnv(root, { mode, serve, watch }) {
 
   const GIT_HASH = getGitHash();
 
-  console.log(data);
-
   return flatten(
     {
       BEST_SHOT: {

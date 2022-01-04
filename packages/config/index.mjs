@@ -37,7 +37,9 @@ async function requireConfig(rootPath) {
 }
 
 async function getConfigs(rootPath, { command }) {
-  const { config, sideEffect } = await requireConfig(rootPath);
+  const { config: { ...config } = {}, sideEffect } = await requireConfig(
+    rootPath,
+  );
 
   if (typeof sideEffect === 'function') {
     await sideEffect({ command });
@@ -51,13 +53,11 @@ async function getConfigs(rootPath, { command }) {
 
   configs.forEach((conf, index) => {
     if (!conf.output) {
-      // eslint-disable-next-line no-param-reassign
-      conf.output = {};
+      configs[index].output = {};
     }
 
     if (!conf.output?.path) {
-      // eslint-disable-next-line no-param-reassign
-      conf.output.path = '.best-shot/build/[config-name]';
+      configs[index].output.path = '.best-shot/build/[config-name]';
     }
 
     const envs = getEnv(rootPath, {

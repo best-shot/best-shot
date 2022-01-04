@@ -2,7 +2,6 @@ import { readFileSync } from 'fs';
 import { createRequire } from 'module';
 import { resolve } from 'path';
 
-// eslint-disable-next-line import/namespace, import/named
 import { parse as tomlParse } from '@ltd/j-toml';
 import { parse as iniParse } from 'ini';
 import pickBy from 'lodash/pickBy.js';

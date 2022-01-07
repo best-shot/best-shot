@@ -1,1 +1,1 @@
-export default {};
+export default [{}, { name: '456' }];

@@ -37,9 +37,7 @@ async function requireConfig(rootPath) {
 }
 
 async function getConfigs(rootPath, { command }) {
-  const { config: { ...config } = {}, sideEffect } = await requireConfig(
-    rootPath,
-  );
+  const { config = {}, sideEffect } = await requireConfig(rootPath);
 
   if (typeof sideEffect === 'function') {
     await sideEffect({ command });
@@ -49,9 +47,11 @@ async function getConfigs(rootPath, { command }) {
 
   await validate(io);
 
-  const configs = Array.isArray(io) ? io : [io];
+  const configs = Array.isArray(io)
+    ? io.map((conf) => ({ ...conf }))
+    : [{ ...io }];
 
-  configs.forEach((conf, index) => {
+  configs.forEach(({ ...conf }, index) => {
     if (!conf.output) {
       configs[index].output = {};
     }

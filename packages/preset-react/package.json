@@ -30,9 +30,9 @@
   },
   "main": "index.mjs",
   "dependencies": {
-    "@babel/plugin-transform-react-constant-elements": "^7.16.5",
-    "@babel/plugin-transform-react-inline-elements": "^7.16.5",
-    "@babel/preset-react": "^7.16.5",
+    "@babel/plugin-transform-react-constant-elements": "^7.16.7",
+    "@babel/plugin-transform-react-inline-elements": "^7.16.7",
+    "@babel/preset-react": "^7.16.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "react-refresh": "^0.11.0",

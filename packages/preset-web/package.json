@@ -38,7 +38,7 @@
     "micro-tpl-loader": "^0.1.0",
     "slash-to-regexp": "^0.0.4",
     "suffix": "^1.0.0",
-    "webpack-subresource-integrity": "^5.0.0"
+    "webpack-subresource-integrity": "^5.1.0"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.6.0",

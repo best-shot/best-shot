@@ -36,7 +36,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "react-refresh": "^0.11.0",
-    "settingz": "^0.1.3"
+    "settingz": "^0.1.5"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.6.0",

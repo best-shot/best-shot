@@ -3028,7 +3028,7 @@ cssnano-utils@^3.0.0:
   resolved "https://registry.yarnpkg.com/cssnano-utils/-/cssnano-utils-3.0.0.tgz#c0b9fcd6e4f05c5155b07e9ab11bf94b97163057"
   integrity sha512-Pzs7/BZ6OgT+tXXuF12DKR8SmSbzUeVYCtMBbS8lI0uAm3mrYmkyqCXXPsQESI6kmLfEVBppbdVY/el3hg3nAA==
 
-cssnano@^5.0.14, cssnano@^5.0.6:
+cssnano@^5.0.15, cssnano@^5.0.6:
   version "5.0.15"
   resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-5.0.15.tgz#8779eaf60e3665e6a12687c814d375cc9f78db76"
   integrity sha512-ppZsS7oPpi2sfiyV5+i+NbB/3GtQ+ab2Vs1azrZaXWujUSN4o+WdTxlCZIMcT9yLW3VO/5yX3vpyDaQ1nIn8CQ==

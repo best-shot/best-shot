@@ -43,7 +43,7 @@
     "@nice-move/prettier-config": "^0.5.1",
     "@nice-move/stylelint-config": "^0.6.12",
     "@types/react": "^17.0.38",
-    "ava": "^4.0.0",
+    "ava": "^4.0.1",
     "commitlint": "^16.0.1",
     "delay": "^5.0.0",
     "eslint": "^8.6.0",

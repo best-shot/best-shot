@@ -1,49 +1,11 @@
-import { createRequire } from 'module';
-
 import launchMiddleware from 'launch-editor-middleware';
 import WebpackDevServer from 'webpack-dev-server';
 
 import { notFound } from '../middleware/not-found/index.mjs';
+import { staticFile } from '../middleware/static-file/index.mjs';
 import * as waitPage from '../middleware/wait-page/index.mjs';
 
-class BestShotDevServer extends WebpackDevServer {
-  // https://github.com/webpack/webpack-dev-server/blob/79a169baa3eeaf71df068de5d9c6150684dfe35f/lib/Server.js#L1556
-  setupHistoryApiFallbackFeature() {
-    const { historyApiFallback } = this.options;
-
-    if (
-      typeof historyApiFallback.logger === 'undefined' &&
-      !historyApiFallback.verbose
-    ) {
-      historyApiFallback.logger = this.logger.log.bind(
-        this.logger,
-        '[connect-history-api-fallback]',
-      );
-    }
-
-    const {
-      devMiddleware: {
-        publicPath = this.compiler.options.output.publicPath,
-      } = {},
-    } = this.options;
-
-    const requireLazy = createRequire(import.meta.url);
-    const connectHistoryApiFallback = requireLazy(
-      'connect-history-api-fallback',
-    );
-
-    if (publicPath.startsWith('/')) {
-      this.app.use(publicPath, connectHistoryApiFallback(historyApiFallback));
-    } else {
-      this.app.use(connectHistoryApiFallback(historyApiFallback));
-    }
-  }
-}
-
-export function DevServer(
-  compiler,
-  { onAfterSetupMiddleware, onBeforeSetupMiddleware, ...options },
-) {
+export function DevServer(compiler, { setupMiddlewares, ...options }) {
   waitPage.apply(compiler);
 
   process.env.WEBPACK_DEV_SERVER_BASE_PORT = 1234;
@@ -54,32 +16,50 @@ export function DevServer(
   if (options.hot === undefined) {
     options.hot = 'only';
   }
+
   if (options.static === undefined) {
     options.static = false;
   }
   /* eslint-enable no-param-reassign */
 
-  const Server = new BestShotDevServer(
+  const Server = new WebpackDevServer(
     {
       ...options,
-      onBeforeSetupMiddleware(server) {
+      setupMiddlewares(middlewares, devServer) {
         if (process.env.TERM_PROGRAM === 'vscode') {
-          server.app.use('/__open-in-editor', launchMiddleware('code'));
+          devServer.app.use('/__open-in-editor', launchMiddleware('code'));
         }
-        if (typeof onBeforeSetupMiddleware === 'function') {
-          onBeforeSetupMiddleware(server);
+
+        devServer.app.use(staticFile());
+
+        middlewares.unshift({
+          name: 'webpack-wait-page',
+          middleware: waitPage.middleware(devServer),
+        });
+
+        if (publicPath.startsWith('/')) {
+          const index = middlewares.findIndex(
+            ({ name }) => name === 'connect-history-api-fallback',
+          );
+
+          if (index > -1) {
+            // eslint-disable-next-line no-param-reassign
+            middlewares[index].path = publicPath;
+          }
         }
-        server.app.use(waitPage.middleware(server));
-      },
-      onAfterSetupMiddleware(server) {
-        if (typeof onAfterSetupMiddleware === 'function') {
-          onAfterSetupMiddleware(server);
-        }
-        server.app.use(
-          notFound({
+
+        middlewares.push({
+          name: 'page-not-found',
+          middleware: notFound({
             publicPath: publicPath.startsWith('/') ? publicPath : '/',
           }),
-        );
+        });
+
+        if (typeof setupMiddlewares === 'function') {
+          return setupMiddlewares(middlewares, devServer);
+        }
+
+        return middlewares;
       },
     },
     compiler,

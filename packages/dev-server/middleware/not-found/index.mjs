@@ -11,13 +11,6 @@ const router = Router({ strict: true });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-router.get(
-  '/.best-shot/:name(404.svg|logo.svg|logo.png)',
-  ({ params: { name } }, res) => {
-    res.sendFile(name, { root: __dirname });
-  },
-);
-
 router.use(({ method, url }, res, next) => {
   if (method !== 'GET' || isRaw(url)) {
     res.status(404).type('text').end();

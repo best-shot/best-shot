@@ -8,7 +8,8 @@
       content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover"
       name="viewport"
     />
-    <title>Page not found</title>
+    <meta content="1" http-equiv="refresh" />
+    <title>Bundling...</title>
     <link href="/.best-shot/logo.png" rel="shortcut icon" type="image/png" />
     <style>
       html {
@@ -48,12 +49,6 @@
         height: clamp(32px, 8vw, 54px);
       }
 
-      .not-found {
-        margin-bottom: 20vh;
-        width: 60%;
-        max-width: 400px;
-      }
-
       header {
         margin-bottom: 20vh;
         text-align: right;
@@ -81,10 +76,10 @@
         font-size: clamp(14px, 4vw, 22px);
       }
 
-      a {
-        color: #9933ff;
-        text-decoration: none;
-        cursor: pointer;
+      progress {
+        margin-top: 10px;
+        width: 60%;
+        height: 24px;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -100,16 +95,18 @@
         <img alt="logo" class="logo" src="/.best-shot/logo.svg" />
         BEST SHOT
       </h1>
-      <p>Page not found</p>
-      [? if (publicPath) { ?]
-      <p>
-        Back to
-        <a href="[?= publicPath ?]" rel="noopener noreferrer">
-          [?= publicPath ?]
-        </a>
-      </p>
-      [? } ?]
+      <p>Bundling...</p>
     </header>
-    <img alt="404" class="not-found" src="/.best-shot/404.svg" />
+
+    &#x3C;% for (var i = 0 ; i &#x3C; progress.length ; i++) { var percent =
+    Math.round(100 * progress[i][0]); %> &#x3C;%= percent %> %
+    <progress max="100" value="<%= percent %>"></progress>
+
+    <p class="message">&#x3C;%= progress[i][1] || '' %></p>
+    <p class="modules">&#x3C;%= progress[i][2] || '' %></p>
+    <p class="active">&#x3C;%= progress[i][3] || '' %></p>
+    &#x3C;% for (var m = 4 ; m &#x3C; progress[i].length; m++) { %>
+    <p class="last">&#x3C;%= progress[i][m] || '' %></p>
+    &#x3C;% } %> &#x3C;% } %>
   </body>
 </html>

@@ -1,3 +1,6 @@
+import { join } from 'path';
+import { fileURLToPath } from 'url';
+
 import { schema as copySchema } from 'copy-webpack/lib/schema.cjs';
 
 import { notEmpty } from '../lib/utils.mjs';
@@ -15,6 +18,7 @@ export function apply({
     externals,
     devServer,
     experiments: { lazyCompilation } = {},
+    cache: { maxAge = 1000 * 60 * 60 * 24 * 3 } = {},
   },
 }) {
   return async (chain) => {
@@ -60,6 +64,24 @@ export function apply({
           },
         });
       }
+    }
+
+    const cache = chain.get('cache');
+
+    if (cache) {
+      const { cachePath } = chain.get('x');
+      const watch = chain.get('watch');
+      const mode = chain.get('mode');
+
+      chain.cache({
+        type: 'filesystem',
+        cacheDirectory: cachePath('webpack'),
+        maxAge,
+        name: serve && devServer ? 'serve' : watch ? 'watch' : mode,
+        buildDependencies: {
+          config: [fileURLToPath(join(import.meta.url, '../../../'))],
+        },
+      });
     }
   };
 }

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -33,11 +33,11 @@
     "copy-webpack": "^2.0.3",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
-    "terser-webpack-plugin": "^5.2.5",
+    "terser-webpack-plugin": "^5.3.0",
     "webpack-chain": "^6.5.1"
   },
   "peerDependencies": {
-    "webpack": "~5.65.0"
+    "webpack": "^5.65.0"
   },
   "engines": {
     "node": "^14.17.0 || >=16.13.0"

@@ -10,7 +10,7 @@ export function apply(compiler) {
 
 export function middleware(server) {
   const template = readFileSync(
-    new URL('template.html', import.meta.url),
+    new URL('template.ejs', import.meta.url),
     'utf8',
   );
 

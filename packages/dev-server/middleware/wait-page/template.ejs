@@ -30,7 +30,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         margin: 0;
         background-color: white;
         height: 100%;
@@ -41,15 +40,14 @@
 
       .logo {
         margin-right: 4%;
-        width: 44px;
-        width: 8vw;
-        width: clamp(32px, 8vw, 54px);
-        height: 44px;
-        height: 8vw;
-        height: clamp(32px, 8vw, 54px);
+        width: 10vw;
+        max-width: 54px;
+        height: 10vw;
+        max-height: 54px;
       }
 
       header {
+        padding-top: 100px;
         margin-bottom: 20vh;
         text-align: right;
       }
@@ -77,9 +75,26 @@
       }
 
       progress {
+        border: none;
         margin-top: 10px;
         width: 60%;
         height: 24px;
+        border-radius: 12px;
+      }
+
+      progress::-webkit-progress-bar {
+        border-radius: 12px;
+        background-color: #eee;
+      }
+
+      progress::-webkit-progress-value {
+        border-radius: 12px;
+        background-color: #93f;
+      }
+
+      progress::-moz-progress-bar {
+        border-radius: 12px;
+        background-color: #93f;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -98,15 +113,15 @@
       <p>Bundling...</p>
     </header>
 
-    &#x3C;% for (var i = 0 ; i &#x3C; progress.length ; i++) { var percent =
-    Math.round(100 * progress[i][0]); %> &#x3C;%= percent %> %
+    <% for (var i = 0 ; i < progress.length ; i++) { var percent =
+    Math.round(100 * progress[i][0]); %> <%= percent %> %
     <progress max="100" value="<%= percent %>"></progress>
 
-    <p class="message">&#x3C;%= progress[i][1] || '' %></p>
-    <p class="modules">&#x3C;%= progress[i][2] || '' %></p>
-    <p class="active">&#x3C;%= progress[i][3] || '' %></p>
-    &#x3C;% for (var m = 4 ; m &#x3C; progress[i].length; m++) { %>
-    <p class="last">&#x3C;%= progress[i][m] || '' %></p>
-    &#x3C;% } %> &#x3C;% } %>
+    <p class="message"><%= progress[i][1] || '' %></p>
+    <p class="modules"><%= progress[i][2] || '' %></p>
+    <p class="active"><%= progress[i][3] || '' %></p>
+    <% for (var m = 4 ; m < progress[i].length; m++) { %>
+    <p class="last"><%= progress[i][m] || '' %></p>
+    <% } %> <% } %>
   </body>
 </html>

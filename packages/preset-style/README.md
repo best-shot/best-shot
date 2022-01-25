@@ -15,15 +15,18 @@ A `best-shot` preset for stylesheet.
 This preset offer the following features:
 
 - [CSS Modules] support
+- [Interoperable CSS] support
 - [Less] / [Sass] syntax support
 - [PostCSS] support
-- Use [postcss-preset-evergreen] by default
+- Use [postcss-preset-evergreen] by default(including [Autoprefixer])
 - Use [cssnano] in production mode
 
+[interoperable css]: https://github.com/css-modules/icss
 [css modules]: https://github.com/css-modules/css-modules
 [cssnano]: https://cssnano.co/
 [sass]: https://sass-lang.com/
 [less]: http://lesscss.org/
+[autoprefixer]: https://github.com/postcss/autoprefixer
 [postcss]: https://github.com/postcss/postcss
 [postcss-preset-evergreen]: https://github.com/best-shot/postcss-preset-evergreen
 

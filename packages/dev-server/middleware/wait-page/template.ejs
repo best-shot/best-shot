@@ -11,96 +11,12 @@
     <meta content="1" http-equiv="refresh" />
     <title>Bundling...</title>
     <link href="/.best-shot/logo.png" rel="shortcut icon" type="image/png" />
+    <link href="/.best-shot/style.css" rel="stylesheet" />
     <style>
       html {
-        min-width: 300px;
-        height: 100%;
-        min-height: 300px;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
-        user-select: none;
-      }
-
-      img {
-        pointer-events: none;
-      }
-
-      body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0;
-        background-color: white;
-        height: 100%;
-        color: #999999;
-        font-family: -apple-system, BlinkMacSystemFont, roboto, 'Segoe UI',
-          Segoe, Helvetica, Arial, monospace;
-      }
-
-      .logo {
-        margin-right: 4%;
-        width: 10vw;
-        max-width: 54px;
-        height: 10vw;
-        max-height: 54px;
-      }
-
-      header {
-        padding-top: 100px;
-        margin-bottom: 20vh;
-        text-align: right;
-      }
-
-      h1 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        width: 100%;
-        white-space: nowrap;
-        font-size: 44px;
-        font-size: 8vw;
-        font-size: clamp(32px, 8vw, 60px);
-        line-height: 1;
-      }
-
-      p {
-        margin-top: 0.5em;
-        margin-bottom: 0;
-        white-space: nowrap;
-        font-size: 18px;
-        font-size: 4vw;
-        font-size: clamp(14px, 4vw, 22px);
-      }
-
-      progress {
-        border: none;
-        margin-top: 10px;
-        width: 60%;
-        height: 24px;
-        border-radius: 12px;
-      }
-
-      progress::-webkit-progress-bar {
-        border-radius: 12px;
-        background-color: #eee;
-      }
-
-      progress::-webkit-progress-value {
-        border-radius: 12px;
-        background-color: #93f;
-      }
-
-      progress::-moz-progress-bar {
-        border-radius: 12px;
-        background-color: #93f;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          background-color: #222222;
-        }
       }
     </style>
   </head>
@@ -112,11 +28,14 @@
       </h1>
       <p>Bundling...</p>
     </header>
-
+    <br />
+    <br />
+    <br />
+    <br />
     <% for (var i = 0 ; i < progress.length ; i++) { var percent =
     Math.round(100 * progress[i][0]); %> <%= percent %> %
     <progress max="100" value="<%= percent %>"></progress>
-
+    <br />
     <p class="message"><%= progress[i][1] || '' %></p>
     <p class="modules"><%= progress[i][2] || '' %></p>
     <p class="active"><%= progress[i][3] || '' %></p>

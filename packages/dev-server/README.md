@@ -15,9 +15,9 @@ DevServer support of `@best-shot/cli`.
 ## Features
 
 - All Features of [webpack-dev-server@4](https://webpack.js.org/configuration/dev-server/)
-- Hook `historyApiFallback` into `devMiddleware.publicPath`
+- Hook `historyApiFallback` into `publicPath`
 - Show a wait page when bundling
-- Provide a 404 page
+- Provide a 404 error page
 - Open source file in vscode (from vue-devtools)
 
 ## Installation

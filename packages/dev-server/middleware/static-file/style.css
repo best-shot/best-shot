@@ -1,0 +1,89 @@
+html {
+  background-color: white;
+  min-width: 300px;
+  user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: #222222;
+  }
+}
+
+img {
+  pointer-events: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #888888;
+  font-family: -apple-system, BlinkMacSystemFont, roboto, 'Segoe UI', Segoe,
+    Helvetica, Arial, monospace;
+}
+
+.logo {
+  margin-right: 8px;
+  width: calc(32px + 1vw);
+  height: calc(32px + 1vw);
+}
+
+header {
+  padding-top: 10vh;
+  text-align: right;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  width: 100%;
+  white-space: nowrap;
+  font-size: calc(32px + 1vw);
+  line-height: 1;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: calc(18px + 0.25vw);
+}
+
+.not-found {
+  margin-top: 150px;
+  margin-bottom: 150px;
+  width: 60%;
+  max-width: 400px;
+}
+
+a {
+  color: #9933ff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+progress {
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  width: 60%;
+  height: 24px;
+}
+
+progress::-webkit-progress-bar {
+  border-radius: 12px;
+  background-color: #eeeeee;
+}
+
+progress::-webkit-progress-value {
+  border-radius: 12px;
+  background-color: #9933ff;
+}
+
+progress::-moz-progress-bar {
+  border-radius: 12px;
+  background-color: #9933ff;
+}

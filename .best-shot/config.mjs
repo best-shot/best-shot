@@ -1,5 +1,5 @@
 export const config = {
-  presets: ['web', 'babel', 'react'],
+  presets: ['babel', 'react'],
   devServer: {
     historyApiFallback: true,
   },

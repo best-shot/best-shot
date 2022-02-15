@@ -41,7 +41,7 @@
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "mini-css-extract-plugin": "^2.5.2",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.6",
     "postcss-loader": "^6.2.1",
     "postcss-preset-evergreen": "^0.4.3",
     "resolve-url-loader": "^5.0.0",

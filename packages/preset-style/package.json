@@ -45,7 +45,7 @@
     "postcss-loader": "^6.2.1",
     "postcss-preset-evergreen": "^0.4.3",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.49.0",
+    "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
     "slash-to-regexp": "^0.0.4",
     "style-loader": "^3.3.1"

@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 
 import deepmerge from 'deepmerge';
 import extToRegexp from 'ext-to-regexp';
+import slash from 'slash';
 import slashToRegexp from 'slash-to-regexp';
 
 function mergeAll(...options) {
@@ -10,18 +11,6 @@ function mergeAll(...options) {
     arrayMerge: (destinationArray, sourceArray) => sourceArray,
   });
 }
-
-const htmlMinifier = {
-  collapseWhitespace: true,
-  minifyCSS: true,
-  minifyJS: true,
-  removeComments: true,
-  removeEmptyAttributes: true,
-  removeRedundantAttributes: true,
-  removeScriptTypeAttributes: true,
-  removeStyleLinkTypeAttributes: true,
-  useShortDoctype: true,
-};
 
 export function setHtml({ html = {}, inject = [] }) {
   return async (chain) => {
@@ -34,19 +23,53 @@ export function setHtml({ html = {}, inject = [] }) {
 
     const { default: HtmlWebpackPlugin } = await import('html-webpack-plugin');
 
-    page.forEach((options, index) => {
+    const defaultTemplate = slash(
+      relative(
+        context,
+        resolve(fileURLToPath(import.meta.url), '../template.html'),
+      ),
+    );
+
+    page.forEach(({ title = 'BEST-SHOT APP', ...options }, index) => {
       chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
         mergeAll(
-          {
-            template: './src/index.html',
-            cache: watch,
-          },
+          { template: defaultTemplate },
           index > 0 ? page[0] : {},
           options,
-          { minify: minimize ? htmlMinifier : false },
+          {
+            cache: watch,
+            minify: false,
+            title,
+            templateParameters: {
+              title,
+            },
+          },
         ),
       ]);
     });
+
+    if (minimize) {
+      const { default: HtmlMinimizerPlugin } = await import(
+        'html-minimizer-webpack-plugin'
+      );
+
+      chain.optimization.minimizer('html').use(HtmlMinimizerPlugin, [
+        {
+          test: extToRegexp({ extname: ['html', 'htm'] }),
+          minimizerOptions: {
+            collapseWhitespace: true,
+            minifyCSS: true,
+            minifyJS: true,
+            removeComments: true,
+            removeEmptyAttributes: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            useShortDoctype: true,
+          },
+        },
+      ]);
+    }
 
     if (inject.length > 0) {
       const {

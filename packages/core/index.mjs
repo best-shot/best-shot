@@ -1,3 +1,5 @@
+import extToRegexp from 'ext-to-regexp';
+
 import { builtIn } from './built-in/index.mjs';
 import { CoreChain } from './lib/chain.mjs';
 import { importPresets } from './lib/presets.mjs';
@@ -23,6 +25,7 @@ export class BestShot {
     if (typeof apply === 'function') {
       this.stack.add(apply);
     }
+
     if (typeof schema === 'object') {
       this.schema.merge(schema);
     }
@@ -41,6 +44,19 @@ export class BestShot {
       }
     }
 
+    this.use({
+      apply() {
+        return (chain) => {
+          chain.module.rules.delete('text');
+          chain.module
+            .rule('text')
+            .test(extToRegexp({ extname: ['txt'] }))
+            .set('dependency', { not: 'url' })
+            .type('asset/source');
+        };
+      },
+    });
+
     const local = mode === 'development' && watch;
 
     this.chain.mode(mode).watch(local).cache(local);
@@ -53,6 +69,7 @@ export class BestShot {
     for (const apply of this.stack) {
       await this.chain.asyncBatch(apply(params));
     }
+
     return this.chain;
   }
 }

@@ -19,12 +19,25 @@ function haveSafari10(path) {
 
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
+function isNode(target) {
+  return (
+    target.includes('node') ||
+    target.includes('nwjs') ||
+    target.includes('electron')
+  );
+}
+
+function targetIsNode(target) {
+  return Array.isArray(target) ? target.some((t) => isNode(t)) : isNode(target);
+}
+
 export function apply({ config: { terser = {} } }) {
   return async (chain) => {
     const minimize = chain.optimization.get('minimize');
 
     if (minimize) {
       const context = chain.get('context');
+      const target = chain.get('target');
 
       const { default: TerserPlugin } = await import('terser-webpack-plugin');
 
@@ -35,7 +48,7 @@ export function apply({ config: { terser = {} } }) {
             {
               safari10: haveSafari10(context),
               compress: {
-                drop_console: true,
+                drop_console: !targetIsNode(target),
               },
               output: {
                 comments: false,

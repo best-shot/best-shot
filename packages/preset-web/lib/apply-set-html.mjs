@@ -30,23 +30,24 @@ export function setHtml({ html = {}, inject = [] }) {
       ),
     );
 
-    page.forEach(({ title = 'BEST-SHOT APP', ...options }, index) => {
-      chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
-        mergeAll(
-          { template: defaultTemplate },
-          index > 0 ? page[0] : {},
-          options,
-          {
+    page.forEach(
+      (
+        { title = 'BEST-SHOT APP', template = defaultTemplate, ...options },
+        index,
+      ) => {
+        chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
+          mergeAll(options, {
             cache: watch,
             minify: false,
             title,
+            template,
             templateParameters: {
               title,
             },
-          },
-        ),
-      ]);
-    });
+          }),
+        ]);
+      },
+    );
 
     if (minimize) {
       const { default: HtmlMinimizerPlugin } = await import(

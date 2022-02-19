@@ -1,5 +1,7 @@
 import { resolve } from 'path';
 
+import { isNode } from '../lib/utils.mjs';
+
 export function apply({
   config: { output: { publicPath, path } = {}, target },
 }) {
@@ -32,7 +34,7 @@ export function apply({
     const name = chain.get('name') || '';
 
     chain.output
-      .filename('[name].js')
+      .filename(isNode(target) ? '[name].cjs' : '[name].js')
       .path(
         resolve(
           context,
@@ -43,6 +45,7 @@ export function apply({
     if (publicPath !== undefined) {
       chain.output.publicPath(publicPath);
     }
+
     if (!watch) {
       chain.output.set('clean', true);
     }

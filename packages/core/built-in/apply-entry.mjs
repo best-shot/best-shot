@@ -1,7 +1,26 @@
-export function apply({ config: { entry } }) {
-  return (config) => {
+import { isNode } from '../lib/utils.mjs';
+
+export function apply({ config: { entry, hashbang } }) {
+  return async (chain) => {
+    const target = chain.get('target');
+
+    if (isNode(target)) {
+      const {
+        default: { BannerPlugin },
+      } = await import('webpack');
+
+      chain.plugin('hashbang').use(BannerPlugin, [
+        {
+          ...hashbang,
+          banner: '#!/usr/bin/env node',
+          entryOnly: true,
+          raw: true,
+        },
+      ]);
+    }
+
     if (entry) {
-      config.merge({
+      chain.merge({
         entry:
           typeof entry === 'string' || Array.isArray(entry)
             ? { main: entry }
@@ -40,5 +59,11 @@ export const schema = {
         },
       },
     ],
+  },
+  hashbang: {
+    type: 'object',
+    default: {
+      include: ['bin.cjs', 'bin.mjs'],
+    },
   },
 };

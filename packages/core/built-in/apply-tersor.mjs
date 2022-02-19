@@ -21,13 +21,14 @@ const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
 function isNode(target) {
   return (
-    target.includes('node') ||
-    target.includes('nwjs') ||
-    target.includes('electron')
+    target &&
+    (target.includes('node') ||
+      target.includes('nwjs') ||
+      target.includes('electron'))
   );
 }
 
-function targetIsNode(target) {
+function targetIsNode(target = []) {
   return Array.isArray(target) ? target.some((t) => isNode(t)) : isNode(target);
 }
 
@@ -41,14 +42,16 @@ export function apply({ config: { terser = {} } }) {
 
       const { default: TerserPlugin } = await import('terser-webpack-plugin');
 
+      const notNode = targetIsNode(target);
+
       chain.optimization.minimizer('terser').use(TerserPlugin, [
         {
           extractComments: false,
           terserOptions: deepMerge(
             {
-              safari10: haveSafari10(context),
+              safari10: notNode && haveSafari10(context),
               compress: {
-                drop_console: !targetIsNode(target),
+                drop_console: notNode,
               },
               output: {
                 comments: false,

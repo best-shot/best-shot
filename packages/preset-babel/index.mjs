@@ -7,6 +7,7 @@ import slashToRegexp from 'slash-to-regexp';
 
 function getList(path) {
   const config = browserslist.loadConfig({ path });
+
   return config && config.length > 0 ? config : browserslist.defaults;
 }
 
@@ -21,9 +22,6 @@ export function apply({
     chain.module
       .rule('babel')
       .test(extToRegexp({ extname: ['js', 'mjs', 'cjs', 'ts'] }))
-      .merge({
-        resolve: { fullySpecified: false },
-      })
       .use('babel-loader')
       .loader('babel-loader')
       .options({
@@ -54,6 +52,7 @@ export function apply({
               : '/node_modules/webpack/',
           ),
         );
+
       if (polyfill) {
         chain.module
           .rule('babel')

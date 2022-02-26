@@ -47,6 +47,11 @@ export class BestShot {
     this.use({
       apply() {
         return (chain) => {
+          chain.module
+            .rule('esm')
+            .test(extToRegexp({ extname: ['js', 'mjs'] }))
+            .merge({ resolve: { fullySpecified: false } });
+
           chain.module.rules.delete('text');
           chain.module
             .rule('text')

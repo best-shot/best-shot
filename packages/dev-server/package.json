@@ -34,7 +34,7 @@
     "@best-shot/config": "^0.2.8",
     "chalk": "^4.1.2",
     "ejs": "^3.1.6",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "launch-editor-middleware": "^2.3.0",
     "webpack-dev-server": "^4.7.4",
     "webpack-dev-server-waitpage": "^2.1.1"

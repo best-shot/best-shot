@@ -1,10 +1,10 @@
-import { isNode } from '../lib/utils.mjs';
+import { targetIsNode } from '../lib/utils.mjs';
 
 export function apply({ config: { entry, hashbang } }) {
   return async (chain) => {
     const target = chain.get('target');
 
-    if (isNode(target)) {
+    if (targetIsNode(target)) {
       const {
         default: { BannerPlugin },
       } = await import('webpack');
@@ -63,7 +63,7 @@ export const schema = {
   hashbang: {
     type: 'object',
     default: {
-      include: ['bin.cjs', 'bin.mjs'],
+      include: ['bin.cjs', 'bin.mjs', 'cli.cjs', 'cli.mjs'],
     },
   },
 };

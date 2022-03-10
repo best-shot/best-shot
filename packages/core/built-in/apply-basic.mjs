@@ -1,9 +1,9 @@
 import { resolve } from 'path';
 
-import { isNode } from '../lib/utils.mjs';
+import { targetIsNode } from '../lib/utils.mjs';
 
 export function apply({
-  config: { output: { publicPath, path } = {}, target },
+  config: { output: { publicPath, path } = {}, output = {}, target },
 }) {
   return (chain) => {
     chain.amd(false);
@@ -33,22 +33,32 @@ export function apply({
 
     const name = chain.get('name') || '';
 
-    chain.output
-      .filename(isNode(target) ? '[name].cjs' : '[name].js')
-      .path(
-        resolve(
-          context,
-          path.replace(/\[config-name]/g, name).replace(/\[mode]/g, mode),
-        ),
-      );
+    chain.output.filename(targetIsNode(target) ? '[name].cjs' : '[name].js');
+
+    if (!watch) {
+      chain.output.set('clean', true);
+    }
 
     if (publicPath !== undefined) {
       chain.output.publicPath(publicPath);
     }
 
-    if (!watch) {
-      chain.output.set('clean', true);
-    }
+    chain.output.merge(output);
+
+    chain.output.path(
+      resolve(
+        context,
+        path.replace(/\[config-name]/g, name).replace(/\[mode]/g, mode),
+      ),
+    );
+
+    chain.module.set('parser', {
+      javascript: {
+        amd: false,
+        requireJs: false,
+        system: false,
+      },
+    });
   };
 }
 
@@ -63,7 +73,7 @@ export const schema = {
         default: 'dist',
         description:
           'It can be a relative path. Additional placeholder: [mode][config-name]',
-        minLength: 3,
+        minLength: 1,
         type: 'string',
       },
     },

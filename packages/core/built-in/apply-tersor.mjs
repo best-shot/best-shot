@@ -1,6 +1,8 @@
 import browserslist from 'browserslist';
 import deepMerge from 'deepmerge';
 
+import { targetIsNode } from '../lib/utils.mjs';
+
 const displayName = 'tersor';
 
 function haveSafari10(path) {
@@ -18,19 +20,6 @@ function haveSafari10(path) {
 }
 
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
-
-function isNode(target) {
-  return (
-    target &&
-    (target.includes('node') ||
-      target.includes('nwjs') ||
-      target.includes('electron'))
-  );
-}
-
-function targetIsNode(target = []) {
-  return Array.isArray(target) ? target.some((t) => isNode(t)) : isNode(target);
-}
 
 export function apply({ config: { terser = {} } }) {
   return async (chain) => {

@@ -57,6 +57,7 @@ export function apply({
         amd: false,
         requireJs: false,
         system: false,
+        importMeta: !targetIsNode(target),
       },
     });
   };

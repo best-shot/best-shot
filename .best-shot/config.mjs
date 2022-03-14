@@ -1,9 +1,6 @@
 export const config = {
-  presets: ['babel', 'react'],
+  presets: ['vue', 'web', 'style'],
   devServer: {
     historyApiFallback: true,
-  },
-  output: {
-    publicPath: '/444/',
   },
 };

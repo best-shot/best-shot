@@ -6,6 +6,7 @@ import { getPkg, haveLocalDependencies } from 'settingz';
 
 function isVue2() {
   const { vue = '' } = getPkg('dependencies');
+
   return !vue || /^[\^~]?2\./.test(vue);
 }
 
@@ -17,13 +18,11 @@ export function apply({
   return async (chain) => {
     const context = chain.get('context');
 
-    const IsVue2 = isVue2();
-
     chain.module
       .rule('vue')
       .test(extToRegexp({ extname: ['vue'] }))
       .use('vue-loader')
-      .loader(IsVue2 ? '@best-shot/vue-loader' : 'vue-loader')
+      .loader('@best-shot/vue-loader')
       .options({
         hotReload: Boolean(chain.devServer.get('hot')) || false,
         ...(transformAssetUrls && { transformAssetUrls }),
@@ -45,10 +44,12 @@ export function apply({
       chain.resolve.alias.set('vue', '@vue/compat');
     }
 
+    const IsVue2 = isVue2();
+
     /* eslint-disable unicorn/no-await-expression-member */
-    const VueLoaderPlugin = IsVue2
+    const VueLoaderPlugin = IsVue2 // eslint-disable-next-line import/no-unresolved
       ? (await import('@best-shot/vue-loader/lib/plugin.js')).default
-      : (await import('vue-loader/dist/plugin.js')).default.default;
+      : (await import('@best-shot/vue-loader/dist/plugin.js')).default.default;
 
     chain.plugin('vue-loader').use(VueLoaderPlugin);
   };

@@ -14,7 +14,7 @@ A `best-shot` preset for Vue project.
 
 This preset offer the following features:
 
-- [Vue](https://vuejs.org/) (2.x/3.x) framework support
+- [Vue](https://vuejs.org/) (3.x/2.x) framework support
 - Vue [Single-File Component (SFC) Spec](https://vue-loader.vuejs.org/spec.html) support
 - Vue 3 [migration build](https://v3.vuejs.org/guide/migration/migration-build.html) support
 
@@ -28,7 +28,7 @@ npm install @best-shot/preset-vue --save-dev
 
 ```mjs
 // example: .best-shot/config.mjs
-export default {
+export const config = {
   presets: ['vue'],
   vue: {
     // shadowMode
@@ -38,7 +38,34 @@ export default {
 };
 ```
 
-## Tips
+### Add `CSS/SCSS/LESS` support
+
+```bash
+npm install @best-shot/preset-style --save-dev
+```
+
+```mjs
+// example: .best-shot/config.mjs
+export const config = {
+  presets: ['style', 'vue']
+};
+```
+
+### Vue 2 support
+
+```jsonc
+// example: package.json
+{
+  "resolutions": {
+    // yarn@1
+    "@best-shot/vue-loader": "^15"
+  },
+  "overrides": {
+    // npm@8
+    "@best-shot/vue-loader": "^15"
+  }
+}
+```
 
 ### Vue 3 migration build support
 
@@ -50,7 +77,7 @@ npm install @vue/compat --save
 
 ```mjs
 // example: .best-shot/config.mjs
-export default {
+export const config = {
   presets: ['vue'],
   vue: {
     compilerOptions: {
@@ -62,24 +89,13 @@ export default {
 };
 ```
 
+## Tips
+
 ### Whitespace options override
 
 `options.compilerOptions.whitespace` of [vue-loader](https://vue-loader.vuejs.org/) is set to `condense` by default.
 
 See: [vue-template-compiler#options](https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler#options)
-
-### Add `CSS/SCSS/LESS` support
-
-```bash
-npm install @best-shot/preset-style --save-dev
-```
-
-```mjs
-// example: .best-shot/config.mjs
-export default {
-  presets: ['style', 'vue']
-};
-```
 
 ## Related
 

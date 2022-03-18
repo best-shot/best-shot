@@ -32,7 +32,7 @@
   "exports": "./index.mjs",
   "dependencies": {
     "@best-shot/validator": "^0.2.0",
-    "@ltd/j-toml": "^1.29.0",
+    "@ltd/j-toml": "^1.30.0",
     "@nice-labs/git-rev": "^3.5.0",
     "chalk": "^4.1.2",
     "configstore": "^6.0.0",

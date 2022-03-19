@@ -31,12 +31,12 @@
   "dependencies": {
     "@best-shot/config": "^0.2.8",
     "chalk": "^5.0.1",
-    "cheetor": "^0.12.2",
+    "cheetor": "^0.12.5",
     "is-installed-globally": "^0.4.0",
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.4",
+    "@best-shot/core": "^0.6.6",
     "webpack": "^5.70.0"
   },
   "engines": {

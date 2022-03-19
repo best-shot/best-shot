@@ -36,9 +36,9 @@
     "vue": "^3.2.31"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
+    "@babel/core": "^7.17.8",
     "@nice-move/cli": "^0.7.0",
-    "@nice-move/eslint-config-base": "^0.6.2",
+    "@nice-move/eslint-config-base": "^0.6.3",
     "@nice-move/prettier-config": "^0.5.2",
     "@nice-move/stylelint-config": "^0.6.14",
     "@types/react": "^17.0.40",
@@ -46,9 +46,9 @@
     "delay": "^5.0.0",
     "eslint": "^8.11.0",
     "eslint-plugin-ava": "^13.2.0",
-    "garou": "^0.4.3",
-    "prettier": "^2.5.1",
-    "stylelint": "^14.5.3",
+    "garou": "^0.4.4",
+    "prettier": "^2.6.0",
+    "stylelint": "^14.6.0",
     "typescript": "^4.6.2",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2"
@@ -58,6 +58,11 @@
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"
+  },
+  "nice-move": {
+    "ignore": [
+      "**/best-shot/cli.mjs"
+    ]
   },
   "prettier": "@nice-move/prettier-config",
   "stylelint": {

@@ -3,7 +3,11 @@ import { resolve } from 'path';
 import { targetIsNode } from '../lib/utils.mjs';
 
 export function apply({
-  config: { output: { publicPath, path } = {}, output = {}, target },
+  config: {
+    output: { publicPath, path, module: useModule } = {},
+    output = {},
+    target,
+  },
 }) {
   return (chain) => {
     chain.amd(false);
@@ -15,6 +19,8 @@ export function apply({
     const context = chain.get('context');
     const mode = chain.get('mode');
     const watch = chain.get('watch');
+
+    chain.devtool(false);
 
     chain.optimization
       .removeAvailableModules(true)
@@ -33,7 +39,13 @@ export function apply({
 
     const name = chain.get('name') || '';
 
-    chain.output.filename(targetIsNode(target) ? '[name].cjs' : '[name].js');
+    const isNode = targetIsNode(target);
+
+    if (isNode) {
+      chain.optimization.nodeEnv(false);
+    }
+
+    chain.output.filename(isNode ? '[name].cjs' : '[name].js');
 
     if (!watch) {
       chain.output.set('clean', true);
@@ -52,12 +64,16 @@ export function apply({
       ),
     );
 
+    if (useModule) {
+      chain.merge({ experiments: { outputModule: true } });
+    }
+
     chain.module.set('parser', {
       javascript: {
         amd: false,
         requireJs: false,
         system: false,
-        importMeta: !targetIsNode(target),
+        importMeta: !isNode,
       },
     });
   };

@@ -52,11 +52,8 @@ export function apply({
       });
 
       if (lazyCompilation !== false) {
-        const experiments = chain.get('experiments');
-
         chain.merge({
           experiments: {
-            ...experiments,
             lazyCompilation:
               lazyCompilation === true
                 ? { entries: objectSize(chain.entryPoints.entries()) > 1 }

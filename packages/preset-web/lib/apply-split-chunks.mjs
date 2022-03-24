@@ -2,6 +2,7 @@ import slashToRegexp from 'slash-to-regexp';
 
 function mapValues(obj, func) {
   const arr = Object.entries(obj);
+
   return Object.fromEntries(
     arr.map(([key, value], index) => [
       key,
@@ -20,6 +21,7 @@ export function splitChunks({ vendors = {} }) {
     const settings = mapValues(vendors, (value, key, index, length) => {
       const mod = Array.isArray(value) ? `(${value.join('|')})` : value;
       const regexp = slashToRegexp(`/node_modules/${mod}/`);
+
       return {
         test: regexp,
         name: key,
@@ -61,15 +63,6 @@ export function splitChunks({ vendors = {} }) {
     const mode = chain.get('mode');
 
     if (mode === 'production') {
-      const {
-        default: {
-          optimize: { MinChunkSizePlugin },
-        },
-      } = await import('webpack');
-      chain
-        .plugin('min-chunk-size')
-        .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
-
       const { cachePath } = chain.get('x');
 
       chain.recordsPath(cachePath('records.json'));

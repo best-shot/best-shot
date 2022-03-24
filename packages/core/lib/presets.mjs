@@ -5,6 +5,7 @@ function sortPresets(data) {
   io.sort((next, prev) => {
     const P = allowPresets.indexOf(prev);
     const N = allowPresets.indexOf(next);
+
     return P === -1 && N === -1
       ? 0
       : P === -1
@@ -15,6 +16,7 @@ function sortPresets(data) {
       ? -1
       : 1;
   });
+
   return io;
 }
 
@@ -26,9 +28,17 @@ function checkPresets(presets) {
 
 export function importPresets(presets) {
   checkPresets(presets);
+
   try {
     const sorted = sortPresets(presets);
-    return sorted.map((preset) => () => import(`@best-shot/preset-${preset}`));
+
+    return sorted.map(
+      (preset) => () =>
+        import(
+          /* webpackIgnore: true */
+          `@best-shot/preset-${preset}`
+        ),
+    );
   } catch (error) {
     console.error(error);
     throw new Error('Import presets fail.');

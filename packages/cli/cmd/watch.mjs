@@ -17,4 +17,10 @@ export function builder(cli) {
   });
 }
 
-export { action as handler } from '../lib/action.mjs';
+export function handler(args) {
+  import('../lib/action.mjs')
+    .then(({ action }) => {
+      action(args);
+    })
+    .catch(console.error);
+}

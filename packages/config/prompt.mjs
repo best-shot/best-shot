@@ -1,15 +1,24 @@
+import { readFileSync, writeFileSync } from 'fs';
+
 import { cachePath } from '@best-shot/core/lib/utils.mjs';
-import Configstore from 'configstore';
 import prompts from 'prompts';
 
 export function prompt(configs) {
-  const cache = new Configstore(
-    '',
-    {},
-    { configPath: cachePath('prompt.json') },
-  );
   const names = configs.map(({ name }) => name);
-  const temp = cache.get('prompt') || names;
+
+  const tempPath = cachePath('prompt.json');
+
+  const cache = readFileSync(tempPath);
+
+  let temp = [];
+
+  try {
+    const io = JSON.parse(cache);
+
+    if (Array.isArray(io)) {
+      temp = cache || names || [];
+    }
+  } catch {}
 
   return prompts(
     {
@@ -31,7 +40,10 @@ export function prompt(configs) {
       },
     },
   ).then(({ tasks = [] }) => {
-    cache.set('prompt', tasks);
+    try {
+      writeFileSync(tempPath, JSON.stringify(tasks), 'utf8');
+    } catch {}
+
     return configs.filter(({ name }) => tasks.includes(name));
   });
 }

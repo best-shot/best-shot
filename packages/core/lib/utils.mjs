@@ -6,8 +6,8 @@ export function notEmpty(object) {
 
 const cwd = process.cwd();
 
-export function cachePath(...args) {
-  return resolve(cwd, 'node_modules/.cache/best-shot', ...args);
+export function cachePath(...path) {
+  return resolve(cwd, 'node_modules/.cache/best-shot', ...path);
 }
 
 function isNode(target) {

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "best-shot",
+  "name": "best-shot-repo",
   "version": "0.0.0",
   "description": "A webpack config tool chain",
   "license": "MIT",
@@ -17,15 +17,15 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "scripts": {
-    "analyze": "best-shot analyze",
-    "build": "best-shot prod",
-    "dev": "best-shot dev",
-    "inspect": "best-shot inspect --stamp test",
+    "analyze": "best-shot-debug analyze",
+    "build": "best-shot-debug prod",
+    "dev": "best-shot-debug dev",
+    "inspect": "best-shot-debug inspect --stamp test",
     "lint:staged": "nice-move lint staged",
     "prepare": "git config core.hooksPath .githooks",
-    "serve": "best-shot serve",
+    "serve": "best-shot-debug serve",
     "test": "ava --fail-fast",
-    "watch": "best-shot watch"
+    "watch": "best-shot-debug watch"
   },
   "workspaces": [
     "packages/*"
@@ -37,10 +37,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
-    "@nice-move/cli": "^0.7.0",
-    "@nice-move/eslint-config-base": "^0.6.3",
-    "@nice-move/prettier-config": "^0.5.2",
-    "@nice-move/stylelint-config": "^0.6.14",
+    "@nice-move/cli": "^0.7.1",
+    "@nice-move/eslint-config-base": "^0.6.4",
+    "@nice-move/prettier-config": "^0.5.3",
+    "@nice-move/stylelint-config": "^0.6.16",
     "@types/react": "^17.0.40",
     "ava": "^4.1.0",
     "delay": "^5.0.0",
@@ -62,7 +62,8 @@
   "nice-move": {
     "ignore": [
       "**/best-shot/cli.mjs"
-    ]
+    ],
+    "internal-regex": "^best-shot/"
   },
   "prettier": "@nice-move/prettier-config",
   "stylelint": {

@@ -9,25 +9,29 @@ export class CoreChain extends WebpackChain {
     this.name(name).context(context);
 
     this.set('x', {
-      cachePath: (...args) => {
+      cachePath: (path) => {
         const configName = this.get('name') || 'default';
-        return cachePath(configName, ...args);
+
+        return cachePath(configName, path);
       },
     });
   }
 
   toConfig() {
     this.delete('x');
+
     return super.toConfig();
   }
 
   toString() {
     this.delete('x');
+
     return super.toString();
   }
 
   async asyncBatch(handler) {
     await handler(this);
+
     return this;
   }
 }

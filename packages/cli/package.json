@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.12.4",
+  "version": "0.12.5",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -26,17 +26,18 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "bin": {
-    "best-shot": "bin/index.mjs"
+    "best-shot": "bin/index.mjs",
+    "best-shot-debug": "bin/index.mjs"
   },
+  "main": "bin/index.mjs",
   "dependencies": {
     "@best-shot/config": "^0.2.8",
     "chalk": "^5.0.1",
-    "cheetor": "^0.12.5",
-    "is-installed-globally": "^0.4.0",
+    "cheetor": "^0.13.0",
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.6",
+    "@best-shot/core": "^0.6.7",
     "webpack": "^5.70.0"
   },
   "engines": {

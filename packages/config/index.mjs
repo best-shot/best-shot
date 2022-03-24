@@ -18,7 +18,11 @@ function isSafeError(error) {
 }
 
 async function readConfigFile(filename, rootPath = process.cwd()) {
-  return import(pathToFileURL(resolve(rootPath, '.best-shot', filename)))
+  return import(
+    /* webpackIgnore: true */ pathToFileURL(
+      resolve(rootPath, '.best-shot', filename),
+    )
+  )
     .then(({ default: old, config = old, sideEffect }) => ({
       config,
       sideEffect,

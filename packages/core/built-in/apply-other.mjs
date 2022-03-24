@@ -13,7 +13,6 @@ export function apply({
   serve,
   config: {
     copy,
-    node,
     provide,
     externals,
     devServer,
@@ -22,10 +21,6 @@ export function apply({
   },
 }) {
   return async (chain) => {
-    if (node === false || notEmpty(node)) {
-      chain.node.merge(node);
-    }
-
     if (copy.length > 0 ? copy.length > 0 : copy) {
       const { CopyWebpack } = await import('copy-webpack');
       chain.plugin('copy').use(CopyWebpack, [copy]);

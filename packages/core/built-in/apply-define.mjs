@@ -1,10 +1,8 @@
-import mapValues from 'lodash/mapValues.js';
-import pickBy from 'lodash/pickBy.js';
-
 function variables(object) {
-  return mapValues(
-    pickBy(object, (item) => item !== undefined && item !== ''),
-    (value) => JSON.stringify(value),
+  return Object.fromEntries(
+    Object.entries(object)
+      .filter(([_, value]) => value !== undefined && value !== '')
+      .map(([key, value]) => [key, JSON.stringify(value)]),
   );
 }
 

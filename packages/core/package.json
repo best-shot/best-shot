@@ -33,7 +33,6 @@
     "copy-webpack": "^2.0.3",
     "deepmerge": "^4.2.2",
     "ext-to-regexp": "^0.1.0",
-    "lodash": "^4.17.21",
     "terser-webpack-plugin": "^5.3.1",
     "webpack-chain": "^6.5.1"
   },

@@ -4,7 +4,6 @@ import { resolve } from 'path';
 
 import { parse as tomlParse } from '@ltd/j-toml';
 import { parse as iniParse } from 'ini';
-import pickBy from 'lodash/pickBy.js';
 import yaml from 'yaml';
 
 const Require = createRequire(import.meta.url);
@@ -22,6 +21,12 @@ function ensureConfig(type, rootPath) {
   } catch {}
 }
 
+function filterData(object) {
+  return Object.fromEntries(
+    Object.entries(object).filter(([_, value]) => value !== undefined),
+  );
+}
+
 export function findConfig(rootPath) {
   return (
     ensureConfig('toml', rootPath) ||
@@ -29,10 +34,6 @@ export function findConfig(rootPath) {
     ensureConfig('yaml', rootPath) ||
     ensureConfig('json', rootPath)
   );
-}
-
-function filterData(data) {
-  return pickBy(data, (item) => item !== undefined);
 }
 
 export function mergeParams(

@@ -38,7 +38,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "babel-loader": "^8.2.3",
     "babel-preset-evergreen": "^0.8.8",
-    "browserslist": "^4.19.3",
+    "browserslist": "^4.20.2",
     "ext-to-regexp": "^0.1.0",
     "slash-to-regexp": "^0.0.4"
   },

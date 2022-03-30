@@ -3,22 +3,22 @@ import { readFileSync, writeFileSync } from 'fs';
 import { cachePath } from '@best-shot/core/lib/utils.mjs';
 import prompts from 'prompts';
 
+function readCache(filename) {
+  try {
+    return JSON.parse(readFileSync(filename));
+  } catch {
+    return [];
+  }
+}
+
 export function prompt(configs) {
   const names = configs.map(({ name }) => name);
 
   const tempPath = cachePath('prompt.json');
 
-  const cache = readFileSync(tempPath);
+  const cache = readCache(tempPath);
 
-  let temp = [];
-
-  try {
-    const io = JSON.parse(cache);
-
-    if (Array.isArray(io)) {
-      temp = cache || names || [];
-    }
-  } catch {}
+  const temp = Array.isArray(cache) && cache.length > 0 ? cache : names || [];
 
   return prompts(
     {

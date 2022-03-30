@@ -1,6 +1,6 @@
-import { ConfigError, validate as coreValidate } from '@best-shot/validator';
+import { validate as coreValidate } from '@best-shot/validator';
 
-function hasUniqueNames(config) {
+export function hasUniqueNames(config) {
   return (
     Array.isArray(config) &&
     new Set(config.map(({ name }) => name)).size !== config.length
@@ -34,8 +34,4 @@ const schema = {
 
 export async function validate(config) {
   await coreValidate({ schema, data: config });
-
-  if (hasUniqueNames(config)) {
-    throw new ConfigError('every config[x].name should be unique');
-  }
 }

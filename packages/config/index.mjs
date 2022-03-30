@@ -1,12 +1,13 @@
 import { resolve } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
+import { ConfigError } from '@best-shot/validator';
 import chalk from 'chalk';
 
 import { getEnv } from './env/index.mjs';
 
 import { prompt } from './prompt.mjs';
-import { validate } from './validate.mjs';
+import { hasUniqueNames, validate } from './validate.mjs';
 
 const { cyan } = chalk;
 
@@ -64,6 +65,10 @@ async function getConfigs(rootPath, { command }) {
       configs[index].output.path = '.best-shot/build/[config-name]';
     }
 
+    if (!conf.name) {
+      configs[index].name = `task${index + 1}`;
+    }
+
     const envs = getEnv(rootPath, {
       mode: command === 'prod' ? 'production' : 'development',
       watch: command === 'watch',
@@ -77,6 +82,10 @@ async function getConfigs(rootPath, { command }) {
       };
     }
   });
+
+  if (hasUniqueNames(configs)) {
+    throw new ConfigError('every config[x].name should be unique');
+  }
 
   return configs;
 }

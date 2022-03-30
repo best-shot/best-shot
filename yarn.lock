@@ -4182,6 +4182,11 @@ hpack.js@^2.1.6:
     readable-stream "^2.0.1"
     wbuf "^1.1.0"
 
+html-add-asset-webpack-plugin@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/html-add-asset-webpack-plugin/-/html-add-asset-webpack-plugin-0.0.0.tgz#89a06c3e7fcc056e14c86afd3c1f53175ca5e760"
+  integrity sha512-qAzkkxXXB/f7+j1voaupGdmljDnXXdJiZpXUq6jrOx2xvVmokA+NTFwHnxRe+sNR6y9vmgk6XMxNshm0s0wzEg==
+
 html-entities@^2.1.0, html-entities@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.3.2.tgz#760b404685cb1d794e4f4b744332e3b00dcfe488"
@@ -4215,11 +4220,6 @@ html-tags@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-3.1.0.tgz#7b5e6f7e665e9fb41f30007ed9e0d41e97fb2140"
   integrity sha512-1qYz89hW3lFDEazhjW0yVAV87lw8lVkrJocr72XmBkMKsoSVJCQx3W8BXsC7hO2qAt8BoVjYjtAcZ9perqGnNg==
-
-html-webpack-inject-plugin@^5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/html-webpack-inject-plugin/-/html-webpack-inject-plugin-5.3.1.tgz#b9ac4d4e48d14a521b2a33b2344832531c2be337"
-  integrity sha512-0UKpYq1n9EW3Kex61bj5tba6arc9GqhEuSvoRFV5joIJqY2aIiO/ooeFb2fOZQnO4ZQMVkjfT3NIb7g/xwfD9Q==
 
 html-webpack-plugin@^5.5.0:
   version "5.5.0"

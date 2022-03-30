@@ -16,6 +16,8 @@ This preset includes the following packages:
 
 - micro-tpl-loader
 - html-webpack-plugin
+- html-add-asset-webpack-plugin
+- html-minimizer-webpack-plugin
 - webpack-subresource-integrity
 
 ## Installation

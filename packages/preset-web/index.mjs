@@ -12,7 +12,7 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
-export function apply({ config: { html, inject, vendors } }) {
+export function apply({ config: { html, vendors } }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const minimize = chain.optimization.get('minimize');
@@ -35,7 +35,7 @@ export function apply({ config: { html, inject, vendors } }) {
 
     await splitChunks({ vendors })(chain);
 
-    await setHtml({ html, inject })(chain);
+    await setHtml({ html })(chain);
   };
 }
 
@@ -63,13 +63,6 @@ export const schema = {
         title: 'Options group of HtmlWebpackPlugin',
       },
     ],
-  },
-  inject: {
-    type: 'array',
-    uniqueItems: true,
-    items: {
-      type: 'object',
-    },
   },
   babel: {
     default: {},

@@ -12,7 +12,7 @@ function mergeAll(...options) {
   });
 }
 
-export function setHtml({ html = {}, inject = [] }) {
+export function setHtml({ html = {} }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
@@ -72,15 +72,11 @@ export function setHtml({ html = {}, inject = [] }) {
       ]);
     }
 
-    if (inject.length > 0) {
-      const {
-        default: { default: HtmlWebpackInjectPlugin },
-      } = await import('html-webpack-inject-plugin');
+    const { HtmlAddAssetWebpackPlugin } = await import(
+      'html-add-asset-webpack-plugin'
+    );
 
-      chain
-        .plugin('inject')
-        .use(HtmlWebpackInjectPlugin, [{ externals: inject }]);
-    }
+    chain.plugin('html-add-asset').use(HtmlAddAssetWebpackPlugin);
 
     if (mode === 'production') {
       chain.output.crossOriginLoading('anonymous');

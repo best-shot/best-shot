@@ -36,7 +36,7 @@
   "main": "index.mjs",
   "dependencies": {
     "@babel/preset-typescript": "^7.16.7",
-    "babel-loader": "^8.2.3",
+    "babel-loader": "^8.2.4",
     "babel-preset-evergreen": "^0.8.8",
     "browserslist": "^4.20.2",
     "ext-to-regexp": "^0.1.0",

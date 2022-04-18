@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/validator",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Config validator of 'best-shot'",
   "license": "MIT",
   "author": {

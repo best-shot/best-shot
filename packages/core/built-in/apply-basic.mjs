@@ -72,6 +72,10 @@ export function apply({
 
     if (useModule) {
       chain.merge({ experiments: { outputModule: true } });
+
+      chain.output.set('library', {
+        type: 'module',
+      });
     }
 
     chain.module.set('parser', {

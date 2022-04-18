@@ -20,7 +20,12 @@ export async function validate({ data, schema }) {
     });
 
     addFormats(ajv, ['regex']);
-    addKeywords(ajv, ['instanceof', 'transform', 'uniqueItemProperties']);
+    addKeywords(ajv, [
+      'instanceof',
+      'typeof',
+      'transform',
+      'uniqueItemProperties',
+    ]);
   }
 
   const validator = ajv.compile(schema);

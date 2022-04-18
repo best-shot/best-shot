@@ -1,9 +1,33 @@
 import { resolve } from 'path';
+import { fileURLToPath } from 'url';
 
+import slash from 'slash';
 import slashToRegexp from 'slash-to-regexp';
 import webpack from 'webpack';
 
 import { notEmpty } from '../lib/utils.mjs';
+
+function To(to) {
+  let url = to;
+
+  if (url instanceof URL) {
+    url = url.href;
+  }
+
+  if (typeof url === 'string') {
+    if (url.startsWith('file:')) {
+      url = fileURLToPath(url);
+    }
+
+    if (url.startsWith('.')) {
+      url = resolve(process.cwd(), url);
+    }
+
+    return slash(url);
+  }
+
+  return url;
+}
 
 export function apply({ config: { replace = [], resolve: { alias } = {} } }) {
   return async (chain) => {
@@ -27,18 +51,16 @@ export function apply({ config: { replace = [], resolve: { alias } = {} } }) {
       chain.plugin('case-sensitive-paths').use(CaseSensitivePathsPlugin);
     }
 
-    if (replace.length > 0) {
-      replace.forEach(({ from, to }, index) => {
+    (Array.isArray(replace) ? replace : [replace]).forEach(
+      ({ from, to }, index) => {
         chain
           .plugin(`replace-${index}`)
           .use(webpack.NormalModuleReplacementPlugin, [
             typeof from === 'string' ? slashToRegexp(from) : from,
-            typeof to === 'string' && to.startsWith('.')
-              ? resolve(process.cwd(), to)
-              : to,
+            To(to),
           ]);
-      });
-    }
+      },
+    );
   };
 }
 
@@ -60,6 +82,9 @@ const item = {
     },
     to: {
       oneOf: [
+        {
+          instanceof: 'URL',
+        },
         {
           type: 'string',
           minLength: 1,

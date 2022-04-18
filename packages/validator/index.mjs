@@ -13,6 +13,9 @@ export async function validate({ data, schema }) {
     const { default: Ajv } = await import('ajv');
     const { default: addFormats } = await import('ajv-formats');
     const { default: addKeywords } = await import('ajv-keywords');
+    const { default: instanceofDef } = await import(
+      'ajv-keywords/dist/definitions/instanceof.js'
+    );
 
     ajv = new Ajv({
       strict: true,
@@ -20,6 +23,9 @@ export async function validate({ data, schema }) {
     });
 
     addFormats(ajv, ['regex']);
+
+    instanceofDef.CONSTRUCTORS.URL = URL;
+
     addKeywords(ajv, [
       'instanceof',
       'typeof',

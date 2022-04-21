@@ -1,16 +1,9 @@
 import { relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
-import deepmerge from 'deepmerge';
 import extToRegexp from 'ext-to-regexp';
 import slash from 'slash';
 import slashToRegexp from 'slash-to-regexp';
-
-function mergeAll(...options) {
-  return deepmerge.all(options, {
-    arrayMerge: (destinationArray, sourceArray) => sourceArray,
-  });
-}
 
 export function setHtml({ html = {} }) {
   return async (chain) => {
@@ -36,18 +29,28 @@ export function setHtml({ html = {} }) {
         index,
       ) => {
         chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
-          mergeAll(options, {
+          {
+            ...options,
             cache: watch,
             minify: false,
             title,
             template,
             templateParameters: {
               title,
+              ...options.templateParameters,
             },
-          }),
+          },
         ]);
       },
     );
+
+    if (page.some(({ tags = [] }) => tags.length > 0)) {
+      const { HtmlAddAssetWebpackPlugin } = await import(
+        'html-add-asset-webpack-plugin'
+      );
+
+      chain.plugin('html-add-asset').use(HtmlAddAssetWebpackPlugin);
+    }
 
     if (minimize) {
       const { default: HtmlMinimizerPlugin } = await import(
@@ -71,12 +74,6 @@ export function setHtml({ html = {} }) {
         },
       ]);
     }
-
-    const { HtmlAddAssetWebpackPlugin } = await import(
-      'html-add-asset-webpack-plugin'
-    );
-
-    chain.plugin('html-add-asset').use(HtmlAddAssetWebpackPlugin);
 
     if (mode === 'production') {
       chain.output.crossOriginLoading('anonymous');

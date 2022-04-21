@@ -86,5 +86,20 @@ export const schema = {
       ],
     },
     type: 'object',
+    properties: {
+      shim: {
+        default: [
+          '(.)*-(shim|polyfill)',
+          '@babel',
+          'core-js-(.)*',
+          'core-js',
+          'object-assign',
+          'regenerator-runtime',
+          'whatwg-fetch',
+        ],
+      },
+    },
+    default: {},
+    required: ['shim'],
   },
 };

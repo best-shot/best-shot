@@ -8,6 +8,7 @@ export function apply({
     output = {},
     target,
     node,
+    dependencies,
   },
 }) {
   return (chain) => {
@@ -15,6 +16,10 @@ export function apply({
 
     if (target) {
       chain.target(target);
+    }
+
+    if (dependencies) {
+      chain.set('dependencies', dependencies);
     }
 
     const context = chain.get('context');
@@ -61,6 +66,18 @@ export function apply({
       chain.output.publicPath(publicPath);
     }
 
+    if (useModule) {
+      chain.merge({ experiments: { outputModule: true } });
+
+      chain.output.set('library', {
+        type: 'module',
+      });
+    } else if (isNode) {
+      chain.output.set('library', {
+        type: 'commonjs-static',
+      });
+    }
+
     chain.output.merge(output);
 
     chain.output.path(
@@ -69,14 +86,6 @@ export function apply({
         path.replace(/\[config-name]/g, name).replace(/\[mode]/g, mode),
       ),
     );
-
-    if (useModule) {
-      chain.merge({ experiments: { outputModule: true } });
-
-      chain.output.set('library', {
-        type: 'module',
-      });
-    }
 
     chain.module.set('parser', {
       javascript: {

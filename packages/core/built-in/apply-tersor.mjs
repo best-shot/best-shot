@@ -6,7 +6,9 @@ const displayName = 'tersor';
 
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
-export function apply({ config: { terser = {} } }) {
+export function apply({
+  config: { output: { module: useModule = false } = {}, terser = {} },
+}) {
   return async (chain) => {
     const { default: browserslist } = await import('browserslist');
 
@@ -49,6 +51,7 @@ export function apply({ config: { terser = {} } }) {
               },
             },
             terser,
+            { module: useModule },
             { arrayMerge: overwriteMerge },
           ),
         },

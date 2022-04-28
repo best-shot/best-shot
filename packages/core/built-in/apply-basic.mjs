@@ -93,6 +93,7 @@ export function apply({
         requireJs: false,
         system: false,
         importMeta: !isNode,
+        importMetaContext: true,
       },
     });
   };

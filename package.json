@@ -31,8 +31,8 @@
     "packages/*"
   ],
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "vue": "^3.2.33"
   },
   "devDependencies": {
@@ -41,7 +41,7 @@
     "@nice-move/eslint-config-base": "^0.6.8",
     "@nice-move/prettier-config": "^0.5.4",
     "@nice-move/stylelint-config": "^0.6.17",
-    "@types/react": "^18.0.7",
+    "@types/react": "^18.0.8",
     "ava": "^4.2.0",
     "delay": "^5.0.0",
     "eslint": "^8.14.0",

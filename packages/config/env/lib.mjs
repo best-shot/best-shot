@@ -3,7 +3,7 @@ import { createRequire } from 'module';
 import { resolve } from 'path';
 
 import { parse as tomlParse } from '@ltd/j-toml';
-import { parse as iniParse } from 'ini';
+import { decode as iniParse } from 'ini';
 import yaml from 'yaml';
 
 const Require = createRequire(import.meta.url);

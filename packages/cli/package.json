@@ -31,14 +31,14 @@
   },
   "main": "bin/index.mjs",
   "dependencies": {
-    "@best-shot/config": "^0.2.8",
+    "@best-shot/config": "^0.2.11",
     "chalk": "^5.0.1",
     "cheetor": "^0.13.0",
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.7",
-    "webpack": "^5.70.0"
+    "@best-shot/core": "^0.6.12",
+    "webpack": "^5.72.0"
   },
   "engines": {
     "node": "^14.17.0 || >=16.13.0"

@@ -1,24 +1,5 @@
-import { targetIsNode } from '../lib/utils.mjs';
-
-export function apply({ config: { entry, hashbang } }) {
-  return async (chain) => {
-    const target = chain.get('target');
-
-    if (targetIsNode(target)) {
-      const {
-        default: { BannerPlugin },
-      } = await import('webpack');
-
-      chain.plugin('hashbang').use(BannerPlugin, [
-        {
-          ...hashbang,
-          banner: '#!/usr/bin/env node',
-          entryOnly: true,
-          raw: true,
-        },
-      ]);
-    }
-
+export function apply({ config: { entry } }) {
+  return (chain) => {
     if (entry) {
       chain.merge({
         entry:
@@ -59,11 +40,5 @@ export const schema = {
         },
       },
     ],
-  },
-  hashbang: {
-    type: 'object',
-    default: {
-      include: ['bin.cjs', 'bin.mjs', 'cli.cjs', 'cli.mjs'],
-    },
   },
 };

@@ -19,7 +19,6 @@ A webpack config tool chain.
 
 - [@best-shot/preset-asset](./packages/preset-asset/)
 - [@best-shot/preset-babel](./packages/preset-babel/)
-- [@best-shot/preset-electron](./packages/preset-electron/)
 - [@best-shot/preset-react](./packages/preset-react/)
 - [@best-shot/preset-style](./packages/preset-style/)
 - [@best-shot/preset-vue](./packages/preset-vue/)

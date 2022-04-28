@@ -1,13 +1,12 @@
 import { resolve } from 'path';
 
-import { notEmpty, targetIsNode } from '../lib/utils.mjs';
+import { targetIsNode } from '../lib/utils.mjs';
 
 export function apply({
   config: {
     output: { publicPath, path, module: useModule } = {},
     output = {},
     target,
-    node,
     dependencies,
   },
 }) {
@@ -46,13 +45,6 @@ export function apply({
     const name = chain.get('name') || '';
 
     const isNode = targetIsNode(target);
-
-    if (isNode) {
-      chain.optimization.nodeEnv(false);
-      chain.set('node', false);
-    } else if (notEmpty(node)) {
-      chain.node.merge(node);
-    }
 
     chain.output.filename(
       isNode ? (useModule ? '[name].mjs' : '[name].cjs') : '[name].js',

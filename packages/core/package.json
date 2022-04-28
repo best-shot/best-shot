@@ -33,6 +33,7 @@
     "copy-webpack": "^2.0.4",
     "deepmerge": "^4.2.2",
     "ext-to-regexp": "^0.1.0",
+    "node-hmr-plugin": "^1.0.1",
     "slash": "^4.0.0",
     "slash-to-regexp": "^0.0.4",
     "terser-webpack-plugin": "^5.3.1",

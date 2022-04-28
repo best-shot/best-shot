@@ -15,7 +15,7 @@ function isNode(target) {
     target &&
     (target.includes('node') ||
       target.includes('nwjs') ||
-      target.includes('electron'))
+      target.includes('electron-main'))
   );
 }
 

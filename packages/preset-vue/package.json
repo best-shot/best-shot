@@ -29,7 +29,7 @@
     "@best-shot/vue-loader": "17.0.0-esm-0",
     "css-loader": "^6.7.1",
     "ext-to-regexp": "^0.1.0",
-    "settingz": "^0.1.7",
+    "settingz": "^0.1.9",
     "vue-template-compiler": "^2.6.14"
   },
   "peerDependencies": {

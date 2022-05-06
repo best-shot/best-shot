@@ -32,7 +32,7 @@
   "main": "index.mjs",
   "dependencies": {
     "ext-to-regexp": "^0.1.0",
-    "html-add-asset-webpack-plugin": "^0.1.1",
+    "html-add-asset-webpack-plugin": "^0.1.2",
     "html-minimizer-webpack-plugin": "^3.5.0",
     "html-webpack-plugin": "^5.5.0",
     "micro-tpl-loader": "^0.1.0",

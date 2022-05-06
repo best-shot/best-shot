@@ -4005,7 +4005,7 @@ hpack.js@^2.1.6:
     readable-stream "^2.0.1"
     wbuf "^1.1.0"
 
-html-add-asset-webpack-plugin@^0.1.1:
+html-add-asset-webpack-plugin@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/html-add-asset-webpack-plugin/-/html-add-asset-webpack-plugin-0.1.2.tgz#2515d9518b1188e74fe729d20f1f9958c983191c"
   integrity sha512-o2WQ5yCyvJ+/IR9kl3Aw8lTzifzrcYJkUYcO86iaD+eux4JmLDtmjxTQ+QW6xkhWJm5ya03BQF8JqgBMGKOYfw==

@@ -1,10 +1,9 @@
 import { validate as coreValidate } from '@best-shot/validator';
 
 export function hasUniqueNames(config) {
-  return (
-    Array.isArray(config) &&
-    new Set(config.map(({ name }) => name)).size !== config.length
-  );
+  const list = config.map(({ name }) => name).filter(Boolean);
+
+  return new Set(list).size !== list.length;
 }
 
 const obj = {

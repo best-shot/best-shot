@@ -65,10 +65,6 @@ async function getConfigs(rootPath, { command }) {
       configs[index].output.path = '.best-shot/build/[config-name]';
     }
 
-    if (!conf.name) {
-      configs[index].name = `task${index + 1}`;
-    }
-
     const envs = getEnv(rootPath, {
       mode: command === 'prod' ? 'production' : 'development',
       watch: command === 'watch',
@@ -81,9 +77,13 @@ async function getConfigs(rootPath, { command }) {
         ...envs,
       };
     }
+
+    if (configs.length > 1 && !conf.name) {
+      configs[index].name = `task${index + 1}`;
+    }
   });
 
-  if (hasUniqueNames(configs)) {
+  if (configs.length > 1 && hasUniqueNames(configs)) {
     throw new ConfigError('every config[x].name should be unique');
   }
 

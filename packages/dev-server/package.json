@@ -43,7 +43,7 @@
     "@best-shot/cli": "^0.12.4"
   },
   "engines": {
-    "node": "^14.17.0 || >=16.13.0"
+    "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

@@ -47,7 +47,7 @@
     "@best-shot/core": "^0.6.3"
   },
   "engines": {
-    "node": "^14.17.0 || >=16.13.0"
+    "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
   },
   "publishConfig": {
     "access": "public",

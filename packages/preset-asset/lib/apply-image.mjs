@@ -10,6 +10,7 @@ function squooshWrapper(implementation) {
   return (...args) => {
     const io = implementation(...args);
     delete globalThis.navigator;
+
     return io;
   };
 }
@@ -33,6 +34,7 @@ export async function applyImage(chain) {
           filename: (args) => {
             // eslint-disable-next-line no-param-reassign
             args.filename = nonAscii(removeRoot(args.filename));
+
             return '[path][name][ext]';
           },
         });
@@ -41,12 +43,14 @@ export async function applyImage(chain) {
         .oneOf('immutable')
         .type('asset/resource')
         .set('generator', {
+          outputPath: 'image',
           filename: (args) => {
             // eslint-disable-next-line no-param-reassign
             args.filename = nonAscii(args.filename);
+
             return minimize
-              ? 'image/[name].min.[contenthash:8][ext]'
-              : 'image/[name].[contenthash:8][ext]';
+              ? '[name].min.[contenthash:8][ext]'
+              : '[name].[contenthash:8][ext]';
           },
         });
     });

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-vue",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A `best-shot` preset for Vue project",
   "license": "MIT",
   "author": {
@@ -29,12 +29,12 @@
     "@best-shot/vue-loader": "17.0.0-esm-0",
     "css-loader": "^6.7.1",
     "ext-to-regexp": "^0.1.0",
-    "settingz": "^0.1.9",
+    "settingz": "^0.2.0",
     "vue-template-compiler": "^2.6.14"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.6",
-    "vue": "^2.6.14 || ^3.2.31"
+    "@best-shot/core": "^0.6.12",
+    "vue": "^2.6.14 || ^3.2.33"
   },
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0"

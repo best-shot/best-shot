@@ -1,4 +1,4 @@
-import { relative, resolve } from 'path';
+import { relative } from 'path';
 import { fileURLToPath } from 'url';
 
 import { applyScssLess } from './lib/apply-scss-less.mjs';
@@ -15,7 +15,7 @@ export function apply({ config: { less } }) {
     chain.resolveLoader.modules.prepend(
       relative(
         context,
-        resolve(fileURLToPath(import.meta.url), '../node_modules'),
+        fileURLToPath(new URL('node_modules', import.meta.url)),
       ),
     );
   };

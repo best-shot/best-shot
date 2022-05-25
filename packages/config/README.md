@@ -1,6 +1,6 @@
 # @best-shot/config <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
-Config reader of '@best-shot/cli'.
+Config loader of '@best-shot/cli'.
 
 [![npm][npm-badge]][npm-url]
 [![github][github-badge]][github-url]

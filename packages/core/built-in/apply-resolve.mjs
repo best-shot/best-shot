@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 
-import slash from 'slash';
 import slashToRegexp from 'slash-to-regexp';
 import webpack from 'webpack';
 
@@ -10,8 +9,8 @@ import { notEmpty } from '../lib/utils.mjs';
 function To(to) {
   let url = to;
 
-  if (url instanceof URL) {
-    url = url.href;
+  if (url instanceof URL && url.protocol === 'file:') {
+    url = fileURLToPath(url.href);
   }
 
   if (typeof url === 'string') {
@@ -22,8 +21,6 @@ function To(to) {
     if (url.startsWith('.')) {
       url = resolve(process.cwd(), url);
     }
-
-    return slash(url);
   }
 
   return url;

@@ -1,6 +1,6 @@
 {
   "name": "best-shot",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
@@ -28,6 +28,10 @@
   "bin": {
     "best-shot": "dist/cli.mjs",
     "best-shot-lite": "dist/cli.mjs"
+  },
+  "scripts": {
+    "build": "best-shot-debug prod",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "browserslist": "^4.20.3",

@@ -2,7 +2,7 @@ import { createRequire } from 'module';
 
 const Require = createRequire(import.meta.url);
 
-const pkg = Require('best-shot/package.json');
+const pkg = Require('../package.json');
 
 const externals = [
   /^webpack\//,
@@ -20,7 +20,7 @@ export const config = {
     cli: '@best-shot/cli',
   },
   output: {
-    path: './packages/best-shot/dist',
+    path: 'dist',
     module: true,
   },
   externals,

@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.0",
-    "@nice-move/cli": "^0.8.1",
+    "@nice-move/cli": "^0.9.0",
     "@nice-move/eslint-config-base": "^0.7.2",
     "@nice-move/prettier-config": "^0.6.0",
     "@nice-move/stylelint-config": "^0.7.0",

@@ -42,7 +42,7 @@ export function applyData(chain) {
     .end()
 
     .oneOf('internal')
-    .set('dependency', { not: ['url'] })
+    .set('dependency', { not: 'url' })
     .type('json')
     .end()
 
@@ -51,7 +51,8 @@ export function applyData(chain) {
     .end()
 
     .use('yaml-loader')
-    .loader('yaml-loader');
+    .loader('yaml-loader')
+    .options({ asJSON: true });
 
   // ----------
 

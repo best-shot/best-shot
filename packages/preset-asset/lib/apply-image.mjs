@@ -43,14 +43,13 @@ export async function applyImage(chain) {
         .oneOf('immutable')
         .type('asset/resource')
         .set('generator', {
-          outputPath: 'image',
           filename: (args) => {
             // eslint-disable-next-line no-param-reassign
             args.filename = nonAscii(args.filename);
 
             return minimize
-              ? '[name].min.[contenthash:8][ext]'
-              : '[name].[contenthash:8][ext]';
+              ? 'image/[name].min.[contenthash:8][ext]'
+              : 'image/[name].[contenthash:8][ext]';
           },
         });
     });

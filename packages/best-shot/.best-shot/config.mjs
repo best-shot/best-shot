@@ -7,7 +7,10 @@ const pkg = Require('../package.json');
 const externals = [
   /^webpack\//,
   Object.fromEntries(
-    Object.keys(pkg.dependencies).map((item) => [
+    Object.keys(pkg.dependencies).map((item) => [item, `module ${item}`]),
+  ),
+  Object.fromEntries(
+    ['javascript-stringify', 'loader-utils', 'yaml'].map((item) => [
       item,
       `node-commonjs ${item}`,
     ]),

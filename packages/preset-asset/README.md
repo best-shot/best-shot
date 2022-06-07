@@ -14,7 +14,6 @@ A `best-shot` preset for asset.
 
 This preset offer the following features:
 
-- export `yml` / `yaml` / `txt` / `json` to data or standalone file
 - bundle `jpg` / `jpeg` / `png` / `gif` / `svg`
 - bundle `woff` / `woff2` / `otf` / `eot` / `ttf`
 - image minify in production mode
@@ -35,18 +34,6 @@ export default {
 ```
 
 ## Tips
-
-### Standalone data file output
-
-For `yml` / `yaml` / `txt` / `json` format:
-
-```js
-import('./sample.json');
-// { foo: 'bar' }
-
-import('./sample.[hash].json');
-// sample.xxxxxxxx.json
-```
 
 ### The `mutable` resourceQuery for image
 

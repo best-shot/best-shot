@@ -7,11 +7,9 @@ export function apply() {
 
     const { applyFont } = await import('./lib/apply-font.mjs');
     const { applyImage } = await import('./lib/apply-image.mjs');
-    const { applyData } = await import('./lib/apply-data.mjs');
 
     await applyImage(chain);
     await applyFont(chain);
-    await applyData(chain);
 
     chain.resolveLoader.modules.prepend(
       relative(

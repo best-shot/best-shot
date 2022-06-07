@@ -4,30 +4,59 @@ export function apply() {
   return async (chain) => {
     const mode = chain.get('mode');
 
-    function file(io) {
-      io.set('generator', {
-        filename:
-          mode === 'production' ? '[contenthash:8][ext]' : '[path][name][ext]',
-      });
-    }
+    function set({ name, extname, ext, raw }) {
+      const io = chain.module.rule(name).test(extToRegexp({ extname }));
 
-    function set(name, ext, raw = 'asset/source') {
-      const io = chain.module.rule(name).test(extToRegexp({ extname: ext }));
-
-      io.oneOf('url').set('dependency', 'url').batch(file);
+      io.oneOf('url')
+        .set('dependency', 'url')
+        .set('generator', {
+          filename:
+            mode === 'production'
+              ? `[contenthash:8].${ext}`
+              : `[path][name].${ext}`,
+        });
 
       io.oneOf('not-url')
         .set('dependency', { not: 'url' })
         .oneOf('query')
         .resourceQuery(/to-url/)
         .type('asset/resource')
-        .batch(file);
+        .set('generator', {
+          filename:
+            mode === 'production'
+              ? `[contenthash:8].${ext}`
+              : `[path][name].${ext}`,
+        });
 
       io.oneOf('not-url').oneOf('raw').type(raw);
     }
 
-    set('text', ['txt']);
-    set('json', ['json'], 'json');
+    set({
+      name: 'text',
+      extname: ['txt'],
+      ext: 'txt',
+      raw: 'asset/source',
+    });
+
+    set({
+      name: 'json',
+      extname: ['json'],
+      ext: 'json',
+      raw: 'json',
+    });
+
+    set({
+      name: 'yaml',
+      extname: ['yaml', 'yml'],
+      ext: 'json',
+      raw: 'json',
+    });
+
+    chain.module
+      .rule('yaml')
+      .use('yaml-loader')
+      .loader('yaml-loader')
+      .options({ asJSON: true });
 
     const minimize = chain.optimization.get('minimize');
 

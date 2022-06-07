@@ -38,7 +38,8 @@
     "slash": "^4.0.0",
     "slash-to-regexp": "^0.0.4",
     "terser-webpack-plugin": "^5.3.3",
-    "webpack-chain": "^6.5.1"
+    "webpack-chain": "^6.5.1",
+    "yaml-loader": "^0.8.0"
   },
   "peerDependencies": {
     "webpack": "^5.73.0"

@@ -51,13 +51,6 @@ export class BestShot {
             .rule('esm')
             .test(extToRegexp({ extname: ['js', 'mjs'] }))
             .merge({ resolve: { fullySpecified: false } });
-
-          chain.module.rules.delete('text');
-          chain.module
-            .rule('text')
-            .test(extToRegexp({ extname: ['txt'] }))
-            .set('dependency', { not: 'url' })
-            .type('asset/source');
         };
       },
     });

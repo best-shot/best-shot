@@ -59,11 +59,11 @@ export function apply({
     }
 
     const cache = chain.get('cache');
+    const mode = chain.get('mode');
 
     if (cache) {
       const { cachePath } = chain.get('x');
       const watch = chain.get('watch');
-      const mode = chain.get('mode');
 
       chain.cache({
         type: 'filesystem',
@@ -75,8 +75,6 @@ export function apply({
         },
       });
     }
-
-    const mode = chain.get('mode');
 
     if (mode === 'production') {
       const {

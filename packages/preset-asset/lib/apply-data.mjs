@@ -53,19 +53,4 @@ export function applyData(chain) {
     .use('yaml-loader')
     .loader('yaml-loader')
     .options({ asJSON: true });
-
-  // ----------
-
-  const text = chain.module
-    .rule('text')
-    .test(extToRegexp({ extname: ['txt'] }));
-
-  text
-    .oneOf('external')
-    .test(/\.\[hash]/)
-    .batch(outputFile());
-
-  text // align
-    .oneOf('internal')
-    .type('asset/source');
 }

@@ -1,5 +1,7 @@
 import { resolve } from 'path';
 
+import extToRegexp from 'ext-to-regexp';
+
 import { targetIsNode } from '../lib/utils.mjs';
 
 export function apply({
@@ -88,6 +90,11 @@ export function apply({
         importMetaContext: true,
       },
     });
+
+    chain.module
+      .rule('esm')
+      .test(extToRegexp({ extname: ['js', 'mjs'] }))
+      .merge({ resolve: { fullySpecified: false } });
   };
 }
 

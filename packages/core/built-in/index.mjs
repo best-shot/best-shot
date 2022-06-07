@@ -1,3 +1,4 @@
+import * as applyAsset from './apply-asset.mjs';
 import * as applyBasic from './apply-basic.mjs';
 import * as applyDefine from './apply-define.mjs';
 import * as applyEntry from './apply-entry.mjs';
@@ -14,4 +15,5 @@ export const builtIn = [
   applyOther,
   applyDefine,
   applyNode,
+  applyAsset,
 ];

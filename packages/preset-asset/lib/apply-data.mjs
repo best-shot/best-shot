@@ -18,19 +18,6 @@ function outputFile(ext = '[ext]') {
 }
 
 export function applyData(chain) {
-  chain.module
-    .rule('json')
-    .test(
-      extToRegexp({
-        suffix: ['\\[hash]'],
-        extname: ['json'],
-      }),
-    )
-    .type('javascript/auto')
-    .batch(outputFile());
-
-  // ----------
-
   const yaml = chain.module
     .rule('yaml')
     .test(extToRegexp({ extname: ['yaml', 'yml'] }));

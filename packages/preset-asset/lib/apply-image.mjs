@@ -7,11 +7,15 @@ const notDataUrlText = (_, sourcePath) => {
 };
 
 function squooshWrapper(implementation) {
-  return (...args) => {
-    const io = implementation(...args);
-    delete globalThis.navigator;
+  return (original, options) => {
+    try {
+      const io = implementation(original, options);
+      delete globalThis.navigator;
 
-    return io;
+      return io;
+    } catch {
+      return original;
+    }
   };
 }
 

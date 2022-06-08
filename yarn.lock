@@ -4729,7 +4729,7 @@ known-css-properties@^0.25.0:
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.25.0.tgz#6ebc4d4b412f602e5cfbeb4086bd544e34c0a776"
   integrity sha512-b0/9J1O9Jcyik1GC6KC42hJ41jKwdO/Mq8Mdo5sYN+IuRTXs2YFHZC3kZSx6ueusqa95x3wLYe/ytKjbAfGixA==
 
-launch-editor-middleware@^2.3.0:
+launch-editor-middleware@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/launch-editor-middleware/-/launch-editor-middleware-2.4.0.tgz#0c3f24608fa69e4ae00d5d1c89f34bf0ba25a8f4"
   integrity sha512-/M7AX/6xktZY60KE7j71XLrj9U6H5TBoP+mJzhYB3fcdAq8rcazit/K0qWiu1jvytUPXP4lJRd1VJFwvdMQ/uw==

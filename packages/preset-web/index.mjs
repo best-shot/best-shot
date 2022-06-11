@@ -5,7 +5,9 @@ import { setOutputName } from './lib/apply-set-output-name.mjs';
 import { splitChunks } from './lib/apply-split-chunks.mjs';
 
 function addHash(filename) {
-  return suffix(filename, '.[contenthash:8]');
+  return filename.includes('[contenthash')
+    ? filename
+    : suffix(filename, '.[contenthash:8]');
 }
 
 function addMin(filename) {

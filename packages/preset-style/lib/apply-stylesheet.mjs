@@ -36,14 +36,26 @@ export async function applyStylesheet(chain) {
     ]);
   }
 
-  chain.module.rule('style').test(extToRegexp({ extname: ['css'] }));
+  chain.module
+    .rule('style')
+    .test(extToRegexp({ extname: ['css'] }))
+    .oneOf('not-url')
+    .set('dependency', { not: 'url' });
 
   const mode = chain.get('mode');
   const watch = chain.get('watch');
+  const hot = chain.devServer.get('hot') || false;
 
-  const useHot = chain.devServer.get('hot') || false;
+  chain.module
+    .rule('style')
+    .oneOf('url')
+    .set('dependency', 'url')
+    .set('generator', {
+      filename:
+        mode === 'production' ? '[contenthash:8].css' : '[path][name].css',
+    });
 
-  const parent = chain.module.rule('style').rule('css');
+  const parent = chain.module.rule('style').oneOf('not-url').rule('css');
 
   parent
     .oneOf('css-modules-by-query')
@@ -65,29 +77,12 @@ export async function applyStylesheet(chain) {
       },
     });
 
-  const extract = !useHot;
-
-  if (!watch && chain.module.rules.has('babel')) {
-    chain.module
-      .rule('babel')
-      .exclude.add(slashToRegexp('/node_modules/css-loader/'));
-
-    if (extract) {
-      chain.module
-        .rule('babel')
-        .exclude.add(slashToRegexp('/node_modules/mini-css-extract-plugin/'));
-    }
-  }
-
-  if (extract) {
+  if (!hot) {
     const { default: MiniCssExtractPlugin } = await import(
       'mini-css-extract-plugin'
     );
 
-    chain.module
-      .rule('style')
-      .use('extract-css')
-      .loader(MiniCssExtractPlugin.loader);
+    parent.use('extract-css').loader(MiniCssExtractPlugin.loader);
 
     chain.plugin('extract-css').use(MiniCssExtractPlugin, [
       {
@@ -97,6 +92,18 @@ export async function applyStylesheet(chain) {
       },
     ]);
   } else {
-    chain.module.rule('style').use('style-loader').loader('style-loader');
+    parent.use('style-loader').loader('style-loader');
+  }
+
+  if (!watch && chain.module.rules.has('babel')) {
+    chain.module
+      .rule('babel')
+      .exclude.add(slashToRegexp('/node_modules/css-loader/'));
+
+    if (!hot) {
+      chain.module
+        .rule('babel')
+        .exclude.add(slashToRegexp('/node_modules/mini-css-extract-plugin/'));
+    }
   }
 }

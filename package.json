@@ -31,27 +31,27 @@
     "packages/*"
   ],
   "dependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.5",
+    "@babel/core": "^7.18.6",
     "@nice-move/cli": "^0.9.6",
-    "@nice-move/eslint-config-base": "^0.7.3",
+    "@nice-move/eslint-config-base": "^0.7.4",
     "@nice-move/prettier-config": "^0.6.0",
     "@nice-move/stylelint-config": "^0.7.0",
-    "@types/react": "^18.0.12",
+    "@types/react": "^18.0.14",
     "ava": "^4.3.0",
     "delay": "^5.0.0",
-    "eslint": "^8.17.0",
+    "eslint": "^8.18.0",
     "eslint-plugin-ava": "^13.2.0",
     "garou": "^0.4.14",
-    "prettier": "^2.6.2",
+    "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
-    "typescript": "^4.7.3",
+    "typescript": "^4.7.4",
     "webpack": "^5.73.0",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.10.0"
   },
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0"

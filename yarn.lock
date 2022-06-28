@@ -7485,7 +7485,7 @@ webpack-dev-server-waitpage@^2.1.1:
   dependencies:
     ejs "^3.1.5"
 
-webpack-dev-server@^4.9.0:
+webpack-dev-server@^4.9.2:
   version "4.9.2"
   resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-4.9.2.tgz#c188db28c7bff12f87deda2a5595679ebbc3c9bc"
   integrity sha512-H95Ns95dP24ZsEzO6G9iT+PNw4Q7ltll1GfJHV4fKphuHWgKFzGHWi4alTlTnpk1SPPk41X+l2RB7rLfIhnB9Q==

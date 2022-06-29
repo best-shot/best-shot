@@ -39,6 +39,7 @@ export async function applyStylesheet(chain) {
   chain.module
     .rule('style')
     .test(extToRegexp({ extname: ['css'] }))
+    .rule('all')
     .oneOf('not-url')
     .set('dependency', { not: 'url' });
 
@@ -48,6 +49,7 @@ export async function applyStylesheet(chain) {
 
   chain.module
     .rule('style')
+    .rule('all')
     .oneOf('url')
     .set('dependency', 'url')
     .set('generator', {
@@ -55,7 +57,7 @@ export async function applyStylesheet(chain) {
         mode === 'production' ? '[contenthash:8].css' : '[path][name].css',
     });
 
-  const parent = chain.module.rule('style').oneOf('not-url').rule('css');
+  const parent = chain.module.rule('style').rule('all').oneOf('not-url');
 
   parent
     .oneOf('css-modules-by-query')

@@ -8,11 +8,16 @@ export class CoreChain extends WebpackChain {
 
     this.name(name).context(context);
 
+    this.temp = [];
+
     this.set('x', {
       cachePath: (path) => {
         const configName = this.get('name') || 'default';
 
         return cachePath(configName, path);
+      },
+      addHooks: (...funcs) => {
+        this.temp.push(...funcs);
       },
     });
   }
@@ -20,7 +25,13 @@ export class CoreChain extends WebpackChain {
   toConfig() {
     this.delete('x');
 
-    return super.toConfig();
+    const io = super.toConfig();
+
+    for (const func of this.temp) {
+      func(io);
+    }
+
+    return io;
   }
 
   toString() {

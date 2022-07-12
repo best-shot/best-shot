@@ -60,6 +60,10 @@ export function apply({
       chain.output.publicPath(publicPath);
     }
 
+    chain.merge({
+      experiments: { topLevelAwait: true },
+    });
+
     if (useModule) {
       chain.merge({ experiments: { outputModule: true } });
 

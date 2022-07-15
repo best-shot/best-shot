@@ -47,13 +47,12 @@ export function apply({
       });
 
       if (lazyCompilation !== false) {
-        chain.merge({
-          experiments: {
-            lazyCompilation:
-              lazyCompilation === true
-                ? { entries: objectSize(chain.entryPoints.entries()) > 1 }
-                : lazyCompilation,
-          },
+        chain.set('experiments', {
+          ...chain.get('experiments'),
+          lazyCompilation:
+            lazyCompilation === true
+              ? { entries: objectSize(chain.entryPoints.entries()) > 1 }
+              : lazyCompilation,
         });
       }
     }

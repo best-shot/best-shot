@@ -60,12 +60,13 @@ export function apply({
       chain.output.publicPath(publicPath);
     }
 
-    chain.merge({
-      experiments: { topLevelAwait: true },
-    });
+    chain.set('experiments', { topLevelAwait: true });
 
     if (useModule) {
-      chain.merge({ experiments: { outputModule: true } });
+      chain.set('experiments', {
+        ...chain.get('experiments'),
+        outputModule: true,
+      });
 
       chain.output.set('library', {
         type: 'module',

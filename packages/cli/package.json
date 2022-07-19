@@ -26,8 +26,7 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "bin": {
-    "best-shot": "bin/index.mjs",
-    "best-shot-debug": "bin/index.mjs"
+    "best-shot": "bin/index.mjs"
   },
   "main": "bin/index.mjs",
   "dependencies": {

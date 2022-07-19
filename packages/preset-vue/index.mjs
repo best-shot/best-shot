@@ -10,6 +10,17 @@ function isVue2() {
   return !vue || /^[\^~]?2\./.test(vue);
 }
 
+function batch(theChain) {
+  theChain.tap((options) => ({
+    ...options,
+    esModule: false,
+    modules: {
+      ...options.modules,
+      namedExport: false,
+    },
+  }));
+}
+
 export function apply({
   config: {
     vue: { compilerOptions = {}, transformAssetUrls, shadowMode } = {},
@@ -18,11 +29,13 @@ export function apply({
   return async (chain) => {
     const context = chain.get('context');
 
+    const IsVue2 = isVue2();
+
     chain.module
       .rule('vue')
       .test(extToRegexp({ extname: ['vue'] }))
       .use('vue-loader')
-      .loader('@best-shot/vue-loader')
+      .loader(IsVue2 ? 'vue-loader' : '@best-shot/vue-loader')
       .options({
         hotReload: Boolean(chain.devServer.get('hot')) || false,
         ...(transformAssetUrls && { transformAssetUrls }),
@@ -44,14 +57,20 @@ export function apply({
       chain.resolve.alias.set('vue', '@vue/compat');
     }
 
-    const IsVue2 = isVue2();
-
     /* eslint-disable unicorn/no-await-expression-member */
-    const VueLoaderPlugin = IsVue2 // eslint-disable-next-line import/no-unresolved
-      ? (await import('@best-shot/vue-loader/lib/plugin.js')).default
+    const VueLoaderPlugin = IsVue2
+      ? (await import('vue-loader/lib/plugin.js')).default
       : (await import('@best-shot/vue-loader/dist/plugin.js')).default.default;
 
     chain.plugin('vue-loader').use(VueLoaderPlugin);
+
+    if (IsVue2) {
+      const notURL = chain.module.rule('style').rule('all').oneOf('not-url');
+
+      notURL.oneOf('css-modules-by-filename').use('css-loader').batch(batch);
+
+      notURL.oneOf('css-modules-by-query').use('css-loader').batch(batch);
+    }
   };
 }
 

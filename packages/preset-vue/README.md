@@ -51,22 +51,6 @@ export const config = {
 };
 ```
 
-### Vue 2 support
-
-```jsonc
-// example: package.json
-{
-  "resolutions": {
-    // yarn@1
-    "@best-shot/vue-loader": "^15"
-  },
-  "overrides": {
-    // npm@8
-    "@best-shot/vue-loader": "^15"
-  }
-}
-```
-
 ### Vue 3 migration build support
 
 ```sh

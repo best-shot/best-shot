@@ -26,11 +26,10 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "bin": {
-    "best-shot": "dist/cli.mjs",
-    "best-shot-lite": "dist/cli.mjs"
+    "best-shot": "dist/index.cjs"
   },
   "scripts": {
-    "build": "best-shot-debug prod",
+    "build": "best-shot prod",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

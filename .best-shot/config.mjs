@@ -1,5 +1,4 @@
 export const config = {
-  output: {
-    publicPath: '',
-  },
+  presets: ['vue', 'style', 'web'],
+  devServer: {},
 };

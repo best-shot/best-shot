@@ -31,7 +31,9 @@ export function apply({ config: { node, hashbang, executor } }) {
     if (isNode) {
       chain.optimization.nodeEnv(false);
       chain.set('node', false);
-    } else if (notEmpty(node)) {
+    }
+
+    if (notEmpty(node)) {
       chain.node.merge(node);
     }
 

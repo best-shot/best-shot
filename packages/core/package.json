@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.6.18",
+  "version": "0.6.19",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -27,7 +27,7 @@
   "main": "index.mjs",
   "dependencies": {
     "@best-shot/validator": "^0.2.2",
-    "browserslist": "^4.21.1",
+    "browserslist": "^4.21.3",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "chalk": "^5.0.1",
     "copy-webpack": "^2.0.4",
@@ -42,7 +42,7 @@
     "yaml-loader": "^0.8.0"
   },
   "peerDependencies": {
-    "webpack": "^5.73.0"
+    "webpack": "^5.74.0"
   },
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0"

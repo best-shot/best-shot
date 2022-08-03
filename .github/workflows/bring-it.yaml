@@ -28,7 +28,7 @@ jobs:
           node-version: ${{ matrix.node }}
           custom-command: |
             mkdir -p packages/best-shot/dist
-            echo "" > packages/best-shot/dist/cli.mjs
+            touch $_/cli.mjs
 
   publish:
     needs: [test]
@@ -40,4 +40,4 @@ jobs:
           npm-token: ${{ secrets.NPM_TOKEN }}
           custom-command: |
             mkdir -p packages/best-shot/dist
-            echo "" > packages/best-shot/dist/cli.mjs
+            touch $_/cli.mjs

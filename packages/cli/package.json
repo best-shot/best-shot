@@ -30,17 +30,21 @@
   },
   "main": "bin/index.mjs",
   "dependencies": {
-    "@best-shot/config": "^0.2.12",
+    "@best-shot/config": "^0.2.13",
     "chalk": "^5.0.1",
     "cheetor": "^0.13.0",
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.12",
-    "webpack": "^5.72.1"
+    "@best-shot/core": "^0.6.19",
+    "webpack": "^5.74.0"
   },
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

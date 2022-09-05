@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/config",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "Config loader of '@best-shot/cli'",
   "license": "MIT",
   "author": {
@@ -32,16 +32,16 @@
   "exports": "./index.mjs",
   "dependencies": {
     "@best-shot/validator": "^0.2.2",
-    "@ltd/j-toml": "^1.33.0",
+    "@ltd/j-toml": "^1.35.2",
     "@nice-labs/git-rev": "^3.5.0",
     "chalk": "^5.0.1",
     "flat": "^5.0.2",
-    "ini": "^3.0.0",
+    "ini": "^3.0.1",
     "prompts": "^2.4.2",
     "yaml": "^2.1.1"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.19"
+    "@best-shot/core": "^0.6.21"
   },
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0"

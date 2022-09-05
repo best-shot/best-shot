@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.12.6",
+  "version": "0.12.7",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -30,13 +30,13 @@
   },
   "main": "bin/index.mjs",
   "dependencies": {
-    "@best-shot/config": "^0.2.13",
+    "@best-shot/config": "^0.2.15",
     "chalk": "^5.0.1",
     "cheetor": "^0.13.0",
     "webpackbar": "^5.0.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.19",
+    "@best-shot/core": "^0.6.21",
     "webpack": "^5.74.0"
   },
   "engines": {

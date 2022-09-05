@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-style",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "description": "A `best-shot` preset for stylesheet",
   "license": "MIT",
   "author": {
@@ -45,13 +45,13 @@
     "postcss-loader": "^7.0.1",
     "postcss-preset-evergreen": "^0.4.5",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.54.4",
+    "sass": "^1.54.8",
     "sass-loader": "^13.0.2",
     "slash-to-regexp": "^0.0.4",
     "style-loader": "^3.3.1"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.19"
+    "@best-shot/core": "^0.6.21"
   },
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0"

@@ -20,6 +20,10 @@ export function DevServer(compiler, { setupMiddlewares, ...options }) {
   if (options.static === undefined) {
     options.static = false;
   }
+
+  if (options.allowedHosts === undefined) {
+    options.allowedHosts = ['all'];
+  }
   /* eslint-enable no-param-reassign */
 
   const Server = new WebpackDevServer(

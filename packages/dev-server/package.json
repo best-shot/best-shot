@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.13.6",
+  "version": "0.13.7",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -36,7 +36,7 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "launch-editor-middleware": "^2.6.0",
-    "webpack-dev-server": "^4.10.1",
+    "webpack-dev-server": "^4.11.0",
     "webpack-dev-server-waitpage": "^2.1.1"
   },
   "peerDependencies": {

@@ -1,5 +1,5 @@
-import { relative, resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import extToRegexp from 'ext-to-regexp';
 import { getPkg, haveLocalDependencies } from 'settingz';

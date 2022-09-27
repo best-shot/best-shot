@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/config",
-  "version": "0.2.15",
+  "version": "0.2.17",
   "description": "Config loader of '@best-shot/cli'",
   "license": "MIT",
   "author": {
@@ -29,11 +29,10 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "main": "index.mjs",
-  "exports": "./index.mjs",
   "dependencies": {
     "@best-shot/validator": "^0.2.2",
     "@ltd/j-toml": "^1.35.2",
-    "@nice-labs/git-rev": "^3.5.0",
+    "@nice-labs/git-rev": "^3.5.1",
     "chalk": "^5.0.1",
     "flat": "^5.0.2",
     "ini": "^3.0.1",

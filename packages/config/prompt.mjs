@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 import { cachePath } from '@best-shot/core/lib/utils.mjs';
 import prompts from 'prompts';

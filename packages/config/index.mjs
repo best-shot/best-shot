@@ -1,5 +1,5 @@
-import { resolve } from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
+import { resolve } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { ConfigError } from '@best-shot/validator';
 import chalk from 'chalk';

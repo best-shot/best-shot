@@ -1,6 +1,6 @@
-import { readFileSync } from 'fs';
-import { createRequire } from 'module';
-import { resolve } from 'path';
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { resolve } from 'node:path';
 
 import { parse as tomlParse } from '@ltd/j-toml';
 import { decode as iniParse } from 'ini';

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-asset",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "A `best-shot` preset for asset",
   "license": "MIT",
   "author": {
@@ -31,12 +31,12 @@
     "@squoosh/lib": "^0.4.0",
     "@wasm-codecs/gifsicle": "^1.0.0",
     "ext-to-regexp": "^0.1.0",
-    "image-minimizer-webpack-plugin": "^3.3.0",
+    "image-minimizer-webpack-plugin": "^3.6.1",
     "svgo": "^2.8.0",
     "svgo-config": "^0.4.1"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.19"
+    "@best-shot/core": "^0.6.21"
   },
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0"

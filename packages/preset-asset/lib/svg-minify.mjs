@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/named
 import { optimize } from 'svgo';
 import config from 'svgo-config/lib/config.mjs';
 
@@ -19,6 +18,7 @@ export async function svgMinify(original, { ...options } = {}) {
     result = await optimize(original.data.toString(), options);
   } catch (error) {
     original.errors.push(error);
+
     return original;
   }
 

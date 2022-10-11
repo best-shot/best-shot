@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 
 import extToRegexp from 'ext-to-regexp';
 

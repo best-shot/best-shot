@@ -9,6 +9,7 @@ export class Schema {
       type: 'object',
       properties: {},
     };
+
     return this;
   }
 
@@ -22,6 +23,7 @@ export class Schema {
 
   validate(data) {
     const { schema } = this;
+
     return validate({ data, schema });
   }
 }

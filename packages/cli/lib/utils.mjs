@@ -7,12 +7,15 @@ export async function errorHandle(callback) {
     await callback();
   } catch (error) {
     console.log(red(`${error.name}:`), error.message);
+
     if (error.detail) {
       console.log(error.detail);
     }
+
     if (error.stack) {
       console.log(error.stack);
     }
+
     process.exitCode = 1;
   }
 }

@@ -1,5 +1,5 @@
-import { join } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { schema as copySchema } from 'copy-webpack/lib/schema.cjs';
 
@@ -21,7 +21,7 @@ export function apply({
   },
 }) {
   return async (chain) => {
-    if (copy.length > 0 ? copy.length > 0 : copy) {
+    if (copy.length > 0 || copy) {
       const { CopyWebpack } = await import('copy-webpack');
       chain.plugin('copy').use(CopyWebpack, [copy]);
     }

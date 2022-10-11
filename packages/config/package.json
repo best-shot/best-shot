@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/config",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "Config loader of '@best-shot/cli'",
   "license": "MIT",
   "author": {
@@ -33,11 +33,11 @@
     "@best-shot/validator": "^0.2.2",
     "@ltd/j-toml": "^1.35.2",
     "@nice-labs/git-rev": "^3.5.1",
-    "chalk": "^5.0.1",
+    "chalk": "^5.1.0",
     "flat": "^5.0.2",
     "ini": "^3.0.1",
     "prompts": "^2.4.2",
-    "yaml": "^2.1.1"
+    "yaml": "^2.1.3"
   },
   "peerDependencies": {
     "@best-shot/core": "^0.6.21"

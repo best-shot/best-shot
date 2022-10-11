@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-web",
-  "version": "0.11.3",
+  "version": "0.11.4",
   "description": "A `best-shot` preset for web project",
   "license": "MIT",
   "author": {
@@ -33,17 +33,17 @@
   "dependencies": {
     "ext-to-regexp": "^0.1.0",
     "html-add-asset-webpack-plugin": "^0.1.2",
-    "html-minimizer-webpack-plugin": "^4.1.0",
+    "html-minimizer-webpack-plugin": "^4.2.1",
     "html-webpack-plugin": "^5.5.0",
     "micro-tpl-loader": "^0.1.0",
-    "slash": "^4.0.0",
+    "slash": "^5.0.0",
     "slash-to-regexp": "^0.0.4",
     "suffix": "^1.0.0",
     "webpack-subresource-integrity": "^5.1.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.6.15",
-    "webpack": "^5.72.1"
+    "@best-shot/core": "^0.6.21",
+    "webpack": "^5.74.0"
   },
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0"

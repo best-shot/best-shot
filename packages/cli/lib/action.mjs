@@ -10,6 +10,7 @@ export function action({ _: [command], progress, configName }) {
     const configs = await readConfig()({ command, configName });
 
     const result = [];
+
     for (const config of configs) {
       const io = await createConfig(config, {
         watch: command === 'watch',
@@ -26,6 +27,7 @@ export function action({ _: [command], progress, configName }) {
         console.error(error);
         process.exitCode = 1;
       }
+
       if (stats) {
         if (stats.hasErrors()) {
           process.exitCode = 1;

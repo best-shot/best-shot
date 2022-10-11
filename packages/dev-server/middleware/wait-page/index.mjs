@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync } from 'node:fs';
 
 import webpackDevServerWaitpage from 'webpack-dev-server-waitpage';
 

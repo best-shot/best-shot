@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFileSync } from 'fs';
+import { readFileSync } from 'node:fs';
 
 import chalk from 'chalk';
 import { Cheetor } from 'cheetor';

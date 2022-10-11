@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 
 export function notEmpty(object) {
   return object && Object.values(object).some((item) => item !== undefined);

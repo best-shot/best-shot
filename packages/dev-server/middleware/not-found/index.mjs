@@ -1,6 +1,6 @@
-import { readFileSync } from 'fs';
-import { dirname, resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { compile } from 'ejs';
 import { Router } from 'express';
@@ -22,7 +22,7 @@ router.use(({ method, url }, res, next) => {
 export function notFound({ publicPath: path = '/' }) {
   const render = compile(
     readFileSync(resolve(__dirname, '404.html'), {
-      encoding: 'utf-8',
+      encoding: 'utf8',
     }),
     {
       delimiter: '?',

@@ -1,5 +1,5 @@
-import { relative } from 'path';
-import { fileURLToPath } from 'url';
+import { relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import extToRegexp from 'ext-to-regexp';
 import slash from 'slash';

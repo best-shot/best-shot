@@ -1,5 +1,5 @@
-import { relative } from 'path';
-import { fileURLToPath } from 'url';
+import { relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { applyScssLess } from './lib/apply-scss-less.mjs';
 import { applyStylesheet } from './lib/apply-stylesheet.mjs';

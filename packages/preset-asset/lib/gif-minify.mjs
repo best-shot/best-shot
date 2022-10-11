@@ -12,6 +12,7 @@ export async function gifMinify(original, { ...options } = {}) {
     result = await encode(original.data, options);
   } catch (error) {
     original.errors.push(error);
+
     return original;
   }
 

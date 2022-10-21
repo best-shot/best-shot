@@ -10,6 +10,7 @@ export function apply({
     output = {},
     target,
     dependencies,
+    experiments: { buildHttp } = {},
   },
 }) {
   return (chain) => {
@@ -60,7 +61,18 @@ export function apply({
       chain.output.publicPath(publicPath);
     }
 
-    chain.set('experiments', { topLevelAwait: true });
+    const { cachePath } = chain.get('x');
+
+    chain.set('experiments', {
+      topLevelAwait: true,
+      buildHttp: {
+        lockfileLocation: cachePath('locks/lock'),
+        cacheLocation: cachePath('locks/cache'),
+        upgrade: true,
+        frozen: false,
+        ...buildHttp,
+      },
+    });
 
     if (useModule) {
       chain.set('experiments', {

@@ -39,7 +39,7 @@
     "@babel/core": "^7.19.3",
     "@bring-it/npm": "^0.1.0",
     "@nice-move/cli": "^0.9.10",
-    "@nice-move/eslint-config-base": "^0.8.14",
+    "@nice-move/eslint-config-base": "^0.8.15",
     "@nice-move/prettier-config": "^0.7.3",
     "@nice-move/stylelint-config": "^0.7.2",
     "@types/react": "^18.0.21",

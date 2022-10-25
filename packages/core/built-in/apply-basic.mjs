@@ -66,6 +66,7 @@ export function apply({
     chain.set('experiments', {
       topLevelAwait: true,
       buildHttp: {
+        allowedUris: [],
         lockfileLocation: cachePath('locks/lock'),
         cacheLocation: cachePath('locks/cache'),
         upgrade: true,

@@ -33,7 +33,7 @@
   "dependencies": {
     "ext-to-regexp": "^0.1.0",
     "html-add-asset-webpack-plugin": "^0.1.2",
-    "html-minimizer-webpack-plugin": "^4.2.1",
+    "html-minimizer-webpack-plugin": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
     "micro-tpl-loader": "^0.1.0",
     "slash": "^5.0.0",

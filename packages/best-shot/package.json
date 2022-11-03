@@ -1,6 +1,6 @@
 {
   "name": "best-shot",
-  "version": "0.2.17",
+  "version": "0.3.0",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
@@ -40,7 +40,7 @@
     "yaml-loader": "^0.8.0"
   },
   "engines": {
-    "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
+    "node": "^16.15.0 || ^18.12.0"
   },
   "publishConfig": {
     "access": "public",

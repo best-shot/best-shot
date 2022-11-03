@@ -38,12 +38,12 @@
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@bring-it/npm": "^0.1.0",
-    "@nice-move/cli": "^0.9.10",
-    "@nice-move/eslint-config-base": "^0.8.15",
-    "@nice-move/prettier-config": "^0.7.3",
-    "@nice-move/stylelint-config": "^0.7.2",
-    "@types/react": "^18.0.22",
-    "ava": "^4.3.3",
+    "@nice-move/cli": "^0.10.1",
+    "@nice-move/eslint-config-base": "^0.9.1",
+    "@nice-move/prettier-config": "^0.8.0",
+    "@nice-move/stylelint-config": "^0.8.0",
+    "@types/react": "^18.0.24",
+    "ava": "^5.0.1",
     "delay": "^5.0.0",
     "eslint": "^8.26.0",
     "eslint-plugin-ava": "^13.2.0",
@@ -55,7 +55,7 @@
     "webpack-cli": "^4.10.0"
   },
   "engines": {
-    "node": "^16.13.0 || >=18.0.0"
+    "node": "^16.15.0 || ^18.12.0"
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"

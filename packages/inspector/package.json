@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -28,17 +28,21 @@
   },
   "main": "index.mjs",
   "dependencies": {
-    "@best-shot/config": "^0.2.15",
+    "@best-shot/config": "^0.3.0",
     "fs-extra": "^10.1.0",
     "javascript-stringify": "^2.1.0",
     "sort-keys": "^5.0.0"
   },
   "peerDependencies": {
-    "@best-shot/cli": "^0.12.7",
-    "@best-shot/core": "^0.6.21"
+    "@best-shot/cli": "^0.13.0",
+    "@best-shot/core": "^0.7.0"
   },
   "engines": {
-    "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
+    "node": "^16.15.0 || ^18.12.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"

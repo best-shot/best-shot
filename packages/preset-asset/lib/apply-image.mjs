@@ -1,23 +1,11 @@
 import extToRegexp from 'ext-to-regexp';
+import svgoConfig from 'svgo-config/lib/config.mjs';
 
 import { nonAscii, removeRoot } from './utils.mjs';
 
 const notDataUrlText = (_, sourcePath) => {
   return sourcePath ? !sourcePath.startsWith('data:') : true;
 };
-
-function squooshWrapper(implementation) {
-  return (original, options) => {
-    try {
-      const io = implementation(original, options);
-      delete globalThis.navigator;
-
-      return io;
-    } catch {
-      return original;
-    }
-  };
-}
 
 export async function applyImage(chain) {
   const minimize = chain.optimization.get('minimize');
@@ -63,13 +51,14 @@ export async function applyImage(chain) {
       'image-minimizer-webpack-plugin'
     );
 
-    const { svgMinify } = await import('./svg-minify.mjs');
-
     chain.optimization.minimizer('svgo').use(ImageMinimizerPlugin, [
       {
         test: extToRegexp({ extname: ['svg'] }),
         minimizer: {
-          implementation: svgMinify,
+          implementation: ImageMinimizerPlugin.svgoMinify,
+          options: {
+            encodeOptions: svgoConfig,
+          },
           filter: notDataUrlText,
         },
       },
@@ -91,7 +80,7 @@ export async function applyImage(chain) {
       {
         test: extToRegexp({ extname: ['jpg', 'jpeg', 'png'] }),
         minimizer: {
-          implementation: squooshWrapper(ImageMinimizerPlugin.squooshMinify),
+          implementation: ImageMinimizerPlugin.squooshMinify,
           filter: notDataUrlText,
         },
       },

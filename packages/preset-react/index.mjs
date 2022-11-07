@@ -1,11 +1,15 @@
 import { haveLocalDependencies } from 'settingz';
 
+export const name = 'preset-react';
+
 export function apply({ config: { babel: { polyfill = false } = {} } }) {
   return async (chain) => {
     const mode = chain.get('mode') || 'development';
     const useHot = chain.devServer.get('hot') || false;
 
     const fileRegexp = chain.module.rule('babel').get('test');
+
+    chain.resolve.extensions.prepend('.tsx');
 
     chain.module
       .rule('babel')
@@ -53,5 +57,3 @@ export function apply({ config: { babel: { polyfill = false } = {} } }) {
     }
   };
 }
-
-export const name = 'preset-react';

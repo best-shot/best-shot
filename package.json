@@ -33,7 +33,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vue": "^3.2.44"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

@@ -27,7 +27,7 @@
   "main": "index.mjs",
   "dependencies": {
     "@best-shot/vue-loader": "17.0.1-esm-0",
-    "css-loader": "^6.7.1",
+    "css-loader": "^6.7.2",
     "ext-to-regexp": "^0.1.0",
     "settingz": "^0.2.0",
     "vue-loader": "^15.10.0"

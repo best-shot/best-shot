@@ -33,9 +33,9 @@
     "vue-loader": "^15.10.1"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.7.0",
-    "@best-shot/preset-style": "^0.10.0",
-    "vue": "^2.7.10 || ^3.2.41"
+    "@best-shot/core": "^0.7.2",
+    "@best-shot/preset-style": "^0.10.1",
+    "vue": "^2.7.10 || ^3.2.45"
   },
   "engines": {
     "node": "^16.15.0 || ^18.12.0"

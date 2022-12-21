@@ -48,7 +48,7 @@
     "eslint": "^8.29.0",
     "eslint-plugin-ava": "^13.2.0",
     "garou": "^0.5.4",
-    "prettier": "^2.8.0",
+    "prettier": "^2.8.1",
     "stylelint": "^14.16.0",
     "typescript": "^4.9.3",
     "webpack": "^5.75.0",

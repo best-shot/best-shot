@@ -27,7 +27,7 @@
   },
   "main": "index.mjs",
   "dependencies": {
-    "@sindresorhus/transliterate": "^1.5.0",
+    "@sindresorhus/transliterate": "^1.6.0",
     "@squoosh/lib": "^0.4.0",
     "@wasm-codecs/gifsicle": "^1.0.0",
     "ext-to-regexp": "^0.1.0",

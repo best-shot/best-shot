@@ -31,7 +31,7 @@
   "main": "index.mjs",
   "dependencies": {
     "@best-shot/validator": "^0.3.1",
-    "@ltd/j-toml": "^1.35.3",
+    "@ltd/j-toml": "^1.36.0",
     "@nice-labs/git-rev": "^3.5.1",
     "chalk": "^5.1.2",
     "flat": "^5.0.2",

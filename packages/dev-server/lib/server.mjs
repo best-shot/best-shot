@@ -13,17 +13,20 @@ export function DevServer(compiler, { setupMiddlewares, ...options }) {
   const publicPath = options.publicPath || compiler.options.output.publicPath;
 
   /* eslint-disable no-param-reassign */
-  if (options.hot === undefined) {
-    options.hot = 'only';
+
+  options.hot ??= 'only';
+  options.static ??= false;
+  options.allowedHosts ??= ['all'];
+
+  if (options.proxy !== undefined) {
+    for (const item of Object.values(options.proxy)) {
+      if (item) {
+        item.changeOrigin ??= true;
+        item.secure ??= false;
+      }
+    }
   }
 
-  if (options.static === undefined) {
-    options.static = false;
-  }
-
-  if (options.allowedHosts === undefined) {
-    options.allowedHosts = ['all'];
-  }
   /* eslint-enable no-param-reassign */
 
   const Server = new WebpackDevServer(

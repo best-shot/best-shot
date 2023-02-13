@@ -33,7 +33,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "browserslist": "^4.21.4",
+    "browserslist": "^4.21.5",
     "terser": "^5.16.1",
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.75.0",

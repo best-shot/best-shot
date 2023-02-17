@@ -37,7 +37,7 @@
     "node-hmr-plugin": "^1.0.1",
     "slash": "^5.0.0",
     "slash-to-regexp": "^0.0.4",
-    "terser": "^5.16.2",
+    "terser": "^5.16.3",
     "terser-webpack-plugin": "^5.3.6",
     "webpack-chain": "^6.5.1",
     "yaml-loader": "^0.8.0"

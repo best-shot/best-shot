@@ -28,7 +28,7 @@
   "main": "index.mjs",
   "dependencies": {
     "@best-shot/config": "^0.3.1",
-    "webpack-bundle-analyzer": "^4.7.0"
+    "webpack-bundle-analyzer": "^4.8.0"
   },
   "peerDependencies": {
     "@best-shot/cli": "^0.13.1",

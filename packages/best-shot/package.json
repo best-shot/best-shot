@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "browserslist": "^4.21.5",
-    "terser": "^5.16.3",
+    "terser": "^5.16.4",
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.75.0",
     "yaml-loader": "^0.8.0"

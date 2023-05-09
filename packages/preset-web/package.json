@@ -34,16 +34,16 @@
     "ext-to-regexp": "^0.1.0",
     "html-add-asset-webpack-plugin": "^0.1.2",
     "html-minimizer-webpack-plugin": "^4.3.0",
-    "html-webpack-plugin": "^5.5.0",
+    "html-webpack-plugin": "^5.5.1",
     "micro-tpl-loader": "^0.1.0",
-    "slash": "^5.0.0",
+    "slash": "^5.0.1",
     "slash-to-regexp": "^0.0.4",
     "suffix": "^1.0.0",
     "webpack-subresource-integrity": "^5.1.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.7.3",
-    "webpack": "^5.76.1"
+    "@best-shot/core": "^0.7.4",
+    "webpack": "^5.82.0"
   },
   "engines": {
     "node": "^16.15.0 || ^18.12.0"

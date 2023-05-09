@@ -36,23 +36,22 @@
     "vue": "^3.2.47"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
+    "@babel/core": "^7.21.8",
     "@bring-it/npm": "^0.1.1",
-    "@nice-move/cli": "^0.10.4",
-    "@nice-move/eslint-config-base": "^0.9.9",
-    "@nice-move/prettier-config": "^0.8.0",
-    "@nice-move/stylelint-config": "^0.9.2",
-    "@types/react": "^18.0.35",
+    "@nice-move/cli": "^0.10.8",
+    "@nice-move/eslint-config-base": "^0.9.10",
+    "@nice-move/prettier-config": "^0.8.1",
+    "@nice-move/stylelint-config": "^0.9.3",
     "ava": "^5.2.0",
     "delay": "^5.0.0",
-    "eslint": "^8.38.0",
+    "eslint": "^8.40.0",
     "eslint-plugin-ava": "^14.0.0",
-    "garou": "^0.6.6",
-    "prettier": "^2.8.7",
-    "stylelint": "^15.4.0",
+    "garou": "^0.6.7",
+    "prettier": "^2.8.8",
+    "stylelint": "^15.6.1",
     "typescript": "^5.0.4",
-    "webpack": "^5.79.0",
-    "webpack-cli": "^5.0.1"
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.1.1"
   },
   "engines": {
     "node": "^16.15.0 || ^18.12.0"

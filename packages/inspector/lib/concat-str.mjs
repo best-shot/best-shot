@@ -7,6 +7,7 @@ async function formatter(code) {
       default: { format },
       // eslint-disable-next-line import/no-extraneous-dependencies
     } = await import('prettier');
+
     return format(code, {
       parser: 'babel',
       singleQuote: true,
@@ -20,23 +21,29 @@ const sortOptions = { deep: true };
 
 function json2string(code) {
   const io = sortKeys(code, sortOptions);
+
   if (code.properties.vendors && code.properties.vendors.default) {
     io.properties.vendors.default = code.properties.vendors.default;
   }
+
   if (code.properties.entry && code.properties.entry.default) {
     io.properties.entry.default = code.properties.entry.default;
   }
+
   return JSON.stringify(io, null, '  ');
 }
 
 function js2string(code) {
   const io = sortKeys(code, sortOptions);
+
   if (code.config.vendors) {
     io.config.vendors = code.config.vendors;
   }
+
   if (code.config.entry) {
     io.config.entry = code.config.entry;
   }
+
   return stringify(io);
 }
 

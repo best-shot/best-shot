@@ -64,6 +64,8 @@ export function apply({
     const { cachePath } = chain.get('x');
 
     chain.set('experiments', {
+      asyncWebAssembly: true,
+      syncWebAssembly: true,
       topLevelAwait: true,
       buildHttp: {
         allowedUris: [],
@@ -95,7 +97,7 @@ export function apply({
     chain.output.path(
       resolve(
         context,
-        path.replace(/\[config-name]/g, name).replace(/\[mode]/g, mode),
+        path.replaceAll('[config-name]', name).replaceAll('[mode]', mode),
       ),
     );
 

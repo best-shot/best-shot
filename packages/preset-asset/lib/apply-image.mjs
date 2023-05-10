@@ -64,7 +64,7 @@ export async function applyImage(chain) {
       },
     ]);
 
-    const { gifMinify } = await import('./gif-minify.mjs');
+    const { gifMinify, jpgMinify, pngMinify } = await import('./minify.mjs');
 
     chain.optimization.minimizer('gifsicle').use(ImageMinimizerPlugin, [
       {
@@ -76,11 +76,21 @@ export async function applyImage(chain) {
       },
     ]);
 
-    chain.optimization.minimizer('squoosh').use(ImageMinimizerPlugin, [
+    chain.optimization.minimizer('mozjpeg').use(ImageMinimizerPlugin, [
       {
-        test: extToRegexp({ extname: ['jpg', 'jpeg', 'png'] }),
+        test: extToRegexp({ extname: ['jpg', 'jpeg'] }),
         minimizer: {
-          implementation: ImageMinimizerPlugin.squooshMinify,
+          implementation: jpgMinify,
+          filter: notDataUrlText,
+        },
+      },
+    ]);
+
+    chain.optimization.minimizer('oxipng').use(ImageMinimizerPlugin, [
+      {
+        test: extToRegexp({ extname: ['png'] }),
+        minimizer: {
+          implementation: pngMinify,
           filter: notDataUrlText,
         },
       },

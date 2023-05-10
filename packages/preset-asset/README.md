@@ -28,7 +28,7 @@ npm install @best-shot/preset-asset --save-dev
 
 ```mjs
 // example: .best-shot/config.mjs
-export default {
+export const config = {
   presets: ['asset']
 };
 ```

@@ -87,6 +87,7 @@ export function setHtml({ html = {} }) {
 
     chain.module
       .rule('micro-tpl')
+      .after('esm')
       .test(extToRegexp({ extname: ['html', 'htm'] }))
       .use('micro-tpl-loader')
       .loader('micro-tpl-loader');

@@ -1,6 +1,8 @@
 export function apply({ config: { noCache } }) {
   return async (chain) => {
-    if (noCache) {
+    const cache = chain.get('cache');
+
+    if (cache && noCache) {
       const rule = chain.module.rule('no-cache');
 
       rule.use('no-cache').loader('@best-shot/no-cache-loader');

@@ -1,5 +1,5 @@
-import { relative, resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import browserslist from 'browserslist';
 import extToRegexp from 'ext-to-regexp';
@@ -21,6 +21,7 @@ export function apply({
 
     chain.module
       .rule('babel')
+      .before('esm')
       .test(extToRegexp({ extname: ['js', 'mjs', 'cjs', 'ts'] }))
       .use('babel-loader')
       .loader('babel-loader')

@@ -5,6 +5,7 @@ import { nonAscii } from './utils.mjs';
 export function applyFont(chain) {
   chain.module
     .rule('font')
+    .after('esm')
     .test(
       extToRegexp({
         extname: ['woff', 'woff2', 'otf', 'eot', 'ttf'],

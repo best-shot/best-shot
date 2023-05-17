@@ -40,7 +40,7 @@
   },
   "peerDependencies": {
     "@best-shot/core": "^0.7",
-    "@best-shot/preset-babel": "^0.13.3",
+    "@best-shot/preset-babel": "^0.13",
     "react": "^16.14.0 || ^17.0.2 || ^18.2.0",
     "react-dom": "^16.14.0 || ^17.0.2 || ^18.2.0"
   },

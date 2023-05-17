@@ -33,6 +33,7 @@ export function apply({
 
     chain.module
       .rule('vue')
+      .after('esm')
       .test(extToRegexp({ extname: ['vue'] }))
       .use('vue-loader')
       .loader(IsVue2 ? 'vue-loader' : '@best-shot/vue-loader')

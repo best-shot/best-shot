@@ -12,6 +12,7 @@ export async function applyImage(chain) {
 
   chain.module
     .rule('image')
+    .after('esm')
     .test(
       extToRegexp({
         extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],

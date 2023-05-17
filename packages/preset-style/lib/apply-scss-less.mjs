@@ -11,6 +11,7 @@ export function applyScssLess(less) {
 
     chain.module
       .rule('sass')
+      .after('style')
       .test(extToRegexp({ extname: ['scss', 'sass'] }))
       .use('resolve-url-loader')
       .loader('resolve-url-loader')
@@ -27,6 +28,7 @@ export function applyScssLess(less) {
 
     chain.module
       .rule('less')
+      .after('style')
       .test(extToRegexp({ extname: ['less'] }))
       .use('less-loader')
       .loader('less-loader')

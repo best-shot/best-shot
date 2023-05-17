@@ -38,6 +38,7 @@ export async function applyStylesheet(chain) {
 
   chain.module
     .rule('style')
+    .after('esm')
     .test(extToRegexp({ extname: ['css'] }))
     .rule('all')
     .oneOf('not-url')
@@ -79,7 +80,9 @@ export async function applyStylesheet(chain) {
       },
     });
 
-  if (!hot) {
+  if (hot) {
+    parent.use('style-loader').loader('style-loader');
+  } else {
     const { default: MiniCssExtractPlugin } = await import(
       'mini-css-extract-plugin'
     );
@@ -93,8 +96,6 @@ export async function applyStylesheet(chain) {
         ignoreOrder: true,
       },
     ]);
-  } else {
-    parent.use('style-loader').loader('style-loader');
   }
 
   if (!watch && chain.module.rules.has('babel')) {

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-vue",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "A `best-shot` preset for Vue project",
   "license": "MIT",
   "author": {
@@ -34,7 +34,7 @@
   },
   "peerDependencies": {
     "@best-shot/core": "^0.7",
-    "@best-shot/preset-style": "^0.10.5",
+    "@best-shot/preset-style": "^0.10",
     "vue": "^2.7.14 || ^3.2.47"
   },
   "engines": {

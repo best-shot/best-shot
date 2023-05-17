@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "module": "es2022",
-    "target": "es2022",
-    "checkJs": true
-  },
-  "exclude": ["node_modules"],
-  "include": ["node_modules/@best-shot/"]
-}

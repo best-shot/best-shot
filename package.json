@@ -22,8 +22,10 @@
     "dev": "best-shot dev",
     "inspect": "best-shot inspect --stamp test",
     "lint:staged": "nice-move lint staged",
+    "lint:type": "tsc --noEmit",
     "prepare": "nice-move git hooks",
     "serve": "best-shot serve",
+    "snapshot": "ava --fail-fast -u",
     "test": "ava --fail-fast",
     "watch": "best-shot watch"
   },
@@ -33,24 +35,26 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vue": "^3.2.47"
+    "vue": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@bring-it/npm": "^0.1.1",
     "@nice-move/cli": "^0.10.8",
-    "@nice-move/eslint-config-base": "^0.9.10",
+    "@nice-move/eslint-config-base": "^0.9.11",
     "@nice-move/prettier-config": "^0.8.1",
     "@nice-move/stylelint-config": "^0.9.3",
+    "@nice-move/tsconfig": "^0.0.2",
+    "@types/react": "^18.2.6",
     "ava": "^5.2.0",
     "delay": "^5.0.0",
     "eslint": "^8.40.0",
     "eslint-plugin-ava": "^14.0.0",
-    "garou": "^0.6.7",
+    "garou": "^0.6.8",
     "prettier": "^2.8.8",
-    "stylelint": "^15.6.1",
+    "stylelint": "^15.6.2",
     "typescript": "^5.0.4",
-    "webpack": "^5.82.0",
+    "webpack": "^5.82.1",
     "webpack-cli": "^5.1.1"
   },
   "engines": {
@@ -60,6 +64,9 @@
     "extends": "@nice-move/eslint-config-base"
   },
   "nice-move": {
+    "import-groups": [
+      "nice-move-preset"
+    ],
     "internal-regex": "^best-shot/"
   },
   "prettier": "@nice-move/prettier-config",

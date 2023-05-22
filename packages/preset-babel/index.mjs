@@ -42,7 +42,7 @@ export function apply({
     const serve = chain.devServer.entries() !== undefined;
 
     if (watch) {
-      chain.module.rule('babel').exclude.add(slashToRegexp('/node_modules/'));
+      chain.module.rule('babel').exclude.add(/[/\\]node_modules[/\\].+\.js$/);
     } else {
       chain.module
         .rule('babel')

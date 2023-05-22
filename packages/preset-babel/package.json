@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-babel",
-  "version": "0.13.5",
+  "version": "0.13.6",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {

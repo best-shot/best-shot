@@ -28,7 +28,9 @@ test('toString', async (t) => {
 test('toSchema', (t) => {
   const schema = new BestShot().schema.toObject();
   const baseSchema = new Schema().schema;
-  Object.assign(baseSchema.properties, entry.schema, define.schema);
+
+  Object.assign(baseSchema.properties, define.schema);
+
   t.like(schema, baseSchema);
 });
 

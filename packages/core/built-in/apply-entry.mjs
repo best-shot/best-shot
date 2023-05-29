@@ -16,6 +16,8 @@ const items = {
   type: 'string',
 };
 
+export const name = 'entry';
+
 const oneOf = [
   items,
   {
@@ -25,8 +27,6 @@ const oneOf = [
     items,
   },
 ];
-
-export const name = 'entry';
 
 export const schema = {
   entry: {

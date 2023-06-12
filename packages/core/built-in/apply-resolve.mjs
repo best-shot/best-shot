@@ -29,7 +29,7 @@ function To(to) {
 export function apply({ config: { replace = [], resolve: { alias } = {} } }) {
   return async (chain) => {
     chain.resolve.merge({
-      extensions: ['.ts', '.js', '.cjs', '.mjs', '.json'],
+      extensions: ['.js', '.cjs', '.mjs', '.json', '.ts'],
       modules: ['node_modules'],
     });
 

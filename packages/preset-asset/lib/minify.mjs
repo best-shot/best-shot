@@ -41,7 +41,7 @@ export async function gifMinify(original, { ...options } = {}) {
 export async function jpgMinify(original, { ...options } = {}) {
   let result;
 
-  options.quality ??= 65;
+  options.quality ??= 75;
   options.progressive ??= true;
   options.optimizeCoding ??= true;
 

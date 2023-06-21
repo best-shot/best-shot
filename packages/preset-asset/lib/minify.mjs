@@ -1,7 +1,5 @@
+import * as codecs from '@astropub/codecs';
 import gif from '@volue/wasm-codecs-gifsicle';
-import jpg from '@volue/wasm-codecs-mozjpeg';
-import png from '@volue/wasm-codecs-oxipng';
-import { calculate } from 'buffer-image-size/lib/types/jpg.js';
 
 /* eslint-disable no-param-reassign */
 
@@ -38,17 +36,31 @@ export async function gifMinify(original, { ...options } = {}) {
   };
 }
 
-export async function jpgMinify(original, { ...options } = {}) {
+export async function baseMinify(original, { ...options } = {}) {
   let result;
 
-  options.quality ??= 75;
-  options.progressive ??= true;
-  options.optimizeCoding ??= true;
-
   try {
-    const { width, height } = calculate(original.data);
+    const type = codecs.type(original.data);
+    switch (type) {
+      case 'image/jpeg': {
+        options.quality ??= 75;
+        options.progressive ??= true;
+        options.optimize_coding ??= true;
+        break;
+      }
+      case 'image/png': {
+        options.quality ??= 75;
+        options.interlace ??= true;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    const decoded = await codecs.decode(original.data);
+    const encoded = await codecs.encode(decoded, type, options);
 
-    result = await jpg(original.data, { width, height }, options);
+    result = Buffer.from(encoded.data);
 
     if (result.length > original.data.length) {
       return original;
@@ -69,39 +81,8 @@ export async function jpgMinify(original, { ...options } = {}) {
       minimized: true,
       minimizedBy:
         original.info && original.info.minimizedBy
-          ? ['mozjpeg', ...original.info.minimizedBy]
-          : ['mozjpeg'],
-    },
-  };
-}
-
-export async function pngMinify(original, { ...options } = {}) {
-  let result;
-
-  try {
-    result = await png(original.data, options);
-
-    if (result.length > original.data.length) {
-      return original;
-    }
-  } catch (error) {
-    original.errors.push(error);
-
-    return original;
-  }
-
-  return {
-    filename: original.filename,
-    data: result,
-    warnings: [...original.warnings],
-    errors: [...original.errors],
-    info: {
-      ...original.info,
-      minimized: true,
-      minimizedBy:
-        original.info && original.info.minimizedBy
-          ? ['oxipng', ...original.info.minimizedBy]
-          : ['oxipng'],
+          ? ['@astropub/codecs', ...original.info.minimizedBy]
+          : ['@astropub/codecs'],
     },
   };
 }

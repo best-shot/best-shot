@@ -52,7 +52,7 @@ export async function applyImage(chain) {
       'image-minimizer-webpack-plugin'
     );
 
-    chain.optimization.minimizer('svgo').use(ImageMinimizerPlugin, [
+    chain.optimization.minimizer('svg').use(ImageMinimizerPlugin, [
       {
         test: extToRegexp({ extname: ['svg'] }),
         minimizer: {
@@ -65,34 +65,22 @@ export async function applyImage(chain) {
       },
     ]);
 
-    const { gifMinify, jpgMinify, pngMinify } = await import('./minify.mjs');
+    const { gifMinify, baseMinify } = await import('./minify.mjs');
 
-    chain.optimization.minimizer('gifsicle').use(ImageMinimizerPlugin, [
+    chain.optimization.minimizer('gif').use(ImageMinimizerPlugin, [
       {
         test: extToRegexp({ extname: ['gif'] }),
         minimizer: {
           implementation: gifMinify,
-          filter: notDataUrlText,
         },
       },
     ]);
 
-    chain.optimization.minimizer('mozjpeg').use(ImageMinimizerPlugin, [
+    chain.optimization.minimizer('image').use(ImageMinimizerPlugin, [
       {
-        test: extToRegexp({ extname: ['jpg', 'jpeg'] }),
+        test: extToRegexp({ extname: ['jpg', 'jpeg', 'png'] }),
         minimizer: {
-          implementation: jpgMinify,
-          filter: notDataUrlText,
-        },
-      },
-    ]);
-
-    chain.optimization.minimizer('oxipng').use(ImageMinimizerPlugin, [
-      {
-        test: extToRegexp({ extname: ['png'] }),
-        minimizer: {
-          implementation: pngMinify,
-          filter: notDataUrlText,
+          implementation: baseMinify,
         },
       },
     ]);

@@ -44,22 +44,22 @@ SERVICE_URL = "http://mock.dev/"
 ```mjs
 // output: production mode
 config.define = {
-  'BEST_SHOT.ENV.APPID': '"123456789"',
-  'BEST_SHOT.ENV.SERVICE_URL': '"https://sample.org/"',
+  'import.meta.ENV.APPID': '"123456789"',
+  'import.meta.ENV.SERVICE_URL': '"https://sample.org/"',
   WHATEVER: '"abc"'
 };
 
 // output: development mode
 config.define = {
-  'BEST_SHOT.ENV.APPID': '"987654321"',
-  'BEST_SHOT.ENV.SERVICE_URL': '"http://sample.dev/"',
+  'import.meta.ENV.APPID': '"987654321"',
+  'import.meta.ENV.SERVICE_URL': '"http://sample.dev/"',
   WHATEVER: '"abc"'
 };
 
 // output: serve command
 config.define = {
-  'BEST_SHOT.ENV.APPID': '"987654321"',
-  'BEST_SHOT.ENV.SERVICE_URL': '"http://mock.dev/"',
+  'import.meta.ENV.APPID': '"987654321"',
+  'import.meta.ENV.SERVICE_URL': '"http://mock.dev/"',
   WHATEVER: '"abc"'
 };
 ```
@@ -72,6 +72,6 @@ If a `process.cwd()` is a git repository, `GIT_HASH` will be injected to your co
 
 ```mjs
 config.define = {
-  'BEST_SHOT.GIT_HASH': '"xxxxxxxxxxxxxxxxxxxx"'
+  'import.meta.GIT_HASH': '"xxxxxxxxxxxxxxxxxxxx"'
 };
 ```

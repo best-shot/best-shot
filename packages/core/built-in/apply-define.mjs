@@ -21,9 +21,11 @@ export function apply({ config: { define } }) {
     chain.plugin(displayName).use(DefinePlugin, [
       variables({
         ...define,
-        'BEST_SHOT.MODE': mode,
-        'BEST_SHOT.WATCHING': watch,
-        'BEST_SHOT.CONFIG_NAME': name,
+        'import.meta.PROD': mode === 'production',
+        'import.meta.DEV': mode === 'development',
+        'import.meta.MODE': mode,
+        'import.meta.WATCHING': watch,
+        'import.meta.CONFIG_NAME': name,
       }),
     ]);
   };

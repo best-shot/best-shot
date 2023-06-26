@@ -43,7 +43,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.22.5",
-    "@best-shot/core": "^0.7"
+    "@best-shot/core": "^0.7 || ^0.8"
   },
   "engines": {
     "node": "^16.15.0 || ^18.12.0"

@@ -42,7 +42,7 @@
     "webpack-subresource-integrity": "^5.1.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.7",
+    "@best-shot/core": "^0.7 || ^0.8",
     "webpack": "^5.86.0"
   },
   "engines": {

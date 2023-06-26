@@ -33,7 +33,7 @@
     "vue-loader": "^15.10.1"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.7",
+    "@best-shot/core": "^0.7 || ^0.8",
     "@best-shot/preset-style": "^0.10",
     "vue": "^2.7.14 || ^3.2.47"
   },

@@ -40,8 +40,8 @@ export function getEnv(root, { mode, serve, watch }) {
 
   return flatten(
     {
-      BEST_SHOT: {
-        ...(empty ? undefined : { ENV: data }),
+      'import.meta': {
+        ...(empty ? undefined : { env: data }),
         GIT_HASH,
       },
     },

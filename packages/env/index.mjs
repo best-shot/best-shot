@@ -40,8 +40,8 @@ export function getEnv(root, { mode, serve, watch }) {
 
   return flatten(
     {
-      'import.meta': {
-        ...(empty ? undefined : { env: data }),
+      'import.meta.env': {
+        ...(empty ? undefined : data),
         GIT_HASH,
       },
     },

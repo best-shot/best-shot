@@ -72,6 +72,14 @@ export function apply({
 
       notURL.oneOf('css-modules-by-query').use('css-loader').batch(batch);
     }
+
+    chain.plugin('define').tap(([defines]) => [
+      {
+        ...defines,
+        __VUE_OPTIONS_API__: true,
+        __VUE_PROD_DEVTOOLS__: false,
+      },
+    ]);
   };
 }
 

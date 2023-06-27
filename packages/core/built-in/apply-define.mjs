@@ -6,6 +6,15 @@ function variables(object) {
   );
 }
 
+function prefix(object) {
+  return Object.fromEntries(
+    Object.entries(object).map(([key, value]) => [
+      `import.meta.env.${key}`,
+      value,
+    ]),
+  );
+}
+
 const displayName = 'define';
 
 export function apply({ config: { define } }) {
@@ -21,11 +30,13 @@ export function apply({ config: { define } }) {
     chain.plugin(displayName).use(DefinePlugin, [
       variables({
         ...define,
-        'import.meta.PROD': mode === 'production',
-        'import.meta.DEV': mode === 'development',
-        'import.meta.MODE': mode,
-        'import.meta.WATCHING': watch,
-        'import.meta.CONFIG_NAME': name,
+        ...prefix({
+          PROD: mode === 'production',
+          DEV: mode === 'development',
+          MODE: mode,
+          WATCHING: watch,
+          CONFIG_NAME: name,
+        }),
       }),
     ]);
   };

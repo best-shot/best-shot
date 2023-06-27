@@ -39,7 +39,11 @@ export function action({ _: [command], progress, configName }) {
 
     const compiler = createCompiler(result);
 
-    if (command !== 'watch') {
+    if (command === 'watch') {
+      const { watchOptions } =
+        result.find((config) => config.watchOptions) || {};
+      compiler.watch(watchOptions, showStats);
+    } else {
       compiler.run((error, stats) => {
         showStats(error, stats);
         compiler.close((exitError) => {
@@ -48,10 +52,6 @@ export function action({ _: [command], progress, configName }) {
           }
         });
       });
-    } else {
-      const { watchOptions } =
-        result.find((config) => config.watchOptions) || {};
-      compiler.watch(watchOptions, showStats);
     }
   });
 }

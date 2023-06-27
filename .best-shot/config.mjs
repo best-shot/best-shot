@@ -1,3 +1,6 @@
 export const config = {
-  presets: ['asset'],
+  presets: ['vue'],
+  define: {
+    kk: 'oo',
+  },
 };

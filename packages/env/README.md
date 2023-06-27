@@ -19,7 +19,7 @@ npm install @best-shot/cli --save-dev
 
 ```mjs
 // example: .best-shot/config.mjs
-export default {
+export const config = {
   define: {
     WHATEVER: 'abc'
   }
@@ -44,22 +44,22 @@ SERVICE_URL = "http://mock.dev/"
 ```mjs
 // output: production mode
 config.define = {
-  'import.meta.ENV.APPID': '"123456789"',
-  'import.meta.ENV.SERVICE_URL': '"https://sample.org/"',
+  'import.meta.env.APPID': '"123456789"',
+  'import.meta.env.SERVICE_URL': '"https://sample.org/"',
   WHATEVER: '"abc"'
 };
 
 // output: development mode
 config.define = {
-  'import.meta.ENV.APPID': '"987654321"',
-  'import.meta.ENV.SERVICE_URL': '"http://sample.dev/"',
+  'import.meta.env.APPID': '"987654321"',
+  'import.meta.env.SERVICE_URL': '"http://sample.dev/"',
   WHATEVER: '"abc"'
 };
 
 // output: serve command
 config.define = {
-  'import.meta.ENV.APPID': '"987654321"',
-  'import.meta.ENV.SERVICE_URL': '"http://mock.dev/"',
+  'import.meta.env.APPID': '"987654321"',
+  'import.meta.env.SERVICE_URL': '"http://mock.dev/"',
   WHATEVER: '"abc"'
 };
 ```
@@ -72,6 +72,6 @@ If a `process.cwd()` is a git repository, `GIT_HASH` will be injected to your co
 
 ```mjs
 config.define = {
-  'import.meta.GIT_HASH': '"xxxxxxxxxxxxxxxxxxxx"'
+  'import.meta.env.GIT_HASH': '"xxxxxxxxxxxxxxxxxxxx"'
 };
 ```

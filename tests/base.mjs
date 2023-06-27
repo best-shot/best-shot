@@ -1,7 +1,6 @@
 import test from 'ava';
 
 import * as define from '../packages/core/built-in/apply-define.mjs';
-import * as entry from '../packages/core/built-in/apply-entry.mjs';
 import { BestShot } from '../packages/core/index.mjs';
 import { Schema } from '../packages/core/lib/schema.mjs';
 

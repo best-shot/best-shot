@@ -1,10 +1,9 @@
 import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
+import { getEnv } from '@best-shot/env';
 import { ConfigError } from '@best-shot/validator';
 import chalk from 'chalk';
-
-import { getEnv } from './env/index.mjs';
 
 import { prompt } from './prompt.mjs';
 import { hasUniqueNames, validate } from './validate.mjs';

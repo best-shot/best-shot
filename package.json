@@ -40,8 +40,8 @@
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@bring-it/npm": "~0.2.4",
-    "@nice-move/cli": "^0.10.8",
-    "@nice-move/eslint-config-base": "^0.9.14",
+    "@nice-move/cli": "^0.10.9",
+    "@nice-move/eslint-config-base": "^0.9.15",
     "@nice-move/prettier-config": "^0.8.1",
     "@nice-move/stylelint-config": "^0.9.4",
     "@nice-move/tsconfig": "^0.0.3",

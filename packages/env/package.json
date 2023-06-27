@@ -1,7 +1,6 @@
 {
-  "name": "@best-shot/config",
-  "version": "0.4.1",
-  "description": "Config loader of '@best-shot/cli'",
+  "name": "@best-shot/env",
+  "version": "0.1.0",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -9,29 +8,30 @@
   },
   "keywords": [
     "best-shot",
-    "conf",
-    "config",
-    "configuration",
-    "settings"
+    "define",
+    "env",
+    "environment",
+    "git",
+    "variables"
   ],
-  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/config",
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/env",
   "repository": {
     "type": "git",
     "url": "https://github.com/best-shot/best-shot.git",
-    "directory": "packages/config"
+    "directory": "packages/env"
   },
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "main": "index.mjs",
+  "type": "module",
   "dependencies": {
-    "@best-shot/env": "^0.1.0",
-    "@best-shot/validator": "^0.3.1",
+    "@ltd/j-toml": "^1.38.0",
+    "@nice-labs/git-rev": "^3.5.1",
     "chalk": "^5.2.0",
-    "prompts": "^2.4.2"
-  },
-  "peerDependencies": {
-    "@best-shot/core": "^0.8"
+    "flat": "^5.0.2",
+    "ini": "^4.1.1",
+    "yaml": "^2.3.1"
   },
   "engines": {
     "node": "^16.15.0 || ^18.12.0"

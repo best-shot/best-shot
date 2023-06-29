@@ -9,7 +9,7 @@ function variables(object) {
 function prefix(object) {
   return Object.fromEntries(
     Object.entries(object).map(([key, value]) => [
-      `import.meta.env.${key}`,
+      ['import.meta.env', key].filter(Boolean).join('.'),
       value,
     ]),
   );
@@ -31,6 +31,7 @@ export function apply({ config: { define } }) {
       variables({
         ...define,
         ...prefix({
+          '': {},
           PROD: mode === 'production',
           DEV: mode === 'development',
           MODE: mode,

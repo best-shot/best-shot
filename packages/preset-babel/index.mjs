@@ -19,6 +19,8 @@ export function apply({
     const context = chain.get('context');
     const watch = chain.get('watch');
 
+    const { cachePath } = chain.get('x');
+
     chain.module
       .rule('babel')
       .before('esm')
@@ -28,7 +30,7 @@ export function apply({
       .options({
         babelrc: false,
         cacheCompression: false,
-        cacheDirectory: watch,
+        cacheDirectory: watch ? cachePath('babel') : false,
         compact: mode === 'production',
         envName: mode,
         sourceType: 'unambiguous',

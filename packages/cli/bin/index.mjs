@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 import chalk from 'chalk';
 import { Cheetor } from 'cheetor';
 
+import * as clear from '../cmd/clear.mjs';
 import * as dev from '../cmd/dev.mjs';
 import * as prod from '../cmd/prod.mjs';
 import * as watch from '../cmd/watch.mjs';
@@ -23,6 +24,7 @@ new Cheetor(pkg, import.meta.url)
   .command(watch)
   .command(dev)
   .command(prod)
+  .command(clear)
   .commandSafe('@best-shot/analyzer')
   .commandSafe('@best-shot/inspector')
   .middleware([

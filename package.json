@@ -38,22 +38,22 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.8",
+    "@babel/core": "^7.22.9",
     "@bring-it/npm": "~0.2.10",
-    "@nice-move/cli": "^0.10.10",
-    "@nice-move/eslint-config-base": "^0.9.16",
+    "@nice-move/cli": "^0.10.11",
+    "@nice-move/eslint-config-base": "^0.9.17",
     "@nice-move/prettier-config": "^0.8.2",
     "@nice-move/stylelint-config": "^0.9.5",
     "@nice-move/tsconfig": "^0.0.3",
-    "@types/react": "^18.2.14",
+    "@types/react": "^18.2.16",
     "ava": "^5.3.1",
-    "eslint": "^8.44.0",
+    "eslint": "^8.45.0",
     "eslint-plugin-ava": "^14.0.0",
-    "garou": "^0.6.11",
+    "garou": "^0.6.12",
     "prettier": "^2.8.8",
-    "stylelint": "^15.10.1",
+    "stylelint": "^15.10.2",
     "typescript": "^5.1.6",
-    "webpack": "^5.88.1",
+    "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
   "engines": {
@@ -63,9 +63,7 @@
     "extends": "@nice-move/eslint-config-base"
   },
   "nice-move": {
-    "import-groups": [
-      "nice-move-preset"
-    ],
+    "import-groups": "nice-move-preset",
     "internal-regex": "^best-shot/"
   },
   "prettier": "@nice-move/prettier-config",

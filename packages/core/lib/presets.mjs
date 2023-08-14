@@ -1,4 +1,12 @@
-const allowPresets = ['babel', 'style', 'asset', 'react', 'vue', 'web'];
+const allowPresets = [
+  'babel',
+  'style',
+  'asset',
+  'react',
+  'vue',
+  'web',
+  'kbone',
+];
 
 function sortPresets(data) {
   const io = [...new Set(data)];
@@ -23,6 +31,10 @@ function sortPresets(data) {
 function checkPresets(presets) {
   if (presets.includes('vue') && presets.includes('react')) {
     throw new Error("Don't use React and Vue at the same time");
+  }
+
+  if (presets.includes('web') && presets.includes('kbone')) {
+    throw new Error("Don't use Web and Kbone at the same time");
   }
 }
 

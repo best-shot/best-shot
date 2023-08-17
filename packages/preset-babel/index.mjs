@@ -5,8 +5,8 @@ import browserslist from 'browserslist';
 import extToRegexp from 'ext-to-regexp';
 import slashToRegexp from 'slash-to-regexp';
 
-function getList(path) {
-  const config = browserslist.loadConfig({ path });
+function getList({ path, env }) {
+  const config = browserslist.loadConfig({ path, env });
 
   return config && config.length > 0 ? config : browserslist.defaults;
 }
@@ -34,7 +34,10 @@ export function apply({
         compact: mode === 'production',
         envName: mode,
         sourceType: 'unambiguous',
-        targets: getList(context),
+        targets: getList({
+          path: context,
+          env: mode,
+        }),
         presets:
           watch && env === 'auto'
             ? ['@babel/typescript']

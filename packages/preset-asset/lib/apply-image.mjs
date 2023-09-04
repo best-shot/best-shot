@@ -65,20 +65,11 @@ export async function applyImage(chain) {
       },
     ]);
 
-    const { gifMinify, baseMinify } = await import('./minify.mjs');
-
-    chain.optimization.minimizer('gif').use(ImageMinimizerPlugin, [
-      {
-        test: extToRegexp({ extname: ['gif'] }),
-        minimizer: {
-          implementation: gifMinify,
-        },
-      },
-    ]);
+    const { baseMinify } = await import('./minify.mjs');
 
     chain.optimization.minimizer('image').use(ImageMinimizerPlugin, [
       {
-        test: extToRegexp({ extname: ['jpg', 'jpeg', 'png'] }),
+        test: extToRegexp({ extname: ['jpg', 'jpeg', 'png', 'gif'] }),
         minimizer: {
           implementation: baseMinify,
         },

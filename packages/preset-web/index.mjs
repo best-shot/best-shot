@@ -29,7 +29,7 @@ export function apply({ config: { html, vendors, optimization = {} } }) {
       .when(minimize, setOutputName({ style: addMin, script: addMin }))
       .when(!hot, setOutputName({ style: addHash, script: addHash }))
       .when(
-        optimization.splitChunks || optimization.runtimeChunk,
+        optimization.splitChunks !== false || optimization.runtimeChunk,
         setOutputName({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,

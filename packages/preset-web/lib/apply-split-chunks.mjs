@@ -37,7 +37,7 @@ export function splitChunks({ vendors = {} }) {
       ...force,
     };
 
-    chain.optimization.runtimeChunk('single').splitChunks({
+    chain.optimization.splitChunks({
       maxAsyncRequests: 5,
       cacheGroups: {
         ...settings,

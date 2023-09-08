@@ -14,7 +14,7 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
-export function apply({ config: { html, vendors } }) {
+export function apply({ config: { html, vendors, optimization = {} } }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const minimize = chain.optimization.get('minimize');
@@ -28,14 +28,19 @@ export function apply({ config: { html, vendors } }) {
     chain
       .when(minimize, setOutputName({ style: addMin, script: addMin }))
       .when(!hot, setOutputName({ style: addHash, script: addHash }))
-      .batch(
+      .when(
+        optimization.splitChunks || optimization.runtimeChunk,
         setOutputName({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,
         }),
       );
 
-    await splitChunks({ vendors })(chain);
+    chain.optimization.runtimeChunk(optimization.runtimeChunk);
+
+    if (optimization.splitChunks !== false) {
+      await splitChunks({ vendors })(chain);
+    }
 
     await setHtml({ html })(chain);
   };
@@ -103,5 +108,17 @@ export const schema = {
     },
     default: {},
     required: ['shim'],
+  },
+  optimization: {
+    type: 'object',
+    properties: {
+      runtimeChunk: {
+        default: true,
+        anyOf: [{ type: 'boolean' }, { type: 'string' }],
+      },
+      splitChunks: {
+        type: 'boolean',
+      },
+    },
   },
 };

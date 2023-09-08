@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module';
 import { relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -5,14 +6,28 @@ import extToRegexp from 'ext-to-regexp';
 import slash from 'slash';
 import slashToRegexp from 'slash-to-regexp';
 
+function css([string]) {
+  return string.trim();
+}
+
+const darkTag = {
+  tagName: 'style',
+  prepend: false,
+  innerHTML: css`
+    @media (prefers-color-scheme: dark) {
+      html {
+        background-color: black;
+      }
+    }
+  `,
+};
+
 export function setHtml({ html = {} }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
     const context = chain.get('context');
     const minimize = chain.optimization.get('minimize');
-
-    const page = Array.isArray(html) ? html : [html];
 
     const { default: HtmlWebpackPlugin } = await import('html-webpack-plugin');
 
@@ -23,26 +38,31 @@ export function setHtml({ html = {} }) {
       ),
     );
 
-    page.forEach(
-      (
-        { title = 'BEST-SHOT APP', template = defaultTemplate, ...options },
-        index,
-      ) => {
-        chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [
-          {
-            ...options,
-            cache: watch,
-            minify: false,
-            title,
-            template,
-            templateParameters: {
-              title,
-              ...options.templateParameters,
-            },
-          },
-        ]);
-      },
+    const page = (Array.isArray(html) ? html : [html]).map(
+      ({
+        title = 'BEST-SHOT APP',
+        template = defaultTemplate,
+        tags = [],
+        darkMode = true,
+        ...options
+      }) => ({
+        cache: watch,
+        minify: false,
+        xhtml: true,
+        title,
+        template,
+        tags: darkMode ? [darkTag, ...tags] : tags,
+        templateParameters: {
+          title,
+          ...options.templateParameters,
+        },
+        ...options,
+      }),
     );
+
+    page.forEach((options, index) => {
+      chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [options]);
+    });
 
     if (page.some(({ tags = [] }) => tags.length > 0)) {
       const { HtmlAddAssetWebpackPlugin } = await import(
@@ -78,8 +98,8 @@ export function setHtml({ html = {} }) {
     if (mode === 'production') {
       chain.output.crossOriginLoading('anonymous');
 
-      const { SubresourceIntegrityPlugin } = await import(
-        'webpack-subresource-integrity'
+      const { SubresourceIntegrityPlugin } = createRequire(import.meta.url)(
+        'webpack-subresource-integrity',
       );
 
       chain.plugin('subresource-integrity').use(SubresourceIntegrityPlugin);

@@ -30,7 +30,7 @@ npm install @best-shot/preset-web --save-dev
 
 ```mjs
 // example: .best-shot/config.mjs
-export default {
+export const config = {
   presets: ['web'],
   html: {
     // See: https://github.com/jantimon/html-webpack-plugin#options
@@ -42,7 +42,7 @@ export default {
 
 ```mjs
 // example: .best-shot/config.mjs
-export default {
+export const config = {
   presets: ['web'],
   vendors: {
     // Split Chunks

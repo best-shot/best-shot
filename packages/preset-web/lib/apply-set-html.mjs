@@ -72,6 +72,14 @@ export function setHtml({ html = {} }) {
       chain.plugin('html-add-asset').use(HtmlAddAssetWebpackPlugin);
     }
 
+    if (chain.output.get('module')) {
+      const { HtmlScriptModuleWebpackPlugin } = await import(
+        'html-add-asset-webpack-plugin/dist/extra.js'
+      );
+
+      chain.plugin('html-script-module').use(HtmlScriptModuleWebpackPlugin);
+    }
+
     if (minimize) {
       const { default: HtmlMinimizerPlugin } = await import(
         'html-minimizer-webpack-plugin'

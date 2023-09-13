@@ -39,7 +39,7 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.15",
+    "@babel/core": "^7.22.17",
     "@bring-it/npm": "~0.2.10",
     "@nice-move/cli": "^0.10.11",
     "@nice-move/eslint-config-base": "^0.9.19",
@@ -48,7 +48,7 @@
     "@nice-move/tsconfig": "^0.1.0",
     "@types/react": "^18.2.21",
     "ava": "^5.3.1",
-    "eslint": "^8.48.0",
+    "eslint": "^8.49.0",
     "eslint-plugin-ava": "^14.0.0",
     "garou": "^0.6.13",
     "nodemon": "^3.0.1",

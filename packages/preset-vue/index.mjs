@@ -22,9 +22,7 @@ function batch(theChain) {
 }
 
 export function apply({
-  config: {
-    vue: { compilerOptions = {}, transformAssetUrls, shadowMode } = {},
-  },
+  config: { vue: { compilerOptions = {}, ...other } = {} },
 }) {
   return async (chain) => {
     const context = chain.get('context');
@@ -38,9 +36,8 @@ export function apply({
       .use('vue-loader')
       .loader(IsVue2 ? 'vue-loader' : '@best-shot/vue-loader')
       .options({
+        ...other,
         hotReload: Boolean(chain.devServer.get('hot')) || false,
-        ...(transformAssetUrls && { transformAssetUrls }),
-        ...(shadowMode && { shadowMode }),
         compilerOptions: {
           whitespace: 'condense',
           ...compilerOptions,
@@ -88,16 +85,9 @@ export const name = 'preset-vue';
 export const schema = {
   vue: {
     type: 'object',
-    additionalProperties: false,
     properties: {
       compilerOptions: {
         type: 'object',
-      },
-      transformAssetUrls: {
-        type: 'object',
-      },
-      shadowMode: {
-        type: 'boolean',
       },
     },
   },

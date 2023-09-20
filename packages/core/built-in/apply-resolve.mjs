@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -6,21 +7,23 @@ import webpack from 'webpack';
 
 import { notEmpty } from '../lib/utils.mjs';
 
-function To(to) {
-  let url = to;
+const require = createRequire(import.meta.url);
 
+function To(url) {
   if (url instanceof URL && url.protocol === 'file:') {
-    url = fileURLToPath(url.href);
+    return fileURLToPath(url.href);
   }
 
   if (typeof url === 'string') {
     if (url.startsWith('file:')) {
-      url = fileURLToPath(url);
+      return fileURLToPath(url);
     }
 
     if (url.startsWith('.')) {
-      url = resolve(process.cwd(), url);
+      return resolve(process.cwd(), url);
     }
+
+    return require.resolve(url);
   }
 
   return url;

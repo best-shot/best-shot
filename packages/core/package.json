@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -38,7 +38,7 @@
     "node-hmr-plugin": "^1.0.1",
     "slash": "^5.1.0",
     "slash-to-regexp": "^0.0.4",
-    "terser": "^5.19.2",
+    "terser": "^5.19.4",
     "terser-webpack-plugin": "^5.3.9",
     "webpack-chain": "^6.5.1",
     "yaml-loader": "^0.8.0"

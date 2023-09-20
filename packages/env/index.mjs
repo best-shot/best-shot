@@ -2,7 +2,7 @@ import { inspect } from 'node:util';
 
 import { Git } from '@nice-labs/git-rev/dist/git.js';
 import chalk from 'chalk';
-import flatten from 'flat';
+import { flatten } from 'flat';
 
 import { findConfig, mergeParams, parseConfig } from './lib.mjs';
 

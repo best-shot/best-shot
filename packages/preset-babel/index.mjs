@@ -46,7 +46,7 @@ export function apply({
 
     const serve = chain.devServer.entries() !== undefined;
 
-    if (watch) {
+    if (watch && env === 'auto') {
       chain.module.rule('babel').exclude.add(/[/\\]node_modules[/\\].+\.js$/);
     } else {
       chain.module

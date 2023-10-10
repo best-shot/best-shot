@@ -7,7 +7,7 @@ import slash from 'slash';
 import slashToRegexp from 'slash-to-regexp';
 
 function css([string]) {
-  return string.trim();
+  return string.trim().replaceAll(/\n\s+/g, '');
 }
 
 const darkTag = {

@@ -16,19 +16,18 @@ export function setOutputName({ script, style }) {
         ]);
     }
 
-    if (
-      chain.get('mode') === 'production' &&
-      chain.module.rule('style').oneOf('url').entries()
-    ) {
+    if (chain.module.rule('style').rule('all').oneOf('url').entries()) {
       const generator =
-        chain.module.rule('style').oneOf('url').get('generator') || {};
+        chain.module.rule('style').rule('all').oneOf('url').get('generator') ||
+        {};
 
       chain.module
         .rule('style')
+        .rule('all')
         .oneOf('url')
-        .set('dependency', 'url')
         .set('generator', {
-          filename: style(generator.filename || ''),
+          ...generator,
+          filename: style(generator.filename),
         });
     }
   };

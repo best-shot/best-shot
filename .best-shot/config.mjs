@@ -1,3 +1,3 @@
 export const config = {
-  presets: ['web'],
+  presets: ['web', 'style'],
 };

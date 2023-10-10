@@ -54,8 +54,7 @@ export async function applyStylesheet(chain) {
     .oneOf('url')
     .set('dependency', 'url')
     .set('generator', {
-      filename:
-        mode === 'production' ? '[contenthash:8].css' : '[path][name].css',
+      filename: '[contenthash:8].css',
     });
 
   const parent = chain.module.rule('style').rule('all').oneOf('not-url');

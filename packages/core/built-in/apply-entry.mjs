@@ -11,12 +11,12 @@ export function apply({ config: { entry } }) {
   };
 }
 
+export const name = 'entry';
+
 const items = {
   minLength: 1,
   type: 'string',
 };
-
-export const name = 'entry';
 
 const oneOf = [
   items,
@@ -36,7 +36,12 @@ export const schema = {
         type: 'object',
         minProperties: 1,
         additionalProperties: {
-          oneOf,
+          oneOf: [
+            {
+              type: 'object',
+            },
+            ...oneOf,
+          ],
         },
       },
     ],

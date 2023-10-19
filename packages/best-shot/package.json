@@ -1,6 +1,6 @@
 {
   "name": "best-shot",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
@@ -28,6 +28,9 @@
   "bin": {
     "best-shot": "dist/cli.mjs"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "best-shot prod",
     "prepublishOnly": "npm run build"

@@ -70,7 +70,7 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "best-shot serve",
+    "exec": "best-shot prod",
     "ext": "js,cjs,mjs,json",
     "watch": [
       "packages/**",

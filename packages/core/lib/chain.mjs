@@ -31,6 +31,19 @@ export class CoreChain extends WebpackChain {
       func(io);
     }
 
+    if (io.entry) {
+      for (const [key, item] of Object.entries(io.entry)) {
+        if (
+          Array.isArray(item) &&
+          item.length === 1 &&
+          typeof item[0] !== 'string'
+        ) {
+          // eslint-disable-next-line prefer-destructuring
+          io.entry[key] = item[0];
+        }
+      }
+    }
+
     return io;
   }
 

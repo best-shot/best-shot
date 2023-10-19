@@ -43,6 +43,17 @@ export function apply({ config: { html, vendors, optimization = {} } }) {
     }
 
     await setHtml({ html })(chain);
+
+    if (mode === 'production') {
+      const {
+        default: {
+          optimize: { MinChunkSizePlugin },
+        },
+      } = await import('webpack');
+      chain
+        .plugin('min-chunk-size')
+        .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
+    }
   };
 }
 

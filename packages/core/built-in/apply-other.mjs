@@ -74,17 +74,6 @@ export function apply({
         },
       });
     }
-
-    if (mode === 'production') {
-      const {
-        default: {
-          optimize: { MinChunkSizePlugin },
-        },
-      } = await import('webpack');
-      chain
-        .plugin('min-chunk-size')
-        .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
-    }
   };
 }
 

@@ -29,14 +29,13 @@ export function apply({ config: { html, vendors, optimization = {} } }) {
       .when(minimize, setOutputName({ style: addMin, script: addMin }))
       .when(!hot, setOutputName({ style: addHash, script: addHash }))
       .when(
-        optimization.splitChunks !== false || optimization.runtimeChunk,
+        optimization.splitChunks !== false ||
+          chain.optimization.get('runtimeChunk'),
         setOutputName({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,
         }),
       );
-
-    chain.optimization.runtimeChunk(optimization.runtimeChunk);
 
     if (optimization.splitChunks !== false) {
       await splitChunks({ vendors })(chain);
@@ -125,7 +124,6 @@ export const schema = {
     properties: {
       runtimeChunk: {
         default: true,
-        anyOf: [{ type: 'boolean' }, { type: 'string' }],
       },
       splitChunks: {
         type: 'boolean',

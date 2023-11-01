@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -27,7 +27,7 @@
   "main": "index.mjs",
   "dependencies": {
     "@best-shot/no-cache-loader": "0.0.0",
-    "@best-shot/validator": "^0.3.1",
+    "@best-shot/validator": "^0.3.2",
     "browserslist": "^4.22.1",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "chalk": "^5.3.0",
@@ -38,7 +38,7 @@
     "node-hmr-plugin": "^1.0.1",
     "slash": "^5.1.0",
     "slash-to-regexp": "^0.0.4",
-    "terser": "^5.22.0",
+    "terser": "^5.24.0",
     "terser-webpack-plugin": "^5.3.9",
     "webpack-chain": "^6.5.1",
     "yaml-loader": "^0.8.0"
@@ -47,7 +47,7 @@
     "webpack": "^5.89.0"
   },
   "engines": {
-    "node": "^16.15.0 || ^18.12.0"
+    "node": "^16.15.0 || ^18.12.0 || ^20.0.0"
   },
   "publishConfig": {
     "access": "public",

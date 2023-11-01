@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-asset",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "A `best-shot` preset for asset",
   "license": "MIT",
   "author": {
@@ -48,7 +48,7 @@
     "@best-shot/core": "^0.7 || ^0.8"
   },
   "engines": {
-    "node": "^16.15.0 || ^18.12.0"
+    "node": "^16.15.0 || ^18.12.0 || ^20.0.0"
   },
   "publishConfig": {
     "access": "public",

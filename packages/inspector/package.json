@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -28,7 +28,7 @@
   },
   "main": "index.mjs",
   "dependencies": {
-    "@best-shot/config": "^0.4.0",
+    "@best-shot/config": "^0.4.2",
     "fs-extra": "^11.1.1",
     "javascript-stringify": "^2.1.0",
     "sort-keys": "^5.0.0"
@@ -38,7 +38,7 @@
     "@best-shot/core": "^0.8"
   },
   "engines": {
-    "node": "^16.15.0 || ^18.12.0"
+    "node": "^16.15.0 || ^18.12.0 || ^20.0.0"
   },
   "publishConfig": {
     "access": "public",

@@ -28,7 +28,7 @@
   },
   "main": "index.mjs",
   "dependencies": {
-    "@best-shot/config": "^0.4.2",
+    "@best-shot/config": "^0.4.3",
     "fs-extra": "^11.1.1",
     "javascript-stringify": "^2.1.0",
     "sort-keys": "^5.0.0"

@@ -1,6 +1,6 @@
+import { execFileSync } from 'node:child_process';
 import { inspect } from 'node:util';
 
-import { Git } from '@nice-labs/git-rev/dist/git.js';
 import chalk from 'chalk';
 import { flatten } from 'flat';
 
@@ -8,8 +8,13 @@ import { findConfig, mergeParams, parseConfig } from './lib.mjs';
 
 export function getGitHash() {
   try {
-    return new Git().commitHash();
-  } catch {
+    return (
+      execFileSync('git', ['rev-parse', 'HEAD'], {
+        encoding: 'utf8',
+      }).trim() || 'noop'
+    );
+    // eslint-disable-next-line unicorn/prefer-optional-catch-binding
+  } catch (_) {
     return 'noop';
   }
 }

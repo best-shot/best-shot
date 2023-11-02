@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/config",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Config loader of '@best-shot/cli'",
   "license": "MIT",
   "author": {
@@ -25,7 +25,7 @@
   },
   "main": "index.mjs",
   "dependencies": {
-    "@best-shot/env": "^0.1.1",
+    "@best-shot/env": "^0.1.2",
     "@best-shot/validator": "^0.3.2",
     "chalk": "^5.3.0",
     "prompts": "^2.4.2"

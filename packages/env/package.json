@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/env",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -27,7 +27,6 @@
   "type": "module",
   "dependencies": {
     "@ltd/j-toml": "^1.38.0",
-    "@nice-labs/git-rev": "^3.5.1",
     "chalk": "^5.3.0",
     "flat": "^6.0.1",
     "ini": "^4.1.1",

@@ -30,7 +30,7 @@
   },
   "main": "bin/index.mjs",
   "dependencies": {
-    "@best-shot/config": "^0.4.2",
+    "@best-shot/config": "^0.4.3",
     "chalk": "^5.3.0",
     "cheetor": "^0.13.0",
     "webpackbar": "^5.0.2"

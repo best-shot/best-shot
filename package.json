@@ -25,7 +25,7 @@
     "lint:type": "tsc --noEmit",
     "prepare": "nice-move git hooks",
     "serve": "best-shot serve",
-    "snapshot": "ava --fail-fast -u",
+    "snapshot": "ava --fail-fast -u -w",
     "test": "ava --fail-fast",
     "try": "nodemon",
     "watch": "best-shot watch"
@@ -36,38 +36,47 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vue": "^3.3.7"
+    "vue": "^3.3.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@bring-it/npm": "~0.3.9",
-    "@nice-move/cli": "^0.10.14",
-    "@nice-move/eslint-config-base": "^0.9.23",
-    "@nice-move/prettier-config": "^0.9.8",
-    "@nice-move/stylelint-config": "^0.9.7",
-    "@nice-move/tsconfig": "^0.1.1",
-    "@types/react": "^18.2.34",
-    "ava": "^5.3.1",
-    "eslint": "^8.52.0",
+    "@babel/core": "^7.23.6",
+    "@bring-it/npm": "~0.5.0",
+    "@nice-move/cli": "^0.11.3",
+    "@nice-move/eslint-config-base": "^0.11.0",
+    "@nice-move/prettier-config": "^0.10.0",
+    "@nice-move/stylelint-config": "^0.10.0",
+    "@nice-move/tsconfig": "^0.2.0",
+    "@types/react": "^18.2.45",
+    "ava": "^6.0.1",
+    "eslint": "^8.56.0",
     "eslint-plugin-ava": "^14.0.0",
-    "garou": "^0.6.17",
-    "nodemon": "^3.0.1",
-    "prettier": "^3.0.3",
-    "stylelint": "^15.11.0",
-    "typescript": "^5.2.2",
+    "garou": "^0.6.20",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1",
+    "stylelint": "^16.0.2",
+    "typescript": "^5.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   },
-  "engines": {
-    "node": "^16.15.0 || ^18.12.0 || ^20.0.0"
+  "peerDependencies": {
+    "@best-shot/cli": "workspace:*",
+    "@best-shot/core": "workspace:*",
+    "@best-shot/preset-asset": "workspace:*",
+    "@best-shot/preset-babel": "workspace:*",
+    "@best-shot/preset-react": "workspace:*",
+    "@best-shot/preset-style": "workspace:*",
+    "@best-shot/preset-vue": "workspace:*",
+    "@best-shot/preset-web": "workspace:*"
   },
-  "packageManager": "npm@10.1.0",
+  "engines": {
+    "node": "^18.12.0 || ^20.0.0"
+  },
+  "packageManager": "pnpm@8.12.1",
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"
   },
   "nice-move": {
-    "import-groups": "nice-move-preset",
-    "internal-regex": "^best-shot/"
+    "import-groups": "nice-move-preset"
   },
   "nodemonConfig": {
     "delay": 5,

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/config",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "Config loader of '@best-shot/cli'",
   "license": "MIT",
   "author": {
@@ -24,17 +24,18 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "main": "index.mjs",
+  "type": "module",
   "dependencies": {
-    "@best-shot/env": "^0.1.2",
-    "@best-shot/validator": "^0.3.2",
+    "@best-shot/env": "workspace:^",
+    "@best-shot/validator": "workspace:^",
     "chalk": "^5.3.0",
     "prompts": "^2.4.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "^0.8"
+    "@best-shot/core": "workspace:^"
   },
   "engines": {
-    "node": "^16.15.0 || ^18.12.0 || ^20.0.0"
+    "node": "^18.12.0 || ^20.0.0"
   },
   "publishConfig": {
     "access": "public",

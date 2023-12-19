@@ -21,6 +21,7 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "main": "index.cjs",
+  "type": "commonjs",
   "peerDependencies": {
     "webpack": "^4 || ^5"
   },

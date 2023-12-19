@@ -1,3 +1,7 @@
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+
 const allowPresets = ['babel', 'style', 'asset', 'react', 'vue', 'web'];
 
 function sortPresets(data) {
@@ -9,12 +13,12 @@ function sortPresets(data) {
     return P === -1 && N === -1
       ? 0
       : P === -1
-      ? -1
-      : N === -1
-      ? 1
-      : N < P
-      ? -1
-      : 1;
+        ? -1
+        : N === -1
+          ? 1
+          : N < P
+            ? -1
+            : 1;
   });
 
   return io;
@@ -32,13 +36,12 @@ export function importPresets(presets) {
   try {
     const sorted = sortPresets(presets);
 
-    return sorted.map(
-      (preset) => () =>
-        import(
-          /* webpackIgnore: true */
-          `@best-shot/preset-${preset}`
-        ),
-    );
+    return sorted.map((preset) => () => {
+      return import(
+        /* webpackIgnore: true */
+        `@best-shot/preset-${preset}`
+      );
+    });
   } catch (error) {
     console.error(error);
     throw new Error('Import presets fail.');

@@ -21,7 +21,7 @@ test('Prevent React and Vue', async (t) => {
 });
 
 test('More presets', async (t) => {
-  const presets = ['babel', 'style', 'vue'];
+  const presets = ['babel', 'style', 'vue', 'web', 'asset'];
 
   const chain = await new BestShot().setup({ presets });
 
@@ -30,4 +30,6 @@ test('More presets', async (t) => {
   t.is(rules.has('babel'), true);
   t.is(rules.has('style'), true);
   t.is(rules.has('vue'), true);
+  t.is(rules.has('image'), true);
+  t.is(rules.has('micro-tpl'), true);
 });

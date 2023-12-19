@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/env",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -30,10 +30,10 @@
     "chalk": "^5.3.0",
     "flat": "^6.0.1",
     "ini": "^4.1.1",
-    "yaml": "^2.3.3"
+    "yaml": "^2.3.4"
   },
   "engines": {
-    "node": "^16.15.0 || ^18.12.0 || ^20.0.0"
+    "node": "^18.12.0 || ^20.0.0"
   },
   "publishConfig": {
     "access": "public",

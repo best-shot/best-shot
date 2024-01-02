@@ -30,7 +30,7 @@ export function apply({ config: { node, hashbang, executor } }) {
 
     if (isNode) {
       chain.optimization.nodeEnv(false);
-      chain.set('node', false);
+      chain.node(false);
     }
 
     if (notEmpty(node)) {

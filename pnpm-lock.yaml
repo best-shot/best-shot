@@ -14,6 +14,9 @@ importers:
       '@best-shot/core':
         specifier: workspace:*
         version: link:packages/core
+      '@best-shot/inspector':
+        specifier: workspace:*
+        version: link:packages/inspector
       '@best-shot/preset-asset':
         specifier: workspace:*
         version: link:packages/preset-asset
@@ -180,6 +183,9 @@ importers:
       '@best-shot/validator':
         specifier: workspace:^
         version: link:../validator
+      '@best-shot/webpack-chain':
+        specifier: ^8.1.1
+        version: 8.1.1
       browserslist:
         specifier: ^4.22.2
         version: 4.22.2
@@ -214,14 +220,11 @@ importers:
         specifier: ^5.26.0
         version: 5.26.0
       terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.89.0)
+        specifier: ^5.3.10
+        version: 5.3.10(webpack@5.89.0)
       webpack:
         specifier: ^5.89.0
         version: 5.89.0(webpack-cli@5.1.4)
-      webpack-chain:
-        specifier: ^6.5.1
-        version: 6.5.1
       yaml-loader:
         specifier: ^0.8.0
         version: 0.8.0
@@ -1954,6 +1957,14 @@ packages:
       vue: 3.3.13(typescript@5.3.3)
       watchpack: 2.4.0
       webpack: 5.89.0(webpack-cli@5.1.4)
+    dev: false
+
+  /@best-shot/webpack-chain@8.1.1:
+    resolution: {integrity: sha512-Cjl1rD3o2o30KAGzF8UZpw6cGMT35deTPPOlhDKOgyd8U4iw5IbNn21YWlcCNDNmuXzj25zOBZmlS6OhrkmH5w==}
+    engines: {node: '>=10'}
+    dependencies:
+      deepmerge: 1.5.2
+      javascript-stringify: 2.1.0
     dev: false
 
   /@bring-it/cli@0.9.0:
@@ -9402,6 +9413,30 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
+  /terser-webpack-plugin@5.3.10(webpack@5.89.0):
+    resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      '@swc/core': '*'
+      esbuild: '*'
+      uglify-js: '*'
+      webpack: ^5.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      esbuild:
+        optional: true
+      uglify-js:
+        optional: true
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.20
+      jest-worker: 27.5.1
+      schema-utils: 3.3.0
+      serialize-javascript: 6.0.1
+      terser: 5.26.0
+      webpack: 5.89.0(webpack-cli@5.1.4)
+    dev: false
+
   /terser-webpack-plugin@5.3.9(webpack@5.89.0):
     resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
     engines: {node: '>= 10.13.0'}
@@ -9893,15 +9928,6 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
-    dev: false
-
-  /webpack-chain@6.5.1:
-    resolution: {integrity: sha512-7doO/SRtLu8q5WM0s7vPKPWX580qhi0/yBHkOxNkv50f6qB76Zy9o2wRTrrPULqYTvQlVHuvbA8v+G5ayuUDsA==}
-    engines: {node: '>=8'}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-    dependencies:
-      deepmerge: 1.5.2
-      javascript-stringify: 2.1.0
     dev: false
 
   /webpack-cli@5.1.4(webpack@5.89.0):

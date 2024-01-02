@@ -47,7 +47,7 @@ export function apply({
       });
 
       if (lazyCompilation !== false) {
-        chain.set('experiments', {
+        chain.experiments({
           ...chain.get('experiments'),
           lazyCompilation:
             lazyCompilation === true

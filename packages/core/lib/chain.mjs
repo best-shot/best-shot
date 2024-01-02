@@ -1,4 +1,4 @@
-import WebpackChain from 'webpack-chain';
+import WebpackChain from '@best-shot/webpack-chain';
 
 import { cachePath } from './utils.mjs';
 

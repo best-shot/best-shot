@@ -9,7 +9,7 @@ export function apply() {
 
       io.oneOf('url')
         .set('dependency', 'url')
-        .set('generator', {
+        .generator({
           filename:
             mode === 'production'
               ? `[contenthash:8].${ext}`
@@ -21,7 +21,7 @@ export function apply() {
         .oneOf('query')
         .resourceQuery(/to-url/)
         .type('asset/resource')
-        .set('generator', {
+        .generator({
           filename:
             mode === 'production'
               ? `[contenthash:8].${ext}`

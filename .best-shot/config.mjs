@@ -1,3 +1,6 @@
 export const config = {
-  presets: ['web', 'style'],
+  presets: ['babel', 'react', 'asset', 'web', 'style'],
+  output: {
+    module: true,
+  },
 };

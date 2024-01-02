@@ -50,7 +50,7 @@ export class BestShot {
           chain.module
             .rule('esm')
             .test(extToRegexp({ extname: ['js', 'mjs'] }))
-            .merge({ resolve: { fullySpecified: false } });
+            .resolve.fullySpecified(false);
         };
       },
     });

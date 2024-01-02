@@ -22,7 +22,7 @@ export function apply({
     }
 
     if (dependencies) {
-      chain.set('dependencies', dependencies);
+      chain.dependencies(dependencies);
     }
 
     const context = chain.get('context');
@@ -63,7 +63,7 @@ export function apply({
       chain.optimization
         .removeAvailableModules(false)
         .removeEmptyChunks(false)
-        .set('innerGraph', false);
+        .innerGraph(false);
     }
 
     chain.module.strictExportPresence(!watch);
@@ -77,7 +77,7 @@ export function apply({
     );
 
     if (!watch) {
-      chain.output.set('clean', true);
+      chain.output.clean(true);
     }
 
     if (publicPath !== undefined) {
@@ -86,7 +86,7 @@ export function apply({
 
     const { cachePath } = chain.get('x');
 
-    chain.set('experiments', {
+    chain.experiments({
       asyncWebAssembly: true,
       syncWebAssembly: true,
       topLevelAwait: true,
@@ -101,16 +101,16 @@ export function apply({
     });
 
     if (useModule) {
-      chain.set('experiments', {
+      chain.experiments({
         ...chain.get('experiments'),
         outputModule: true,
       });
 
-      chain.output.set('library', {
+      chain.output.library({
         type: 'module',
       });
     } else if (isNode) {
-      chain.output.set('library', {
+      chain.output.library({
         type: 'commonjs-static',
       });
     }
@@ -124,14 +124,12 @@ export function apply({
       ),
     );
 
-    chain.module.set('parser', {
-      javascript: {
-        amd: false,
-        requireJs: false,
-        system: false,
-        importMeta: !isNode,
-        importMetaContext: true,
-      },
+    chain.module.parser.set('javascript', {
+      amd: false,
+      requireJs: false,
+      system: false,
+      importMeta: !isNode,
+      importMetaContext: true,
     });
 
     chain.module

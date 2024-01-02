@@ -61,6 +61,7 @@
   "peerDependencies": {
     "@best-shot/cli": "workspace:*",
     "@best-shot/core": "workspace:*",
+    "@best-shot/inspector": "workspace:*",
     "@best-shot/preset-asset": "workspace:*",
     "@best-shot/preset-babel": "workspace:*",
     "@best-shot/preset-react": "workspace:*",

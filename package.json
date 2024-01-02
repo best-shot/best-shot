@@ -36,24 +36,24 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vue": "^3.3.12"
+    "vue": "^3.4.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.6",
+    "@babel/core": "^7.23.7",
     "@bring-it/npm": "~0.5.0",
     "@nice-move/cli": "^0.11.3",
-    "@nice-move/eslint-config-base": "^0.11.0",
+    "@nice-move/eslint-config-base": "^0.11.1",
     "@nice-move/prettier-config": "^0.10.0",
-    "@nice-move/stylelint-config": "^0.10.0",
+    "@nice-move/stylelint-config": "^0.10.2",
     "@nice-move/tsconfig": "^0.2.0",
-    "@types/react": "^18.2.45",
+    "@types/react": "^18.2.46",
     "ava": "^6.0.1",
     "eslint": "^8.56.0",
     "eslint-plugin-ava": "^14.0.0",
-    "garou": "^0.6.20",
+    "garou": "^0.6.22",
     "nodemon": "^3.0.2",
     "prettier": "^3.1.1",
-    "stylelint": "^16.0.2",
+    "stylelint": "^16.1.0",
     "typescript": "^5.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"

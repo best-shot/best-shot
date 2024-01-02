@@ -8,25 +8,23 @@ export function apply() {
       const io = chain.module.rule(name).test(extToRegexp({ extname }));
 
       io.oneOf('url')
-        .dependency( 'url')
-        .generator({
-          filename:
-            mode === 'production'
-              ? `[contenthash:8].${ext}`
-              : `[path][name].${ext}`,
-        });
+        .dependency('url')
+        .generator.filename(
+          mode === 'production'
+            ? `[contenthash:8].${ext}`
+            : `[path][name].${ext}`,
+        );
 
       io.oneOf('not-url')
-        .dependency( { not: 'url' })
+        .dependency({ not: 'url' })
         .oneOf('query')
         .resourceQuery(/to-url/)
         .type('asset/resource')
-        .generator({
-          filename:
-            mode === 'production'
-              ? `[contenthash:8].${ext}`
-              : `[path][name].${ext}`,
-        });
+        .generator.filename(
+          mode === 'production'
+            ? `[contenthash:8].${ext}`
+            : `[path][name].${ext}`,
+        );
 
       io.oneOf('not-url').oneOf('raw').type(raw);
     }

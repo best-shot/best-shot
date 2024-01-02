@@ -12,12 +12,10 @@ export function applyFont(chain) {
       }),
     )
     .type('asset/resource')
-    .generator({
-      filename: (args) => {
-        // eslint-disable-next-line no-param-reassign
-        args.filename = nonAscii(args.filename);
+    .generator.filename((args) => {
+      // eslint-disable-next-line no-param-reassign
+      args.filename = nonAscii(args.filename);
 
-        return 'font/[name].[contenthash:8][ext]';
-      },
+      return 'font/[name].[contenthash:8][ext]';
     });
 }

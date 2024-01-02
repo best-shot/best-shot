@@ -184,8 +184,8 @@ importers:
         specifier: workspace:^
         version: link:../validator
       '@best-shot/webpack-chain':
-        specifier: ^8.1.2
-        version: 8.1.2
+        specifier: ^8.1.4
+        version: 8.1.4
       browserslist:
         specifier: ^4.22.2
         version: 4.22.2
@@ -1959,8 +1959,8 @@ packages:
       webpack: 5.89.0(webpack-cli@5.1.4)
     dev: false
 
-  /@best-shot/webpack-chain@8.1.2:
-    resolution: {integrity: sha512-BHPNJxgGIG1rETT6da/c3ZhDlQujm5wob1UH0uu+LG1dR+4u4GW2vvBInsg+/TMMEdCzp3uTAtTo7deHFtpPZA==}
+  /@best-shot/webpack-chain@8.1.4:
+    resolution: {integrity: sha512-+9ElrVAu6wniDgAN8fhTPPnD+1bU6lSZcf1ZG4640PKsZa4YJOJew4ZFQu3dgpZ0bHh3Hx2/T2Nasb5NDc82zw==}
     engines: {node: '>=10'}
     dependencies:
       deepmerge: 1.5.2

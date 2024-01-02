@@ -44,13 +44,11 @@ export function apply({
         .merge(devServer);
 
       if (lazyCompilation !== false) {
-        chain.experiments({
-          ...chain.get('experiments'),
-          lazyCompilation:
-            lazyCompilation === true
-              ? { entries: objectSize(chain.entryPoints.entries()) > 1 }
-              : lazyCompilation,
-        });
+        chain.experiments.lazyCompilation(
+          lazyCompilation === true
+            ? { entries: objectSize(chain.entryPoints.entries()) > 1 }
+            : lazyCompilation,
+        );
       }
     }
 

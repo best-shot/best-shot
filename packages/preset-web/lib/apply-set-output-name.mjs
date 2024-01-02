@@ -18,13 +18,8 @@ export function setOutputName({ script, style }) {
 
     const io = chain.module.rule('style').rule('all').oneOf('url');
 
-    if (io.entries()) {
-      const generator = io.get('generator') || {};
-
-      io.generator({
-        ...generator,
-        filename: style(generator.filename),
-      });
+    if (io.generator.get('filename')) {
+      io.generator.filename(style(io.generator.get('filename')));
     }
   };
 }

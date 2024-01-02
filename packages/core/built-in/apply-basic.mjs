@@ -86,7 +86,7 @@ export function apply({
 
     const { cachePath } = chain.get('x');
 
-    chain.experiments({
+    chain.experiments.merge({
       asyncWebAssembly: true,
       syncWebAssembly: true,
       topLevelAwait: true,
@@ -101,10 +101,7 @@ export function apply({
     });
 
     if (useModule) {
-      chain.experiments({
-        ...chain.get('experiments'),
-        outputModule: true,
-      });
+      chain.experiments.outputModule(true);
 
       chain.output.library({
         type: 'module',

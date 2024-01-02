@@ -23,27 +23,23 @@ export async function applyImage(chain) {
         .oneOf('mutable')
         .resourceQuery(/mutable/)
         .type('asset/resource')
-        .generator({
-          filename: (args) => {
-            // eslint-disable-next-line no-param-reassign
-            args.filename = nonAscii(removeRoot(args.filename));
+        .generator.filename((args) => {
+          // eslint-disable-next-line no-param-reassign
+          args.filename = nonAscii(removeRoot(args.filename));
 
-            return '[path][name][ext]';
-          },
+          return '[path][name][ext]';
         });
 
       rule
         .oneOf('immutable')
         .type('asset/resource')
-        .generator({
-          filename: (args) => {
-            // eslint-disable-next-line no-param-reassign
-            args.filename = nonAscii(args.filename);
+        .generator.filename((args) => {
+          // eslint-disable-next-line no-param-reassign
+          args.filename = nonAscii(args.filename);
 
-            return minimize
-              ? 'image/[name].min.[contenthash:8][ext]'
-              : 'image/[name].[contenthash:8][ext]';
-          },
+          return minimize
+            ? 'image/[name].min.[contenthash:8][ext]'
+            : 'image/[name].[contenthash:8][ext]';
         });
     });
 

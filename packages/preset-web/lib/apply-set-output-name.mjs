@@ -16,19 +16,15 @@ export function setOutputName({ script, style }) {
         ]);
     }
 
-    if (chain.module.rule('style').rule('all').oneOf('url').entries()) {
-      const generator =
-        chain.module.rule('style').rule('all').oneOf('url').get('generator') ||
-        {};
+    const io = chain.module.rule('style').rule('all').oneOf('url');
 
-      chain.module
-        .rule('style')
-        .rule('all')
-        .oneOf('url')
-        .set('generator', {
-          ...generator,
-          filename: style(generator.filename),
-        });
+    if (io.entries()) {
+      const generator = io.get('generator') || {};
+
+      io.generator({
+        ...generator,
+        filename: style(generator.filename),
+      });
     }
   };
 }

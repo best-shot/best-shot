@@ -38,13 +38,10 @@ export function apply({
     }
 
     if (serve && devServer) {
-      chain.merge({
-        devServer: {
-          client: { logging: 'warn' },
-          hot: devServer.hot ?? 'only',
-          ...devServer,
-        },
-      });
+      chain.devServer
+        .set('client', { logging: 'warn' })
+        .set('hot', 'only')
+        .merge(devServer);
 
       if (lazyCompilation !== false) {
         chain.experiments({

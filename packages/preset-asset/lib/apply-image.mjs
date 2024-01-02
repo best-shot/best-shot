@@ -23,7 +23,7 @@ export async function applyImage(chain) {
         .oneOf('mutable')
         .resourceQuery(/mutable/)
         .type('asset/resource')
-        .set('generator', {
+        .generator({
           filename: (args) => {
             // eslint-disable-next-line no-param-reassign
             args.filename = nonAscii(removeRoot(args.filename));
@@ -35,7 +35,7 @@ export async function applyImage(chain) {
       rule
         .oneOf('immutable')
         .type('asset/resource')
-        .set('generator', {
+        .generator({
           filename: (args) => {
             // eslint-disable-next-line no-param-reassign
             args.filename = nonAscii(args.filename);

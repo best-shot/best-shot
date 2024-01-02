@@ -2,7 +2,7 @@ import { relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import extToRegexp from 'ext-to-regexp';
-import { getPkg, haveLocalDependencies } from 'settingz';
+import { getPkg } from 'settingz';
 
 function isVue2() {
   const { vue = '' } = getPkg('dependencies');
@@ -50,10 +50,6 @@ export function apply({
         resolve(fileURLToPath(import.meta.url), '../node_modules'),
       ),
     );
-
-    if (haveLocalDependencies('@vue/compat')) {
-      chain.resolve.alias.set('vue', '@vue/compat');
-    }
 
     /* eslint-disable unicorn/no-await-expression-member */
     const VueLoaderPlugin = IsVue2

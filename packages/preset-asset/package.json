@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-asset",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "A `best-shot` preset for asset",
   "license": "MIT",
   "author": {
@@ -42,7 +42,7 @@
     "@volue/wasm-codecs-gifsicle": "^1.0.0",
     "ext-to-regexp": "^0.1.0",
     "image-minimizer-webpack-plugin": "^3.8.3",
-    "svgo": "^3.1.0",
+    "svgo": "^3.2.0",
     "svgo-config": "^0.5.0"
   },
   "peerDependencies": {

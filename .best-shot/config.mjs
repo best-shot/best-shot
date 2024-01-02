@@ -3,4 +3,5 @@ export const config = {
   output: {
     module: true,
   },
+  devServer: {},
 };

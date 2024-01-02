@@ -44,16 +44,7 @@ export class BestShot {
       }
     }
 
-    this.use({
-      apply() {
-        return (chain) => {
-          chain.module
-            .rule('esm')
-            .test(extToRegexp({ extname: ['js', 'mjs'] }))
-            .resolve.fullySpecified(false);
-        };
-      },
-    });
+
 
     const local = mode === 'development' && watch;
 

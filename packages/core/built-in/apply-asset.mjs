@@ -8,7 +8,7 @@ export function apply() {
       const io = chain.module.rule(name).test(extToRegexp({ extname }));
 
       io.oneOf('url')
-        .set('dependency', 'url')
+        .dependency( 'url')
         .generator({
           filename:
             mode === 'production'
@@ -17,7 +17,7 @@ export function apply() {
         });
 
       io.oneOf('not-url')
-        .set('dependency', { not: 'url' })
+        .dependency( { not: 'url' })
         .oneOf('query')
         .resourceQuery(/to-url/)
         .type('asset/resource')

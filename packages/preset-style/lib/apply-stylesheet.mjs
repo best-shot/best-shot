@@ -42,7 +42,7 @@ export async function applyStylesheet(chain) {
     .test(extToRegexp({ extname: ['css'] }))
     .rule('all')
     .oneOf('not-url')
-    .set('dependency', { not: 'url' });
+    .dependency({ not: 'url' });
 
   const mode = chain.get('mode');
   const watch = chain.get('watch');
@@ -52,8 +52,8 @@ export async function applyStylesheet(chain) {
     .rule('style')
     .rule('all')
     .oneOf('url')
-    .set('dependency', 'url')
-    .set('generator', {
+    .dependency('url')
+    .generator({
       filename: '[contenthash:8].css',
     });
 

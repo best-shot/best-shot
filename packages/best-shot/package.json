@@ -1,6 +1,6 @@
 {
   "name": "best-shot",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
@@ -38,13 +38,13 @@
   },
   "dependencies": {
     "@best-shot/no-cache-loader": "workspace:^",
-    "terser": "^5.26.0",
-    "terser-webpack-plugin": "^5.3.9",
-    "webpack": "^5.89.0",
-    "yaml-loader": "^0.8.0"
+    "terser": "^5.28.1",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.90.3",
+    "yaml-loader": "^0.8.1"
   },
   "peerDependencies": {
-    "browserslist": "^4.22.2"
+    "browserslist": "^4.23.0"
   },
   "engines": {
     "node": "^18.12.0 || ^20.0.0"

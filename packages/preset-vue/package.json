@@ -28,7 +28,7 @@
   "type": "module",
   "dependencies": {
     "@best-shot/vue-loader": "17.4.2",
-    "css-loader": "^6.8.1",
+    "css-loader": "^6.10.0",
     "ext-to-regexp": "^0.1.0",
     "settingz": "^0.2.0",
     "vue-loader": "^15.11.1"
@@ -36,7 +36,7 @@
   "peerDependencies": {
     "@best-shot/core": "workspace:^",
     "@best-shot/preset-style": "workspace:^",
-    "vue": "^2.7.14 || ^3.3.12"
+    "vue": "^2.7.14 || ^3.4.21"
   },
   "engines": {
     "node": "^18.12.0 || ^20.0.0"

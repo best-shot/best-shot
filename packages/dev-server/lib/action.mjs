@@ -73,9 +73,13 @@ export function action({ _: [command] }) {
     if (shouldServe.length > 0) {
       const { DevServer } = await import('./server.mjs');
 
+      process.env.WEBPACK_DEV_SERVER_BASE_PORT = 1234;
+
       shouldServe.forEach((config) => {
         const compiler = createCompiler(config);
-        DevServer(compiler, config.devServer);
+        const instance = new DevServer(config.devServer, compiler);
+
+        instance.start();
       });
     }
   });

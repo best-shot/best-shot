@@ -5,74 +5,64 @@ import { notFound } from '../middleware/not-found/index.mjs';
 import { staticFile } from '../middleware/static-file/index.mjs';
 import * as waitPage from '../middleware/wait-page/index.mjs';
 
-export function DevServer(compiler, { setupMiddlewares, ...options }) {
-  waitPage.apply(compiler);
+export class DevServer extends WebpackDevServer {
+  constructor(options, compiler) {
+    waitPage.apply(compiler);
 
-  process.env.WEBPACK_DEV_SERVER_BASE_PORT = 1234;
+    const publicPath = options.publicPath ?? compiler.options.output.publicPath;
 
-  const publicPath = options.publicPath || compiler.options.output.publicPath;
+    /* eslint-disable no-param-reassign */
 
-  /* eslint-disable no-param-reassign */
+    options.proxy &&= options.proxy.map((item) => ({
+      changeOrigin: true,
+      secure: false,
+      ...item,
+    }));
 
-  options.hot ??= 'only';
-  options.static ??= false;
-  options.allowedHosts ??= ['all'];
+    options.hot ??= 'only';
+    options.static ??= false;
+    options.allowedHosts ??= ['all'];
 
-  if (options.proxy !== undefined) {
-    for (const item of Object.values(options.proxy)) {
-      if (item) {
-        item.changeOrigin ??= true;
-        item.secure ??= false;
-      }
-    }
-  }
+    /* eslint-enable no-param-reassign */
 
-  /* eslint-enable no-param-reassign */
-
-  const Server = new WebpackDevServer(
-    {
-      ...options,
-      setupMiddlewares(middlewares, devServer) {
-        if (process.env.TERM_PROGRAM === 'vscode') {
-          devServer.app.use('/__open-in-editor', launchMiddleware('code'));
-        }
-
-        devServer.app.use(staticFile());
-
-        middlewares.unshift({
-          name: 'webpack-wait-page',
-          middleware: waitPage.middleware(devServer),
-        });
-
-        if (publicPath.startsWith('/')) {
-          const index = middlewares.findIndex(
-            ({ name }) => name === 'connect-history-api-fallback',
-          );
-
-          if (index > -1) {
-            // eslint-disable-next-line no-param-reassign
-            middlewares[index].path = publicPath;
+    super(
+      {
+        ...options,
+        setupMiddlewares(middlewares, devServer) {
+          if (process.env.TERM_PROGRAM === 'vscode') {
+            devServer.app.use('/__open-in-editor', launchMiddleware('code'));
           }
-        }
 
-        middlewares.push({
-          name: 'page-not-found',
-          middleware: notFound({
-            publicPath: publicPath.startsWith('/') ? publicPath : '/',
-          }),
-        });
+          devServer.app.use(staticFile());
 
-        if (typeof setupMiddlewares === 'function') {
-          return setupMiddlewares(middlewares, devServer);
-        }
+          devServer.app.use(waitPage.middleware(devServer));
 
-        return middlewares;
+          if (publicPath.startsWith('/')) {
+            const index = middlewares.findIndex(
+              ({ name }) => name === 'connect-history-api-fallback',
+            );
+
+            if (index > -1) {
+              // eslint-disable-next-line no-param-reassign
+              middlewares[index].path = publicPath;
+            }
+          }
+
+          middlewares.push({
+            name: 'page-not-found',
+            middleware: notFound({
+              publicPath: publicPath.startsWith('/') ? publicPath : '/',
+            }),
+          });
+
+          if (typeof options.setupMiddlewares === 'function') {
+            options.setupMiddlewares(middlewares, devServer);
+          }
+
+          return middlewares;
+        },
       },
-    },
-    compiler,
-  );
-
-  Server.start();
-
-  return Server;
+      compiler,
+    );
+  }
 }

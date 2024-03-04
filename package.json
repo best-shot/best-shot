@@ -46,7 +46,7 @@
     "@nice-move/prettier-config": "^0.10.0",
     "@nice-move/stylelint-config": "^0.10.2",
     "@nice-move/tsconfig": "^0.2.0",
-    "@types/react": "^18.2.60",
+    "@types/react": "^18.2.61",
     "ava": "^6.1.2",
     "eslint": "^8.57.0",
     "eslint-plugin-ava": "^14.0.0",

@@ -21,6 +21,9 @@ export function apply({
         compilerOptions: {
           whitespace: 'condense',
           ...compilerOptions,
+          isCustomElement: Array.isArray(compilerOptions.isCustomElement)
+            ? (tag) => compilerOptions.isCustomElement.includes(tag)
+            : compilerOptions.isCustomElement,
         },
       });
 

@@ -13,7 +13,9 @@ export class DevServer extends WebpackDevServer {
 
     /* eslint-disable no-param-reassign */
 
-    options.proxy &&= options.proxy.map((item) => ({
+    options.proxy &&= (
+      Array.isArray(options.proxy) ? options.proxy : [options.proxy]
+    ).map((item) => ({
       changeOrigin: true,
       secure: false,
       ...item,
@@ -22,6 +24,11 @@ export class DevServer extends WebpackDevServer {
     options.hot ??= 'only';
     options.static ??= false;
     options.allowedHosts ??= ['all'];
+
+    if (options.port === 443) {
+      options.server ??= {};
+      options.server.type ??= 'https';
+    }
 
     /* eslint-enable no-param-reassign */
 

@@ -38,6 +38,8 @@ export function setHtml({ html = {} }) {
       ),
     );
 
+    const isModule = chain.output.get('module');
+
     const page = (Array.isArray(html) ? html : [html]).map(
       ({
         title = 'BEST-SHOT APP',
@@ -52,6 +54,7 @@ export function setHtml({ html = {} }) {
         title,
         template,
         tags: darkMode ? [darkTag, ...tags] : tags,
+        ...(isModule ? { scriptLoading: 'module' } : undefined),
         templateParameters: {
           title,
           ...options.templateParameters,
@@ -70,14 +73,6 @@ export function setHtml({ html = {} }) {
       );
 
       chain.plugin('html-add-asset').use(HtmlAddAssetWebpackPlugin);
-    }
-
-    if (chain.output.get('module')) {
-      const { HtmlScriptModuleWebpackPlugin } = await import(
-        'html-add-asset-webpack-plugin/dist/extra.js'
-      );
-
-      chain.plugin('html-script-module').use(HtmlScriptModuleWebpackPlugin);
     }
 
     if (minimize) {

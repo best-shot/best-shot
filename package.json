@@ -40,23 +40,23 @@
     "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.0",
+    "@babel/core": "^7.24.4",
     "@bring-it/npm": "~0.5.2",
-    "@nice-move/cli": "^0.11.3",
-    "@nice-move/eslint-config-base": "^0.11.1",
-    "@nice-move/prettier-config": "^0.10.0",
-    "@nice-move/stylelint-config": "^0.10.2",
-    "@nice-move/tsconfig": "^0.2.0",
-    "@types/react": "^18.2.64",
+    "@nice-move/cli": "^0.11.9",
+    "@nice-move/eslint-config-base": "^0.11.3",
+    "@nice-move/prettier-config": "^0.11.1",
+    "@nice-move/stylelint-config": "^0.10.6",
+    "@nice-move/tsconfig": "^0.2.2",
+    "@types/react": "^18.2.78",
     "ava": "^6.1.2",
     "eslint": "^8.57.0",
     "eslint-plugin-ava": "^14.0.0",
-    "garou": "^0.7.1",
+    "garou": "^0.7.3",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
-    "stylelint": "^16.2.1",
-    "typescript": "^5.3.3",
-    "webpack": "^5.90.3"
+    "stylelint": "^16.3.1",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0"
   },
   "peerDependencies": {
     "@best-shot/analyzer": "workspace:*",
@@ -74,7 +74,7 @@
   "engines": {
     "node": "^18.12.0 || ^20.0.0"
   },
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@8.15.5",
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"
   },

@@ -29,7 +29,7 @@ npm install @best-shot/preset-react --save-dev
 
 ```mjs
 // example: .best-shot/config.mjs
-export default {
+export const config = {
   presets: ['babel', 'react']
 };
 ```

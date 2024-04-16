@@ -16,6 +16,6 @@ export function applyFont(chain) {
       // eslint-disable-next-line no-param-reassign
       args.filename = nonAscii(args.filename);
 
-      return 'font/[name].[contenthash:8][ext]';
+      return 'font/[name].[contenthash][ext]';
     });
 }

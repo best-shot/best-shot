@@ -38,8 +38,8 @@ export async function applyImage(chain) {
           args.filename = nonAscii(args.filename);
 
           return minimize
-            ? 'image/[name].min.[contenthash:8][ext]'
-            : 'image/[name].[contenthash:8][ext]';
+            ? 'image/[name].min.[contenthash][ext]'
+            : 'image/[name].[contenthash][ext]';
         });
     });
 

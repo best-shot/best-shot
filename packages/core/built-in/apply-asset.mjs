@@ -11,7 +11,7 @@ export function apply() {
         .dependency('url')
         .generator.filename(
           mode === 'production'
-            ? `[contenthash:8].${ext}`
+            ? `[contenthash].${ext}`
             : `[path][name].${ext}`,
         );
 
@@ -22,7 +22,7 @@ export function apply() {
         .type('asset/resource')
         .generator.filename(
           mode === 'production'
-            ? `[contenthash:8].${ext}`
+            ? `[contenthash].${ext}`
             : `[path][name].${ext}`,
         );
 

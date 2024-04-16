@@ -32,6 +32,7 @@ export function apply({
     chain.devtool(false);
 
     chain.optimization
+      .removeEmptyChunks(true)
       .removeAvailableModules(true)
       .minimize(mode === 'production');
 
@@ -60,10 +61,9 @@ export function apply({
     if (watch) {
       chain.watchOptions({ ignored: /node_modules/ });
       chain.output.pathinfo(false);
-      chain.optimization
-        .removeAvailableModules(false)
-        .removeEmptyChunks(false)
-        .innerGraph(false);
+      chain.optimization.removeAvailableModules(false).innerGraph(false);
+    } else {
+      chain.optimization.providedExports(true);
     }
 
     chain.module.strictExportPresence(!watch);
@@ -87,6 +87,7 @@ export function apply({
     const { cachePath } = chain.get('x');
 
     chain.experiments.merge({
+      cacheUnaffected: true,
       asyncWebAssembly: true,
       syncWebAssembly: true,
       topLevelAwait: true,
@@ -111,6 +112,8 @@ export function apply({
         type: 'commonjs-static',
       });
     }
+
+    chain.output.hashDigestLength(8);
 
     chain.output.merge(output);
 

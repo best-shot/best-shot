@@ -10,10 +10,10 @@ function applyOneOf({ auto = false, mode }) {
         importLoaders: 3,
         modules: {
           ...(auto ? { auto } : undefined),
-          namedExport: true,
+          exportLocalsConvention: 'camel-case-only',
           localIdentName: {
-            development: '[path][name]__[local]',
-            production: '[local]_[hash:base64:8]',
+            development: '[name]_[local]-[hash]',
+            production: '[local]-[hash]',
           }[mode],
         },
       });
@@ -53,7 +53,7 @@ export async function applyStylesheet(chain) {
     .rule('all')
     .oneOf('url')
     .dependency('url')
-    .generator.filename('[contenthash:8].css');
+    .generator.filename('[contenthash].css');
 
   const parent = chain.module.rule('style').rule('all').oneOf('not-url');
 

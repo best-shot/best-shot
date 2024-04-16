@@ -7,7 +7,7 @@ import { splitChunks } from './lib/apply-split-chunks.mjs';
 function addHash(filename) {
   return filename.includes('[contenthash')
     ? filename
-    : suffix(filename, '.[contenthash:8]');
+    : suffix(filename, '.[contenthash]');
 }
 
 function addMin(filename) {

@@ -84,7 +84,9 @@ export async function applyStylesheet(chain) {
       'mini-css-extract-plugin'
     );
 
-    parent.use('extract-css').loader(MiniCssExtractPlugin.loader);
+    parent.use('extract-css').loader(MiniCssExtractPlugin.loader).options({
+      defaultExport: true,
+    });
 
     chain.plugin('extract-css').use(MiniCssExtractPlugin, [
       {

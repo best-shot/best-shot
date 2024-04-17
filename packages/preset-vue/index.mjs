@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module';
 import { relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -6,6 +7,8 @@ import extToRegexp from 'ext-to-regexp';
 export function apply({
   config: { vue: { compilerOptions = {}, ...other } = {} },
 }) {
+  const Require = createRequire(import.meta.url);
+
   return async (chain) => {
     const context = chain.get('context');
 
@@ -34,12 +37,11 @@ export function apply({
       ),
     );
 
-    /* eslint-disable unicorn/no-await-expression-member */
-    const VueLoaderPlugin = (
-      await import('@best-shot/vue-loader/dist/plugin.js')
-    ).default.default;
+    const VueLoaderPlugin = Require(
+      '@best-shot/vue-loader/dist/pluginWebpack5.js',
+    );
 
-    chain.plugin('vue-loader').use(VueLoaderPlugin);
+    chain.plugin('vue-loader').use(VueLoaderPlugin.default);
 
     chain.plugin('define').tap(([defines]) => [
       {

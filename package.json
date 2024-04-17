@@ -24,6 +24,7 @@
     "inspect": "best-shot inspect --stamp test",
     "lint:staged": "nice-move lint staged",
     "lint:type": "tsc --noEmit",
+    "lint:version": "syncpack lint",
     "prepare": "nice-move git hooks",
     "serve": "best-shot serve",
     "snapshot": "ava --fail-fast -u -w",
@@ -41,7 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",
-    "@bring-it/npm": "~0.5.2",
+    "@bring-it/npm": "^0.5.2",
     "@nice-move/cli": "^0.11.10",
     "@nice-move/eslint-config-base": "^0.11.4",
     "@nice-move/prettier-config": "^0.11.2",
@@ -55,21 +56,22 @@
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "stylelint": "^16.3.1",
+    "syncpack": "^12.3.0",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0"
   },
   "peerDependencies": {
-    "@best-shot/analyzer": "workspace:*",
-    "@best-shot/cli": "workspace:*",
-    "@best-shot/core": "workspace:*",
-    "@best-shot/dev-server": "workspace:*",
-    "@best-shot/inspector": "workspace:*",
-    "@best-shot/preset-asset": "workspace:*",
-    "@best-shot/preset-babel": "workspace:*",
-    "@best-shot/preset-react": "workspace:*",
-    "@best-shot/preset-style": "workspace:*",
-    "@best-shot/preset-vue": "workspace:*",
-    "@best-shot/preset-web": "workspace:*"
+    "@best-shot/analyzer": "workspace:^",
+    "@best-shot/cli": "workspace:^",
+    "@best-shot/core": "workspace:^",
+    "@best-shot/dev-server": "workspace:^",
+    "@best-shot/inspector": "workspace:^",
+    "@best-shot/preset-asset": "workspace:^",
+    "@best-shot/preset-babel": "workspace:^",
+    "@best-shot/preset-react": "workspace:^",
+    "@best-shot/preset-style": "workspace:^",
+    "@best-shot/preset-vue": "workspace:^",
+    "@best-shot/preset-web": "workspace:^"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -80,7 +82,7 @@
   },
   "packageManager": "pnpm@9.0.1",
   "engines": {
-    "node": "^18.12.0 || ^20.0.0"
+    "node": ">=20.0.0 || ^18.12.0"
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"

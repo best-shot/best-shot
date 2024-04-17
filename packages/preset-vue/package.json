@@ -28,7 +28,7 @@
   "type": "module",
   "dependencies": {
     "@best-shot/vue-loader": "17.4.2",
-    "css-loader": ">=7.1.1",
+    "css-loader": "^7.1.1",
     "ext-to-regexp": "^0.1.0",
     "settingz": "^0.2.0"
   },
@@ -38,7 +38,7 @@
     "vue": "^3.4.23"
   },
   "engines": {
-    "node": "^18.12.0 || ^20.0.0"
+    "node": ">=20.0.0 || ^18.12.0"
   },
   "publishConfig": {
     "access": "public",

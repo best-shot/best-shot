@@ -44,7 +44,7 @@ export function apply({ config: { node, hashbang, executor } }) {
 
       chain.plugin('hmr').use(HotModuleReplacementPlugin);
 
-      const { default: NodeHmrPlugin } = await import('node-hmr-plugin');
+      const { NodeHmrPlugin } = await import('../lib/node-hmr-plugin.mjs');
 
       chain.plugin('executor').use(NodeHmrPlugin, [
         {

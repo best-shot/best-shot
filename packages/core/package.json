@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -37,7 +37,6 @@
     "deepmerge": "^4.3.1",
     "ext-to-regexp": "^0.1.0",
     "json-minimizer-webpack-plugin": "^5.0.0",
-    "node-hmr-plugin": "^1.0.1",
     "slash": "^5.1.0",
     "slash-to-regexp": "^0.0.4",
     "terser": "^5.30.3",

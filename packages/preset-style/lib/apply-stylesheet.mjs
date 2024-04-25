@@ -35,30 +35,6 @@ export async function applyStylesheet(chain) {
 
   chain.module
     .rule('style')
-    .rule('all')
-    .oneOf('url')
-    .dependency('url')
-    .generator.filename('[contenthash].css');
-
-  const parent = chain.module.rule('style').rule('all').oneOf('not-url');
-
-  parent
-    .use('css-loader')
-    .loader('css-loader')
-    .options({
-      importLoaders: 3,
-      modules: {
-        auto,
-        exportLocalsConvention: 'camel-case-only',
-        localIdentName: {
-          development: '[name]_[local]-[hash]',
-          production: '[local]-[hash]',
-        }[mode],
-      },
-    });
-
-  chain.module
-    .rule('style')
     .rule('postcss')
     .use('postcss-loader')
     .loader('postcss-loader')
@@ -67,6 +43,15 @@ export async function applyStylesheet(chain) {
         plugins: ['postcss-preset-evergreen'],
       },
     });
+
+  chain.module
+    .rule('style')
+    .rule('all')
+    .oneOf('url')
+    .dependency('url')
+    .generator.filename('[contenthash].css');
+
+  const parent = chain.module.rule('style').rule('all').oneOf('not-url');
 
   if (hot) {
     parent.use('style-loader').loader('style-loader');
@@ -99,4 +84,19 @@ export async function applyStylesheet(chain) {
         .exclude.add(slashToRegexp('/node_modules/mini-css-extract-plugin/'));
     }
   }
+
+  parent
+    .use('css-loader')
+    .loader('css-loader')
+    .options({
+      importLoaders: 3,
+      modules: {
+        auto,
+        exportLocalsConvention: 'camel-case-only',
+        localIdentName: {
+          development: '[name]_[local]-[hash]',
+          production: '[local]-[hash]',
+        }[mode],
+      },
+    });
 }

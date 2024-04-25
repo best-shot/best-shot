@@ -29,7 +29,7 @@
   "type": "module",
   "dependencies": {
     "@best-shot/config": "workspace:^",
-    "webpack-bundle-analyzer": "^4.10.1"
+    "webpack-bundle-analyzer": "^4.10.2"
   },
   "peerDependencies": {
     "@best-shot/cli": "workspace:^",

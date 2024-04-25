@@ -86,20 +86,19 @@ export function apply({
 
     const { cachePath } = chain.get('x');
 
-    chain.experiments.merge({
-      cacheUnaffected: true,
-      asyncWebAssembly: true,
-      syncWebAssembly: true,
-      topLevelAwait: true,
-      buildHttp: {
+    chain.experiments
+      .cacheUnaffected(true)
+      .asyncWebAssembly(true)
+      .syncWebAssembly(true)
+      .topLevelAwait(true)
+      .buildHttp({
         allowedUris: [],
         lockfileLocation: cachePath('locks/lock'),
         cacheLocation: cachePath('locks/cache'),
         upgrade: true,
         frozen: false,
         ...buildHttp,
-      },
-    });
+      });
 
     if (useModule) {
       chain.experiments.outputModule(true);
@@ -124,7 +123,7 @@ export function apply({
       ),
     );
 
-    chain.module.parser.set('javascript', {
+    chain.module.parser.javascript({
       amd: false,
       requireJs: false,
       system: false,

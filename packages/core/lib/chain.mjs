@@ -50,7 +50,7 @@ export class CoreChain extends WebpackChain {
   toString() {
     this.delete('x');
 
-    return super.toString();
+    return super.toString({ verbose: true });
   }
 
   async asyncBatch(handler) {

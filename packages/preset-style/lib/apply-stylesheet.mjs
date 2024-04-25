@@ -1,24 +1,9 @@
 import extToRegexp from 'ext-to-regexp';
 import slashToRegexp from 'slash-to-regexp';
 
-function applyOneOf({ auto = false, mode }) {
-  return (rule) => {
-    rule
-      .use('css-loader')
-      .loader('css-loader')
-      .options({
-        importLoaders: 3,
-        modules: {
-          ...(auto ? { auto } : undefined),
-          exportLocalsConvention: 'camel-case-only',
-          localIdentName: {
-            development: '[name]_[local]-[hash]',
-            production: '[local]-[hash]',
-          }[mode],
-        },
-      });
-  };
-}
+const auto = (resourcePath, resourceQuery) =>
+  /\.module\.\w+$/i.test(resourcePath) ||
+  new URLSearchParams(resourceQuery).get('module');
 
 export async function applyStylesheet(chain) {
   const minimize = chain.optimization.get('minimize');
@@ -58,13 +43,19 @@ export async function applyStylesheet(chain) {
   const parent = chain.module.rule('style').rule('all').oneOf('not-url');
 
   parent
-    .oneOf('css-modules-by-query')
-    .resourceQuery(/module/)
-    .batch(applyOneOf({ mode }));
-
-  parent
-    .oneOf('css-modules-by-filename')
-    .batch(applyOneOf({ mode, auto: true }));
+    .use('css-loader')
+    .loader('css-loader')
+    .options({
+      importLoaders: 3,
+      modules: {
+        auto,
+        exportLocalsConvention: 'camel-case-only',
+        localIdentName: {
+          development: '[name]_[local]-[hash]',
+          production: '[local]-[hash]',
+        }[mode],
+      },
+    });
 
   chain.module
     .rule('style')

@@ -1,4 +1,4 @@
 export const config = {
-  target: 'node20',
-  executor: 'node',
+  presets: ['babel', 'react', 'asset', 'web', 'style'],
+  devServer: {},
 };

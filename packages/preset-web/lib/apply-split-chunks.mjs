@@ -37,27 +37,25 @@ export function splitChunks({ vendors = {} }) {
       ...force,
     };
 
-    chain.optimization.splitChunks
-      .set('maxAsyncRequests', 5)
-      .set('cacheGroups', {
-        ...settings,
-        vendor:
-          chain.entryPoints.values().length > 1
-            ? {
-                name: 'common',
-                minChunks: 2,
-                ...initial,
-              }
-            : {
-                name: 'vendor',
-                test: slashToRegexp('/node_modules/'),
-                ...initial,
-              },
-        async: {
-          chunks: 'async',
-          ...force,
-        },
-      });
+    chain.optimization.splitChunks.maxAsyncRequests(5).cacheGroups({
+      ...settings,
+      vendor:
+        chain.entryPoints.values().length > 1
+          ? {
+              name: 'common',
+              minChunks: 2,
+              ...initial,
+            }
+          : {
+              name: 'vendor',
+              test: slashToRegexp('/node_modules/'),
+              ...initial,
+            },
+      async: {
+        chunks: 'async',
+        ...force,
+      },
+    });
 
     const mode = chain.get('mode');
 

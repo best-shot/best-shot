@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
@@ -31,9 +31,9 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "@babel/plugin-transform-react-constant-elements": "^7.23.3",
-    "@babel/plugin-transform-react-inline-elements": "^7.23.3",
-    "@babel/preset-react": "^7.23.3",
+    "@babel/plugin-transform-react-constant-elements": "^7.24.1",
+    "@babel/plugin-transform-react-inline-elements": "^7.24.1",
+    "@babel/preset-react": "^7.24.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "react-refresh": "^0.14.0",

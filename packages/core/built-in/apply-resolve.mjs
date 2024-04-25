@@ -31,10 +31,8 @@ function To(url) {
 
 export function apply({ config: { replace = [], resolve: { alias } = {} } }) {
   return async (chain) => {
-    chain.resolve.merge({
-      extensions: ['.js', '.cjs', '.mjs', '.json', '.ts'],
-      modules: ['node_modules'],
-    });
+    chain.resolve.extensions.merge(['.js', '.cjs', '.mjs', '.json', '.ts']);
+    chain.resolve.modules.prepend('node_modules');
 
     if (notEmpty(alias)) {
       chain.resolve.alias.merge(alias);

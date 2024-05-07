@@ -43,7 +43,7 @@
     "slash-to-regexp": "^0.0.4"
   },
   "peerDependencies": {
-    "@babel/core": "^7.24.4",
+    "@babel/core": "^7.24.5",
     "@best-shot/core": "workspace:^"
   },
   "engines": {

@@ -18,7 +18,14 @@ const force = {
 
 export function splitChunks({ vendors = {} }) {
   return async (chain) => {
-    const settings = mapValues(vendors, (value, key, index, length) => {
+    const obj = {
+      ...(vendors.shim ? { shim: vendors.shim } : undefined),
+      ...(vendors.react ? { react: vendors.react } : undefined),
+      ...(vendors.vue ? { vue: vendors.vue } : undefined),
+      ...vendors,
+    };
+
+    const settings = mapValues(obj, (value, key, index, length) => {
       const mod = Array.isArray(value) ? `(${value.join('|')})` : value;
       const regexp = slashToRegexp(`/node_modules/${mod}/`);
 

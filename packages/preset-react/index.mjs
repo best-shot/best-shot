@@ -7,15 +7,17 @@ export function apply({ config: { babel: { polyfill = false } = {} } }) {
     const mode = chain.get('mode') || 'development';
     const useHot = chain.devServer.get('hot') || false;
 
-    const fileRegexp = chain.module.rule('babel').get('test');
-
     chain.resolve.extensions.prepend('.tsx');
+
+    const fileRegexp = chain.module.rule('babel').get('test');
 
     chain.module
       .rule('babel')
-      .test(fileRegexp.add('jsx', 'tsx'))
+      .when((rule) =>
+        fileRegexp ? rule.test(fileRegexp.add('jsx', 'tsx')) : rule,
+      )
       .use('babel-loader')
-      .tap(({ presets = [], plugins = [], ...options }) => ({
+      .tap(({ presets = [], plugins = [], ...options } = {}) => ({
         ...options,
         presets: [
           ...presets,
@@ -32,9 +34,9 @@ export function apply({ config: { babel: { polyfill = false } = {} } }) {
           ...plugins,
           ...(mode === 'production'
             ? [
-                ...(polyfill !== 'pure'
-                  ? ['@babel/transform-react-inline-elements']
-                  : []),
+                ...(polyfill === 'pure'
+                  ? []
+                  : ['@babel/transform-react-inline-elements']),
                 haveLocalDependencies('airbnb-prop-types/package.json')
                   ? [
                       'transform-react-remove-prop-types',
@@ -57,3 +59,21 @@ export function apply({ config: { babel: { polyfill = false } = {} } }) {
     }
   };
 }
+
+export const schema = {
+  vendors: {
+    type: 'object',
+    properties: {
+      react: {
+        default: [
+          'prop-types',
+          'react',
+          'react-(.)*',
+          'scheduler',
+          '@remix-run',
+          'history',
+        ],
+      },
+    },
+  },
+};

@@ -65,4 +65,12 @@ export const schema = {
       },
     },
   },
+  vendors: {
+    type: 'object',
+    properties: {
+      vue: {
+        default: ['vue', '@vue', 'pinia', 'vue-(.)*'],
+      },
+    },
+  },
 };

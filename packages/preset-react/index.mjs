@@ -13,9 +13,7 @@ export function apply({ config: { babel: { polyfill = false } = {} } }) {
 
     chain.module
       .rule('babel')
-      .when((rule) =>
-        fileRegexp ? rule.test(fileRegexp.add('jsx', 'tsx')) : rule,
-      )
+      .test(fileRegexp.add('jsx', 'tsx'))
       .use('babel-loader')
       .tap(({ presets = [], plugins = [], ...options } = {}) => ({
         ...options,

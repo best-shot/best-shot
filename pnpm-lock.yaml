@@ -61,8 +61,8 @@ importers:
         specifier: ^0.5.4
         version: 0.5.4(@bring-it/cli@0.9.3)
       '@nice-move/cli':
-        specifier: ^0.11.11
-        version: 0.11.11
+        specifier: ^0.11.12
+        version: 0.11.12
       '@nice-move/eslint-config-base':
         specifier: ^0.11.7
         version: 0.11.7(eslint@8.57.0)(typescript@5.4.5)
@@ -1394,8 +1394,8 @@ packages:
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
     hasBin: true
 
-  '@nice-move/cli@0.11.11':
-    resolution: {integrity: sha512-VhLN/OaFGFF7pUwFg8IQCahX72GtpAYO16D2XtmiyYh+t80YMqtR05mUOap9QcEW3xDIOzsfcUuZ+hzl3kNinA==}
+  '@nice-move/cli@0.11.12':
+    resolution: {integrity: sha512-wOF5jpKB8HCmRrxESlKhU+8Ks+hQjBcU8p5hiHdhWJhDo1lmE67LHAGBvxLeFJu2++yehc3FU0UjhCarj7FC7g==}
     engines: {node: ^18.12.0 || ^20.0.0}
     hasBin: true
 
@@ -6811,8 +6811,9 @@ snapshots:
       - encoding
       - supports-color
 
-  '@nice-move/cli@0.11.11':
+  '@nice-move/cli@0.11.12':
     dependencies:
+      cheetor: 0.13.0
       eslint-formatter-pretty: 5.0.0
 
   '@nice-move/eslint-config-base@0.11.7(eslint@8.57.0)(typescript@5.4.5)':
@@ -9763,7 +9764,7 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.2
       proc-log: 4.2.0
-      semver: 7.6.2
+      semver: 7.6.0
       validate-npm-package-name: 5.0.1
 
   npm-run-path@4.0.1:

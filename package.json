@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
-    "@bring-it/npm": "^0.5.3",
+    "@bring-it/npm": "^0.5.4",
     "@nice-move/cli": "^0.11.11",
     "@nice-move/eslint-config-base": "^0.11.7",
     "@nice-move/prettier-config": "^0.11.3",

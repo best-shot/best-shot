@@ -47,8 +47,13 @@ export function apply({
               cacheGroups: {
                 vendors: {
                   name: 'share',
-                  chunks: 'all',
+                  chunks: 'initial',
                   minChunks: 2,
+                  enforce: true,
+                  reuseExistingChunk: true,
+                },
+                async: {
+                  chunks: 'async',
                   enforce: true,
                   reuseExistingChunk: true,
                 },

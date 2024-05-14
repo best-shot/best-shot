@@ -1,4 +1,5 @@
 import extToRegexp from 'ext-to-regexp';
+import { haveLocalDependencies } from 'settingz';
 import slashToRegexp from 'slash-to-regexp';
 
 const auto = (resourcePath, resourceQuery) =>
@@ -40,7 +41,10 @@ export async function applyStylesheet(chain) {
     .loader('postcss-loader')
     .options({
       postcssOptions: {
-        plugins: ['postcss-preset-evergreen'],
+        plugins: [
+          haveLocalDependencies('tailwindcss') ? 'tailwindcss' : undefined,
+          'postcss-preset-evergreen',
+        ].filter(Boolean),
       },
     });
 

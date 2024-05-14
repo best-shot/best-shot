@@ -18,9 +18,11 @@ This preset offer the following features:
 - [Interoperable CSS] support
 - [Less] / [Sass] syntax support
 - [PostCSS] support
+- Use [tailwindcss] when it installed
 - Use [postcss-preset-evergreen] by default(including [Autoprefixer])
 - Use [cssnano] in production mode
 
+[tailwindcss]: https://tailwindcss.com/
 [interoperable css]: https://github.com/css-modules/icss
 [css modules]: https://github.com/css-modules/css-modules
 [cssnano]: https://cssnano.co/
@@ -68,24 +70,6 @@ Use CSS Modules in Vue.js. [Learn more](https://vue-loader.vuejs.org/guide/css-m
 ## Tips
 
 ### Load custom `postcss` config
-
-Disable internal options:
-
-```mjs
-// example: .best-shot/config.mjs
-export default {
-  webpackChain(config) {
-    config.module
-      .rule('style')
-      .rule('postcss')
-      .use('postcss-loader')
-      .tap((options) => ({
-        ...options,
-        postcssOptions: {}
-      }));
-  }
-};
-```
 
 Write your config in any way. See <https://github.com/postcss/postcss-load-config>
 

@@ -35,7 +35,7 @@ export function apply({ config: { babel: { polyfill = false } = {} } }) {
                 ...(polyfill === 'pure'
                   ? []
                   : ['@babel/transform-react-inline-elements']),
-                haveLocalDependencies('airbnb-prop-types/package.json')
+                haveLocalDependencies('airbnb-prop-types')
                   ? [
                       'transform-react-remove-prop-types',
                       { additionalLibraries: ['airbnb-prop-types'] },

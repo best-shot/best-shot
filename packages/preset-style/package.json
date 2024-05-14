@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-style",
-  "version": "0.12.8",
+  "version": "0.12.9",
   "description": "A `best-shot` preset for stylesheet",
   "license": "MIT",
   "author": {
@@ -48,6 +48,7 @@
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.77.1",
     "sass-loader": "^14.2.1",
+    "settingz": "^0.2.0",
     "slash-to-regexp": "^0.0.4",
     "style-loader": "^4.0.0"
   },

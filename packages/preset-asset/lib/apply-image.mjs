@@ -20,6 +20,13 @@ export async function applyImage(chain) {
     )
     .batch((rule) => {
       rule
+        .oneOf('raw')
+        .test(/\.svg$/)
+        .dependency({ not: 'url' })
+        .resourceQuery(/raw/)
+        .type('asset/source');
+
+      rule
         .oneOf('mutable')
         .resourceQuery(/mutable/)
         .type('asset/resource')

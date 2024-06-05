@@ -35,7 +35,7 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "css-loader": "^7.1.1",
+    "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "cssnano": "^7.0.1",
     "ext-to-regexp": "^0.1.0",

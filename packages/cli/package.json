@@ -31,13 +31,13 @@
   "main": "bin/index.mjs",
   "type": "module",
   "dependencies": {
-    "@best-shot/config": "workspace:^",
+    "@best-shot/config": "workspace:~",
     "chalk": "^5.3.0",
     "cheetor": "^0.13.0",
     "webpackbar": "^6.0.1"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:^",
+    "@best-shot/core": "workspace:~",
     "webpack": "^5.92.0"
   },
   "engines": {

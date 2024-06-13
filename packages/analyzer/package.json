@@ -28,12 +28,12 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "@best-shot/config": "workspace:^",
+    "@best-shot/config": "workspace:~",
     "webpack-bundle-analyzer": "^4.10.2"
   },
   "peerDependencies": {
-    "@best-shot/cli": "workspace:^",
-    "@best-shot/core": "workspace:^"
+    "@best-shot/cli": "workspace:~",
+    "@best-shot/core": "workspace:~"
   },
   "engines": {
     "node": ">=20.0.0 || ^18.12.0"

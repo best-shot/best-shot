@@ -37,7 +37,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@best-shot/no-cache-loader": "workspace:^",
+    "@best-shot/no-cache-loader": "workspace:~",
     "terser": "^5.31.1",
     "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.92.0",

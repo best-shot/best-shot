@@ -16,7 +16,7 @@ export function applyScssLess(less) {
       .use('resolve-url-loader')
       .loader('resolve-url-loader')
       .options({
-        sourceMap: !['eval', false].includes(chain.get('devtool')),
+        sourceMap: true,
         removeCR: true,
       })
       .end()

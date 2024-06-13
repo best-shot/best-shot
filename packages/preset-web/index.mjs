@@ -21,9 +21,7 @@ export function apply({ config: { html, vendors, optimization = {} } }) {
     const serve = chain.devServer.entries() !== undefined;
     const hot = (serve && chain.devServer.get('hot')) || false;
 
-    chain.devtool(
-      mode === 'production' ? false : serve ? 'eval-source-map' : 'source-map',
-    );
+    chain.devtool(mode === 'production' ? false : 'source-map');
 
     chain
       .when(minimize, setOutputName({ style: addMin, script: addMin }))

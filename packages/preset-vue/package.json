@@ -32,8 +32,8 @@
     "ext-to-regexp": "^0.1.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:^",
-    "@best-shot/preset-style": "workspace:^",
+    "@best-shot/core": "workspace:~",
+    "@best-shot/preset-style": "workspace:~",
     "vue": "^3.4.27"
   },
   "engines": {

@@ -46,7 +46,7 @@
     "svgo-config": "^0.7.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:^"
+    "@best-shot/core": "workspace:~"
   },
   "engines": {
     "node": ">=20.0.0 || ^18.12.0"

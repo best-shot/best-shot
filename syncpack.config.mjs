@@ -17,5 +17,10 @@ export default defineConfig(import.meta.url, {
       packages: ['@best-shot/no-cache-loader'],
       pinVersion: '>=12.0.0',
     },
+    {
+      dependencies: ['vue'],
+      label: 'Pin vue',
+      pinVersion: '^3.4.27',
+    },
   ],
 });

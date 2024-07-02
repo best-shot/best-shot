@@ -119,6 +119,10 @@ export function apply({
 
     chain.output.hashDigestLength(8);
 
+    chain.output.assetModuleFilename(
+      mode === 'development' ? '[path][name][ext]' : '[contenthash:8][ext]',
+    );
+
     chain.output.merge(output);
 
     chain.output.path(

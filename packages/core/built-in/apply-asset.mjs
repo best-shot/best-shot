@@ -7,24 +7,31 @@ export function apply() {
     function set({ name, extname, ext, raw }) {
       const io = chain.module.rule(name).test(extToRegexp({ extname }));
 
-      io.oneOf('url')
-        .dependency('url')
-        .generator.filename(
+      io.oneOf('url').dependency('url');
+
+      if (ext) {
+        io.oneOf('url').generator.filename(
           mode === 'production'
-            ? `[contenthash].${ext}`
+            ? `[contenthash:8].${ext}`
             : `[path][name].${ext}`,
         );
+      }
 
       io.oneOf('not-url')
         .dependency({ not: 'url' })
         .oneOf('query')
         .resourceQuery(/to-url/)
-        .type('asset/resource')
-        .generator.filename(
-          mode === 'production'
-            ? `[contenthash].${ext}`
-            : `[path][name].${ext}`,
-        );
+        .type('asset/resource');
+
+      if (ext) {
+        io.oneOf('not-url')
+          .oneOf('query')
+          .generator.filename(
+            mode === 'production'
+              ? `[contenthash:8].${ext}`
+              : `[path][name].${ext}`,
+          );
+      }
 
       io.oneOf('not-url').oneOf('raw').type(raw);
     }
@@ -32,14 +39,12 @@ export function apply() {
     set({
       name: 'text',
       extname: ['txt'],
-      ext: 'txt',
       raw: 'asset/source',
     });
 
     set({
       name: 'json',
       extname: ['json'],
-      ext: 'json',
       raw: 'json',
     });
 

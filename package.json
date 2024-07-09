@@ -69,9 +69,10 @@
     "@best-shot/preset-style": "workspace:~",
     "@best-shot/preset-vue": "workspace:~",
     "@best-shot/preset-web": "workspace:~",
+    "@best-shot/split-loader": "workspace:~",
     "@types/react": "~18.3.3"
   },
-  "packageManager": "pnpm@9.1.1",
+  "packageManager": "pnpm@9.4.0",
   "engines": {
     "node": ">=20.0.0 || ^18.12.0"
   },
@@ -83,7 +84,7 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "best-shot serve",
+    "exec": "best-shot inspect --stamp test",
     "ext": "js,cjs,mjs,json",
     "watch": [
       "packages/**",

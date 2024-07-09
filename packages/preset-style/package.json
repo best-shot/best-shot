@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-style",
-  "version": "0.12.11",
+  "version": "0.12.12",
   "description": "A `best-shot` preset for stylesheet",
   "license": "MIT",
   "author": {
@@ -37,7 +37,7 @@
   "dependencies": {
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
-    "cssnano": "^7.0.3",
+    "cssnano": "^7.0.4",
     "ext-to-regexp": "^0.1.0",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",

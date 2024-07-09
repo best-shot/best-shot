@@ -4,13 +4,13 @@ import { fileURLToPath } from 'node:url';
 import { applyScssLess } from './lib/apply-scss-less.mjs';
 import { applyStylesheet } from './lib/apply-stylesheet.mjs';
 
-export function apply({ config: { less } }) {
+export function apply({ config: { dataURI = false } }) {
   return async (chain) => {
     const context = chain.get('context');
 
-    await applyStylesheet(chain);
+    await applyStylesheet({ dataURI })(chain);
 
-    applyScssLess(less)(chain);
+    applyScssLess({ dataURI })(chain);
 
     chain.resolveLoader.modules.prepend(
       relative(
@@ -21,10 +21,11 @@ export function apply({ config: { less } }) {
   };
 }
 
+export const name = 'preset-style';
+
 export const schema = {
-  less: {
-    type: 'object',
+  dataURI: {
+    type: 'boolean',
+    default: false,
   },
 };
-
-export const name = 'preset-style';

@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "@best-shot/split-loader",
+  "version": "0.0.0",
+  "license": "MIT",
+  "keywords": [
+    "loader",
+    "webpack"
+  ],
+  "main": "index.cjs",
+  "type": "commonjs",
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.4.27",
+    "slash": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@best-shot/core": "workspace:~"
+  },
+  "engines": {
+    "node": ">=20.0.0 || ^18.12.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

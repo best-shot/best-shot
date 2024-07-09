@@ -6,37 +6,8 @@ const auto = (resourcePath, resourceQuery) =>
   /\.module\.\w+$/i.test(resourcePath) ||
   new URLSearchParams(resourceQuery).get('module');
 
-export async function applyStylesheet(chain) {
-  const minimize = chain.optimization.get('minimize');
-
-  if (minimize) {
-    const { default: CssMinimizerPlugin } = await import(
-      'css-minimizer-webpack-plugin'
-    );
-    chain.optimization.minimizer('css-minimizer').use(CssMinimizerPlugin, [
-      {
-        minimizerOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        },
-      },
-    ]);
-  }
-
-  chain.module
-    .rule('style')
-    .after('esm')
-    .test(extToRegexp({ extname: ['css'] }))
-    .rule('all')
-    .oneOf('not-url')
-    .dependency({ not: 'url' });
-
-  const mode = chain.get('mode');
-  const watch = chain.get('watch');
-  const hot = chain.devServer.get('hot') || false;
-
-  chain.module
-    .rule('style')
-    .rule('postcss')
+function batchPostCSS(rule) {
+  rule
     .use('postcss-loader')
     .loader('postcss-loader')
     .options({
@@ -47,46 +18,24 @@ export async function applyStylesheet(chain) {
         ].filter(Boolean),
       },
     });
+}
 
-  chain.module
-    .rule('style')
+function batch(rule, { hot, mode, MiniCssExtractPlugin }) {
+  rule
     .rule('all')
     .oneOf('url')
+    .before('not-url')
     .dependency('url')
     .generator.filename('[contenthash].css');
 
-  const parent = chain.module.rule('style').rule('all').oneOf('not-url');
+  const parent = rule.rule('all').oneOf('not-url').dependency({ not: 'url' });
 
   if (hot) {
     parent.use('style-loader').loader('style-loader');
   } else {
-    const { default: MiniCssExtractPlugin } = await import(
-      'mini-css-extract-plugin'
-    );
-
     parent.use('extract-css').loader(MiniCssExtractPlugin.loader).options({
       defaultExport: true,
     });
-
-    chain.plugin('extract-css').use(MiniCssExtractPlugin, [
-      {
-        filename: '[name].css',
-        // chunkFilename: '[id].css',
-        ignoreOrder: true,
-      },
-    ]);
-  }
-
-  if (!watch && chain.module.rules.has('babel')) {
-    chain.module
-      .rule('babel')
-      .exclude.add(slashToRegexp('/node_modules/css-loader/'));
-
-    if (!hot) {
-      chain.module
-        .rule('babel')
-        .exclude.add(slashToRegexp('/node_modules/mini-css-extract-plugin/'));
-    }
   }
 
   parent
@@ -103,4 +52,84 @@ export async function applyStylesheet(chain) {
         }[mode],
       },
     });
+}
+
+export function applyStylesheet({ dataURI = false }) {
+  return async (chain) => {
+    const minimize = chain.optimization.get('minimize');
+
+    if (minimize) {
+      const { default: CssMinimizerPlugin } = await import(
+        'css-minimizer-webpack-plugin'
+      );
+      chain.optimization.minimizer('css-minimizer').use(CssMinimizerPlugin, [
+        {
+          minimizerOptions: {
+            preset: ['default', { discardComments: { removeAll: true } }],
+          },
+        },
+      ]);
+    }
+
+    const { default: MiniCssExtractPlugin } = await import(
+      'mini-css-extract-plugin'
+    );
+
+    const mode = chain.get('mode');
+    const watch = chain.get('watch');
+    const hot = chain.devServer.get('hot') || false;
+
+    if (!hot) {
+      chain.plugin('extract-css').use(MiniCssExtractPlugin, [
+        {
+          filename: '[name].css',
+          // chunkFilename: '[id].css',
+          ignoreOrder: true,
+        },
+      ]);
+    }
+
+    if (!watch && chain.module.rules.has('babel')) {
+      chain.module
+        .rule('babel')
+        .exclude.add(slashToRegexp('/node_modules/css-loader/'));
+
+      if (!hot) {
+        chain.module
+          .rule('babel')
+          .exclude.add(slashToRegexp('/node_modules/mini-css-extract-plugin/'));
+      }
+    }
+
+    const rule1 = chain.module
+      .rule('style')
+      .after('esm')
+      .test(extToRegexp({ extname: ['css', 'scss', 'sass', 'less'] }));
+
+    batch(rule1, { mode, hot, MiniCssExtractPlugin });
+
+    rule1.rule('postcss').batch(batchPostCSS);
+
+    if (dataURI) {
+      const rule2 = chain.module
+        .rule('style-uri')
+        .after('style')
+        .mimetype(['text/css', 'text/scss', 'text/sass', 'text/less']);
+
+      rule2
+        .type('asset/resource')
+        .generator.filename('[runtime].css')
+        .end()
+        .batch(batchPostCSS)
+        .use('postcss-loader')
+        .loader('postcss-loader')
+        .tap((options) => ({
+          ...options,
+          postcssOptions: {
+            config: false,
+            ...options.postcssOptions,
+          },
+        }));
+    }
+  };
 }

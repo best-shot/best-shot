@@ -2,7 +2,24 @@ import WebpackChain from '@best-shot/webpack-chain';
 
 import { cachePath } from './utils.mjs';
 
-export class CoreChain extends WebpackChain {
+export class BaseChain extends WebpackChain {
+  constructor() {
+    super();
+    this.amd(false);
+
+    this.experiments
+      .cacheUnaffected(true)
+      .asyncWebAssembly(true)
+      .syncWebAssembly(true)
+      .topLevelAwait(true);
+
+    this.output.hashDigestLength(8);
+
+    this.resolve.extensions.merge(['.js', '.cjs', '.mjs', '.json', '.ts']);
+  }
+}
+
+export class CoreChain extends BaseChain {
   constructor({ name, context }) {
     super();
 

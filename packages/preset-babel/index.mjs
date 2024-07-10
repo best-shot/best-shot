@@ -20,10 +20,12 @@ export function apply({
 
     const { cachePath } = chain.get('x');
 
+    chain.resolve.extensions.add('.ts').add('.mts').add('.cts');
+
     chain.module
       .rule('babel')
       .before('esm')
-      .test(extToRegexp({ extname: ['js', 'mjs', 'cjs', 'ts'] }))
+      .test(extToRegexp({ extname: ['js', 'mjs', 'cjs', 'ts', 'mts', 'cts'] }))
       .use('babel-loader')
       .loader(fileURLToPath(import.meta.resolve('babel-loader')))
       .options({

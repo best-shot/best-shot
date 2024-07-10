@@ -17,6 +17,11 @@ function addMin(filename) {
 export function apply({ cwd, config: { html, vendors, optimization = {} } }) {
   return async (chain) => {
     const mode = chain.get('mode');
+
+    chain.output.assetModuleFilename(
+      mode === 'development' ? '[path][name][ext]' : '[contenthash][ext]',
+    );
+
     const minimize = chain.optimization.get('minimize');
     const serve = chain.devServer.entries() !== undefined;
     const hot = (serve && chain.devServer.get('hot')) || false;

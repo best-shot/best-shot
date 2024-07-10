@@ -34,9 +34,6 @@ export function apply({
   config: { replace = [], resolve: { alias } = {} },
 }) {
   return async (chain) => {
-    chain.resolve.extensions.merge(['.js', '.cjs', '.mjs', '.json', '.ts']);
-    chain.resolve.modules.prepend('node_modules');
-
     if (notEmpty(alias)) {
       chain.resolve.alias.merge(alias);
     }

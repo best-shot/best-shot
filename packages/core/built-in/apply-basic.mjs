@@ -17,8 +17,6 @@ export function apply({
   },
 }) {
   return (chain) => {
-    chain.amd(false);
-
     if (contextInput) {
       chain.context(resolve(cwd, contextInput));
     }
@@ -96,19 +94,14 @@ export function apply({
 
     const { cachePath } = chain.get('x');
 
-    chain.experiments
-      .cacheUnaffected(true)
-      .asyncWebAssembly(true)
-      .syncWebAssembly(true)
-      .topLevelAwait(true)
-      .buildHttp({
-        allowedUris: [],
-        lockfileLocation: cachePath('locks/lock'),
-        cacheLocation: cachePath('locks/cache'),
-        upgrade: true,
-        frozen: false,
-        ...buildHttp,
-      });
+    chain.experiments.buildHttp({
+      allowedUris: [],
+      lockfileLocation: cachePath('locks/lock'),
+      cacheLocation: cachePath('locks/cache'),
+      upgrade: true,
+      frozen: false,
+      ...buildHttp,
+    });
 
     if (useModule) {
       chain.experiments.outputModule(true);
@@ -122,11 +115,7 @@ export function apply({
       });
     }
 
-    chain.output.hashDigestLength(8);
-
-    chain.output.assetModuleFilename(
-      mode === 'development' ? '[path][name][ext]' : '[contenthash][ext]',
-    );
+    chain.output.assetModuleFilename('[path][name][ext]');
 
     chain.output.merge(output);
 
@@ -141,7 +130,7 @@ export function apply({
       amd: false,
       requireJs: false,
       system: false,
-      importMeta: !isNode,
+      importMeta: isNode ? useModule : true,
       importMetaContext: true,
     });
 

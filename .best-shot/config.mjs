@@ -1,7 +1,6 @@
-import { join } from 'node:path';
-
 export const config = {
   presets: ['style'],
+  context: 'src',
   target: [
     // 'node20',
     'es2024',
@@ -21,8 +20,6 @@ export const config = {
   },
   dataURI: true,
   chain(chain) {
-    chain.context(join(process.cwd(), 'src'));
-
     chain.module
       .rule('vue')
       .test(/\.vue$/)

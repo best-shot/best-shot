@@ -1,5 +1,4 @@
 import { createRequire } from 'node:module';
-import { relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import extToRegexp from 'ext-to-regexp';
@@ -10,14 +9,12 @@ export function apply({
   const Require = createRequire(import.meta.url);
 
   return async (chain) => {
-    const context = chain.get('context');
-
     chain.module
       .rule('vue')
       .after('esm')
       .test(extToRegexp({ extname: ['vue'] }))
       .use('vue-loader')
-      .loader('@best-shot/vue-loader')
+      .loader(fileURLToPath(import.meta.resolve('@best-shot/vue-loader')))
       .options({
         ...other,
         hotReload: Boolean(chain.devServer.get('hot')) || false,
@@ -29,13 +26,6 @@ export function apply({
             : compilerOptions.isCustomElement,
         },
       });
-
-    chain.resolveLoader.modules.prepend(
-      relative(
-        context,
-        resolve(fileURLToPath(import.meta.url), '../node_modules'),
-      ),
-    );
 
     const VueLoaderPlugin = Require(
       '@best-shot/vue-loader/dist/pluginWebpack5.js',

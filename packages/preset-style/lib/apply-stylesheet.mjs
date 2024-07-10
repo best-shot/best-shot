@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url';
+
 import extToRegexp from 'ext-to-regexp';
 import { haveLocalDependencies } from 'settingz';
 import slashToRegexp from 'slash-to-regexp';
@@ -9,7 +11,7 @@ const auto = (resourcePath, resourceQuery) =>
 function batchPostCSS(rule) {
   rule
     .use('postcss-loader')
-    .loader('postcss-loader')
+    .loader(fileURLToPath(import.meta.resolve('postcss-loader')))
     .options({
       postcssOptions: {
         plugins: [
@@ -20,18 +22,20 @@ function batchPostCSS(rule) {
     });
 }
 
-function batch(rule, { hot, mode, MiniCssExtractPlugin }) {
+function batch(rule, { hot, mode, MiniCssExtractPlugin, assetModuleFilename }) {
   rule
     .rule('all')
     .oneOf('url')
     .before('not-url')
     .dependency('url')
-    .generator.filename('[contenthash].css');
+    .generator.filename(assetModuleFilename.replace('[ext]', '.css'));
 
   const parent = rule.rule('all').oneOf('not-url').dependency({ not: 'url' });
 
   if (hot) {
-    parent.use('style-loader').loader('style-loader');
+    parent
+      .use('style-loader')
+      .loader(fileURLToPath(import.meta.resolve('style-loader')));
   } else {
     parent.use('extract-css').loader(MiniCssExtractPlugin.loader).options({
       defaultExport: true,
@@ -40,7 +44,7 @@ function batch(rule, { hot, mode, MiniCssExtractPlugin }) {
 
   parent
     .use('css-loader')
-    .loader('css-loader')
+    .loader(fileURLToPath(import.meta.resolve('css-loader')))
     .options({
       importLoaders: 3,
       modules: {
@@ -106,7 +110,9 @@ export function applyStylesheet({ dataURI = false }) {
       .after('esm')
       .test(extToRegexp({ extname: ['css', 'scss', 'sass', 'less'] }));
 
-    batch(rule1, { mode, hot, MiniCssExtractPlugin });
+    const assetModuleFilename = chain.output.get('assetModuleFilename');
+
+    batch(rule1, { mode, hot, MiniCssExtractPlugin, assetModuleFilename });
 
     rule1.rule('postcss').batch(batchPostCSS);
 
@@ -124,7 +130,7 @@ export function applyStylesheet({ dataURI = false }) {
         .end()
         .batch(batchPostCSS)
         .use('postcss-loader')
-        .loader('postcss-loader')
+        .loader(fileURLToPath(import.meta.resolve('postcss-loader')))
         .tap((options) => ({
           ...options,
           postcssOptions: {

@@ -1,9 +1,11 @@
+import { fileURLToPath } from 'node:url';
+
 import extToRegexp from 'ext-to-regexp';
 
 function batchLess(rule) {
   rule
     .use('less-loader')
-    .loader('less-loader')
+    .loader(fileURLToPath(import.meta.resolve('less-loader')))
     .options({
       lessOptions: {
         rewriteUrls: 'local',
@@ -14,14 +16,14 @@ function batchLess(rule) {
 function batchSass(rule) {
   rule
     .use('resolve-url-loader')
-    .loader('resolve-url-loader')
+    .loader(fileURLToPath(import.meta.resolve('resolve-url-loader')))
     .options({
       sourceMap: true,
       removeCR: true,
     })
     .end()
     .use('sass-loader')
-    .loader('sass-loader')
+    .loader(fileURLToPath(import.meta.resolve('sass-loader')))
     .options({
       sourceMap: true,
     });

@@ -5,7 +5,7 @@ import { setOutputName } from './lib/apply-set-output-name.mjs';
 import { splitChunks } from './lib/apply-split-chunks.mjs';
 
 function addHash(filename) {
-  return filename.includes('[contenthash')
+  return filename.includes('contenthash')
     ? filename
     : suffix(filename, '.[contenthash]');
 }
@@ -14,7 +14,7 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
-export function apply({ config: { html, vendors, optimization = {} } }) {
+export function apply({ cwd, config: { html, vendors, optimization = {} } }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const minimize = chain.optimization.get('minimize');
@@ -39,7 +39,7 @@ export function apply({ config: { html, vendors, optimization = {} } }) {
       await splitChunks({ vendors })(chain);
     }
 
-    await setHtml({ html })(chain);
+    await setHtml({ cwd, html })(chain);
 
     if (mode === 'production') {
       const {

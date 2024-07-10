@@ -1,8 +1,12 @@
+import { fileURLToPath } from 'node:url';
+
 import extToRegexp from 'ext-to-regexp';
 
 export function apply() {
   return async (chain) => {
     const mode = chain.get('mode');
+
+    const assetModuleFilename = chain.output.get('assetModuleFilename');
 
     function set({ name, extname, ext, raw }) {
       const io = chain.module.rule(name).test(extToRegexp({ extname }));
@@ -11,9 +15,7 @@ export function apply() {
 
       if (ext) {
         io.oneOf('url').generator.filename(
-          mode === 'production'
-            ? `[contenthash:8].${ext}`
-            : `[path][name].${ext}`,
+          assetModuleFilename.replace('[ext]', `.${ext}`),
         );
       }
 
@@ -28,7 +30,7 @@ export function apply() {
           .oneOf('query')
           .generator.filename(
             mode === 'production'
-              ? `[contenthash:8].${ext}`
+              ? `[contenthash].${ext}`
               : `[path][name].${ext}`,
           );
       }
@@ -58,7 +60,7 @@ export function apply() {
     chain.module
       .rule('yaml')
       .use('yaml-loader')
-      .loader('yaml-loader')
+      .loader(fileURLToPath(import.meta.resolve('yaml-loader')))
       .options({ asJSON: true });
 
     const minimize = chain.optimization.get('minimize');

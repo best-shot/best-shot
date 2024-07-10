@@ -39,7 +39,7 @@
   "dependencies": {
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
-    "vue": "^3.4.31"
+    "vue": "^3.4.27"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
@@ -74,7 +74,7 @@
   },
   "packageManager": "pnpm@9.4.0",
   "engines": {
-    "node": ">=20.0.0 || ^18.12.0"
+    "node": ">=20.6.0 || ^18.19.0"
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"
@@ -84,7 +84,7 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "best-shot watch",
+    "exec": "na run inspect",
     "ext": "js,cjs,mjs,json",
     "watch": [
       "packages/**",

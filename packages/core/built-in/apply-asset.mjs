@@ -4,8 +4,6 @@ import extToRegexp from 'ext-to-regexp';
 
 export function apply() {
   return async (chain) => {
-    const mode = chain.get('mode');
-
     const assetModuleFilename = chain.output.get('assetModuleFilename');
 
     function set({ name, extname, ext, raw }) {
@@ -28,11 +26,7 @@ export function apply() {
       if (ext) {
         io.oneOf('not-url')
           .oneOf('query')
-          .generator.filename(
-            mode === 'production'
-              ? `[contenthash].${ext}`
-              : `[path][name].${ext}`,
-          );
+          .generator.filename(assetModuleFilename.replace('[ext]', `.${ext}`));
       }
 
       io.oneOf('not-url').oneOf('raw').type(raw);

@@ -31,9 +31,7 @@ export function apply({ cwd, config: { html, vendors, optimization = {} } }) {
     chain
       .when(minimize, setOutputName({ style: addMin, script: addMin }))
       .when(!hot, setOutputName({ style: addHash, script: addHash }))
-      .when(
-        optimization.splitChunks !== false ||
-          chain.optimization.get('runtimeChunk'),
+      .batch(
         setOutputName({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,

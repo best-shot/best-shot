@@ -118,7 +118,9 @@ export function applyStylesheet({ dataURI = false }) {
 
       rule2
         .type('asset/resource')
-        .generator.filename('[runtime].css')
+        .generator.filename((args) => {
+          return `${args.runtime}.css`;
+        })
         .end()
         .batch(batchPostCSS)
         .use('postcss-loader')

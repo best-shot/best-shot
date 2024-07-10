@@ -1,6 +1,5 @@
 {
-  "private": true,
-  "name": "@best-shot/split-loader",
+  "name": "@best-shot/sfc-split-loader",
   "version": "0.0.0",
   "license": "MIT",
   "keywords": [
@@ -10,8 +9,9 @@
   "main": "index.cjs",
   "type": "commonjs",
   "dependencies": {
-    "@vue/compiler-sfc": "^3.4.27",
-    "slash": "^3.0.0"
+    "@vue/compiler-sfc": "^3.4.31",
+    "slash": "^3.0.0",
+    "yaml": "^2.4.5"
   },
   "peerDependencies": {
     "@best-shot/core": "workspace:~"

@@ -39,7 +39,7 @@
   "dependencies": {
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
-    "vue": "^3.4.27"
+    "vue": "^3.4.31"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
@@ -69,7 +69,7 @@
     "@best-shot/preset-style": "workspace:~",
     "@best-shot/preset-vue": "workspace:~",
     "@best-shot/preset-web": "workspace:~",
-    "@best-shot/split-loader": "workspace:~",
+    "@best-shot/sfc-split-loader": "workspace:~",
     "@types/react": "~18.3.3"
   },
   "packageManager": "pnpm@9.4.0",
@@ -84,7 +84,7 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "best-shot inspect --stamp test",
+    "exec": "best-shot watch",
     "ext": "js,cjs,mjs,json",
     "watch": [
       "packages/**",

@@ -8,6 +8,7 @@ export const config = {
   ],
   entry: {
     app: './app.vue',
+    'pages/home/index': './pages/home/index.vue',
   },
   output: {
     module: true,
@@ -26,6 +27,6 @@ export const config = {
       .rule('vue')
       .test(/\.vue$/)
       .use('split')
-      .loader('@best-shot/split-loader');
+      .loader('@best-shot/sfc-split-loader');
   },
 };

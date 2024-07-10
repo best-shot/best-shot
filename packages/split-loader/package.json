@@ -9,11 +9,13 @@
   "main": "index.cjs",
   "type": "commonjs",
   "dependencies": {
+    "@padcom/vue-ast-serializer": "^0.0.1",
     "@vue/compiler-sfc": "^3.4.31",
     "slash": "^3.0.0",
     "yaml": "^2.4.5"
   },
   "peerDependencies": {
+    "prettier": "^3.3.2",
     "webpack": "^5.92.1"
   },
   "engines": {

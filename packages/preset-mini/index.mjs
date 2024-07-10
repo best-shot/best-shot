@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url';
 
 import { getAllPages, readYAML } from './helper.mjs';
 
-export function apply() {
+export function apply({ config: { appConfig } }) {
   return (chain) => {
     chain.module
       .rule('vue')
@@ -14,17 +14,19 @@ export function apply() {
 
     const context = chain.get('context');
 
-    const io = readYAML('app.yaml', context);
-    const allPages = getAllPages(io);
+    if (appConfig) {
+      const io = readYAML('app.yaml', context);
+      const allPages = getAllPages(io);
 
-    chain
-      .entry('app')
-      .add('./app.js')
-      .add('./app.css')
-      .add('./app.yaml?to-url');
+      chain
+        .entry('app')
+        .add('./app.js')
+        .add('./app.css')
+        .add('./app.yaml?to-url');
 
-    for (const page of allPages) {
-      chain.entry(page).add(`./${page}.vue`);
+      for (const page of allPages) {
+        chain.entry(page).add(`./${page}.vue`);
+      }
     }
   };
 }
@@ -32,6 +34,9 @@ export function apply() {
 export const name = 'preset-mini';
 
 export const schema = {
+  appConfig: {
+    default: false,
+  },
   target: {
     default: 'es2024',
   },

@@ -4,6 +4,7 @@ const { parse } = require('@vue/compiler-sfc');
 const { relative } = require('node:path');
 const slash = require('slash');
 const yaml = require('yaml');
+const { action } = require('./action.cjs');
 
 function toDataURI(string, mime = 'text/plain') {
   return string ? `data:${mime};base64,${btoa(string.trim())}` : undefined;
@@ -43,8 +44,10 @@ module.exports = function loader(source) {
     relative(this.rootContext, this.resourcePath),
   ).replace(/\.vue$/, '');
 
-  if (template?.content) {
-    this.emitFile(`${resourcePath}.wxml`, template.content, 'utf8');
+  if (template?.ast) {
+    const tpl = action(template);
+
+    this.emitFile(`${resourcePath}.wxml`, tpl, 'utf8');
   }
 
   if (config?.content) {

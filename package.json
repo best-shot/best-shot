@@ -16,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
+  "type": "module",
   "scripts": {
     "analyze": "best-shot analyze",
     "build": "best-shot prod",

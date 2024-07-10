@@ -522,9 +522,15 @@ importers:
 
   packages/split-loader:
     dependencies:
+      '@padcom/vue-ast-serializer':
+        specifier: ^0.0.1
+        version: 0.0.1(@vue/compiler-core@3.4.31)(@vue/compiler-sfc@3.4.31)
       '@vue/compiler-sfc':
         specifier: ^3.4.31
         version: 3.4.31
+      prettier:
+        specifier: ^3.3.2
+        version: 3.3.2
       slash:
         specifier: ^3.0.0
         version: 3.0.0
@@ -1493,6 +1499,12 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@padcom/vue-ast-serializer@0.0.1':
+    resolution: {integrity: sha512-SGoG3gCOWpibNUDL1UDxtLZRhMcpLKsnslHQv23/4UghFmlwmsVlkzHcB8T9pOlxnKi4MB6rhnMymjd+SSPXug==}
+    peerDependencies:
+      '@vue/compiler-core': ^3.0.0
+      '@vue/compiler-sfc': ^3.0.0
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -7071,6 +7083,11 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
+
+  '@padcom/vue-ast-serializer@0.0.1(@vue/compiler-core@3.4.31)(@vue/compiler-sfc@3.4.31)':
+    dependencies:
+      '@vue/compiler-core': 3.4.31
+      '@vue/compiler-sfc': 3.4.31
 
   '@pkgjs/parseargs@0.11.0':
     optional: true

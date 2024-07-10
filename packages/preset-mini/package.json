@@ -1,0 +1,49 @@
+{
+  "name": "@best-shot/preset-mini",
+  "version": "0.0.0",
+  "description": "A `best-shot` preset for mini program project",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "keywords": [
+    "best-shot",
+    "miniprogram",
+    "mp",
+    "weapp",
+    "webpack",
+    "wechat",
+    "weixin"
+  ],
+  "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-mini",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/best-shot/best-shot.git",
+    "directory": "packages/preset-mini"
+  },
+  "bugs": {
+    "url": "https://github.com/best-shot/best-shot/issues"
+  },
+  "main": "index.mjs",
+  "type": "module",
+  "dependencies": {
+    "@best-shot/sfc-split-loader": "workspace:~",
+    "yaml": "^2.4.5"
+  },
+  "peerDependencies": {
+    "@best-shot/core": "workspace:~",
+    "@best-shot/preset-babel": "workspace:~",
+    "@best-shot/preset-style": "workspace:~"
+  },
+  "engines": {
+    "node": ">=20.6.0 || ^18.19.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "x-readme": {
+    "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"
+  }
+}

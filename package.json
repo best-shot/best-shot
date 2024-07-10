@@ -65,6 +65,7 @@
     "@best-shot/inspector": "workspace:~",
     "@best-shot/preset-asset": "workspace:~",
     "@best-shot/preset-babel": "workspace:~",
+    "@best-shot/preset-mini": "workspace:~",
     "@best-shot/preset-react": "workspace:~",
     "@best-shot/preset-style": "workspace:~",
     "@best-shot/preset-vue": "workspace:~",

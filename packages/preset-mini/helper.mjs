@@ -3,8 +3,11 @@ import { resolve } from 'node:path';
 
 import { parse } from 'yaml';
 
-export const readYAML = (path) =>
-  parse(readFileSync(resolve(process.cwd(), path), 'utf8'));
+export function readYAML(path, base = process.cwd()) {
+  const file = readFileSync(resolve(base, path), 'utf8');
+
+  return parse(file);
+}
 
 function unique(...arr) {
   return [...new Set(arr)];

@@ -29,6 +29,9 @@ importers:
       '@best-shot/preset-babel':
         specifier: workspace:~
         version: link:packages/preset-babel
+      '@best-shot/preset-mini':
+        specifier: workspace:~
+        version: link:packages/preset-mini
       '@best-shot/preset-react':
         specifier: workspace:~
         version: link:packages/preset-react
@@ -352,6 +355,24 @@ importers:
         specifier: ^0.0.4
         version: 0.0.4
 
+  packages/preset-mini:
+    dependencies:
+      '@best-shot/core':
+        specifier: workspace:~
+        version: link:../core
+      '@best-shot/preset-babel':
+        specifier: workspace:~
+        version: link:../preset-babel
+      '@best-shot/preset-style':
+        specifier: workspace:~
+        version: link:../preset-style
+      '@best-shot/sfc-split-loader':
+        specifier: workspace:~
+        version: link:../split-loader
+      yaml:
+        specifier: ^2.4.5
+        version: 2.4.5
+
   packages/preset-react:
     dependencies:
       '@babel/plugin-transform-react-constant-elements':
@@ -501,15 +522,15 @@ importers:
 
   packages/split-loader:
     dependencies:
-      '@best-shot/core':
-        specifier: workspace:~
-        version: link:../core
       '@vue/compiler-sfc':
         specifier: ^3.4.31
         version: 3.4.31
       slash:
         specifier: ^3.0.0
         version: 3.0.0
+      webpack:
+        specifier: ^5.92.1
+        version: 5.92.1
       yaml:
         specifier: ^2.4.5
         version: 2.4.5

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/sfc-split-loader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "keywords": [
     "loader",
@@ -14,7 +14,7 @@
     "yaml": "^2.4.5"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:~"
+    "webpack": "^5.92.1"
   },
   "engines": {
     "node": ">=20.6.0 || ^18.19.0"

@@ -4,6 +4,14 @@ import { getAllPages, readYAML } from './helper.mjs';
 
 export function apply({ config: { appConfig } }) {
   return (chain) => {
+    const minimize = chain.optimization.get('minimize');
+
+    if (minimize) {
+      chain.optimization
+        .minimizer('terser')
+        .tap(([options]) => [{ exclude: /miniprogram_npm/, ...options }]);
+    }
+
     chain.module
       .rule('vue')
       .test(/\.vue$/)
@@ -57,11 +65,6 @@ export const schema = {
       },
       chunkLoading: {
         default: 'require',
-      },
-      clean: {
-        default: {
-          keep: 'miniprogram_npm',
-        },
       },
     },
   },

@@ -4,7 +4,7 @@ function braces(str) {
   return `{{ ${str.trim()} }}`;
 }
 
-function prop(name, content, brace = true) {
+function asProp(name, content, brace = true) {
   return {
     type: 6,
     name,
@@ -19,50 +19,74 @@ const actions = {
 };
 
 function bind(name, content) {
-  return prop(`bind:${actions[name] || name}`, content, false);
+  return asProp(`bind:${actions[name] || name}`, content, false);
 }
 
-function transformProps(props) {
-  if (props.type === 7) {
-    switch (props.name) {
-      case 'on': {
-        return bind(props.arg.content, props.exp.content);
-      }
-      case 'bind': {
-        if (props.arg.content === 'key') {
-          return prop('wx:key', props.exp.content, false);
-        }
-
-        return prop(props.arg.content, props.exp.content);
-      }
-      case 'model': {
-        return prop(`model:${props.arg.content}`, props.exp.content);
-      }
+function transformProps1(prop) {
+  if (prop.type === 7) {
+    // eslint-disable-next-line sonarjs/no-small-switch
+    switch (prop.name) {
       case 'for': {
-        const { source, value, key } = props.forParseResult;
+        const { source, value, key } = prop.forParseResult;
 
         return [
-          prop('wx:for', source.content),
-          prop('wx:for-item', value.content, false),
-          key?.content ? prop('wx:for-index', key?.content, false) : undefined,
+          asProp('wx:for', source.content),
+          asProp('wx:for-item', value.content, false),
+          key?.content
+            ? asProp('wx:for-index', key?.content, false)
+            : undefined,
         ].filter(Boolean);
       }
+      default:
+    }
+  }
+
+  return prop;
+}
+
+function transformProps2(prop, index, props) {
+  if (prop.type === 7) {
+    switch (prop.name) {
+      case 'on': {
+        return bind(prop.arg.content, prop.exp.content);
+      }
+      case 'bind': {
+        if (prop.arg.content === 'key') {
+          const io = props.find((item) => item.name === 'wx:for-item');
+
+          return asProp(
+            'wx:key',
+            io?.value?.content
+              ? prop.exp.content.replace(
+                  new RegExp(`^${io.value.content}.`),
+                  '',
+                )
+              : prop.exp.content,
+            false,
+          );
+        }
+
+        return asProp(prop.arg.content, prop.exp.content);
+      }
+      case 'model': {
+        return asProp(`model:${prop.arg.content}`, prop.exp.content);
+      }
       case 'if': {
-        return prop('wx:if', props.exp.content);
+        return asProp('wx:if', prop.exp.content);
       }
       case 'else-if': {
-        return prop('wx:elif', props.exp.content);
+        return asProp('wx:elif', prop.exp.content);
       }
       case 'else': {
-        return prop('wx:else');
+        return asProp('wx:else');
       }
       default: {
-        console.log(props);
+        console.log(prop);
       }
     }
   }
 
-  return props;
+  return prop;
 }
 
 function traverse(ast, enter) {
@@ -103,7 +127,20 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
     /* eslint-enable no-param-reassign */
     if (node.props.length > 0) {
       for (const [index, theProp] of Object.entries(node.props)) {
-        const transformed = transformProps(theProp);
+        const transformed = transformProps1(theProp);
+
+        if (Array.isArray(transformed)) {
+          const [first, ...rest] = transformed;
+          node.props.splice(index, 1, first);
+
+          node.props.push(...rest);
+        } else {
+          node.props.splice(index, 1, transformed);
+        }
+      }
+
+      for (const [index, theProp] of Object.entries(node.props)) {
+        const transformed = transformProps2(theProp, index, node.props);
 
         if (Array.isArray(transformed)) {
           const [first, ...rest] = transformed;

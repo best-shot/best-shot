@@ -84,12 +84,23 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
     if (tagMatcher && node.tag.startsWith(tagMatcher)) {
       tags.add(node.tag);
     }
-
-    if (node.tag === 'template') {
-      // eslint-disable-next-line no-param-reassign
-      node.tag = 'block';
+    /* eslint-disable no-param-reassign */
+    switch (node.tag) {
+      case 'template': {
+        node.tag = 'block';
+        break;
+      }
+      case 'span': {
+        node.tag = 'text';
+        break;
+      }
+      case 'div': {
+        node.tag = 'view';
+        break;
+      }
+      default:
     }
-
+    /* eslint-enable no-param-reassign */
     if (node.props.length > 0) {
       for (const [index, theProp] of Object.entries(node.props)) {
         const transformed = transformProps(theProp);

@@ -19,20 +19,20 @@
   "type": "module",
   "scripts": {
     "analyze": "best-shot analyze",
-    "build": "best-shot prod",
+    "build:dev": "best-shot dev",
+    "build:prod": "best-shot prod",
+    "build:serve": "best-shot serve",
+    "build:watch": "best-shot watch",
     "clear": "best-shot clear",
-    "dev": "best-shot dev",
     "inspect": "best-shot inspect --stamp test",
     "lint:staged": "nice-move lint staged",
     "lint:type": "tsc --noEmit",
     "lint:version": "syncpack lint",
     "prepare": "nice-move git hooks",
-    "serve": "best-shot serve",
     "snapshot": "ava --fail-fast -u -w",
     "test": "ava --fail-fast",
     "try": "nodemon",
-    "version:pin": "syncpack fix-mismatches",
-    "watch": "best-shot watch"
+    "version:pin": "syncpack fix-mismatches"
   },
   "workspaces": [
     "packages/*"
@@ -86,7 +86,7 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "na run inspect",
+    "exec": "na run build:dev",
     "ext": "js,cjs,mjs,json",
     "watch": [
       "packages/**",

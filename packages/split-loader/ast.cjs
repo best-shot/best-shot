@@ -106,7 +106,10 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
         const transformed = transformProps(theProp);
 
         if (Array.isArray(transformed)) {
-          node.props.splice(index, 1, ...transformed);
+          const [first, ...rest] = transformed;
+          node.props.splice(index, 1, first);
+
+          node.props.push(...rest);
         } else {
           node.props.splice(index, 1, transformed);
         }

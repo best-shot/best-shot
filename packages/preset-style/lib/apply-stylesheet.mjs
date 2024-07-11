@@ -22,13 +22,18 @@ function batchPostCSS(rule) {
     });
 }
 
-function batch(rule, { hot, mode, MiniCssExtractPlugin, assetModuleFilename }) {
-  rule
-    .rule('all')
-    .oneOf('url')
-    .before('not-url')
-    .dependency('url')
-    .generator.filename(assetModuleFilename.replace('[ext]', '.css'));
+function batch(
+  rule,
+  { hot, mode, MiniCssExtractPlugin, assetModuleFilename, extname },
+) {
+  if (assetModuleFilename) {
+    rule
+      .rule('all')
+      .oneOf('url')
+      .before('not-url')
+      .dependency('url')
+      .generator.filename(assetModuleFilename.replace('[ext]', extname));
+  }
 
   const parent = rule.rule('all').oneOf('not-url').dependency({ not: 'url' });
 
@@ -58,7 +63,7 @@ function batch(rule, { hot, mode, MiniCssExtractPlugin, assetModuleFilename }) {
     });
 }
 
-export function applyStylesheet({ dataURI = false }) {
+export function applyStylesheet({ dataURI = false, extname }) {
   return async (chain) => {
     const minimize = chain.optimization.get('minimize');
 
@@ -86,7 +91,7 @@ export function applyStylesheet({ dataURI = false }) {
     if (!hot) {
       chain.plugin('extract-css').use(MiniCssExtractPlugin, [
         {
-          filename: '[name].css',
+          filename: `[name]${extname}`,
           // chunkFilename: '[id].css',
           ignoreOrder: true,
         },
@@ -112,7 +117,13 @@ export function applyStylesheet({ dataURI = false }) {
 
     const assetModuleFilename = chain.output.get('assetModuleFilename');
 
-    batch(rule1, { mode, hot, MiniCssExtractPlugin, assetModuleFilename });
+    batch(rule1, {
+      mode,
+      hot,
+      extname,
+      MiniCssExtractPlugin,
+      assetModuleFilename: dataURI ? false : assetModuleFilename,
+    });
 
     rule1.rule('postcss').batch(batchPostCSS);
 
@@ -124,9 +135,7 @@ export function applyStylesheet({ dataURI = false }) {
 
       rule2
         .type('asset/resource')
-        .generator.filename((args) => {
-          return `${args.runtime}.css`;
-        })
+        .generator.filename((args) => args.runtime + extname)
         .end()
         .batch(batchPostCSS)
         .use('postcss-loader')

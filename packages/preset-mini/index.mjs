@@ -38,7 +38,7 @@ export const schema = {
     default: false,
   },
   target: {
-    default: 'es2024',
+    default: ['es2024', 'web'],
   },
   context: {
     default: 'src',
@@ -58,6 +58,11 @@ export const schema = {
       chunkLoading: {
         default: 'require',
       },
+      clean: {
+        default: {
+          keep: 'miniprogram_npm',
+        },
+      },
     },
   },
   dataURI: {
@@ -68,6 +73,14 @@ export const schema = {
     properties: {
       splitChunks: {
         default: true,
+      },
+    },
+  },
+  css: {
+    type: 'object',
+    properties: {
+      extname: {
+        default: '.wxss',
       },
     },
   },

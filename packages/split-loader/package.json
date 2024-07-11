@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/sfc-split-loader",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "keywords": [
     "loader",
@@ -11,11 +11,11 @@
   "dependencies": {
     "@padcom/vue-ast-serializer": "^0.0.1",
     "@vue/compiler-sfc": "^3.4.31",
+    "html-format": "^1.1.7",
     "slash": "^3.0.0",
     "yaml": "^2.4.5"
   },
   "peerDependencies": {
-    "prettier": "^3.3.2",
     "webpack": "^5.92.1"
   },
   "engines": {

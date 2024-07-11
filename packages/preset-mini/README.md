@@ -17,3 +17,14 @@ A `best-shot` preset for mini program project.
 ```bash
 npm install @best-shot/preset-mini --save-dev
 ```
+
+## Usage
+
+```mjs
+// example: .best-shot/config.mjs
+export default {
+  presets: ['babel', 'style', 'mini'],
+  output: { path: 'dist' },
+  appConfig: true
+};
+```

@@ -1,5 +1,5 @@
 export const config = {
-  presets: ['babel', 'mini'],
+  presets: ['babel', 'style', 'mini'],
   appConfig: false,
   context: 'src',
   chain(chain) {

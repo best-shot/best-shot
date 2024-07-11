@@ -528,9 +528,9 @@ importers:
       '@vue/compiler-sfc':
         specifier: ^3.4.31
         version: 3.4.31
-      prettier:
-        specifier: ^3.3.2
-        version: 3.3.2
+      html-format:
+        specifier: ^1.1.7
+        version: 1.1.7
       slash:
         specifier: ^3.0.0
         version: 3.0.0
@@ -3328,6 +3328,9 @@ packages:
 
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
+
+  html-format@1.1.7:
+    resolution: {integrity: sha512-ba6woq8dni6HkfRFpsu27PrCM/sxEz9KrVW22xVyMbXsZHbSpJE6Z1gAl7OeqEfU92MKYb9Pn7MnIyqV5tJHKA==}
 
   html-minifier-terser@6.1.0:
     resolution: {integrity: sha512-YXxSlJBZTP7RS3tWnQw74ooKa6L9b9i9QYXY21eUEvhZ3u9XLfv6OnFsQq6RxkhHygsaUMvYsZRV5rU/OVNZxw==}
@@ -9189,6 +9192,8 @@ snapshots:
   html-entities@2.5.2: {}
 
   html-escaper@2.0.2: {}
+
+  html-format@1.1.7: {}
 
   html-minifier-terser@6.1.0:
     dependencies:

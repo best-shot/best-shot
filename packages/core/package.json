@@ -44,7 +44,7 @@
     "yaml-loader": "^0.8.1"
   },
   "peerDependencies": {
-    "webpack": "^5.92.1"
+    "webpack": "^5.93.0"
   },
   "engines": {
     "node": ">=20.6.0 || ^18.19.0"

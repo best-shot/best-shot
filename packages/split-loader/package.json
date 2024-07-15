@@ -16,8 +16,8 @@
     "yaml": "^2.4.5"
   },
   "peerDependencies": {
-    "prettier": "^3.3.2",
-    "webpack": "^5.92.1"
+    "prettier": "^3.3.3",
+    "webpack": "^5.93.0"
   },
   "engines": {
     "node": ">=20.6.0 || ^18.19.0"

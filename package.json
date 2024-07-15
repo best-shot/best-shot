@@ -74,7 +74,7 @@
     "@best-shot/sfc-split-loader": "workspace:~",
     "@types/react": "~18.3.3"
   },
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.5.0",
   "engines": {
     "node": ">=20.6.0 || ^18.19.0"
   },

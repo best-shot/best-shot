@@ -540,9 +540,6 @@ importers:
       '@padcom/vue-ast-serializer':
         specifier: ^0.0.1
         version: 0.0.1(@vue/compiler-core@3.4.34)(@vue/compiler-sfc@3.4.34)
-      '@prettier/sync':
-        specifier: ^0.5.2
-        version: 0.5.2(prettier@3.3.3)
       '@vue/compiler-sfc':
         specifier: ^3.4.27
         version: 3.4.34
@@ -1548,11 +1545,6 @@ packages:
     resolution: {integrity: sha512-Uf/6/+9ez6z/IvZErgobZ2G9n1ybxF5BhCd7eMcKqfoWuOzzNUxBipNo3QAP8kRC1VD18TIo84no7LhqtyDcTg==}
     peerDependencies:
       prettier: ^3.0.0
-
-  '@prettier/sync@0.5.2':
-    resolution: {integrity: sha512-Yb569su456XNx5BsH/Vyem7xD6g/y9iLmLUzRKM1a/dhU/D7HqqvkAG72znulXlMXztbV0iiu9O5AL8K98TzZQ==}
-    peerDependencies:
-      prettier: '*'
 
   '@rollup/pluginutils@4.2.1':
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
@@ -3935,9 +3927,6 @@ packages:
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
-
-  make-synchronized@0.2.9:
-    resolution: {integrity: sha512-4wczOs8SLuEdpEvp3vGo83wh8rjJ78UsIk7DIX5fxdfmfMJGog4bQzxfvOwq7Q3yCHLC4jp1urPHIxRS/A93gA==}
 
   map-obj@1.0.1:
     resolution: {integrity: sha512-7N/q3lyZ+LVCp7PzuxrJr4KMbBE2hW7BT7YNia330OFxIf4d3r5zVpicP2650l7CPN6RM9zOJRl3NGpqSiw3Eg==}
@@ -7127,11 +7116,6 @@ snapshots:
       '@xml-tools/parser': 1.0.11
       prettier: 3.3.3
 
-  '@prettier/sync@0.5.2(prettier@3.3.3)':
-    dependencies:
-      make-synchronized: 0.2.9
-      prettier: 3.3.3
-
   '@rollup/pluginutils@4.2.1':
     dependencies:
       estree-walker: 2.0.2
@@ -9737,8 +9721,6 @@ snapshots:
   make-dir@3.1.0:
     dependencies:
       semver: 6.3.1
-
-  make-synchronized@0.2.9: {}
 
   map-obj@1.0.1: {}
 

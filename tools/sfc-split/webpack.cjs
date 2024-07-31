@@ -34,8 +34,6 @@ module.exports = class SfcSplitPlugin {
             .map((path) => `import "./${basename(path)}";`)
             .join('\n');
 
-          console.log(paths, mock);
-
           this.virtualModules.writeModule(Module.resource, mock);
         }
       });
@@ -61,7 +59,7 @@ module.exports = class SfcSplitPlugin {
     }
 
     if (template?.content) {
-      const path = this.inject(filename, 'wxml', action(template));
+      const path = this.inject(filename, 'wxml', action(template).tpl);
       paths.push(path);
     }
 

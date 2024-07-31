@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url';
+
 import { getAllPages, readYAML } from './helper.mjs';
 
 export function apply({ config: { appConfig } }) {
@@ -19,7 +21,18 @@ export function apply({ config: { appConfig } }) {
     chain.module
       .rule('wxml')
       .test(/\.wxml$/)
-      .type('asset/resource');
+      .type('asset/resource')
+      .use('prettier-loader')
+      .loader(
+        fileURLToPath(
+          import.meta.resolve(
+            '@best-shot/sfc-split-plugin/prettier-loader.cjs',
+          ),
+        ),
+      )
+      .options({
+        parser: 'html',
+      });
 
     chain.plugin('sfc-split').use('@best-shot/sfc-split-plugin/webpack.cjs');
 

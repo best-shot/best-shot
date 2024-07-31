@@ -2,24 +2,14 @@
 
 const { transform } = require('./ast.cjs');
 const { serializeTemplate } = require('@padcom/vue-ast-serializer');
-const synchronizedPrettier = require('@prettier/sync');
 
-exports.action = function action(template) {
-  const { ast } = transform(template.ast);
+exports.action = function action(template, options) {
+  const { ast, tags } = transform(template.ast, options);
 
-  const tmp1 = serializeTemplate({ ast }).replace(
+  const tpl = serializeTemplate({ ast }).replace(
     /^<template>([\S\s]+)<\/template>$/,
     '$1',
   );
 
-  try {
-    return synchronizedPrettier.format(tmp1, {
-      parser: 'html',
-      htmlWhitespaceSensitivity: 'ignore',
-    });
-  } catch (error) {
-    console.warn('Error:', error);
-
-    return tmp1;
-  }
+  return { tpl, tags };
 };

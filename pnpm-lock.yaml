@@ -543,18 +543,21 @@ importers:
       '@vue/compiler-sfc':
         specifier: ^3.4.27
         version: 3.4.34
+      deepmerge-ts:
+        specifier: ^7.1.0
+        version: 7.1.0
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
-      slash:
-        specifier: ^3.0.0
-        version: 3.0.0
       webpack:
         specifier: ^5.93.0
         version: 5.93.0
       webpack-virtual-modules:
         specifier: ^0.6.2
         version: 0.6.2
+      yaml:
+        specifier: ^2.5.0
+        version: 2.5.0
 
 packages:
 
@@ -2702,6 +2705,10 @@ packages:
 
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
+
+  deepmerge-ts@7.1.0:
+    resolution: {integrity: sha512-q6bNsfNBtgr8ZOQqmZbl94MmYWm+QcDNIkqCxVWiw1vKvf+y/N2dZQKdnDXn4c5Ygt/y63tDof6OCN+2YwWVEg==}
+    engines: {node: '>=16.0.0'}
 
   deepmerge@1.5.2:
     resolution: {integrity: sha512-95k0GDqvBjZavkuvzx/YqVLv/6YYa17fz6ILMSf7neqQITCPbnfEnQvEgMPNjH4kgobe7+WIL0yJEHku+H3qtQ==}
@@ -5801,7 +5808,7 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
   vary@1.1.2:
-    resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
+    resolution: {integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=}
     engines: {node: '>= 0.8'}
 
   vue-eslint-parser@9.4.3:
@@ -8620,6 +8627,8 @@ snapshots:
   decamelize@1.2.0: {}
 
   deep-is@0.1.4: {}
+
+  deepmerge-ts@7.1.0: {}
 
   deepmerge@1.5.2: {}
 

@@ -18,11 +18,6 @@ export default defineConfig(import.meta.url, {
       pinVersion: '>=12.0.0',
     },
     {
-      dependencies: ['slash'],
-      packages: ['@best-shot/sfc-split-plugin'],
-      pinVersion: '^3.0.0',
-    },
-    {
       dependencies: ['vue', '@vue/*'],
       label: 'Pin vue',
       pinVersion: '^3.4.27',

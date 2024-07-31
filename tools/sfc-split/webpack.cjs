@@ -1,10 +1,11 @@
 'use strict';
 
-const VirtualModulesPlugin = require('webpack-virtual-modules');
-const { parse } = require('@vue/compiler-sfc');
 const { readFileSync } = require('node:fs');
 const { basename } = require('node:path');
-const slash = require('slash');
+const VirtualModulesPlugin = require('webpack-virtual-modules');
+const { parse } = require('@vue/compiler-sfc');
+const { parse: yamlParse } = require('yaml');
+const { deepmerge: deepMerge } = require('deepmerge-ts');
 const { action } = require('./action.cjs');
 
 const PLUGIN_NAME = 'SfcSplitPlugin';
@@ -12,6 +13,28 @@ const PLUGIN_NAME = 'SfcSplitPlugin';
 const SFC_EXT = '.vue';
 
 const SFC_EXT_REGEX = /\.vue$/;
+
+function importStatements(paths) {
+  return paths.map((path) => `import "./${basename(path)}";`).join('\n');
+}
+
+function mergeConfig(customBlocks) {
+  const configs = customBlocks
+    .filter(
+      (block) =>
+        block.type === 'config' &&
+        (block.lang === 'json' || block.lang === 'yaml') &&
+        block.content &&
+        block.content.trim(),
+    )
+    .map((block) =>
+      block.lang === 'yaml'
+        ? yamlParse(block.content)
+        : JSON.parse(block.content),
+    );
+
+  return deepMerge(...configs);
+}
 
 module.exports = class SfcSplitPlugin {
   constructor() {
@@ -24,20 +47,22 @@ module.exports = class SfcSplitPlugin {
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.buildModule.tap(PLUGIN_NAME, (Module) => {
         if (SFC_EXT_REGEX.test(Module.resource)) {
-          const filename = Module.resource.replace(SFC_EXT, '');
-
           const source = readFileSync(Module.resource, 'utf8');
+
+          const filename = Module.resource.replace(SFC_EXT, '');
 
           const paths = this.processSfcFile(source, filename);
 
-          const mock = paths
-            .map((path) => `import "./${basename(path)}";`)
-            .join('\n');
-
-          this.virtualModules.writeModule(Module.resource, mock);
+          this.injectURLs(Module.resource, paths);
         }
       });
     });
+  }
+
+  injectURLs(resource, paths) {
+    const mock = importStatements(paths);
+
+    this.virtualModules.writeModule(resource, mock);
   }
 
   inject(filename, ext, content) {
@@ -48,14 +73,32 @@ module.exports = class SfcSplitPlugin {
     return path;
   }
 
+  injectCSS(filename, id, ext, content) {
+    return this.inject(`${filename}-${id}`, ext || 'css', content);
+  }
+
+  injectJSON(filename, json) {
+    return this.inject(filename, 'json', JSON.stringify(json, null, 2));
+  }
+
   processSfcFile(source, filename) {
     const { script, template, styles, customBlocks } = parse(source).descriptor;
 
     const paths = [];
 
-    if (script?.content) {
-      const path = this.inject(filename, 'js', script.content);
-      paths.push(path);
+    if (customBlocks?.length > 0) {
+      const path = this.injectJSON(filename, mergeConfig(customBlocks));
+
+      paths.push(`${path}?to-url`);
+    }
+
+    if (styles?.length > 0) {
+      styles.forEach((style, idx) => {
+        if (style?.content) {
+          const path = this.injectCSS(filename, idx, style.lang, style.content);
+          paths.push(path);
+        }
+      });
     }
 
     if (template?.content) {
@@ -63,32 +106,11 @@ module.exports = class SfcSplitPlugin {
       paths.push(path);
     }
 
-    if (styles?.length > 0) {
-      styles.forEach((style, idx) => {
-        if (style?.content) {
-          const path = this.inject(
-            `${filename}-${idx}`,
-            style.lang || 'css',
-            style.content,
-          );
-          paths.push(path);
-        }
-      });
+    if (script?.content) {
+      const path = this.inject(filename, 'js', script.content);
+      paths.push(path);
     }
 
-    if (customBlocks?.length > 0) {
-      const config = customBlocks.find(
-        (block) =>
-          block.type === 'config' &&
-          block.content &&
-          (block.lang === 'json' || block.lang === 'yaml'),
-      );
-
-      const path = this.inject(filename, config.lang, config.content);
-
-      paths.push(`${path}?to-url`);
-    }
-
-    return paths.map((path) => slash(path));
+    return paths;
   }
 };

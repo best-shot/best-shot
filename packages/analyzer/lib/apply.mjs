@@ -8,7 +8,7 @@ export function applyAnalyzer(chain) {
 
   chain.output.path(cachePath('build'));
 
-  chain.optimization.runtimeChunk('single').concatenateModules(false);
+  chain.optimization.concatenateModules(false);
 
   chain.delete('recordsPath');
 

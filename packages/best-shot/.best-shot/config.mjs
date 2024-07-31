@@ -1,8 +1,4 @@
-import { createRequire } from 'node:module';
-
-const Require = createRequire(import.meta.url);
-
-const pkg = Require('../package.json');
+import pkg from '../package.json' with { type: 'json' };
 
 const externals = [
   /^webpack\//,

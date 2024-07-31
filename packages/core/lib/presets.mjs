@@ -1,8 +1,4 @@
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
-
-const allowPresets = ['babel', 'style', 'asset', 'react', 'vue', 'web'];
+const allowPresets = ['babel', 'style', 'asset', 'react', 'vue', 'web', 'mini'];
 
 function sortPresets(data) {
   const io = [...new Set(data)];
@@ -27,6 +23,10 @@ function sortPresets(data) {
 function checkPresets(presets) {
   if (presets.includes('vue') && presets.includes('react')) {
     throw new Error("Don't use React and Vue at the same time");
+  }
+
+  if (presets.includes('vue') && presets.includes('mini')) {
+    throw new Error("Don't use Mini and Vue at the same time");
   }
 }
 

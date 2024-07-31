@@ -5,17 +5,21 @@ import extToRegexp from 'ext-to-regexp';
 import { targetIsNode } from '../lib/utils.mjs';
 
 export function apply({
+  cwd,
   config: {
     output: { publicPath, path, module: useModule } = {},
     output = {},
     target,
+    context: contextInput,
     dependencies,
     experiments: { buildHttp } = {},
     optimization = {},
   },
 }) {
   return (chain) => {
-    chain.amd(false);
+    if (contextInput) {
+      chain.context(resolve(cwd, contextInput));
+    }
 
     if (target) {
       chain.target(target);
@@ -25,7 +29,6 @@ export function apply({
       chain.dependencies(dependencies);
     }
 
-    const context = chain.get('context');
     const mode = chain.get('mode');
     const watch = chain.get('watch');
 
@@ -91,43 +94,37 @@ export function apply({
 
     const { cachePath } = chain.get('x');
 
-    chain.experiments
-      .cacheUnaffected(true)
-      .asyncWebAssembly(true)
-      .syncWebAssembly(true)
-      .topLevelAwait(true)
-      .buildHttp({
-        allowedUris: [],
-        lockfileLocation: cachePath('locks/lock'),
-        cacheLocation: cachePath('locks/cache'),
-        upgrade: true,
-        frozen: false,
-        ...buildHttp,
-      });
+    chain.experiments.buildHttp({
+      allowedUris: [],
+      lockfileLocation: cachePath('locks/lock'),
+      cacheLocation: cachePath('locks/cache'),
+      upgrade: true,
+      frozen: false,
+      ...buildHttp,
+    });
 
     if (useModule) {
       chain.experiments.outputModule(true);
-
-      chain.output.library({
-        type: 'module',
+      chain.output.merge({
+        chunkFormat: 'module',
+        chunkLoading: 'import',
       });
+      // chain.output.library({
+      //   type: 'module',
+      // });
     } else if (isNode) {
       chain.output.library({
         type: 'commonjs-static',
       });
     }
 
-    chain.output.hashDigestLength(8);
-
-    chain.output.assetModuleFilename(
-      mode === 'development' ? '[path][name][ext]' : '[contenthash:8][ext]',
-    );
+    chain.output.assetModuleFilename('[path][name][ext]');
 
     chain.output.merge(output);
 
     chain.output.path(
       resolve(
-        context,
+        cwd,
         path.replaceAll('[config-name]', name).replaceAll('[mode]', mode),
       ),
     );
@@ -150,6 +147,9 @@ export function apply({
 export const name = 'basic';
 
 export const schema = {
+  context: {
+    type: 'string',
+  },
   output: {
     type: 'object',
     default: {},

@@ -1,0 +1,28 @@
+{
+  "name": "@best-shot/sfc-split-plugin",
+  "version": "0.4.0",
+  "license": "MIT",
+  "keywords": [
+    "loader",
+    "webpack"
+  ],
+  "type": "commonjs",
+  "dependencies": {
+    "@padcom/vue-ast-serializer": "^0.0.1",
+    "@prettier/sync": "^0.5.2",
+    "@vue/compiler-sfc": "^3.4.27",
+    "slash": "^3.0.0",
+    "webpack-virtual-modules": "^0.6.2"
+  },
+  "peerDependencies": {
+    "prettier": "^3.3.3",
+    "webpack": "^5.93.0"
+  },
+  "engines": {
+    "node": ">=20.6.0 || ^18.19.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

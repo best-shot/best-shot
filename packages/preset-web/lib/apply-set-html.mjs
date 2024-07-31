@@ -1,5 +1,4 @@
 import { createRequire } from 'node:module';
-import { relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import extToRegexp from 'ext-to-regexp';
@@ -26,16 +25,12 @@ export function setHtml({ html = {} }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
-    const context = chain.get('context');
     const minimize = chain.optimization.get('minimize');
 
     const { default: HtmlWebpackPlugin } = await import('html-webpack-plugin');
 
     const defaultTemplate = slash(
-      relative(
-        context,
-        fileURLToPath(new URL('template.html', import.meta.url)),
-      ),
+      fileURLToPath(import.meta.resolve('./template.html')),
     );
 
     const isModule = chain.output.get('module');
@@ -112,14 +107,7 @@ export function setHtml({ html = {} }) {
       .rule('micro-tpl')
       .test(extToRegexp({ extname: ['html', 'htm'] }))
       .use('micro-tpl-loader')
-      .loader('micro-tpl-loader');
-
-    chain.resolveLoader.modules.prepend(
-      relative(
-        context,
-        fileURLToPath(new URL('../node_modules', import.meta.url)),
-      ),
-    );
+      .loader(fileURLToPath(import.meta.resolve('micro-tpl-loader')));
 
     if (!watch && chain.module.rules.has('babel')) {
       chain.module

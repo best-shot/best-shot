@@ -1,4 +1,10 @@
 export const config = {
-  presets: ['asset'],
-  target: 'node',
+  presets: ['babel', 'style', 'mini'],
+  appConfig: false,
+  context: 'src',
+  chain(chain) {
+    chain.entry('app').add('./app.js');
+
+    chain.entry('pages/home/index').add('./pages/home/index.vue');
+  },
 };

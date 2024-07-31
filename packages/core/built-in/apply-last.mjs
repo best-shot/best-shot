@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url';
+
 export function apply({ config: { noCache } }) {
   return async (chain) => {
     const cache = chain.get('cache');
@@ -5,7 +7,11 @@ export function apply({ config: { noCache } }) {
     if (cache && noCache) {
       const rule = chain.module.rule('no-cache');
 
-      rule.use('no-cache').loader('@best-shot/no-cache-loader');
+      rule
+        .use('no-cache')
+        .loader(
+          fileURLToPath(import.meta.resolve('@best-shot/no-cache-loader')),
+        );
 
       if (Array.isArray(noCache)) {
         rule.include.merge(noCache);

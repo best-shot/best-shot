@@ -16,22 +16,23 @@
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
   },
+  "type": "module",
   "scripts": {
     "analyze": "best-shot analyze",
-    "build": "best-shot prod",
+    "build:dev": "best-shot dev",
+    "build:prod": "best-shot prod",
+    "build:serve": "best-shot serve",
+    "build:watch": "best-shot watch",
     "clear": "best-shot clear",
-    "dev": "best-shot dev",
     "inspect": "best-shot inspect --stamp test",
     "lint:staged": "nice-move lint staged",
     "lint:type": "tsc --noEmit",
     "lint:version": "syncpack lint",
     "prepare": "nice-move git hooks",
-    "serve": "best-shot serve",
     "snapshot": "ava --fail-fast -u -w",
     "test": "ava --fail-fast",
     "try": "nodemon",
-    "version:pin": "syncpack fix-mismatches",
-    "watch": "best-shot watch"
+    "version:pin": "syncpack fix-mismatches"
   },
   "workspaces": [
     "packages/*"
@@ -42,20 +43,21 @@
     "vue": "^3.4.27"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.7",
-    "@bring-it/npm": "^0.5.5",
-    "@nice-move/all-in-base": "^0.1.3",
+    "@babel/core": "^7.24.9",
+    "@bring-it/cli": "^0.9.5",
+    "@bring-it/npm": "^0.5.7",
+    "@nice-move/all-in-base": "^0.1.4",
     "@nice-move/syncpack-config": "^0.2.4",
     "ava": "^6.1.3",
     "eslint": "^8.57.0",
     "eslint-plugin-ava": "^14.0.0",
     "garou": "^0.7.6",
     "nodemon": "^3.1.4",
-    "prettier": "^3.3.2",
-    "stylelint": "^16.6.1",
-    "syncpack": "^12.3.3",
-    "typescript": "~5.5.3",
-    "webpack": "^5.92.1"
+    "prettier": "^3.3.3",
+    "stylelint": "^16.7.0",
+    "syncpack": "^12.4.0",
+    "typescript": "~5.5.4",
+    "webpack": "^5.93.0"
   },
   "peerDependencies": {
     "@best-shot/analyzer": "workspace:~",
@@ -65,15 +67,17 @@
     "@best-shot/inspector": "workspace:~",
     "@best-shot/preset-asset": "workspace:~",
     "@best-shot/preset-babel": "workspace:~",
+    "@best-shot/preset-mini": "workspace:~",
     "@best-shot/preset-react": "workspace:~",
     "@best-shot/preset-style": "workspace:~",
     "@best-shot/preset-vue": "workspace:~",
     "@best-shot/preset-web": "workspace:~",
+    "@best-shot/sfc-split-plugin": "workspace:~",
     "@types/react": "~18.3.3"
   },
-  "packageManager": "pnpm@9.1.1",
+  "packageManager": "pnpm@9.5.0",
   "engines": {
-    "node": ">=20.0.0 || ^18.12.0"
+    "node": ">=20.6.0 || ^18.19.0"
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"
@@ -83,7 +87,7 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "best-shot serve",
+    "exec": "na run build:prod",
     "ext": "js,cjs,mjs,json",
     "watch": [
       "packages/**",

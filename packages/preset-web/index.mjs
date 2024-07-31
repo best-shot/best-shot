@@ -5,7 +5,7 @@ import { setOutputName } from './lib/apply-set-output-name.mjs';
 import { splitChunks } from './lib/apply-split-chunks.mjs';
 
 function addHash(filename) {
-  return filename.includes('[contenthash')
+  return filename.includes('contenthash')
     ? filename
     : suffix(filename, '.[contenthash]');
 }
@@ -17,6 +17,11 @@ function addMin(filename) {
 export function apply({ config: { html, vendors, optimization = {} } }) {
   return async (chain) => {
     const mode = chain.get('mode');
+
+    chain.output.assetModuleFilename(
+      mode === 'development' ? '[path][name][ext]' : '[contenthash][ext]',
+    );
+
     const minimize = chain.optimization.get('minimize');
     const serve = chain.devServer.entries() !== undefined;
     const hot = (serve && chain.devServer.get('hot')) || false;
@@ -26,9 +31,7 @@ export function apply({ config: { html, vendors, optimization = {} } }) {
     chain
       .when(minimize, setOutputName({ style: addMin, script: addMin }))
       .when(!hot, setOutputName({ style: addHash, script: addHash }))
-      .when(
-        optimization.splitChunks !== false ||
-          chain.optimization.get('runtimeChunk'),
+      .batch(
         setOutputName({
           script: (filename) => `script/${filename}`,
           style: (filename) => `style/${filename}`,

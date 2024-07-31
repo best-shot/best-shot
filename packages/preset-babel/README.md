@@ -1,4 +1,4 @@
-# @best-shot/preset-babel
+# @best-shot/preset-babel <img src="https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg" alt="logo" height="80" align="right">
 
 A `best-shot` preset for babel compiler.
 
@@ -15,9 +15,9 @@ A `best-shot` preset for babel compiler.
 
 This preset uses [babel-preset-evergreen] by default. It can transform:
 
-- ECMAScript 2021: `*.js`
-- node modules: `*.mjs` / `*.cjs`
-- typescript: `*.ts`
+- ECMAScript 2023: `*.js`
+- Node.js: `*.mjs` / `*.cjs`
+- Typescript: `*.ts` / `*.mts` / `*.cts`
 
 ## Installation
 
@@ -87,7 +87,8 @@ References: <https://babeljs.io/docs/en/configuration>
 
 [@best-shot/preset-react]: ../preset-react
 [@best-shot/preset-vue]: ../preset-vue
+[@best-shot/core]: ../core
 
 - [@babel/preset-typescript](https://babeljs.io/docs/babel-preset-typescript)
 - [@best-shot/preset-react]
-- [@best-shot/core](../core)
+- [@best-shot/core]

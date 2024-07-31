@@ -7,6 +7,7 @@ const displayName = 'tersor';
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
 export function apply({
+  cwd,
   config: { output: { module: useModule = false } = {}, terser = {} },
 }) {
   return async (chain) => {
@@ -29,7 +30,6 @@ export function apply({
     const minimize = chain.optimization.get('minimize');
 
     if (minimize) {
-      const context = chain.get('context');
       const target = chain.get('target');
 
       const { default: TerserPlugin } = await import('terser-webpack-plugin');
@@ -41,7 +41,7 @@ export function apply({
           extractComments: false,
           terserOptions: deepMerge(
             {
-              safari10: notNode && haveSafari10(context),
+              safari10: notNode && haveSafari10(cwd),
               compress: {
                 drop_console: notNode,
               },

@@ -9,7 +9,7 @@ import { notEmpty } from '../lib/utils.mjs';
 
 const require = createRequire(import.meta.url);
 
-function To(url) {
+function To(url, cwd) {
   if (url instanceof URL && url.protocol === 'file:') {
     return fileURLToPath(url.href);
   }
@@ -20,7 +20,7 @@ function To(url) {
     }
 
     if (url.startsWith('.')) {
-      return resolve(process.cwd(), url);
+      return resolve(cwd, url);
     }
 
     return require.resolve(url);
@@ -29,16 +29,14 @@ function To(url) {
   return url;
 }
 
-export function apply({ config: { replace = [], resolve: { alias } = {} } }) {
+export function apply({
+  cwd,
+  config: { replace = [], resolve: { alias } = {} },
+}) {
   return async (chain) => {
-    chain.resolve.extensions.merge(['.js', '.cjs', '.mjs', '.json', '.ts']);
-    chain.resolve.modules.prepend('node_modules');
-
     if (notEmpty(alias)) {
       chain.resolve.alias.merge(alias);
     }
-
-    chain.resolveLoader.modules.prepend('node_modules');
 
     const watch = chain.get('watch');
 
@@ -55,7 +53,7 @@ export function apply({ config: { replace = [], resolve: { alias } = {} } }) {
           .plugin(`replace-${index}`)
           .use(webpack.NormalModuleReplacementPlugin, [
             typeof from === 'string' ? slashToRegexp(from) : from,
-            To(to),
+            To(to, cwd),
           ]);
       },
     );

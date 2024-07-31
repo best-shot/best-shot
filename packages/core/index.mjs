@@ -1,5 +1,3 @@
-import extToRegexp from 'ext-to-regexp';
-
 import { builtIn } from './built-in/index.mjs';
 import { CoreChain } from './lib/chain.mjs';
 import { importPresets } from './lib/presets.mjs';
@@ -44,13 +42,12 @@ export class BestShot {
       }
     }
 
-
-
     const local = mode === 'development' && watch;
 
     this.chain.mode(mode).watch(local).cache(local);
 
     const params = {
+      cwd,
       serve: watch ? serve : false,
       config: await this.schema.validate(config),
     };

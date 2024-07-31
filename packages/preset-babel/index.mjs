@@ -1,4 +1,3 @@
-import { relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import browserslist from 'browserslist';
@@ -12,21 +11,23 @@ function getList({ path, env }) {
 }
 
 export function apply({
+  cwd,
   config: { babel: { polyfill = false, env = 'auto' } = {} },
 }) {
   return (chain) => {
     const mode = chain.get('mode');
-    const context = chain.get('context');
     const watch = chain.get('watch');
 
     const { cachePath } = chain.get('x');
 
+    chain.resolve.extensions.add('.ts').add('.mts').add('.cts');
+
     chain.module
       .rule('babel')
       .before('esm')
-      .test(extToRegexp({ extname: ['js', 'mjs', 'cjs', 'ts'] }))
+      .test(extToRegexp({ extname: ['js', 'mjs', 'cjs', 'ts', 'mts', 'cts'] }))
       .use('babel-loader')
-      .loader('babel-loader')
+      .loader(fileURLToPath(import.meta.resolve('babel-loader')))
       .options({
         babelrc: false,
         cacheCompression: false,
@@ -35,7 +36,7 @@ export function apply({
         envName: mode,
         sourceType: 'unambiguous',
         targets: getList({
-          path: context,
+          path: cwd,
           env: mode,
         }),
         presets:
@@ -65,13 +66,6 @@ export function apply({
           .exclude.add(slashToRegexp('/node_modules/core-js(-pure)?/'));
       }
     }
-
-    chain.resolveLoader.modules.prepend(
-      relative(
-        context,
-        resolve(fileURLToPath(import.meta.url), '../node_modules'),
-      ),
-    );
   };
 }
 

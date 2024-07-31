@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/analyzer",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Analyzer of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -36,7 +36,7 @@
     "@best-shot/core": "workspace:~"
   },
   "engines": {
-    "node": ">=20.0.0 || ^18.12.0"
+    "node": ">=20.6.0 || ^18.19.0"
   },
   "publishConfig": {
     "access": "public",

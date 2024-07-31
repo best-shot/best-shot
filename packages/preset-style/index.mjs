@@ -1,30 +1,29 @@
-import { relative } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
 import { applyScssLess } from './lib/apply-scss-less.mjs';
 import { applyStylesheet } from './lib/apply-stylesheet.mjs';
 
-export function apply({ config: { less } }) {
+export function apply({ config: { css: { extname, extract } = {} } }) {
   return async (chain) => {
-    const context = chain.get('context');
+    await applyStylesheet({ extname, extract })(chain);
 
-    await applyStylesheet(chain);
-
-    applyScssLess(less)(chain);
-
-    chain.resolveLoader.modules.prepend(
-      relative(
-        context,
-        fileURLToPath(new URL('node_modules', import.meta.url)),
-      ),
-    );
+    applyScssLess()(chain);
   };
 }
 
+export const name = 'preset-style';
+
 export const schema = {
-  less: {
+  css: {
     type: 'object',
+    default: {},
+    properties: {
+      extname: {
+        type: 'string',
+        default: '.css',
+      },
+      extract: {
+        type: 'boolean',
+        default: false,
+      },
+    },
   },
 };
-
-export const name = 'preset-style';

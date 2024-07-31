@@ -1,6 +1,6 @@
 {
   "name": "best-shot",
-  "version": "0.5.18",
+  "version": "0.5.19",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
@@ -33,7 +33,7 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "best-shot dev",
+    "build": "best-shot prod",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {

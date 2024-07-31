@@ -33,7 +33,9 @@ function mergeConfig(customBlocks) {
         : JSON.parse(block.content),
     );
 
-  return deepMerge(...configs);
+  return configs.length > 1
+    ? (deepMerge.default || deepMerge)(...configs)
+    : configs[0];
 }
 
 module.exports = class SfcSplitPlugin {

@@ -8,6 +8,9 @@ export function apply({ config: { appConfig } }) {
       publicPath: '/',
       iife: false,
       asyncChunks: false,
+      module: false,
+      chunkFormat: 'commonjs',
+      chunkLoading: 'require',
     });
 
     const minimize = chain.optimization.get('minimize');
@@ -56,7 +59,7 @@ export const schema = {
     default: false,
   },
   target: {
-    default: ['es2024'],
+    default: ['es2024', 'web'],
   },
   context: {
     default: 'src',
@@ -64,6 +67,9 @@ export const schema = {
   optimization: {
     type: 'object',
     properties: {
+      runtimeChunk: {
+        default: 'single',
+      },
       splitChunks: {
         default: true,
       },
@@ -81,9 +87,6 @@ export const schema = {
     type: 'object',
     default: {},
     properties: {
-      module: {
-        default: true,
-      },
       clean: {
         default: {
           keep: 'miniprogram_npm',
@@ -91,6 +94,16 @@ export const schema = {
       },
       publicPath: {
         default: '/',
+      },
+    },
+  },
+  babel: {
+    properties: {
+      polyfill: {
+        default: 'pure',
+      },
+      env: {
+        default: 'always',
       },
     },
   },

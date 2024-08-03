@@ -64,17 +64,6 @@ export const schema = {
   context: {
     default: 'src',
   },
-  optimization: {
-    type: 'object',
-    properties: {
-      runtimeChunk: {
-        default: 'single',
-      },
-      splitChunks: {
-        default: true,
-      },
-    },
-  },
   css: {
     type: 'object',
     properties: {
@@ -97,13 +86,14 @@ export const schema = {
       },
     },
   },
-  babel: {
+  optimization: {
+    type: 'object',
     properties: {
-      polyfill: {
-        default: 'pure',
+      runtimeChunk: {
+        default: 'single',
       },
-      env: {
-        default: 'always',
+      splitChunks: {
+        default: true,
       },
     },
   },

@@ -28,6 +28,10 @@ function checkPresets(presets) {
   if (presets.includes('vue') && presets.includes('mini')) {
     throw new Error("Don't use Mini and Vue at the same time");
   }
+
+  if (presets.includes('web') && presets.includes('mini')) {
+    throw new Error("Don't use Web and Mini at the same time");
+  }
 }
 
 export function importPresets(presets) {

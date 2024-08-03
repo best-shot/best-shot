@@ -12,7 +12,7 @@ function getList({ path, env }) {
 
 export function apply({
   cwd,
-  config: { babel: { polyfill = false, env = 'auto' } = {} },
+  config: { babel: { polyfill = false, env = 'always' } = {} },
 }) {
   return (chain) => {
     const mode = chain.get('mode');
@@ -77,14 +77,26 @@ export const schema = {
     type: 'object',
     properties: {
       polyfill: {
-        default: false,
+        default: {
+          usage: 'global',
+        },
         description:
           'References: <https://github.com/babel/babel/issues/10008>',
-        enum: [false, 'global', 'pure'],
         title: 'How `babel` handles polyfills',
+        oneOf: [
+          { const: false },
+          {
+            type: 'object',
+            properties: {
+              usage: {
+                enum: ['global', 'pure'],
+              },
+            },
+          },
+        ],
       },
       env: {
-        default: 'auto',
+        default: 'always',
         enum: ['always', 'auto'],
         description:
           "When 'always', `babel-preset-evergreen` will enabled in watch mode",

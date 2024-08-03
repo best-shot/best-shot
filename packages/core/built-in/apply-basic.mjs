@@ -13,7 +13,6 @@ export function apply({
     context: contextInput,
     dependencies,
     experiments: { buildHttp } = {},
-    optimization = {},
   },
 }) {
   return (chain) => {
@@ -38,33 +37,6 @@ export function apply({
       .removeEmptyChunks(true)
       .removeAvailableModules(true)
       .minimize(mode === 'production');
-
-    if (optimization.runtimeChunk !== undefined) {
-      chain.optimization.runtimeChunk(optimization.runtimeChunk);
-    }
-
-    if (optimization.splitChunks) {
-      chain.optimization.splitChunks(
-        optimization.splitChunks === true
-          ? {
-              cacheGroups: {
-                vendors: {
-                  name: 'share',
-                  chunks: 'initial',
-                  minChunks: 2,
-                  enforce: true,
-                  reuseExistingChunk: true,
-                },
-                async: {
-                  chunks: 'async',
-                  enforce: true,
-                  reuseExistingChunk: true,
-                },
-              },
-            }
-          : optimization.splitChunks,
-      );
-    }
 
     if (watch) {
       chain.watchOptions({ ignored: /node_modules/ });
@@ -161,13 +133,6 @@ export const schema = {
         minLength: 1,
         type: 'string',
       },
-    },
-  },
-  optimization: {
-    type: 'object',
-    properties: {
-      runtimeChunk: {},
-      splitChunks: {},
     },
   },
 };

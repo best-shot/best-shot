@@ -25,7 +25,6 @@ export function setHtml({ html = {} }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
-    const minimize = chain.optimization.get('minimize');
 
     const { default: HtmlWebpackPlugin } = await import('html-webpack-plugin');
 
@@ -69,6 +68,8 @@ export function setHtml({ html = {} }) {
 
       chain.plugin('html-add-asset').use(HtmlAddAssetWebpackPlugin);
     }
+
+    const minimize = chain.optimization.get('minimize');
 
     if (minimize) {
       const { default: HtmlMinimizerPlugin } = await import(

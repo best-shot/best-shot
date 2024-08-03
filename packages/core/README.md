@@ -35,7 +35,9 @@ new BestShot().setup({
   presets: ['babel'],
   mode: 'production',
   config: {
-    polyfill: 'usage'
+    polyfill: {
+      usage: 'global'
+    }
   }
 });
 

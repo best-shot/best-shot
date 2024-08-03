@@ -2,7 +2,6 @@ import suffix from 'suffix';
 
 import { setHtml } from './lib/apply-set-html.mjs';
 import { setOutputName } from './lib/apply-set-output-name.mjs';
-import { splitChunks } from './lib/apply-split-chunks.mjs';
 
 function addHash(filename) {
   return filename.includes('contenthash')
@@ -14,7 +13,7 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
-export function apply({ config: { html, vendors, optimization = {} } }) {
+export function apply({ config: { html } }) {
   return async (chain) => {
     const mode = chain.get('mode');
 
@@ -38,10 +37,6 @@ export function apply({ config: { html, vendors, optimization = {} } }) {
         }),
       );
 
-    if (optimization.splitChunks !== false) {
-      await splitChunks({ vendors })(chain);
-    }
-
     await setHtml({ html })(chain);
 
     if (mode === 'production') {
@@ -53,17 +48,15 @@ export function apply({ config: { html, vendors, optimization = {} } }) {
       chain
         .plugin('min-chunk-size')
         .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
+
+      const { cachePath } = chain.get('x');
+
+      chain.recordsPath(cachePath('records.json'));
     }
   };
 }
 
 export const name = 'preset-web';
-
-const regexpFormat = {
-  format: 'regex',
-  minLength: 1,
-  type: 'string',
-};
 
 const items = {
   type: 'object',
@@ -82,44 +75,6 @@ export const schema = {
       },
     ],
   },
-  babel: {
-    default: {},
-    type: 'object',
-    properties: {
-      polyfill: {
-        default: 'global',
-      },
-    },
-  },
-  vendors: {
-    additionalProperties: {
-      oneOf: [
-        regexpFormat,
-        {
-          items: regexpFormat,
-          minItems: 1,
-          type: 'array',
-          uniqueItems: true,
-        },
-      ],
-    },
-    type: 'object',
-    properties: {
-      shim: {
-        default: [
-          '(.)*-(shim|polyfill)',
-          '@babel',
-          'core-js-(.)*',
-          'core-js',
-          'object-assign',
-          'regenerator-runtime',
-          'whatwg-fetch',
-        ],
-      },
-    },
-    default: {},
-    required: ['shim'],
-  },
   optimization: {
     type: 'object',
     properties: {
@@ -127,7 +82,7 @@ export const schema = {
         default: true,
       },
       splitChunks: {
-        type: 'boolean',
+        default: true,
       },
     },
   },

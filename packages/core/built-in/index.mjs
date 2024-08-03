@@ -7,6 +7,7 @@ import * as applyNode from './apply-node.mjs';
 import * as applyOther from './apply-other.mjs';
 import * as applyResolve from './apply-resolve.mjs';
 import * as applyTersor from './apply-tersor.mjs';
+import * as applySplitChunks from './apply-split-chunks.mjs';
 
 export const builtIn = [
   applyBasic,
@@ -17,5 +18,6 @@ export const builtIn = [
   applyDefine,
   applyNode,
   applyAsset,
+  applySplitChunks,
   applyLast,
 ];

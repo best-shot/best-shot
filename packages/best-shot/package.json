@@ -1,6 +1,6 @@
 {
   "name": "best-shot",
-  "version": "0.5.19",
+  "version": "0.6.0",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
@@ -26,7 +26,7 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "bin": {
-    "best-shot": "dist/cli.mjs"
+    "best-shot-cli": "dist/cli.mjs"
   },
   "files": [
     "dist"
@@ -44,7 +44,7 @@
     "yaml-loader": "^0.8.1"
   },
   "peerDependencies": {
-    "browserslist": "^4.23.2"
+    "browserslist": "^4.23.3"
   },
   "engines": {
     "node": ">=20.6.0 || ^18.19.0"

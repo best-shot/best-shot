@@ -17,13 +17,17 @@ const externals = [
 ];
 
 export const config = {
-  target: 'node14',
+  target: 'node18',
   entry: {
-    cli: '@best-shot/cli',
+    cli: './src/cli.mjs',
+    create: './src/create.mjs',
   },
   output: {
     path: 'dist',
     module: true,
+    library: {
+      type: 'module',
+    },
   },
   externals,
 };

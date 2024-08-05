@@ -1,6 +1,6 @@
 {
   "name": "best-shot",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
@@ -26,14 +26,14 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "bin": {
-    "best-shot-cli": "dist/cli.mjs"
+    "best-shot": "dist/cli.mjs"
   },
   "files": [
     "dist"
   ],
   "type": "module",
   "scripts": {
-    "build": "best-shot prod",
+    "build": "node ../../packages/cli/bin/index.mjs prod",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {

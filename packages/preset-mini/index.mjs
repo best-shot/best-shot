@@ -2,16 +2,31 @@ import { fileURLToPath } from 'node:url';
 
 import { getAllPages, readYAML } from './helper.mjs';
 
-export function apply({ config: { appConfig } }) {
+export function apply({
+  config: { appConfig, output: { module: Module } = {} },
+}) {
   return (chain) => {
-    chain.output.merge({
-      publicPath: '/',
-      iife: false,
-      asyncChunks: false,
-      module: false,
-      chunkFormat: 'commonjs',
-      chunkLoading: 'require',
-    });
+    chain.output.publicPath('/').iife(false).asyncChunks(false);
+
+    if (Module) {
+      chain.output.merge({
+        module: true,
+        chunkFormat: 'module',
+        chunkLoading: 'import',
+        library: {
+          type: 'module',
+        },
+      });
+    } else {
+      chain.output.merge({
+        module: false,
+        chunkFormat: 'commonjs',
+        chunkLoading: 'require',
+        library: {
+          type: 'commonjs2',
+        },
+      });
+    }
 
     const minimize = chain.optimization.get('minimize');
 
@@ -88,6 +103,7 @@ export const schema = {
   },
   optimization: {
     type: 'object',
+    default: {},
     properties: {
       runtimeChunk: {
         default: 'single',

@@ -77,6 +77,7 @@ export const schema = {
   },
   optimization: {
     type: 'object',
+    default: {},
     properties: {
       runtimeChunk: {
         default: true,

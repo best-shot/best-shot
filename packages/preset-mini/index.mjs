@@ -79,14 +79,6 @@ export const schema = {
   context: {
     default: 'src',
   },
-  css: {
-    type: 'object',
-    properties: {
-      extname: {
-        default: '.wxss',
-      },
-    },
-  },
   output: {
     type: 'object',
     default: {},
@@ -98,6 +90,9 @@ export const schema = {
       },
       publicPath: {
         default: '/',
+      },
+      cssFilename: {
+        default: '.wxss',
       },
     },
   },

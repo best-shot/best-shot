@@ -8,7 +8,7 @@ const auto = (resourcePath, resourceQuery) =>
   /\.module\.\w+$/i.test(resourcePath) ||
   new URLSearchParams(resourceQuery).get('module');
 
-export function applyStylesheet({ extname, extract }) {
+export function applyStylesheet({ extract }) {
   return async (chain) => {
     const minimize = chain.optimization.get('minimize');
 
@@ -32,12 +32,14 @@ export function applyStylesheet({ extname, extract }) {
 
     const assetModuleFilename = chain.output.get('assetModuleFilename');
 
+    const cssFilename = chain.output.get('cssFilename');
+
     rule
       .rule('all')
       .oneOf('url')
       .before('not-url')
       .dependency('url')
-      .generator.filename(assetModuleFilename.replace('[ext]', extname));
+      .generator.filename(assetModuleFilename.replace('[ext]', cssFilename));
 
     const { default: MiniCssExtractPlugin } = await import(
       'mini-css-extract-plugin'
@@ -51,7 +53,7 @@ export function applyStylesheet({ extname, extract }) {
     if (needExtract) {
       chain.plugin('extract-css').use(MiniCssExtractPlugin, [
         {
-          filename: `[name]${extname}`,
+          filename: `[name]${cssFilename}`,
           // chunkFilename: '[id].css',
           ignoreOrder: true,
           experimentalUseImportModule: true,

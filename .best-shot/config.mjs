@@ -1,14 +1,12 @@
 export const config = {
   presets: ['mini', 'babel', 'style', 'asset'],
-  appConfig: false,
+  appConfig: true,
   context: 'src',
   output: {
     publicPath: '/',
-    // module: true
+    module: true,
   },
   chain(chain) {
-    chain.entry('app1').add('./app1.js').add('./app1.json?to-url');
-
-    chain.entry('app2').add('./app2.js');
+    chain.entry('app').add('./app.js');
   },
 };

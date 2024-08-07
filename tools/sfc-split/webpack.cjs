@@ -38,13 +38,9 @@ function mergeConfig(customBlocks) {
     : configs[0];
 }
 
-module.exports = class SfcSplitPlugin {
-  constructor() {
-    this.virtualModules = new VirtualModulesPlugin();
-  }
-
+module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   apply(compiler) {
-    this.virtualModules.apply(compiler);
+    super.apply(compiler);
 
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.buildModule.tap(PLUGIN_NAME, (Module) => {
@@ -64,22 +60,40 @@ module.exports = class SfcSplitPlugin {
   injectURLs(resource, paths) {
     const mock = importStatements(paths);
 
-    this.virtualModules.writeModule(resource, mock);
+    super.writeModule(resource, mock);
   }
 
   inject(filename, ext, content) {
     const path = `${filename}.${ext}`;
 
-    this.virtualModules.writeModule(path, content);
+    super.writeModule(path, content);
 
     return path;
   }
 
-  injectCSS(filename, id, ext, content) {
-    return this.inject(`${filename}-${id}`, ext || 'css', content);
+  injectCSS(filename, id, style) {
+    return this.inject(`${filename}-${id}`, style.ext || 'css', style.content);
   }
 
-  injectJSON(filename, json) {
+  injectTemplate(filename, template) {
+    return this.inject(
+      filename,
+      'wxml',
+      template ? action(template).tpl : '<!-- -->',
+    );
+  }
+
+  injectScript(filename, script) {
+    return this.inject(filename, 'js', script.content);
+  }
+
+  injectConfig(filename, customBlocks) {
+    const json = mergeConfig(
+      customBlocks.length > 0
+        ? customBlocks
+        : [{ type: 'config', lang: 'json', content: '{ }' }],
+    );
+
     return this.inject(filename, 'json', JSON.stringify(json, null, 2));
   }
 
@@ -88,29 +102,24 @@ module.exports = class SfcSplitPlugin {
 
     const paths = [];
 
-    if (customBlocks?.length > 0) {
-      const path = this.injectJSON(filename, mergeConfig(customBlocks));
+    const json = this.injectConfig(filename, customBlocks);
+    paths.push(`${json}?to-url`);
 
-      paths.push(`${path}?to-url`);
-    }
+    const tpl = this.injectTemplate(filename, template);
+    paths.push(tpl);
 
-    if (styles?.length > 0) {
-      styles.forEach((style, idx) => {
-        if (style?.content) {
-          const path = this.injectCSS(filename, idx, style.lang, style.content);
-          paths.push(path);
-        }
-      });
-    }
+    const css = styles?.length > 0 ? styles : [{ content: '/* */' }];
 
-    if (template?.content) {
-      const path = this.inject(filename, 'wxml', action(template).tpl);
-      paths.push(path);
-    }
+    css.forEach((style, idx) => {
+      if (style?.content) {
+        const path = this.injectCSS(filename, idx, style);
+        paths.push(path);
+      }
+    });
 
     if (script?.content) {
-      const path = this.inject(filename, 'js', script.content);
-      paths.push(path);
+      const js = this.injectScript(filename, script);
+      paths.push(js);
     }
 
     return paths;

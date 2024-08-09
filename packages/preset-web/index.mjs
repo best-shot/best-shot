@@ -80,7 +80,7 @@ export const schema = {
     default: {},
     properties: {
       runtimeChunk: {
-        default: true,
+        default: 'single',
       },
       splitChunks: {
         default: true,

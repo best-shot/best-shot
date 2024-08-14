@@ -1,12 +1,14 @@
 'use strict';
 
 const { readFileSync } = require('node:fs');
-const { basename } = require('node:path');
+const { basename, join, relative } = require('node:path');
 const VirtualModulesPlugin = require('webpack-virtual-modules');
 const { parse } = require('@vue/compiler-sfc');
 const { parse: yamlParse } = require('yaml');
 const { deepmerge: deepMerge } = require('deepmerge-ts');
 const { action } = require('./action.cjs');
+const slash = require('slash');
+const { EntryPlugin } = require('webpack');
 
 const PLUGIN_NAME = 'SfcSplitPlugin';
 
@@ -42,6 +44,8 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   apply(compiler) {
     super.apply(compiler);
 
+    this.context = compiler.context;
+
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.buildModule.tap(PLUGIN_NAME, (Module) => {
         if (SFC_EXT_REGEX.test(Module.resource)) {
@@ -49,9 +53,28 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
           const filename = Module.resource.replace(SFC_EXT, '');
 
-          const paths = this.processSfcFile(source, filename);
+          try {
+            const { paths, entries } = this.processSfcFile(source, filename);
 
-          this.injectURLs(Module.resource, paths);
+            this.injectURLs(Module.resource, paths);
+
+            for (const entry of entries) {
+              if (!compilation.entries.has(entry)) {
+                compilation.addEntry(
+                  compiler.context,
+                  EntryPlugin.createDependency(`./${entry}.vue`),
+                  entry,
+                  (err) => {
+                    if (err) {
+                      throw err;
+                    }
+                  },
+                );
+              }
+            }
+          } catch (error) {
+            console.error(error);
+          }
         }
       });
     });
@@ -71,8 +94,23 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     return path;
   }
 
-  injectCSS(filename, id, style) {
+  injectStyle(filename, id, style) {
     return this.inject(`${filename}-${id}`, style.ext || 'css', style.content);
+  }
+
+  injectStyles(filename, styles) {
+    const io = [];
+
+    const css = styles?.length > 0 ? styles : [{ content: '/* */' }];
+
+    css.forEach((style, idx) => {
+      if (style?.content) {
+        const path = this.injectStyle(filename, idx, style);
+        io.push(path);
+      }
+    });
+
+    return io;
   }
 
   injectTemplate(filename, template) {
@@ -94,7 +132,23 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
         : [{ type: 'config', lang: 'json', content: '{ }' }],
     );
 
-    return this.inject(filename, 'json', JSON.stringify(json, null, 2));
+    const entries = this.mapComponentsEntries(filename, json.usingComponents);
+
+    const config = this.inject(filename, 'json', JSON.stringify(json, null, 2));
+
+    return { config, entries };
+  }
+
+  mapComponentsEntries(filename, usingComponents) {
+    if (!usingComponents) {
+      return [];
+    }
+
+    return Object.entries(usingComponents)
+      .filter(([_, path]) => path.startsWith('.'))
+      .map(([_, path]) => join(filename, '..', path))
+      .map((path) => relative(this.context, path))
+      .map((path) => slash(path));
   }
 
   processSfcFile(source, filename) {
@@ -102,26 +156,21 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
     const paths = [];
 
-    const json = this.injectConfig(filename, customBlocks);
-    paths.push(`${json}?to-url`);
+    const { config, entries } = this.injectConfig(filename, customBlocks);
+
+    paths.push(`${config}?to-url`);
 
     const tpl = this.injectTemplate(filename, template);
     paths.push(tpl);
 
-    const css = styles?.length > 0 ? styles : [{ content: '/* */' }];
-
-    css.forEach((style, idx) => {
-      if (style?.content) {
-        const path = this.injectCSS(filename, idx, style);
-        paths.push(path);
-      }
-    });
+    const io = this.injectStyles(filename, styles);
+    paths.push(...io);
 
     if (script?.content) {
       const js = this.injectScript(filename, script);
       paths.push(js);
     }
 
-    return paths;
+    return { paths, entries };
   }
 };

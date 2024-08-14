@@ -92,6 +92,7 @@
     "ext": "js,cjs,mjs,json",
     "watch": [
       "packages/**",
+      "tools/**",
       "src/**",
       ".best-shot/config.mjs"
     ]

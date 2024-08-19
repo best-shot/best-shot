@@ -75,7 +75,8 @@
   },
   "packageManager": "pnpm@9.7.0",
   "engines": {
-    "node": ">=22.0.0 || ^18.20.4 || ^20.16.0"
+    "node": ">=22.0.0 || ^18.20.4 || ^20.15.0",
+    "pnpm": "^9.7.0"
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"

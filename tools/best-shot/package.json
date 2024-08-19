@@ -1,6 +1,6 @@
 {
   "name": "best-shot",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
@@ -47,7 +47,7 @@
     "browserslist": "^4.23.3"
   },
   "engines": {
-    "node": ">=22.0.0 || ^18.20.4 || ^20.16.0"
+    "node": ">=22.0.0 || ^18.20.4 || ^20.15.0"
   },
   "publishConfig": {
     "access": "public",

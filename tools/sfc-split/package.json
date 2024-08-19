@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/sfc-split-plugin",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "license": "MIT",
   "keywords": [
     "loader",
@@ -20,7 +20,7 @@
     "webpack": "^5.93.0"
   },
   "engines": {
-    "node": ">=22.0.0 || ^18.20.4 || ^20.16.0"
+    "node": ">=22.0.0 || ^18.20.4 || ^20.15.0"
   },
   "publishConfig": {
     "access": "public",

@@ -101,7 +101,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   injectStyles(filename, styles) {
     const io = [];
 
-    const css = styles?.length > 0 ? styles : [{ content: '/* */' }];
+    const css = styles?.length > 0 ? styles : [];
 
     css.forEach((style, idx) => {
       if (style?.content) {

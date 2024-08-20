@@ -41,7 +41,7 @@
     "ext-to-regexp": "^0.1.0",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
-    "mini-css-extract-plugin": "^2.9.0",
+    "mini-css-extract-plugin": "^2.9.1",
     "postcss": "^8.4.41",
     "postcss-loader": "^8.1.1",
     "postcss-preset-evergreen": "^0.6.0",

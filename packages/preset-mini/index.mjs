@@ -40,17 +40,14 @@ export function apply({
       .rule('wxml')
       .test(/\.wxml$/)
       .type('asset/resource')
-      .use('prettier-loader')
+      .use('wxml-parse-loader')
       .loader(
         fileURLToPath(
           import.meta.resolve(
-            '@best-shot/sfc-split-plugin/prettier-loader.cjs',
+            '@best-shot/sfc-split-plugin/wxml-parse-loader.cjs',
           ),
         ),
-      )
-      .options({
-        parser: 'html',
-      });
+      );
 
     chain.plugin('sfc-split').use('@best-shot/sfc-split-plugin/webpack.cjs');
 

@@ -152,7 +152,10 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   }
 
   processSfcFile(source, filename) {
-    const { script, template, styles, customBlocks } = parse(source).descriptor;
+    const { script, template, styles, customBlocks } = parse(source, {
+      sourceMap: false,
+      templateParseOptions: { comments: false },
+    }).descriptor;
 
     const paths = [];
 

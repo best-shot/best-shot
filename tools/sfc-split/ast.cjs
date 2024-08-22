@@ -91,7 +91,7 @@ function transformProps2(prop, index, props) {
 
 function traverse(ast, enter) {
   for (const child of ast.children) {
-    if (child.type === 1) {
+    if (child.type === 1 || child.type === 2) {
       enter(child);
     }
 
@@ -105,50 +105,73 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
   const tags = new Set();
 
   traverse(ast, (node) => {
-    if (tagMatcher && node.tag.startsWith(tagMatcher)) {
-      tags.add(node.tag);
-    }
-    /* eslint-disable no-param-reassign */
-    switch (node.tag) {
-      case 'template': {
-        node.tag = 'block';
-        break;
+    if (node.type === 2) {
+      node.content = node.content.trim();
+    } else if (node.type === 1) {
+      if (tagMatcher && node.tag.startsWith(tagMatcher)) {
+        tags.add(node.tag);
       }
-      case 'span': {
-        node.tag = 'text';
-        break;
+      /* eslint-disable no-param-reassign */
+      switch (node.tag) {
+        case 'template': {
+          node.tag = 'block';
+          break;
+        }
+        case 'span': {
+          node.tag = 'text';
+          break;
+        }
+        case 'div': {
+          node.tag = 'view';
+          break;
+        }
+        default:
       }
-      case 'div': {
-        node.tag = 'view';
-        break;
-      }
-      default:
-    }
-    /* eslint-enable no-param-reassign */
-    if (node.props.length > 0) {
-      for (const [index, theProp] of Object.entries(node.props)) {
-        const transformed = transformProps1(theProp);
 
-        if (Array.isArray(transformed)) {
-          const [first, ...rest] = transformed;
-          node.props.splice(index, 1, first);
+      const vText = node.props.findIndex(
+        (prop) => prop.type === 7 && prop.name === 'text',
+      );
 
-          node.props.push(...rest);
-        } else {
-          node.props.splice(index, 1, transformed);
+      if (vText !== -1) {
+        const [temp] = node.props.splice(vText, 1);
+
+        node.children = [
+          temp.exp.ast.type === 'StringLiteral'
+            ? { type: 2, content: temp.exp.ast.value }
+            : { type: 5, content: temp.exp },
+        ];
+
+        if (node.isSelfClosing) {
+          delete node.isSelfClosing;
         }
       }
 
-      for (const [index, theProp] of Object.entries(node.props)) {
-        const transformed = transformProps2(theProp, index, node.props);
+      /* eslint-enable no-param-reassign */
+      if (node.props.length > 0) {
+        for (const [index, theProp] of Object.entries(node.props)) {
+          const transformed = transformProps1(theProp);
 
-        if (Array.isArray(transformed)) {
-          const [first, ...rest] = transformed;
-          node.props.splice(index, 1, first);
+          if (Array.isArray(transformed)) {
+            const [first, ...rest] = transformed;
+            node.props.splice(index, 1, first);
 
-          node.props.push(...rest);
-        } else {
-          node.props.splice(index, 1, transformed);
+            node.props.push(...rest);
+          } else {
+            node.props.splice(index, 1, transformed);
+          }
+        }
+
+        for (const [index, theProp] of Object.entries(node.props)) {
+          const transformed = transformProps2(theProp, index, node.props);
+
+          if (Array.isArray(transformed)) {
+            const [first, ...rest] = transformed;
+            node.props.splice(index, 1, first);
+
+            node.props.push(...rest);
+          } else {
+            node.props.splice(index, 1, transformed);
+          }
         }
       }
     }

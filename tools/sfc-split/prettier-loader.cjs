@@ -10,7 +10,9 @@ module.exports = function loader(source) {
 
   prettier
     .format(source, {
-      htmlWhitespaceSensitivity: 'ignore',
+      htmlWhitespaceSensitivity: 'strict',
+      printWidth: 5000,
+      parser: 'html',
       ...options,
     })
     .then((io) => {

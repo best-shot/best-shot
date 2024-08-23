@@ -136,7 +136,7 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
         const [temp] = node.props.splice(vText, 1);
 
         node.children = [
-          temp.exp.ast.type === 'StringLiteral'
+          temp.exp.ast?.type === 'StringLiteral'
             ? { type: 2, content: temp.exp.ast.value }
             : { type: 5, content: temp.exp },
         ];

@@ -35,6 +35,7 @@
     "version:pin": "syncpack fix-mismatches"
   },
   "dependencies": {
+    "@vue-mini/core": "^1.0.3",
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
     "vue": "^3.4.27"

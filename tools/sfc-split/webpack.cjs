@@ -3,7 +3,7 @@
 const { readFileSync } = require('node:fs');
 const { basename, join, relative } = require('node:path');
 const VirtualModulesPlugin = require('webpack-virtual-modules');
-const { parse } = require('@vue/compiler-sfc');
+const { parse, compileScript } = require('@vue/compiler-sfc');
 const { parse: yamlParse } = require('yaml');
 const { deepmerge: deepMerge } = require('deepmerge-ts');
 const { action } = require('./action.cjs');
@@ -125,6 +125,28 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     return this.inject(filename, 'js', script.content);
   }
 
+  injectScriptSetup(filename, descriptor) {
+    const io = compileScript(descriptor, {
+      id: 'mainBlock',
+      sourceMap: false,
+      genDefaultAs: 'mainBlock',
+    }).content;
+
+    const script = [
+      "import { defineComponent } from '@vue-mini/core';",
+      io
+        .replace('__expose();', '')
+        .replace('expose: __expose', '')
+        .replace(
+          "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
+          '',
+        ),
+      'defineComponent(mainBlock);',
+    ].join('\n');
+
+    return this.inject(filename, 'js', script);
+  }
+
   injectConfig(filename, customBlocks) {
     const json = mergeConfig(
       customBlocks.length > 0
@@ -152,10 +174,12 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   }
 
   processSfcFile(source, filename) {
-    const { script, template, styles, customBlocks } = parse(source, {
+    const { descriptor } = parse(source, {
       sourceMap: false,
       templateParseOptions: { comments: false },
-    }).descriptor;
+    });
+
+    const { script, scriptSetup, template, styles, customBlocks } = descriptor;
 
     const paths = [];
 
@@ -170,10 +194,18 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     paths.push(...io);
 
     if (script?.content) {
-      const js = this.injectScript(filename, script);
-      paths.push(js);
+      if (scriptSetup?.content) {
+        const js = this.injectScriptSetup(filename, descriptor);
+        paths.push(js);
+      } else {
+        const js = this.injectScript(filename, script);
+        paths.push(js);
+      }
     }
 
-    return { paths, entries };
+    return {
+      entries,
+      paths: paths.map((path) => slash(path)),
+    };
   }
 };

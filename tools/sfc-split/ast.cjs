@@ -121,13 +121,13 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
           node.tag = 'text';
           break;
         }
-        case 'div': {
+        case 'div':
+        case 'p': {
           node.tag = 'view';
           break;
         }
         default:
       }
-
       const vText = node.props.findIndex(
         (prop) => prop.type === 7 && prop.name === 'text',
       );

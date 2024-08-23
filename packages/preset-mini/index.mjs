@@ -71,7 +71,7 @@ export const schema = {
     default: false,
   },
   target: {
-    default: ['es2024', 'web'],
+    default: 'browserslist',
   },
   context: {
     default: 'src',

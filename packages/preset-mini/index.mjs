@@ -107,4 +107,14 @@ export const schema = {
       },
     },
   },
+  babel: {
+    properties: {
+      polyfill: {
+        default: {
+          usage: 'pure',
+          mini: true,
+        },
+      },
+    },
+  },
 };

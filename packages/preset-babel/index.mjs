@@ -79,6 +79,7 @@ export const schema = {
       polyfill: {
         default: {
           usage: 'global',
+          mini: false,
         },
         description:
           'References: <https://github.com/babel/babel/issues/10008>',
@@ -90,6 +91,9 @@ export const schema = {
             properties: {
               usage: {
                 enum: ['global', 'pure'],
+              },
+              mini: {
+                type: 'boolean',
               },
             },
           },

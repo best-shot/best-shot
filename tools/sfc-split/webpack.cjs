@@ -127,9 +127,9 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
   injectScriptSetup(filename, descriptor) {
     const io = compileScript(descriptor, {
-      id: 'mainBlock',
+      id: '$$mainBlock',
       sourceMap: false,
-      genDefaultAs: 'mainBlock',
+      genDefaultAs: '$$mainBlock',
     }).content;
 
     const script = [
@@ -141,7 +141,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
           "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
           '',
         ),
-      'defineComponent(mainBlock);',
+      'defineComponent($$mainBlock);',
     ].join('\n');
 
     return this.inject(filename, 'js', script);

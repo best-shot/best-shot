@@ -55,12 +55,15 @@ export function apply({
     if (cache) {
       const { cachePath } = chain.get('x');
       const watch = chain.get('watch');
+      const name = chain.get('name');
 
       chain.cache({
         type: 'filesystem',
         cacheDirectory: cachePath('webpack'),
         maxAge,
-        name: serve && devServer ? 'serve' : watch ? 'watch' : mode,
+        name: [name, serve && devServer ? 'serve' : watch ? 'watch' : mode]
+          .filter(Boolean)
+          .join('-'),
         buildDependencies: {
           config: [fileURLToPath(join(import.meta.url, '../../../'))],
         },

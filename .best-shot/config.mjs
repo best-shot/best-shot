@@ -1,6 +1,6 @@
 export const config = {
   presets: ['mini', 'babel', 'style', 'asset'],
-  // appConfig: true,
+  appConfig: true,
   context: 'src',
   output: {
     publicPath: '/',

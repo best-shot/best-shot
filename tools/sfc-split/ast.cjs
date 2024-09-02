@@ -51,6 +51,12 @@ function transformProps2(prop, index, props) {
         return bind(prop.arg.content, prop.exp.content);
       }
       case 'bind': {
+        if (prop.arg.content === 'class') {
+          const raw = props.find((p) => p.type === 6 && p.name === 'class');
+
+          prop.exp.content = `clsx.clsx('${raw.value.content}', ${prop.exp.content})`;
+        }
+
         if (prop.arg.content === 'key') {
           const io = props.find((item) => item.name === 'wx:for-item');
 

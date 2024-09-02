@@ -8,7 +8,7 @@ const { parse: yamlParse } = require('yaml');
 const { deepmerge: deepMerge } = require('deepmerge-ts');
 const { action } = require('./action.cjs');
 const slash = require('slash');
-const { EntryPlugin } = require('webpack');
+const { EntryPlugin, sources } = require('webpack');
 
 const PLUGIN_NAME = 'SfcSplitPlugin';
 
@@ -83,7 +83,15 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
           const filename = Module.resource.replace(SFC_EXT, '');
 
           try {
-            const { paths, entries } = this.processSfcFile(source, filename);
+            const { paths, entries, config } = this.processSfcFile(
+              source,
+              filename,
+            );
+
+            compilation.emitAsset(
+              `${relative(compiler.context, filename)}.json`,
+              new sources.RawSource(JSON.stringify(config, null, 2)),
+            );
 
             this.injectURLs(Module.resource, paths);
 
@@ -177,15 +185,13 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   }
 
   injectConfig(filename, customBlocks) {
-    const json = mergeConfig(
+    const config = mergeConfig(
       customBlocks.length > 0
         ? customBlocks
         : [{ type: 'config', lang: 'json', content: '{ }' }],
     );
 
-    const entries = this.mapComponentsEntries(filename, json.usingComponents);
-
-    const config = this.inject(filename, 'json', JSON.stringify(json, null, 2));
+    const entries = this.mapComponentsEntries(filename, config.usingComponents);
 
     return { config, entries };
   }
@@ -214,8 +220,6 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
     const { config, entries } = this.injectConfig(filename, customBlocks);
 
-    paths.push(`${config}?to-url`);
-
     const tpl = this.injectTemplate(filename, template);
     paths.push(tpl);
 
@@ -233,6 +237,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     }
 
     return {
+      config,
       entries,
       paths: paths.map((path) => slash(path)),
     };

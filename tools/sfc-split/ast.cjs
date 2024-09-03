@@ -90,7 +90,7 @@ function transformProps3(prop, index, node) {
       case 'model': {
         return asProp(
           `model:${prop.arg?.content || 'value'}`,
-          prop.exp?.content ? prop.exp?.content.replaceAll('.', '_') : '',
+          prop.exp?.content ? prop.exp.content.replaceAll('.', '_') : '',
         );
       }
       case 'if': {

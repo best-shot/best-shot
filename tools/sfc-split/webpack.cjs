@@ -54,6 +54,45 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     });
 
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+      compilation.hooks.buildModule.tap(PLUGIN_NAME, (Module) => {
+        if (SFC_EXT_REGEX.test(Module.resource)) {
+          const source = readFileSync(Module.resource, 'utf8');
+
+          const filename = Module.resource.replace(SFC_EXT, '');
+
+          try {
+            const { paths, entries, config } = this.processSfcFile(
+              source,
+              filename,
+            );
+
+            for (const entry of entries) {
+              if (!compilation.entries.has(entry)) {
+                compilation.addEntry(
+                  compiler.context,
+                  EntryPlugin.createDependency(`./${entry}.vue`),
+                  entry,
+                  (err) => {
+                    if (err) {
+                      throw err;
+                    }
+                  },
+                );
+              }
+            }
+
+            this.injectURLs(Module.resource, paths);
+
+            compilation.emitAsset(
+              slash(`${relative(compiler.context, filename)}.json`),
+              new sources.RawSource(JSON.stringify(config, null, 2)),
+            );
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      });
+
       compilation.hooks.processAssets.tap(PLUGIN_NAME, (assets) => {
         for (const [assetName, source] of Object.entries(assets)) {
           if (
@@ -69,44 +108,6 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
           }
         }
       });
-
-      // eslint-disable-next-line no-shadow
-      const action = (Module) => {
-        if (SFC_EXT_REGEX.test(Module.resource)) {
-          const source = readFileSync(Module.resource, 'utf8');
-
-          const filename = Module.resource.replace(SFC_EXT, '');
-
-          const { paths, entries, config } = this.processSfcFile(
-            source,
-            filename,
-          );
-
-          compilation.emitAsset(
-            `${relative(compiler.context, filename)}.json`,
-            new sources.RawSource(JSON.stringify(config, null, 2)),
-          );
-
-          this.injectURLs(Module.resource, paths);
-
-          for (const entry of entries) {
-            // if (!compilation.entries.has(entry)) {
-            compilation.addEntry(
-              compiler.context,
-              EntryPlugin.createDependency(`./${entry}.vue`),
-              entry,
-              (err) => {
-                if (err) {
-                  throw err;
-                }
-              },
-            );
-            // }
-          }
-        }
-      };
-
-      compilation.hooks.buildModule.tap(PLUGIN_NAME, action);
     });
   }
 

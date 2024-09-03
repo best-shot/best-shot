@@ -66,7 +66,7 @@ importers:
         specifier: ~18.3.1
         version: 18.3.1(react@18.3.1)
       vue:
-        specifier: ^3.4.38
+        specifier: ^3.4.27
         version: 3.4.38(typescript@5.5.4)
     devDependencies:
       '@babel/core':
@@ -178,8 +178,8 @@ importers:
         specifier: workspace:~
         version: link:../validator
       '@best-shot/webpack-chain':
-        specifier: ^8.1.7
-        version: 8.1.7
+        specifier: ^8.1.9
+        version: 8.1.9
       browserslist:
         specifier: ^4.23.3
         version: 4.23.3
@@ -556,7 +556,7 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1(@vue/compiler-core@3.4.38)(@vue/compiler-sfc@3.4.38)
       '@vue/compiler-sfc':
-        specifier: ^3.4.38
+        specifier: ^3.4.27
         version: 3.4.38
       clsx:
         specifier: ^2.1.1
@@ -1256,8 +1256,8 @@ packages:
       vue:
         optional: true
 
-  '@best-shot/webpack-chain@8.1.7':
-    resolution: {integrity: sha512-KjF2sxJeJ5Fzu89uo5T9zSE5BIirhA6AN0KW14pf/6JhB45E4nSJ9TQEKhVH7mG3Ki+aJ+bYYUstYJkTmYanRA==}
+  '@best-shot/webpack-chain@8.1.9':
+    resolution: {integrity: sha512-fx+hsLu41wDGDEN2ilAuu3RzTxCS30KFLn0+cP/wDRVww+IGp5LvZQTLNPprrY6TbUu20J0CkGnYheZm09gKqg==}
     engines: {node: '>=10'}
 
   '@bring-it/cli@0.9.8':
@@ -1662,7 +1662,7 @@ packages:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
   '@types/json5@0.0.29':
-    resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
+    resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
   '@types/mdast@3.0.15':
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
@@ -3333,7 +3333,7 @@ packages:
     engines: {node: '>= 0.4'}
 
   has-unicode@2.0.1:
-    resolution: {integrity: sha1-4Ob+aijPUROIVeCG0Wkedx3iqLk=}
+    resolution: {integrity: sha512-8Rf9Y83NBReMnx0gFzA8JImQACstCYWUplepDa9xprwwtmgEZUF0h/i5xSA625zB/I37EtrswSST6OXxwaaIJQ==}
 
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
@@ -6806,7 +6806,7 @@ snapshots:
     optionalDependencies:
       vue: 3.4.38(typescript@5.5.4)
 
-  '@best-shot/webpack-chain@8.1.7':
+  '@best-shot/webpack-chain@8.1.9':
     dependencies:
       deepmerge: 1.5.2
       javascript-stringify: 2.1.0

@@ -1,14 +1,14 @@
 'use strict';
 
 const { readFileSync } = require('node:fs');
-const { basename, join, relative } = require('node:path');
+const { basename, join, relative, extname } = require('node:path');
 const VirtualModulesPlugin = require('webpack-virtual-modules');
 const { parse, compileScript } = require('@vue/compiler-sfc');
 const { parse: yamlParse } = require('yaml');
 const { deepmerge: deepMerge } = require('deepmerge-ts');
 const { action } = require('./action.cjs');
 const slash = require('slash');
-const { EntryPlugin } = require('webpack');
+const { EntryPlugin, sources } = require('webpack');
 
 const PLUGIN_NAME = 'SfcSplitPlugin';
 
@@ -46,37 +46,67 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
     this.context = compiler.context;
 
+    const wxs = 'wxs/clsx.wxs';
+
+    compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+      const wxsContent = readFileSync(join(__dirname, wxs), 'utf8');
+      compilation.emitAsset(wxs, new sources.RawSource(wxsContent));
+    });
+
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
-      compilation.hooks.buildModule.tap(PLUGIN_NAME, (Module) => {
+      compilation.hooks.processAssets.tap(PLUGIN_NAME, (assets) => {
+        for (const [assetName, source] of Object.entries(assets)) {
+          if (
+            extname(assetName) === '.wxml' &&
+            source.source().includes('clsx.clsx(')
+          ) {
+            const path = slash(relative(join(assetName, '..'), wxs));
+            const head = `<wxs src="${path}" module="clsx" />\n`;
+            compilation.updateAsset(
+              assetName,
+              (old) => new sources.ConcatSource(head, old),
+            );
+          }
+        }
+      });
+
+      // eslint-disable-next-line no-shadow
+      const action = (Module) => {
         if (SFC_EXT_REGEX.test(Module.resource)) {
           const source = readFileSync(Module.resource, 'utf8');
 
           const filename = Module.resource.replace(SFC_EXT, '');
 
-          try {
-            const { paths, entries } = this.processSfcFile(source, filename);
+          const { paths, entries, config } = this.processSfcFile(
+            source,
+            filename,
+          );
 
-            this.injectURLs(Module.resource, paths);
+          compilation.emitAsset(
+            `${relative(compiler.context, filename)}.json`,
+            new sources.RawSource(JSON.stringify(config, null, 2)),
+          );
 
-            for (const entry of entries) {
-              if (!compilation.entries.has(entry)) {
-                compilation.addEntry(
-                  compiler.context,
-                  EntryPlugin.createDependency(`./${entry}.vue`),
-                  entry,
-                  (err) => {
-                    if (err) {
-                      throw err;
-                    }
-                  },
-                );
-              }
-            }
-          } catch (error) {
-            console.error(error);
+          this.injectURLs(Module.resource, paths);
+
+          for (const entry of entries) {
+            // if (!compilation.entries.has(entry)) {
+            compilation.addEntry(
+              compiler.context,
+              EntryPlugin.createDependency(`./${entry}.vue`),
+              entry,
+              (err) => {
+                if (err) {
+                  throw err;
+                }
+              },
+            );
+            // }
           }
         }
-      });
+      };
+
+      compilation.hooks.buildModule.tap(PLUGIN_NAME, action);
     });
   }
 
@@ -136,7 +166,8 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
       "import { defineComponent } from '@vue-mini/core';",
       io
         .replace('__expose();', '')
-        .replace('expose: __expose', '')
+        .replace(/expose:\s__expose,?/, '')
+        .replace(/\semit: __emit/, ' triggerEvent: __emit')
         .replace(
           "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
           '',
@@ -148,15 +179,13 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   }
 
   injectConfig(filename, customBlocks) {
-    const json = mergeConfig(
-      customBlocks.length > 0
+    const config = mergeConfig(
+      customBlocks?.length > 0
         ? customBlocks
         : [{ type: 'config', lang: 'json', content: '{ }' }],
     );
 
-    const entries = this.mapComponentsEntries(filename, json.usingComponents);
-
-    const config = this.inject(filename, 'json', JSON.stringify(json, null, 2));
+    const entries = this.mapComponentsEntries(filename, config.usingComponents);
 
     return { config, entries };
   }
@@ -185,8 +214,6 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
     const { config, entries } = this.injectConfig(filename, customBlocks);
 
-    paths.push(`${config}?to-url`);
-
     const tpl = this.injectTemplate(filename, template);
     paths.push(tpl);
 
@@ -204,6 +231,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     }
 
     return {
+      config,
       entries,
       paths: paths.map((path) => slash(path)),
     };

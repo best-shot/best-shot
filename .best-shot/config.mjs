@@ -1,9 +1,15 @@
 export const config = {
   presets: ['mini', 'babel', 'style', 'asset'],
-  // appConfig: true,
+  appConfig: true,
   context: 'src',
   output: {
-    publicPath: '/',
     module: true,
+  },
+  optimization: {
+    runtimeChunk: false,
+    splitChunks: false,
+  },
+  chain(chain) {
+    chain.output.library({ type: 'module' });
   },
 };

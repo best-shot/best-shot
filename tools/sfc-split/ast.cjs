@@ -1,5 +1,20 @@
 'use strict';
 
+function walk(node, transform) {
+  for (const [index, theProp] of Object.entries(node.props)) {
+    const transformed = transform(theProp, index, node);
+
+    if (Array.isArray(transformed)) {
+      const [first, ...rest] = transformed;
+      node.props.splice(index, 1, first);
+
+      node.props.push(...rest);
+    } else {
+      node.props.splice(index, 1, transformed);
+    }
+  }
+}
+
 function braces(str) {
   return `{{ ${str.trim()} }}`;
 }
@@ -23,28 +38,32 @@ function bind(name, content) {
 }
 
 function transformProps1(prop) {
-  if (prop.type === 7) {
-    // eslint-disable-next-line sonarjs/no-small-switch
-    switch (prop.name) {
-      case 'for': {
-        const { source, value, key } = prop.forParseResult;
+  if (prop.type === 7 && prop.name === 'for') {
+    const { source, value, key } = prop.forParseResult;
 
-        return [
-          asProp('wx:for', source.content),
-          asProp('wx:for-item', value.content, false),
-          key?.content
-            ? asProp('wx:for-index', key?.content, false)
-            : undefined,
-        ].filter(Boolean);
-      }
-      default:
-    }
+    return [
+      asProp('wx:for', source.content),
+      asProp('wx:for-item', value.content, false),
+      key?.content ? asProp('wx:for-index', key?.content, false) : undefined,
+    ].filter(Boolean);
   }
 
   return prop;
 }
 
-function transformProps2(prop, index, props) {
+function transformProps2(prop, index, node) {
+  if (prop.type === 7 && prop.name === 'bind' && prop.arg.content === 'class') {
+    const raw = node.props.find((p) => p.type === 6 && p.name === 'class');
+
+    prop.exp.content = raw
+      ? `clsx.clsx('${raw.value.content}', ${prop.exp.content})`
+      : `clsx.clsx(${prop.exp.content})`;
+  }
+
+  return prop;
+}
+
+function transformProps3(prop, index, node) {
   if (prop.type === 7) {
     switch (prop.name) {
       case 'on': {
@@ -52,7 +71,7 @@ function transformProps2(prop, index, props) {
       }
       case 'bind': {
         if (prop.arg.content === 'key') {
-          const io = props.find((item) => item.name === 'wx:for-item');
+          const io = node.props.find((item) => item.name === 'wx:for-item');
 
           return asProp(
             'wx:key',
@@ -69,7 +88,10 @@ function transformProps2(prop, index, props) {
         return asProp(prop.arg.content, prop.exp.content);
       }
       case 'model': {
-        return asProp(`model:${prop.arg.content}`, prop.exp.content);
+        return asProp(
+          `model:${prop.arg?.content || 'value'}`,
+          prop.exp?.content ? prop.exp?.content.replaceAll('.', '_') : '',
+        );
       }
       case 'if': {
         return asProp('wx:if', prop.exp.content);
@@ -128,12 +150,12 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
         }
         default:
       }
-      const vText = node.props.findIndex(
+      const vTextIndex = node.props.findIndex(
         (prop) => prop.type === 7 && prop.name === 'text',
       );
 
-      if (vText !== -1) {
-        const [temp] = node.props.splice(vText, 1);
+      if (vTextIndex !== -1) {
+        const [temp] = node.props.splice(vTextIndex, 1);
 
         node.children = [
           temp.exp.ast?.type === 'StringLiteral'
@@ -148,31 +170,27 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
 
       /* eslint-enable no-param-reassign */
       if (node.props.length > 0) {
-        for (const [index, theProp] of Object.entries(node.props)) {
-          const transformed = transformProps1(theProp);
+        walk(node, transformProps1);
+        walk(node, transformProps2);
 
-          if (Array.isArray(transformed)) {
-            const [first, ...rest] = transformed;
-            node.props.splice(index, 1, first);
-
-            node.props.push(...rest);
-          } else {
-            node.props.splice(index, 1, transformed);
-          }
+        if (
+          node.props.some((prop) => prop.type === 6 && prop.name === 'class') &&
+          node.props.some(
+            (prop) =>
+              prop.type === 7 &&
+              prop.name === 'bind' &&
+              prop.arg.content === 'class',
+          )
+        ) {
+          node.props.splice(
+            node.props.findIndex(
+              (prop) => prop.type === 6 && prop.name === 'class',
+            ),
+            1,
+          );
         }
 
-        for (const [index, theProp] of Object.entries(node.props)) {
-          const transformed = transformProps2(theProp, index, node.props);
-
-          if (Array.isArray(transformed)) {
-            const [first, ...rest] = transformed;
-            node.props.splice(index, 1, first);
-
-            node.props.push(...rest);
-          } else {
-            node.props.splice(index, 1, transformed);
-          }
-        }
+        walk(node, transformProps3);
       }
     }
   });

@@ -39,7 +39,7 @@ export function apply({
       .minimize(mode === 'production');
 
     if (watch) {
-      chain.watchOptions({ ignored: /node_modules/ });
+      chain.watchOptions.ignored(/node_modules/);
       chain.output.pathinfo(false);
       chain.optimization.removeAvailableModules(false).innerGraph(false);
     } else {
@@ -77,17 +77,10 @@ export function apply({
 
     if (useModule) {
       chain.experiments.outputModule(true);
-      chain.output.merge({
-        chunkFormat: 'module',
-        chunkLoading: 'import',
-      });
-      // chain.output.library({
-      //   type: 'module',
-      // });
+      chain.output.chunkFormat('module').chunkLoading('import');
+      // chain.output.library.type('module');
     } else if (isNode) {
-      chain.output.library({
-        type: 'commonjs-static',
-      });
+      chain.output.library.type('commonjs-static');
     }
 
     chain.output.assetModuleFilename('[path][name][ext]');

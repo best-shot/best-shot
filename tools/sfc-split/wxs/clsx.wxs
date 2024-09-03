@@ -1,20 +1,52 @@
 /* eslint-disable @eslint-community/eslint-comments/disable-enable-pair */
-/* eslint-disable prefer-rest-params */
-/* eslint-disable vars-on-top */
-/* eslint-disable no-cond-assign */
+/* eslint-disable prefer-arrow-callback,prefer-rest-params,vars-on-top,no-cond-assign */
+
+/* global getRegExp: readonly */
+function getKeys(object) {
+  var keys = [];
+
+  var jsonString = JSON.stringify(object);
+  var keyValues = jsonString.slice(1, -1).split(',');
+
+  keyValues.forEach(function forEach(keyValue) {
+    var parts = keyValue.split(':');
+
+    var key = parts[0].replace(getRegExp('^"|"$', 'g'), '');
+    var value = parts[1] ? JSON.parse(parts[1]) : false;
+    if (value) {
+      keys.push(key);
+    }
+  });
+
+  return keys;
+}
+
 function toVal(mix) {
-  var k;
-  var y;
   var str = '';
 
   if (typeof mix === 'string' || typeof mix === 'number') {
     str += mix;
-  } else if (typeof mix === 'object' && mix.constructor === 'Array') {
-    var len = mix.length;
-    for (k = 0; k < len; k++) {
-      if (mix[k] && (y = toVal(mix[k]))) {
-        if (str) str += ' ';
-        str += y;
+  } else if (typeof mix === 'object') {
+    if (mix.constructor === 'Array') {
+      var len = mix.length;
+      for (var k = 0; k < len; k++) {
+        if (mix[k]) {
+          var y = toVal(mix[k]);
+          if (y) {
+            if (str) {
+              str += ' ';
+            }
+            str += y;
+          }
+        }
+      }
+    } else {
+      var clx = getKeys(mix).join(' ');
+      if (clx) {
+        if (str) {
+          str += ' ';
+        }
+        str += clx;
       }
     }
   }
@@ -23,12 +55,11 @@ function toVal(mix) {
 }
 
 function clsx() {
-  var i = 0;
   var tmp;
   var x;
   var str = '';
   var len = arguments.length;
-  for (; i < len; i++) {
+  for (var i = 0; i < len; i++) {
     if ((tmp = arguments[i]) && (x = toVal(tmp))) {
       if (str) str += ' ';
       str += x;

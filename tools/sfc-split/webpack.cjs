@@ -1,7 +1,7 @@
 'use strict';
 
 const { readFileSync } = require('node:fs');
-const { basename, join, relative } = require('node:path');
+const { basename, join, relative, extname } = require('node:path');
 const VirtualModulesPlugin = require('webpack-virtual-modules');
 const { parse, compileScript } = require('@vue/compiler-sfc');
 const { parse: yamlParse } = require('yaml');
@@ -48,34 +48,28 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
     const wxs = 'wxs/clsx.wxs';
 
-    compiler.hooks.emit.tapAsync(PLUGIN_NAME, (compilation, callback) => {
-      if (!compilation.assets[wxs]) {
-        const content = readFileSync(join(__dirname, wxs), 'utf8');
-        compilation.assets[wxs] = {
-          source: () => content,
-          size: () => content.length,
-        };
-      }
-
-      Object.keys(compilation.assets).forEach((assetName) => {
-        if (assetName.endsWith('.wxml')) {
-          const asset = compilation.assets[assetName];
-          let content = asset.source();
-
-          if (content.includes('clsx.clsx(')) {
-            content = `<wxs src="${slash(relative(join(assetName, '..'), wxs))}" module="clsx" />\n\n${content}`;
-
-            compilation.assets[assetName] = {
-              source: () => content,
-              size: () => content.length,
-            };
-          }
-        }
-      });
-      callback();
+    compiler.hooks.emit.tap(PLUGIN_NAME, (compilation) => {
+      const wxsContent = readFileSync(join(__dirname, wxs), 'utf8');
+      compilation.emitAsset(wxs, new sources.RawSource(wxsContent));
     });
 
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+      compilation.hooks.processAssets.tap(PLUGIN_NAME, (assets) => {
+        for (const [assetName, source] of Object.entries(assets)) {
+          if (
+            extname(assetName) === '.wxml' &&
+            source.source().includes('clsx.clsx(')
+          ) {
+            const path = slash(relative(join(assetName, '..'), wxs));
+            const head = `<wxs src="${path}" module="clsx" />\n`;
+            compilation.updateAsset(
+              assetName,
+              (old) => new sources.ConcatSource(head, old),
+            );
+          }
+        }
+      });
+
       compilation.hooks.buildModule.tap(PLUGIN_NAME, (Module) => {
         if (SFC_EXT_REGEX.test(Module.resource)) {
           const source = readFileSync(Module.resource, 'utf8');

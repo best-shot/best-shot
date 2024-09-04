@@ -3,8 +3,20 @@ import { resolve } from 'node:path';
 
 import { parse } from 'yaml';
 
-export function readYAML(path, base = process.cwd()) {
-  const file = readFileSync(resolve(base, path), 'utf8');
+function read(base, name) {
+  try {
+    return readFileSync(resolve(base, name), 'utf8');
+  } catch {
+    return false;
+  }
+}
+
+export function readYAML(base = process.cwd()) {
+  const file =
+    read(base, 'app.yaml') ||
+    read(base, 'app.yml') ||
+    read(base, 'app.json') ||
+    {};
 
   return parse(file);
 }

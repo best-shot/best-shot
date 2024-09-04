@@ -56,7 +56,7 @@ export function apply({
     if (appConfig) {
       chain.entry('app').add('./app.js');
 
-      const io = readYAML('app.yaml', context);
+      const io = readYAML(context);
       const allPages = getAllPages(io);
 
       for (const page of allPages) {

@@ -1,7 +1,5 @@
-/* eslint-disable @eslint-community/eslint-comments/disable-enable-pair */
-/* eslint-disable prefer-arrow-callback,prefer-rest-params,vars-on-top,no-cond-assign */
+/* eslint-disable @eslint-community/eslint-comments/disable-enable-pair, no-cond-assign */
 
-/* global getRegExp: readonly */
 function getKeys(object) {
   var keys = [];
 

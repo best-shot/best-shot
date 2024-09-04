@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/sfc-split-plugin",
-  "version": "0.6.11",
+  "version": "0.6.12",
   "license": "MIT",
   "keywords": [
     "loader",
@@ -9,13 +9,13 @@
   "type": "commonjs",
   "dependencies": {
     "@padcom/vue-ast-serializer": "^0.0.1",
-    "@vue/compiler-sfc": "^3.4.38",
+    "@vue/compiler-sfc": "^3.4.27",
     "deepmerge-ts": "^7.1.0",
     "slash": "^3.0.0",
     "tab-to-space": "^1.0.1",
     "webpack-virtual-modules": "^0.6.2",
     "wxml-parse": "^0.2.3",
-    "yaml": "^2.5.0"
+    "yaml": "^2.5.1"
   },
   "peerDependencies": {
     "webpack": "^5.94.0"

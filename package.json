@@ -38,7 +38,7 @@
     "@vue-mini/core": "^1.0.3",
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
-    "vue": "^3.4.38"
+    "vue": "^3.4.27"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

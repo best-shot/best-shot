@@ -164,7 +164,9 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     }).content;
 
     const script = [
-      "import { defineComponent } from '@vue-mini/core';",
+      io.includes('$$mainBlock')
+        ? "import { defineComponent as $$asComponent } from '@vue-mini/core';"
+        : undefined,
       io
         .replace('__expose();', '')
         .replace(/expose:\s__expose,?/, '')
@@ -173,8 +175,10 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
           "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
           '',
         ),
-      'defineComponent($$mainBlock);',
-    ].join('\n');
+      io.includes('$$mainBlock') ? '$$asComponent($$mainBlock);' : undefined,
+    ]
+      .filter(Boolean)
+      .join('\n');
 
     return this.inject(filename, 'js', script);
   }

@@ -66,18 +66,20 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
               filename,
             );
 
-            for (const entry of entries) {
-              if (!compilation.entries.has(entry)) {
-                compilation.addEntry(
-                  compiler.context,
-                  EntryPlugin.createDependency(`./${entry}.vue`),
-                  entry,
-                  (err) => {
-                    if (err) {
-                      throw err;
-                    }
-                  },
-                );
+            if (entries?.size > 0) {
+              for (const [entry, path] of entries.entries()) {
+                if (!compilation.entries.has(entry)) {
+                  compilation.addEntry(
+                    compiler.context,
+                    EntryPlugin.createDependency(path),
+                    entry,
+                    (err) => {
+                      if (err) {
+                        throw err;
+                      }
+                    },
+                  );
+                }
               }
             }
 
@@ -190,9 +192,29 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
         : [{ type: 'config', lang: 'json', content: '{ }' }],
     );
 
-    const entries = this.mapComponentsEntries(filename, config.usingComponents);
+    if (config.usingComponents) {
+      const entries = this.mapComponentsEntries(
+        filename,
+        config.usingComponents,
+      );
 
-    return { config, entries };
+      for (const [key, path] of Object.entries(config.usingComponents)) {
+        if (path.endsWith('.vue')) {
+          config.usingComponents[key] = path.startsWith('.')
+            ? path.replace(/\.vue$/, '')
+            : slash(
+                relative(
+                  join(filename, '..'),
+                  join(this.context, `components/${key}`),
+                ),
+              );
+        }
+      }
+
+      return { entries, config };
+    }
+
+    return { config };
   }
 
   mapComponentsEntries(filename, usingComponents) {
@@ -200,11 +222,20 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
       return [];
     }
 
-    return Object.entries(usingComponents)
-      .filter(([_, path]) => path.startsWith('.'))
-      .map(([_, path]) => join(filename, '..', path))
-      .map((path) => relative(this.context, path))
-      .map((path) => slash(path));
+    const asEntries = Object.entries(usingComponents).filter(([_, path]) =>
+      path.endsWith('.vue'),
+    );
+
+    return new Map([
+      ...asEntries
+        .filter(([_, path]) => path.startsWith('.'))
+        .map(([_, path]) => [_, join(filename, '..', path)])
+        .map(([_, path]) => [_, slash(relative(this.context, path))])
+        .map(([_, path]) => [path.replace(/\.vue$/, ''), `./${path}`]),
+      ...asEntries
+        .filter(([_, path]) => !path.startsWith('.'))
+        .map(([key, path]) => [`components/${key}`, path]),
+    ]);
   }
 
   processSfcFile(source, filename) {

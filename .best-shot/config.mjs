@@ -10,6 +10,12 @@ export const config = {
   //   splitChunks: false,
   // },
   chain(chain) {
-    chain.output.library({ type: 'module' });
+    // chain.output.library({ type: 'module' });
+
+    chain.stats({
+      errorDetails: true,
+    });
+
+    chain.cache(false);
   },
 };

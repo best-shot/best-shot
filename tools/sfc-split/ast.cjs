@@ -139,6 +139,10 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
           node.tag = 'block';
           break;
         }
+        case 'img': {
+          node.tag = 'image';
+          break;
+        }
         case 'span': {
           node.tag = 'text';
           break;

@@ -1,5 +1,3 @@
-import { fileURLToPath } from 'node:url';
-
 import { getAllPages, readYAML } from './helper.mjs';
 
 export function apply({
@@ -36,20 +34,9 @@ export function apply({
         .tap(([options]) => [{ exclude: /miniprogram_npm/, ...options }]);
     }
 
-    chain.module
-      .rule('wxml')
-      .test(/\.wxml$/)
-      .type('asset/resource')
-      .use('wxml-parse-loader')
-      .loader(
-        fileURLToPath(
-          import.meta.resolve(
-            '@best-shot/sfc-split-plugin/wxml-parse-loader.cjs',
-          ),
-        ),
-      );
+    chain.experiments.set('layers', true);
 
-    chain.plugin('sfc-split').use('@best-shot/sfc-split-plugin/webpack.cjs');
+    chain.plugin('sfc-split').use('@best-shot/sfc-split-plugin');
 
     const context = chain.get('context');
 
@@ -60,7 +47,10 @@ export function apply({
       const allPages = getAllPages(io);
 
       for (const page of allPages) {
-        chain.entry(page).add(`./${page}.vue`);
+        chain.entry(page).add({
+          import: `./${page}.vue`,
+          layer: page,
+        });
       }
     }
   };

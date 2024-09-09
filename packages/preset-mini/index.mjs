@@ -1,5 +1,3 @@
-import { getAllPages, readYAML } from './helper.mjs';
-
 export function apply({
   config: { appConfig, output: { module: Module } = {} },
 }) {
@@ -12,7 +10,7 @@ export function apply({
         chunkFormat: 'module',
         chunkLoading: 'import',
         library: {
-          type: 'modern-module',
+          type: 'module',
         },
       });
     } else {
@@ -34,25 +32,24 @@ export function apply({
         .tap(([options]) => [{ exclude: /miniprogram_npm/, ...options }]);
     }
 
+    chain.module
+      .rule('style')
+      .rule('all')
+      .oneOf('not-url')
+      .use('css-loader')
+      .tap((options) => ({
+        ...options,
+        import: false,
+        modules: false,
+      }));
+
     chain.experiments.set('layers', true);
 
-    chain.plugin('sfc-split').use('@best-shot/sfc-split-plugin');
-
-    const context = chain.get('context');
-
-    if (appConfig) {
-      chain.entry('app').add('./app.js');
-
-      const io = readYAML(context);
-      const allPages = getAllPages(io);
-
-      for (const page of allPages) {
-        chain.entry(page).add({
-          import: `./${page}.vue`,
-          layer: page,
-        });
-      }
-    }
+    chain.plugin('sfc-split').use('@best-shot/sfc-split-plugin', [
+      {
+        appConfig,
+      },
+    ]);
   };
 }
 

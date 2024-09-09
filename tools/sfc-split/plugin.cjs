@@ -1,5 +1,6 @@
 'use strict';
 
+const { getAllPages, readYAML } = require('./helper.cjs');
 const { readFileSync } = require('node:fs');
 const { join, relative, extname, resolve } = require('node:path');
 const VirtualModulesPlugin = require('webpack-virtual-modules');
@@ -33,6 +34,11 @@ function mergeConfig(customBlocks) {
 }
 
 module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
+  constructor({ appConfig = false } = {}) {
+    super();
+    this.appConfig = appConfig;
+  }
+
   apply(compiler) {
     super.apply(compiler);
 
@@ -61,7 +67,44 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
     const wxs = 'wxs/clsx.wxs';
 
-    const { RawSource, ConcatSource } = compiler.webpack.sources;
+    const {
+      sources: { RawSource, ConcatSource },
+      EntryPlugin: { createDependency },
+      EntryPlugin,
+    } = compiler.webpack;
+
+    compiler.hooks.afterEnvironment.tap(PLUGIN_NAME, () => {
+      compiler.options.entry = {};
+
+      if (this.appConfig) {
+        new EntryPlugin(compiler.context, './app', {
+          name: 'app',
+          layer: 'app',
+          import: ['./app'],
+        }).apply(compiler);
+
+        const config = readYAML(compiler.context);
+
+        compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+          compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
+            compilation.emitAsset(
+              'app.json',
+              new RawSource(JSON.stringify(config, null, 2)),
+            );
+          });
+        });
+
+        const allPages = getAllPages(config);
+
+        for (const page of allPages) {
+          new EntryPlugin(compiler.context, `./${page}.vue`, {
+            import: [`./${page}.vue`],
+            layer: page,
+            name: page,
+          }).apply(compiler);
+        }
+      }
+    });
 
     compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
       const wxsContent = readFileSync(join(__dirname, wxs), 'utf8');
@@ -83,8 +126,6 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
         }
       });
     });
-
-    const { createDependency } = compiler.webpack.EntryPlugin;
 
     compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {

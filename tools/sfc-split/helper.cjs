@@ -1,7 +1,8 @@
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+'use strict';
 
-import { parse } from 'yaml';
+const { readFileSync } = require('node:fs');
+const { resolve } = require('node:path');
+const { parse } = require('yaml');
 
 function read(base, name) {
   try {
@@ -11,7 +12,7 @@ function read(base, name) {
   }
 }
 
-export function readYAML(base = process.cwd()) {
+exports.readYAML = function readYAML(base = process.cwd()) {
   const file =
     read(base, 'app.yaml') ||
     read(base, 'app.yml') ||
@@ -19,21 +20,27 @@ export function readYAML(base = process.cwd()) {
     {};
 
   return parse(file);
-}
+};
 
 function unique(...arr) {
   return [...new Set(arr)];
 }
 
-export function getAllPages(config) {
-  const { pages = [], subPackages = [], tabBar: { list = [] } = {} } = config;
+exports.getAllPages = function getAllPages(config) {
+  const {
+    entryPagePath,
+    pages = [],
+    subPackages = [],
+    tabBar: { list = [] } = {},
+  } = config;
 
   return unique(
+    entryPagePath,
     ...pages,
     ...list.map(({ pagePath }) => pagePath),
     ...subPackages.flatMap(
       (subPackage) =>
         subPackage.pages.map((page) => `${subPackage.root}/${page}`) || [],
     ),
-  );
-}
+  ).filter(Boolean);
+};

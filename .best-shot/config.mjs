@@ -1,6 +1,8 @@
 export const config = {
   presets: ['mini', 'babel', 'style', 'asset'],
-  appConfig: true,
+  mini: {
+    type: 'app',
+  },
   context: 'src',
   output: {
     module: true,
@@ -10,8 +12,6 @@ export const config = {
   //   splitChunks: false,
   // },
   chain(chain) {
-    // chain.output.library({ type: 'module' });
-
     chain.stats({
       errorDetails: true,
     });

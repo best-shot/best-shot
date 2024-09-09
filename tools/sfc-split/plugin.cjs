@@ -34,9 +34,9 @@ function mergeConfig(customBlocks) {
 }
 
 module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
-  constructor({ appConfig = false } = {}) {
+  constructor({ type = false } = {}) {
     super();
-    this.appConfig = appConfig;
+    this.type = type;
   }
 
   apply(compiler) {
@@ -74,16 +74,16 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     } = compiler.webpack;
 
     compiler.hooks.afterEnvironment.tap(PLUGIN_NAME, () => {
-      compiler.options.entry = {};
+      delete compiler.options.entry.main;
 
-      if (this.appConfig) {
+      if (this.type === 'app') {
         new EntryPlugin(compiler.context, './app', {
           name: 'app',
           layer: 'app',
           import: ['./app'],
         }).apply(compiler);
 
-        const config = readYAML(compiler.context);
+        const config = readYAML(compiler.context, 'app');
 
         compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
           compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
@@ -103,6 +103,58 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
             name: page,
           }).apply(compiler);
         }
+      } else if (this.type === 'plugin') {
+        const config = readYAML(compiler.context, 'plugin');
+
+        if (config.main) {
+          new EntryPlugin(compiler.context, config.main, {
+            import: [config.main],
+            layer: 'main',
+            name: 'main',
+          }).apply(compiler);
+
+          config.main = 'main.js';
+        }
+
+        if (config.pages && Object.keys(config.pages).length > 0) {
+          for (const [key, path] of Object.entries(config.pages)) {
+            if (extname(path) === '.vue') {
+              new EntryPlugin(compiler.context, path, {
+                import: [path],
+                layer: `pages/${key}/index`,
+                name: `pages/${key}/index`,
+              }).apply(compiler);
+
+              config.pages[key] = `pages/${key}/index`;
+            }
+          }
+        }
+
+        if (
+          config.publicComponents &&
+          Object.keys(config.publicComponents).length > 0
+        ) {
+          for (const [key, path] of Object.entries(config.publicComponents)) {
+            if (extname(path) === '.vue') {
+              new EntryPlugin(compiler.context, path, {
+                import: [path],
+                layer: `components/${key}/index`,
+                name: `components/${key}/index`,
+              }).apply(compiler);
+
+              config.publicComponents[key] = `components/${key}/index`;
+            }
+          }
+        }
+
+        compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+          compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
+            compilation.emitAsset(
+              'plugin.json',
+              new RawSource(JSON.stringify(config, null, 2)),
+            );
+          });
+        });
       }
     });
 

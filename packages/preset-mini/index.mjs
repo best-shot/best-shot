@@ -1,5 +1,5 @@
 export function apply({
-  config: { appConfig, output: { module: Module } = {} },
+  config: { mini: { type } = {}, output: { module: Module } = {} },
 }) {
   return (chain) => {
     chain.output.publicPath('/').iife(false).asyncChunks(false);
@@ -47,7 +47,7 @@ export function apply({
 
     chain.plugin('sfc-split').use('@best-shot/sfc-split-plugin', [
       {
-        appConfig,
+        type,
       },
     ]);
   };
@@ -56,8 +56,14 @@ export function apply({
 export const name = 'preset-mini';
 
 export const schema = {
-  appConfig: {
-    default: false,
+  mini: {
+    type: 'object',
+    default: {},
+    properties: {
+      type: {
+        enum: ['app', 'plugin'],
+      },
+    },
   },
   target: {
     default: 'browserslist',

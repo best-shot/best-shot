@@ -25,6 +25,8 @@ npm install @best-shot/preset-mini --save-dev
 export default {
   presets: ['babel', 'style', 'mini'],
   output: { path: 'dist' },
-  appConfig: true
+  mini: {
+    type: 'app'
+  }
 };
 ```

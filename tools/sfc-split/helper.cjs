@@ -12,11 +12,11 @@ function read(base, name) {
   }
 }
 
-exports.readYAML = function readYAML(base = process.cwd()) {
+exports.readYAML = function readYAML(base, name) {
   const file =
-    read(base, 'app.yaml') ||
-    read(base, 'app.yml') ||
-    read(base, 'app.json') ||
+    read(base, `${name}.yaml`) ||
+    read(base, `${name}.yml`) ||
+    read(base, `${name}.json`) ||
     {};
 
   return parse(file);

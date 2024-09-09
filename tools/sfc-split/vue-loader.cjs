@@ -34,36 +34,38 @@ module.exports = function loader(source, map, meta) {
     Object.keys(config.usingComponents).length > 0
   ) {
     for (const [name, path] of Object.entries(config.usingComponents)) {
-      const absolutePath = path.startsWith('.')
-        ? slash(resolve(this.context, path))
-        : require.resolve(path);
+      if (path.endsWith('.vue') && !path.startsWith('plugin://')) {
+        const absolutePath = path.startsWith('.')
+          ? slash(resolve(this.context, path))
+          : require.resolve(path);
 
-      const relativePath = slash(relative(this.rootContext, absolutePath));
+        const relativePath = slash(relative(this.rootContext, absolutePath));
 
-      const entryName = relativePath.startsWith('..')
-        ? `as-components/${name}/${createShortHash(absolutePath)}`
-        : relativePath.replace(/\.vue$/, '');
+        const entryName = relativePath.startsWith('..')
+          ? `as-components/${name}/${createShortHash(absolutePath)}`
+          : relativePath.replace(/\.vue$/, '');
 
-      const placer = toThis(entryName);
+        const placer = toThis(entryName);
 
-      config.usingComponents[name] = placer;
+        config.usingComponents[name] = placer;
 
-      const entryPath = relativePath.startsWith('..')
-        ? absolutePath
-        : `./${relativePath}`;
+        const entryPath = relativePath.startsWith('..')
+          ? absolutePath
+          : `./${relativePath}`;
 
-      this.addDependency(resolve(absolutePath));
-      this.addMissingDependency(resolve(absolutePath));
+        this.addDependency(resolve(absolutePath));
+        this.addMissingDependency(resolve(absolutePath));
 
-      caller({
-        name,
-        path,
-        absolutePath,
-        relativePath,
-        entryName,
-        entryPath,
-        placer,
-      });
+        caller({
+          name,
+          path,
+          absolutePath,
+          relativePath,
+          entryName,
+          entryPath,
+          placer,
+        });
+      }
     }
   }
 

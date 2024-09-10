@@ -201,7 +201,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   }
 
   inject(resourcePath, ext, content) {
-    const path = resolve(resourcePath, `../@fake${ext}`);
+    const path = resolve(resourcePath.replace(/\.vue$/, ext));
 
     super.writeModule(path, content);
 

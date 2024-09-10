@@ -44,6 +44,7 @@ export function apply({
               safari10: notNode && haveSafari10(cwd),
               compress: {
                 drop_console: notNode,
+                passes: 2,
               },
               output: {
                 comments: false,

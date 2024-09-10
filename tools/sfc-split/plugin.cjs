@@ -255,7 +255,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
       templateParseOptions: { comments: false },
     });
 
-    const { script, template, styles, customBlocks } = descriptor;
+    const { template, styles, customBlocks } = descriptor;
 
     const { config } = this.injectConfig(customBlocks);
 
@@ -270,7 +270,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     return {
       config,
       paths: paths.map((path) => slash(path)),
-      script: script?.content ? vueMiniCode(descriptor) : '',
+      script: vueMiniCode(descriptor),
     };
   }
 };

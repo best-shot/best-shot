@@ -3,32 +3,39 @@
 const { compileScript } = require('@vue/compiler-sfc');
 
 exports.vueMiniCode = function vueMiniCode(descriptor) {
-  if (!descriptor.scriptSetup?.content) {
-    return descriptor.script?.content;
+  if (!descriptor.scriptSetup && !descriptor.script?.content) {
+    return descriptor.script.content;
   }
 
   const id = '$$mainBlock';
 
-  const code = compileScript(descriptor, {
+  const raw = compileScript(descriptor, {
     id,
     sourceMap: false,
     genDefaultAs: id,
   }).content;
 
-  return [
-    code.includes(id)
-      ? "import { defineComponent as $$asComponent } from '@vue-mini/core';"
-      : undefined,
-    code
-      .replace('__expose();', '')
-      .replace(/expose:\s__expose,?/, '')
-      .replace(/\semit: __emit/, ' triggerEvent: __emit')
-      .replace(
-        "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
-        '',
-      ),
-    code.includes(id) ? `$$asComponent(${id});` : undefined,
-  ]
+  return (
+    descriptor.scriptSetup
+      ? [
+          "import { defineComponent as $$asSetupComponent } from '@vue-mini/core';",
+          raw
+            .replace('__expose();', '')
+            .replace(/expose:\s__expose,?/, '')
+            .replace(
+              "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
+              '',
+            ),
+          `$$asSetupComponent(${id});`,
+        ]
+      : descriptor.script.content.includes('export default ')
+        ? [
+            "import { $$asComponent } from '@vue-mini/hack';",
+            raw,
+            `$$asComponent(${id});`,
+          ]
+        : [raw]
+  )
     .filter(Boolean)
     .join('\n');
 };

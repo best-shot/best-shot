@@ -18,7 +18,7 @@ exports.vueMiniCode = function vueMiniCode(descriptor) {
   return (
     descriptor.scriptSetup
       ? [
-          "import { defineComponent as $$asSetupComponent } from '@vue-mini/core';",
+          "import { defineComponent as $$asComponent } from '@vue-mini/core';",
           raw
             .replace('__expose();', '')
             .replace(/expose:\s__expose,?/, '')
@@ -26,11 +26,11 @@ exports.vueMiniCode = function vueMiniCode(descriptor) {
               "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
               '',
             ),
-          `$$asSetupComponent(${id});`,
+          `$$asComponent(${id});`,
         ]
       : descriptor.script.content.includes('export default ')
         ? [
-            "import { $$asComponent } from '@best-shot/sfc-split-plugin/hack.js';",
+            "import { $$asComponent } from '@best-shot/sfc-split-plugin/hack/base.js';",
             raw,
             `$$asComponent(${id});`,
           ]

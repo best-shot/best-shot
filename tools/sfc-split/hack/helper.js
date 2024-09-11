@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { defineComponent } from '@vue-mini/core';
-
 function toProperties(props) {
   return props
     ? Object.fromEntries(
@@ -18,7 +15,7 @@ function toProperties(props) {
     : undefined;
 }
 
-function mergeOptions({ name, props, data, methods, emits, ...rest }) {
+export function mergeOptions({ name, props, data, methods, emits, ...rest }) {
   return {
     properties: toProperties(props),
     data: typeof data === 'function' ? data() : data,
@@ -30,16 +27,4 @@ function mergeOptions({ name, props, data, methods, emits, ...rest }) {
     },
     ...rest,
   };
-}
-
-export function $$asSetupComponent(options) {
-  const io = mergeOptions(options);
-
-  defineComponent(io);
-}
-
-export function $$asComponent(options) {
-  const io = mergeOptions(options);
-  /* global Component: readonly */
-  Component(io);
 }

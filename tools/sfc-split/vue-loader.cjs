@@ -1,11 +1,11 @@
 'use strict';
 
-const { resolve, join, relative } = require('node:path');
+const { resolve, join, relative, basename } = require('node:path');
 const slash = require('slash');
 const { createHash } = require('node:crypto');
 
 function createShortHash(input) {
-  return createHash('sha256').update(input).digest('hex').slice(0, 8);
+  return createHash('sha256').update(slash(input)).digest('hex').slice(0, 8);
 }
 
 module.exports = function loader(source, map, meta) {
@@ -42,7 +42,7 @@ module.exports = function loader(source, map, meta) {
         const relativePath = slash(relative(this.rootContext, absolutePath));
 
         const entryName = relativePath.startsWith('..')
-          ? `as-components/${name}/${createShortHash(absolutePath)}`
+          ? `as-components/${basename(absolutePath.replace(/\.vue$/, ''))}/${createShortHash(absolutePath)}`
           : relativePath.replace(/\.vue$/, '');
 
         const placer = toThis(entryName);

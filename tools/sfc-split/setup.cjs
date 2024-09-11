@@ -30,7 +30,7 @@ exports.vueMiniCode = function vueMiniCode(descriptor) {
         ]
       : descriptor.script.content.includes('export default ')
         ? [
-            "import { $$asComponent } from '@vue-mini/hack';",
+            "import { $$asComponent } from '@best-shot/sfc-split-plugin/hack.js';",
             raw,
             `$$asComponent(${id});`,
           ]

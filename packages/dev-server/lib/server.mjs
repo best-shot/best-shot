@@ -1,11 +1,12 @@
 import launchMiddleware from 'launch-editor-middleware';
-import WebpackDevServer from 'webpack-dev-server';
+// eslint-disable-next-line import/namespace
+import * as WebpackDevServer from 'webpack-dev-server';
 
 import { notFound } from '../middleware/not-found/index.mjs';
 import { staticFile } from '../middleware/static-file/index.mjs';
 import * as waitPage from '../middleware/wait-page/index.mjs';
 
-export class DevServer extends WebpackDevServer {
+export class DevServer extends WebpackDevServer.default {
   constructor(options, compiler) {
     waitPage.apply(compiler);
 

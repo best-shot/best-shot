@@ -38,7 +38,7 @@
     "@vue-mini/core": "^1.0.3",
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
-    "vue": "^3.5.4"
+    "vue": "~3.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -77,7 +77,7 @@
   "packageManager": "pnpm@9.9.0",
   "engines": {
     "node": ">=22.0.0 || ^18.20.4 || ^20.15.0",
-    "pnpm": "^9.7.0"
+    "pnpm": "^9.9.0"
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"

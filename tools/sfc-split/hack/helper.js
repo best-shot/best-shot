@@ -1,9 +1,10 @@
-function toProperties(props) {
-  return props
+function toProperties(props, properties) {
+  const io = props
     ? Object.fromEntries(
         Object.entries(props).map(([key, prop]) => [
           key,
           {
+            ...prop,
             type: prop.type,
             value:
               typeof prop.default === 'function'
@@ -13,11 +14,21 @@ function toProperties(props) {
         ]),
       )
     : undefined;
+
+  return io || properties ? { ...io, ...properties } : undefined;
 }
 
-export function mergeOptions({ name, props, data, methods, emits, ...rest }) {
+export function mergeOptions({
+  name,
+  props,
+  properties,
+  data,
+  methods,
+  emits,
+  ...rest
+}) {
   return {
-    properties: toProperties(props),
+    properties: toProperties(props, properties),
     data: typeof data === 'function' ? data() : data,
     methods: {
       $emit(event, ...args) {

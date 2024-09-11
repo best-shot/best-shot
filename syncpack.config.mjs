@@ -5,7 +5,7 @@ import defineConfig from '@nice-move/syncpack-config/define.cjs';
 export default defineConfig(import.meta.url, {
   semverGroups: [
     {
-      dependencies: ['@best-shot/vue-loader'],
+      dependencies: ['@best-shot/vue-loader', 'webpack-dev-server'],
       range: '',
     },
   ],
@@ -16,10 +16,6 @@ export default defineConfig(import.meta.url, {
       label: 'Pin engines.node',
       packages: ['@best-shot/no-cache-loader'],
       pinVersion: '>=12.0.0',
-    },
-    {
-      dependencies: ['vue', '@vue/*'],
-      pinVersion: '^3.4.27',
     },
     {
       packages: ['@best-shot/sfc-split-plugin'],

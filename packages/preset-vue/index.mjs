@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import extToRegexp from 'ext-to-regexp';
 
 export function apply({
-  config: { vue: { compilerOptions = {}, ...other } = {} },
+  config: { vue: { compilerOptions = {}, importMap = false, ...other } = {} },
 }) {
   return async (chain) => {
     chain.module
@@ -23,6 +23,13 @@ export function apply({
             : compilerOptions.isCustomElement,
         },
       });
+
+    if (importMap) {
+      chain.module
+        .rule('vue')
+        .use('mini-loader')
+        .loader(fileURLToPath(import.meta.resolve('./mini-loader.cjs')));
+    }
 
     const { default: VueLoaderPlugin } = await import(
       '@best-shot/vue-loader/dist/pluginWebpack5.js'
@@ -46,9 +53,14 @@ export const name = 'preset-vue';
 export const schema = {
   vue: {
     type: 'object',
+    default: {},
     properties: {
       compilerOptions: {
         type: 'object',
+      },
+      importMap: {
+        type: 'boolean',
+        default: false,
       },
     },
   },

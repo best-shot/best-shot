@@ -5,8 +5,12 @@ import defineConfig from '@nice-move/syncpack-config/define.cjs';
 export default defineConfig(import.meta.url, {
   semverGroups: [
     {
-      dependencies: ['@best-shot/vue-loader', 'webpack-dev-server'],
+      dependencies: ['@best-shot/vue-loader'],
       range: '',
+    },
+    {
+      dependencies: ['webpack-dev-server'],
+      range: '~',
     },
   ],
   versionGroups: [

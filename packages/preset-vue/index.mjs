@@ -25,10 +25,13 @@ export function apply({
       });
 
     if (importMap) {
+      const { parse } = await import('./compiler.mjs');
+
       chain.module
         .rule('vue')
-        .use('mini-loader')
-        .loader(fileURLToPath(import.meta.resolve('./mini-loader.cjs')));
+        .after('esm')
+        .use('vue-loader')
+        .tap((options) => ({ ...options, parse }));
     }
 
     const { default: VueLoaderPlugin } = await import(

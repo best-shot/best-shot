@@ -10,7 +10,7 @@
   "type": "module",
   "dependencies": {
     "@padcom/vue-ast-serializer": "^0.0.1",
-    "@vue/compiler-sfc": "~3.5.4",
+    "@vue/compiler-sfc": "~3.5.5",
     "deepmerge-ts": "^7.1.0",
     "slash": "^3.0.0",
     "tab-to-space": "^1.0.1",

@@ -1,21 +1,27 @@
 export const config = {
-  presets: ['mini', 'babel', 'style', 'asset'],
+  presets: ['vue', 'web', 'babel', 'style', 'asset'],
   mini: {
     type: 'app',
   },
-  context: 'src',
+  // context: 'src',
   output: {
-    module: true,
+    // module: true,
   },
   // optimization: {
   //   runtimeChunk: false,
   //   splitChunks: false,
   // },
   chain(chain) {
-    chain.stats({
-      errorDetails: true,
-    });
-
-    chain.cache(false);
+    // chain.stats({
+    //   errorDetails: true,
+    // });
+    // chain.cache(false);
+  },
+  devServer: {},
+  vue: {
+    importMap: true,
+  },
+  html: {
+    darkMode: false,
   },
 };

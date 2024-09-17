@@ -1,37 +1,16 @@
 'use strict';
 
-const { getAllPages, readYAML } = require('./helper.cjs');
 const { readFileSync } = require('node:fs');
 const { join, relative, extname, resolve } = require('node:path');
 const VirtualModulesPlugin = require('webpack-virtual-modules');
 const { parse } = require('@vue/compiler-sfc');
-const { parse: yamlParse } = require('yaml');
-const { deepmerge: deepMerge } = require('deepmerge-ts');
 const slash = require('slash');
+const { getAllPages, readYAML } = require('./helper.cjs');
 const { action } = require('./action.cjs');
 const { vueMiniCode } = require('./setup.cjs');
+const { mergeConfig } = require('./lib.cjs');
 
 const PLUGIN_NAME = 'SfcSplitPlugin';
-
-function mergeConfig(customBlocks) {
-  const configs = customBlocks
-    .filter(
-      (block) =>
-        block.type === 'config' &&
-        (block.lang === 'json' || block.lang === 'yaml') &&
-        block.content &&
-        block.content.trim(),
-    )
-    .map((block) =>
-      block.lang === 'yaml'
-        ? yamlParse(block.content)
-        : JSON.parse(block.content),
-    );
-
-  return configs.length > 1
-    ? (deepMerge.default || deepMerge)(...configs)
-    : configs[0];
-}
 
 module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   constructor({ type = false } = {}) {

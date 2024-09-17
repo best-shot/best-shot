@@ -39,7 +39,7 @@
     "json-minimizer-webpack-plugin": "^5.0.0",
     "slash": "^5.1.0",
     "slash-to-regexp": "^0.0.4",
-    "terser": "^5.32.0",
+    "terser": "^5.33.0",
     "terser-webpack-plugin": "^5.3.10",
     "yaml-loader": "^0.8.1"
   },

@@ -50,7 +50,7 @@
     "eslint": "^8.57.1",
     "eslint-plugin-ava": "^14.0.0",
     "garou": "^0.7.8",
-    "nodemon": "^3.1.4",
+    "nodemon": "^3.1.5",
     "prettier": "^3.3.3",
     "stylelint": "^16.9.0",
     "syncpack": "^13.0.0",

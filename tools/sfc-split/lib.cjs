@@ -7,6 +7,7 @@ exports.mergeConfig = function mergeConfig(customBlocks) {
   const configs = customBlocks
     .filter(
       (block) =>
+        block &&
         block.type === 'config' &&
         (block.lang === 'json' || block.lang === 'yaml') &&
         block.content &&
@@ -18,7 +19,5 @@ exports.mergeConfig = function mergeConfig(customBlocks) {
         : JSON.parse(block.content),
     );
 
-  return configs.length > 1
-    ? (deepMerge.default || deepMerge)(...configs)
-    : configs[0];
+  return configs.length > 1 ? deepMerge(...configs) : configs[0] || {};
 };

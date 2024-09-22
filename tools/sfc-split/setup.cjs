@@ -1,10 +1,11 @@
 'use strict';
 
 const { compileScript } = require('@vue/compiler-sfc');
+const { transformer } = require('./parser.cjs');
 
 exports.vueMiniCode = function vueMiniCode(descriptor) {
   if (!descriptor.scriptSetup && !descriptor.script?.content) {
-    return descriptor.script.content;
+    return '';
   }
 
   const id = '$$mainBlock';
@@ -15,27 +16,27 @@ exports.vueMiniCode = function vueMiniCode(descriptor) {
     genDefaultAs: id,
   }).content;
 
-  return (
-    descriptor.scriptSetup
+  const result = descriptor.scriptSetup
+    ? [
+        "import { defineComponent as $$asComponent } from '@vue-mini/core';",
+        raw
+          .replace('__expose();', '')
+          .replace(/expose:\s__expose,?/, '')
+          .replace(
+            "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
+            '',
+          ),
+        `$$asComponent(${id});`,
+      ]
+    : descriptor.script.content.includes('export default ')
       ? [
-          "import { defineComponent as $$asComponent } from '@vue-mini/core';",
-          raw
-            .replace('__expose();', '')
-            .replace(/expose:\s__expose,?/, '')
-            .replace(
-              "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
-              '',
-            ),
+          "import { $$asComponent } from '@best-shot/sfc-split-plugin/hack/base.js';",
+          raw,
           `$$asComponent(${id});`,
         ]
-      : descriptor.script.content.includes('export default ')
-        ? [
-            "import { $$asComponent } from '@best-shot/sfc-split-plugin/hack/base.js';",
-            raw,
-            `$$asComponent(${id});`,
-          ]
-        : [raw]
-  )
-    .filter(Boolean)
-    .join('\n');
+      : [raw];
+
+  const code = result.filter(Boolean).join('\n');
+
+  return transformer(code);
 };

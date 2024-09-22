@@ -218,12 +218,25 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     );
   }
 
-  injectConfig(customBlocks) {
-    const config = mergeConfig(
-      customBlocks?.length > 0
-        ? customBlocks
-        : [{ type: 'config', lang: 'json', content: '{ }' }],
-    );
+  injectConfig(customBlocks, pair) {
+    const config = mergeConfig([
+      ...(customBlocks?.length > 0 ? customBlocks : []),
+      pair.length > 0
+        ? {
+            type: 'config',
+            lang: 'json',
+            content: JSON.stringify(
+              {
+                usingComponents: Object.fromEntries(
+                  pair.map(({ name, source }) => [name, source]),
+                ),
+              },
+              null,
+              2,
+            ),
+          }
+        : undefined,
+    ]);
 
     return { config };
   }
@@ -236,7 +249,9 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
     const { template, styles, customBlocks } = descriptor;
 
-    const { config } = this.injectConfig(customBlocks);
+    const { code, pair } = vueMiniCode(descriptor);
+
+    const { config } = this.injectConfig(customBlocks, pair);
 
     const paths = [];
 
@@ -249,7 +264,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     return {
       config,
       paths: paths.map((path) => slash(path)),
-      script: vueMiniCode(descriptor),
+      script: code,
     };
   }
 };

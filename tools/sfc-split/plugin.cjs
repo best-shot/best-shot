@@ -228,7 +228,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
             content: JSON.stringify(
               {
                 usingComponents: Object.fromEntries(
-                  pair.map(({ name, source }) => [name, source]),
+                  pair.map(({ local, source }) => [local, source]),
                 ),
               },
               null,

@@ -4,16 +4,13 @@ const { parse } = require('@babel/parser');
 const { default: generate } = require('@babel/generator');
 const { default: traverse } = require('@babel/traverse');
 
-function isDefault(specifier) {
-  return (
-    specifier.type === 'ImportDefaultSpecifier' ||
-    (specifier.type === 'ImportSpecifier' &&
-      specifier.imported.name === 'default')
-  );
-}
-
-function removeExport(ast, names) {
+function removeImport(ast, names) {
   traverse(ast, {
+    ImportDefaultSpecifier(path) {
+      if (names.includes(path.node.local.name)) {
+        path.parentPath.remove();
+      }
+    },
     VariableDeclarator(path) {
       if (
         path.node.id.type === 'Identifier' &&
@@ -86,50 +83,19 @@ function removeExport(ast, names) {
   });
 }
 
-function remover(ast) {
-  const io = [];
-
-  traverse(ast, {
-    ImportDeclaration(path) {
-      if (path.node.source.value.endsWith('.vue')) {
-        const target = path.node.specifiers.find((specifier) =>
-          isDefault(specifier),
-        );
-
-        if (target) {
-          io.push({
-            name: target.local.name,
-            source: path.node.source.value,
-          });
-          path.remove();
-        }
-      }
-    },
-  });
-
-  removeExport(
-    ast,
-    io.map(({ name }) => name),
-  );
-
-  return io;
-}
-
-exports.transformer = function transformer(input) {
-  if (!input.includes('.vue')) {
-    return { code: input, pair: [] };
-  }
-
+exports.transformer = function transformer(input, pair) {
   const ast = parse(input, {
     sourceType: 'module',
     plugins: ['importAttributes'],
   });
 
-  const pair = remover(ast);
+  const names = pair.map(({ local }) => local);
+
+  removeImport(ast, names);
 
   const { code } = generate(ast, {
     importAttributesKeyword: 'with',
   });
 
-  return { code, pair };
+  return { code };
 };

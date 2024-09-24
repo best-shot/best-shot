@@ -15,14 +15,29 @@ exports.vueMiniCode = function vueMiniCode(descriptor) {
       id,
       sourceMap: false,
       genDefaultAs: id,
-    }).content;
+    });
 
-    const { code, pair } = transformer(raw);
+    const pair = Object.values(raw.imports)
+      .filter(
+        ({ imported, isFromSetup, isType, source }) =>
+          !isType &&
+          isFromSetup &&
+          imported === 'default' &&
+          source.endsWith('.vue'),
+      )
+      .map(({ source, local }) => ({
+        local,
+        source,
+      }));
+
+    const { code } = transformer(raw.content, pair);
 
     return {
       pair,
       code: [
-        "import { defineComponent as $$asComponent } from '@vue-mini/core';",
+        raw.scriptSetupAst.some((item) => item.type !== 'ImportDeclaration')
+          ? "import { defineComponent as $$asComponent } from '@vue-mini/core';"
+          : "import { $$asComponent } from '@best-shot/sfc-split-plugin/hack/base.js';",
         code,
         `$$asComponent(${id});`,
       ]

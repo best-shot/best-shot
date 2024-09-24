@@ -9,6 +9,7 @@ const { getAllPages, readYAML } = require('./helper.cjs');
 const { action } = require('./action.cjs');
 const { vueMiniCode } = require('./setup.cjs');
 const { mergeConfig } = require('./lib.cjs');
+const { kebabCase } = require('change-case-legacy');
 
 const PLUGIN_NAME = 'SfcSplitPlugin';
 
@@ -221,21 +222,23 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
   injectConfig(customBlocks, pair) {
     const config = mergeConfig([
       ...(customBlocks?.length > 0 ? customBlocks : []),
-      pair.length > 0
-        ? {
-            type: 'config',
-            lang: 'json',
-            content: JSON.stringify(
-              {
-                usingComponents: Object.fromEntries(
-                  pair.map(({ local, source }) => [local, source]),
-                ),
-              },
-              null,
-              2,
-            ),
-          }
-        : undefined,
+      {
+        type: 'config',
+        lang: 'json',
+        content: JSON.stringify(
+          {
+            component: true,
+            usingComponents:
+              pair.length > 0
+                ? Object.fromEntries(
+                    pair.map(({ local, source }) => [kebabCase(local), source]),
+                  )
+                : undefined,
+          },
+          null,
+          2,
+        ),
+      },
     ]);
 
     return { config };

@@ -570,6 +570,9 @@ importers:
       '@vue/compiler-sfc':
         specifier: ~3.5.8
         version: 3.5.8
+      change-case-legacy:
+        specifier: ^5.4.4
+        version: 5.4.4
       deepmerge-ts:
         specifier: ^7.1.0
         version: 7.1.0
@@ -2216,6 +2219,9 @@ packages:
   chalk@5.3.0:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+
+  change-case-legacy@5.4.4:
+    resolution: {integrity: sha512-kwBPZN7lr1PujQv3KKbA5MS9D2gO08ORJk4BgLoNBTgxcH0QItv74P5AxeFGip8iYLQ6SiH1fgHoDsVvsmoTJg==}
 
   character-entities-legacy@1.1.4:
     resolution: {integrity: sha512-3Xnr+7ZFS1uxeiUDvV02wQ+QDbc55o97tIV5zHScSPJpcLm/r0DFPcoY3tYRp+VZukxuMeKgXYmsXQHO05zQeA==}
@@ -7866,6 +7872,8 @@ snapshots:
       supports-color: 7.2.0
 
   chalk@5.3.0: {}
+
+  change-case-legacy@5.4.4: {}
 
   character-entities-legacy@1.1.4: {}
 

@@ -1,11 +1,11 @@
 export const config = {
-  presets: ['vue', 'web', 'babel', 'style', 'asset'],
+  presets: ['mini', 'babel', 'style', 'asset'],
   mini: {
     type: 'app',
   },
-  // context: 'src',
+  context: 'src',
   output: {
-    // module: true,
+    module: true,
   },
   // optimization: {
   //   runtimeChunk: false,
@@ -15,9 +15,9 @@ export const config = {
     // chain.stats({
     //   errorDetails: true,
     // });
-    // chain.cache(false);
+    chain.cache(false);
   },
-  devServer: {},
+  // devServer: {},
   vue: {
     importMap: true,
   },

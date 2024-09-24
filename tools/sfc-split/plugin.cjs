@@ -249,7 +249,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
 
     const { template, styles, customBlocks } = descriptor;
 
-    const { code, pair } = vueMiniCode(descriptor);
+    const { code, pair = [] } = vueMiniCode(descriptor);
 
     const { config } = this.injectConfig(customBlocks, pair);
 

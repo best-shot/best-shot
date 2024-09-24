@@ -74,10 +74,10 @@
     "@types/react": "~18.2.79",
     "best-shot": "workspace:~"
   },
-  "packageManager": "pnpm@9.10.0",
+  "packageManager": "pnpm@9.11.0",
   "engines": {
     "node": ">=22.0.0 || ^18.20.4 || ^20.15.0",
-    "pnpm": "^9.10.0"
+    "pnpm": "^9.11.0"
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"

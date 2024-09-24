@@ -10,33 +10,44 @@ exports.vueMiniCode = function vueMiniCode(descriptor) {
 
   const id = '$$mainBlock';
 
-  const raw = compileScript(descriptor, {
-    id,
-    sourceMap: false,
-    genDefaultAs: id,
-  }).content;
+  if (descriptor.scriptSetup) {
+    const raw = compileScript(descriptor, {
+      id,
+      sourceMap: false,
+      genDefaultAs: id,
+    }).content;
 
-  const result = descriptor.scriptSetup
-    ? [
+    const { code, pair } = transformer(raw);
+
+    return {
+      pair,
+      code: [
         "import { defineComponent as $$asComponent } from '@vue-mini/core';",
-        raw
-          .replace('__expose();', '')
-          .replace(/expose:\s__expose,?/, '')
-          .replace(
-            "Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true })",
-            '',
-          ),
+        code,
         `$$asComponent(${id});`,
       ]
-    : descriptor.script.content.includes('export default ')
-      ? [
-          "import { $$asComponent } from '@best-shot/sfc-split-plugin/hack/base.js';",
-          raw,
-          `$$asComponent(${id});`,
-        ]
-      : [raw];
+        .filter(Boolean)
+        .join('\n'),
+    };
+  }
 
-  const code = result.filter(Boolean).join('\n');
+  if (descriptor.script.content.includes('export default ')) {
+    const raw = compileScript(descriptor, {
+      id,
+      sourceMap: false,
+      genDefaultAs: id,
+    }).content;
 
-  return transformer(code);
+    return {
+      code: [
+        "import { $$asComponent } from '@best-shot/sfc-split-plugin/hack/base.js';",
+        raw,
+        `$$asComponent(${id});`,
+      ]
+        .filter(Boolean)
+        .join('\n'),
+    };
+  }
+
+  return { code: descriptor.script.content };
 };

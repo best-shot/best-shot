@@ -45,6 +45,10 @@ export function apply({
 
     chain.experiments.set('layers', true);
 
+    const rule = chain.module.rule('babel');
+
+    rule.test(rule.get('test').add('vue'));
+
     chain.plugin('sfc-split').use('@best-shot/sfc-split-plugin', [
       {
         type,

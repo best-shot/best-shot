@@ -20,7 +20,8 @@ function removeImport(ast, names) {
           ObjectMethod(subPath) {
             if (
               subPath.node.key.name === 'setup' &&
-              subPath.parentPath.parentPath === path
+              (subPath.parentPath.parentPath.parentPath === path ||
+                subPath.parentPath.parentPath === path)
             ) {
               subPath.traverse({
                 ObjectProperty(subPath2) {
@@ -51,7 +52,7 @@ function removeImport(ast, names) {
                 },
                 ExpressionStatement(subPath2) {
                   if (
-                    subPath2.node.expression.callee.type === 'Identifier' &&
+                    subPath2.node.expression?.callee?.type === 'Identifier' &&
                     subPath2.node.expression.callee.name === '__expose' &&
                     subPath2.parentPath.parentPath === subPath
                   ) {

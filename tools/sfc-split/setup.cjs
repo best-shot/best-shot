@@ -20,8 +20,6 @@ exports.vueMiniCode = function vueMiniCode(descriptor) {
       genDefaultAs: id,
     });
 
-    console.log(raw);
-
     const pair = raw.imports
       ? Object.values(raw.imports)
           .filter(

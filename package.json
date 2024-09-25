@@ -74,6 +74,11 @@
     "@types/react": "~18.2.79",
     "best-shot": "workspace:~"
   },
+  "pnpm": {
+    "overrides": {
+      "@nice-move/prettier-config": "^0.13.3"
+    }
+  },
   "packageManager": "pnpm@9.11.0",
   "engines": {
     "node": ">=22.0.0 || ^18.20.4 || ^20.15.0",

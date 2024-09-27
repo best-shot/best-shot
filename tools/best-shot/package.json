@@ -38,13 +38,13 @@
   },
   "dependencies": {
     "@best-shot/no-cache-loader": "workspace:~",
-    "terser": "^5.33.0",
+    "terser": "^5.34.0",
     "terser-webpack-plugin": "^5.3.10",
-    "webpack": "^5.94.0",
+    "webpack": "^5.95.0",
     "yaml-loader": "^0.8.1"
   },
   "peerDependencies": {
-    "browserslist": "^4.23.3"
+    "browserslist": "^4.24.0"
   },
   "engines": {
     "node": ">=22.0.0 || ^18.20.4 || ^20.15.0"

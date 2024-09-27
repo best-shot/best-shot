@@ -34,8 +34,8 @@
   "peerDependencies": {
     "@best-shot/core": "workspace:~",
     "@best-shot/preset-style": "workspace:~",
-    "@vue/compiler-sfc": "~3.5.8",
-    "vue": "~3.5.8"
+    "@vue/compiler-sfc": "~3.5.9",
+    "vue": "~3.5.9"
   },
   "engines": {
     "node": ">=22.0.0 || ^18.20.4 || ^20.15.0"

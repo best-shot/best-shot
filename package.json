@@ -38,24 +38,24 @@
     "@vue-mini/core": "^1.1.1",
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
-    "vue": "~3.5.8"
+    "vue": "~3.5.9"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@bring-it/cli": "^0.9.9",
     "@bring-it/npm": "^0.5.9",
-    "@nice-move/all-in-base": "^0.2.0",
+    "@nice-move/all-in-base": "^0.2.1",
     "@nice-move/syncpack-config": "^0.2.8",
     "ava": "^6.1.3",
     "eslint": "^8.57.1",
     "eslint-plugin-ava": "^14.0.0",
-    "garou": "^0.7.8",
+    "garou": "^0.8.0",
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
     "stylelint": "^16.9.0",
     "syncpack": "^13.0.0",
     "typescript": "~5.5.4",
-    "webpack": "^5.94.0"
+    "webpack": "^5.95.0"
   },
   "peerDependencies": {
     "@best-shot/analyzer": "workspace:~",
@@ -73,11 +73,6 @@
     "@best-shot/sfc-split-plugin": "workspace:~",
     "@types/react": "~18.2.79",
     "best-shot": "workspace:~"
-  },
-  "pnpm": {
-    "overrides": {
-      "@nice-move/prettier-config": "^0.13.3"
-    }
   },
   "packageManager": "pnpm@9.11.0",
   "engines": {

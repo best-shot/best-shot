@@ -13,6 +13,8 @@ export class BaseChain extends WebpackChain {
       .syncWebAssembly(true)
       .topLevelAwait(true);
 
+    this.performance.maxEntrypointSize(1024 ** 2).maxAssetSize(1024 ** 2);
+
     this.output.hashDigestLength(8);
 
     this.resolve.extensions.merge(['.js', '.cjs', '.mjs', '.json', '.ts']);

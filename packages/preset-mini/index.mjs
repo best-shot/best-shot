@@ -27,9 +27,19 @@ export function apply({
     const minimize = chain.optimization.get('minimize');
 
     if (minimize) {
-      chain.optimization
-        .minimizer('terser')
-        .tap(([options]) => [{ exclude: /miniprogram_npm/, ...options }]);
+      chain.optimization.minimizer('terser').tap(([options]) => [
+        {
+          exclude: /miniprogram_npm/,
+          ...options,
+          terserOptions: {
+            ...options.terserOptions,
+            compress: {
+              ...options.terserOptions?.compress,
+              drop_console: false,
+            },
+          },
+        },
+      ]);
     }
 
     chain.module

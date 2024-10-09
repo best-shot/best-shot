@@ -15,6 +15,7 @@ export function apply({
     copy,
     provide,
     externals,
+    externalsType,
     devServer,
     experiments: { lazyCompilation } = {},
     cache: { maxAge = 1000 * 60 * 60 * 24 * 3 } = {},
@@ -28,6 +29,10 @@ export function apply({
 
     if (externals) {
       chain.externals(externals);
+    }
+
+    if (externalsType) {
+      chain.externalsType(externalsType);
     }
 
     if (notEmpty(provide)) {

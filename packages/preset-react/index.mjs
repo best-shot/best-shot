@@ -2,7 +2,7 @@ import { haveLocalDependencies } from 'settingz';
 
 export const name = 'preset-react';
 
-export function apply({ config: { babel: { polyfill = false } = {} } }) {
+export function apply() {
   return async (chain) => {
     const mode = chain.get('mode') || 'development';
     const useHot = chain.devServer.get('hot') || false;
@@ -30,21 +30,16 @@ export function apply({ config: { babel: { polyfill = false } = {} } }) {
         ],
         plugins: [
           ...plugins,
-          ...(mode === 'production'
+          '@babel/transform-react-constant-elements',
+          '@babel/transform-react-inline-elements',
+          mode === 'production' && haveLocalDependencies('airbnb-prop-types')
             ? [
-                ...(polyfill === 'pure'
-                  ? []
-                  : ['@babel/transform-react-inline-elements']),
-                haveLocalDependencies('airbnb-prop-types')
-                  ? [
-                      'transform-react-remove-prop-types',
-                      { additionalLibraries: ['airbnb-prop-types'] },
-                    ]
-                  : 'transform-react-remove-prop-types',
+                'transform-react-remove-prop-types',
+                { additionalLibraries: ['airbnb-prop-types'] },
               ]
-            : []),
+            : 'transform-react-remove-prop-types',
           ...(useHot ? ['react-refresh/babel'] : []),
-        ],
+        ].filter(Boolean),
       }));
 
     if (useHot) {

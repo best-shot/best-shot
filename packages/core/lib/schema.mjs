@@ -1,5 +1,5 @@
 import { validate } from '@best-shot/validator';
-import deepmerge from 'deepmerge';
+import { deepmerge as deepMerge } from 'deepmerge-ts';
 
 export class Schema {
   constructor() {
@@ -14,7 +14,7 @@ export class Schema {
   }
 
   merge(properties) {
-    this.schema.properties = deepmerge(this.schema.properties, properties);
+    this.schema.properties = deepMerge(this.schema.properties, properties);
   }
 
   toObject() {

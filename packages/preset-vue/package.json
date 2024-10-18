@@ -29,13 +29,13 @@
   "dependencies": {
     "@best-shot/vue-loader": "17.4.8",
     "css-loader": "^7.1.2",
-    "ext-to-regexp": "^0.1.0"
+    "ext-to-regexp": "catalog:"
   },
   "peerDependencies": {
     "@best-shot/core": "workspace:~",
     "@best-shot/preset-style": "workspace:~",
-    "@vue/compiler-sfc": "~3.5.9",
-    "vue": "~3.5.9"
+    "@vue/compiler-sfc": "~3.5.12",
+    "vue": "~3.5.12"
   },
   "engines": {
     "node": ">=22.0.0 || ^18.20.4 || ^20.15.0"

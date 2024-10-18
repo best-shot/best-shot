@@ -1,10 +1,8 @@
-import deepMerge from 'deepmerge';
+import { deepmerge as deepMerge } from 'deepmerge-ts';
 
 import { targetIsNode } from '../lib/utils.mjs';
 
 const displayName = 'tersor';
-
-const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
 export function apply({
   cwd,
@@ -53,7 +51,6 @@ export function apply({
             },
             terser,
             { module: useModule },
-            { arrayMerge: overwriteMerge },
           ),
         },
       ]);

@@ -30,9 +30,9 @@
   "type": "module",
   "dependencies": {
     "@best-shot/config": "workspace:~",
-    "fs-extra": "^11.2.0",
+    "fs-extra": "catalog:",
     "javascript-stringify": "^2.1.0",
-    "sort-keys": "^5.1.0"
+    "sort-keys": "catalog:"
   },
   "peerDependencies": {
     "@best-shot/cli": "workspace:~",

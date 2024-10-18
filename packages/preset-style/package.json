@@ -38,7 +38,7 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "cssnano": "^7.0.6",
-    "ext-to-regexp": "^0.1.0",
+    "ext-to-regexp": "catalog:",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
     "mini-css-extract-plugin": "^2.9.1",
@@ -46,10 +46,10 @@
     "postcss-loader": "^8.1.1",
     "postcss-preset-evergreen": "^0.6.1",
     "resolve-url-loader": "^5.0.0",
-    "sass-embedded": "^1.79.4",
+    "sass-embedded": "^1.80.2",
     "sass-loader": "^16.0.2",
-    "settingz": "^0.2.0",
-    "slash-to-regexp": "^0.0.4",
+    "settingz": "catalog:",
+    "slash-to-regexp": "catalog:",
     "style-loader": "^4.0.0"
   },
   "peerDependencies": {

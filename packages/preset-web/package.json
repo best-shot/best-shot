@@ -32,19 +32,19 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "ext-to-regexp": "^0.1.0",
+    "ext-to-regexp": "catalog:",
     "html-add-asset-webpack-plugin": "^0.2.0",
     "html-minimizer-webpack-plugin": "^5.0.0",
-    "html-webpack-plugin": "^5.6.0",
+    "html-webpack-plugin": "^5.6.2",
     "micro-tpl-loader": "^0.1.0",
     "slash": "^5.1.0",
-    "slash-to-regexp": "^0.0.4",
+    "slash-to-regexp": "catalog:",
     "suffix": "^1.0.0",
     "webpack-subresource-integrity": "5.2.0-rc.1"
   },
   "peerDependencies": {
     "@best-shot/core": "workspace:~",
-    "webpack": "^5.95.0"
+    "webpack": "catalog:"
   },
   "engines": {
     "node": ">=22.0.0 || ^18.20.4 || ^20.15.0"

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.16.2",
+  "version": "0.16.3",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
@@ -26,7 +26,8 @@
     "url": "https://github.com/best-shot/best-shot/issues"
   },
   "bin": {
-    "best-shot": "bin/index.mjs"
+    "best-shot": "bin/index.mjs",
+    "best-shot-ts": "bin/index-ts.mjs"
   },
   "main": "bin/index.mjs",
   "type": "module",

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-web",
-  "version": "0.15.4",
+  "version": "0.15.5",
   "description": "A `best-shot` preset for web project",
   "license": "MIT",
   "author": {
@@ -35,7 +35,7 @@
     "ext-to-regexp": "catalog:",
     "html-add-asset-webpack-plugin": "^0.2.0",
     "html-minimizer-webpack-plugin": "^5.0.0",
-    "html-webpack-plugin": "^5.6.2",
+    "html-webpack-plugin": "^5.6.3",
     "micro-tpl-loader": "^0.1.0",
     "slash": "^5.1.0",
     "slash-to-regexp": "catalog:",

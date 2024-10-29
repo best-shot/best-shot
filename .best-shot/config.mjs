@@ -1,3 +1,5 @@
+import './t.mts';
+
 export const config = {
   presets: ['mini', 'babel', 'style', 'asset'],
   mini: {

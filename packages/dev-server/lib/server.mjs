@@ -1,3 +1,4 @@
+import express from 'express';
 import launchMiddleware from 'launch-editor-middleware';
 // eslint-disable-next-line import/namespace
 import * as WebpackDevServer from 'webpack-dev-server';
@@ -50,7 +51,7 @@ export class DevServer extends WebpackDevServer.default {
               ({ name }) => name === 'connect-history-api-fallback',
             );
 
-            if (index > -1) {
+            if (index !== -1) {
               // eslint-disable-next-line no-param-reassign
               middlewares[index].path = publicPath;
             }
@@ -64,7 +65,7 @@ export class DevServer extends WebpackDevServer.default {
           });
 
           if (typeof options.setupMiddlewares === 'function') {
-            options.setupMiddlewares(middlewares, devServer);
+            options.setupMiddlewares(middlewares, devServer, express);
           }
 
           return middlewares;

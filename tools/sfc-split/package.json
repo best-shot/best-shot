@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/sfc-split-plugin",
-  "version": "0.8.16",
+  "version": "0.8.17",
   "license": "MIT",
   "keywords": [
     "loader",
@@ -9,8 +9,8 @@
   "main": "plugin.cjs",
   "type": "module",
   "dependencies": {
-    "@babel/generator": "^7.26.0",
-    "@babel/parser": "^7.26.1",
+    "@babel/generator": "^7.26.2",
+    "@babel/parser": "^7.26.2",
     "@babel/plugin-syntax-import-attributes": "^7.26.0",
     "@babel/traverse": "^7.25.9",
     "@padcom/vue-ast-serializer": "^0.0.1",
@@ -27,7 +27,7 @@
     "webpack": "catalog:"
   },
   "engines": {
-    "node": ">=22.0.0 || ^18.20.4 || ^20.15.0"
+    "node": ">=22.11.0 || ^18.20.4 || ^20.15.0"
   },
   "publishConfig": {
     "access": "public",

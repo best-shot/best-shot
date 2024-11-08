@@ -8,8 +8,6 @@ export function applyAnalyzer(chain) {
 
   chain.output.path(cachePath('build'));
 
-  chain.optimization.concatenateModules(false);
-
   chain.delete('recordsPath');
 
   chain.plugin('bundle-analyzer').use(BundleAnalyzerPlugin, [

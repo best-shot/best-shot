@@ -44,7 +44,7 @@
     "@babel/core": "^7.26.0",
     "@bring-it/cli": "^0.9.9",
     "@bring-it/npm": "^0.5.9",
-    "@nice-move/all-in-base": "^0.2.9",
+    "@nice-move/all-in-base": "^0.2.10",
     "@nice-move/syncpack-config": "^0.2.9",
     "ava": "^6.2.0",
     "eslint": "^8.57.1",

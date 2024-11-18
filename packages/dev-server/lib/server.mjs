@@ -23,6 +23,9 @@ export class DevServer extends WebpackDevServer.default {
       ...item,
     }));
 
+    options.client ??= {};
+    options.client.progress ??= 'circular';
+
     options.hot ??= 'only';
     options.static ??= false;
     options.allowedHosts ??= ['all'];

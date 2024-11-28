@@ -1,9 +1,8 @@
-'use strict';
+import { compileScript } from '@vue/compiler-sfc';
 
-const { compileScript } = require('@vue/compiler-sfc');
-const { transformer } = require('./parser.cjs');
+import { transformer } from './parser.mjs';
 
-exports.vueMiniCode = function vueMiniCode(descriptor) {
+export function vueMiniCode(descriptor) {
   if (!descriptor.scriptSetup && !descriptor.script?.content) {
     return '';
   }
@@ -53,4 +52,4 @@ exports.vueMiniCode = function vueMiniCode(descriptor) {
   }
 
   return { code: descriptor.script.content };
-};
+}

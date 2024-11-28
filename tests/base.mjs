@@ -20,8 +20,8 @@ test('toConfig', async (t) => {
 test('toString', async (t) => {
   const chain = await new BestShot().setup();
   const config = chain.toString();
-  t.regex(config, /^{/);
-  t.regex(config, /}$/);
+  t.regex(config, /^\{/);
+  t.regex(config, /\}$/);
 });
 
 test('toSchema', (t) => {

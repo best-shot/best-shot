@@ -1,11 +1,9 @@
-'use strict';
-
-const { parse } = require('@babel/parser');
-const { default: generate } = require('@babel/generator');
-const { default: traverse } = require('@babel/traverse');
+import generate from '@babel/generator';
+import { parse } from '@babel/parser';
+import traverse from '@babel/traverse';
 
 function removeImport(ast, names) {
-  traverse(ast, {
+  traverse.default(ast, {
     ImportDefaultSpecifier(path) {
       if (names.includes(path.node.local.name)) {
         path.parentPath.remove();
@@ -84,7 +82,7 @@ function removeImport(ast, names) {
   });
 }
 
-exports.transformer = function transformer(input, pair) {
+export function transformer(input, pair) {
   const ast = parse(input, {
     sourceType: 'module',
     plugins: ['importAttributes'],
@@ -94,9 +92,9 @@ exports.transformer = function transformer(input, pair) {
 
   removeImport(ast, names);
 
-  const { code } = generate(ast, {
+  const { code } = generate.default(ast, {
     importAttributesKeyword: 'with',
   });
 
   return { code };
-};
+}

@@ -1,9 +1,7 @@
-'use strict';
+import { deepmerge as deepMerge } from 'deepmerge-ts';
+import { parse as yamlParse } from 'yaml';
 
-const { parse: yamlParse } = require('yaml');
-const { deepmerge: deepMerge } = require('deepmerge-ts');
-
-exports.mergeConfig = function mergeConfig(customBlocks) {
+export function mergeConfig(customBlocks) {
   const configs = customBlocks
     .filter(
       (block) =>
@@ -20,4 +18,4 @@ exports.mergeConfig = function mergeConfig(customBlocks) {
     );
 
   return configs.length > 1 ? deepMerge(...configs) : configs[0] || {};
-};
+}

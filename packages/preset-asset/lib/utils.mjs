@@ -10,7 +10,7 @@ function hex(text) {
 }
 
 export function nonAscii(name) {
-  return transliterate(name.toLowerCase().replace(/\s/g, '-')).replace(
+  return transliterate(name.toLowerCase().replaceAll(/\s/g, '-')).replaceAll(
     nonAsciiRegex,
     hex,
   );

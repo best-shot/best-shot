@@ -1,8 +1,6 @@
-'use strict';
-
-function walk(node, transform) {
+function walk(node, transfer) {
   for (const [index, theProp] of Object.entries(node.props)) {
-    const transformed = transform(theProp, index, node);
+    const transformed = transfer(theProp, index, node);
 
     if (Array.isArray(transformed)) {
       const [first, ...rest] = transformed;
@@ -123,7 +121,7 @@ function traverse(ast, enter) {
   }
 }
 
-exports.transform = function transform(ast, { tagMatcher } = {}) {
+export function transform(ast, { tagMatcher } = {}) {
   const tags = new Set();
 
   traverse(ast, (node) => {
@@ -203,4 +201,4 @@ exports.transform = function transform(ast, { tagMatcher } = {}) {
     tags: [...tags],
     ast,
   };
-};
+}

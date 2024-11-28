@@ -1,19 +1,21 @@
-'use strict';
+import { readFileSync } from 'node:fs';
+import { extname, join, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const { readFileSync } = require('node:fs');
-const { join, relative, extname, resolve } = require('node:path');
-const VirtualModulesPlugin = require('webpack-virtual-modules');
-const { parse } = require('@vue/compiler-sfc');
-const slash = require('slash');
-const { getAllPages, readYAML } = require('./helper.cjs');
-const { action } = require('./action.cjs');
-const { vueMiniCode } = require('./setup.cjs');
-const { mergeConfig } = require('./lib.cjs');
-const { kebabCase } = require('change-case-legacy');
+import { kebabCase } from 'change-case-legacy';
+import slash from 'slash';
+import VirtualModulesPlugin from 'webpack-virtual-modules';
+
+import { parse } from '@vue/compiler-sfc';
+
+import { action } from './action.mjs';
+import { getAllPages, readYAML } from './helper.mjs';
+import { mergeConfig } from './lib.mjs';
+import { vueMiniCode } from './setup.mjs';
 
 const PLUGIN_NAME = 'SfcSplitPlugin';
 
-module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
+export class SfcSplitPlugin extends VirtualModulesPlugin {
   constructor({ type = false } = {}) {
     super();
     this.type = type;
@@ -27,7 +29,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     compiler.options.module.rules.push(
       {
         test: /\.vue$/,
-        loader: require.resolve('./vue-loader.cjs'),
+        loader: fileURLToPath(import.meta.resolve('./vue-loader.cjs')),
         options: {
           api: this,
           caller({ entryName, entryPath }) {
@@ -38,7 +40,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
       {
         test: /\.wxml$/,
         type: 'asset/resource',
-        loader: require.resolve('./wxml-parse-loader.cjs'),
+        loader: fileURLToPath(import.meta.resolve('./wxml-parse-loader.cjs')),
         generator: {
           filename: (args) => `${args.module.layer}[ext]`,
         },
@@ -54,6 +56,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     } = compiler.webpack;
 
     compiler.hooks.afterEnvironment.tap(PLUGIN_NAME, () => {
+      // eslint-disable-next-line no-param-reassign
       delete compiler.options.entry.main;
 
       if (this.type === 'app') {
@@ -139,7 +142,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     });
 
     compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-      const wxsContent = readFileSync(join(__dirname, wxs), 'utf8');
+      const wxsContent = readFileSync(new URL(wxs, import.meta.url), 'utf8');
       compilation.emitAsset(wxs, new RawSource(wxsContent));
 
       compilation.hooks.processAssets.tap(PLUGIN_NAME, (assets) => {
@@ -219,6 +222,7 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
     );
   }
 
+  // eslint-disable-next-line class-methods-use-this
   injectConfig(customBlocks, pair) {
     const config = mergeConfig([
       ...(customBlocks?.length > 0 ? customBlocks : []),
@@ -270,4 +274,4 @@ module.exports = class SfcSplitPlugin extends VirtualModulesPlugin {
       script: code,
     };
   }
-};
+}

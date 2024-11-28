@@ -21,10 +21,5 @@ export default defineConfig(import.meta.url, {
       packages: ['@best-shot/no-cache-loader'],
       pinVersion: '>=12.0.0',
     },
-    {
-      packages: ['@best-shot/sfc-split-plugin'],
-      dependencies: ['slash'],
-      pinVersion: '^3.0.0',
-    },
   ],
 });

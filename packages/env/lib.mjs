@@ -59,15 +59,11 @@ function wrap(string, parser) {
   return io ? parser(io) : {};
 }
 
-function pure(object) {
-  return JSON.parse(JSON.stringify(object));
-}
-
 const parser = {
-  ini: (str) => pure(iniParse(str)),
+  ini: (str) => structuredClone(iniParse(str)),
   json: (str) => JSON.parse(str),
-  toml: (str) => pure(tomlParse(str, { bigint: false })),
-  yaml: (str) => pure(yaml.parse(str)),
+  toml: (str) => structuredClone(tomlParse(str, { bigint: false })),
+  yaml: (str) => structuredClone(yaml.parse(str)),
 };
 
 export function parseConfig({ path, name, type } = {}) {

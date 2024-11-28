@@ -1,7 +1,7 @@
 export function apply({
   config: { mini: { type } = {}, output: { module: Module } = {} },
 }) {
-  return (chain) => {
+  return async (chain) => {
     chain.output.publicPath('/').iife(false).asyncChunks(false);
 
     if (Module) {
@@ -59,7 +59,9 @@ export function apply({
 
     rule.test(rule.get('test').add('vue'));
 
-    chain.plugin('sfc-split').use('@best-shot/sfc-split-plugin', [
+    const { SfcSplitPlugin } = await import('@best-shot/sfc-split-plugin');
+
+    chain.plugin('sfc-split').use(SfcSplitPlugin, [
       {
         type,
       },

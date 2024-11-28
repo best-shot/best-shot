@@ -1,19 +1,22 @@
 'use strict';
 
 const { resolve, join, relative, basename } = require('node:path');
-const slash = require('slash');
 const { createHash } = require('node:crypto');
 
 function createShortHash(input) {
-  return createHash('sha256').update(slash(input)).digest('hex').slice(0, 8);
+  return createHash('sha256').update(input).digest('hex').slice(0, 8);
 }
 
-module.exports = function loader(source, map, meta) {
+module.exports = async function loader(source, map, meta) {
   this.cacheable();
+
+  const callback = this.async();
 
   const { api, caller } = this.getOptions();
 
   const { layer } = this._module;
+
+  const { default: slash } = await import('slash');
 
   const resourcePath = slash(this.resourcePath);
 
@@ -42,7 +45,7 @@ module.exports = function loader(source, map, meta) {
         const relativePath = slash(relative(this.rootContext, absolutePath));
 
         const entryName = relativePath.startsWith('..')
-          ? `as-components/${basename(absolutePath.replace(/\.vue$/, ''))}/${createShortHash(absolutePath)}`
+          ? `as-components/${basename(absolutePath.replace(/\.vue$/, ''))}/${createShortHash(slash(absolutePath))}`
           : relativePath.replace(/\.vue$/, '');
 
         const placer = toThis(entryName);
@@ -78,5 +81,5 @@ module.exports = function loader(source, map, meta) {
 
   this.emitFile(`${layer}.json`, JSON.stringify(config, null, 2));
 
-  this.callback(null, file, map, meta);
+  callback(null, file, map, meta);
 };

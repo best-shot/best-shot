@@ -18,5 +18,5 @@ catalog:
   settingz: ^0.2.0
   slash-to-regexp: ^0.1.0
   sort-keys: ^5.1.0
-  webpack: ^5.96.0
+  webpack: ^5.97.1
   yaml: ^2.6.1

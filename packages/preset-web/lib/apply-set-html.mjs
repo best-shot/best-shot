@@ -21,10 +21,23 @@ const darkTag = {
   `,
 };
 
+const wdsTag = {
+  tagName: 'style',
+  prepend: false,
+  innerHTML: css`
+    wds-progress {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  `,
+};
+
 export function setHtml({ html = {} }) {
   return async (chain) => {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
+    const serve = chain.devServer.entries() !== undefined;
+    const hot = (serve && chain.devServer.get('hot')) || false;
 
     const { default: HtmlWebpackPlugin } = await import('html-webpack-plugin');
 
@@ -47,7 +60,11 @@ export function setHtml({ html = {} }) {
         xhtml: true,
         title,
         template,
-        tags: darkMode ? [darkTag, ...tags] : tags,
+        tags: [
+          darkMode ? darkTag : undefined,
+          hot ? wdsTag : undefined,
+          ...tags,
+        ].filter(Boolean),
         ...(isModule ? { scriptLoading: 'module' } : undefined),
         templateParameters: {
           title,

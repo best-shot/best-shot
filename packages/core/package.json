@@ -40,7 +40,7 @@
     "slash": "^5.1.0",
     "slash-to-regexp": "catalog:",
     "terser": "^5.37.0",
-    "terser-webpack-plugin": "^5.3.10",
+    "terser-webpack-plugin": "^5.3.11",
     "yaml-loader": "^0.8.1"
   },
   "peerDependencies": {

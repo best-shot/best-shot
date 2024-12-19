@@ -11,22 +11,16 @@ export function apply() {
 
       io.oneOf('url').dependency('url');
 
+      io.oneOf('with').with({ type: 'url' }).type('asset/resource');
+
       if (ext) {
         io.oneOf('url').generator.filename(
           assetModuleFilename.replace('[ext]', `.${ext}`),
         );
-      }
 
-      io.oneOf('not-url')
-        .dependency({ not: 'url' })
-        .oneOf('query')
-        .resourceQuery(/to-url/)
-        .type('asset/resource');
-
-      if (ext) {
-        io.oneOf('not-url')
-          .oneOf('query')
-          .generator.filename(assetModuleFilename.replace('[ext]', `.${ext}`));
+        io.oneOf('with').generator.filename(
+          assetModuleFilename.replace('[ext]', `.${ext}`),
+        );
       }
 
       io.oneOf('not-url').oneOf('raw').type(raw);

@@ -40,11 +40,11 @@ export const config = {
 Generate mutable resources filename:
 
 ```js
-import('./avatar/male.png?mutable');
 // image/avatar/male.png
+import img1 from './avatar/male.png?mutable' with { type: 'mutable' };
 
-import('./header/header-bg.png');
 // image/header-bg.min.xxxxxxxx.png
+import img2 from './header/header-bg.png';
 ```
 
 ### Preprocess non-ascii character

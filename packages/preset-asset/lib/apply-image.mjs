@@ -23,12 +23,12 @@ export async function applyImage(chain) {
         .oneOf('raw')
         .test(/\.svg$/)
         .dependency({ not: 'url' })
-        .resourceQuery(/raw/)
+        .with({ type: 'raw' })
         .type('asset/source');
 
       rule
         .oneOf('mutable')
-        .resourceQuery(/mutable/)
+        .with({ type: 'mutable' })
         .type('asset/resource')
         .generator.filename((args) => {
           // eslint-disable-next-line no-param-reassign

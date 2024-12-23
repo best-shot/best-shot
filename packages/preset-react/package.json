@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
@@ -46,7 +46,7 @@
     "react-dom": "catalog:"
   },
   "engines": {
-    "node": ">=22.11.0 || ^18.20.4 || ^20.15.0"
+    "node": ">=22.11.0 || ^20.15.0"
   },
   "publishConfig": {
     "access": "public",

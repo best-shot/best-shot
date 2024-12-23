@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/config",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Config loader of '@best-shot/cli'",
   "license": "MIT",
   "author": {
@@ -35,7 +35,7 @@
     "@best-shot/core": "workspace:~"
   },
   "engines": {
-    "node": ">=22.11.0 || ^18.20.4 || ^20.15.0"
+    "node": ">=22.11.0 || ^20.15.0"
   },
   "publishConfig": {
     "access": "public",

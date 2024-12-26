@@ -132,6 +132,9 @@ importers:
       '@nice-move/all-in-base':
         specifier: ^0.2.17
         version: 0.2.17(@babel/core@7.26.0)(@vue/compiler-sfc@3.5.13)(eslint@8.57.1)(garou@0.8.3(eslint@8.57.1)(typescript@5.7.2))(postcss@8.4.49)(prettier@3.4.2)(typescript@5.7.2)
+      '@nice-move/eslint-config-base':
+        specifier: ^0.11.34
+        version: 0.11.34(eslint@8.57.1)(typescript@5.7.2)
       '@nice-move/syncpack-config':
         specifier: ^0.2.9
         version: 0.2.9(syncpack@13.0.0(typescript@5.7.2))
@@ -1358,6 +1361,7 @@ packages:
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -3498,7 +3502,7 @@ packages:
     hasBin: true
 
   is-extglob@2.1.1:
-    resolution: {integrity: sha1-qIwCU1eR8C7TfHahueqXc8gz+MI=}
+    resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
     engines: {node: '>=0.10.0'}
 
   is-finalizationregistry@1.1.1:

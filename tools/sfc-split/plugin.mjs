@@ -141,6 +141,19 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
       }
     });
 
+    compiler.hooks.normalModuleFactory.tap(
+      PLUGIN_NAME,
+      (normalModuleFactory) => {
+        normalModuleFactory.hooks.beforeResolve.tap(PLUGIN_NAME, (result) => {
+          if (result.request === './index.js') {
+            console.log('beforeResolve', result);
+
+            // result.request = '';
+          }
+        });
+      },
+    );
+
     compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
       const wxsContent = readFileSync(new URL(wxs, import.meta.url), 'utf8');
       compilation.emitAsset(wxs, new RawSource(wxsContent));

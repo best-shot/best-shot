@@ -13,8 +13,7 @@ export function getGitHash() {
         encoding: 'utf8',
       }).trim() || 'noop'
     );
-    // eslint-disable-next-line unicorn/prefer-optional-catch-binding
-  } catch (_) {
+  } catch {
     return 'noop';
   }
 }

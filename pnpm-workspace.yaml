@@ -6,8 +6,8 @@ catalog:
   browserslist: ^4.24.3
   chalk: ^5.4.1
   cheetor: ^0.13.0
-  core-js: ^3.39.0
-  core-js-pure: ^3.39.0
+  core-js: ^3.40.0
+  core-js-pure: ^3.40.0
   deepmerge-ts: ^7.1.3
   ext-to-regexp: ^0.1.0
   flat: ^6.0.1
@@ -19,4 +19,4 @@ catalog:
   slash-to-regexp: ^0.1.0
   sort-keys: ^5.1.0
   webpack: ^5.97.1
-  yaml: ^2.6.1
+  yaml: ^2.7.0

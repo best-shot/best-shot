@@ -6,7 +6,7 @@ function removeImport(ast, names) {
   traverse.default(ast, {
     ImportDefaultSpecifier(path) {
       if (names.includes(path.node.local.name)) {
-        path.parentPath.remove();
+        // path.parentPath.remove();
       }
     },
     VariableDeclarator(path) {

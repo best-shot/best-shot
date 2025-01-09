@@ -33,7 +33,7 @@
     "yaml": "catalog:"
   },
   "engines": {
-    "node": ">=22.11.0 || ^20.15.0"
+    "node": ">=22.11.0 || ^20.18.0"
   },
   "publishConfig": {
     "access": "public",

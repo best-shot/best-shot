@@ -1,5 +1,3 @@
-import { haveLocalDependencies } from 'settingz';
-
 export const name = 'preset-react';
 
 export function apply() {
@@ -32,12 +30,7 @@ export function apply() {
           ...plugins,
           '@babel/transform-react-constant-elements',
           '@babel/transform-react-inline-elements',
-          mode === 'production' && haveLocalDependencies('airbnb-prop-types')
-            ? [
-                'transform-react-remove-prop-types',
-                { additionalLibraries: ['airbnb-prop-types'] },
-              ]
-            : 'transform-react-remove-prop-types',
+          'transform-react-remove-prop-types',
           ...(useHot ? ['react-refresh/babel'] : []),
         ].filter(Boolean),
       }));

@@ -1,4 +1,4 @@
-/* eslint-disable @eslint-community/eslint-comments/disable-enable-pair, no-cond-assign */
+/* eslint-disable no-cond-assign */
 
 function getKeys(object) {
   var keys = [];

@@ -1,3 +1,5 @@
+import { serializeTemplate } from '@padcom/vue-ast-serializer';
+
 function walk(node, transfer) {
   for (const [index, theProp] of Object.entries(node.props)) {
     const transformed = transfer(theProp, index, node);
@@ -121,7 +123,7 @@ function traverse(ast, enter) {
   }
 }
 
-export function transform(ast, { tagMatcher } = {}) {
+function transform(ast, { tagMatcher } = {}) {
   const tags = new Set();
 
   traverse(ast, (node) => {
@@ -198,7 +200,18 @@ export function transform(ast, { tagMatcher } = {}) {
   });
 
   return {
-    tags: [...tags],
+    tags: [...tags], // TODO
     ast,
   };
+}
+
+export function action(template, options) {
+  const { ast, tags } = transform(template.ast, options);
+
+  const tpl = serializeTemplate({ ast }).replace(
+    /^<template>([\s\S]+)<\/template>$/,
+    '$1',
+  );
+
+  return { tpl, tags };
 }

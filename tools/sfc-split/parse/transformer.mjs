@@ -1,18 +1,50 @@
-import generate from '@babel/generator';
-import { parse } from '@babel/parser';
 import traverse from '@babel/traverse';
 
-function removeImport(ast, names) {
+const funcName = '$$asComponent';
+
+function importStatement({ imported, local = imported, source }) {
+  return {
+    type: 'ImportDeclaration',
+    specifiers: [
+      {
+        type: 'ImportSpecifier',
+        imported: {
+          type: 'Identifier',
+          name: imported,
+        },
+        local: {
+          type: 'Identifier',
+          name: local,
+        },
+      },
+    ],
+    source: {
+      type: 'StringLiteral',
+      value: source,
+    },
+  };
+}
+
+export function transformer(ast, names, id, isSetup) {
+  let hasImport = false;
+
   traverse.default(ast, {
+    ImportDeclaration(path) {
+      if (
+        path.node.specifiers.some((specifier) => specifier.local === funcName)
+      ) {
+        hasImport = true;
+      }
+    },
     ImportDefaultSpecifier(path) {
       if (names.includes(path.node.local.name)) {
-        // path.parentPath.remove();
+        path.parentPath.remove();
       }
     },
     VariableDeclarator(path) {
       if (
         path.node.id.type === 'Identifier' &&
-        path.node.id.name === '$$mainBlock'
+        path.node.id.name === id
       ) {
         path.traverse({
           ObjectMethod(subPath) {
@@ -80,21 +112,38 @@ function removeImport(ast, names) {
       }
     },
   });
-}
 
-export function transformer(input, pair) {
-  const ast = parse(input, {
-    sourceType: 'module',
-    plugins: ['importAttributes'],
-  });
+  if (!hasImport) {
+    ast.program.body.push({
+      type: 'ExpressionStatement',
+      expression: {
+        type: 'CallExpression',
+        callee: {
+          type: 'Identifier',
+          name: funcName,
+        },
+        arguments: [
+          {
+            type: 'Identifier',
+            name: id,
+          },
+        ],
+      },
+    });
 
-  const names = pair.map(({ local }) => local);
+    const statement = importStatement(
+      isSetup
+        ? {
+            imported: 'defineComponent',
+            local: funcName,
+            source: '@vue-mini/core',
+          }
+        : {
+            imported: funcName,
+            source: '@best-shot/sfc-split-plugin/hack/base.js',
+          },
+    );
 
-  removeImport(ast, names);
-
-  const { code } = generate.default(ast, {
-    importAttributesKeyword: 'with',
-  });
-
-  return { code };
+    ast.program.body.unshift(statement);
+  }
 }

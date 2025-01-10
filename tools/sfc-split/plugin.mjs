@@ -6,12 +6,10 @@ import { kebabCase } from 'change-case-legacy';
 import slash from 'slash';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 
-import { parse } from '@vue/compiler-sfc';
-
-import { action } from './action.mjs';
 import { getAllPages, readYAML } from './helper.mjs';
-import { mergeConfig } from './lib.mjs';
-import { vueMiniCode } from './setup.mjs';
+import { action } from './parse/action.mjs';
+import { mergeConfig } from './parse/lib.mjs';
+import { parse } from './parse/sfc.mjs';
 
 const PLUGIN_NAME = 'SfcSplitPlugin';
 
@@ -29,7 +27,7 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
     compiler.options.module.rules.push(
       {
         test: /\.vue$/,
-        loader: fileURLToPath(import.meta.resolve('./vue-loader.cjs')),
+        loader: fileURLToPath(import.meta.resolve('./loader/vue-loader.cjs')),
         options: {
           api: this,
           caller({ entryName, entryPath }) {
@@ -40,7 +38,9 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
       {
         test: /\.wxml$/,
         type: 'asset/resource',
-        loader: fileURLToPath(import.meta.resolve('./wxml-parse-loader.cjs')),
+        loader: fileURLToPath(
+          import.meta.resolve('./loader/wxml-parse-loader.cjs'),
+        ),
         generator: {
           filename: (args) => `${args.module.layer}[ext]`,
         },
@@ -141,19 +141,6 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
       }
     });
 
-    compiler.hooks.normalModuleFactory.tap(
-      PLUGIN_NAME,
-      (normalModuleFactory) => {
-        normalModuleFactory.hooks.beforeResolve.tap(PLUGIN_NAME, (result) => {
-          if (result.request === './index.js') {
-            console.log('beforeResolve', result);
-
-            // result.request = '';
-          }
-        });
-      },
-    );
-
     compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
       const wxsContent = readFileSync(new URL(wxs, import.meta.url), 'utf8');
       compilation.emitAsset(wxs, new RawSource(wxsContent));
@@ -227,12 +214,8 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
     return io;
   }
 
-  injectTemplate(resourcePath, template) {
-    return this.inject(
-      resourcePath,
-      '.wxml',
-      template ? action(template).tpl : '<!-- -->',
-    );
+  injectTemplate(resourcePath, tpl) {
+    return this.inject(resourcePath, '.wxml', tpl);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -262,21 +245,14 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
   }
 
   processSfcFile(source, resourcePath) {
-    const { descriptor } = parse(source, {
-      sourceMap: false,
-      templateParseOptions: { comments: false },
-    });
-
-    const { template, styles, customBlocks } = descriptor;
-
-    const { code, pair = [] } = vueMiniCode(descriptor);
+    const { tpl, styles, customBlocks, code, pair = [] } = parse(source);
 
     const { config } = this.injectConfig(customBlocks, pair);
 
     const paths = [];
 
-    const tpl = this.injectTemplate(resourcePath, template);
-    paths.push(tpl);
+    const src = this.injectTemplate(resourcePath, tpl);
+    paths.push(src);
 
     const css = this.injectStyles(resourcePath, styles);
     paths.push(...css);

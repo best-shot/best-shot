@@ -20,7 +20,7 @@
   "scripts": {
     "analyze": "best-shot-ts analyze",
     "build:dev": "best-shot-ts dev",
-    "build:prod": "best-shot prod",
+    "build:prod": "best-shot-ts prod",
     "build:serve": "best-shot-ts serve",
     "build:watch": "best-shot-ts watch",
     "clear": "best-shot clear",
@@ -35,24 +35,26 @@
     "version:pin": "syncpack fix-mismatches"
   },
   "dependencies": {
-    "@vue-mini/core": "^1.2.1",
+    "@vue-mini/core": "^1.2.2",
     "react": "catalog:",
     "react-dom": "catalog:",
     "vue": "~3.5.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
+    "@babel/core": "^7.26.7",
     "@bring-it/cli": "^0.9.9",
     "@bring-it/npm": "^0.5.9",
-    "@nice-move/all-in-base": "^0.4.3",
+    "@nice-move/all-in-base": "^0.4.8",
     "@nice-move/syncpack-config": "^0.2.9",
+    "@tailwindcss/postcss": "^4.0.0",
     "ava": "^6.2.0",
-    "eslint": "^9.17.0",
+    "eslint": "^9.19.0",
     "garou": "^0.9.3",
     "nodemon": "^3.1.9",
     "prettier": "^3.4.2",
-    "stylelint": "^16.12.0",
+    "stylelint": "^16.14.0",
     "syncpack": "^13.0.0",
+    "tailwindcss": "^4.0.0",
     "typescript": "~5.7.3",
     "webpack": "catalog:"
   },

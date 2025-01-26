@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
 
 import extToRegexp from 'ext-to-regexp';
-import { haveLocalDependencies } from 'settingz';
+import { haveDevDependencies, haveLocalDependencies } from 'settingz';
 import slashToRegexp from 'slash-to-regexp';
 
 const auto = (resourcePath, resourceQuery) =>
@@ -106,10 +106,14 @@ export function applyStylesheet({ extract }) {
       .loader(fileURLToPath(import.meta.resolve('postcss-loader')))
       .options({
         postcssOptions: {
-          plugins: [
-            haveLocalDependencies('tailwindcss') ? 'tailwindcss' : undefined,
-            'postcss-preset-evergreen',
-          ].filter(Boolean),
+          plugins: haveLocalDependencies('tailwindcss')
+            ? [
+                haveDevDependencies('@tailwindcss/postcss')
+                  ? '@tailwindcss/postcss'
+                  : 'tailwindcss',
+                'postcss-preset-evergreen/lib/tailwind.cjs',
+              ]
+            : ['postcss-preset-evergreen'],
         },
       });
   };

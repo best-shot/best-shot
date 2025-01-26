@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/sfc-split-plugin",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "license": "MIT",
   "keywords": [
     "loader",
@@ -9,8 +9,8 @@
   "main": "plugin.mjs",
   "type": "module",
   "dependencies": {
-    "@babel/generator": "^7.26.3",
-    "@babel/traverse": "^7.26.4",
+    "@babel/generator": "^7.26.5",
+    "@babel/traverse": "^7.26.7",
     "@padcom/vue-ast-serializer": "^0.0.1",
     "@vue/compiler-sfc": "~3.5.13",
     "change-case-legacy": "^5.4.4",

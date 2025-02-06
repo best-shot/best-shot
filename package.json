@@ -46,15 +46,15 @@
     "@bring-it/npm": "^0.5.9",
     "@nice-move/all-in-base": "^0.4.8",
     "@nice-move/syncpack-config": "^0.2.9",
-    "@tailwindcss/postcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.3",
     "ava": "^6.2.0",
     "eslint": "^9.19.0",
     "garou": "^0.9.3",
     "nodemon": "^3.1.9",
     "prettier": "^3.4.2",
-    "stylelint": "^16.14.0",
-    "syncpack": "^13.0.0",
-    "tailwindcss": "^4.0.0",
+    "stylelint": "^16.14.1",
+    "syncpack": "^13.0.2",
+    "tailwindcss": "^4.0.3",
     "typescript": "~5.7.3",
     "webpack": "catalog:"
   },
@@ -75,14 +75,14 @@
     "@types/react": "~18.3.18",
     "best-shot": "workspace:~"
   },
-  "packageManager": "pnpm@9.15.3",
+  "packageManager": "pnpm@9.15.4",
   "engines": {
     "node": ">=22.11.0 || ^20.18.0",
-    "pnpm": "^9.15.3"
+    "pnpm": "^9.15.4"
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "na run build:serve",
+    "exec": "na run build:prod",
     "ext": "js,cjs,mjs,json,wxs",
     "watch": [
       "packages/**",

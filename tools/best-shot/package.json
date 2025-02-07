@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@best-shot/no-cache-loader": "workspace:~",
-    "terser": "^5.38.0",
+    "terser": "^5.38.1",
     "terser-webpack-plugin": "^5.3.11",
     "webpack": "catalog:",
     "yaml-loader": "^0.8.1"

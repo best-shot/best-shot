@@ -3,7 +3,7 @@ import './t.mts';
 export const config = {
   presets: ['mini', 'babel', 'style', 'asset'],
   mini: {
-    type: 'app',
+    type: 'miniprogram',
   },
   context: 'src',
   output: {

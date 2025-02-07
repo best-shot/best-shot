@@ -19,3 +19,7 @@ export function mergeConfig(customBlocks) {
 
   return configs.length > 1 ? deepMerge(...configs) : configs[0] || {};
 }
+
+export function toJSONString(object) {
+  return JSON.stringify(object, null, 2);
+}

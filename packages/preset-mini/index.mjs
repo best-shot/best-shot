@@ -77,7 +77,7 @@ export const schema = {
     default: {},
     properties: {
       type: {
-        enum: ['app', 'plugin'],
+        enum: ['miniprogram', 'plugin'],
       },
     },
   },

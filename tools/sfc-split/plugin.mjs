@@ -7,8 +7,7 @@ import slash from 'slash';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 
 import { getAllPages, readYAML } from './helper.mjs';
-import { action } from './parse/action.mjs';
-import { mergeConfig } from './parse/lib.mjs';
+import { mergeConfig, toJSONString } from './parse/lib.mjs';
 import { parse } from './parse/sfc.mjs';
 
 const PLUGIN_NAME = 'SfcSplitPlugin';
@@ -59,7 +58,7 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
       // eslint-disable-next-line no-param-reassign
       delete compiler.options.entry.main;
 
-      if (this.type === 'app') {
+      if (this.type === 'miniprogram') {
         new EntryPlugin(compiler.context, './app', {
           name: 'app',
           layer: 'app',
@@ -72,7 +71,7 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
           compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
             compilation.emitAsset(
               'app.json',
-              new RawSource(JSON.stringify(config, null, 2)),
+              new RawSource(toJSONString(config)),
             );
           });
         });
@@ -134,7 +133,7 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
           compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
             compilation.emitAsset(
               'plugin.json',
-              new RawSource(JSON.stringify(config, null, 2)),
+              new RawSource(toJSONString(config)),
             );
           });
         });
@@ -181,6 +180,38 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
         }
       });
     });
+
+    if (this.type) {
+      compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+        compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
+          const io = readYAML(compiler.context, 'project.config');
+
+          if (Object.keys(io).length > 0) {
+            compilation.emitAsset(
+              'project.config.json',
+              new RawSource(
+                toJSONString({
+                  ...io,
+                  compileType: this.type,
+                  srcMiniprogramRoot: '',
+                  miniprogramRoot: '',
+                  pluginRoot: '',
+                }),
+              ),
+            );
+          }
+
+          const io2 = readYAML(compiler.context, 'project.private.config');
+
+          if (Object.keys(io2).length > 0) {
+            compilation.emitAsset(
+              'project.config.private.json',
+              new RawSource(toJSONString(io2)),
+            );
+          }
+        });
+      });
+    }
   }
 
   inject(resourcePath, ext, content) {
@@ -225,19 +256,15 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
       {
         type: 'config',
         lang: 'json',
-        content: JSON.stringify(
-          {
-            component: true,
-            usingComponents:
-              pair.length > 0
-                ? Object.fromEntries(
-                    pair.map(({ local, source }) => [kebabCase(local), source]),
-                  )
-                : undefined,
-          },
-          null,
-          2,
-        ),
+        content: toJSONString({
+          component: true,
+          usingComponents:
+            pair.length > 0
+              ? Object.fromEntries(
+                  pair.map(({ local, source }) => [kebabCase(local), source]),
+                )
+              : undefined,
+        }),
       },
     ]);
 

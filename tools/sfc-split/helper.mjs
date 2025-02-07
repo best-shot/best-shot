@@ -12,13 +12,17 @@ function read(base, name) {
 }
 
 export function readYAML(base, name) {
-  const file =
-    read(base, `${name}.yaml`) ||
-    read(base, `${name}.yml`) ||
-    read(base, `${name}.json`) ||
-    {};
+  const yaml = read(base, `${name}.yaml`) || read(base, `${name}.yml`);
 
-  return parse(file);
+  if (yaml) {
+    return parse(yaml);
+  }
+
+  try {
+    return JSON.parse(read(base, `${name}.json`));
+  } catch {
+    return {};
+  }
 }
 
 function unique(...arr) {

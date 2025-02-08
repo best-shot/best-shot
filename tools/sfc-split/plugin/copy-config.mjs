@@ -9,9 +9,7 @@ export class CopyConfigPlugin {
   }
 
   apply(compiler) {
-    const {
-      sources: { RawSource },
-    } = compiler.webpack;
+    const { RawSource } = compiler.webpack.sources;
 
     class RawJSONSource extends RawSource {
       constructor(input) {
@@ -20,35 +18,33 @@ export class CopyConfigPlugin {
     }
 
     if (this.type) {
-      compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-        compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
-          const io = readYAML(compiler.context, 'project.config');
+      compiler.hooks.emit.tap(PLUGIN_NAME, (compilation) => {
+        const io = readYAML(compiler.context, 'project.config');
 
-          const pathWrap =
-            this.type === 'plugin' ? (src) => `../${src}` : (src) => src;
+        const pathWrap =
+          this.type === 'plugin' ? (src) => `../${src}` : (src) => src;
 
-          if (Object.keys(io).length > 0) {
-            compilation.emitAsset(
-              pathWrap('project.config.json'),
-              new RawJSONSource({
-                srcMiniprogramRoot: '',
-                miniprogramRoot: '',
-                pluginRoot: '',
-                ...io,
-                compileType: this.type,
-              }),
-            );
-          }
+        if (Object.keys(io).length > 0) {
+          compilation.emitAsset(
+            pathWrap('project.config.json'),
+            new RawJSONSource({
+              srcMiniprogramRoot: '',
+              miniprogramRoot: '',
+              pluginRoot: '',
+              ...io,
+              compileType: this.type,
+            }),
+          );
+        }
 
-          const io2 = readYAML(compiler.context, 'project.private.config');
+        const io2 = readYAML(compiler.context, 'project.private.config');
 
-          if (Object.keys(io2).length > 0) {
-            compilation.emitAsset(
-              pathWrap('project.config.private.json'),
-              new RawJSONSource(io2),
-            );
-          }
-        });
+        if (Object.keys(io2).length > 0) {
+          compilation.emitAsset(
+            pathWrap('project.private.config.json'),
+            new RawJSONSource(io2),
+          );
+        }
       });
     }
   }

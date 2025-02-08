@@ -59,9 +59,9 @@ export function apply({
 
     rule.test(rule.get('test').add('vue'));
 
-    const { SfcSplitPlugin } = await import('@best-shot/sfc-split-plugin');
+    const { AllInOnePlugin } = await import('@best-shot/sfc-split-plugin');
 
-    chain.plugin('sfc-split').use(SfcSplitPlugin, [
+    chain.plugin('sfc-split').use(AllInOnePlugin, [
       {
         type,
       },

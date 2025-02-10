@@ -41,22 +41,23 @@
     "vue": "~3.5.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.7",
+    "@babel/core": "^7.26.8",
     "@bring-it/cli": "^0.9.9",
     "@bring-it/npm": "^0.5.9",
     "@nice-move/all-in-base": "^0.4.10",
     "@nice-move/syncpack-config": "^0.2.9",
-    "@tailwindcss/postcss": "^4.0.4",
+    "@tailwindcss/postcss": "^4.0.5",
     "ava": "^6.2.0",
     "eslint": "^9.20.0",
     "garou": "^0.9.4",
     "nodemon": "^3.1.9",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.0",
     "stylelint": "^16.14.1",
     "syncpack": "^13.0.2",
-    "tailwindcss": "^4.0.4",
+    "tailwindcss": "^4.0.5",
     "typescript": "~5.7.3",
-    "webpack": "catalog:"
+    "webpack": "catalog:",
+    "webpack-cli": "^6.0.1"
   },
   "peerDependencies": {
     "@best-shot/analyzer": "workspace:~",
@@ -82,13 +83,14 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "na run build:watch",
+    "exec": "webpack watch",
     "ext": "js,cjs,mjs,json,wxs",
     "watch": [
       "packages/**",
       "tools/**",
       "src/**",
-      ".best-shot/config.mjs"
+      ".best-shot/config.mjs",
+      "webpack.config.mjs"
     ]
   },
   "prettier": "@nice-move/prettier-config",

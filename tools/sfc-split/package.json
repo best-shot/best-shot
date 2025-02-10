@@ -9,14 +9,15 @@
   "main": "plugin.mjs",
   "type": "module",
   "dependencies": {
-    "@babel/generator": "^7.26.5",
-    "@babel/traverse": "^7.26.7",
+    "@babel/generator": "^7.26.8",
+    "@babel/traverse": "^7.26.8",
     "@padcom/vue-ast-serializer": "^0.0.1",
     "@vue/compiler-sfc": "~3.5.13",
     "change-case-legacy": "^5.4.4",
     "deepmerge-ts": "catalog:",
     "slash": "^5.1.0",
     "tab-to-space": "^1.0.1",
+    "vue-loader": "^17.4.2",
     "webpack-virtual-modules": "^0.6.2",
     "wxml-parse": "^0.2.3",
     "yaml": "catalog:"

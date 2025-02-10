@@ -42,16 +42,21 @@ export function getEnv(root, { mode, serve, watch }) {
 
   const GIT_HASH = getGitHash();
 
-  return flatten(
-    {
-      'import.meta.env': {
-        ...(empty ? undefined : data),
-        GIT_HASH,
+  const envs = {
+    ...(empty ? undefined : data),
+    GIT_HASH,
+  };
+
+  return {
+    envs,
+    flatted: flatten(
+      {
+        'import.meta.env': envs,
       },
-    },
-    {
-      safe: true,
-      maxDepth: 3,
-    },
-  );
+      {
+        safe: true,
+        maxDepth: 3,
+      },
+    ),
+  };
 }

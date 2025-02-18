@@ -1,6 +1,6 @@
 {
   "name": "best-shot",
-  "version": "0.9.0",
+  "version": "0.9.2",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@best-shot/no-cache-loader": "workspace:~",
-    "terser": "^5.38.1",
+    "terser": "^5.39.0",
     "terser-webpack-plugin": "^5.3.11",
     "webpack": "catalog:",
     "yaml-loader": "^0.8.1"

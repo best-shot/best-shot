@@ -1,5 +1,4 @@
-import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 
 import { schema as copySchema } from 'copy-webpack/lib/schema.cjs';
 
@@ -70,7 +69,11 @@ export function apply({
           .filter(Boolean)
           .join('-'),
         buildDependencies: {
-          config: [fileURLToPath(join(import.meta.url, '../../../'))],
+          config: [
+            resolve(process.cwd(), '.best-shot/config.mjs'),
+            resolve(process.cwd(), '.best-shot/env.toml'),
+            resolve(process.cwd(), '.best-shot/env.yaml'),
+          ],
         },
       });
     }

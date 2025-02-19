@@ -8,6 +8,18 @@ function objectSize(object) {
   return Object.keys(object || {}).length > 1;
 }
 
+function fileExists(path) {
+  try {
+    const filename = resolve(process.cwd(), path);
+
+    import.meta.resolve(filename);
+
+    return [path];
+  } catch {
+    return [];
+  }
+}
+
 export function apply({
   serve,
   config: {
@@ -70,9 +82,9 @@ export function apply({
           .join('-'),
         buildDependencies: {
           config: [
-            resolve(process.cwd(), '.best-shot/config.mjs'),
-            resolve(process.cwd(), '.best-shot/env.toml'),
-            resolve(process.cwd(), '.best-shot/env.yaml'),
+            fileExists('.best-shot/config.mjs'),
+            fileExists('.best-shot/env.toml'),
+            fileExists('.best-shot/env.yaml'),
           ],
         },
       });

@@ -85,7 +85,7 @@ export function apply({
             fileExists('.best-shot/config.mjs'),
             fileExists('.best-shot/env.toml'),
             fileExists('.best-shot/env.yaml'),
-          ],
+          ].flat(),
         },
       });
     }

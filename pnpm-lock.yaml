@@ -37,10 +37,10 @@ catalogs:
       specifier: ^5.0.0
       version: 5.0.0
     react:
-      specifier: '>=18.3.1'
+      specifier: '>=19.0.0'
       version: 19.0.0
     react-dom:
-      specifier: '>=18.3.1'
+      specifier: '>=19.0.0'
       version: 19.0.0
     settingz:
       specifier: ^0.2.0
@@ -2411,7 +2411,7 @@ packages:
     engines: {node: '>= 10.0'}
 
   clean-regexp@1.0.0:
-    resolution: {integrity: sha1-jffHquUf02h06PjQW5GAvBGj/tc=}
+    resolution: {integrity: sha512-GfisEZEJvzKrmGWkvfhgzcz/BllN1USeqD2V6tg14OAOgaCD2Z/PUEuxnAZ/nPvmaHRG7a8y77p1T/IRQ4D1Hw==}
     engines: {node: '>=4'}
 
   cli-cursor@5.0.0:

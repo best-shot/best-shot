@@ -37,10 +37,10 @@ catalogs:
       specifier: ^5.0.0
       version: 5.0.0
     react:
-      specifier: '>=18.2.0'
+      specifier: '>=18.3.1'
       version: 19.0.0
     react-dom:
-      specifier: '>=18.2.0'
+      specifier: '>=18.3.1'
       version: 19.0.0
     settingz:
       specifier: ^0.2.0
@@ -2411,7 +2411,7 @@ packages:
     engines: {node: '>= 10.0'}
 
   clean-regexp@1.0.0:
-    resolution: {integrity: sha512-GfisEZEJvzKrmGWkvfhgzcz/BllN1USeqD2V6tg14OAOgaCD2Z/PUEuxnAZ/nPvmaHRG7a8y77p1T/IRQ4D1Hw==}
+    resolution: {integrity: sha1-jffHquUf02h06PjQW5GAvBGj/tc=}
     engines: {node: '>=4'}
 
   cli-cursor@5.0.0:
@@ -2867,7 +2867,7 @@ packages:
     engines: {node: '>= 4'}
 
   encodeurl@1.0.2:
-    resolution: {integrity: sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=}
+    resolution: {integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==}
     engines: {node: '>= 0.8'}
 
   encodeurl@2.0.0:
@@ -5071,7 +5071,7 @@ packages:
     resolution: {integrity: sha512-q/7VIQA8lmM1hF+jn+sFSPWGlMkSAeNYcPLmDQx2zzuiDfaLrOmumR8iaUKlenFgh0XRPIUeSPlH3A+AW3Z5pg==}
 
   require-directory@2.1.1:
-    resolution: {integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=}
+    resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
 
   require-from-string@2.0.2:

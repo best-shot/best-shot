@@ -37,7 +37,6 @@ export function setHtml({ html = {} }) {
     const mode = chain.get('mode');
     const watch = chain.get('watch');
     const serve = chain.devServer.entries() !== undefined;
-    const hot = (serve && chain.devServer.get('hot')) || false;
 
     const { default: HtmlWebpackPlugin } = await import('html-webpack-plugin');
 
@@ -62,7 +61,7 @@ export function setHtml({ html = {} }) {
         template,
         tags: [
           darkMode ? darkTag : undefined,
-          hot ? wdsTag : undefined,
+          serve ? wdsTag : undefined,
           ...tags,
         ].filter(Boolean),
         ...(isModule ? { scriptLoading: 'module' } : undefined),

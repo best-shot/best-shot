@@ -370,8 +370,8 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2
       svgo-config:
-        specifier: ^0.7.0
-        version: 0.7.0(svgo@3.3.2)
+        specifier: ^0.9.0
+        version: 0.9.1(svgo@3.3.2)
 
   packages/preset-babel:
     dependencies:
@@ -1338,6 +1338,7 @@ packages:
 
   '@effect/schema@0.75.5':
     resolution: {integrity: sha512-TQInulTVCuF+9EIbJpyLP6dvxbQJMphrnRqgexm/Ze39rSjfhJuufF7XvU3SxTgg3HnL7B/kpORTJbHhlE6thw==}
+    deprecated: this package has been merged into the main effect package
     peerDependencies:
       effect: ^3.9.2
 
@@ -5574,11 +5575,11 @@ packages:
   svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
 
-  svgo-config@0.7.0:
-    resolution: {integrity: sha512-vRlrk0NItE2tmaXPtwN2h8Phx8oWcRCqigN4faBGk3/Gsxb+Lo4GraIYBFTmrS4YeCtixYoGUnxMjZP+cM8f+Q==}
-    engines: {node: '>=20.0.0 || ^16.13.0 || ^18.12.0'}
+  svgo-config@0.9.1:
+    resolution: {integrity: sha512-BYq/pWz6+85ut/+HxLrwwZSC3Yv7JfGpGrxOa70Vu2eD6HA9k9JkS0PQmDKmpmGA0tfmH6zS7FnTHCvCCacnXw==}
+    engines: {node: '>=22.11.0'}
     peerDependencies:
-      svgo: ^3.2.0
+      svgo: ^3.3.2
 
   svgo@3.3.2:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
@@ -11416,7 +11417,7 @@ snapshots:
 
   svg-tags@1.0.0: {}
 
-  svgo-config@0.7.0(svgo@3.3.2):
+  svgo-config@0.9.1(svgo@3.3.2):
     dependencies:
       svgo: 3.3.2
 

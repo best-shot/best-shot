@@ -130,7 +130,7 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0(@bring-it/cli@0.10.0)
       '@nice-move/all-in-base':
-        specifier: ^0.4.12
+        specifier: ^0.4.13
         version: 0.4.13(@babel/core@7.26.9)(@typescript-eslint/parser@8.26.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.7.3))(@vue/compiler-sfc@3.5.13)(eslint@9.22.0(jiti@2.4.2))(garou@0.9.4(eslint@9.22.0(jiti@2.4.2))(typescript@5.7.3))(postcss@8.5.3)(prettier@3.5.3)(typescript@5.7.3)
       '@nice-move/syncpack-config':
         specifier: ^0.2.9
@@ -142,7 +142,7 @@ importers:
         specifier: ^6.2.0
         version: 6.2.0
       eslint:
-        specifier: ^9.21.0
+        specifier: ^9.22.0
         version: 9.22.0(jiti@2.4.2)
       garou:
         specifier: ^0.9.4

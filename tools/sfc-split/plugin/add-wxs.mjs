@@ -5,6 +5,12 @@ import slash from 'slash';
 
 const PLUGIN_NAME = 'AddWxsPlugin';
 
+const filename = 'wxs/clsx.wxs';
+
+function readFile() {
+  return readFileSync(new URL('../wxs/clsx.wxs', import.meta.url), 'utf8');
+}
+
 export class AddWxsPlugin {
   apply(compiler) {
     const {
@@ -12,27 +18,41 @@ export class AddWxsPlugin {
     } = compiler.webpack;
 
     compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-      const wxsContent = readFileSync(
-        new URL('../wxs/clsx.wxs', import.meta.url),
-        'utf8',
+      compilation.hooks.processAssets.tap(
+        {
+          name: PLUGIN_NAME,
+          stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+        },
+        () => {
+          const wxsContent = readFile();
+          compilation.emitAsset(filename, new RawSource(wxsContent));
+        },
       );
-      compilation.emitAsset('wxs/clsx.wxs', new RawSource(wxsContent));
 
-      compilation.hooks.processAssets.tap(PLUGIN_NAME, (assets) => {
-        for (const [assetName, source] of Object.entries(assets)) {
-          if (
-            extname(assetName) === '.wxml' &&
-            source.source().includes('clsx.clsx(')
-          ) {
-            const path = slash(relative(join(assetName, '..'), 'wxs/clsx.wxs'));
-            const head = `<wxs src="${path}" module="clsx" />\n`;
-            compilation.updateAsset(
-              assetName,
-              (old) => new ConcatSource(head, old),
-            );
+      compilation.hooks.processAssets.tap(
+        {
+          name: PLUGIN_NAME,
+          stage:
+            compiler.webpack.Compilation
+              .PROCESS_ASSETS_STAGE_OPTIMIZE_COMPATIBILITY,
+          additionalAssets: true,
+        },
+        (assets) => {
+          for (const [assetName, source] of Object.entries(assets)) {
+            if (
+              extname(assetName) === '.wxml' &&
+              source.source().includes('clsx.clsx(')
+            ) {
+              const path = slash(relative(join(assetName, '..'), filename));
+              const head = `<wxs src="${path}" module="clsx" />\n`;
+              compilation.updateAsset(
+                assetName,
+                (old) => new ConcatSource(head, old),
+              );
+            }
           }
-        }
-      });
+        },
+      );
     });
   }
 }

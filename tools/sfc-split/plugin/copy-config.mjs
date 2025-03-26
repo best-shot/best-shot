@@ -18,33 +18,49 @@ export class CopyConfigPlugin {
     }
 
     if (this.type) {
-      compiler.hooks.emit.tap(PLUGIN_NAME, (compilation) => {
+      compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
         const io = readYAML(compiler.context, 'project.config');
 
         const pathWrap =
           this.type === 'plugin' ? (src) => `../${src}` : (src) => src;
 
-        if (Object.keys(io).length > 0) {
-          compilation.emitAsset(
-            pathWrap('project.config.json'),
-            new RawJSONSource({
-              srcMiniprogramRoot: '',
-              miniprogramRoot: '',
-              pluginRoot: '',
-              ...io,
-              compileType: this.type,
-            }),
-          );
-        }
+        compilation.hooks.processAssets.tap(
+          {
+            name: PLUGIN_NAME,
+            stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+          },
+          () => {
+            if (Object.keys(io).length > 0) {
+              compilation.emitAsset(
+                pathWrap('project.config.json'),
+                new RawJSONSource({
+                  srcMiniprogramRoot: '',
+                  miniprogramRoot: '',
+                  pluginRoot: '',
+                  ...io,
+                  compileType: this.type,
+                }),
+              );
+            }
+          },
+        );
 
         const io2 = readYAML(compiler.context, 'project.private.config');
 
-        if (Object.keys(io2).length > 0) {
-          compilation.emitAsset(
-            pathWrap('project.private.config.json'),
-            new RawJSONSource(io2),
-          );
-        }
+        compilation.hooks.processAssets.tap(
+          {
+            name: PLUGIN_NAME,
+            stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+          },
+          () => {
+            if (Object.keys(io2).length > 0) {
+              compilation.emitAsset(
+                pathWrap('project.private.config.json'),
+                new RawJSONSource(io2),
+              );
+            }
+          },
+        );
       });
     }
   }

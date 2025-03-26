@@ -42,9 +42,16 @@ export class AddEntryPlugin {
         const config = readYAML(compiler.context, 'app');
 
         compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-          compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
-            compilation.emitAsset('app.json', new RawJSONSource(config));
-          });
+          compilation.hooks.processAssets.tap(
+            {
+              name: PLUGIN_NAME,
+              stage:
+                compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+            },
+            () => {
+              compilation.emitAsset('app.json', new RawJSONSource(config));
+            },
+          );
         });
 
         const allPages = getAllPages(config);
@@ -87,9 +94,16 @@ export class AddEntryPlugin {
         }
 
         compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-          compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
-            compilation.emitAsset('plugin.json', new RawJSONSource(config));
-          });
+          compilation.hooks.processAssets.tap(
+            {
+              name: PLUGIN_NAME,
+              stage:
+                compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+            },
+            () => {
+              compilation.emitAsset('plugin.json', new RawJSONSource(config));
+            },
+          );
         });
       }
     });

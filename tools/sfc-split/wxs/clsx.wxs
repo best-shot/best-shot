@@ -1,5 +1,3 @@
-/* eslint-disable no-cond-assign */
-
 function getKeys(object) {
   var keys = [];
 
@@ -24,7 +22,7 @@ function toVal(mix) {
 
   if (typeof mix === 'string' || typeof mix === 'number') {
     str += mix;
-  } else if (typeof mix === 'object') {
+  } else if (typeof mix === 'object' && mix !== null) {
     if (mix.constructor === 'Array') {
       var len = mix.length;
       for (var k = 0; k < len; k++) {
@@ -58,9 +56,15 @@ function clsx() {
   var str = '';
   var len = arguments.length;
   for (var i = 0; i < len; i++) {
-    if ((tmp = arguments[i]) && (x = toVal(tmp))) {
-      if (str) str += ' ';
-      str += x;
+    tmp = arguments[i];
+    if (tmp) {
+      x = toVal(tmp);
+      if (x) {
+        if (str) {
+          str += ' ';
+        }
+        str += x;
+      }
     }
   }
   return str;

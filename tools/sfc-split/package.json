@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/sfc-split-plugin",
-  "version": "0.13.2",
+  "version": "0.13.5",
   "license": "MIT",
   "keywords": [
     "loader",
@@ -17,7 +17,6 @@
     "deepmerge-ts": "catalog:",
     "slash": "^5.1.0",
     "tab-to-space": "^1.0.1",
-    "vue-loader": "^17.4.2",
     "webpack-virtual-modules": "^0.6.2",
     "wxml-parse": "^0.2.3",
     "yaml": "catalog:"

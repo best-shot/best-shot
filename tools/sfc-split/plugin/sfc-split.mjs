@@ -19,7 +19,9 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
     compiler.options.module.rules.push(
       {
         test: /\.vue$/,
-        loader: fileURLToPath(import.meta.resolve('../loader/vue-loader.cjs')),
+        loader: fileURLToPath(
+          import.meta.resolve('../loader/fake-vue-loader.cjs'),
+        ),
         options: {
           api: this,
           caller({ entryName, entryPath }) {

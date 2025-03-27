@@ -44,11 +44,14 @@ export class AddWxsPlugin {
               source.source().includes('clsx.clsx(')
             ) {
               const path = slash(relative(join(assetName, '..'), filename));
-              const head = `<wxs src="${path}" module="clsx" />\n`;
-              compilation.updateAsset(
-                assetName,
-                (old) => new ConcatSource(head, old),
-              );
+              const head = `<wxs src="${path}" module="clsx" />`;
+
+              if (!source.source().includes(head)) {
+                compilation.updateAsset(
+                  assetName,
+                  (old) => new ConcatSource(`${head}\n`, old),
+                );
+              }
             }
           }
         },

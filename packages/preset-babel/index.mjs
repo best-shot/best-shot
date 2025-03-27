@@ -20,7 +20,11 @@ export function apply({
 
     const { cachePath } = chain.get('x');
 
-    chain.resolve.extensions.add('.ts').add('.mts').add('.cts');
+    chain.resolve.extensionAlias.merge({
+      '.js': ['.ts', '.js'],
+      '.mjs': ['.mts', '.mjs'],
+      '.cjs': ['.cts', '.cjs'],
+    });
 
     chain.module
       .rule('babel')

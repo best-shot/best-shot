@@ -17,15 +17,7 @@ export class BaseChain extends WebpackChain {
 
     this.output.hashDigestLength(8);
 
-    this.resolve.extensions.merge([
-      '.js',
-      '.cjs',
-      '.mjs',
-      '.json',
-      '.ts',
-      '.cts',
-      '.mts',
-    ]);
+    this.resolve.extensions.merge(['.js', '.cjs', '.mjs']);
   }
 }
 

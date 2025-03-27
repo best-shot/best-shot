@@ -23,27 +23,6 @@ export function apply({ config: { optimization = {}, vendors = {} } }) {
     }
 
     if (optimization.splitChunks) {
-      chain.optimization.splitChunks(
-        optimization.splitChunks
-          ? {
-              cacheGroups: {
-                vendors: {
-                  name: 'share',
-                  chunks: 'initial',
-                  minChunks: 2,
-                  enforce: true,
-                  reuseExistingChunk: true,
-                },
-                async: {
-                  chunks: 'async',
-                  enforce: true,
-                  reuseExistingChunk: true,
-                },
-              },
-            }
-          : false,
-      );
-
       const obj = {
         ...(vendors.shim ? { shim: vendors.shim } : undefined),
         ...(vendors.react ? { react: vendors.react } : undefined),
@@ -64,26 +43,22 @@ export function apply({ config: { optimization = {}, vendors = {} } }) {
         };
       });
 
-      const initial = {
-        chunks: 'initial',
-        priority: 10,
-        ...force,
-      };
-
       chain.optimization.splitChunks.maxAsyncRequests(5).cacheGroups({
         ...settings,
-        vendor:
-          chain.entryPoints.values().length > 1
-            ? {
-                name: 'common',
-                minChunks: 2,
-                ...initial,
-              }
-            : {
-                name: 'vendor',
-                test: slashToRegexp('/node_modules/'),
-                ...initial,
-              },
+        vendor: {
+          name: 'vendor',
+          test: slashToRegexp('/node_modules/'),
+          chunks: 'initial',
+          priority: 10,
+          ...force,
+        },
+        common: {
+          name: 'common',
+          minChunks: 2,
+          chunks: 'initial',
+          priority: 5,
+          ...force,
+        },
         async: {
           chunks: 'async',
           ...force,

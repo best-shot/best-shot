@@ -18,6 +18,10 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
 
     compiler.options.module.rules.push(
       {
+        exclude: /\.(vue|wxml)$/,
+        layer: 'other',
+      },
+      {
         test: /\.vue$/,
         loader: fileURLToPath(
           import.meta.resolve('../loader/fake-vue-loader.cjs'),

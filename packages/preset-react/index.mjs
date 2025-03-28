@@ -5,7 +5,7 @@ export function apply() {
     const mode = chain.get('mode') || 'development';
     const useHot = chain.devServer.get('hot') || false;
 
-    this.resolve.extensionAlias.set('.jsx', ['.tsx', '.jsx']);
+    chain.resolve.extensionAlias.set('.jsx', ['.tsx', '.jsx']);
 
     const fileRegexp = chain.module.rule('babel').get('test');
 

@@ -19,4 +19,4 @@ catalog:
   slash-to-regexp: ^0.1.0
   sort-keys: ^5.1.0
   webpack: ^5.98.0
-  yaml: ^2.7.0
+  yaml: ^2.7.1

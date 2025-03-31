@@ -44,17 +44,17 @@
     "@babel/core": "^7.26.10",
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.6.0",
-    "@nice-move/all-in-base": "^0.4.15",
+    "@nice-move/all-in-base": "^0.4.17",
     "@nice-move/syncpack-config": "^0.2.9",
-    "@tailwindcss/postcss": "^4.0.16",
+    "@tailwindcss/postcss": "^4.0.17",
     "ava": "^6.2.0",
     "eslint": "^9.23.0",
     "garou": "^0.9.5",
     "nodemon": "^3.1.9",
     "prettier": "^3.5.3",
-    "stylelint": "^16.16.0",
+    "stylelint": "^16.17.0",
     "syncpack": "^13.0.3",
-    "tailwindcss": "^4.0.16",
+    "tailwindcss": "^4.0.17",
     "typescript": "~5.8.2",
     "webpack": "catalog:",
     "webpack-cli": "^6.0.1"
@@ -73,13 +73,12 @@
     "@best-shot/preset-vue": "workspace:~",
     "@best-shot/preset-web": "workspace:~",
     "@best-shot/sfc-split-plugin": "workspace:~",
-    "@types/react": "~18.3.18",
+    "@types/react": "~18.3.20",
     "best-shot": "workspace:~"
   },
-  "packageManager": "pnpm@9.15.6",
+  "packageManager": "pnpm@10.7.0",
   "engines": {
-    "node": ">=22.11.0 || ^20.18.0",
-    "pnpm": "^9.15.6"
+    "node": ">=22.11.0 || ^20.18.0"
   },
   "nodemonConfig": {
     "delay": 5,

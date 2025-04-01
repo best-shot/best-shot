@@ -1,4 +1,5 @@
 import { serializeTemplate } from '@padcom/vue-ast-serializer';
+import { kebabCase } from 'change-case-legacy';
 
 function walk(node, transfer) {
   for (const [index, theProp] of Object.entries(node.props)) {
@@ -152,7 +153,11 @@ function transform(ast, { tagMatcher } = {}) {
           node.tag = 'view';
           break;
         }
-        default:
+        default: {
+          if (node.tagType === 1) {
+            node.tag = kebabCase(node.tag);
+          }
+        }
       }
       const vTextIndex = node.props.findIndex(
         (prop) => prop.type === 7 && prop.name === 'text',

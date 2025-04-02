@@ -86,6 +86,10 @@ function transformProps3(prop, index, node) {
           );
         }
 
+        if (prop.arg.content.startsWith('generic:')) {
+          return asProp(prop.arg?.content, kebabCase(prop.exp.content), false);
+        }
+
         return asProp(prop.arg.content, prop.exp.content);
       }
       case 'model': {
@@ -102,6 +106,9 @@ function transformProps3(prop, index, node) {
       }
       case 'else': {
         return asProp('wx:else');
+      }
+      case 'slot': {
+        return asProp('slot', prop.arg?.content, false);
       }
       default: {
         console.log(prop);

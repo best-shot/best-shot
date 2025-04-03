@@ -66,6 +66,24 @@ export function apply({
         type,
       },
     ]);
+
+    const presets = ['vendor', 'common', 'shim', 'vue-mini', 'vue', 'react'];
+
+    chain.optimization.splitChunks.cacheGroups(
+      Object.fromEntries(
+        Object.entries(chain.optimization.splitChunks.get('cacheGroups')).map(
+          ([key, value]) => [
+            key,
+            {
+              ...value,
+              name: presets.includes(value.name)
+                ? ['share', value.name].join('/')
+                : value.name,
+            },
+          ],
+        ),
+      ),
+    );
   };
 }
 
@@ -123,6 +141,14 @@ export const schema = {
           usage: 'pure',
           mini: true,
         },
+      },
+    },
+  },
+  vendors: {
+    type: 'object',
+    properties: {
+      'vue-mini': {
+        default: ['vue-(.)*', '@vue', '@vue-mini', '@best-shot'],
       },
     },
   },

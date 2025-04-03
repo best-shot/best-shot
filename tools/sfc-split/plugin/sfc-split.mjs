@@ -81,7 +81,7 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
   injectStyle(resourcePath, id, style) {
     return this.inject(
       resourcePath,
-      `-${id}.${style.ext ?? 'css'}`,
+      `-${id}.${style.lang ?? 'css'}`,
       style.content.trim(),
     );
   }

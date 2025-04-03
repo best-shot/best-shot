@@ -24,6 +24,14 @@ export function apply({
       });
     }
 
+    const mode = chain.get('mode') || 'development';
+
+    if (mode === 'development') {
+      chain.devtool('source-map');
+    }
+
+    chain.resolve.mainFields.merge(['mini', 'browser', 'module', 'main']);
+
     const minimize = chain.optimization.get('minimize');
 
     if (minimize) {

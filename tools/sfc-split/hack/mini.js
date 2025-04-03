@@ -6,5 +6,16 @@ import { mergeOptions } from './helper.js';
 export function $$asComponent(options) {
   const io = mergeOptions(options);
 
-  defineComponent(io);
+  defineComponent({
+    ...io,
+    setup(props, context) {
+      return io.setup(props, {
+        ...context,
+        expose: () => {},
+        get parent() {
+          return context.selectOwnerComponent();
+        },
+      });
+    },
+  });
 }

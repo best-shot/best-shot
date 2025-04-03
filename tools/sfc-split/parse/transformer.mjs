@@ -42,10 +42,7 @@ export function transformer(ast, names, id, isSetup) {
       }
     },
     VariableDeclarator(path) {
-      if (
-        path.node.id.type === 'Identifier' &&
-        path.node.id.name === id
-      ) {
+      if (path.node.id.type === 'Identifier' && path.node.id.name === id) {
         path.traverse({
           ObjectMethod(subPath) {
             if (
@@ -53,16 +50,21 @@ export function transformer(ast, names, id, isSetup) {
               (subPath.parentPath.parentPath.parentPath === path ||
                 subPath.parentPath.parentPath === path)
             ) {
+              subPath.node.params[1] = {
+                type: 'Identifier',
+                name: 'context',
+              };
+
               subPath.traverse({
-                ObjectProperty(subPath2) {
-                  if (
-                    subPath2.node.key.name === 'expose' &&
-                    subPath2.node.value.name === '__expose' &&
-                    subPath2.parentPath.parentPath === subPath
-                  ) {
-                    subPath2.remove();
-                  }
-                },
+                // ObjectProperty(subPath2) {
+                //   if (
+                //     subPath2.node.key.name === 'expose' &&
+                //     subPath2.node.value.name === '__expose' &&
+                //     subPath2.parentPath.parentPath === subPath
+                //   ) {
+                //     subPath2.remove();
+                //   }
+                // },
                 VariableDeclarator(subPath2) {
                   if (
                     subPath2.node.id.name === '__returned__' &&
@@ -134,9 +136,8 @@ export function transformer(ast, names, id, isSetup) {
     const statement = importStatement(
       isSetup
         ? {
-            imported: 'defineComponent',
-            local: funcName,
-            source: '@vue-mini/core',
+            imported: funcName,
+            source: '@best-shot/sfc-split-plugin/hack/mini.js',
           }
         : {
             imported: funcName,

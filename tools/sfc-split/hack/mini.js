@@ -12,6 +12,9 @@ export function $$asComponent(options) {
       return io.setup(props, {
         ...context,
         expose: () => {},
+        emit: (event, ...args) => {
+          context.triggerEvent(event, ...args);
+        },
         get parent() {
           return context.selectOwnerComponent();
         },

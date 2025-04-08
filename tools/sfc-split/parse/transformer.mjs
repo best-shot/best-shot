@@ -50,21 +50,35 @@ export function transformer(ast, names, id, isSetup) {
               (subPath.parentPath.parentPath.parentPath === path ||
                 subPath.parentPath.parentPath === path)
             ) {
-              subPath.node.params[1] = {
-                type: 'Identifier',
-                name: 'context',
-              };
-
               subPath.traverse({
-                // ObjectProperty(subPath2) {
-                //   if (
-                //     subPath2.node.key.name === 'expose' &&
-                //     subPath2.node.value.name === '__expose' &&
-                //     subPath2.parentPath.parentPath === subPath
-                //   ) {
-                //     subPath2.remove();
-                //   }
-                // },
+                ObjectPattern(subPath2) {
+                  if (subPath2.node === subPath.node.params[1]) {
+                    subPath2.traverse({
+                      ObjectProperty(subPath3) {
+                        if (
+                          subPath3.node.key.name === 'expose' &&
+                          subPath3.node.value.name === '__expose' &&
+                          subPath3.parentPath === subPath2
+                        ) {
+                          subPath3.remove();
+                        }
+                      },
+                    });
+                    const hasRestElement = subPath2.node.properties.some(
+                      (prop) => prop.type === 'RestElement',
+                    );
+
+                    if (!hasRestElement) {
+                      subPath2.node.properties.push({
+                        type: 'RestElement',
+                        argument: {
+                          type: 'Identifier',
+                          name: 'context',
+                        },
+                      });
+                    }
+                  }
+                },
                 VariableDeclarator(subPath2) {
                   if (
                     subPath2.node.id.name === '__returned__' &&

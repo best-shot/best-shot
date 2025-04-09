@@ -63,7 +63,12 @@ export function parse(raw) {
 
     const isSetup =
       result.scriptSetupAst &&
-      result.scriptSetupAst.some((item) => item.type !== 'ImportDeclaration');
+      result.scriptSetupAst.some(
+        (item) =>
+          item.type !== 'ImportDeclaration' ||
+          (item.type === 'ImportDeclaration' &&
+            item.source?.value?.endsWith('.vue')),
+      );
 
     transformer(ast, names, id, isSetup);
 

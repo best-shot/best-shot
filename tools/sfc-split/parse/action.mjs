@@ -8,8 +8,13 @@ function walk(node, transfer) {
     if (Array.isArray(transformed)) {
       const [first, ...rest] = transformed;
       node.props.splice(index, 1, first);
-
       node.props.push(...rest);
+    } else if (
+      transformed === undefined ||
+      transformed === false ||
+      transformed === null
+    ) {
+      delete node.props[index];
     } else {
       node.props.splice(index, 1, transformed);
     }
@@ -68,10 +73,12 @@ function transformProps3(prop, index, node) {
   if (prop.type === 7) {
     switch (prop.name) {
       case 'on': {
-        return bind(prop.arg.content, prop.exp.content);
+        return prop.arg?.content && prop.exp?.content
+          ? bind(prop.arg.content, prop.exp.content)
+          : undefined;
       }
       case 'bind': {
-        if (prop.arg.content === 'key') {
+        if (prop.arg?.content === 'key') {
           const io = node.props.find((item) => item.name === 'wx:for-item');
 
           return asProp(
@@ -86,29 +93,35 @@ function transformProps3(prop, index, node) {
           );
         }
 
-        if (prop.arg.content.startsWith('generic:')) {
+        if (prop.arg?.content.startsWith('generic:') && prop.exp.content) {
           return asProp(prop.arg?.content, kebabCase(prop.exp.content), false);
         }
 
-        return asProp(prop.arg.content, prop.exp.content);
+        return prop.arg?.content
+          ? asProp(prop.arg.content, prop.exp?.content ?? prop.arg.content)
+          : prop;
       }
       case 'model': {
-        return asProp(
-          `model:${prop.arg?.content || 'value'}`,
-          prop.exp?.content ? prop.exp.content.replaceAll('.', '_') : '',
-        );
+        return prop.exp?.content
+          ? asProp(
+              `model:${kebabCase(prop.arg?.content || 'modelValue')}`,
+              prop.exp.content.replaceAll('.', '_'),
+            )
+          : prop;
       }
       case 'if': {
-        return asProp('wx:if', prop.exp.content);
+        return prop.exp.content ? asProp('wx:if', prop.exp.content) : prop;
       }
       case 'else-if': {
-        return asProp('wx:elif', prop.exp.content);
+        return prop.exp.content ? asProp('wx:elif', prop.exp.content) : prop;
       }
       case 'else': {
         return asProp('wx:else');
       }
       case 'slot': {
-        return asProp('slot', prop.arg?.content, false);
+        return prop.arg?.content
+          ? asProp('slot', prop.arg.content, false)
+          : prop;
       }
       default: {
         console.log(prop);
@@ -167,7 +180,7 @@ function transform(ast, { tagMatcher } = {}) {
         }
       }
       const vTextIndex = node.props.findIndex(
-        (prop) => prop.type === 7 && prop.name === 'text',
+        (prop) => prop?.type === 7 && prop.name === 'text',
       );
 
       if (vTextIndex !== -1) {

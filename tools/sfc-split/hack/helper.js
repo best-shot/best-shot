@@ -3,14 +3,16 @@ function toProperties(props, properties) {
     ? Object.fromEntries(
         Object.entries(props).map(([key, prop]) => [
           key,
-          {
-            ...prop,
-            type: prop.type,
-            value:
-              typeof prop.default === 'function'
-                ? prop.default()
-                : prop.default,
-          },
+          prop.type
+            ? {
+                ...prop,
+                type: prop.type,
+                value:
+                  typeof prop.default === 'function'
+                    ? prop.default()
+                    : prop.default,
+              }
+            : { type: prop },
         ]),
       )
     : undefined;
@@ -25,9 +27,12 @@ export function mergeOptions({
   data,
   methods,
   emits,
+  created,
+  beforeCreate,
   ...rest
 }) {
   return {
+    ...rest,
     properties: toProperties(props, properties),
     data: typeof data === 'function' ? data() : data,
     methods: {
@@ -36,6 +41,31 @@ export function mergeOptions({
       },
       ...methods,
     },
-    ...rest,
+    created(...options) {
+      if (beforeCreate) {
+        beforeCreate.apply(this, options);
+      }
+
+      if (created) {
+        created.apply(this, options);
+      }
+
+      Object.defineProperties(this, {
+        props: {
+          enumerable: true,
+          configurable: false,
+          get() {
+            return this.properties;
+          },
+        },
+        $props: {
+          enumerable: true,
+          configurable: false,
+          get() {
+            return this.properties;
+          },
+        },
+      });
+    },
   };
 }

@@ -235,8 +235,8 @@ importers:
         specifier: workspace:~
         version: link:../validator
       '@best-shot/webpack-chain':
-        specifier: ^8.1.11
-        version: 8.1.11
+        specifier: ^8.1.12
+        version: 8.1.12
       browserslist:
         specifier: 'catalog:'
         version: 4.24.4
@@ -1226,8 +1226,8 @@ packages:
       vue:
         optional: true
 
-  '@best-shot/webpack-chain@8.1.11':
-    resolution: {integrity: sha512-jBm+UY6VnQAmC2oDjgkjP/PL5xbBB3riIqVMoKHNeb2l8JBpHpFaqAneBa7uZKJxYaV35p6tb/7L/jeZz7VxNw==}
+  '@best-shot/webpack-chain@8.1.12':
+    resolution: {integrity: sha512-1F26aeQXGrnt/J9uOlXWpybXRECtID2iprAEzRVAR38SVblA8On12zmUIMlXvXHJFrg0ubMd/Tb7MTt6G6aS7w==}
     engines: {node: '>=10'}
 
   '@bring-it/cli@0.10.0':
@@ -6762,7 +6762,7 @@ snapshots:
     optionalDependencies:
       vue: 3.5.13(typescript@5.8.3)
 
-  '@best-shot/webpack-chain@8.1.11':
+  '@best-shot/webpack-chain@8.1.12':
     dependencies:
       deepmerge: 1.5.2
       javascript-stringify: 2.1.0

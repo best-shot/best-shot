@@ -2,25 +2,30 @@ export function apply({
   config: { mini: { type } = {}, output: { module: Module } = {} },
 }) {
   return async (chain) => {
-    chain.output.publicPath('/').iife(false).asyncChunks(false);
+    chain.output
+      .publicPath('/')
+      .iife(false)
+      .asyncChunks(false)
+      .filename('[name].js')
+      .globalObject('globalThis')
+      .strictModuleErrorHandling(true)
+      .environment({
+        document: false,
+        dynamicImport: false,
+        globalThis: true,
+      });
 
     if (Module) {
       chain.output.merge({
         module: true,
         chunkFormat: 'module',
         chunkLoading: 'import',
-        library: {
-          type: 'module',
-        },
       });
     } else {
       chain.output.merge({
         module: false,
         chunkFormat: 'commonjs',
         chunkLoading: 'require',
-        library: {
-          type: 'commonjs2',
-        },
       });
     }
 
@@ -61,7 +66,7 @@ export function apply({
         modules: false,
       }));
 
-    chain.experiments.set('layers', true);
+    chain.experiments.layers(true);
 
     const rule = chain.module.rule('babel');
 
@@ -77,21 +82,25 @@ export function apply({
 
     const presets = ['vendor', 'common', 'shim', 'vue-mini', 'vue', 'react'];
 
-    chain.optimization.splitChunks.cacheGroups(
-      Object.fromEntries(
-        Object.entries(chain.optimization.splitChunks.get('cacheGroups')).map(
-          ([key, value]) => [
-            key,
-            {
-              ...value,
-              name: presets.includes(value.name)
-                ? ['share', value.name].join('/')
-                : value.name,
-            },
-          ],
+    chain.optimization.avoidEntryIife(true);
+
+    if (chain.optimization.splitChunks.get('cacheGroups')) {
+      chain.optimization.splitChunks.cacheGroups(
+        Object.fromEntries(
+          Object.entries(chain.optimization.splitChunks.get('cacheGroups')).map(
+            ([key, value]) => [
+              key,
+              {
+                ...value,
+                name: presets.includes(value.name)
+                  ? ['share', value.name].join('/')
+                  : value.name,
+              },
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
   };
 }
 
@@ -121,9 +130,6 @@ export const schema = {
         default: {
           keep: 'miniprogram_npm',
         },
-      },
-      publicPath: {
-        default: '/',
       },
       cssFilename: {
         default: '.wxss',

@@ -8,11 +8,12 @@ export function apply({
       .asyncChunks(false)
       .filename('[name].js')
       .globalObject('globalThis')
-      .strictModuleErrorHandling(true)
       .environment({
         document: false,
         dynamicImport: false,
         globalThis: true,
+        arrowFunction: true,
+        module: true,
       });
 
     if (Module) {
@@ -117,7 +118,7 @@ export const schema = {
     },
   },
   target: {
-    default: 'browserslist',
+    default: 'es2015',
   },
   context: {
     default: 'src',

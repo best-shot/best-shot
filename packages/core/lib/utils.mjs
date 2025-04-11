@@ -12,7 +12,7 @@ export function cachePath(...path) {
 
 function isNode(target) {
   return (
-    target &&
+    typeof target === 'string' &&
     (target.includes('node') ||
       target.includes('nwjs') ||
       target.includes('electron-main'))

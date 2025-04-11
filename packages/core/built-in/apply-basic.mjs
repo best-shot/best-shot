@@ -20,7 +20,7 @@ export function apply({
       chain.context(resolve(cwd, contextInput));
     }
 
-    if (target) {
+    if (target !== undefined) {
       chain.target(target);
     }
 

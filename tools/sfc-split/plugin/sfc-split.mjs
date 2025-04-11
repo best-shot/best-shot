@@ -5,6 +5,7 @@ import { kebabCase } from 'change-case-legacy';
 import slash from 'slash';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 
+import { COMPONENT_ROOT } from '../helper.mjs';
 import { mergeConfig, toJSONString } from '../parse/lib.mjs';
 import { parse } from '../parse/sfc.mjs';
 
@@ -28,6 +29,7 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
         ),
         options: {
           api: this,
+          componentRoot: COMPONENT_ROOT,
           caller({ entryName, entryPath }) {
             newEntries.set(entryName, entryPath);
           },
@@ -107,19 +109,21 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
 
   // eslint-disable-next-line class-methods-use-this
   injectConfig(customBlocks, pair) {
+    const components =
+      pair.length > 0
+        ? Object.fromEntries(
+            pair.map(({ local, source }) => [kebabCase(local), source]),
+          )
+        : undefined;
+
     const config = mergeConfig([
-      ...(customBlocks?.length > 0 ? customBlocks : []),
+      ...(customBlocks?.length ? customBlocks : []),
       {
         type: 'config',
         lang: 'json',
         content: toJSONString({
           component: true,
-          usingComponents:
-            pair.length > 0
-              ? Object.fromEntries(
-                  pair.map(({ local, source }) => [kebabCase(local), source]),
-                )
-              : undefined,
+          usingComponents: components,
         }),
       },
     ]);

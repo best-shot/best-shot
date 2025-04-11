@@ -1,6 +1,6 @@
 import { extname } from 'node:path';
 
-import { getAllPages, readYAML } from '../helper.mjs';
+import { COMPONENT_ROOT, getAllPages, readYAML } from '../helper.mjs';
 import { toJSONString } from '../parse/lib.mjs';
 
 const PLUGIN_NAME = 'AddEntryPlugin';
@@ -39,6 +39,11 @@ export class AddEntryPlugin {
       if (this.type === 'miniprogram') {
         new AddOneEntryPlugin('./app', 'app').apply(compiler);
 
+        new AddOneEntryPlugin(
+          '@best-shot/sfc-split-plugin/hack/fake.vue',
+          COMPONENT_ROOT + '/fake',
+        ).apply(compiler);
+
         const config = readYAML(compiler.context, 'app');
 
         compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
@@ -49,7 +54,34 @@ export class AddEntryPlugin {
                 compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
             },
             () => {
-              compilation.emitAsset('app.json', new RawJSONSource(config));
+              const { ...copy } = config;
+
+              copy.lazyCodeLoading = 'requiredComponents';
+              copy.subPackages ??= [];
+              copy.preloadRule ??= {};
+
+              for (const page of copy.pages) {
+                copy.preloadRule[page] ??= {};
+
+                copy.preloadRule[page].network = 'all';
+                copy.preloadRule[page].packages ??= [];
+                if (!copy.preloadRule[page].packages.includes(COMPONENT_ROOT)) {
+                  copy.preloadRule[page].packages.push(COMPONENT_ROOT);
+                }
+              }
+
+              if (
+                !copy.subPackages.some(
+                  (subPackage) => subPackage.root === COMPONENT_ROOT,
+                )
+              ) {
+                copy.subPackages.push({
+                  root: COMPONENT_ROOT,
+                  pages: ['fake'],
+                });
+              }
+
+              compilation.emitAsset('app.json', new RawJSONSource(copy));
             },
           );
         });

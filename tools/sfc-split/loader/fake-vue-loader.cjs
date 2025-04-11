@@ -12,7 +12,7 @@ module.exports = async function loader(source, map, meta) {
 
   const callback = this.async();
 
-  const { api, caller } = this.getOptions();
+  const { api, caller, componentRoot } = this.getOptions();
 
   const { layer } = this._module;
 
@@ -44,13 +44,20 @@ module.exports = async function loader(source, map, meta) {
 
         const relativePath = slash(relative(this.rootContext, absolutePath));
 
-        const entryName = relativePath.startsWith('..')
-          ? `as-components/${basename(absolutePath.replace(/\.vue$/, ''))}/${createShortHash(slash(absolutePath))}`
+        const hack = relativePath.startsWith('..');
+
+        const entryName = hack
+          ? `${componentRoot}/${basename(absolutePath.replace(/\.vue$/, ''))}/${createShortHash(slash(absolutePath))}`
           : relativePath.replace(/\.vue$/, '');
 
         const placer = toThis(entryName);
 
         config.usingComponents[name] = placer;
+
+        if (placer.includes(componentRoot)) {
+          config.componentPlaceholder ??= {};
+          config.componentPlaceholder[name] = 'view';
+        }
 
         const entryPath = relativePath.startsWith('..')
           ? absolutePath

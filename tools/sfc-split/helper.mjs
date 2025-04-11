@@ -3,6 +3,8 @@ import { resolve } from 'node:path';
 
 import { parse } from 'yaml';
 
+export const COMPONENT_ROOT = 'as-components';
+
 function read(base, name) {
   try {
     return readFileSync(resolve(base, name), 'utf8');
@@ -43,7 +45,8 @@ export function getAllPages(config) {
     ...list.map(({ pagePath }) => pagePath),
     ...subPackages.flatMap(
       (subPackage) =>
-        subPackage.pages.map((page) => `${subPackage.root}/${page}`) || [],
+        (subPackage.pages || []).map((page) => `${subPackage.root}/${page}`) ||
+        [],
     ),
   ).filter(Boolean);
 }

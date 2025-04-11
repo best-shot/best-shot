@@ -98,6 +98,8 @@ export const schema = {
           'object-assign',
           'regenerator-runtime',
           'whatwg-fetch',
+          'tslib',
+          'is-buffer',
         ],
       },
     },

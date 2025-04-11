@@ -32,17 +32,19 @@ module.exports = async function loader(source, map, meta) {
     return slash(relative(`/${layer}/..`, `/${entryName}`));
   }
 
+  const { rootContext, context } = this;
+
   if (
     config?.usingComponents &&
     Object.keys(config.usingComponents).length > 0
   ) {
     for (const [name, path] of Object.entries(config.usingComponents)) {
       if (path.endsWith('.vue') && !path.startsWith('plugin://')) {
-        const absolutePath = path.startsWith('.')
-          ? slash(resolve(this.context, path))
-          : require.resolve(path);
+        const absolutePath = slash(
+          path.startsWith('.') ? resolve(context, path) : require.resolve(path),
+        );
 
-        const relativePath = slash(relative(this.rootContext, absolutePath));
+        const relativePath = slash(relative(rootContext, absolutePath));
 
         const hack = relativePath.startsWith('..');
 

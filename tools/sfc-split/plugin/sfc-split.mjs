@@ -5,8 +5,7 @@ import { kebabCase } from 'change-case-legacy';
 import slash from 'slash';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 
-import { COMPONENT_ROOT } from '../helper.mjs';
-import { mergeConfig, toJSONString } from '../parse/lib.mjs';
+import { COMPONENT_ROOT, mergeConfig, toJSONString } from '../helper.mjs';
 import { parse } from '../parse/sfc.mjs';
 
 const PLUGIN_NAME = 'SfcSplitPlugin';

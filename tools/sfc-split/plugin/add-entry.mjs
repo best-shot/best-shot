@@ -1,9 +1,21 @@
 import { extname } from 'node:path';
 
-import { COMPONENT_ROOT, getAllPages, readYAML } from '../helper.mjs';
-import { toJSONString } from '../parse/lib.mjs';
+import {
+  COMPONENT_ROOT,
+  getAllPages,
+  patchConfig,
+  readYAML,
+  toJSONString,
+} from '../helper.mjs';
 
 const PLUGIN_NAME = 'AddEntryPlugin';
+
+function emitFake(emitFile) {
+  emitFile(`${COMPONENT_ROOT}/fake.json`, '{}');
+  const message = `这是一个用于创建${COMPONENT_ROOT}分包的假页面`;
+  emitFile(`${COMPONENT_ROOT}/fake.js`, `/**${message}**/`);
+  emitFile(`${COMPONENT_ROOT}/fake.wxml`, `<!--${message}-->`);
+}
 
 export class AddEntryPlugin {
   constructor({ type = false } = {}) {
@@ -14,129 +26,87 @@ export class AddEntryPlugin {
     const {
       sources: { RawSource },
       EntryPlugin,
+      Compilation,
     } = compiler.webpack;
 
-    class RawJSONSource extends RawSource {
-      constructor(input) {
-        super(toJSONString(input));
-      }
+    function readFile(name) {
+      return readYAML(compiler.context, name);
     }
 
-    class AddOneEntryPlugin extends EntryPlugin {
-      constructor(entry, name) {
-        super(compiler.context, entry, {
-          import: [entry],
-          layer: name,
-          name,
-        });
-      }
+    function emitFile(name, content) {
+      compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+        compilation.hooks.processAssets.tap(
+          {
+            name: PLUGIN_NAME,
+            stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+          },
+          () => {
+            compilation.emitAsset(name, new RawSource(content));
+          },
+        );
+      });
     }
+
+    function emitJSON(name, json) {
+      emitFile(name, toJSONString(json));
+    }
+
+    function addEntry(name, path) {
+      new EntryPlugin(compiler.context, path, {
+        import: [path],
+        layer: name,
+        name,
+      }).apply(compiler);
+    }
+
+    const { type } = this;
 
     compiler.hooks.afterEnvironment.tap(PLUGIN_NAME, () => {
       // eslint-disable-next-line no-param-reassign
       delete compiler.options.entry.main;
 
-      if (this.type === 'miniprogram') {
-        new AddOneEntryPlugin('./app', 'app').apply(compiler);
+      if (type === 'miniprogram') {
+        emitFake(emitFile);
 
-        new AddOneEntryPlugin(
-          '@best-shot/sfc-split-plugin/hack/fake.vue',
-          COMPONENT_ROOT + '/fake',
-        ).apply(compiler);
+        addEntry('app', './app');
 
-        const config = readYAML(compiler.context, 'app');
+        const config = readFile('app');
 
-        compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-          compilation.hooks.processAssets.tap(
-            {
-              name: PLUGIN_NAME,
-              stage:
-                compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
-            },
-            () => {
-              const { ...copy } = config;
+        emitJSON('app.json', patchConfig(config));
 
-              copy.lazyCodeLoading = 'requiredComponents';
-              copy.subPackages ??= [];
-              copy.preloadRule ??= {};
-
-              for (const page of copy.pages) {
-                copy.preloadRule[page] ??= {};
-
-                copy.preloadRule[page].network = 'all';
-                copy.preloadRule[page].packages ??= [];
-                if (!copy.preloadRule[page].packages.includes(COMPONENT_ROOT)) {
-                  copy.preloadRule[page].packages.push(COMPONENT_ROOT);
-                }
-              }
-
-              if (
-                !copy.subPackages.some(
-                  (subPackage) => subPackage.root === COMPONENT_ROOT,
-                )
-              ) {
-                copy.subPackages.push({
-                  root: COMPONENT_ROOT,
-                  pages: ['fake'],
-                });
-              }
-
-              compilation.emitAsset('app.json', new RawJSONSource(copy));
-            },
-          );
-        });
-
-        const allPages = getAllPages(config);
-
-        for (const page of allPages) {
-          new AddOneEntryPlugin(`./${page}.vue`, page).apply(compiler);
+        for (const page of getAllPages(config)) {
+          addEntry(page, `./${page}.vue`);
         }
-      } else if (this.type === 'plugin') {
-        const config = readYAML(compiler.context, 'plugin');
+      } else if (type === 'plugin') {
+        const config = readFile('plugin');
 
         if (config.main) {
-          new AddOneEntryPlugin(config.main, 'main').apply(compiler);
+          addEntry('main', config.main);
 
           config.main = 'main.js';
         }
 
-        if (config.pages && Object.keys(config.pages).length > 0) {
-          for (const [key, path] of Object.entries(config.pages)) {
-            if (extname(path) === '.vue') {
-              new AddOneEntryPlugin(path, `pages/${key}/index`).apply(compiler);
+        function patchingPluginConfig(keyPath) {
+          const io = config[keyPath];
 
-              config.pages[key] = `pages/${key}/index`;
+          if (io && Object.keys(io).length > 0) {
+            for (const [key, path] of Object.entries(io)) {
+              if (extname(path) === '.vue') {
+                const source = `${keyPath}/${key}/index`;
+
+                addEntry(source, path);
+
+                config.pages[key] = source;
+              }
             }
           }
         }
 
-        if (
-          config.publicComponents &&
-          Object.keys(config.publicComponents).length > 0
-        ) {
-          for (const [key, path] of Object.entries(config.publicComponents)) {
-            if (extname(path) === '.vue') {
-              new AddOneEntryPlugin(path, `components/${key}/index`).apply(
-                compiler,
-              );
+        patchingPluginConfig('pages');
 
-              config.publicComponents[key] = `components/${key}/index`;
-            }
-          }
-        }
+        patchingPluginConfig('publicComponents');
 
-        compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-          compilation.hooks.processAssets.tap(
-            {
-              name: PLUGIN_NAME,
-              stage:
-                compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
-            },
-            () => {
-              compilation.emitAsset('plugin.json', new RawJSONSource(config));
-            },
-          );
-        });
+        emitJSON('plugin.json', config);
       }
     });
   }

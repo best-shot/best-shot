@@ -1,5 +1,4 @@
-import { readYAML } from '../helper.mjs';
-import { toJSONString } from '../parse/lib.mjs';
+import { readYAML, toJSONString } from '../helper.mjs';
 
 const PLUGIN_NAME = 'CopyConfigPlugin';
 
@@ -9,58 +8,47 @@ export class CopyConfigPlugin {
   }
 
   apply(compiler) {
-    const { RawSource } = compiler.webpack.sources;
+    const {
+      sources: { RawSource },
+      Compilation: { PROCESS_ASSETS_STAGE_ADDITIONAL },
+    } = compiler.webpack;
 
-    class RawJSONSource extends RawSource {
-      constructor(input) {
-        super(toJSONString(input));
-      }
-    }
+    const { type } = this;
 
-    if (this.type) {
+    if (type) {
       compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+        function emitJSON(name, json) {
+          compilation.hooks.processAssets.tap(
+            {
+              name: PLUGIN_NAME,
+              stage: PROCESS_ASSETS_STAGE_ADDITIONAL,
+            },
+            () => {
+              compilation.emitAsset(
+                type === 'plugin' ? `../${name}` : name,
+                new RawSource(toJSONString(json)),
+              );
+            },
+          );
+        }
+
         const io = readYAML(compiler.context, 'project.config');
 
-        const pathWrap =
-          this.type === 'plugin' ? (src) => `../${src}` : (src) => src;
-
-        compilation.hooks.processAssets.tap(
-          {
-            name: PLUGIN_NAME,
-            stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
-          },
-          () => {
-            if (Object.keys(io).length > 0) {
-              compilation.emitAsset(
-                pathWrap('project.config.json'),
-                new RawJSONSource({
-                  srcMiniprogramRoot: '',
-                  miniprogramRoot: '',
-                  pluginRoot: '',
-                  ...io,
-                  compileType: this.type,
-                }),
-              );
-            }
-          },
-        );
+        if (Object.keys(io).length > 0) {
+          emitJSON('project.config.json', {
+            srcMiniprogramRoot: '',
+            miniprogramRoot: '',
+            pluginRoot: '',
+            ...io,
+            compileType: type,
+          });
+        }
 
         const io2 = readYAML(compiler.context, 'project.private.config');
 
-        compilation.hooks.processAssets.tap(
-          {
-            name: PLUGIN_NAME,
-            stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
-          },
-          () => {
-            if (Object.keys(io2).length > 0) {
-              compilation.emitAsset(
-                pathWrap('project.private.config.json'),
-                new RawJSONSource(io2),
-              );
-            }
-          },
-        );
+        if (Object.keys(io2).length > 0) {
+          emitJSON('project.private.config.json', io2);
+        }
       });
     }
   }

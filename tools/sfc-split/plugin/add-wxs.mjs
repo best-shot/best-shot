@@ -15,13 +15,14 @@ export class AddWxsPlugin {
   apply(compiler) {
     const {
       sources: { RawSource, ConcatSource },
+      Compilation,
     } = compiler.webpack;
 
     compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.processAssets.tap(
         {
           name: PLUGIN_NAME,
-          stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+          stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
         },
         () => {
           const wxsContent = readFile();
@@ -32,9 +33,7 @@ export class AddWxsPlugin {
       compilation.hooks.processAssets.tap(
         {
           name: PLUGIN_NAME,
-          stage:
-            compiler.webpack.Compilation
-              .PROCESS_ASSETS_STAGE_OPTIMIZE_COMPATIBILITY,
+          stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_COMPATIBILITY,
           additionalAssets: true,
         },
         (assets) => {

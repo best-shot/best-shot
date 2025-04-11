@@ -11,9 +11,11 @@ export class AllInOnePlugin {
   apply(compiler) {
     const { type } = this;
 
-    new AddEntryPlugin({ type }).apply(compiler);
-    new CopyConfigPlugin({ type }).apply(compiler);
-    new AddWxsPlugin().apply(compiler);
-    new SfcSplitPlugin().apply(compiler);
+    if (type) {
+      new AddEntryPlugin({ type }).apply(compiler);
+      new CopyConfigPlugin({ type }).apply(compiler);
+      new AddWxsPlugin().apply(compiler);
+      new SfcSplitPlugin().apply(compiler);
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { serializeTemplate } from '@padcom/vue-ast-serializer';
-import { kebabCase } from 'change-case-legacy';
+import { kebabCase } from 'change-case';
 
 function walk(node, transfer) {
   for (const [index, theProp] of Object.entries(node.props)) {

@@ -1,7 +1,7 @@
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { kebabCase } from 'change-case-legacy';
+import { kebabCase } from 'change-case';
 import slash from 'slash';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 

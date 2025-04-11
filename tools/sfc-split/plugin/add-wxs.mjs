@@ -18,6 +18,8 @@ export class AddWxsPlugin {
       Compilation,
     } = compiler.webpack;
 
+    const wxsContent = readFile();
+
     compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.processAssets.tap(
         {
@@ -25,7 +27,6 @@ export class AddWxsPlugin {
           stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
         },
         () => {
-          const wxsContent = readFile();
           compilation.emitAsset(filename, new RawSource(wxsContent));
         },
       );

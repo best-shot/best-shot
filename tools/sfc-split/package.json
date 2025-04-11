@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/sfc-split-plugin",
-  "version": "0.13.18",
+  "version": "0.13.19",
   "license": "MIT",
   "keywords": [
     "loader",
@@ -13,7 +13,7 @@
     "@babel/traverse": "^7.27.0",
     "@padcom/vue-ast-serializer": "^0.0.1",
     "@vue/compiler-sfc": "~3.5.13",
-    "change-case-legacy": "^5.4.4",
+    "change-case": "^5.4.4",
     "deepmerge-ts": "catalog:",
     "slash": "^5.1.0",
     "tab-to-space": "^1.0.1",

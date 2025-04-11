@@ -624,7 +624,7 @@ importers:
       '@vue/compiler-sfc':
         specifier: ~3.5.13
         version: 3.5.13
-      change-case-legacy:
+      change-case:
         specifier: ^5.4.4
         version: 5.4.4
       deepmerge-ts:
@@ -2332,8 +2332,8 @@ packages:
     resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
-  change-case-legacy@5.4.4:
-    resolution: {integrity: sha512-kwBPZN7lr1PujQv3KKbA5MS9D2gO08ORJk4BgLoNBTgxcH0QItv74P5AxeFGip8iYLQ6SiH1fgHoDsVvsmoTJg==}
+  change-case@5.4.4:
+    resolution: {integrity: sha512-HRQyTk2/YPEkt9TnUPbOpr64Uw3KOicFWPVBb+xiHvd6eBx/qPr9xqfBFDT8P2vWsvvz4jbEkfDe71W3VyNu2w==}
 
   character-entities-legacy@1.1.4:
     resolution: {integrity: sha512-3Xnr+7ZFS1uxeiUDvV02wQ+QDbc55o97tIV5zHScSPJpcLm/r0DFPcoY3tYRp+VZukxuMeKgXYmsXQHO05zQeA==}
@@ -8034,7 +8034,7 @@ snapshots:
 
   chalk@5.4.1: {}
 
-  change-case-legacy@5.4.4: {}
+  change-case@5.4.4: {}
 
   character-entities-legacy@1.1.4: {}
 

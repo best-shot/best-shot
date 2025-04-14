@@ -621,6 +621,9 @@ importers:
       '@padcom/vue-ast-serializer':
         specifier: ^0.0.1
         version: 0.0.1(@vue/compiler-core@3.5.13)(@vue/compiler-sfc@3.5.13)
+      '@vue/compiler-core':
+        specifier: ~3.5.13
+        version: 3.5.13
       '@vue/compiler-sfc':
         specifier: ~3.5.13
         version: 3.5.13
@@ -630,6 +633,9 @@ importers:
       deepmerge-ts:
         specifier: 'catalog:'
         version: 7.1.5
+      neotraverse:
+        specifier: ^0.6.18
+        version: 0.6.18
       slash:
         specifier: ^5.1.0
         version: 5.1.0
@@ -4233,6 +4239,10 @@ packages:
 
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+
+  neotraverse@0.6.18:
+    resolution: {integrity: sha512-Z4SmBUweYa09+o6pG+eASabEpP6QkQ70yHj351pQoEXIs8uHbaU2DWVmzBANKgflPa47A50PtB2+NgRpQvr7vA==}
+    engines: {node: '>= 10'}
 
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
@@ -9946,6 +9956,8 @@ snapshots:
   negotiator@0.6.4: {}
 
   neo-async@2.6.2: {}
+
+  neotraverse@0.6.18: {}
 
   no-case@3.0.4:
     dependencies:

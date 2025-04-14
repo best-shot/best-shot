@@ -8,6 +8,7 @@ export function apply({
       .asyncChunks(false)
       .filename('[name].js')
       .globalObject('globalThis')
+      .strictModuleErrorHandling(false)
       .environment({
         document: false,
         dynamicImport: false,

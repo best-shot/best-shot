@@ -52,7 +52,9 @@ export function getAllPages(config) {
   ).filter(Boolean);
 }
 
-export function patchConfig({ ...object }) {
+export function patchConfig(json) {
+  const object = structuredClone(json);
+
   object.lazyCodeLoading = 'requiredComponents';
   object.subPackages ??= [];
   object.preloadRule ??= {};

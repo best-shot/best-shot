@@ -34,8 +34,12 @@ const neadClean = ['loc', 'nameLoc', 'rawName', 'source', 'codegenNode'];
 
 function clear(node) {
   neadClean.forEach((key) => {
-    if (key in node && node.type !== 0) {
-      delete node[key];
+    if (key in node) {
+      if (node.type !== 0) {
+        delete node[key];
+      } else {
+        node[key] = '';
+      }
     }
 
     if (node.exp && key in node.exp) {

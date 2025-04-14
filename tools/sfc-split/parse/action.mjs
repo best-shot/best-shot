@@ -1,11 +1,25 @@
 import { serializeTemplate } from '@padcom/vue-ast-serializer';
 import { kebabCase } from 'change-case';
 
-import { NodeTypes, traverse } from './traverse.mjs';
+import { CLSX_PLACEHOLDER } from '../helper.mjs';
+
+import { ElementTypes, NodeTypes, traverse } from './traverse.mjs';
 
 const actions = {
   click: 'tap',
 };
+
+function isCanBeString(exp) {
+  if (!exp.ast) {
+    return false;
+  }
+  return (
+    (exp.ast.type === 'BinaryExpression' && exp.ast.operator === '+') ||
+    (exp.ast.type === 'ConditionalExpression' &&
+      exp.ast.consequent.type === 'StringLiteral' &&
+      exp.ast.alternate.type === 'StringLiteral')
+  );
+}
 
 function transform(ast, { tagMatcher } = {}) {
   const tags = new Set();
@@ -43,7 +57,11 @@ function transform(ast, { tagMatcher } = {}) {
 
       return {
         ...node,
-        content: node.content.trim(),
+        content: node.content
+          .trim()
+          .split('\n')
+          .map((fragment) => fragment.trim())
+          .join(''),
       };
     },
     DIRECTIVE_BIND(node, ctx) {
@@ -78,9 +96,6 @@ function transform(ast, { tagMatcher } = {}) {
         }
 
         if (node.arg.content === 'class' && !node.clsx) {
-          ast.cached ??= {};
-          ast.cached.clsx ||= true;
-
           const findRaw = (prop) =>
             prop.type === NodeTypes.ATTRIBUTE &&
             prop.name === 'class' &&
@@ -88,6 +103,28 @@ function transform(ast, { tagMatcher } = {}) {
             !prop.clsx;
 
           const raw = ctx.parent.node.find(findRaw);
+
+          if (!raw?.value?.content && node.exp.ast.type === 'StringLiteral') {
+            return {
+              type: NodeTypes.ATTRIBUTE,
+              name: node.arg.content,
+              value: {
+                type: NodeTypes.TEXT,
+                content: node.exp.ast.value,
+              },
+            };
+          }
+
+          const result = raw?.value?.content
+            ? `clsx.clsx('${raw.value.content}', ${node.exp.content})`
+            : isCanBeString(node.exp)
+              ? node.exp.content
+              : `clsx.clsx(${node.exp.content})`;
+
+          if (result.includes('clsx.clsx(')) {
+            ast.cached ??= {};
+            ast.cached.clsx ||= true;
+          }
 
           return {
             type: NodeTypes.ATTRIBUTE,
@@ -99,9 +136,7 @@ function transform(ast, { tagMatcher } = {}) {
                 type: NodeTypes.SIMPLE_EXPRESSION,
                 isStatic: false,
                 constType: 0,
-                content: raw?.value?.content
-                  ? `clsx.clsx('${raw.value.content}', ${node.exp.content})`
-                  : `clsx.clsx(${node.exp.content})`,
+                content: result,
               },
             },
           };
@@ -271,6 +306,29 @@ function transform(ast, { tagMatcher } = {}) {
       }
     },
   });
+
+  if (ast.cached?.clsx && !ast.children.find((item) => item.clsx)) {
+    ast.children.unshift({
+      clsx: true,
+      type: NodeTypes.ELEMENT,
+      tag: 'wxs',
+      ns: 0,
+      tagType: ElementTypes.ELEMENT,
+      props: [
+        {
+          type: NodeTypes.ATTRIBUTE,
+          name: 'src',
+          value: { type: NodeTypes.TEXT, content: CLSX_PLACEHOLDER },
+        },
+        {
+          type: NodeTypes.ATTRIBUTE,
+          name: 'module',
+          value: { type: NodeTypes.TEXT, content: 'clsx' },
+        },
+      ],
+      isSelfClosing: true,
+    });
+  }
 
   return {
     tags: [...tags], // TODO

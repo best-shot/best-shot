@@ -3,6 +3,8 @@ import { extname, join, relative } from 'node:path';
 
 import slash from 'slash';
 
+import { CLSX_PLACEHOLDER } from '../helper.mjs';
+
 const PLUGIN_NAME = 'AddWxsPlugin';
 
 const filename = 'wxs/clsx.wxs';
@@ -14,7 +16,7 @@ function readFile() {
 export class AddWxsPlugin {
   apply(compiler) {
     const {
-      sources: { RawSource, ConcatSource },
+      sources: { RawSource },
       Compilation,
     } = compiler.webpack;
 
@@ -41,17 +43,17 @@ export class AddWxsPlugin {
           for (const [assetName, source] of Object.entries(assets)) {
             if (
               extname(assetName) === '.wxml' &&
-              source.source().includes('clsx.clsx(')
+              source.source().includes(CLSX_PLACEHOLDER)
             ) {
               const path = slash(relative(join(assetName, '..'), filename));
-              const head = `<wxs src="${path}" module="clsx" />`;
 
-              if (!source.source().includes(head)) {
-                compilation.updateAsset(
-                  assetName,
-                  (old) => new ConcatSource(`${head}\n`, old),
-                );
-              }
+              compilation.updateAsset(
+                assetName,
+                (old) =>
+                  new RawSource(
+                    old.source().toString().replace(CLSX_PLACEHOLDER, path),
+                  ),
+              );
             }
           }
         },

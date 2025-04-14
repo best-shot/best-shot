@@ -6,6 +6,8 @@ import { parse as yamlParse } from 'yaml';
 
 export const COMPONENT_ROOT = 'as-components';
 
+export const CLSX_PLACEHOLDER = '__PATH_OF_CLSX__';
+
 function read(base, name) {
   try {
     return readFileSync(resolve(base, name), 'utf8');

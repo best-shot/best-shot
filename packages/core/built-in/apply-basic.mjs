@@ -42,9 +42,12 @@ export function apply({
       chain.watchOptions.ignored(/node_modules/);
       chain.output.pathinfo(false);
       chain.optimization.removeAvailableModules(false).innerGraph(false);
-    } else {
-      chain.optimization.providedExports(true);
     }
+
+    chain.optimization
+      .providedExports(true)
+      .usedExports(true)
+      .concatenateModules(true);
 
     chain.module.strictExportPresence(!watch);
 

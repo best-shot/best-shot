@@ -5,13 +5,12 @@ export function apply({
     chain.output
       .publicPath('/')
       .iife(false)
-      .asyncChunks(false)
       .filename('[name].js')
       .globalObject('globalThis')
       .strictModuleErrorHandling(false)
+      .importFunctionName('require.async')
       .environment({
         document: false,
-        dynamicImport: false,
         globalThis: true,
         arrowFunction: true,
         module: true,
@@ -52,6 +51,7 @@ export function apply({
               ...options.terserOptions?.compress,
               drop_console: false,
             },
+            module: Module,
           },
         },
       ]);

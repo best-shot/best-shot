@@ -16,6 +16,8 @@ export function hackOptions(options) {
     return options;
   }
 
+  const $triggers = {};
+
   const needHacks = Object.entries(data)
     .filter(
       ([key, value]) =>
@@ -34,8 +36,6 @@ export function hackOptions(options) {
     return options;
   }
 
-  const $triggers = {};
-
   return {
     ...io,
     data,
@@ -51,13 +51,13 @@ export function hackOptions(options) {
 
           const init = DefaultValues[typeof data[fakeKey]] ?? null;
 
-          if (!needHacks.includes(fakeKey)) {
+          if (!needHacks.some(([name]) => name === fakeKey)) {
             return ref(null);
           }
 
           return (
             customRef((track, trigger) => {
-              $triggers[key] = trigger;
+              $triggers[fakeKey] = trigger;
 
               return {
                 get() {
@@ -65,11 +65,8 @@ export function hackOptions(options) {
                   return context.data[fakeKey] ?? init;
                 },
                 set(value) {
-                  if (context.data[fakeKey] !== value) {
-                    context.setData({ [fakeKey]: value ?? init }, () => {
-                      trigger();
-                    });
-                  }
+                  trigger()
+                  // context.setData({ [fakeKey]: value ?? init });
                 },
               };
             }) ?? init

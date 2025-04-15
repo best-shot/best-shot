@@ -9,6 +9,8 @@ const actions = {
   click: 'tap',
 };
 
+const native = ['input', 'textarea', 'button', 'view', 'text'];
+
 function isCanBeString(exp) {
   if (!exp.ast) {
     return false;
@@ -161,10 +163,16 @@ function transform(ast, { tagMatcher } = {}) {
         };
       }
     },
-    DIRECTIVE_MODEL(node) {
+    DIRECTIVE_MODEL(node, ctx) {
       return {
         type: NodeTypes.ATTRIBUTE,
-        name: [node.name, node.arg?.content || 'modelValue'].join(':'),
+        name: [
+          node.name,
+          node.arg?.content ||
+            (native.includes(ctx.parent.parent.node.tag)
+              ? 'value'
+              : 'modelValue'),
+        ].join(':'),
         value: node.exp,
       };
     },
@@ -233,11 +241,15 @@ function transform(ast, { tagMatcher } = {}) {
         };
       }
     },
-    DIRECTIVE_ON(node) {
+    DIRECTIVE_ON(node, ctx) {
       if (node.arg?.content && node.exp?.content) {
         return {
           type: NodeTypes.ATTRIBUTE,
-          name: `bind:${actions[node.arg.content] || node.arg.content}`,
+          name: `bind:${
+            native.includes(ctx.parent.parent.node.tag)
+              ? actions[node.arg.content] || node.arg.content
+              : node.arg.content
+          }`,
           value: {
             ...node.exp,
             constType: 3,

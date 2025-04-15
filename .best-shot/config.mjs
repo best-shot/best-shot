@@ -7,10 +7,6 @@ export const config = {
   output: {
     module: true,
   },
-  // optimization: {
-  //   runtimeChunk: false,
-  //   splitChunks: false,
-  // },
   chain(chain) {
     // chain.stats({
     //   errorDetails: true,

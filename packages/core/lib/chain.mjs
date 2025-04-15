@@ -8,7 +8,6 @@ export class BaseChain extends WebpackChain {
     this.amd(false);
 
     this.experiments
-      .cacheUnaffected(true)
       .asyncWebAssembly(true)
       .syncWebAssembly(true)
       .topLevelAwait(true);

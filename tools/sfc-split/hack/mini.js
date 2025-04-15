@@ -1,10 +1,13 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { defineComponent } from '@vue-mini/core';
 
+import { hackOptions } from './hack.js';
 import { mergeOptions } from './helper.js';
 
 export function $$asComponent(options) {
-  const io = mergeOptions(options);
+  const io = options.hacked
+    ? hackOptions(mergeOptions(options))
+    : mergeOptions(options);
 
   defineComponent({
     ...io,

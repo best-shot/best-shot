@@ -9,19 +9,24 @@ export function $$asComponent(options) {
     ? hackOptions(mergeOptions(options))
     : mergeOptions(options);
 
-  defineComponent({
-    ...io,
-    setup(props, context) {
-      return io.setup(props, {
-        ...context,
-        expose: () => {},
-        emit: (event, ...args) => {
-          context.triggerEvent(event, ...args);
-        },
-        get parent() {
-          return context.selectOwnerComponent();
-        },
-      });
-    },
-  });
+  if (!io.setup) {
+    /* global Component: readonly */
+    Component(io);
+  } else {
+    defineComponent({
+      ...io,
+      setup(props, context) {
+        return io.setup(props, {
+          ...context,
+          expose: () => {},
+          emit: (event, ...args) => {
+            context.triggerEvent(event, ...args);
+          },
+          get parent() {
+            return context.selectOwnerComponent();
+          },
+        });
+      },
+    });
+  }
 }

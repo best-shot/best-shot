@@ -294,7 +294,23 @@ function transform(ast, { tagMatcher } = {}) {
       /* eslint-disable no-param-reassign */
       switch (node.tag) {
         case 'template': {
-          node.tag = 'block';
+          if (
+            node.props.some(
+              (item) =>
+                (item.type === NodeTypes.DIRECTIVE ||
+                  item.type === NodeTypes.ATTRIBUTE) &&
+                item.name === 'slot',
+            )
+          ) {
+            if (node.children.length === 1) {
+              return {
+                ...node.children[0],
+                props: [...node.children[0].props, ...node.props],
+              };
+            }
+          } else {
+            node.tag = 'block';
+          }
           break;
         }
         case 'img': {

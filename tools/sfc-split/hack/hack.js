@@ -12,7 +12,7 @@ const DefaultValues = {
 export function hackOptions(options) {
   const { data, observers, ...io } = options;
 
-  if (!data || !Object.keys(data).length > 0) {
+  if (!data || !Object.keys(data).length > 0 || !io.setup) {
     return options;
   }
 
@@ -65,7 +65,7 @@ export function hackOptions(options) {
                   return context.data[fakeKey] ?? init;
                 },
                 set(value) {
-                  trigger()
+                  trigger();
                   // context.setData({ [fakeKey]: value ?? init });
                 },
               };

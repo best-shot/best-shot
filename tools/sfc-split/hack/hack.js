@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { customRef, ref } from '@vue-mini/core';
+import { getCurrentInstance } from '@vue-mini/core';
 
 const prefix = '__';
 
@@ -44,34 +44,34 @@ export function hackOptions(options) {
       ...Object.fromEntries(needHacks),
     },
     setup(props, context) {
+      const current = getCurrentInstance();
+
+      Object.defineProperty(current, '$triggers', {
+        enumerable: true,
+        configurable: false,
+        get() {
+          return $triggers;
+        },
+      });
+
+      Object.defineProperty(current, '$needHacks', {
+        enumerable: true,
+        configurable: false,
+        get() {
+          return needHacks;
+        },
+      });
+
+      Object.defineProperty(current, '$options', {
+        enumerable: true,
+        configurable: false,
+        get() {
+          return options
+        },
+      });
+
       return io.setup(props, {
         ...context,
-        hackRef(key) {
-          const fakeKey = prefix + key;
-
-          const init = DefaultValues[typeof data[fakeKey]] ?? null;
-
-          if (!needHacks.some(([name]) => name === fakeKey)) {
-            return ref(null);
-          }
-
-          return (
-            customRef((track, trigger) => {
-              $triggers[fakeKey] = trigger;
-
-              return {
-                get() {
-                  track();
-                  return context.data[fakeKey] ?? init;
-                },
-                set(value) {
-                  trigger();
-                  // context.setData({ [fakeKey]: value ?? init });
-                },
-              };
-            }) ?? init
-          );
-        },
       });
     },
   };

@@ -39,7 +39,7 @@ export function getAllPages(config) {
     entryPagePath,
     pages = [],
     subPackages = [],
-    tabBar: { list = [] } = {},
+    tabBar: { custom = false, list = [] } = {},
   } = config;
 
   return unique(
@@ -51,6 +51,7 @@ export function getAllPages(config) {
         (subPackage.pages || []).map((page) => `${subPackage.root}/${page}`) ||
         [],
     ),
+    custom === true ? 'custom-tab-bar/index' : '',
   ).filter(Boolean);
 }
 

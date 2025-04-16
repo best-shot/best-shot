@@ -49,7 +49,15 @@ module.exports = async function loader(source, map, meta) {
         const hack = relativePath.startsWith('..');
 
         const entryName = hack
-          ? `${componentRoot}/${basename(absolutePath.replace(/\.vue$/, ''))}/${createShortHash(slash(absolutePath))}`
+          ? [
+              componentRoot,
+              absolutePath
+                .split('/')
+                .slice(-2)
+                .join('/')
+                .replace(/\.vue$/, ''),
+              createShortHash(slash(absolutePath)),
+            ].join('/')
           : relativePath.replace(/\.vue$/, '');
 
         const placer = toThis(entryName);

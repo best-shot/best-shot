@@ -58,6 +58,16 @@ export function getAllPages(config) {
 export function patchConfig(json) {
   const object = structuredClone(json);
 
+  object.pages ??= [];
+
+  if (object.tabBar?.list?.length > 0) {
+    for (const tab of object.tabBar.list) {
+      if (tab.pagePath && !object.pages.includes(tab.pagePath)) {
+        object.pages.push(tab.pagePath);
+      }
+    }
+  }
+
   object.lazyCodeLoading = 'requiredComponents';
   object.subPackages ??= [];
   object.preloadRule ??= {};

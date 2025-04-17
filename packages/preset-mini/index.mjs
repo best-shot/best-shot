@@ -1,6 +1,4 @@
-export function apply({
-  config: { mini: { type } = {}, output: { module: Module } = {} },
-}) {
+export function apply({ config: { mini: { type } = {} } }) {
   return async (chain) => {
     chain.output
       .publicPath('/')
@@ -15,6 +13,8 @@ export function apply({
         arrowFunction: true,
         module: true,
       });
+
+    const Module = chain.output.get('module');
 
     if (Module) {
       chain.output.merge({

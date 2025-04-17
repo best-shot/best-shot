@@ -87,7 +87,6 @@
     "watch": [
       "packages/**",
       "tools/**",
-      "src/**",
       ".best-shot/config.mjs",
       "webpack.config.mjs"
     ]

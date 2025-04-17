@@ -1,12 +1,11 @@
 import { extname } from 'node:path';
 
 import {
-  COMPONENT_ROOT,
-  getAllPages,
-  patchConfig,
-  readYAML,
-  toJSONString,
-} from '../helper.mjs';
+  createAddEntry,
+  createEmitFile,
+  readAndTrack,
+} from '../helper/hooks.mjs';
+import { COMPONENT_ROOT, getAllPages, patchConfig } from '../helper/index.mjs';
 
 const PLUGIN_NAME = 'AddEntryPlugin';
 
@@ -29,56 +28,50 @@ export class AddEntryPlugin {
       Compilation,
     } = compiler.webpack;
 
-    function readFile(name) {
-      return readYAML(compiler.context, name);
-    }
-
-    function emitFile(name, content) {
-      compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-        compilation.hooks.processAssets.tap(
-          {
-            name: PLUGIN_NAME,
-            stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
-          },
-          () => {
-            compilation.emitAsset(name, new RawSource(content));
-          },
-        );
-      });
-    }
-
-    function emitJSON(name, json) {
-      emitFile(name, toJSONString(json));
-    }
-
-    function addEntry(name, path) {
-      new EntryPlugin(compiler.context, path, {
-        import: [path],
-        layer: name,
-        name,
-      }).apply(compiler);
-    }
+    const addEntry = createAddEntry(compiler, EntryPlugin);
 
     const { type } = this;
 
-    compiler.hooks.afterEnvironment.tap(PLUGIN_NAME, () => {
-      // eslint-disable-next-line no-param-reassign
-      delete compiler.options.entry.main;
-
-      if (type === 'miniprogram') {
-        emitFake(emitFile);
+    if (type === 'miniprogram') {
+      compiler.hooks.afterEnvironment.tap(PLUGIN_NAME, () => {
+        // eslint-disable-next-line no-param-reassign
+        delete compiler.options.entry.main;
 
         addEntry('app', './app');
+      });
 
-        const config = readFile('app');
+      compiler.hooks.make.tap(PLUGIN_NAME, () => {
+        compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+          const emitFile = createEmitFile({
+            PLUGIN_NAME,
+            compilation,
+            RawSource,
+            Compilation,
+          });
+          emitFake(emitFile);
+        });
+      });
+    }
 
-        emitJSON('app.json', patchConfig(config));
+    compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+      const emitFile = createEmitFile({
+        PLUGIN_NAME,
+        compilation,
+        RawSource,
+        Compilation,
+      });
+      const readFrom = readAndTrack(compiler, compilation);
+
+      if (type === 'miniprogram') {
+        const config = readFrom('app');
+
+        emitFile('app.json', patchConfig(config));
 
         for (const page of getAllPages(config)) {
           addEntry(page, `./${page}.vue`);
         }
       } else if (type === 'plugin') {
-        const config = readFile('plugin');
+        const config = readFrom('plugin');
 
         if (config.main) {
           addEntry('main', config.main);
@@ -106,7 +99,7 @@ export class AddEntryPlugin {
 
         patchingPluginConfig('publicComponents');
 
-        emitJSON('plugin.json', config);
+        emitFile('plugin.json', config);
       }
     });
   }

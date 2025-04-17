@@ -1,10 +1,17 @@
 {
   "name": "@best-shot/sfc-split-plugin",
-  "version": "0.13.32",
+  "version": "0.13.33",
   "license": "MIT",
   "keywords": [
     "loader",
-    "webpack"
+    "mini-program",
+    "miniprogram",
+    "sfc",
+    "vue",
+    "weapp",
+    "webpack",
+    "webpack-plugin",
+    "wxml"
   ],
   "main": "plugin.mjs",
   "type": "module",

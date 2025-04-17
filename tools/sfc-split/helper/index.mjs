@@ -1,34 +1,9 @@
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
-
 import { deepmerge as deepMerge } from 'deepmerge-ts';
 import { parse as yamlParse } from 'yaml';
 
 export const COMPONENT_ROOT = 'as-components';
 
 export const CLSX_PLACEHOLDER = '__PATH_OF_CLSX__';
-
-function read(base, name) {
-  try {
-    return readFileSync(resolve(base, name), 'utf8');
-  } catch {
-    return false;
-  }
-}
-
-export function readYAML(base, name) {
-  const yaml = read(base, `${name}.yaml`) || read(base, `${name}.yml`);
-
-  if (yaml) {
-    return yamlParse(yaml);
-  }
-
-  try {
-    return JSON.parse(read(base, `${name}.json`));
-  } catch {
-    return {};
-  }
-}
 
 function unique(...arr) {
   return [...new Set(arr)];

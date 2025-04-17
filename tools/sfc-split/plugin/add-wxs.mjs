@@ -3,24 +3,23 @@ import { extname, join, relative } from 'node:path';
 
 import slash from 'slash';
 
-import { CLSX_PLACEHOLDER } from '../helper.mjs';
+import { CLSX_PLACEHOLDER } from '../helper/index.mjs';
 
 const PLUGIN_NAME = 'AddWxsPlugin';
+const WXS_FILENAME = 'wxs/clsx.wxs';
 
-const filename = 'wxs/clsx.wxs';
-
-function readFile() {
+function getWxsContent() {
   return readFileSync(new URL('../wxs/clsx.wxs', import.meta.url), 'utf8');
 }
 
 export class AddWxsPlugin {
   apply(compiler) {
     const {
-      sources: { RawSource },
+      sources: { RawSource, ReplaceSource },
       Compilation,
     } = compiler.webpack;
 
-    const wxsContent = readFile();
+    const wxsContent = getWxsContent();
 
     compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.processAssets.tap(
@@ -29,7 +28,7 @@ export class AddWxsPlugin {
           stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
         },
         () => {
-          compilation.emitAsset(filename, new RawSource(wxsContent));
+          compilation.emitAsset(WXS_FILENAME, new RawSource(wxsContent));
         },
       );
 
@@ -37,7 +36,6 @@ export class AddWxsPlugin {
         {
           name: PLUGIN_NAME,
           stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE_COMPATIBILITY,
-          additionalAssets: true,
         },
         (assets) => {
           for (const [assetName, source] of Object.entries(assets)) {
@@ -45,15 +43,25 @@ export class AddWxsPlugin {
               extname(assetName) === '.wxml' &&
               source.source().includes(CLSX_PLACEHOLDER)
             ) {
-              const path = slash(relative(join(assetName, '..'), filename));
-
-              compilation.updateAsset(
-                assetName,
-                (old) =>
-                  new RawSource(
-                    old.source().toString().replace(CLSX_PLACEHOLDER, path),
-                  ),
+              const relativePath = slash(
+                relative(join(assetName, '..'), WXS_FILENAME),
               );
+
+              const replaceSource = new ReplaceSource(source);
+
+              const placeholderIndex = source
+                .source()
+                .indexOf(CLSX_PLACEHOLDER);
+
+              if (placeholderIndex !== -1) {
+                replaceSource.replace(
+                  placeholderIndex,
+                  placeholderIndex + CLSX_PLACEHOLDER.length - 1,
+                  relativePath,
+                );
+
+                compilation.updateAsset(assetName, replaceSource);
+              }
             }
           }
         },

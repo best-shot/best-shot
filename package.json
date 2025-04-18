@@ -82,7 +82,7 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "na run build:watch",
+    "exec": "na run build:dev",
     "ext": "js,cjs,mjs,json,wxs",
     "watch": [
       "packages/**",

@@ -40,16 +40,14 @@ export class AddEntryPlugin {
         addEntry('app', './app');
       });
 
-      compiler.hooks.make.tap(PLUGIN_NAME, () => {
-        compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
-          const emitFile = createEmitFile({
-            PLUGIN_NAME,
-            compilation,
-            RawSource,
-            Compilation,
-          });
-          emitFake(emitFile);
+      compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+        const emitFile = createEmitFile({
+          PLUGIN_NAME,
+          compilation,
+          RawSource,
+          Compilation,
         });
+        emitFake(emitFile);
       });
     }
 

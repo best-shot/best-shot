@@ -1,6 +1,6 @@
 'use strict';
 
-const { resolve, join, relative, basename } = require('node:path');
+const { resolve, join, relative } = require('node:path');
 const { createHash } = require('node:crypto');
 
 function createShortHash(input) {
@@ -40,51 +40,57 @@ module.exports = async function loader(source, map, meta) {
   ) {
     for (const [name, path] of Object.entries(config.usingComponents)) {
       if (path.endsWith('.vue') && !path.startsWith('plugin://')) {
-        const absolutePath = slash(
-          path.startsWith('.') ? resolve(context, path) : require.resolve(path),
-        );
+        try {
+          const absolutePath = slash(
+            path.startsWith('.')
+              ? resolve(context, path)
+              : require.resolve(path),
+          );
 
-        const relativePath = slash(relative(rootContext, absolutePath));
+          const relativePath = slash(relative(rootContext, absolutePath));
 
-        const hack = relativePath.startsWith('..');
+          const hack = relativePath.startsWith('..');
 
-        const entryName = hack
-          ? [
-              componentRoot,
-              absolutePath
-                .split('/')
-                .slice(-2)
-                .join('/')
-                .replace(/\.vue$/, ''),
-              createShortHash(slash(absolutePath)),
-            ].join('/')
-          : relativePath.replace(/\.vue$/, '');
+          const entryName = hack
+            ? [
+                componentRoot,
+                absolutePath
+                  .split('/')
+                  .slice(-2)
+                  .join('/')
+                  .replace(/\.vue$/, ''),
+                createShortHash(slash(absolutePath)),
+              ].join('/')
+            : relativePath.replace(/\.vue$/, '');
 
-        const placer = toThis(entryName);
+          const placer = toThis(entryName);
 
-        config.usingComponents[name] = placer;
+          config.usingComponents[name] = placer;
 
-        if (placer.includes(componentRoot)) {
-          config.componentPlaceholder ??= {};
-          config.componentPlaceholder[name] = 'view';
+          if (placer.includes(componentRoot)) {
+            config.componentPlaceholder ??= {};
+            config.componentPlaceholder[name] = 'view';
+          }
+
+          const entryPath = relativePath.startsWith('..')
+            ? absolutePath
+            : `./${relativePath}`;
+
+          this.addDependency(resolve(absolutePath));
+          this.addMissingDependency(resolve(absolutePath));
+
+          caller({
+            name,
+            path,
+            absolutePath,
+            relativePath,
+            entryName,
+            entryPath,
+            placer,
+          });
+        } catch (error) {
+          console.error(error);
         }
-
-        const entryPath = relativePath.startsWith('..')
-          ? absolutePath
-          : `./${relativePath}`;
-
-        this.addDependency(resolve(absolutePath));
-        this.addMissingDependency(resolve(absolutePath));
-
-        caller({
-          name,
-          path,
-          absolutePath,
-          relativePath,
-          entryName,
-          entryPath,
-          placer,
-        });
       }
     }
   }

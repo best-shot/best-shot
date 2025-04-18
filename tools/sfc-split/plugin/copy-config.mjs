@@ -30,20 +30,20 @@ export class CopyConfigPlugin {
 
       const io = readFrom('project.config');
 
-      if (Object.keys(io).length > 0) {
-        emitJSON('project.config.json', {
+      if (!io.empty) {
+        emitJSON(io.name, {
           srcMiniprogramRoot: '',
           miniprogramRoot: '',
           pluginRoot: '',
-          ...io,
+          ...io.content,
           compileType: type,
         });
       }
 
       const io2 = readFrom('project.private.config');
 
-      if (Object.keys(io2).length > 0) {
-        emitJSON('project.private.config.json', io2);
+      if (!io2.empty) {
+        emitJSON(io2.name, io2.content);
       }
     });
   }

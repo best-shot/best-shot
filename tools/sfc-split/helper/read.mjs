@@ -3,20 +3,18 @@ import { resolve } from 'node:path';
 
 import { parse as yamlParse } from 'yaml';
 
-function tryReadFileWithParsers(base, name, candidates) {
-  for (const { ext, parser } of candidates) {
-    const filePath = resolve(base, `${name}${ext}`);
+function tryReadFileWithParsers(base, name, ext, parser) {
+  const filePath = resolve(base, `${name}${ext}`);
 
-    try {
-      const content = readFileSync(filePath, 'utf8');
+  try {
+    const content = readFileSync(filePath, 'utf8');
 
-      return {
-        filePath,
-        config: (parser ? parser(content) : content) || {},
-      };
-    } catch {
-      return { filePath: '', config: {} };
-    }
+    return {
+      filePath,
+      config: (parser ? parser(content) : content) || {},
+    };
+  } catch {
+    return false;
   }
 }
 
@@ -27,5 +25,13 @@ const candidates = [
 ];
 
 export function readConfig(base, name) {
-  return tryReadFileWithParsers(base, name, candidates);
+  for (const { ext, parser } of candidates) {
+    const result = tryReadFileWithParsers(base, name, ext, parser);
+
+    if (result !== false) {
+      return result;
+    }
+  }
+
+  return false;
 }

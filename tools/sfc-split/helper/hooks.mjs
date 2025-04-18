@@ -33,7 +33,11 @@ export function readAndTrack(compiler, compilation) {
       compilation.fileDependencies.add(filePath);
     }
 
-    return config;
+    return {
+      name: `${name}.json`,
+      content: config,
+      empty: Object.keys(config).length === 0,
+    };
   };
 }
 

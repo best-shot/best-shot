@@ -9,7 +9,7 @@ function unique(...arr) {
   return [...new Set(arr)];
 }
 
-export function getAllPages(config) {
+export function getAllPages(config = {}) {
   const {
     entryPagePath,
     pages = [],
@@ -30,7 +30,7 @@ export function getAllPages(config) {
   ).filter(Boolean);
 }
 
-export function patchConfig(json) {
+export function patchConfig(json = {}) {
   const object = structuredClone(json);
 
   object.pages ??= [];

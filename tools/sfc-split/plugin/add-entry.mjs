@@ -63,15 +63,15 @@ export class AddEntryPlugin {
       const readFrom = readAndTrack(compiler, compilation);
 
       if (type === 'miniprogram') {
-        const config = readFrom('app');
+        const { content: config, name } = readFrom('app');
 
-        emitFile('app.json', patchConfig(config));
+        emitFile(name, patchConfig(config));
 
         for (const page of getAllPages(config)) {
           addEntry(page, `./${page}.vue`);
         }
       } else if (type === 'plugin') {
-        const config = readFrom('plugin');
+        const { content: config, name } = readFrom('plugin');
 
         if (config.main) {
           addEntry('main', config.main);
@@ -99,7 +99,7 @@ export class AddEntryPlugin {
 
         patchingPluginConfig('publicComponents');
 
-        emitFile('plugin.json', config);
+        emitFile(name, config);
       }
     });
   }

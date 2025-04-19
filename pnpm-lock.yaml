@@ -37,10 +37,10 @@ catalogs:
       specifier: ^5.0.0
       version: 5.0.0
     react:
-      specifier: '>=18.3.1'
+      specifier: '>=19.1.0'
       version: 19.1.0
     react-dom:
-      specifier: '>=18.3.1'
+      specifier: '>=19.1.0'
       version: 19.1.0
     settingz:
       specifier: ^0.2.0
@@ -1341,6 +1341,7 @@ packages:
 
   '@effect/schema@0.75.5':
     resolution: {integrity: sha512-TQInulTVCuF+9EIbJpyLP6dvxbQJMphrnRqgexm/Ze39rSjfhJuufF7XvU3SxTgg3HnL7B/kpORTJbHhlE6thw==}
+    deprecated: this package has been merged into the main effect package
     peerDependencies:
       effect: ^3.9.2
 

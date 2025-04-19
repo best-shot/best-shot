@@ -9,9 +9,9 @@ function objectSize(object) {
 }
 
 function fileExists(path) {
-  try {
-    const filename = resolve(process.cwd(), path);
+  const filename = resolve(process.cwd(), path);
 
+  try {
     import.meta.resolve(filename);
 
     return [path];
@@ -30,6 +30,7 @@ export function apply({
     devServer,
     experiments: { lazyCompilation } = {},
     cache: { maxAge = 1000 * 60 * 60 * 24 * 3 } = {},
+    stats = {},
   },
 }) {
   return async (chain) => {
@@ -67,10 +68,18 @@ export function apply({
 
     const cache = chain.get('cache');
     const mode = chain.get('mode');
+    const watch = chain.get('watch');
+
+    if (watch) {
+      chain.stats({
+        preset: 'errors-warnings',
+        ...stats,
+      });
+    }
 
     if (cache) {
       const { cachePath } = chain.get('x');
-      const watch = chain.get('watch');
+
       const name = chain.get('name');
 
       chain.cache({

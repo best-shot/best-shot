@@ -8,9 +8,6 @@ export const config = {
     module: true,
   },
   chain(chain) {
-    // chain.stats({
-    //   errorDetails: true,
-    // });
     chain.cache(false);
   },
   // devServer: {},

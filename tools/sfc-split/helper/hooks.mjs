@@ -27,7 +27,7 @@ export function createEmitFile({
 
 export function readAndTrack(compiler, compilation) {
   return (name) => {
-    const { filePath, config } = readConfig(compiler.context, name);
+    const { filePath, config = {} } = readConfig(compiler.context, name);
 
     if (filePath) {
       compilation.fileDependencies.add(filePath);

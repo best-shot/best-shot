@@ -50,7 +50,7 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
       EntryPlugin: { createDependency },
     } = compiler.webpack;
 
-    compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
+    function action(compilation) {
       compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
         for (const [entryName, entryPath] of newEntries.entries()) {
           compilation.addEntry(
@@ -68,9 +68,19 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
             },
           );
 
-          // compilation.fileDependencies.add(entryPath);
+          compilation.fileDependencies.add(entryPath);
         }
       });
+    }
+
+    compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+      action(compilation);
+    });
+    compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
+      action(compilation);
+    });
+    compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+      action(compilation);
     });
   }
 

@@ -41,7 +41,7 @@ export class AddEntryPlugin {
       });
 
       compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-        // compilation.fileDependencies.add('./app');
+        compilation.fileDependencies.add('./app');
 
         const emitFile = createEmitFile({
           PLUGIN_NAME,
@@ -73,7 +73,7 @@ export class AddEntryPlugin {
 
           addEntry(page, source, ['app']);
 
-          // compilation.fileDependencies.add(source);
+          compilation.fileDependencies.add(source);
         }
       } else if (type === 'plugin') {
         const { content: config, name } = readFrom('plugin');
@@ -81,7 +81,7 @@ export class AddEntryPlugin {
         if (config.main) {
           addEntry('main', config.main);
 
-          // compilation.fileDependencies.add(config.main);
+          compilation.fileDependencies.add(config.main);
 
           config.main = 'main.js';
         }
@@ -96,7 +96,7 @@ export class AddEntryPlugin {
 
                 addEntry(source, path);
 
-                // compilation.fileDependencies.add(path);
+                compilation.fileDependencies.add(path);
 
                 config.pages[key] = source;
               }

@@ -47,14 +47,18 @@ async function getConfigs(rootPath, { command }) {
     await sideEffect({ command });
   }
 
-  const { envs, flatted } = getEnv(rootPath, {
-    mode: command === 'prod' ? 'production' : 'development',
-    watch: command === 'watch',
-    serve: command === 'serve',
-  });
-
   const io =
-    typeof config === 'function' ? await config({ command, envs }) : config;
+    typeof config === 'function'
+      ? await config({
+          command,
+          envs: getEnv({
+            root: rootPath,
+            mode: command === 'prod' ? 'production' : 'development',
+            watch: command === 'watch',
+            serve: command === 'serve',
+          }).envs,
+        })
+      : config;
 
   await validate(io);
 
@@ -70,11 +74,6 @@ async function getConfigs(rootPath, { command }) {
     if (!conf.output?.path) {
       configs[index].output.path = '.best-shot/build/[config-name]';
     }
-
-    configs[index].define = {
-      ...conf.define,
-      ...flatted,
-    };
 
     if (configs.length > 1 && !conf.name) {
       configs[index].name = `task${index + 1}`;

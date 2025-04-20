@@ -27,9 +27,6 @@ catalogs:
     ext-to-regexp:
       specifier: ^0.1.0
       version: 0.1.0
-    flat:
-      specifier: ^6.0.1
-      version: 6.0.1
     fs-extra:
       specifier: ^11.3.0
       version: 11.3.0
@@ -228,6 +225,9 @@ importers:
 
   packages/core:
     dependencies:
+      '@best-shot/env':
+        specifier: workspace:~
+        version: link:../env
       '@best-shot/no-cache-loader':
         specifier: workspace:~
         version: link:../../tools/no-cache-loader
@@ -312,9 +312,6 @@ importers:
       chalk:
         specifier: 'catalog:'
         version: 5.4.1
-      flat:
-        specifier: 'catalog:'
-        version: 6.0.1
       ini:
         specifier: 'catalog:'
         version: 5.0.0
@@ -1341,6 +1338,7 @@ packages:
 
   '@effect/schema@0.75.5':
     resolution: {integrity: sha512-TQInulTVCuF+9EIbJpyLP6dvxbQJMphrnRqgexm/Ze39rSjfhJuufF7XvU3SxTgg3HnL7B/kpORTJbHhlE6thw==}
+    deprecated: this package has been merged into the main effect package
     peerDependencies:
       effect: ^3.9.2
 
@@ -3184,11 +3182,6 @@ packages:
 
   flat@5.0.2:
     resolution: {integrity: sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==}
-    hasBin: true
-
-  flat@6.0.1:
-    resolution: {integrity: sha512-/3FfIa8mbrg3xE7+wAhWeV+bd7L2Mof+xtZb5dRDKZ+wDvYJK4WDYeIOuOhre5Yv5aQObZrlbRmk3RTSiuQBtw==}
-    engines: {node: '>=18'}
     hasBin: true
 
   flatted@3.3.3:
@@ -9008,8 +9001,6 @@ snapshots:
       hookified: 1.8.1
 
   flat@5.0.2: {}
-
-  flat@6.0.1: {}
 
   flatted@3.3.3: {}
 

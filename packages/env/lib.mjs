@@ -1,25 +1,4 @@
-import { readFileSync } from 'node:fs';
-import { createRequire } from 'node:module';
-import { resolve } from 'node:path';
-
-import { parse as tomlParse } from '@ltd/j-toml';
-import { decode as iniParse } from 'ini';
-import yaml from 'yaml';
-
-const Require = createRequire(import.meta.url);
-
-// eslint-disable-next-line consistent-return
-function ensureConfig(type, rootPath) {
-  try {
-    const filename = `.best-shot/env.${type}`;
-
-    return {
-      type,
-      name: filename,
-      path: Require.resolve(resolve(rootPath, filename)),
-    };
-  } catch {}
-}
+import { readConfig } from './read.mjs';
 
 function filterData(object) {
   return Object.fromEntries(
@@ -28,12 +7,7 @@ function filterData(object) {
 }
 
 export function findConfig(rootPath) {
-  return (
-    ensureConfig('toml', rootPath) ||
-    ensureConfig('ini', rootPath) ||
-    ensureConfig('yaml', rootPath) ||
-    ensureConfig('json', rootPath)
-  );
+  return readConfig(rootPath, '.best-shot/env');
 }
 
 export function mergeParams(
@@ -51,32 +25,4 @@ export function mergeParams(
           ...(isServe ? serve : undefined),
         },
   );
-}
-
-function wrap(string, parser) {
-  const io = string.trim();
-
-  return io ? parser(io) : {};
-}
-
-const parser = {
-  ini: (str) => structuredClone(iniParse(str)),
-  json: (str) => JSON.parse(str),
-  toml: (str) => structuredClone(tomlParse(str, { bigint: false })),
-  yaml: (str) => structuredClone(yaml.parse(str)),
-};
-
-export function parseConfig({ path, name, type } = {}) {
-  if (!path) {
-    return {};
-  }
-
-  try {
-    const data = readFileSync(path, 'utf8');
-
-    return wrap(data, parser[type]);
-  } catch (error) {
-    console.error(error);
-    throw new Error(`Parse \`${name}\` fail`);
-  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/env",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -28,7 +28,6 @@
   "dependencies": {
     "@ltd/j-toml": "^1.38.0",
     "chalk": "catalog:",
-    "flat": "catalog:",
     "ini": "catalog:",
     "yaml": "catalog:"
   },

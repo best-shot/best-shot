@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.12.15",
+  "version": "0.12.16",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -27,6 +27,7 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
+    "@best-shot/env": "workspace:~",
     "@best-shot/no-cache-loader": "workspace:~",
     "@best-shot/validator": "workspace:~",
     "@best-shot/webpack-chain": "^8.1.12",

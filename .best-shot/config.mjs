@@ -10,7 +10,7 @@ export const config = {
   chain(chain) {
     chain.cache(false);
 
-    chain.stats('errors-warnings')
+    chain.stats('errors-warnings');
   },
   // devServer: {},
   vue: {
@@ -18,5 +18,10 @@ export const config = {
   },
   html: {
     darkMode: false,
+  },
+  define: {
+    TEST: {
+      abc: true,
+    },
   },
 };

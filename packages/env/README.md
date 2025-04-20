@@ -72,6 +72,6 @@ If a `process.cwd()` is a git repository, `GIT_HASH` will be injected to your co
 
 ```mjs
 config.define = {
-  'import.meta.env.GIT_HASH': '"xxxxxxxxxxxxxxxxxxxx"'
+  GIT_HASH: '"xxxxxxxxxxxxxxxxxxxx"'
 };
 ```

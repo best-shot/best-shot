@@ -90,11 +90,7 @@ export function apply({
           .filter(Boolean)
           .join('-'),
         buildDependencies: {
-          config: [
-            fileExists('.best-shot/config.mjs'),
-            fileExists('.best-shot/env.toml'),
-            fileExists('.best-shot/env.yaml'),
-          ].flat(),
+          config: [fileExists('.best-shot/config.mjs')],
         },
       });
     }

@@ -9,6 +9,8 @@ export const config = {
   },
   chain(chain) {
     chain.cache(false);
+
+    chain.stats('errors-warnings')
   },
   // devServer: {},
   vue: {

@@ -11,7 +11,7 @@ const PLUGIN_NAME = 'AddEntryPlugin';
 
 function emitFake(emitFile) {
   emitFile(`${COMPONENT_ROOT}/fake.json`, '{}');
-  const message = `这是一个用于创建${COMPONENT_ROOT}分包的假页面`;
+  const message = '这是一个用于创建分包的假页面';
   emitFile(`${COMPONENT_ROOT}/fake.js`, `/**${message}**/`);
   emitFile(`${COMPONENT_ROOT}/fake.wxml`, `<!--${message}-->`);
 }
@@ -41,12 +41,15 @@ export class AddEntryPlugin {
       });
 
       compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+        // compilation.fileDependencies.add('./app');
+
         const emitFile = createEmitFile({
           PLUGIN_NAME,
           compilation,
           RawSource,
           Compilation,
         });
+
         emitFake(emitFile);
       });
     }
@@ -66,13 +69,19 @@ export class AddEntryPlugin {
         emitFile(name, patchConfig(config));
 
         for (const page of getAllPages(config)) {
-          addEntry(page, `./${page}.vue`);
+          const source = `./${page}.vue`;
+
+          addEntry(page, source);
+
+          // compilation.fileDependencies.add(source);
         }
       } else if (type === 'plugin') {
         const { content: config, name } = readFrom('plugin');
 
         if (config.main) {
           addEntry('main', config.main);
+
+          // compilation.fileDependencies.add(config.main);
 
           config.main = 'main.js';
         }
@@ -86,6 +95,8 @@ export class AddEntryPlugin {
                 const source = `${keyPath}/${key}/index`;
 
                 addEntry(source, path);
+
+                // compilation.fileDependencies.add(path);
 
                 config.pages[key] = source;
               }

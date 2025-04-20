@@ -5,7 +5,6 @@ import { kebabCase } from 'change-case';
 import slash from 'slash';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
 
-import { createAddEntry } from '../helper/hooks.mjs';
 import { COMPONENT_ROOT, mergeConfig, toJSONString } from '../helper/index.mjs';
 import { parse } from '../parse/sfc.mjs';
 
@@ -47,14 +46,25 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
       },
     );
 
-    const { EntryPlugin } = compiler.webpack;
-
-    const addEntry = createAddEntry(compiler, EntryPlugin);
-
-    compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
+    compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
         for (const [entryName, entryPath] of newEntries.entries()) {
-          addEntry(entryName, entryPath);
+          compilation.addEntry(
+            compiler.context,
+            createDependency(entryPath),
+            {
+              name: entryName,
+              layer: entryName,
+              import: [entryPath],
+            },
+            (err) => {
+              if (err) {
+                throw err;
+              }
+            },
+          );
+
+          // compilation.fileDependencies.add(entryPath);
         }
       });
     });

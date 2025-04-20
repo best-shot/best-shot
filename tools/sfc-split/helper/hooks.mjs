@@ -41,18 +41,13 @@ export function readAndTrack(compiler, compilation) {
   };
 }
 
-const temp = new Map();
-
 export function createAddEntry(compiler, EntryPlugin) {
-  return (name, path) => {
-    if (!temp.has(name) || temp.get(name) !== path) {
-      new EntryPlugin(compiler.context, path, {
-        import: [path],
-        layer: name,
-        name,
-      }).apply(compiler);
-
-      temp.set(name, path);
-    }
+  return (name, path, dependOn) => {
+    new EntryPlugin(compiler.context, path, {
+      import: [path],
+      layer: name,
+      name,
+      ...(dependOn ? { dependOn } : undefined),
+    }).apply(compiler);
   };
 }

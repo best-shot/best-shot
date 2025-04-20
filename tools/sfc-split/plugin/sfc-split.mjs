@@ -46,7 +46,11 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
       },
     );
 
-    compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
+    const {
+      EntryPlugin: { createDependency },
+    } = compiler.webpack;
+
+    compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.buildModule.tap(PLUGIN_NAME, () => {
         for (const [entryName, entryPath] of newEntries.entries()) {
           compilation.addEntry(

@@ -71,7 +71,7 @@ export class AddEntryPlugin {
         for (const page of getAllPages(config)) {
           const source = `./${page}.vue`;
 
-          addEntry(page, source);
+          addEntry(page, source, ['app']);
 
           // compilation.fileDependencies.add(source);
         }

@@ -5,14 +5,11 @@ import { hackOptions } from './hack.js';
 import { mergeOptions } from './helper.js';
 
 export function $$asComponent(options) {
-  const io = options.hacked
+  const io = options.options?.hacked
     ? hackOptions(mergeOptions(options))
     : mergeOptions(options);
 
-  if (!io.setup) {
-    /* global Component: readonly */
-    Component(io);
-  } else {
+  if (io.setup) {
     defineComponent({
       ...io,
       setup(props, context) {
@@ -28,5 +25,8 @@ export function $$asComponent(options) {
         });
       },
     });
+  } else {
+    /* global Component: readonly */
+    Component(io);
   }
 }

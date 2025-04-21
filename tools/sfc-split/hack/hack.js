@@ -12,7 +12,7 @@ const DefaultValues = {
 export function hackOptions(options) {
   const { data, observers, ...io } = options;
 
-  if (!data || !Object.keys(data).length > 0 || !io.setup) {
+  if (!data || Object.keys(data).length === 0 || !io.setup) {
     return options;
   }
 
@@ -66,7 +66,7 @@ export function hackOptions(options) {
         enumerable: true,
         configurable: false,
         get() {
-          return options
+          return options;
         },
       });
 

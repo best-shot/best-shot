@@ -326,6 +326,30 @@ function transform(ast, { tagMatcher } = {}) {
           node.tag = 'view';
           break;
         }
+        case 'br': {
+          node.tag = 'view';
+          node.props = [
+            {
+              type: NodeTypes.ATTRIBUTE,
+              name: 'style',
+              value: { type: NodeTypes.TEXT, content: 'height:1em' },
+            },
+          ];
+          node.isSelfClosing = false;
+          break;
+        }
+        case 'hr': {
+          node.tag = 'view';
+          node.props = [
+            {
+              type: NodeTypes.ATTRIBUTE,
+              name: 'class',
+              value: { type: NodeTypes.TEXT, content: 'hr' },
+            },
+          ];
+          node.isSelfClosing = false;
+          break;
+        }
         default: {
           if (node.tagType === 1) {
             node.tag = kebabCase(node.tag);

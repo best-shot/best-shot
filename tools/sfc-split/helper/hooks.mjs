@@ -42,12 +42,11 @@ export function readAndTrack(compiler, compilation) {
 }
 
 export function createAddEntry(compiler, EntryPlugin) {
-  return (name, path, dependOn) => {
+  return (name, path) => {
     new EntryPlugin(compiler.context, path, {
       import: [path],
       layer: name,
       name,
-      ...(dependOn ? { dependOn } : undefined),
     }).apply(compiler);
   };
 }

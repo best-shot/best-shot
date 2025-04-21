@@ -10,6 +10,8 @@ function createShortHash(input) {
 module.exports = async function loader(source, map, meta) {
   this.cacheable();
 
+  // console.log(this.entryName);
+
   const callback = this.async();
 
   const { api, caller, componentRoot } = this.getOptions();

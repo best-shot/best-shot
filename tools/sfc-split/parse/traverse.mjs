@@ -24,21 +24,15 @@ function getCurrentVisitor(visitor, node) {
   return visitor[visitorName] || visitor.FALLBACK;
 }
 
-function traverseChildrenOrProps(items, visitor) {
-  if (Array.isArray(items) && items.length > 0) {
-    items.forEach((item) => traverse(item, visitor));
-  }
-}
-
 const neadClean = ['loc', 'nameLoc', 'rawName', 'source', 'codegenNode'];
 
 function clear(node) {
   neadClean.forEach((key) => {
     if (key in node) {
-      if (node.type !== 0) {
-        delete node[key];
-      } else {
+      if (node.type === 0) {
         node[key] = '';
+      } else {
+        delete node[key];
       }
     }
 
@@ -53,6 +47,15 @@ function clear(node) {
 }
 
 export { ElementTypes, NodeTypes };
+
+function traverseChildrenOrProps(items, visitor) {
+  if (Array.isArray(items) && items.length > 0) {
+    items.forEach((item) => {
+      // eslint-disable-next-line no-use-before-define
+      traverse(item, visitor);
+    });
+  }
+}
 
 export function traverse(ast, visitor = {}) {
   if (!ast) return;

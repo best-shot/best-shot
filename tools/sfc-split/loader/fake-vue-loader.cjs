@@ -7,40 +7,18 @@ function createShortHash(input) {
   return createHash('sha256').update(input).digest('hex').slice(0, 8);
 }
 
-module.exports = async function loader(source, map, meta) {
-  this.cacheable();
-
-  // console.log(this.entryName);
-
-  const callback = this.async();
-
-  const { api, caller, componentRoot } = this.getOptions();
-
-  const { layer } = this._module;
-
-  const { default: slash } = await import('slash');
-
-  const resourcePath = slash(this.resourcePath);
-
-  const { paths, config, script } = api.processSfcFile(source, resourcePath);
-
-  for (const path of paths) {
-    const filePath = join(this.rootContext, path);
-    this.addDependency(filePath);
-    this.addMissingDependency(filePath);
-  }
-
-  function toThis(entryName) {
-    return slash(relative(`/${layer}/..`, `/${entryName}`));
-  }
-
-  const { rootContext, context } = this;
-
-  if (
-    config?.usingComponents &&
-    Object.keys(config.usingComponents).length > 0
-  ) {
-    for (const [name, path] of Object.entries(config.usingComponents)) {
+function handleImport({
+  toThis,
+  caller,
+  componentRoot,
+  context,
+  rootContext,
+  slash,
+  maps,
+  callback,
+}) {
+  if (Object.keys(maps).length > 0) {
+    for (const [name, path] of Object.entries(maps)) {
       if (path.endsWith('.vue') && !path.startsWith('plugin://')) {
         try {
           const absolutePath = slash(
@@ -67,12 +45,7 @@ module.exports = async function loader(source, map, meta) {
 
           const placer = toThis(entryName);
 
-          config.usingComponents[name] = placer;
-
-          if (placer.includes(componentRoot)) {
-            config.componentPlaceholder ??= {};
-            config.componentPlaceholder[name] = 'view';
-          }
+          callback({ name, placer });
 
           const entryPath = relativePath.startsWith('..')
             ? absolutePath
@@ -95,6 +68,73 @@ module.exports = async function loader(source, map, meta) {
         }
       }
     }
+  }
+}
+
+module.exports = async function loader(source, map, meta) {
+  this.cacheable();
+
+  const callback = this.async();
+
+  const { api, caller, componentRoot } = this.getOptions();
+
+  const { layer } = this._module;
+
+  const { default: slash } = await import('slash');
+
+  const resourcePath = slash(this.resourcePath);
+
+  const { paths, config, script } = api.processSfcFile(source, resourcePath);
+
+  const { rootContext, context } = this;
+
+  for (const path of paths) {
+    const filePath = join(rootContext, path);
+    this.addDependency(filePath);
+    this.addMissingDependency(filePath);
+  }
+
+  function toThis(entryName) {
+    return slash(relative(`/${layer}/..`, `/${entryName}`));
+  }
+
+  if (config?.usingComponents) {
+    handleImport.bind(this)({
+      toThis,
+      caller,
+      componentRoot,
+      context,
+      rootContext,
+      slash,
+      maps: config.usingComponents,
+      callback({ name, placer }) {
+        config.usingComponents[name] = placer;
+
+        if (placer.includes(componentRoot)) {
+          config.componentPlaceholder ??= {};
+          config.componentPlaceholder[name] = 'view';
+        }
+      },
+    });
+  }
+
+  if (config?.componentGenerics) {
+    handleImport.bind(this)({
+      toThis,
+      caller,
+      componentRoot,
+      context,
+      rootContext,
+      slash,
+      maps: Object.fromEntries(
+        Object.entries(config.componentGenerics)
+          .filter(([_, item]) => item?.default)
+          .map(([key, item]) => [key, item.default]),
+      ),
+      callback({ name, placer }) {
+        config.componentGenerics[name].default = placer;
+      },
+    });
   }
 
   const file = [

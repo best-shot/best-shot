@@ -352,6 +352,10 @@ function transform(ast, { tagMatcher } = {}) {
         }
         default: {
           if (node.tagType === 1) {
+            if (node.tag.endsWith('_generic')) {
+              node.tag = kebabCase(node.tag.replace(/_generic$/, ''));
+            }
+
             node.tag = kebabCase(node.tag);
           }
         }

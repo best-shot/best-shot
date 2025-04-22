@@ -121,10 +121,24 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
 
   // eslint-disable-next-line class-methods-use-this
   injectConfig(customBlocks, pair) {
-    const components =
+    const usingComponents =
       pair.length > 0
         ? Object.fromEntries(
-            pair.map(({ local, source }) => [kebabCase(local), source]),
+            pair
+              .filter(({ local }) => !local.endsWith('_generic'))
+              .map(({ local, source }) => [kebabCase(local), source]),
+          )
+        : {};
+
+    const componentGenerics =
+      pair.length > 0
+        ? Object.fromEntries(
+            pair
+              .filter(({ local }) => local.endsWith('_generic'))
+              .map(({ local, source }) => [
+                kebabCase(local.replace(/_generic$/, '')),
+                { default: source },
+              ]),
           )
         : undefined;
 
@@ -135,7 +149,8 @@ export class SfcSplitPlugin extends VirtualModulesPlugin {
         lang: 'json',
         content: toJSONString({
           component: true,
-          usingComponents: components,
+          usingComponents,
+          componentGenerics,
         }),
       },
     ]);

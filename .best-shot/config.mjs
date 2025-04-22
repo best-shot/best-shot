@@ -13,6 +13,11 @@ export const config = {
     chain.stats('errors-warnings');
   },
   // devServer: {},
+  resolve: {
+    alias: {
+      vue: '@best-shot/sfc-split-plugin/hack/mini.js',
+    },
+  },
   vue: {
     importMap: true,
   },

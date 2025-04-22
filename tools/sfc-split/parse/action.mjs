@@ -11,12 +11,13 @@ const actions = {
 
 const native = ['input', 'textarea', 'button', 'view', 'text'];
 
-function isCanBeString(exp) {
+function canBeString(exp) {
   if (!exp.ast) {
     return false;
   }
+
   return (
-    (exp.ast.type === 'BinaryExpression' && exp.ast.operator === '+') ||
+    (exp.ast.type === 'BinaryExpression' && exp.ast.operator) ||
     (exp.ast.type === 'ConditionalExpression' &&
       exp.ast.consequent.type === 'StringLiteral' &&
       exp.ast.alternate.type === 'StringLiteral')
@@ -104,7 +105,7 @@ function transform(ast, { tagMatcher } = {}) {
             prop.value?.content &&
             !prop.clsx;
 
-          const raw = ctx.parent.node.find(findRaw);
+          const raw = ctx.parent.node.find((element) => findRaw(element));
 
           if (!raw?.value?.content && node.exp.ast.type === 'StringLiteral') {
             return {
@@ -119,7 +120,7 @@ function transform(ast, { tagMatcher } = {}) {
 
           const result = raw?.value?.content
             ? `clsx.clsx('${raw.value.content}', ${node.exp.content})`
-            : isCanBeString(node.exp)
+            : canBeString(node.exp)
               ? node.exp.content
               : `clsx.clsx(${node.exp.content})`;
 
@@ -210,6 +211,7 @@ function transform(ast, { tagMatcher } = {}) {
             : undefined,
         ].filter(Boolean);
       }
+
       return {
         type: NodeTypes.ATTRIBUTE,
         name: 'wx:for',
@@ -267,6 +269,7 @@ function transform(ast, { tagMatcher } = {}) {
               value: node.exp,
             };
           }
+          break;
         }
         case 'else-if': {
           if (node.exp?.content) {
@@ -276,6 +279,7 @@ function transform(ast, { tagMatcher } = {}) {
               value: node.exp,
             };
           }
+          break;
         }
         case 'else': {
           return {
@@ -283,8 +287,9 @@ function transform(ast, { tagMatcher } = {}) {
             name: 'wx:else',
           };
         }
-        default:
+        default: {
           break;
+        }
       }
     },
     ELEMENT(node) {
@@ -363,7 +368,7 @@ function transform(ast, { tagMatcher } = {}) {
     },
   });
 
-  if (ast.cached?.clsx && !ast.children.find((item) => item.clsx)) {
+  if (ast.cached?.clsx && !ast.children.some((item) => item.clsx)) {
     ast.children.unshift({
       clsx: true,
       type: NodeTypes.ELEMENT,

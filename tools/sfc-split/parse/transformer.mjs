@@ -64,18 +64,26 @@ export function transformer(ast, names, id, isSetup) {
                         }
                       },
                     });
-                    const hasRestElement = subPath2.node.properties.some(
-                      (prop) => prop.type === 'RestElement',
-                    );
 
-                    if (!hasRestElement) {
-                      subPath2.node.properties.push({
-                        type: 'RestElement',
-                        argument: {
-                          type: 'Identifier',
-                          name: 'context',
-                        },
-                      });
+                    if (subPath2.node.propertie?.length > 0) {
+                      const hasRestElement = subPath2.node.properties.some(
+                        (prop) => prop.type === 'RestElement',
+                      );
+
+                      if (!hasRestElement) {
+                        subPath2.node.properties.push({
+                          type: 'RestElement',
+                          argument: {
+                            type: 'Identifier',
+                            name: 'context',
+                          },
+                        });
+                      }
+                    } else {
+                      subPath.node.params[1] = {
+                        type: 'Identifier',
+                        name: 'context',
+                      };
                     }
                   }
                 },

@@ -55,6 +55,11 @@ catalogs:
       specifier: ^2.7.1
       version: 2.7.1
 
+patchedDependencies:
+  '@vue-mini/core':
+    hash: 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
+    path: patches/@vue-mini__core.patch
+
 importers:
 
   .:
@@ -103,7 +108,7 @@ importers:
         version: 18.3.20
       '@vue-mini/core':
         specifier: ^1.2.2
-        version: 1.2.2
+        version: 1.2.2(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)
       best-shot:
         specifier: workspace:~
         version: link:tools/best-shot
@@ -7485,7 +7490,7 @@ snapshots:
 
   '@volue/wasm-codecs-gifsicle@1.0.0': {}
 
-  '@vue-mini/core@1.2.2':
+  '@vue-mini/core@1.2.2(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)':
     dependencies:
       '@vue/reactivity': 3.5.13
       miniprogram-api-typings: 4.0.5

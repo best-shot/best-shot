@@ -20,3 +20,6 @@ catalog:
   sort-keys: ^5.1.0
   webpack: ^5.99.6
   yaml: ^2.7.1
+
+patchedDependencies:
+  '@vue-mini/core': patches/@vue-mini__core.patch

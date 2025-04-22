@@ -1,0 +1,13 @@
+diff --git a/dist/vue-mini.esm-bundler.js b/dist/vue-mini.esm-bundler.js
+index e0df1e9124a0bd2d3563c37f1872508f0278d3ce..bef25fdb873d4498cd3c5455634571ebe6214ad8 100644
+--- a/dist/vue-mini.esm-bundler.js
++++ b/dist/vue-mini.esm-bundler.js
+@@ -242,7 +242,7 @@ function inject(key, defaultValue, treatDefaultAsFactory = false) {
+ let currentApp = null;
+ let currentPage = null;
+ let currentComponent = null;
+-function getCurrentInstance() {
++export function getCurrentInstance() {
+     return currentPage || currentComponent;
+ }
+ function setCurrentApp(app) {

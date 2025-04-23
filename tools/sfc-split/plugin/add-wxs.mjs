@@ -3,6 +3,7 @@ import { extname, join, relative } from 'node:path';
 
 import slash from 'slash';
 
+import { createEmitFile } from '../helper/hooks.mjs';
 import { CLSX_PLACEHOLDER } from '../helper/index.mjs';
 
 const PLUGIN_NAME = 'AddWxsPlugin';
@@ -22,15 +23,14 @@ export class AddWxsPlugin {
     const wxsContent = getWxsContent();
 
     compiler.hooks.make.tap(PLUGIN_NAME, (compilation) => {
-      compilation.hooks.processAssets.tap(
-        {
-          name: PLUGIN_NAME,
-          stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
-        },
-        () => {
-          compilation.emitAsset(WXS_FILENAME, new RawSource(wxsContent));
-        },
-      );
+      const emitFile = createEmitFile({
+        PLUGIN_NAME,
+        compilation,
+        RawSource,
+        Compilation,
+      });
+
+      emitFile(WXS_FILENAME, wxsContent);
 
       compilation.hooks.processAssets.tap(
         {

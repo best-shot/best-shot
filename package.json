@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@vue-mini/core": "^1.2.2",
+    "clsx": "^2.1.1",
     "react": "catalog:",
     "react-dom": "catalog:",
     "vue": "~3.5.13"
@@ -44,15 +45,15 @@
     "@babel/core": "^7.26.10",
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.6.0",
-    "@nice-move/all-in-base": "^0.4.20",
+    "@nice-move/all-in-base": "^0.4.21",
     "@nice-move/syncpack-config": "^0.3.0",
     "@tailwindcss/postcss": "^4.1.4",
     "ava": "^6.2.0",
-    "eslint": "^9.25.0",
+    "eslint": "^9.25.1",
     "garou": "^0.9.5",
-    "nodemon": "^3.1.9",
+    "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
-    "stylelint": "^16.18.0",
+    "stylelint": "^16.19.0",
     "syncpack": "^13.0.3",
     "tailwindcss": "^4.1.4",
     "typescript": "~5.8.3",
@@ -76,9 +77,15 @@
     "@types/react": "~18.3.20",
     "best-shot": "workspace:~"
   },
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.9.0",
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"
+  },
+  "ava": {
+    "require": [
+      "./tests/helper/setup.mjs"
+    ],
+    "workerThreads": false
   },
   "nodemonConfig": {
     "delay": 5,

@@ -2,13 +2,13 @@ function getKeys(object) {
   var keys = [];
 
   var jsonString = JSON.stringify(object);
-  var keyValues = jsonString.slice(1, -1).split(',');
+  var keyValuePairs = jsonString.slice(1, -1).split(',');
 
-  keyValues.forEach(function forEach(keyValue) {
-    var parts = keyValue.split(':');
+  keyValuePairs.forEach(function forEach(keyValuePair) {
+    var keyValueSplit = keyValuePair.split(':');
 
-    var key = parts[0].replace(getRegExp('^"|"$', 'g'), '');
-    var value = parts[1] ? JSON.parse(parts[1]) : false;
+    var key = keyValueSplit[0].replace(getRegExp('^"|"$', 'g'), '');
+    var value = keyValueSplit[1] ? JSON.parse(keyValueSplit[1]) : false;
     if (value) {
       keys.push(key);
     }
@@ -17,57 +17,59 @@ function getKeys(object) {
   return keys;
 }
 
-function toVal(mix) {
-  var str = '';
+function toVal(input) {
+  var result = '';
 
-  if (typeof mix === 'string' || typeof mix === 'number') {
-    str += mix;
-  } else if (typeof mix === 'object' && mix !== null) {
-    if (mix.constructor === 'Array') {
-      var len = mix.length;
-      for (var k = 0; k < len; k++) {
-        if (mix[k]) {
-          var y = toVal(mix[k]);
-          if (y) {
-            if (str) {
-              str += ' ';
+  if (typeof input === 'string') {
+    result += input;
+  } else if (typeof input === 'number') {
+    result += input.toString();
+  } else if (typeof input === 'object' && input !== null) {
+    if (input.constructor === 'Array') {
+      var len = input.length;
+      for (var index = 0; index < len; index++) {
+        if (input[index]) {
+          var processedValue = toVal(input[index]);
+          if (processedValue) {
+            if (result) {
+              result += ' ';
             }
-            str += y;
+            result += processedValue;
           }
         }
       }
     } else {
-      var clx = getKeys(mix).join(' ');
-      if (clx) {
-        if (str) {
-          str += ' ';
+      var classNames = getKeys(input).join(' ');
+      if (classNames) {
+        if (result) {
+          result += ' ';
         }
-        str += clx;
+        result += classNames;
       }
     }
   }
 
-  return str;
+  return result;
 }
 
 function clsx() {
-  var tmp;
-  var x;
-  var str = '';
+  var currentArg;
+  var processedArg;
+  var result = '';
   var len = arguments.length;
   for (var i = 0; i < len; i++) {
-    tmp = arguments[i];
-    if (tmp) {
-      x = toVal(tmp);
-      if (x) {
-        if (str) {
-          str += ' ';
+    currentArg = arguments[i];
+    if (currentArg) {
+      processedArg = toVal(currentArg);
+      if (processedArg) {
+        if (result) {
+          result += ' ';
         }
-        str += x;
+        result += processedArg;
       }
     }
   }
-  return str;
+  return result;
 }
 
 module.exports = { clsx: clsx };

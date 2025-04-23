@@ -1,23 +1,9 @@
-import { resolve } from 'node:path';
-
 import { schema as copySchema } from 'copy-webpack/lib/schema.cjs';
 
 import { notEmpty } from '../lib/utils.mjs';
 
 function objectSize(object) {
   return Object.keys(object || {}).length > 1;
-}
-
-function fileExists(path) {
-  const filename = resolve(process.cwd(), path);
-
-  try {
-    import.meta.resolve(filename);
-
-    return [path];
-  } catch {
-    return [];
-  }
 }
 
 export function apply({
@@ -89,9 +75,6 @@ export function apply({
         name: [name, serve && devServer ? 'serve' : watch ? 'watch' : mode]
           .filter(Boolean)
           .join('-'),
-        buildDependencies: {
-          config: [fileExists('.best-shot/config.mjs')],
-        },
       });
     }
   };

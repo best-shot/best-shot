@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/cli",
-  "version": "0.18.3",
+  "version": "0.18.4",
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {

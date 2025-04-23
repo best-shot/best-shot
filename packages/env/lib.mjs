@@ -12,7 +12,7 @@ export function findConfig(rootPath) {
 
 export function mergeParams(
   { mode, watch: isWatch, serve: isServe },
-  { development, production, watch, serve, ...rest },
+  { development, production, watch, serve, ...rest } = {},
 ) {
   return filterData(
     mode === 'production'

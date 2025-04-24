@@ -65,7 +65,7 @@ export function transformer(ast, names, id, isSetup) {
                       },
                     });
 
-                    if (subPath2.node.propertie?.length > 0) {
+                    if (subPath2.node.properties?.length > 0) {
                       const hasRestElement = subPath2.node.properties.some(
                         (prop) => prop.type === 'RestElement',
                       );
@@ -95,7 +95,8 @@ export function transformer(ast, names, id, isSetup) {
                     path.traverse({
                       ObjectProperty(subPath3) {
                         if (
-                          names.includes(subPath3.node.key.name) &&
+                          (names.includes(subPath3.node.key.name) ||
+                            subPath3.node.key.name === 'props') &&
                           subPath3.parentPath.parentPath === subPath2
                         ) {
                           subPath3.remove();

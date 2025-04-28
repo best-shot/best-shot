@@ -1,7 +1,6 @@
+import { builtIn } from '@best-shot/core/built-in/index.mjs';
+import { BestShot } from '@best-shot/core/index.mjs';
 import test from 'ava';
-
-import { builtIn } from '../packages/core/built-in/index.mjs';
-import { BestShot } from '../packages/core/index.mjs';
 
 test('Right presets enum', (t) => {
   const io = new BestShot();

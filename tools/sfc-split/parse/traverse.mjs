@@ -29,7 +29,7 @@ const neadClean = ['loc', 'nameLoc', 'rawName', 'source', 'codegenNode'];
 function clear(node) {
   neadClean.forEach((key) => {
     if (key in node) {
-      if (node.type === 0) {
+      if (node.type === 0 && key === 'source') {
         node[key] = '';
       } else {
         delete node[key];
@@ -58,7 +58,9 @@ function traverseChildrenOrProps(items, visitor) {
 }
 
 export function traverse(ast, visitor = {}) {
-  if (!ast) return;
+  if (!ast) {
+    return;
+  }
 
   new Traverse(ast).forEach((ctx, node) => {
     if (typeof node === 'object' && node !== null) {

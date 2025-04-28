@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "best-shot-test",
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "@padcom/vue-ast-serializer": "0.0.1",
+    "@vue/compiler-sfc": "^3.5.13",
+    "clsx": "^2.1.1",
+    "diff": "^7.0.0",
+    "javascript-stringify": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@best-shot/core": "workspace:~",
+    "ava": "^6.2.0",
+    "prettier": "^3.5.3"
+  },
+  "engines": {
+    "node": ">=22.11.0 || ^20.18.0"
+  }
+}

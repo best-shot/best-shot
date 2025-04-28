@@ -29,14 +29,13 @@
     "lint:type": "tsc --noEmit",
     "lint:version": "syncpack lint",
     "prepare": "nice-move git hooks",
-    "snapshot": "ava --fail-fast -u -w",
-    "test": "ava --fail-fast",
+    "snapshot": "ava --fail-fast -u -w -s",
+    "test": "ava --fail-fast -s",
     "try": "nodemon",
     "version:pin": "syncpack fix-mismatches"
   },
   "dependencies": {
     "@vue-mini/core": "^1.2.2",
-    "clsx": "^2.1.1",
     "react": "catalog:",
     "react-dom": "catalog:",
     "vue": "~3.5.13"
@@ -45,7 +44,7 @@
     "@babel/core": "^7.26.10",
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.6.0",
-    "@nice-move/all-in-base": "^0.4.21",
+    "@nice-move/all-in-web": "^0.4.22",
     "@nice-move/syncpack-config": "^0.3.0",
     "@tailwindcss/postcss": "^4.1.4",
     "ava": "^6.2.0",
@@ -53,8 +52,8 @@
     "garou": "^0.9.5",
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
-    "stylelint": "^16.19.0",
-    "syncpack": "^13.0.3",
+    "stylelint": "^16.19.1",
+    "syncpack": "^13.0.4",
     "tailwindcss": "^4.1.4",
     "typescript": "~5.8.3",
     "webpack": "catalog:",
@@ -77,7 +76,7 @@
     "@types/react": "~18.3.20",
     "best-shot": "workspace:~"
   },
-  "packageManager": "pnpm@10.9.0",
+  "packageManager": "pnpm@10.10.0",
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"
   },
@@ -86,6 +85,13 @@
       "./tests/helper/setup.mjs"
     ],
     "workerThreads": false
+  },
+  "nice-move": {
+    "ignore": {
+      "all": [
+        "**/tests/fixtures/**"
+      ]
+    }
   },
   "nodemonConfig": {
     "delay": 5,
@@ -101,6 +107,9 @@
     ]
   },
   "prettier": "@nice-move/prettier-config",
+  "stylelint": {
+    "extends": "@nice-move/stylelint-config"
+  },
   "x-readme": {
     "logo": "https://cdn.jsdelivr.net/gh/best-shot/best-shot/packages/core/logo.svg"
   }

@@ -1,16 +1,6 @@
 'use strict';
 
-const { parse, generate } = require('wxml-parse');
-const tabToSpace = require('tab-to-space');
-
-function transform(source) {
-  const ast = parse(source);
-  const io = generate(ast, {
-    maxWidth: 80,
-    // compress: true,
-  });
-  return tabToSpace(io, 2);
-}
+const { pretty } = require('../parse/pretty.cjs');
 
 module.exports = function loader(source) {
   this.cacheable();
@@ -18,7 +8,7 @@ module.exports = function loader(source) {
   const callback = this.async();
 
   try {
-    callback(null, transform(source));
+    callback(null, pretty(source));
   } catch (error) {
     console.error(error);
     callback(null, source);

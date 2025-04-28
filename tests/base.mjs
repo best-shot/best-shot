@@ -1,8 +1,7 @@
+import * as define from '@best-shot/core/built-in/apply-define.mjs';
+import { BestShot } from '@best-shot/core/index.mjs';
+import { Schema } from '@best-shot/core/lib/schema.mjs';
 import test from 'ava';
-
-import * as define from '../packages/core/built-in/apply-define.mjs';
-import { BestShot } from '../packages/core/index.mjs';
-import { Schema } from '../packages/core/lib/schema.mjs';
 
 const example = {
   mode: 'development',

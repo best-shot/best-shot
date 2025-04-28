@@ -1,4 +1,4 @@
-import base from '@nice-move/all-in-base';
+import base from '@nice-move/all-in-web';
 
 export default [
   ...base,

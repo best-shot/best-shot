@@ -5,7 +5,7 @@
   "type": "module",
   "dependencies": {
     "@padcom/vue-ast-serializer": "0.0.1",
-    "@vue/compiler-sfc": "^3.5.13",
+    "@vue/compiler-sfc": "^3.5.14",
     "clsx": "^2.1.1",
     "diff": "^7.0.0",
     "javascript-stringify": "^2.1.0"

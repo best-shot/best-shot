@@ -18,7 +18,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/core",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/core"
   },
   "bugs": {
@@ -40,7 +40,7 @@
     "json-minimizer-webpack-plugin": "^5.0.1",
     "slash": "^5.1.0",
     "slash-to-regexp": "catalog:",
-    "terser": "^5.39.0",
+    "terser": "^5.39.1",
     "terser-webpack-plugin": "^5.3.14",
     "yaml-loader": "^0.8.1"
   },

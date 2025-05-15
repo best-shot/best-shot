@@ -11,7 +11,7 @@
   "homepage": "https://github.com/best-shot/best-shot",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git"
+    "url": "git+https://github.com/best-shot/best-shot.git"
   },
   "bugs": {
     "url": "https://github.com/best-shot/best-shot/issues"
@@ -38,23 +38,23 @@
     "@vue-mini/core": "^1.2.2",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "vue": "~3.5.13"
+    "vue": "~3.5.14"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
+    "@babel/core": "^7.27.1",
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.6.0",
-    "@nice-move/all-in-web": "^0.4.22",
+    "@nice-move/all-in-web": "^0.4.26",
     "@nice-move/syncpack-config": "^0.3.0",
-    "@tailwindcss/postcss": "^4.1.4",
-    "ava": "^6.2.0",
-    "eslint": "^9.25.1",
-    "garou": "^0.9.5",
+    "@tailwindcss/postcss": "^4.1.6",
+    "ava": "^6.3.0",
+    "eslint": "^9.26.0",
+    "garou": "^0.9.7",
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
     "stylelint": "^16.19.1",
     "syncpack": "^13.0.4",
-    "tailwindcss": "^4.1.4",
+    "tailwindcss": "^4.1.6",
     "typescript": "~5.8.3",
     "webpack": "catalog:",
     "webpack-cli": "^6.0.1"
@@ -73,10 +73,10 @@
     "@best-shot/preset-vue": "workspace:~",
     "@best-shot/preset-web": "workspace:~",
     "@best-shot/sfc-split-plugin": "workspace:~",
-    "@types/react": "~18.3.20",
+    "@types/react": "~18.3.21",
     "best-shot": "workspace:~"
   },
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.11.0",
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"
   },

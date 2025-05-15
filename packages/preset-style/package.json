@@ -26,7 +26,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-style",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/preset-style"
   },
   "bugs": {
@@ -37,16 +37,16 @@
   "dependencies": {
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
-    "cssnano": "^7.0.6",
+    "cssnano": "^7.0.7",
     "ext-to-regexp": "catalog:",
     "less": "^4.3.0",
-    "less-loader": "^12.2.0",
+    "less-loader": "^12.3.0",
     "mini-css-extract-plugin": "^2.9.2",
     "postcss": "^8.5.3",
     "postcss-loader": "^8.1.1",
     "postcss-preset-evergreen": "^0.8.1",
     "resolve-url-loader": "^5.0.0",
-    "sass-embedded": "^1.86.3",
+    "sass-embedded": "^1.88.0",
     "sass-loader": "^16.0.5",
     "settingz": "catalog:",
     "slash-to-regexp": "catalog:",

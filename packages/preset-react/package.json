@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.17.4",
+  "version": "0.17.5",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
@@ -22,7 +22,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-react",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/preset-react"
   },
   "bugs": {
@@ -31,10 +31,10 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "@babel/plugin-transform-react-constant-elements": "^7.25.9",
-    "@babel/plugin-transform-react-inline-elements": "^7.25.9",
-    "@babel/preset-react": "^7.26.3",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.16",
+    "@babel/plugin-transform-react-constant-elements": "^7.27.1",
+    "@babel/plugin-transform-react-inline-elements": "^7.27.1",
+    "@babel/preset-react": "^7.27.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "react-refresh": "^0.17.0"
   },

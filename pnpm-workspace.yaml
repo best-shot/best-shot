@@ -3,11 +3,11 @@ packages:
   - tools/*
   - tests
 catalog:
-  browserslist: ^4.24.4
+  browserslist: ^4.24.5
   chalk: ^5.4.1
   cheetor: ^0.13.0
-  core-js: ^3.41.0
-  core-js-pure: ^3.41.0
+  core-js: ^3.42.0
+  core-js-pure: ^3.42.0
   deepmerge-ts: ^7.1.5
   ext-to-regexp: ^0.1.0
   flat: ^6.0.1
@@ -18,7 +18,7 @@ catalog:
   settingz: ^0.2.0
   slash-to-regexp: ^0.1.0
   sort-keys: ^5.1.0
-  webpack: ^5.99.7
+  webpack: ^5.99.8
   yaml: ^2.7.1
 patchedDependencies:
   '@vue-mini/core': patches/@vue-mini__core.patch

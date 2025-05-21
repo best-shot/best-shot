@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-web",
-  "version": "0.17.2",
+  "version": "0.17.3",
   "description": "A `best-shot` preset for web project",
   "license": "MIT",
   "author": {
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-web",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/preset-web"
   },
   "bugs": {

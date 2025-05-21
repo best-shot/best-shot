@@ -18,8 +18,9 @@ catalog:
   settingz: ^0.2.0
   slash-to-regexp: ^0.1.0
   sort-keys: ^5.1.0
-  webpack: ^5.99.8
-  yaml: ^2.7.1
+  webpack: ^5.99.9
+  yaml: ^2.8.0
+
 patchedDependencies:
   '@vue-mini/core': patches/@vue-mini__core.patch
   ava: patches/ava.patch

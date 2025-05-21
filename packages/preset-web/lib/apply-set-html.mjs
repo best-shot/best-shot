@@ -15,7 +15,7 @@ const darkTag = {
   innerHTML: css`
     @media (prefers-color-scheme: dark) {
       html {
-        background-color: black;
+        background-color: var(--dark-bg, black);
       }
     }
   `,

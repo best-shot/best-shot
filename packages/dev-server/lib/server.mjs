@@ -68,7 +68,7 @@ export class DevServer extends WebpackDevServer {
           });
 
           if (typeof options.setupMiddlewares === 'function') {
-            options.setupMiddlewares(middlewares, devServer, express);
+            return options.setupMiddlewares(middlewares, devServer, express);
           }
 
           return middlewares;

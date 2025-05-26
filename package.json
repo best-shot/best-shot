@@ -35,7 +35,7 @@
     "version:pin": "syncpack fix-mismatches"
   },
   "dependencies": {
-    "@vue-mini/core": "^1.2.2",
+    "@vue-mini/core": "^1.2.3",
     "react": "catalog:",
     "react-dom": "catalog:",
     "vue": "~3.5.14"
@@ -45,7 +45,7 @@
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.6.0",
     "@nice-move/all-in-web": "^0.4.28",
-    "@nice-move/syncpack-config": "^0.3.0",
+    "@nice-move/syncpack-config": "^0.4.0",
     "@tailwindcss/postcss": "^4.1.7",
     "ava": "^6.3.0",
     "eslint": "^9.27.0",
@@ -73,7 +73,7 @@
     "@best-shot/preset-vue": "workspace:~",
     "@best-shot/preset-web": "workspace:~",
     "@best-shot/sfc-split-plugin": "workspace:~",
-    "@types/react": "~18.3.21",
+    "@types/react": "~18.3.22",
     "best-shot": "workspace:~"
   },
   "packageManager": "pnpm@10.11.0",

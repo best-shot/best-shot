@@ -273,8 +273,8 @@ importers:
         specifier: 'catalog:'
         version: 0.1.0
       terser:
-        specifier: ^5.39.1
-        version: 5.39.1
+        specifier: ^5.39.2
+        version: 5.40.0
       terser-webpack-plugin:
         specifier: ^5.3.14
         version: 5.3.14(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))
@@ -624,8 +624,8 @@ importers:
         specifier: 'catalog:'
         version: 4.24.5
       terser:
-        specifier: ^5.39.1
-        version: 5.39.1
+        specifier: ^5.39.2
+        version: 5.40.0
       terser-webpack-plugin:
         specifier: ^5.3.14
         version: 5.3.14(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))
@@ -5888,8 +5888,8 @@ packages:
       uglify-js:
         optional: true
 
-  terser@5.39.1:
-    resolution: {integrity: sha512-Mm6+uad0ZuDtcV8/4uOZQDQ8RuiC5Pu+iZRedJtF7yA/27sPL7d++In/AJKpWZlU3SYMPPkVfwetn6sgZ66pUA==}
+  terser@5.40.0:
+    resolution: {integrity: sha512-cfeKl/jjwSR5ar7d0FGmave9hFGJT8obyo0z+CrQOylLDbk7X81nPU6vq9VORa5jU30SkDnT2FXjLbR8HLP+xA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -9650,7 +9650,7 @@ snapshots:
       he: 1.2.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.39.1
+      terser: 5.40.0
 
   html-minifier-terser@7.2.0:
     dependencies:
@@ -9660,7 +9660,7 @@ snapshots:
       entities: 4.5.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.39.1
+      terser: 5.40.0
 
   html-minimizer-webpack-plugin@5.0.2(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9))):
     dependencies:
@@ -12032,10 +12032,10 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 4.3.2
       serialize-javascript: 6.0.2
-      terser: 5.39.1
+      terser: 5.40.0
       webpack: 5.99.9(webpack-cli@6.0.1(webpack@5.99.9))
 
-  terser@5.39.1:
+  terser@5.40.0:
     dependencies:
       '@jridgewell/source-map': 0.3.6
       acorn: 8.14.1

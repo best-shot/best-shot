@@ -17,7 +17,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/config",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/config"
   },
   "bugs": {
@@ -26,13 +26,13 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "@best-shot/env": "workspace:~",
-    "@best-shot/validator": "workspace:~",
+    "@best-shot/env": "workspace:^",
+    "@best-shot/validator": "workspace:^",
     "chalk": "catalog:",
     "prompts": "^2.4.2"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:~"
+    "@best-shot/core": "workspace:^"
   },
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"

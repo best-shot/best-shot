@@ -4,15 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
-    "@padcom/vue-ast-serializer": "0.0.1",
-    "@vue/compiler-sfc": "^3.5.14",
+    "@padcom/vue-ast-serializer": "^0.0.1",
+    "@vue/compiler-sfc": "~3.5.16",
     "clsx": "^2.1.1",
-    "diff": "^7.0.0",
+    "diff": "^8.0.2",
     "javascript-stringify": "^2.1.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:~",
-    "ava": "^6.2.0",
+    "@best-shot/core": "workspace:^",
+    "ava": "^6.4.0",
     "prettier": "^3.5.3"
   },
   "engines": {

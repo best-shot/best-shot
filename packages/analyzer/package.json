@@ -19,7 +19,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/analyzer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/analyzer"
   },
   "bugs": {
@@ -28,12 +28,12 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "@best-shot/config": "workspace:~",
+    "@best-shot/config": "workspace:^",
     "webpack-bundle-analyzer": "^4.10.2"
   },
   "peerDependencies": {
-    "@best-shot/cli": "workspace:~",
-    "@best-shot/core": "workspace:~"
+    "@best-shot/cli": "workspace:^",
+    "@best-shot/core": "workspace:^"
   },
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"

@@ -19,7 +19,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/cli",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/cli"
   },
   "bugs": {
@@ -35,13 +35,13 @@
   "main": "bin/index.mjs",
   "type": "module",
   "dependencies": {
-    "@best-shot/config": "workspace:~",
+    "@best-shot/config": "workspace:^",
     "chalk": "catalog:",
     "cheetor": "catalog:",
     "webpackbar": "^7.0.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:~",
+    "@best-shot/core": "workspace:^",
     "webpack": "catalog:"
   },
   "engines": {

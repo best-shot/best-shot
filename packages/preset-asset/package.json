@@ -28,7 +28,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/preset-asset",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/preset-asset"
   },
   "bugs": {
@@ -46,7 +46,7 @@
     "svgo-config": "^0.9.1"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:~"
+    "@best-shot/core": "workspace:^"
   },
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"

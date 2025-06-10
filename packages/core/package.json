@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.12.17",
+  "version": "0.12.18",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -27,9 +27,9 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "@best-shot/env": "workspace:~",
-    "@best-shot/no-cache-loader": "workspace:~",
-    "@best-shot/validator": "workspace:~",
+    "@best-shot/env": "workspace:^",
+    "@best-shot/no-cache-loader": "workspace:^",
+    "@best-shot/validator": "workspace:^",
     "@best-shot/webpack-chain": "^8.1.12",
     "browserslist": "catalog:",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
@@ -40,7 +40,7 @@
     "json-minimizer-webpack-plugin": "^5.0.1",
     "slash": "^5.1.0",
     "slash-to-regexp": "catalog:",
-    "terser": "^5.39.1",
+    "terser": "^5.42.0",
     "terser-webpack-plugin": "^5.3.14",
     "yaml-loader": "^0.8.1"
   },

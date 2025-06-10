@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.17.5",
+  "version": "0.17.6",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
@@ -39,8 +39,8 @@
     "react-refresh": "^0.17.0"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:~",
-    "@best-shot/preset-babel": "workspace:~",
+    "@best-shot/core": "workspace:^",
+    "@best-shot/preset-babel": "workspace:^",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

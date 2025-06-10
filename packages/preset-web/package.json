@@ -43,7 +43,7 @@
     "webpack-subresource-integrity": "5.2.0-rc.1"
   },
   "peerDependencies": {
-    "@best-shot/core": "workspace:~",
+    "@best-shot/core": "workspace:^",
     "webpack": "catalog:"
   },
   "engines": {

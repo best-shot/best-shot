@@ -25,3 +25,8 @@ catalog:
 patchedDependencies:
   '@vue-mini/core': patches/@vue-mini__core.patch
   ava: patches/ava.patch
+
+updateConfig:
+  ignoreDependencies:
+    - express
+    - svgo

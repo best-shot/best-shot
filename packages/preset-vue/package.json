@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-vue",
-  "version": "0.15.2",
+  "version": "0.15.3",
   "description": "A `best-shot` preset for Vue project",
   "license": "MIT",
   "author": {
@@ -34,8 +34,8 @@
   "peerDependencies": {
     "@best-shot/core": "workspace:^",
     "@best-shot/preset-style": "workspace:^",
-    "@vue/compiler-sfc": "~3.5.16",
-    "vue": "~3.5.16"
+    "@vue/compiler-sfc": "~3.5.17",
+    "vue": "~3.5.17"
   },
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"

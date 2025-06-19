@@ -4,7 +4,7 @@ export function apply({ config: { mini: { type } = {} } }) {
       .publicPath('/')
       .iife(false)
       .filename('[name].js')
-      .globalObject('globalThis')
+      .globalObject('global')
       .strictModuleErrorHandling(false)
       .importFunctionName('require.async')
       .environment({

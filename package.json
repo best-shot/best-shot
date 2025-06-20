@@ -81,9 +81,6 @@
     "node": ">=22.11.0 || ^20.18.0"
   },
   "ava": {
-    "require": [
-      "./tests/helper/setup.mjs"
-    ],
     "workerThreads": false
   },
   "nice-move": {

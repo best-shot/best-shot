@@ -10,7 +10,7 @@ const PLUGIN_NAME = 'AddWxsPlugin';
 const WXS_FILENAME = 'wxs/clsx.wxs';
 
 function getWxsContent() {
-  return readFileSync(new URL('../wxs/clsx.wxs', import.meta.url), 'utf8');
+  return readFileSync(import.meta.resolve('@into-mini/clsx/index.wxs'), 'utf8');
 }
 
 export class AddWxsPlugin {

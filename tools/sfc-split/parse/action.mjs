@@ -1,9 +1,12 @@
+import {
+  ElementTypes,
+  NodeTypes,
+  traverse,
+} from '@into-mini/sfc-template-traverse';
 import { serializeTemplate } from '@padcom/vue-ast-serializer';
 import { kebabCase } from 'change-case';
 
 import { CLSX_PLACEHOLDER } from '../helper/index.mjs';
-
-import { ElementTypes, NodeTypes, traverse } from './traverse.mjs';
 
 const actions = {
   click: 'tap',

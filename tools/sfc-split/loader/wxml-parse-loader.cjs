@@ -1,6 +1,6 @@
 'use strict';
 
-const { pretty } = require('../parse/pretty.cjs');
+const { pretty } = require('@into-mini/sfc-template-traverse/pretty.cjs');
 
 module.exports = function loader(source) {
   this.cacheable();

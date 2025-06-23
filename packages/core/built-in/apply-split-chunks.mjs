@@ -11,6 +11,10 @@ function mapValues(obj, func) {
   );
 }
 
+function pick(obj) {
+  return Object.fromEntries(Object.entries(obj).filter(([_, value]) => value));
+}
+
 const force = {
   enforce: true,
   reuseExistingChunk: true,
@@ -23,12 +27,12 @@ export function apply({ config: { optimization = {}, vendors = {} } }) {
     }
 
     if (optimization.splitChunks) {
-      const obj = {
-        ...(vendors.shim ? { shim: vendors.shim } : undefined),
-        ...(vendors.react ? { react: vendors.react } : undefined),
-        ...(vendors.vue ? { vue: vendors.vue } : undefined),
+      const obj = pick({
+        ...(vendors.shim === undefined ? undefined : { shim: vendors.shim }),
+        ...(vendors.react === undefined ? undefined : { react: vendors.react }),
+        ...(vendors.vue === undefined ? undefined : { vue: vendors.vue }),
         ...vendors,
-      };
+      });
 
       const settings = mapValues(obj, (value, key, index, length) => {
         const mod = Array.isArray(value) ? `(${value.join('|')})` : value;
@@ -78,6 +82,7 @@ export const schema = {
   vendors: {
     additionalProperties: {
       oneOf: [
+        { const: false },
         regexpFormat,
         {
           items: regexpFormat,

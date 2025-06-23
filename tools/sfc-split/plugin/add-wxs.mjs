@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { extname, join, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import slash from 'slash';
 
@@ -10,7 +11,10 @@ const PLUGIN_NAME = 'AddWxsPlugin';
 const WXS_FILENAME = 'wxs/clsx.wxs';
 
 function getWxsContent() {
-  return readFileSync(import.meta.resolve('@into-mini/clsx/index.wxs'), 'utf8');
+  return readFileSync(
+    fileURLToPath(import.meta.resolve('@into-mini/clsx/index.wxs')),
+    'utf8',
+  );
 }
 
 export class AddWxsPlugin {

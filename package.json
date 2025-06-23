@@ -44,15 +44,15 @@
     "@babel/core": "^7.27.4",
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.6.1",
-    "@nice-move/all-in-web": "^0.4.30",
+    "@nice-move/all-in-web": "^0.5.1",
     "@nice-move/syncpack-config": "^0.4.0",
     "@tailwindcss/postcss": "^4.1.10",
     "ava": "^6.4.0",
     "eslint": "^9.29.0",
-    "garou": "^0.9.9",
+    "garou": "^0.9.11",
     "nodemon": "^3.1.10",
-    "prettier": "^3.5.3",
-    "stylelint": "^16.20.0",
+    "prettier": "^3.6.0",
+    "stylelint": "^16.21.0",
     "syncpack": "^13.0.4",
     "tailwindcss": "^4.1.10",
     "typescript": "~5.8.3",
@@ -76,7 +76,7 @@
     "@types/react": "~18.3.23",
     "best-shot": "workspace:^"
   },
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.12.2",
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"
   },

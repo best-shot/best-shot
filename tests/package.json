@@ -6,7 +6,7 @@
   "peerDependencies": {
     "@best-shot/core": "workspace:^",
     "ava": "^6.4.0",
-    "prettier": "^3.5.3"
+    "prettier": "^3.6.0"
   },
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"

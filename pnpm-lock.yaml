@@ -103,9 +103,6 @@ importers:
       '@best-shot/preset-web':
         specifier: workspace:^
         version: link:packages/preset-web
-      '@best-shot/sfc-split-plugin':
-        specifier: workspace:^
-        version: link:tools/sfc-split
       '@types/react':
         specifier: ~18.3.23
         version: 18.3.23
@@ -423,8 +420,8 @@ importers:
         specifier: workspace:^
         version: link:../preset-style
       '@best-shot/sfc-split-plugin':
-        specifier: workspace:^
-        version: link:../../tools/sfc-split
+        specifier: ^0.14.0
+        version: 0.14.0(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))
       yaml:
         specifier: 'catalog:'
         version: 2.8.0
@@ -626,48 +623,6 @@ importers:
       webpack:
         specifier: 'catalog:'
         version: 5.99.9(webpack-cli@6.0.1(webpack@5.99.9))
-
-  tools/sfc-split:
-    dependencies:
-      '@babel/generator':
-        specifier: ^7.27.5
-        version: 7.27.5
-      '@babel/traverse':
-        specifier: ^7.27.4
-        version: 7.27.4
-      '@into-mini/clsx':
-        specifier: ^0.0.0
-        version: 0.0.0
-      '@into-mini/sfc-template-traverse':
-        specifier: ^0.0.0
-        version: 0.0.0(@vue/compiler-core@3.5.17)
-      '@padcom/vue-ast-serializer':
-        specifier: ^0.0.1
-        version: 0.0.1(@vue/compiler-core@3.5.17)(@vue/compiler-sfc@3.5.17)
-      '@vue/compiler-core':
-        specifier: ~3.5.17
-        version: 3.5.17
-      '@vue/compiler-sfc':
-        specifier: ~3.5.17
-        version: 3.5.17
-      change-case:
-        specifier: ^5.4.4
-        version: 5.4.4
-      deepmerge-ts:
-        specifier: 'catalog:'
-        version: 7.1.5
-      slash:
-        specifier: ^5.1.0
-        version: 5.1.0
-      webpack:
-        specifier: 'catalog:'
-        version: 5.99.9(webpack-cli@6.0.1(webpack@5.99.9))
-      webpack-virtual-modules:
-        specifier: ^0.6.2
-        version: 0.6.2
-      yaml:
-        specifier: 'catalog:'
-        version: 2.8.0
 
 packages:
 
@@ -1232,6 +1187,12 @@ packages:
   '@babel/types@7.27.6':
     resolution: {integrity: sha512-ETyHEk2VHHvl9b9jZP5IHPavHYk57EhanlRRuae9XCpb/j5bDCbPPMOBfCWhnl/7EDJz0jEMCi/RhccCE8r1+Q==}
     engines: {node: '>=6.9.0'}
+
+  '@best-shot/sfc-split-plugin@0.14.0':
+    resolution: {integrity: sha512-n+HAPszVTSH7DtlIGh0HB7GVlEqy/ScCZN20b+CI8OOSOx1fAqkSDATjyACyd34E5yIv5hTWiK9RVhTpXeEjBA==}
+    engines: {node: '>=22.11.0'}
+    peerDependencies:
+      webpack: ^5.99.9
 
   '@best-shot/vue-loader@17.4.9':
     resolution: {integrity: sha512-gsX3KgjxFMzq/KkE52dPKfJ0qMzvqr/JRhSkxdVJbVMdLfuQEo5g+iIv8ExXACYmFbhwJ1KK0R5CpnylbzTR6A==}
@@ -7097,6 +7058,24 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
+
+  '@best-shot/sfc-split-plugin@0.14.0(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))':
+    dependencies:
+      '@babel/generator': 7.27.5
+      '@babel/traverse': 7.27.4
+      '@into-mini/clsx': 0.0.0
+      '@into-mini/sfc-template-traverse': 0.0.0(@vue/compiler-core@3.5.17)
+      '@padcom/vue-ast-serializer': 0.0.1(@vue/compiler-core@3.5.17)(@vue/compiler-sfc@3.5.17)
+      '@vue/compiler-core': 3.5.17
+      '@vue/compiler-sfc': 3.5.17
+      change-case: 5.4.4
+      deepmerge-ts: 7.1.5
+      slash: 5.1.0
+      webpack: 5.99.9(webpack-cli@6.0.1(webpack@5.99.9))
+      webpack-virtual-modules: 0.6.2
+      yaml: 2.8.0
+    transitivePeerDependencies:
+      - supports-color
 
   '@best-shot/vue-loader@17.4.9(vue@3.5.17(typescript@5.8.3))(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))':
     dependencies:

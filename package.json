@@ -72,7 +72,6 @@
     "@best-shot/preset-style": "workspace:^",
     "@best-shot/preset-vue": "workspace:^",
     "@best-shot/preset-web": "workspace:^",
-    "@best-shot/sfc-split-plugin": "workspace:^",
     "@types/react": "~18.3.23",
     "best-shot": "workspace:^"
   },

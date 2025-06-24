@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/env",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -17,7 +17,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/env",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/env"
   },
   "bugs": {

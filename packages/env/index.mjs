@@ -21,10 +21,10 @@ export function pretty(data) {
   }
 }
 
-export function getEnv({ root, mode, serve, watch }) {
+export function getEnv({ root, mode, serve, watch, name }) {
   const { filePath, config } = findConfig(root);
 
-  const envs = mergeParams({ mode, serve, watch }, config);
+  const envs = mergeParams({ mode, serve, watch, name }, config);
 
   return { filePath, envs };
 }

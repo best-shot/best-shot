@@ -35,7 +35,7 @@ export function apply({ cwd: root, config: { define = {} } }) {
       default: { DefinePlugin },
     } = await import('webpack');
 
-    const { envs } = getEnv({ root, mode, serve, watch });
+    const { envs } = getEnv({ root, mode, serve, watch, name });
 
     pretty(envs);
 

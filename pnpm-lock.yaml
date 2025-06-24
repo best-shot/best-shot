@@ -420,8 +420,8 @@ importers:
         specifier: workspace:^
         version: link:../preset-style
       '@best-shot/sfc-split-plugin':
-        specifier: ^0.14.0
-        version: 0.14.0(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))
+        specifier: 0.14.6
+        version: 0.14.6(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))
       yaml:
         specifier: 'catalog:'
         version: 2.8.0
@@ -1188,8 +1188,8 @@ packages:
     resolution: {integrity: sha512-ETyHEk2VHHvl9b9jZP5IHPavHYk57EhanlRRuae9XCpb/j5bDCbPPMOBfCWhnl/7EDJz0jEMCi/RhccCE8r1+Q==}
     engines: {node: '>=6.9.0'}
 
-  '@best-shot/sfc-split-plugin@0.14.0':
-    resolution: {integrity: sha512-n+HAPszVTSH7DtlIGh0HB7GVlEqy/ScCZN20b+CI8OOSOx1fAqkSDATjyACyd34E5yIv5hTWiK9RVhTpXeEjBA==}
+  '@best-shot/sfc-split-plugin@0.14.6':
+    resolution: {integrity: sha512-ts/637+8qNUyXiI7RZnPCdV7GkXoSYdMI6oVP49Xhf8hZQcJafRjg+3EWxEqWDz0gAJEG542w5Py9VI/CtwK2g==}
     engines: {node: '>=22.11.0'}
     peerDependencies:
       webpack: ^5.99.9
@@ -1397,6 +1397,16 @@ packages:
     engines: {node: '>=22.11.0'}
     peerDependencies:
       '@vue/compiler-core': ~3.5.17
+
+  '@into-mini/sfc-transformer@0.3.0':
+    resolution: {integrity: sha512-6SClOrusZSUSNk3PvXqSpjapkVyZC0NpVvCmIpyNgsNezaRI7uITpXwU/1O8iArmXT1+m/qmK+cNWDBYfj0kHA==}
+    engines: {node: '>=22.11.0'}
+
+  '@into-mini/vue-mini-patch@0.0.0':
+    resolution: {integrity: sha512-Y69vNpH1MdQYSPZ5fTntCHKBGHgE0ApARKec1PFK4ikzmlJmwzwK7/NLT3+XSi9QIIMVr5RMgSaDr3115glCNA==}
+    engines: {node: '>=22.11.0'}
+    peerDependencies:
+      '@vue-mini/core': '>=1.2.3'
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -7059,22 +7069,18 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
 
-  '@best-shot/sfc-split-plugin@0.14.0(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))':
+  '@best-shot/sfc-split-plugin@0.14.6(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))':
     dependencies:
-      '@babel/generator': 7.27.5
-      '@babel/traverse': 7.27.4
       '@into-mini/clsx': 0.0.0
       '@into-mini/sfc-template-traverse': 0.0.0(@vue/compiler-core@3.5.17)
-      '@padcom/vue-ast-serializer': 0.0.1(@vue/compiler-core@3.5.17)(@vue/compiler-sfc@3.5.17)
-      '@vue/compiler-core': 3.5.17
-      '@vue/compiler-sfc': 3.5.17
-      change-case: 5.4.4
-      deepmerge-ts: 7.1.5
+      '@into-mini/sfc-transformer': 0.3.0(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)
       slash: 5.1.0
       webpack: 5.99.9(webpack-cli@6.0.1(webpack@5.99.9))
       webpack-virtual-modules: 0.6.2
       yaml: 2.8.0
     transitivePeerDependencies:
+      - '@vue-mini/core'
+      - '@vue/compiler-core'
       - supports-color
 
   '@best-shot/vue-loader@17.4.9(vue@3.5.17(typescript@5.8.3))(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))':
@@ -7257,6 +7263,26 @@ snapshots:
       neotraverse: 0.6.18
       tab-to-space: 1.0.1
       wxml-parse: 0.2.3
+
+  '@into-mini/sfc-transformer@0.3.0(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)':
+    dependencies:
+      '@babel/generator': 7.27.5
+      '@babel/traverse': 7.27.4
+      '@into-mini/sfc-template-traverse': 0.0.0(@vue/compiler-core@3.5.17)
+      '@into-mini/vue-mini-patch': 0.0.0(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))
+      '@padcom/vue-ast-serializer': 0.0.1(@vue/compiler-core@3.5.17)(@vue/compiler-sfc@3.5.17)
+      '@vue/compiler-sfc': 3.5.17
+      change-case: 5.4.4
+      deepmerge-ts: 7.1.5
+      yaml: 2.8.0
+    transitivePeerDependencies:
+      - '@vue-mini/core'
+      - '@vue/compiler-core'
+      - supports-color
+
+  '@into-mini/vue-mini-patch@0.0.0(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))':
+    dependencies:
+      '@vue-mini/core': 1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)
 
   '@isaacs/cliui@8.0.2':
     dependencies:

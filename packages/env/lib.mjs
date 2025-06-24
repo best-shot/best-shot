@@ -11,18 +11,15 @@ export function findConfig(rootPath) {
 }
 
 export function mergeParams(
-  { mode, watch: isWatch, serve: isServe },
-  { development, production, watch, serve, ...rest } = {},
+  { mode, watch: isWatch, serve: isServe, name },
+  { development, production, watch, serve, [name]: naming, ...rest } = {},
 ) {
-  return filterData(
-    mode === 'production'
-      ? { ...rest, ...production }
-      : {
-          ...rest,
-          ...production,
-          ...development,
-          ...(isWatch || isServe ? watch : undefined),
-          ...(isServe ? serve : undefined),
-        },
-  );
+  return filterData({
+    ...rest,
+    ...production,
+    ...(mode === 'development' ? development : undefined),
+    ...(isWatch || isServe ? watch : undefined),
+    ...(isServe ? serve : undefined),
+    ...naming,
+  });
 }

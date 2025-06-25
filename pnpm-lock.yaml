@@ -420,7 +420,7 @@ importers:
         specifier: workspace:^
         version: link:../preset-style
       '@best-shot/sfc-split-plugin':
-        specifier: 0.14.6
+        specifier: ^0.14.6
         version: 0.14.6(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))
       yaml:
         specifier: 'catalog:'

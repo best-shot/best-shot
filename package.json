@@ -75,9 +75,9 @@
     "@types/react": "~18.3.23",
     "best-shot": "workspace:^"
   },
-  "packageManager": "pnpm@10.12.2",
+  "packageManager": "pnpm@10.12.3",
   "engines": {
-    "node": ">=22.11.0 || ^20.18.0"
+    "node": ">=22.11.0"
   },
   "ava": {
     "workerThreads": false

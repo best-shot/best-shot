@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -40,7 +40,7 @@
     "prettier": "^3.6.0"
   },
   "engines": {
-    "node": ">=22.11.0 || ^20.18.0"
+    "node": ">=22.11.0"
   },
   "publishConfig": {
     "access": "public",

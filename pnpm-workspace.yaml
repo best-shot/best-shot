@@ -30,3 +30,5 @@ updateConfig:
   ignoreDependencies:
     - express
     - svgo
+
+shamefullyHoist: true

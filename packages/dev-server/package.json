@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.20.4",
+  "version": "0.21.0",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -44,7 +44,7 @@
     "@best-shot/cli": "workspace:^"
   },
   "engines": {
-    "node": ">=22.11.0 || ^20.18.0"
+    "node": ">=22.11.0"
   },
   "publishConfig": {
     "access": "public",

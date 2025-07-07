@@ -4,7 +4,7 @@ packages:
   - tests
 
 catalog:
-  browserslist: ^4.25.0
+  browserslist: ^4.25.1
   chalk: ^5.4.1
   cheetor: ^0.13.0
   core-js: ^3.43.0
@@ -29,6 +29,5 @@ patchedDependencies:
 updateConfig:
   ignoreDependencies:
     - express
-    - svgo
 
 shamefullyHoist: true

@@ -84,6 +84,11 @@ export function apply({ config: { mini: { type } = {} } }) {
 
     const presets = ['vendor', 'common', 'shim', 'vue-mini', 'vue', 'react'];
 
+    const configs = ['project.config', 'project.private.config'];
+
+    chain.module.rule('yaml').issuerLayer({ not: configs });
+    chain.module.rule('json').issuerLayer({ not: configs });
+
     chain.optimization.avoidEntryIife(true);
 
     if (chain.optimization.splitChunks.get('cacheGroups')) {

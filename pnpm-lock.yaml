@@ -16,11 +16,11 @@ catalogs:
       specifier: ^0.13.0
       version: 0.13.0
     core-js:
-      specifier: ^3.43.0
-      version: 3.43.0
+      specifier: ^3.44.0
+      version: 3.44.0
     core-js-pure:
-      specifier: ^3.43.0
-      version: 3.43.0
+      specifier: ^3.44.0
+      version: 3.44.0
     deepmerge-ts:
       specifier: ^7.1.5
       version: 7.1.5
@@ -390,17 +390,17 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(@babel/core@7.28.0)(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))
       babel-preset-evergreen:
-        specifier: ^0.11.6
-        version: 0.11.6(@babel/core@7.28.0)
+        specifier: ^0.11.7
+        version: 0.11.7(@babel/core@7.28.0)
       browserslist:
         specifier: 'catalog:'
         version: 4.25.1
       core-js:
         specifier: 'catalog:'
-        version: 3.43.0
+        version: 3.44.0
       core-js-pure:
         specifier: 'catalog:'
-        version: 3.43.0
+        version: 3.44.0
       ext-to-regexp:
         specifier: 'catalog:'
         version: 0.1.0
@@ -420,8 +420,8 @@ importers:
         specifier: workspace:^
         version: link:../preset-style
       '@best-shot/sfc-split-plugin':
-        specifier: ^0.14.6
-        version: 0.14.19(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))
+        specifier: ^0.14.36
+        version: 0.14.36(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))
       yaml:
         specifier: 'catalog:'
         version: 2.8.0
@@ -1211,8 +1211,8 @@ packages:
     resolution: {integrity: sha512-jYnje+JyZG5YThjHiF28oT4SIZLnYOcSBb6+SDaFIyzDVSkXQmQQYclJ2R+YxcdmK0AX6x1E5OQNtuh3jHDrUg==}
     engines: {node: '>=6.9.0'}
 
-  '@best-shot/sfc-split-plugin@0.14.19':
-    resolution: {integrity: sha512-JmgYNf3L97J+J3Rfkp4SUL85J/Kc/gJLgj3+vs8nAXFE+NGvvAYMjU2AppSkgaVVMmo5yQo3T9BnS3uS2iDZ9w==}
+  '@best-shot/sfc-split-plugin@0.14.36':
+    resolution: {integrity: sha512-I59IXlMnYxapfupcrpeNhJDymolw12Cm95ckJsxntBYMT6+qMyJwIKMklny6wZVB67jKHeamJn2XJZrAYToxzA==}
     engines: {node: '>=22.11.0'}
     peerDependencies:
       webpack: ^5.99.9
@@ -1415,14 +1415,14 @@ packages:
     resolution: {integrity: sha512-fBL8T7ustU69dsS2Bo0T/8OHDjQ8s7DPjQ3h/28GDawLBN0pPnrMFls9/SjGLfAe8Rs+o6JxmL7e1fmvyQdnhw==}
     engines: {node: '>=22.11.0'}
 
-  '@into-mini/sfc-template-traverse@0.0.0':
-    resolution: {integrity: sha512-D/SBmoBvGrTMHXlrS6yYSAWEZsxkCPBecZjnyhP6+6LazOQrEDF6a7ntPO5oF+v0OAxFp437k93K1UXys40avw==}
+  '@into-mini/sfc-template-traverse@0.0.2':
+    resolution: {integrity: sha512-Yaz4YKVgGlj0QYyESWqEMmDyW39pDgShqjyGh049IBDnoS8DSrRRAxjzmDq8dUyZ1XclH7MFGCRCRmOLTQ/ItQ==}
     engines: {node: '>=22.11.0'}
     peerDependencies:
       '@vue/compiler-core': ~3.5.17
 
-  '@into-mini/sfc-transformer@0.3.0':
-    resolution: {integrity: sha512-6SClOrusZSUSNk3PvXqSpjapkVyZC0NpVvCmIpyNgsNezaRI7uITpXwU/1O8iArmXT1+m/qmK+cNWDBYfj0kHA==}
+  '@into-mini/sfc-transformer@0.4.3':
+    resolution: {integrity: sha512-NQAwFguPX95hUtJ1yJk/b7qxUUeFsyh8beunPQo4G5E59+6o18ht7zSUZA+MwNjaHk6MheZA0G+tQdVozRyQ1Q==}
     engines: {node: '>=22.11.0'}
 
   '@into-mini/vue-mini-patch@0.0.0':
@@ -1704,28 +1704,24 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@tailwindcss/oxide-linux-arm64-musl@4.1.11':
     resolution: {integrity: sha512-m/NVRFNGlEHJrNVk3O6I9ggVuNjXHIPoD6bqay/pubtYC9QIdAMpS+cswZQPBLvVvEF6GtSNONbDkZrjWZXYNQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@tailwindcss/oxide-linux-x64-gnu@4.1.11':
     resolution: {integrity: sha512-YW6sblI7xukSD2TdbbaeQVDysIm/UPJtObHJHKxDEcW2exAtY47j52f8jZXkqE1krdnkhCMGqP3dbniu1Te2Fg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@tailwindcss/oxide-linux-x64-musl@4.1.11':
     resolution: {integrity: sha512-e3C/RRhGunWYNC3aSF7exsQkdXzQ/M+aYuZHKnw4U7KQwTJotnWsGOIVih0s2qQzmEzOFIJ3+xt7iq67K/p56Q==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@tailwindcss/oxide-wasm32-wasi@4.1.11':
     resolution: {integrity: sha512-Xo1+/GU0JEN/C/dvcammKHzeM6NqKovG+6921MR6oadee5XPBaKOumrJCXvopJ/Qb5TH7LX/UAywbqrP4lax0g==}
@@ -2345,8 +2341,8 @@ packages:
   babel-plugin-transform-react-remove-prop-types@0.4.24:
     resolution: {integrity: sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==}
 
-  babel-preset-evergreen@0.11.6:
-    resolution: {integrity: sha512-0qhg8DSmFMbfKLpDzjeQKt8FSVS+Ty3A7i1yoUPJ6YhxhJiQ7/qf1oO4W/o8hdrAr2rLhH9Ua/ICvtoVOHUGJQ==}
+  babel-preset-evergreen@0.11.7:
+    resolution: {integrity: sha512-fkJz2qKAe0N1OG7cePWxHmu6YyRVcBfMlCIEXa64lN5TsUw+IvETxIyRR6LiqJKeHmldCjJgLz5eyIvYdEdX2g==}
     engines: {node: '>=20.18.0', pnpm: ^10.10.0}
     peerDependencies:
       '@babel/core': ^7.28.0
@@ -2689,11 +2685,17 @@ packages:
   core-js-compat@3.43.0:
     resolution: {integrity: sha512-2GML2ZsCc5LR7hZYz4AXmjQw8zuy2T//2QntwdnpuYI7jteT6GVYJL7F6C2C57R7gSYrcqVW3lAALefdbhBLDA==}
 
+  core-js-compat@3.44.0:
+    resolution: {integrity: sha512-JepmAj2zfl6ogy34qfWtcE7nHKAJnKsQFRn++scjVS2bZFllwptzw61BZcZFYBPpUznLfAvh0LGhxKppk04ClA==}
+
   core-js-pure@3.43.0:
     resolution: {integrity: sha512-i/AgxU2+A+BbJdMxh3v7/vxi2SbFqxiFmg6VsDwYB4jkucrd1BZNA9a9gphC0fYMG5IBSgQcbQnk865VCLe7xA==}
 
-  core-js@3.43.0:
-    resolution: {integrity: sha512-N6wEbTTZSYOY2rYAn85CuvWWkCK6QweMn7/4Nr3w+gDBeBhk/x4EJeY6FPo4QzDoJZxVTv8U7CMvgWk6pOHHqA==}
+  core-js-pure@3.44.0:
+    resolution: {integrity: sha512-gvMQAGB4dfVUxpYD0k3Fq8J+n5bB6Ytl15lqlZrOIXFzxOhtPaObfkQGHtMRdyjIf7z2IeNULwi1jEwyS+ltKQ==}
+
+  core-js@3.44.0:
+    resolution: {integrity: sha512-aFCtd4l6GvAXwVEh3XbbVqJGHDJt0OZRa+5ePGx3LLwi12WfexqQxcsohb2wgsa/92xtl19Hd66G/L+TaAxDMw==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -4206,28 +4208,24 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   lightningcss-linux-arm64-musl@1.30.1:
     resolution: {integrity: sha512-jmUQVx4331m6LIX+0wUhBbmMX7TCfjF5FoOH6SD1CttzuYlGNVpA7QnrmLxrsub43ClTINfGSYyHe2HWeLl5CQ==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   lightningcss-linux-x64-gnu@1.30.1:
     resolution: {integrity: sha512-piWx3z4wN8J8z3+O5kO74+yr6ze/dKmPnI7vLqfSqI8bccaTGY5xiSGVIJBDd5K5BHlvVLpUB3S2YCfelyJ1bw==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   lightningcss-linux-x64-musl@1.30.1:
     resolution: {integrity: sha512-rRomAK7eIkL+tHY0YPxbc5Dra2gXlI63HL+v1Pdi1a3sC+tJTcFrHX+E86sulgAXeI7rSzDYhPSeHHjqFhqfeQ==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   lightningcss-win32-arm64-msvc@1.30.1:
     resolution: {integrity: sha512-mSL4rqPi4iXq5YVqzSsJgMVFENoa4nGTT/GjO2c0Yl9OuQfPsIfncvLrEW6RbbB24WtZ3xP/2CCmI3tNkNV4oA==}
@@ -6420,6 +6418,10 @@ packages:
     resolution: {integrity: sha512-BCEndnUoi3BaZmePkwGGe93txRxLgMhBa/gE725v1/GHnura8QvNs7c4+4C1yyhhKoj3Dg63M7IqhA++15j6ww==}
     engines: {node: '>= 14'}
 
+  yaml-patch-loader@0.1.0:
+    resolution: {integrity: sha512-pRtzoRm6hrzzRPw7nUjGzBcf8OEY5r59Vb8cazoKg6bmR+3KZE45/cqQq0apB56vCe9YsaQXBQ2ANKIettyJUg==}
+    engines: {node: ^22.14.0 || ^24.0.0}
+
   yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
@@ -7145,7 +7147,7 @@ snapshots:
       babel-plugin-polyfill-corejs2: 0.4.14(@babel/core@7.28.0)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.28.0)
       babel-plugin-polyfill-regenerator: 0.6.5(@babel/core@7.28.0)
-      core-js-compat: 3.43.0
+      core-js-compat: 3.44.0
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -7208,15 +7210,16 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
 
-  '@best-shot/sfc-split-plugin@0.14.19(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))':
+  '@best-shot/sfc-split-plugin@0.14.36(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)(webpack@5.99.9(webpack-cli@6.0.1(webpack@5.99.9)))':
     dependencies:
       '@into-mini/clsx': 0.0.0
-      '@into-mini/sfc-template-traverse': 0.0.0(@vue/compiler-core@3.5.17)
-      '@into-mini/sfc-transformer': 0.3.0(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)
+      '@into-mini/sfc-template-traverse': 0.0.2(@vue/compiler-core@3.5.17)
+      '@into-mini/sfc-transformer': 0.4.3(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)
       slash: 5.1.0
       webpack: 5.99.9(webpack-cli@6.0.1(webpack@5.99.9))
       webpack-virtual-modules: 0.6.2
       yaml: 2.8.0
+      yaml-patch-loader: 0.1.0
     transitivePeerDependencies:
       - '@vue-mini/core'
       - '@vue/compiler-core'
@@ -7396,23 +7399,23 @@ snapshots:
 
   '@into-mini/clsx@0.0.0': {}
 
-  '@into-mini/sfc-template-traverse@0.0.0(@vue/compiler-core@3.5.17)':
+  '@into-mini/sfc-template-traverse@0.0.2(@vue/compiler-core@3.5.17)':
     dependencies:
       '@vue/compiler-core': 3.5.17
       neotraverse: 0.6.18
-      tab-to-space: 1.0.1
-      wxml-parse: 0.2.3
 
-  '@into-mini/sfc-transformer@0.3.0(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)':
+  '@into-mini/sfc-transformer@0.4.3(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.17)':
     dependencies:
       '@babel/generator': 7.28.0
       '@babel/traverse': 7.28.0
-      '@into-mini/sfc-template-traverse': 0.0.0(@vue/compiler-core@3.5.17)
+      '@into-mini/sfc-template-traverse': 0.0.2(@vue/compiler-core@3.5.17)
       '@into-mini/vue-mini-patch': 0.0.0(@vue-mini/core@1.2.3(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))
       '@padcom/vue-ast-serializer': 0.0.1(@vue/compiler-core@3.5.17)(@vue/compiler-sfc@3.5.17)
       '@vue/compiler-sfc': 3.5.17
       change-case: 5.4.4
       deepmerge-ts: 7.1.5
+      tab-to-space: 1.0.1
+      wxml-parse: 0.2.3
       yaml: 2.8.0
     transitivePeerDependencies:
       - '@vue-mini/core'
@@ -8532,7 +8535,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.0
       '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.0)
-      core-js-compat: 3.43.0
+      core-js-compat: 3.44.0
     transitivePeerDependencies:
       - supports-color
 
@@ -8545,14 +8548,14 @@ snapshots:
 
   babel-plugin-transform-react-remove-prop-types@0.4.24: {}
 
-  babel-preset-evergreen@0.11.6(@babel/core@7.28.0):
+  babel-preset-evergreen@0.11.7(@babel/core@7.28.0):
     dependencies:
       '@babel/core': 7.28.0
       '@babel/helper-plugin-utils': 7.27.1
       '@babel/preset-env': 7.28.0(@babel/core@7.28.0)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.28.0)
-      core-js: 3.43.0
-      core-js-compat: 3.43.0
+      core-js: 3.44.0
+      core-js-compat: 3.44.0
       miniprogram-compat: 1.0.5
     transitivePeerDependencies:
       - supports-color
@@ -8893,9 +8896,15 @@ snapshots:
     dependencies:
       browserslist: 4.25.1
 
+  core-js-compat@3.44.0:
+    dependencies:
+      browserslist: 4.25.1
+
   core-js-pure@3.43.0: {}
 
-  core-js@3.43.0: {}
+  core-js-pure@3.44.0: {}
+
+  core-js@3.44.0: {}
 
   core-util-is@1.0.3: {}
 
@@ -12835,6 +12844,10 @@ snapshots:
     dependencies:
       javascript-stringify: 2.1.0
       loader-utils: 2.0.4
+      yaml: 2.8.0
+
+  yaml-patch-loader@0.1.0:
+    dependencies:
       yaml: 2.8.0
 
   yaml@1.10.2: {}

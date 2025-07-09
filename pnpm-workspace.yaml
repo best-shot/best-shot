@@ -7,8 +7,8 @@ catalog:
   browserslist: ^4.25.1
   chalk: ^5.4.1
   cheetor: ^0.13.0
-  core-js: ^3.43.0
-  core-js-pure: ^3.43.0
+  core-js: ^3.44.0
+  core-js-pure: ^3.44.0
   deepmerge-ts: ^7.1.5
   ext-to-regexp: ^0.1.0
   flat: ^6.0.1

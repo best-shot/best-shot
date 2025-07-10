@@ -1,4 +1,4 @@
-#!/usr/bin/env node --experimental-strip-types
+#!/usr/bin/env node --trace-deprecation --experimental-strip-types
 import { create } from './create.mjs';
 
 create();

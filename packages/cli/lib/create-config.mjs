@@ -4,14 +4,14 @@ import { commandMode } from './utils.mjs';
 
 export async function createConfig(
   config,
-  { command, batch, watch = false, serve = false },
+  { mode, batch, watch = false, serve = false },
 ) {
   const { name, chain, presets = [], ...rest } = config;
 
   const io = await new BestShot({ name }).setup({
     watch,
     serve,
-    mode: commandMode(command),
+    mode,
     presets,
     config: rest,
   });

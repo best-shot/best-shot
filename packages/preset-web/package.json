@@ -34,7 +34,7 @@
   "dependencies": {
     "ext-to-regexp": "catalog:",
     "html-add-asset-webpack-plugin": "^0.2.0",
-    "html-minimizer-webpack-plugin": "^5.0.2",
+    "html-minimizer-webpack-plugin": "^5.0.3",
     "html-webpack-plugin": "^5.6.3",
     "micro-tpl-loader": "^0.1.0",
     "slash": "^5.1.0",

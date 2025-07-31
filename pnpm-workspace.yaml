@@ -14,20 +14,22 @@ catalog:
   flat: ^6.0.1
   fs-extra: ^11.3.0
   ini: ^5.0.0
-  react: '>=18.3.1'
-  react-dom: '>=18.3.1'
+  react: ^19.1.1
+  react-dom: ^19.1.1
   settingz: ^0.2.0
   slash-to-regexp: ^0.1.0
   sort-keys: ^5.1.0
-  webpack: ^5.99.9
+  webpack: ^5.101.0
   yaml: ^2.8.0
 
 patchedDependencies:
   '@vue-mini/core': patches/@vue-mini__core.patch
   ava: patches/ava.patch
 
+shamefullyHoist: true
+
+verifyDepsBeforeRun: install
+
 updateConfig:
   ignoreDependencies:
     - express
-
-shamefullyHoist: true

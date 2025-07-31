@@ -37,9 +37,9 @@
   "dependencies": {
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
-    "cssnano": "^7.0.7",
+    "cssnano": "^7.1.0",
     "ext-to-regexp": "catalog:",
-    "less": "^4.3.0",
+    "less": "^4.4.0",
     "less-loader": "^12.3.0",
     "mini-css-extract-plugin": "^2.9.2",
     "postcss": "^8.5.6",

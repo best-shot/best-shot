@@ -1,4 +1,4 @@
-import { errorHandle } from './utils.mjs';
+import { commandMode, errorHandle } from './utils.mjs';
 
 export function action({ _: [command], progress, configName }) {
   errorHandle(async () => {
@@ -7,14 +7,16 @@ export function action({ _: [command], progress, configName }) {
     const { createCompiler } = await import('./create-compiler.mjs');
     const { applyProgress } = await import('./apply-progress.mjs');
 
-    const configs = await readConfig()({ command, configName });
+    const mode = commandMode(command);
+
+    const configs = await readConfig()({ mode, command, configName });
 
     const result = [];
 
     for (const config of configs) {
       const io = await createConfig(config, {
         watch: command === 'watch',
-        command,
+        mode,
         batch: progress ? applyProgress : undefined,
       });
       result.push(io);

@@ -1,9 +1,9 @@
-import { errorHandle } from '@best-shot/cli/lib/utils.mjs';
+import { commandMode, errorHandle } from '@best-shot/cli/lib/utils.mjs';
 import chalk from 'chalk';
 
 const { cyan } = chalk;
 
-export function action({ _: [command] }) {
+export function action({ _: [command], configName }) {
   errorHandle(async () => {
     const { readConfig } = await import('@best-shot/config');
     const { createConfig } = await import(
@@ -13,15 +13,17 @@ export function action({ _: [command] }) {
       '@best-shot/cli/lib/create-compiler.mjs'
     );
 
-    const configs = await readConfig()({ command });
+    const mode = commandMode(command);
+
+    const configs = await readConfig()({ mode, command, configName });
 
     const result = [];
 
     for (const config of configs) {
       const io = await createConfig(config, {
         watch: true,
+        mode,
         serve: Boolean(config.devServer),
-        command,
       });
       result.push(io);
     }

@@ -40,7 +40,7 @@ async function requireConfig(rootPath) {
   return (await readConfigFile('config.mjs', rootPath)) || {};
 }
 
-async function getConfigs(rootPath, { command }) {
+async function getConfigs(rootPath, { command, mode }) {
   const { config = {}, sideEffect } = await requireConfig(rootPath);
 
   if (typeof sideEffect === 'function') {
@@ -51,9 +51,10 @@ async function getConfigs(rootPath, { command }) {
     typeof config === 'function'
       ? await config({
           command,
+          mode,
           envs: getEnv({
             root: rootPath,
-            mode: command === 'prod' ? 'production' : 'development',
+            mode,
             watch: command === 'watch',
             serve: command === 'serve',
           }).envs,
@@ -91,8 +92,8 @@ export function readConfig(
   rootPath = process.cwd(),
   interactive = process.stdout.isTTY,
 ) {
-  return async function func({ command, configName }) {
-    const configs = await getConfigs(rootPath, { command });
+  return async function func({ mode, command, configName }) {
+    const configs = await getConfigs(rootPath, { mode, command });
 
     if (configName && configName.length > 0) {
       const names = configs.map(({ name }) => name);

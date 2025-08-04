@@ -1,3 +1,5 @@
+import { configKeys } from '@best-shot/sfc-split-plugin/helper/utils.mjs';
+
 export function apply({ config: { mini: { type } = {} } }) {
   return async (chain) => {
     chain.output
@@ -84,7 +86,7 @@ export function apply({ config: { mini: { type } = {} } }) {
 
     const presets = ['vendor', 'common', 'shim', 'vue-mini', 'vue', 'react'];
 
-    const configs = ['project.config', 'project.private.config'];
+    const configs = Object.values(configKeys);
 
     chain.module.rule('yaml').issuerLayer({ not: configs });
     chain.module.rule('json').issuerLayer({ not: configs });

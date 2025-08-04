@@ -420,8 +420,8 @@ importers:
         specifier: workspace:^
         version: link:../preset-style
       '@best-shot/sfc-split-plugin':
-        specifier: ^0.14.47
-        version: 0.14.47(@vue-mini/core@1.2.4(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.18)(webpack@5.101.0(webpack-cli@6.0.1(webpack@5.101.0)))
+        specifier: ^0.14.49
+        version: 0.14.49(@vue-mini/core@1.2.4(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.18)(webpack@5.101.0(webpack-cli@6.0.1(webpack@5.101.0)))
       yaml:
         specifier: 'catalog:'
         version: 2.8.0
@@ -1198,8 +1198,8 @@ packages:
     resolution: {integrity: sha512-ruv7Ae4J5dUYULmeXw1gmb7rYRz57OWCPM57pHojnLq/3Z1CK2lNSLTCVjxVk1F/TZHwOZZrOWi0ur95BbLxNQ==}
     engines: {node: '>=6.9.0'}
 
-  '@best-shot/sfc-split-plugin@0.14.47':
-    resolution: {integrity: sha512-1YL/mr2A//sxbJFKWaGRi/hkKXO9GG6bN3WMeIo3xfThfKhg8pSr4Z7IzijuLqPcxCVguSqlpW/bB+mF/E04bQ==}
+  '@best-shot/sfc-split-plugin@0.14.49':
+    resolution: {integrity: sha512-OngVf5xuQsw19bZtdsXAS+tjLD2PDlEw0B2Njapp408ZoQXcpubXhuba2YqmvPrt/wWNkZ5qrSW+3cJKCYM3bQ==}
     engines: {node: '>=22.11.0'}
     peerDependencies:
       webpack: ^5.99.9
@@ -7069,14 +7069,13 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
 
-  '@best-shot/sfc-split-plugin@0.14.47(@vue-mini/core@1.2.4(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.18)(webpack@5.101.0(webpack-cli@6.0.1(webpack@5.101.0)))':
+  '@best-shot/sfc-split-plugin@0.14.49(@vue-mini/core@1.2.4(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.18)(webpack@5.101.0(webpack-cli@6.0.1(webpack@5.101.0)))':
     dependencies:
       '@into-mini/clsx': 0.0.0
       '@into-mini/sfc-template-traverse': 0.0.2(@vue/compiler-core@3.5.18)
       '@into-mini/sfc-transformer': 0.5.0(@vue-mini/core@1.2.4(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue/compiler-core@3.5.18)
       '@into-mini/wxml-loader': 0.0.0
       slash: 5.1.0
-      sort-keys: 5.1.0
       webpack: 5.101.0(webpack-cli@6.0.1(webpack@5.101.0))
       webpack-virtual-modules: 0.6.2
       yaml: 2.8.0

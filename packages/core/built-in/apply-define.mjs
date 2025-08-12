@@ -22,7 +22,7 @@ function prefix(object) {
 
 const displayName = 'define';
 
-export function apply({ cwd: root, config: { define = {} } }) {
+export function apply({ cwd: root, config: { define = {}, mini } }) {
   const GIT_HASH = getGitHash();
 
   return async (chain) => {
@@ -50,6 +50,7 @@ export function apply({ cwd: root, config: { define = {} } }) {
             MODE: mode,
             WATCHING: watch,
             CONFIG_NAME: name,
+            MINI_APP: mini !== undefined,
             GIT_HASH,
           }),
         ),

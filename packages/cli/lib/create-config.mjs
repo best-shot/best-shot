@@ -1,7 +1,5 @@
 import { BestShot } from '@best-shot/core';
 
-import { commandMode } from './utils.mjs';
-
 export async function createConfig(
   config,
   { mode, batch, watch = false, serve = false },

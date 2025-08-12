@@ -28,7 +28,7 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "@best-shot/sfc-split-plugin": "^0.14.49",
+    "@best-shot/sfc-split-plugin": "^0.14.54",
     "yaml": "catalog:"
   },
   "peerDependencies": {

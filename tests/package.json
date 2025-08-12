@@ -5,8 +5,8 @@
   "type": "module",
   "peerDependencies": {
     "@best-shot/core": "workspace:^",
-    "ava": "^6.4.0",
-    "prettier": "^3.6.0"
+    "ava": "^6.4.1",
+    "prettier": "^3.6.2"
   },
   "engines": {
     "node": ">=22.11.0"

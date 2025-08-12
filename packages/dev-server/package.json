@@ -36,7 +36,7 @@
     "chalk": "catalog:",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "launch-editor-middleware": "^2.11.0",
+    "launch-editor-middleware": "^2.11.1",
     "webpack-dev-server": "~5.2.2",
     "webpack-dev-server-waitpage": "^3.0.0"
   },

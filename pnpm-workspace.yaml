@@ -19,7 +19,7 @@ catalog:
   settingz: ^0.2.0
   slash-to-regexp: ^0.1.0
   sort-keys: ^5.1.0
-  webpack: ^5.101.0
+  webpack: ^5.101.1
   yaml: ^2.8.1
 
 patchedDependencies:

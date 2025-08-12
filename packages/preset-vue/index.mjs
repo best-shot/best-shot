@@ -75,4 +75,17 @@ export const schema = {
       },
     },
   },
+  resolve: {
+    type: 'object',
+    properties: {
+      alias: {
+        type: 'object',
+        properties: {
+          'vue-demi$': {
+            default: 'vue-demi/lib/v3/index.mjs',
+          },
+        },
+      },
+    },
+  },
 };

@@ -175,4 +175,20 @@ export const schema = {
       },
     },
   },
+  resolve: {
+    type: 'object',
+    properties: {
+      alias: {
+        type: 'object',
+        properties: {
+          vue: {
+            default: '@into-mini/vue-mini-patch/alias/core.js',
+          },
+          pinia: {
+            default: '@into-mini/vue-mini-patch/alias/pinia.js',
+          },
+        },
+      },
+    },
+  },
 };

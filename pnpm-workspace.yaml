@@ -4,11 +4,11 @@ packages:
   - tests
 
 catalog:
-  browserslist: ^4.25.2
-  chalk: ^5.5.0
+  browserslist: ^4.25.3
+  chalk: ^5.6.0
   cheetor: ^0.13.0
-  core-js: ^3.45.0
-  core-js-pure: ^3.45.0
+  core-js: ^3.45.1
+  core-js-pure: ^3.45.1
   deepmerge-ts: ^7.1.5
   ext-to-regexp: ^0.1.0
   flat: ^6.0.1
@@ -18,8 +18,8 @@ catalog:
   react-dom: ^19.1.1
   settingz: ^0.2.0
   slash-to-regexp: ^0.1.0
-  sort-keys: ^5.1.0
-  webpack: ^5.101.1
+  sort-keys: ^6.0.0
+  webpack: ^5.101.3
   yaml: ^2.8.1
 
 patchedDependencies:

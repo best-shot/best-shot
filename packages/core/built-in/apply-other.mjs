@@ -1,4 +1,4 @@
-import { schema as copySchema } from 'copy-webpack/lib/schema.cjs';
+import { schema as copySchema } from 'copy-webpack/lib/schema.mjs';
 
 import { notEmpty } from '../lib/utils.mjs';
 

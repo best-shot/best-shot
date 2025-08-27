@@ -1,4 +1,4 @@
-import { errorHandle } from '@best-shot/cli/lib/utils.mjs';
+import { commandMode, errorHandle } from '@best-shot/cli/lib/utils.mjs';
 
 export function action({ _: [command], configName }) {
   errorHandle(async () => {

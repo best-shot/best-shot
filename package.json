@@ -38,23 +38,23 @@
     "@vue-mini/core": "^1.2.4",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "vue": "~3.5.18"
+    "vue": "~3.5.20"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.0",
+    "@babel/core": "^7.28.3",
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.8.3",
     "@nice-move/all-in-web": "^0.6.8",
     "@nice-move/syncpack-config": "^0.4.1",
-    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/postcss": "^4.1.12",
     "ava": "^6.4.1",
-    "eslint": "^9.33.0",
+    "eslint": "^9.34.0",
     "garou": "^0.9.13",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "stylelint": "^16.23.1",
     "syncpack": "^13.0.4",
-    "tailwindcss": "^4.1.11",
+    "tailwindcss": "^4.1.12",
     "typescript": "~5.9.2",
     "webpack": "catalog:",
     "webpack-cli": "^6.0.1"
@@ -72,10 +72,10 @@
     "@best-shot/preset-style": "workspace:^",
     "@best-shot/preset-vue": "workspace:^",
     "@best-shot/preset-web": "workspace:^",
-    "@types/react": "~18.3.23",
+    "@types/react": "~18.3.24",
     "best-shot": "workspace:^"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.15.0",
   "engines": {
     "node": ">=22.11.0"
   },

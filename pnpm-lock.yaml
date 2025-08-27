@@ -252,8 +252,8 @@ importers:
         specifier: 'catalog:'
         version: 5.6.0
       copy-webpack:
-        specifier: ^5.0.3
-        version: 5.0.3(webpack@5.101.3(webpack-cli@6.0.1(webpack@5.101.3)))
+        specifier: ^5.0.4
+        version: 5.0.4(webpack@5.101.3(webpack-cli@6.0.1(webpack@5.101.3)))
       deepmerge-ts:
         specifier: 'catalog:'
         version: 7.1.5
@@ -2800,8 +2800,8 @@ packages:
     peerDependencies:
       webpack: ^5.1.0
 
-  copy-webpack@5.0.3:
-    resolution: {integrity: sha512-khMos/3lUAhtDF9cfDEljRqmvWaxCJbXBPvhVIjlsvZ+zMN9r7VBHDRSozDBHkauimISbJQ3NUzsWi9qB30GHQ==}
+  copy-webpack@5.0.4:
+    resolution: {integrity: sha512-QkslVmH3Y2ZNYXszp48IAE62uhFiVwfRaUHd1NdGqslwwirZZOIXT3htDkrZ+/852fIuXQ0XdE6tJ1n0jKu5Mg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       webpack: ^5.101.3
@@ -9069,7 +9069,7 @@ snapshots:
       serialize-javascript: 6.0.2
       webpack: 5.101.3(webpack-cli@6.0.1(webpack@5.101.3))
 
-  copy-webpack@5.0.3(webpack@5.101.3(webpack-cli@6.0.1(webpack@5.101.3))):
+  copy-webpack@5.0.4(webpack@5.101.3(webpack-cli@6.0.1(webpack@5.101.3))):
     dependencies:
       copy-webpack-plugin: 12.0.2(webpack@5.101.3(webpack-cli@6.0.1(webpack@5.101.3)))
       deepmerge: 4.3.1

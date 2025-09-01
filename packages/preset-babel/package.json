@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-babel",
-  "version": "0.18.2",
+  "version": "0.18.3",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -37,7 +37,7 @@
   "dependencies": {
     "@babel/preset-typescript": "^7.27.1",
     "babel-loader": "^10.0.0",
-    "babel-preset-evergreen": "^0.11.7",
+    "babel-preset-evergreen": "^0.11.8",
     "browserslist": "catalog:",
     "core-js": "catalog:",
     "core-js-pure": "catalog:",
@@ -45,7 +45,7 @@
     "slash-to-regexp": "catalog:"
   },
   "peerDependencies": {
-    "@babel/core": "^7.28.0",
+    "@babel/core": "^7.28.3",
     "@best-shot/core": "workspace:^"
   },
   "engines": {

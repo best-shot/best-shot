@@ -1,12 +1,21 @@
 import webpackbar from 'webpackbar';
+import webpack from 'webpack';
 
 export function applyProgress(chain) {
   const name = chain.get('name') || '';
 
-  chain.plugin('progress-bar').use(webpackbar, [
-    {
-      name: name ? name.toUpperCase() : 'BEST-SHOT',
-      reporter: 'profile',
-    },
-  ]);
+  if (process.env.CI) {
+    chain.plugin('progress-bar').use(webpack.ProgressPlugin, [
+      {
+        activeModules: true,
+      },
+    ]);
+  } else {
+    chain.plugin('progress-bar').use(webpackbar, [
+      {
+        name: name ? name.toUpperCase() : 'BEST-SHOT',
+        reporter: 'profile',
+      },
+    ]);
+  }
 }

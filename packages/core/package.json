@@ -1,11 +1,10 @@
 {
   "name": "@best-shot/core",
-  "version": "0.13.3",
+  "version": "0.13.6",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
-    "name": "Eric Chen",
-    "email": "airkro@qq.com"
+    "name": "Eric Chen"
   },
   "keywords": [
     "best-shot",

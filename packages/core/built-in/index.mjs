@@ -6,14 +6,14 @@ import * as applyLast from './apply-last.mjs';
 import * as applyNode from './apply-node.mjs';
 import * as applyOther from './apply-other.mjs';
 import * as applyResolve from './apply-resolve.mjs';
-import * as applyTersor from './apply-tersor.mjs';
+import * as applyTerser from './apply-terser.mjs';
 import * as applySplitChunks from './apply-split-chunks.mjs';
 
 export const builtIn = [
   applyBasic,
   applyEntry,
   applyResolve,
-  applyTersor,
+  applyTerser,
   applyOther,
   applyDefine,
   applyNode,

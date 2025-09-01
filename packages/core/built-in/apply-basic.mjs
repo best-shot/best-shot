@@ -13,6 +13,7 @@ export function apply({
     context: contextInput,
     dependencies,
     experiments: { buildHttp } = {},
+    optimization: { minimize } = {},
   },
 }) {
   return (chain) => {
@@ -34,9 +35,9 @@ export function apply({
     chain.devtool(false);
 
     chain.optimization
+      .minimize(minimize ?? mode === 'production')
       .removeEmptyChunks(true)
-      .removeAvailableModules(true)
-      .minimize(mode === 'production');
+      .removeAvailableModules(true);
 
     if (watch) {
       chain.watchOptions.ignored(/node_modules/);
@@ -129,6 +130,13 @@ export const schema = {
         minLength: 1,
         type: 'string',
       },
+    },
+  },
+  optimization: {
+    type: 'object',
+    default: {},
+    properties: {
+      minimize: {},
     },
   },
 };

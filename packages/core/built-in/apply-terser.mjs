@@ -2,7 +2,7 @@ import { deepmerge as deepMerge } from 'deepmerge-ts';
 
 import { targetIsNode } from '../lib/utils.mjs';
 
-const displayName = 'tersor';
+const displayName = 'terser';
 
 export function apply({
   cwd,
@@ -44,7 +44,7 @@ export function apply({
                 drop_console: notNode,
                 passes: 2,
               },
-              output: {
+              format: {
                 comments: false,
                 ascii_only: true,
               },

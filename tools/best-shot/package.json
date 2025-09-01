@@ -1,11 +1,10 @@
 {
   "name": "best-shot",
-  "version": "0.10.3",
+  "version": "0.10.6",
   "description": "Bundled version of `best-shot`",
   "license": "MIT",
   "author": {
-    "name": "Eric Chen",
-    "email": "airkro@qq.com"
+    "name": "Eric Chen"
   },
   "keywords": [
     "best-shot",

@@ -1,4 +1,5 @@
 import { deepmerge as deepMerge } from 'deepmerge-ts';
+import os from 'node:os';
 
 import { targetIsNode } from '../lib/utils.mjs';
 
@@ -37,6 +38,7 @@ export function apply({
       chain.optimization.minimizer('terser').use(TerserPlugin, [
         {
           extractComments: false,
+          parallel: os.cpus().length - 1,
           terserOptions: deepMerge(
             {
               safari10: notNode && haveSafari10(cwd),

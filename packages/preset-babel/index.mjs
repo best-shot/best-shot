@@ -26,6 +26,11 @@ export function apply({
       '.cjs': ['.cts', '.cjs'],
     });
 
+    const typescriptPreset = [
+      '@babel/typescript',
+      { allowDeclareFields: true },
+    ];
+
     chain.module
       .rule('babel')
       .before('esm')
@@ -45,8 +50,8 @@ export function apply({
         }),
         presets:
           watch && env === 'auto'
-            ? ['@babel/typescript']
-            : [['evergreen', { polyfill }], '@babel/typescript'],
+            ? [typescriptPreset]
+            : [['evergreen', { polyfill }], typescriptPreset],
       });
 
     const serve = chain.devServer.entries() !== undefined;

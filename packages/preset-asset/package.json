@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-asset",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "description": "A `best-shot` preset for asset",
   "license": "MIT",
   "author": {
@@ -38,7 +38,7 @@
   "type": "module",
   "dependencies": {
     "@astropub/codecs": "^0.4.4",
-    "@sindresorhus/transliterate": "^1.6.0",
+    "@sindresorhus/transliterate": "^2.0.0",
     "@volue/wasm-codecs-gifsicle": "^1.0.0",
     "ext-to-regexp": "catalog:",
     "image-minimizer-webpack-plugin": "^4.1.4",

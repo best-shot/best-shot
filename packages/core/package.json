@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.13.7",
+  "version": "0.13.8",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -39,7 +39,7 @@
     "json-minimizer-webpack-plugin": "^5.0.1",
     "slash": "^5.1.0",
     "slash-to-regexp": "catalog:",
-    "terser": "^5.43.1",
+    "terser": "^5.44.0",
     "terser-webpack-plugin": "^5.3.14",
     "yaml-loader": "^0.8.1"
   },

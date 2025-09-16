@@ -75,7 +75,7 @@
     "@types/react": "~18.3.24",
     "best-shot": "workspace:^"
   },
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.15.1",
   "engines": {
     "node": ">=22.11.0"
   },

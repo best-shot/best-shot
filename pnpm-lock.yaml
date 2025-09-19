@@ -378,7 +378,7 @@ importers:
   packages/preset-babel:
     dependencies:
       '@babel/core':
-        specifier: ^7.28.3
+        specifier: ^7.28.4
         version: 7.28.4
       '@babel/preset-typescript':
         specifier: ^7.27.1

@@ -24,7 +24,7 @@ catalogs:
   react:
     react: ^18.3.1
     react-dom: ^18.3.1
-    react-refresh: ^0.17.0
+    react-refresh: ^0.18.0
     '@pmmmwh/react-refresh-webpack-plugin': ^0.6.1
     '@types/react': ^18.3.26
     '@types/react-dom': ^18.3.7

@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.18.2",
+  "version": "0.18.3",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
@@ -34,15 +34,15 @@
     "@babel/plugin-transform-react-constant-elements": "^7.27.1",
     "@babel/plugin-transform-react-inline-elements": "^7.27.1",
     "@babel/preset-react": "^7.28.5",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "catalog:react",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "react-refresh": "^0.17.0"
+    "react-refresh": "catalog:react"
   },
   "peerDependencies": {
     "@best-shot/core": "workspace:^",
     "@best-shot/preset-babel": "workspace:^",
-    "react": "catalog:",
-    "react-dom": "catalog:"
+    "react": "catalog:react",
+    "react-dom": "catalog:react"
   },
   "engines": {
     "node": ">=22.11.0"

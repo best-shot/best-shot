@@ -4,11 +4,11 @@ packages:
   - tests
 
 catalog:
-  browserslist: ^4.27.0
+  browserslist: ^4.28.0
   chalk: ^5.6.2
   cheetor: ^0.13.0
-  core-js: ^3.46.0
-  core-js-pure: ^3.46.0
+  core-js: ^3.47.0
+  core-js-pure: ^3.47.0
   deepmerge-ts: ^7.1.5
   ext-to-regexp: ^0.1.0
   flat: ^6.0.1
@@ -17,17 +17,17 @@ catalog:
   settingz: ^0.2.0
   slash-to-regexp: ^0.1.0
   sort-keys: ^6.0.0
-  webpack: ^5.102.1
+  webpack: ^5.103.0
   yaml: ^2.8.1
 
 catalogs:
   react:
-    react: ^18.3.1
-    react-dom: ^18.3.1
-    react-refresh: ^0.17.0
     '@pmmmwh/react-refresh-webpack-plugin': ^0.6.1
     '@types/react': ^18.3.26
     '@types/react-dom': ^18.3.7
+    react: ^18.3.1
+    react-dom: ^18.3.1
+    react-refresh: ^0.17.0
 
 patchedDependencies:
   '@vue-mini/core': patches/@vue-mini__core.patch
@@ -41,5 +41,3 @@ updateConfig:
     - react
     - react-dom
     - react-refresh
-
-minimumReleaseAge: 1440

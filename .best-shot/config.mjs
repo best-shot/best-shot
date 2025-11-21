@@ -1,9 +1,9 @@
 export const config = {
-  presets: ['mini', 'babel', 'style', 'asset'],
+  presets: ['babel', 'style', 'asset'],
   mini: {
-    type: 'miniprogram',
+    // type: 'miniprogram',
   },
-  context: 'src',
+  // context: 'src',
   output: {
     module: true,
   },

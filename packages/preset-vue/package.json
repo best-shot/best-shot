@@ -4,8 +4,7 @@
   "description": "A `best-shot` preset for Vue project",
   "license": "MIT",
   "author": {
-    "name": "Eric Chen",
-    "email": "airkro@qq.com"
+    "name": "Eric Chen"
   },
   "keywords": [
     "best-shot",
@@ -35,7 +34,7 @@
     "@best-shot/core": "workspace:^",
     "@best-shot/preset-style": "workspace:^",
     "@vue/compiler-sfc": "~3.5.17",
-    "vue": "~3.5.22"
+    "vue": "~3.5.25"
   },
   "engines": {
     "node": ">=22.11.0"

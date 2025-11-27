@@ -4,8 +4,7 @@
   "description": "Command-Line Interface of `best-shot`",
   "license": "MIT",
   "author": {
-    "name": "Eric Chen",
-    "email": "airkro@qq.com"
+    "name": "Eric Chen"
   },
   "keywords": [
     "best-shot",

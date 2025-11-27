@@ -4,8 +4,7 @@
   "description": "Config loader of '@best-shot/cli'",
   "license": "MIT",
   "author": {
-    "name": "Eric Chen",
-    "email": "airkro@qq.com"
+    "name": "Eric Chen"
   },
   "keywords": [
     "best-shot",

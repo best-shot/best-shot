@@ -1,11 +1,10 @@
 {
   "name": "@best-shot/preset-react",
-  "version": "0.18.3",
+  "version": "0.18.4",
   "description": "A `best-shot` preset for react project",
   "license": "MIT",
   "author": {
-    "name": "Eric Chen",
-    "email": "airkro@qq.com"
+    "name": "Eric Chen"
   },
   "keywords": [
     "babel",

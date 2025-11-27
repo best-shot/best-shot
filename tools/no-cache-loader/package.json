@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "author": {
-    "name": "Eric Chen",
-    "email": "airkro@qq.com"
+    "name": "Eric Chen"
   },
   "keywords": [
     "best-shot",
@@ -14,7 +13,7 @@
   "homepage": "https://github.com/best-shot/best-shot/tree/master/packages/no-cache-loader",
   "repository": {
     "type": "git",
-    "url": "https://github.com/best-shot/best-shot.git",
+    "url": "git+https://github.com/best-shot/best-shot.git",
     "directory": "packages/no-cache-loader"
   },
   "bugs": {

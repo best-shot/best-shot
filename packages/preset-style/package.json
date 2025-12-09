@@ -35,7 +35,7 @@
   "type": "module",
   "dependencies": {
     "css-loader": "^7.1.2",
-    "css-minimizer-webpack-plugin": "^7.0.2",
+    "css-minimizer-webpack-plugin": "^7.0.3",
     "cssnano": "^7.1.2",
     "ext-to-regexp": "catalog:",
     "less": "^4.4.2",

@@ -184,6 +184,9 @@ export const schema = {
           vue: {
             default: '@into-mini/vue-mini-patch/alias/core.js',
           },
+          'vue-router': {
+            default: '@into-mini/vue-mini-patch/alias/router/index.js',
+          },
           pinia: {
             default: '@into-mini/vue-mini-patch/alias/pinia.js',
           },

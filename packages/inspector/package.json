@@ -36,7 +36,7 @@
   "peerDependencies": {
     "@best-shot/cli": "workspace:^",
     "@best-shot/core": "workspace:^",
-    "prettier": "^3.6.2"
+    "prettier": "~3.7.4"
   },
   "engines": {
     "node": ">=22.11.0"

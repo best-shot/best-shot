@@ -4,7 +4,7 @@ packages:
   - tests
 
 catalog:
-  browserslist: ^4.28.0
+  browserslist: ^4.28.1
   chalk: ^5.6.2
   cheetor: ^0.13.0
   core-js: ^3.47.0
@@ -18,7 +18,7 @@ catalog:
   slash-to-regexp: ^0.1.0
   sort-keys: ^6.0.0
   webpack: ^5.103.0
-  yaml: ^2.8.1
+  yaml: ^2.8.2
 
 catalogs:
   react:
@@ -28,6 +28,9 @@ catalogs:
     react: ^18.3.1
     react-dom: ^18.3.1
     react-refresh: ^0.18.0
+
+configDependencies:
+  pnpm-plugin-nice-move: 0.0.0+sha512-Izo1w5H/T0w9WSt5cR6460Xj3ZeUi6v9PtobM9utn6biuYbvWa0Fkthc4dfMAxRdW5uVM5KBb77sm2CRW3qfeQ==
 
 patchedDependencies:
   '@vue-mini/core': patches/@vue-mini__core.patch
@@ -41,3 +44,8 @@ updateConfig:
     - react
     - react-dom
     - react-refresh
+
+ignoredBuiltDependencies:
+  - '@parcel/watcher'
+  - core-js
+  - core-js-pure

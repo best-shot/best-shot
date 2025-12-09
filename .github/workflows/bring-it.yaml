@@ -33,11 +33,13 @@ jobs:
   publish:
     needs: [test]
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      # contents: read
     steps:
       - name: Run
-        uses: airkro/bring-it@actions
+        uses: airkro/bring-it@actions-oidc
         with:
-          npm-token: ${{ secrets.NPM_TOKEN }}
           custom-command: |
             mkdir -p packages/best-shot/dist
             touch $_/cli.mjs

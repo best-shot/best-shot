@@ -177,9 +177,11 @@ export const schema = {
   },
   resolve: {
     type: 'object',
+    default: {},
     properties: {
       alias: {
         type: 'object',
+        default: {},
         properties: {
           vue: {
             default: '@into-mini/vue-mini-patch/alias/core.js',

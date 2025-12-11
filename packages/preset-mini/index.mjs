@@ -1,4 +1,4 @@
-import { configKeys } from '@best-shot/sfc-split-plugin/helper/utils.mjs';
+import { configKeys } from '@into-mini/sfc-split-plugin/helper/utils.mjs';
 
 export function apply({ config: { mini: { type } = {} } }) {
   return async (chain) => {
@@ -76,7 +76,7 @@ export function apply({ config: { mini: { type } = {} } }) {
 
     rule.test(rule.get('test').add('vue'));
 
-    const { AllInOnePlugin } = await import('@best-shot/sfc-split-plugin');
+    const { AllInOnePlugin } = await import('@into-mini/sfc-split-plugin');
 
     chain.plugin('sfc-split').use(AllInOnePlugin, [
       {

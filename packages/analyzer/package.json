@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/analyzer",
-  "version": "0.14.3",
+  "version": "0.14.4",
   "description": "Analyzer of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -28,7 +28,7 @@
   "type": "module",
   "dependencies": {
     "@best-shot/config": "workspace:^",
-    "webpack-bundle-analyzer": "^5.0.1"
+    "webpack-bundle-analyzer": "^5.1.0"
   },
   "peerDependencies": {
     "@best-shot/cli": "workspace:^",

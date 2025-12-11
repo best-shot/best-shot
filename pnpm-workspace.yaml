@@ -49,3 +49,6 @@ ignoredBuiltDependencies:
   - '@parcel/watcher'
   - core-js
   - core-js-pure
+
+minimumReleaseAgeExclude:
+  - '@into-mini/sfc-split-plugin'

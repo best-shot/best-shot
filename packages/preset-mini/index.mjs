@@ -1,4 +1,4 @@
-import { configKeys } from '@into-mini/sfc-split-plugin/helper/utils.mjs';
+import { configKeys } from '@into-mini/auto-entries-plugin/helper/utils.mjs';
 
 export function apply({ config: { mini: { type } = {} } }) {
   return async (chain) => {
@@ -76,13 +76,14 @@ export function apply({ config: { mini: { type } = {} } }) {
 
     rule.test(rule.get('test').add('vue'));
 
-    const { AllInOnePlugin } = await import('@into-mini/sfc-split-plugin');
+    const { SfcSplitPlugin } = await import('@into-mini/sfc-split-plugin');
 
-    chain.plugin('sfc-split').use(AllInOnePlugin, [
-      {
-        type,
-      },
-    ]);
+    const { AutoEntriesPlugin } =
+      await import('@into-mini/auto-entries-plugin');
+
+    chain.plugin('sfc-split').use(SfcSplitPlugin, [{ type }]);
+
+    chain.plugin('auto-entries').use(AutoEntriesPlugin, [{ type }]);
 
     const presets = ['vendor', 'common', 'shim', 'vue-mini', 'vue', 'react'];
 

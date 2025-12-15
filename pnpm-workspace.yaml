@@ -51,4 +51,5 @@ ignoredBuiltDependencies:
   - core-js-pure
 
 minimumReleaseAgeExclude:
-  - '@into-mini/sfc-split-plugin'
+  - '@into-mini/*'
+  - '@best-shot/*'

@@ -106,6 +106,10 @@ export function apply({
       importMetaContext: true,
     });
 
+    chain.module.parser.json({
+      namedExports: true,
+    });
+
     chain.module
       .rule('esm')
       .test(extToRegexp({ extname: ['js', 'mjs'] }))

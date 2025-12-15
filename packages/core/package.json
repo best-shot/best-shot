@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.13.8",
+  "version": "0.13.9",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -29,7 +29,7 @@
     "@best-shot/env": "workspace:^",
     "@best-shot/no-cache-loader": "workspace:^",
     "@best-shot/validator": "workspace:^",
-    "@best-shot/webpack-chain": "^8.1.12",
+    "@best-shot/webpack-chain": "^8.1.13",
     "browserslist": "catalog:",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "chalk": "catalog:",
@@ -40,7 +40,7 @@
     "slash": "^5.1.0",
     "slash-to-regexp": "catalog:",
     "terser": "^5.44.1",
-    "terser-webpack-plugin": "^5.3.15",
+    "terser-webpack-plugin": "^5.3.16",
     "yaml-loader": "^0.8.1"
   },
   "peerDependencies": {

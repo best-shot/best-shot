@@ -19,15 +19,16 @@ catalog:
   sort-keys: ^6.0.0
   webpack: ^5.103.0
   yaml: ^2.8.2
+  '@babel/core': ^7.28.5
 
 catalogs:
   react:
     '@pmmmwh/react-refresh-webpack-plugin': ^0.6.2
-    '@types/react': ^18.3.27
     '@types/react-dom': ^18.3.7
-    react: ^18.3.1
+    '@types/react': ^18.3.27
     react-dom: ^18.3.1
     react-refresh: ^0.18.0
+    react: ^18.3.1
 
 configDependencies:
   pnpm-plugin-nice-move: 0.0.0+sha512-Izo1w5H/T0w9WSt5cR6460Xj3ZeUi6v9PtobM9utn6biuYbvWa0Fkthc4dfMAxRdW5uVM5KBb77sm2CRW3qfeQ==

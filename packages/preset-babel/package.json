@@ -44,7 +44,7 @@
     "slash-to-regexp": "catalog:"
   },
   "peerDependencies": {
-    "@babel/core": "^7.28.5",
+    "@babel/core": "catalog:",
     "@best-shot/core": "workspace:^"
   },
   "engines": {

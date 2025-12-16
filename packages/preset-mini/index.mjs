@@ -1,7 +1,26 @@
 import { configKeys } from '@into-mini/auto-entries-plugin/helper/utils.mjs';
+import { transformJS } from './transform.mjs';
 
-export function apply({ config: { mini: { type } = {} } }) {
+export function apply({ config: { copy, mini: { type } = {} } }) {
   return async (chain) => {
+    if (chain.plugins.has('copy')) {
+      const { targets } = chain.module
+        .rule('babel')
+        .use('babel-loader')
+        .get('options');
+      const transform = transformJS(targets);
+
+      chain
+        .plugin('copy')
+        .tap(([options]) => [
+          Array.isArray(copy)
+            ? options.map((item) => ({ transform, ...item }))
+            : typeof copy === 'object'
+              ? { transform, ...options }
+              : options,
+        ]);
+    }
+
     chain.output
       .publicPath('/')
       .iife(false)

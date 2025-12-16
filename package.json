@@ -40,7 +40,7 @@
     "vue": "~3.5.25"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.5",
+    "@babel/core": "catalog:",
     "@bring-it/cli": "^0.11.1",
     "@bring-it/npm": "^0.9.3",
     "@nice-move/all-in-web": "^0.6.24",
@@ -74,7 +74,7 @@
     "@types/react": "catalog:react",
     "best-shot": "workspace:^"
   },
-  "packageManager": "pnpm@10.20.0",
+  "packageManager": "pnpm@10.26.0",
   "engines": {
     "node": ">=22.11.0"
   },

@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    '@babel/core':
+      specifier: ^7.28.5
+      version: 7.28.5
     browserslist:
       specifier: ^4.28.1
       version: 4.28.1
@@ -135,7 +138,7 @@ importers:
         version: 3.5.25(typescript@5.9.3)
     devDependencies:
       '@babel/core':
-        specifier: ^7.28.5
+        specifier: 'catalog:'
         version: 7.28.5
       '@bring-it/cli':
         specifier: ^0.11.1
@@ -390,7 +393,7 @@ importers:
   packages/preset-babel:
     dependencies:
       '@babel/core':
-        specifier: ^7.28.5
+        specifier: 'catalog:'
         version: 7.28.5
       '@babel/preset-typescript':
         specifier: ^7.28.5
@@ -422,6 +425,9 @@ importers:
 
   packages/preset-mini:
     dependencies:
+      '@babel/core':
+        specifier: 'catalog:'
+        version: 7.28.5
       '@best-shot/core':
         specifier: workspace:^
         version: link:../core

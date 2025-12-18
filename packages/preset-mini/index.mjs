@@ -1,14 +1,10 @@
-import { configKeys } from '@into-mini/auto-entries-plugin/helper/utils.mjs';
+import { configKeys } from '@into-mini/auto-entries-plugin/dist/helper/utils.mjs';
 import { transformJS } from './transform.mjs';
 
 export function apply({ config: { copy, mini: { type } = {} } }) {
   return async (chain) => {
     if (chain.plugins.has('copy')) {
-      const { targets } = chain.module
-        .rule('babel')
-        .use('babel-loader')
-        .get('options');
-      const transform = transformJS(targets);
+      const transform = transformJS(chain);
 
       chain
         .plugin('copy')
@@ -93,7 +89,7 @@ export function apply({ config: { copy, mini: { type } = {} } }) {
 
     const rule = chain.module.rule('babel');
 
-    rule.test(rule.get('test').add('vue'));
+    // rule.test(rule.get('test').add('vue'));
 
     const { SfcSplitPlugin } = await import('@into-mini/sfc-split-plugin');
 

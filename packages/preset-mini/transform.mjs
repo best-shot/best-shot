@@ -1,10 +1,12 @@
 import babel from '@babel/core';
 
-export function transformJS(targets) {
-  console.log(targets);
-
+export function transformJS(chain) {
   return (input, absoluteFrom) => {
-    const minified = process.env.NODE_ENV === 'production';
+    const { targets } = chain.module
+      .rule('babel')
+      .use('babel-loader')
+      .get('options');
+    const minimize = chain.optimization.get('minimize');
 
     if (!absoluteFrom.endsWith('.js') || absoluteFrom.endsWith('.mjs')) {
       return input;
@@ -20,10 +22,10 @@ export function transformJS(targets) {
       babelrc: false,
       filename: 'a.mjs',
       sourceType: 'commonjs',
-      compact: !minified,
-      retainLines: !minified,
+      compact: !minimize,
+      retainLines: !minimize,
       envName: process.env.NODE_ENV,
-      minified,
+      minified: minimize,
     });
 
     return (result?.code || input).replace(

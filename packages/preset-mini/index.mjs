@@ -1,20 +1,13 @@
 import { configKeys } from '@into-mini/auto-entries-plugin/dist/helper/utils.mjs';
-import { transformJS } from './transform.mjs';
+import { applyCopy } from './transform.mjs';
+import { applyLoaders } from './loader.mjs';
 
-export function apply({ config: { copy, mini: { type } = {} } }) {
+export function apply({
+  config: { copy, mini: { type, tagMatcher, preserveTap } = {} },
+}) {
   return async (chain) => {
     if (chain.plugins.has('copy')) {
-      const transform = transformJS(chain);
-
-      chain
-        .plugin('copy')
-        .tap(([options]) => [
-          Array.isArray(copy)
-            ? options.map((item) => ({ transform, ...item }))
-            : typeof copy === 'object'
-              ? { transform, ...options }
-              : options,
-        ]);
+      applyCopy(chain, { copy });
     }
 
     chain.output
@@ -87,20 +80,16 @@ export function apply({ config: { copy, mini: { type } = {} } }) {
 
     chain.experiments.layers(true);
 
-    const rule = chain.module.rule('babel');
-
-    // rule.test(rule.get('test').add('vue'));
+    applyLoaders(chain, { tagMatcher, preserveTap });
 
     const { SfcSplitPlugin } = await import('@into-mini/sfc-split-plugin');
 
     const { AutoEntriesPlugin } =
       await import('@into-mini/auto-entries-plugin');
 
-    chain.plugin('sfc-split').use(SfcSplitPlugin, [{ type }]);
+    chain.plugin('sfc-split').use(SfcSplitPlugin, [{ type, loaders: false }]);
 
     chain.plugin('auto-entries').use(AutoEntriesPlugin, [{ type }]);
-
-    const presets = ['vendor', 'common', 'shim', 'vue-mini', 'vue', 'react'];
 
     const configs = Object.values(configKeys);
 
@@ -110,6 +99,8 @@ export function apply({ config: { copy, mini: { type } = {} } }) {
     chain.optimization.avoidEntryIife(true);
 
     if (chain.optimization.splitChunks.get('cacheGroups')) {
+      const presets = ['vendor', 'common', 'shim', 'vue-mini', 'vue', 'react'];
+
       chain.optimization.splitChunks.cacheGroups(
         Object.fromEntries(
           Object.entries(chain.optimization.splitChunks.get('cacheGroups')).map(
@@ -138,6 +129,12 @@ export const schema = {
     properties: {
       type: {
         enum: ['miniprogram', 'plugin'],
+      },
+      tagMatcher: {
+        instanceof: 'Function',
+      },
+      preserveTap: {
+        instanceof: 'Function',
       },
     },
   },

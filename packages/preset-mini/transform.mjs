@@ -1,13 +1,14 @@
 import babel from '@babel/core';
 
-export function transformJS(chain) {
-  return (input, absoluteFrom) => {
-    const { targets } = chain.module
-      .rule('babel')
-      .use('babel-loader')
-      .get('options');
-    const minimize = chain.optimization.get('minimize');
+export function applyCopy(chain, { copy }) {
+  const { targets } = chain.module
+    .rule('babel')
+    .use('babel-loader')
+    .get('options');
 
+  const minimize = chain.optimization.get('minimize');
+
+  const transform = (input, absoluteFrom) => {
     if (!absoluteFrom.endsWith('.js') || absoluteFrom.endsWith('.mjs')) {
       return input;
     }
@@ -33,4 +34,14 @@ export function transformJS(chain) {
       ';',
     );
   };
+
+  chain
+    .plugin('copy')
+    .tap(([options]) => [
+      Array.isArray(copy)
+        ? options.map((item) => ({ transform, ...item }))
+        : typeof copy === 'object'
+          ? { transform, ...options }
+          : options,
+    ]);
 }

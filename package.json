@@ -37,15 +37,14 @@
     "@vue-mini/core": "^1.2.8",
     "react": "catalog:react",
     "react-dom": "catalog:react",
-    "vue": "~3.5.25"
+    "vue": "~3.5.26"
   },
   "devDependencies": {
     "@babel/core": "catalog:",
     "@bring-it/cli": "^0.11.1",
     "@bring-it/npm": "^0.9.3",
-    "@nice-move/all-in-web": "^0.6.24",
+    "@nice-move/all-in-web": "^0.6.27",
     "@nice-move/syncpack-config": "^0.4.2",
-    "@tailwindcss/postcss": "^4.1.18",
     "ava": "^6.4.1",
     "eslint": "^9.39.2",
     "garou": "^0.9.17",
@@ -53,7 +52,6 @@
     "prettier": "~3.7.4",
     "stylelint": "^16.26.1",
     "syncpack": "^13.0.4",
-    "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
     "webpack": "catalog:",
     "webpack-cli": "^6.0.1"
@@ -74,7 +72,7 @@
     "@types/react": "catalog:react",
     "best-shot": "workspace:^"
   },
-  "packageManager": "pnpm@10.26.0",
+  "packageManager": "pnpm@10.26.1",
   "engines": {
     "node": ">=22.11.0"
   },
@@ -90,7 +88,7 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "na run build:dev",
+    "exec": "na run inspect && na run build:watch",
     "ext": "js,cjs,mjs,json,wxs",
     "quiet": true,
     "watch": [

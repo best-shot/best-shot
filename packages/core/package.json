@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.13.9",
+  "version": "0.13.10",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -29,7 +29,7 @@
     "@best-shot/env": "workspace:^",
     "@best-shot/no-cache-loader": "workspace:^",
     "@best-shot/validator": "workspace:^",
-    "@best-shot/webpack-chain": "^8.1.13",
+    "@best-shot/webpack-chain": "^8.1.14",
     "browserslist": "catalog:",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "chalk": "catalog:",

@@ -30,6 +30,7 @@
     "@into-mini/auto-entries-plugin": "^0.2.0",
     "@into-mini/sfc-split-loader": "^0.2.6",
     "@into-mini/sfc-split-plugin": "^0.5.11",
+      "ext-to-regexp": "catalog:",
     "yaml": "catalog:"
   },
   "peerDependencies": {

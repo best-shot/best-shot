@@ -8,10 +8,12 @@ function addExtname(rule) {
 }
 
 export function applyScssLess() {
-  return (chain) => {
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  return  (chain) => {
     chain.module.rule('style').batch(addExtname);
 
     chain.module
+      .rule('style')
       .rule('sass')
       .test(extToRegexp({ extname: ['scss', 'sass'] }))
       .use('resolve-url-loader')
@@ -28,6 +30,7 @@ export function applyScssLess() {
       });
 
     chain.module
+      .rule('style')
       .rule('less')
       .after('sass')
       .test(extToRegexp({ extname: ['less'] }))

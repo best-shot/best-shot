@@ -60,9 +60,6 @@ updateConfig:
     - react-refresh
 
 overrides:
-  '@into-mini/auto-entries-plugin': 0.2.0
-  '@into-mini/sfc-split-loader': 0.2.6
-  '@into-mini/sfc-split-plugin': 0.5.12
   '@into-mini/sfc-template-traverse': 0.1.1
   '@into-mini/sfc-transformer': 0.6.3
   '@into-mini/vue-mini-patch': 0.4.8

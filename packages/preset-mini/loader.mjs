@@ -1,6 +1,6 @@
 import extToRegexp from 'ext-to-regexp';
 
-export function applyLoaders(chain, options) {
+export function applyLoaders(chain) {
   const babelRule = chain.module.rule('babel');
 
   const vueRegexp = extToRegexp({ extname: ['vue'] });
@@ -27,6 +27,9 @@ export function applyLoaders(chain, options) {
     .type('asset/resource')
     .generator.filename('[entry].wxml')
     .end()
+    .use('wxml-loader')
+    .loader('@into-mini/wxml-loader')
+    .end()
     .use('sfc-split-loader')
     .loader('@into-mini/sfc-split-loader/dist/index.mjs');
 
@@ -37,6 +40,9 @@ export function applyLoaders(chain, options) {
     .resourceQuery(/type=config&lang=json/)
     .type('asset/resource')
     .generator.filename('[entry].json')
+    .end()
+    .use('entry-loader')
+    .loader('@into-mini/sfc-split-plugin/dist/loader/entry-loader.mjs')
     .end()
     .use('sfc-split-loader')
     .loader('@into-mini/sfc-split-loader/dist/index.mjs');

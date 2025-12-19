@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-mini",
-  "version": "0.11.16",
+  "version": "0.11.17",
   "description": "A `best-shot` preset for mini program project",
   "license": "MIT",
   "author": {
@@ -29,8 +29,9 @@
   "dependencies": {
     "@into-mini/auto-entries-plugin": "^0.2.0",
     "@into-mini/sfc-split-loader": "^0.2.6",
-    "@into-mini/sfc-split-plugin": "^0.5.11",
-      "ext-to-regexp": "catalog:",
+    "@into-mini/sfc-split-plugin": "^0.6.0",
+    "@into-mini/wxml-loader": "^0.0.0",
+    "ext-to-regexp": "catalog:",
     "yaml": "catalog:"
   },
   "peerDependencies": {

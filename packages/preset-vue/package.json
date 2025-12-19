@@ -34,7 +34,7 @@
     "@best-shot/core": "workspace:^",
     "@best-shot/preset-style": "workspace:^",
     "@vue/compiler-sfc": "~3.5.17",
-    "vue": "~3.5.25"
+    "vue": "~3.5.26"
   },
   "engines": {
     "node": ">=22.11.0"

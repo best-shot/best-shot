@@ -87,7 +87,7 @@ export function apply({
     const { AutoEntriesPlugin } =
       await import('@into-mini/auto-entries-plugin');
 
-    chain.plugin('sfc-split').use(SfcSplitPlugin, [{ type, loaders: false }]);
+    chain.plugin('sfc-split').use(SfcSplitPlugin, [{ type }]);
 
     chain.plugin('auto-entries').use(AutoEntriesPlugin, [{ type }]);
 

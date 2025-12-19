@@ -69,7 +69,7 @@ catalogs:
       version: 0.18.0
 
 overrides:
-  '@into-mini/sfc-template-traverse': 0.1.1
+  '@into-mini/sfc-template-traverse': 0.1.2
   '@into-mini/sfc-transformer': 0.6.3
   '@into-mini/vue-mini-patch': 0.4.8
   eslint: ^9.39.2
@@ -438,14 +438,14 @@ importers:
         specifier: workspace:^
         version: link:../preset-style
       '@into-mini/auto-entries-plugin':
-        specifier: ^0.2.0
-        version: 0.2.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))
+        specifier: ^0.2.1
+        version: 0.2.1(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))
       '@into-mini/sfc-split-loader':
         specifier: ^0.2.6
         version: 0.2.6(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@into-mini/sfc-split-plugin':
-        specifier: ^0.6.0
-        version: 0.6.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))
+        specifier: ^0.6.1
+        version: 0.6.1(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))
       '@into-mini/wxml-loader':
         specifier: ^0.0.0
         version: 0.0.0
@@ -455,6 +455,9 @@ importers:
       yaml:
         specifier: 'catalog:'
         version: 2.8.2
+      yaml-patch-loader:
+        specifier: ^0.1.0
+        version: 0.1.0
 
   packages/preset-react:
     dependencies:
@@ -1419,31 +1422,31 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@into-mini/auto-entries-plugin@0.2.0':
-    resolution: {integrity: sha512-iC/3L+8VknycaGtADlmCIajWvPxUVT67+6QGutrxTtun+FWc4BcQd+m4W7BoiX7kxzhyhPH2dEDusUp4H5Y1Uw==}
+  '@into-mini/auto-entries-plugin@0.2.1':
+    resolution: {integrity: sha512-9Tyv0jEp6A0j/R3VpriVLcikFIxGNhS6+yNQNyogzeC4Lfzp7Jbc/n3J2vItgVjPSH1UZUbRiEGx6vAHjTK5tg==}
     engines: {node: '>=22.18.0'}
     peerDependencies:
       webpack: ^5.104.0
 
-  '@into-mini/clsx@0.1.0':
-    resolution: {integrity: sha512-XHVsWjGFyoZNr0XAyD6Wnz/NmjME8ttr5JroCVKmOrwNQAjSUIi1iAVdlklXRXNlsqe6/YtwDlJ3Qo1RxwyRTg==}
+  '@into-mini/clsx@0.1.1':
+    resolution: {integrity: sha512-1HW7kpBOImu6mlcTqu+/eBsl3bLgscC3HCWf+F9SjmkgoI+2/+p6gm/swrVmaebqJd9wBmXJJxJIsbcHhMv8jw==}
     engines: {node: '>=22.18.0'}
 
   '@into-mini/sfc-split-loader@0.2.6':
     resolution: {integrity: sha512-DxLutUBmlwFQS2mWQHbvduMziIcoBzWGM9xPTTD8WVSMzC3zXVBwoAP8kokLrVRVh7Eb3mGTp7m5CVXZIA2rkg==}
     engines: {node: '>=22.18.0'}
 
-  '@into-mini/sfc-split-plugin@0.6.0':
-    resolution: {integrity: sha512-g8n+cxG75l8JjaNw4gMJS+BDZcsQtYBFmyai5QcpaWydTxPnDVCRh0OwO7u2UKAeLBGvWP3aW9n+pqQGshbFNA==}
+  '@into-mini/sfc-split-plugin@0.6.1':
+    resolution: {integrity: sha512-AGw2DJ0YlIWmxSoCesaB2rP5Y2+Fy8VAldM3mVXb+aOIzZ/L6RzaK1cxkdpkmNnQumc/vxxutzGQU6z6V7K2lA==}
     engines: {node: '>=22.18.0'}
     peerDependencies:
       webpack: ^5.104.0
 
-  '@into-mini/sfc-template-traverse@0.1.1':
-    resolution: {integrity: sha512-CQU3aXZvNe3kAbre21quUNBLvD+L6HoxErDIgCj93V30Mq2J31HOcfKDLjJ/rEMyhUR29oTsVFp35M6rxb+kBg==}
+  '@into-mini/sfc-template-traverse@0.1.2':
+    resolution: {integrity: sha512-xNiUrfUXruciqAPAPApm+1uIvp9IG/RC3Lq4KFpgI4NzAETgJvk9fFGZG+iM/uwZGeP4UdEwQxc5dheiRuiAUA==}
     engines: {node: '>=22.18.0'}
     peerDependencies:
-      '@vue/compiler-core': ~3.5.21
+      '@vue/compiler-core': ^3.5.25
 
   '@into-mini/sfc-transformer@0.6.3':
     resolution: {integrity: sha512-gC2j1+8wzCzyEP70QiT00pUT4GzS3SbU3cyCal2ItDNUIe3lR9UK42Bpvgikx4UxmnJIqytaTSU6t1QUbgRnRQ==}
@@ -6349,9 +6352,6 @@ packages:
       html-webpack-plugin:
         optional: true
 
-  webpack-virtual-modules@0.6.2:
-    resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
-
   webpack@5.104.0:
     resolution: {integrity: sha512-5DeICTX8BVgNp6afSPYXAFjskIgWGlygQH58bcozPOXgo2r/6xx39Y1+cULZ3gTxUYQP88jmwLj2anu4Xaq84g==}
     engines: {node: '>=10.13.0'}
@@ -7467,7 +7467,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@into-mini/auto-entries-plugin@0.2.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))':
+  '@into-mini/auto-entries-plugin@0.2.1(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))':
     dependencies:
       '@into-mini/sfc-transformer': 0.6.3(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       slash: 5.1.0
@@ -7482,7 +7482,7 @@ snapshots:
       - vue
       - vue-router
 
-  '@into-mini/clsx@0.1.0': {}
+  '@into-mini/clsx@0.1.1': {}
 
   '@into-mini/sfc-split-loader@0.2.6(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))':
     dependencies:
@@ -7497,16 +7497,14 @@ snapshots:
       - vue
       - vue-router
 
-  '@into-mini/sfc-split-plugin@0.6.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))':
+  '@into-mini/sfc-split-plugin@0.6.1(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))':
     dependencies:
-      '@into-mini/clsx': 0.1.0
+      '@into-mini/clsx': 0.1.1
       '@into-mini/sfc-split-loader': 0.2.6(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@into-mini/sfc-transformer': 0.6.3(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(@vue/compiler-core@3.5.26)(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@into-mini/wxml-loader': 0.0.0
-      mini-css-extract-plugin: 2.9.4(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))
       slash: 5.1.0
       webpack: 5.104.0(webpack-cli@6.0.1(webpack@5.104.0))
-      webpack-virtual-modules: 0.6.2
       yaml: 2.8.2
     transitivePeerDependencies:
       - '@vue-mini/core'
@@ -7516,7 +7514,7 @@ snapshots:
       - vue
       - vue-router
 
-  '@into-mini/sfc-template-traverse@0.1.1(@vue/compiler-core@3.5.26)':
+  '@into-mini/sfc-template-traverse@0.1.2(@vue/compiler-core@3.5.26)':
     dependencies:
       '@vue/compiler-core': 3.5.26
       neotraverse: 0.6.18
@@ -7525,7 +7523,7 @@ snapshots:
     dependencies:
       '@babel/generator': 7.28.5
       '@babel/traverse': 7.28.5
-      '@into-mini/sfc-template-traverse': 0.1.1(@vue/compiler-core@3.5.26)
+      '@into-mini/sfc-template-traverse': 0.1.2(@vue/compiler-core@3.5.26)
       '@into-mini/vue-mini-patch': 0.4.8(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e))(@vue-mini/pinia@1.0.0(@vue-mini/core@1.2.8(patch_hash=032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e)))(vue-router@4.6.4(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@padcom/vue-ast-serializer': 0.0.1(@vue/compiler-core@3.5.26)(@vue/compiler-sfc@3.5.26)
       '@vue/compiler-sfc': 3.5.26
@@ -12997,8 +12995,6 @@ snapshots:
       webpack: 5.104.0(webpack-cli@6.0.1(webpack@5.104.0))
     optionalDependencies:
       html-webpack-plugin: 5.6.5(webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)))
-
-  webpack-virtual-modules@0.6.2: {}
 
   webpack@5.104.0(webpack-cli@6.0.1(webpack@5.104.0)):
     dependencies:

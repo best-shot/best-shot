@@ -1,6 +1,6 @@
 import extToRegexp from 'ext-to-regexp';
 
-export function applyLoaders(chain) {
+export function applyLoaders(chain, options) {
   const babelRule = chain.module.rule('babel');
 
   const vueRegexp = extToRegexp({ extname: ['vue'] });
@@ -17,7 +17,8 @@ export function applyLoaders(chain) {
     .merge(babelRule.use('babel-loader').entries())
     .end()
     .use('sfc-split-loader')
-    .loader('@into-mini/sfc-split-loader/dist/index.mjs');
+    .loader('@into-mini/sfc-split-loader/dist/index.mjs')
+    .options(options);
 
   vueRule
     .rule('extract-vue-template')
@@ -25,27 +26,32 @@ export function applyLoaders(chain) {
     .issuer(vueRegexp)
     .resourceQuery(/type=template/)
     .type('asset/resource')
-    .generator.filename('[entry].wxml')
+    .generator.filename('[entry][hash:8].wxml')
     .end()
     .use('wxml-loader')
     .loader('@into-mini/wxml-loader')
     .end()
     .use('sfc-split-loader')
-    .loader('@into-mini/sfc-split-loader/dist/index.mjs');
+    .loader('@into-mini/sfc-split-loader/dist/index.mjs')
+    .options(options);
 
   vueRule
     .rule('extract-vue-config')
     .test(vueRegexp)
     .issuer(vueRegexp)
-    .resourceQuery(/type=config&lang=json/)
+    .resourceQuery(/type=config&lang=(yaml|json)/)
     .type('asset/resource')
-    .generator.filename('[entry].json')
+    .generator.filename('[entry][hash:8].json')
     .end()
     .use('entry-loader')
     .loader('@into-mini/sfc-split-plugin/dist/loader/entry-loader.mjs')
     .end()
+    .use('yaml-loader')
+    .loader('yaml-patch-loader')
+    .end()
     .use('sfc-split-loader')
-    .loader('@into-mini/sfc-split-loader/dist/index.mjs');
+    .loader('@into-mini/sfc-split-loader/dist/index.mjs')
+    .options(options);
 
   const xRule = vueRule
     .rule('extract-vue-style')
@@ -72,21 +78,14 @@ export function applyLoaders(chain) {
   xRule
     .rule('extract')
     .use('sfc-split-loader')
-    .loader('@into-mini/sfc-split-loader/dist/index.mjs');
+    .loader('@into-mini/sfc-split-loader/dist/index.mjs')
+    .options(options);
 
   vueRule
     .rule('split-vue')
-    .issuer({ not: vueRegexp })
     .resourceQuery({ not: /type=/ })
     .type('javascript/esm')
     .use('sfc-split-loader')
-    .loader('@into-mini/sfc-split-loader/dist/index.mjs');
-
-  // vueRule
-  //   .rule('pre-vue').issuer({ not: vueRegexp })
-  //   .resourceQuery({ not: /type=/ })
-  //   .use('sfc-split-loader')
-  // .use('sfc-split-pre')
-  // .loader('@into-mini/sfc-split-loader/dist/next.mjs')
-  // .options(options)
+    .loader('@into-mini/sfc-split-loader/dist/index.mjs')
+    .options(options);
 }

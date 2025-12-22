@@ -13,12 +13,12 @@ catalog:
   deepmerge-ts: ^7.1.5
   ext-to-regexp: ^0.1.0
   flat: ^6.0.1
-  fs-extra: ^11.3.2
+  fs-extra: ^11.3.3
   ini: ^6.0.0
   settingz: ^0.2.0
   slash-to-regexp: ^0.1.0
   sort-keys: ^6.0.0
-  webpack: ^5.104.0
+  webpack: ^5.104.1
   yaml: ^2.8.2
 
 catalogs:

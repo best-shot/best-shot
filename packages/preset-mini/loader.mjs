@@ -22,7 +22,7 @@ export function applyLoaders(chain, options) {
     .issuer(vueRegexp)
     .resourceQuery(/type=template/)
     .type('asset/resource')
-    .generator.filename('[entry][hash:8].wxml')
+    .generator.filename('[entry].wxml')
     .end()
     .use('wxml-loader')
     .loader('@into-mini/wxml-loader');
@@ -33,7 +33,7 @@ export function applyLoaders(chain, options) {
     .issuer(vueRegexp)
     .resourceQuery(/type=config&lang=(yaml|json)/)
     .type('asset/resource')
-    .generator.filename('[entry][hash:8].json')
+    .generator.filename('[entry].json')
     .end()
     .use('entry-loader')
     .loader('@into-mini/sfc-split-plugin/dist/loader/entry-loader.mjs')

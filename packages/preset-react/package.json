@@ -44,7 +44,7 @@
     "react-dom": "catalog:react"
   },
   "engines": {
-    "node": ">=22.11.0"
+    "node": ">=22.18.0"
   },
   "publishConfig": {
     "access": "public",

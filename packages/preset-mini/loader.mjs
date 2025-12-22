@@ -14,11 +14,7 @@ export function applyLoaders(chain, options) {
     .resourceQuery(/type=script/)
     .type('javascript/esm')
     .use('babel-loader')
-    .merge(babelRule.use('babel-loader').entries())
-    .end()
-    .use('sfc-split-loader')
-    .loader('@into-mini/sfc-split-loader/dist/index.mjs')
-    .options(options);
+    .merge(babelRule.use('babel-loader').entries());
 
   vueRule
     .rule('extract-vue-template')
@@ -29,11 +25,7 @@ export function applyLoaders(chain, options) {
     .generator.filename('[entry][hash:8].wxml')
     .end()
     .use('wxml-loader')
-    .loader('@into-mini/wxml-loader')
-    .end()
-    .use('sfc-split-loader')
-    .loader('@into-mini/sfc-split-loader/dist/index.mjs')
-    .options(options);
+    .loader('@into-mini/wxml-loader');
 
   vueRule
     .rule('extract-vue-config')
@@ -47,11 +39,7 @@ export function applyLoaders(chain, options) {
     .loader('@into-mini/sfc-split-plugin/dist/loader/entry-loader.mjs')
     .end()
     .use('yaml-loader')
-    .loader('yaml-patch-loader')
-    .end()
-    .use('sfc-split-loader')
-    .loader('@into-mini/sfc-split-loader/dist/index.mjs')
-    .options(options);
+    .loader('yaml-patch-loader');
 
   const xRule = vueRule
     .rule('extract-vue-style')
@@ -68,23 +56,15 @@ export function applyLoaders(chain, options) {
   xRule
     .rule('sass')
     .delete('test')
-    .resourceQuery(/type=style&lang=scss/);
+    .resourceQuery(/lang=scss/);
 
   xRule
     .rule('less')
     .delete('test')
-    .resourceQuery(/type=style&lang=less/);
-
-  xRule
-    .rule('extract')
-    .use('sfc-split-loader')
-    .loader('@into-mini/sfc-split-loader/dist/index.mjs')
-    .options(options);
+    .resourceQuery(/lang=less/);
 
   vueRule
     .rule('split-vue')
-    .resourceQuery({ not: /type=/ })
-    .type('javascript/esm')
     .use('sfc-split-loader')
     .loader('@into-mini/sfc-split-loader/dist/index.mjs')
     .options(options);

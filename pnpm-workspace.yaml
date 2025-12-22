@@ -61,6 +61,6 @@ updateConfig:
 
 overrides:
   '@into-mini/sfc-template-traverse': 0.1.2
-  '@into-mini/sfc-transformer': 0.6.3
+  '@into-mini/sfc-transformer': 0.6.5
   '@into-mini/vue-mini-patch': 0.4.8
   eslint: ^9.39.2

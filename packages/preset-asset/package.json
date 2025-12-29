@@ -37,7 +37,7 @@
   "type": "module",
   "dependencies": {
     "@astropub/codecs": "^0.4.4",
-    "@sindresorhus/transliterate": "^2.2.0",
+    "@sindresorhus/transliterate": "^2.3.0",
     "@volue/wasm-codecs-gifsicle": "^1.0.0",
     "ext-to-regexp": "catalog:",
     "image-minimizer-webpack-plugin": "^4.1.4",

@@ -15,7 +15,7 @@ export async function applyImage(chain) {
     .after('esm')
     .test(
       extToRegexp({
-        extname: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
+        extname: ['jpg', 'jpeg', 'png', 'apng', 'gif', 'svg', 'webp'],
       }),
     )
     .batch((rule) => {
@@ -51,9 +51,8 @@ export async function applyImage(chain) {
     });
 
   if (minimize) {
-    const { default: ImageMinimizerPlugin } = await import(
-      'image-minimizer-webpack-plugin'
-    );
+    const { default: ImageMinimizerPlugin } =
+      await import('image-minimizer-webpack-plugin');
 
     chain.optimization.minimizer('svg').use(ImageMinimizerPlugin, [
       {

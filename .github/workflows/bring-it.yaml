@@ -15,7 +15,7 @@ jobs:
           - windows-latest
           - ubuntu-latest
         node:
-          - current
+          # - current
           - lts/*
         exclude:
           - os: ubuntu-latest
@@ -23,10 +23,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Run
-        uses: airkro/bring-it@actions
+        uses: airkro/bring-it@actions-oidc
         with:
           node-version: ${{ matrix.node }}
-          custom-command: |
+          custom-command-after: |
             mkdir -p packages/best-shot/dist
             touch $_/cli.mjs
 
@@ -39,6 +39,6 @@ jobs:
       - name: Run
         uses: airkro/bring-it@actions-oidc
         with:
-          custom-command: |
+          custom-command-after: |
             mkdir -p packages/best-shot/dist
             touch $_/cli.mjs

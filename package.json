@@ -37,19 +37,19 @@
     "@vue-mini/core": "^1.2.8",
     "react": "catalog:react",
     "react-dom": "catalog:react",
-    "vue": "~3.5.26"
+    "vue": "~3.5.27"
   },
   "devDependencies": {
     "@babel/core": "catalog:",
     "@bring-it/cli": "^0.11.1",
     "@bring-it/npm": "^0.9.3",
-    "@nice-move/all-in-web": "^0.6.31",
+    "@nice-move/all-in-web": "^0.6.33",
     "@nice-move/syncpack-config": "^0.4.2",
     "ava": "^6.4.1",
     "eslint": "^9.39.2",
     "garou": "^0.9.17",
     "nodemon": "^3.1.11",
-    "prettier": "~3.7.4",
+    "prettier": "~3.8.0",
     "stylelint": "^16.26.1",
     "syncpack": "^13.0.4",
     "typescript": "~5.9.3",
@@ -72,7 +72,7 @@
     "@types/react": "catalog:react",
     "best-shot": "workspace:^"
   },
-  "packageManager": "pnpm@10.26.2",
+  "packageManager": "pnpm@10.28.1",
   "engines": {
     "node": ">=22.18.0"
   },

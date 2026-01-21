@@ -4,7 +4,7 @@ packages:
   - tests
 
 catalog:
-  '@babel/core': ^7.28.5
+  '@babel/core': ^7.28.6
   browserslist: ^4.28.1
   chalk: ^5.6.2
   cheetor: ^0.13.0
@@ -31,20 +31,22 @@ catalogs:
     react-refresh: ^0.18.0
 
 configDependencies:
-  pnpm-plugin-nice-move: 0.1.0+sha512-M70sSpJmx0htcWXAYdd+VtlFthhQEHWsfLIINitKLVEWs4NyCOdiyd+zGkcqJE8PwqVPd6hpiNX9edIuvB9wjw==
-
-ignoredBuiltDependencies:
-  - '@parcel/watcher'
-  - core-js
-  - core-js-pure
-  - less
+  pnpm-plugin-nice-move: 0.2.1+sha512-hy+TLSyMaGlC6hAa3JV8gMNpAId56MFgRm8hLuAIlepUorxHUtakkwXtSmIzLGcyP3+1l8VOm9RignzIbFvHLw==
 
 minimumReleaseAgeExclude:
   - '@into-mini/*'
-  - '@best-shot/*'
-  - '@nice-move/*'
   - '@vue/*'
   - vue
+
+overrides:
+  '@into-mini/sfc-template-traverse': 0.1.2
+  '@into-mini/sfc-transformer': 0.6.5
+  '@into-mini/vue-mini-patch': 0.4.8
+  eslint: ^9.39.2
+  qs@<6.14.1: '>=6.14.1'
+  sass: '-'
+  tar@<=7.5.2: '>=7.5.3'
+  tar@<=7.5.3: '>=7.5.4'
 
 patchedDependencies:
   '@vue-mini/core': patches/@vue-mini__core.patch
@@ -52,15 +54,13 @@ patchedDependencies:
 
 shamefullyHoist: true
 
+trustPolicyExclude:
+  - semver
+  - memfs@4.56.2
+
 updateConfig:
   ignoreDependencies:
     - express
     - react
     - react-dom
     - react-refresh
-
-overrides:
-  '@into-mini/sfc-template-traverse': 0.1.2
-  '@into-mini/sfc-transformer': 0.6.5
-  '@into-mini/vue-mini-patch': 0.4.8
-  eslint: ^9.39.2

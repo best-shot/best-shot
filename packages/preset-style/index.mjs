@@ -16,12 +16,8 @@ export function apply({ config: { css: { extract } = {} } }) {
     applyScssLess()(chain);
 
     if (needExtract) {
-      const cssFilename = chain.output.get('cssFilename');
-
       chain.plugin('extract-css').use(MiniCssExtractPlugin, [
         {
-          filename: `[name]${cssFilename}`,
-          // chunkFilename: '[id].css',
           ignoreOrder: true,
           experimentalUseImportModule: true,
         },
@@ -66,15 +62,6 @@ export const schema = {
       extract: {
         type: 'boolean',
         default: false,
-      },
-    },
-  },
-  output: {
-    type: 'object',
-    default: {},
-    properties: {
-      cssFilename: {
-        default: '.css',
       },
     },
   },

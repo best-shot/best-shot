@@ -1,20 +1,22 @@
 import extToRegexp from 'ext-to-regexp';
 
 export function applyLoaders(chain, options) {
-  const babelRule = chain.module.rule('babel');
-
   const vueRegexp = extToRegexp({ extname: ['vue'] });
 
   const vueRule = chain.module.rule('vue-file').test(vueRegexp);
 
-  vueRule
-    .rule('extract-vue-javascript')
-    .test(vueRegexp)
-    .issuer(vueRegexp)
-    .resourceQuery(/type=script/)
-    .type('javascript/esm')
-    .use('babel-loader')
-    .merge(babelRule.use('babel-loader').entries());
+  if (chain.module.rules.has('babel')) {
+    const babelRule = chain.module.rule('babel');
+
+    vueRule
+      .rule('extract-vue-javascript')
+      .test(vueRegexp)
+      .issuer(vueRegexp)
+      .resourceQuery(/type=script/)
+      .type('javascript/esm')
+      .use('babel-loader')
+      .merge(babelRule.use('babel-loader').entries());
+  }
 
   vueRule
     .rule('extract-vue-template')
@@ -41,27 +43,29 @@ export function applyLoaders(chain, options) {
     .use('yaml-loader')
     .loader('yaml-patch-loader');
 
-  const xRule = vueRule
-    .rule('extract-vue-style')
-    .test(vueRegexp)
-    .issuer(vueRegexp)
-    .resourceQuery(/type=style/);
+  if (chain.module.rules.has('style')) {
+    const xRule = vueRule
+      .rule('extract-vue-style')
+      .test(vueRegexp)
+      .issuer(vueRegexp)
+      .resourceQuery(/type=style/);
 
-  const styleRule = chain.module.rule('style');
+    const styleRule = chain.module.rule('style');
 
-  for (const name of ['all', 'postcss', 'sass', 'less']) {
-    xRule.rule(name).merge(styleRule.rule(name).toConfig());
+    for (const name of ['all', 'postcss', 'sass', 'less']) {
+      xRule.rule(name).merge(styleRule.rule(name).toConfig());
+    }
+
+    xRule
+      .rule('sass')
+      .delete('test')
+      .resourceQuery(/lang=scss/);
+
+    xRule
+      .rule('less')
+      .delete('test')
+      .resourceQuery(/lang=less/);
   }
-
-  xRule
-    .rule('sass')
-    .delete('test')
-    .resourceQuery(/lang=scss/);
-
-  xRule
-    .rule('less')
-    .delete('test')
-    .resourceQuery(/lang=less/);
 
   vueRule
     .rule('split-vue')

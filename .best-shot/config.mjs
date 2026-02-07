@@ -1,11 +1,17 @@
 export const config = {
-  presets: ['babel', 'style', 'asset', 'mini'],
+  presets: [
+    // 'babel',
+    // 'style',
+    // 'asset',
+    // 'web',
+    'mini',
+  ],
   mini: {
     type: 'miniprogram',
   },
-  entry: {
-    'page/abc': './abc.vue',
-  },
+  // entry: {
+  //   main: './src/style.css',
+  // },
   context: 'src',
   output: {
     module: true,
@@ -15,7 +21,7 @@ export const config = {
 
     chain.stats('errors-warnings');
   },
-  // devServer: {},
+  devServer: {},
   vue: {
     importMap: true,
   },

@@ -14,6 +14,7 @@ export function apply({
       .publicPath('/')
       .iife(false)
       .filename('[name].js')
+      .cssFilename('[name].wxss')
       .globalObject('global')
       .strictModuleErrorHandling(false)
       .importFunctionName('require.async')
@@ -66,17 +67,6 @@ export function apply({
         },
       ]);
     }
-
-    chain.module
-      .rule('style')
-      .rule('all')
-      .oneOf('not-url')
-      .use('css-loader')
-      .tap((options) => ({
-        ...options,
-        import: false,
-        modules: false,
-      }));
 
     chain.experiments.layers(true);
 
@@ -153,9 +143,6 @@ export const schema = {
           keep: 'miniprogram_npm',
         },
       },
-      cssFilename: {
-        default: '.wxss',
-      },
     },
   },
   optimization: {
@@ -171,6 +158,7 @@ export const schema = {
     },
   },
   babel: {
+    type: 'object',
     properties: {
       polyfill: {
         default: {

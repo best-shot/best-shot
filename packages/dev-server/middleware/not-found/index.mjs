@@ -1,15 +1,12 @@
 import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { compile } from 'ejs';
 import { Router } from 'express';
 
 import { isRaw } from '../../lib/utils.mjs';
+import { fileURLToPath } from 'node:url';
 
 const router = Router({ strict: true });
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 router.use(({ method, url }, res, next) => {
   if (method !== 'GET' || isRaw(url)) {
@@ -21,7 +18,7 @@ router.use(({ method, url }, res, next) => {
 
 export function notFound({ publicPath: path = '/' }) {
   const render = compile(
-    readFileSync(resolve(__dirname, '404.html'), {
+    readFileSync(fileURLToPath(import.meta.resolve('./404.html')), {
       encoding: 'utf8',
     }),
     {

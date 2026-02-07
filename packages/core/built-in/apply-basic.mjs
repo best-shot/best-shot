@@ -56,9 +56,11 @@ export function apply({
 
     const isNode = targetIsNode(target);
 
-    chain.output.filename(
-      isNode ? (useModule ? '[name].mjs' : '[name].cjs') : '[name].js',
-    );
+    chain.output
+      .filename(
+        isNode ? (useModule ? '[name].mjs' : '[name].cjs') : '[name].js',
+      )
+      .cssFilename('[name].css');
 
     if (!watch) {
       chain.output.clean(true);

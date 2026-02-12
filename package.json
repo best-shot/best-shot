@@ -37,7 +37,7 @@
     "@vue-mini/core": "^1.2.8",
     "react": "catalog:react",
     "react-dom": "catalog:react",
-    "vue": "~3.5.27"
+    "vue": "~3.5.28"
   },
   "devDependencies": {
     "@babel/core": "catalog:",

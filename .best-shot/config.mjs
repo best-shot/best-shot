@@ -1,10 +1,11 @@
 export const config = {
   presets: [
-    // 'babel',
-    // 'style',
+    'babel',
+    'vue',
+    'style',
     // 'asset',
-    // 'web',
-    'mini',
+    'web',
+    // 'mini',
   ],
   mini: {
     type: 'miniprogram',
@@ -12,7 +13,7 @@ export const config = {
   // entry: {
   //   main: './src/style.css',
   // },
-  context: 'src',
+  // context: 'src',
   output: {
     module: true,
   },
@@ -21,7 +22,9 @@ export const config = {
 
     chain.stats('errors-warnings');
   },
-  devServer: {},
+  devServer: {
+    port: 4321,
+  },
   vue: {
     importMap: true,
   },

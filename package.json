@@ -46,9 +46,9 @@
     "@nice-move/all-in-web": "^0.6.39",
     "@nice-move/syncpack-config": "^0.4.2",
     "ava": "^6.4.1",
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.3",
     "garou": "^0.9.17",
-    "nodemon": "^3.1.11",
+    "nodemon": "^3.1.14",
     "prettier": "~3.8.1",
     "stylelint": "^16.26.1",
     "syncpack": "^13.0.4",
@@ -72,7 +72,7 @@
     "@types/react": "catalog:react",
     "best-shot": "workspace:^"
   },
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.29.3",
   "engines": {
     "node": ">=22.18.0"
   },
@@ -88,7 +88,7 @@
   },
   "nodemonConfig": {
     "delay": 5,
-    "exec": "na run build:dev",
+    "exec": "na run build:serve",
     "ext": "js,cjs,mjs,json,wxs",
     "quiet": true,
     "watch": [

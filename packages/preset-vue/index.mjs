@@ -6,6 +6,22 @@ export function apply({
   config: { vue: { compilerOptions = {}, importMap = false, ...other } = {} },
 }) {
   return async (chain) => {
+    if (chain.module.rules.has('babel')) {
+      chain.module
+        .rule('babel')
+        .use('babel-loader')
+        .tap((options) => ({
+          ...options,
+          overrides: [
+            ...(options.overrides || []),
+            {
+              test: '**/*.vue',
+              presets: [['@babel/typescript', { ignoreExtensions: true }]],
+            },
+          ],
+        }));
+    }
+
     chain.module
       .rule('vue')
       .after('esm')
@@ -34,9 +50,8 @@ export function apply({
         .tap((options) => ({ ...options, parse }));
     }
 
-    const { default: VueLoaderPlugin } = await import(
-      '@best-shot/vue-loader/dist/pluginWebpack5.js'
-    );
+    const { default: VueLoaderPlugin } =
+      await import('@best-shot/vue-loader/dist/pluginWebpack5.js');
 
     chain.plugin('vue-loader').use(VueLoaderPlugin.default);
 

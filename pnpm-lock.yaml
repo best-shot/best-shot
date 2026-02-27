@@ -40,8 +40,8 @@ catalogs:
       specifier: ^0.2.0
       version: 0.2.0
     slash-to-regexp:
-      specifier: ^0.1.0
-      version: 0.1.0
+      specifier: ^0.2.0
+      version: 0.2.0
     sort-keys:
       specifier: ^6.0.0
       version: 6.0.0
@@ -75,8 +75,6 @@ overrides:
   eslint: ^9.39.2
   qs@<6.14.1: '>=6.14.1'
   sass: '-'
-
-pnpmfileChecksum: sha256-wEeLfCLiab0AvG77dg9o8Bv87LQE3dc86E4XDNSZzJQ=
 
 patchedDependencies:
   '@vue-mini/core':
@@ -285,7 +283,7 @@ importers:
         version: 5.1.0
       slash-to-regexp:
         specifier: 'catalog:'
-        version: 0.1.0
+        version: 0.2.0
       terser:
         specifier: ^5.46.0
         version: 5.46.0
@@ -423,7 +421,7 @@ importers:
         version: 0.1.0
       slash-to-regexp:
         specifier: 'catalog:'
-        version: 0.1.0
+        version: 0.2.0
 
   packages/preset-mini:
     dependencies:
@@ -543,7 +541,7 @@ importers:
         version: 0.2.0
       slash-to-regexp:
         specifier: 'catalog:'
-        version: 0.1.0
+        version: 0.2.0
       style-loader:
         specifier: ^4.0.0
         version: 4.0.0(webpack@5.105.2(webpack-cli@6.0.1(webpack@5.105.2)))
@@ -597,7 +595,7 @@ importers:
         version: 5.1.0
       slash-to-regexp:
         specifier: 'catalog:'
-        version: 0.1.0
+        version: 0.2.0
       suffix:
         specifier: ^1.0.0
         version: 1.0.0
@@ -5795,9 +5793,9 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  slash-to-regexp@0.1.0:
-    resolution: {integrity: sha512-pqHDd2dad7HB9TwZsN/8bXrfVlxy4kGM6Q1PqJR5HJK9SUj03t8XX+NkSdKT920jD4XZz7hzN9LCd26O3cvAmA==}
-    engines: {node: '>=16.13.0'}
+  slash-to-regexp@0.2.0:
+    resolution: {integrity: sha512-KoWIJBdtCOi+21PeE3apJu8FZdmHQDCQfR+YcUgfjSeyQPq+lAt4fuAvRMoL4lphg3DeJKMYFMNIbgA56nQ2Zw==}
+    engines: {node: '>=20.18.0'}
 
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
@@ -12388,7 +12386,7 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  slash-to-regexp@0.1.0: {}
+  slash-to-regexp@0.2.0: {}
 
   slash@3.0.0: {}
 

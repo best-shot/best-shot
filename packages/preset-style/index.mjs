@@ -1,4 +1,4 @@
-import slashToRegexp from 'slash-to-regexp';
+import { slashToRegexp } from 'slash-to-regexp';
 import { applyScssLess } from './lib/apply-scss-less.mjs';
 import { applyStylesheet } from './lib/apply-stylesheet.mjs';
 

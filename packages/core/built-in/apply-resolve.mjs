@@ -2,7 +2,7 @@ import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import slashToRegexp from 'slash-to-regexp';
+import { slashToRegexp } from 'slash-to-regexp';
 import webpack from 'webpack';
 
 import { notEmpty } from '../lib/utils.mjs';
@@ -41,9 +41,10 @@ export function apply({
     const watch = chain.get('watch');
 
     if (!watch) {
-      const CaseSensitivePathsPlugin = await import(
-        'case-sensitive-paths-webpack-plugin'
-      ).then(({ default: Plugin }) => Plugin);
+      const CaseSensitivePathsPlugin =
+        await import('case-sensitive-paths-webpack-plugin').then(
+          ({ default: Plugin }) => Plugin,
+        );
       chain.plugin('case-sensitive-paths').use(CaseSensitivePathsPlugin);
     }
 

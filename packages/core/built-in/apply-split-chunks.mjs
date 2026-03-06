@@ -1,4 +1,4 @@
-import slashToRegexp from 'slash-to-regexp';
+import { slashToRegexp } from 'slash-to-regexp';
 
 function mapValues(obj, func) {
   const arr = Object.entries(obj);

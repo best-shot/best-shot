@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url';
 
 import browserslist from 'browserslist';
 import extToRegexp from 'ext-to-regexp';
-import slashToRegexp from 'slash-to-regexp';
+import { slashToRegexp } from 'slash-to-regexp';
 
 function getList({ path, env }) {
   const config = browserslist.loadConfig({ path, env });

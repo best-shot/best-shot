@@ -1,5 +1,5 @@
 diff --git a/lib/snapshot-manager.js b/lib/snapshot-manager.js
-index 68d7f8af7e1f0c74b03ddcc0c40ba4d72d57cfef..8dde8d8e5903cfd2358f169af3140fa1c32e47b4 100644
+index 1be8a1c4d87e03416ac63531776ab960db6e831d..d61399bccd5c3b256555feff05070c7f58bcd131 100644
 --- a/lib/snapshot-manager.js
 +++ b/lib/snapshot-manager.js
 @@ -97,7 +97,7 @@ function formatEntry(snapshot, index) {

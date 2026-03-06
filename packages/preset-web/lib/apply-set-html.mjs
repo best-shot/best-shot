@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import extToRegexp from 'ext-to-regexp';
 import slash from 'slash';
-import slashToRegexp from 'slash-to-regexp';
+import { slashToRegexp } from 'slash-to-regexp';
 
 function css([string]) {
   return string.trim().replaceAll(/\n\s+/g, '');
@@ -78,9 +78,8 @@ export function setHtml({ html = {} }) {
     });
 
     if (page.some(({ tags = [] }) => tags.length > 0)) {
-      const { HtmlAddAssetWebpackPlugin } = await import(
-        'html-add-asset-webpack-plugin'
-      );
+      const { HtmlAddAssetWebpackPlugin } =
+        await import('html-add-asset-webpack-plugin');
 
       chain.plugin('html-add-asset').use(HtmlAddAssetWebpackPlugin);
     }
@@ -88,9 +87,8 @@ export function setHtml({ html = {} }) {
     const minimize = chain.optimization.get('minimize');
 
     if (minimize) {
-      const { default: HtmlMinimizerPlugin } = await import(
-        'html-minimizer-webpack-plugin'
-      );
+      const { default: HtmlMinimizerPlugin } =
+        await import('html-minimizer-webpack-plugin');
 
       chain.optimization.minimizer('html').use(HtmlMinimizerPlugin, [
         {

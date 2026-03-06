@@ -13,13 +13,14 @@ catalog:
   deepmerge-ts: ^7.1.5
   ext-to-regexp: ^0.1.0
   flat: ^6.0.1
-  fs-extra: ^11.3.3
+  fs-extra: ^11.3.4
   ini: ^6.0.0
   settingz: ^0.2.0
-  slash-to-regexp: ^0.1.0
+  slash-to-regexp: ^0.2.0
   sort-keys: ^6.0.0
-  webpack: ^5.105.2
+  webpack: ^5.105.4
   yaml: ^2.8.2
+  vue: ^3.5.29
 
 catalogs:
   react:
@@ -31,24 +32,25 @@ catalogs:
     react-refresh: ^0.18.0
 
 configDependencies:
-  pnpm-plugin-nice-move: 0.2.1+sha512-hy+TLSyMaGlC6hAa3JV8gMNpAId56MFgRm8hLuAIlepUorxHUtakkwXtSmIzLGcyP3+1l8VOm9RignzIbFvHLw==
+  pnpm-plugin-nice-move: 0.3.0+sha512-RsmTZcxGja000NksrFr7g6n+bcAF0NQQSDaNcV+yaRlyB7EjLet7vPDCqpdg9js72B2rU0fF3kaL0nIuvRC1Rg==
 
 minimumReleaseAgeExclude:
   - '@into-mini/*'
   - '@vue/*'
   - vue
+  - postcss-preset-evergreen
 
 overrides:
   '@into-mini/sfc-template-traverse': 0.1.2
-  '@into-mini/sfc-transformer': 0.6.5
+  '@into-mini/sfc-transformer': 0.6.9
   '@into-mini/vue-mini-patch': 0.4.8
-  eslint: ^9.39.2
+  eslint: ^9.39.3
   qs@<6.14.1: '>=6.14.1'
   sass: '-'
 
 patchedDependencies:
-  '@vue-mini/core': patches/@vue-mini__core.patch
-  ava: patches/ava.patch
+  '@vue-mini/core': .patches/@vue-mini__core.patch
+  ava: .patches/ava.patch
 
 shamefullyHoist: true
 
@@ -61,4 +63,3 @@ updateConfig:
     - express
     - react
     - react-dom
-    - react-refresh

@@ -5,10 +5,10 @@
   "type": "module",
   "peerDependencies": {
     "@best-shot/core": "workspace:^",
-    "ava": "^6.4.1",
+    "ava": "^7.0.0",
     "prettier": "~3.8.1"
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=22.22.0"
   }
 }

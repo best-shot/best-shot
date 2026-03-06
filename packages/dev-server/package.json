@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/dev-server",
-  "version": "0.21.4",
+  "version": "0.21.5",
   "description": "DevServer support of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -35,7 +35,7 @@
     "chalk": "catalog:",
     "ejs": "^3.1.10",
     "express": "^4.22.1",
-    "launch-editor-middleware": "^2.13.0",
+    "launch-editor-middleware": "^2.13.1",
     "webpack-dev-server": "~5.2.3",
     "webpack-dev-server-waitpage": "^3.0.0"
   },
@@ -43,7 +43,7 @@
     "@best-shot/cli": "workspace:^"
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=22.22.0"
   },
   "publishConfig": {
     "access": "public",

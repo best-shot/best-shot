@@ -79,8 +79,6 @@ overrides:
   qs@<6.14.1: '>=6.14.1'
   sass: '-'
 
-pnpmfileChecksum: sha256-mS1QIEGtFQ28TeF9birCFL18c0lFsb9V6ngFKSiJCGo=
-
 patchedDependencies:
   '@vue-mini/core':
     hash: 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
@@ -515,11 +513,11 @@ importers:
         specifier: 'catalog:'
         version: 0.1.0
       less:
-        specifier: ^4.5.1
-        version: 4.5.1
+        specifier: ^4.6.4
+        version: 4.6.4
       less-loader:
         specifier: ^12.3.1
-        version: 12.3.1(less@4.5.1)(webpack@5.105.4(webpack-cli@6.0.1(webpack@5.105.4)))
+        version: 12.3.1(less@4.6.4)(webpack@5.105.4(webpack-cli@6.0.1(webpack@5.105.4)))
       mini-css-extract-plugin:
         specifier: ^2.10.0
         version: 2.10.0(webpack@5.105.4(webpack-cli@6.0.1(webpack@5.105.4)))
@@ -2821,8 +2819,9 @@ packages:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
 
-  copy-anything@2.0.6:
-    resolution: {integrity: sha512-1j20GZTsvKNkc4BY3NpMOM8tt///wY3FpIzozTOFO2ffuZcV61nojHXVKIy3WM+7ADCy5FVhdZYHYDdgTU0yJw==}
+  copy-anything@3.0.5:
+    resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
+    engines: {node: '>=12.13'}
 
   copy-webpack-plugin@12.0.2:
     resolution: {integrity: sha512-SNwdBeHyII+rWvee/bTnAYyO8vfVdcSTud4EIb6jcZ8inLeWucJE0DnxXQBjlQ5zlteuuvooGQy3LIyGxhvlOA==}
@@ -4113,8 +4112,9 @@ packages:
     resolution: {integrity: sha512-mfcwb6IzQyOKTs84CQMrOwW4gQcaTOAWJ0zzJCl2WSPDrWk/OzDaImWFH3djXhb24g4eudZfLRozAvPGw4d9hQ==}
     engines: {node: '>= 0.4'}
 
-  is-what@3.14.1:
-    resolution: {integrity: sha512-sNxgpk9793nzSs7bA6JQJGeIuRBQhAaNGG77kzYQgMkrID+lS6SlK07K5LaptscDlSaIgH+GPFzf+d75FVxozA==}
+  is-what@4.1.16:
+    resolution: {integrity: sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==}
+    engines: {node: '>=12.13'}
 
   is-wsl@3.1.1:
     resolution: {integrity: sha512-e6rvdUCiQCAuumZslxRJWR/Doq4VpPR82kqclvcS0efgt430SlGIk05vdCN58+VrzgtIcfNODjozVielycD4Sw==}
@@ -4260,9 +4260,9 @@ packages:
       webpack:
         optional: true
 
-  less@4.5.1:
-    resolution: {integrity: sha512-UKgI3/KON4u6ngSsnDADsUERqhZknsVZbnuzlRZXLQCmfC/MDld42fTydUE9B+Mla1AL6SJ/Pp6SlEFi/AVGfw==}
-    engines: {node: '>=14'}
+  less@4.6.4:
+    resolution: {integrity: sha512-OJmO5+HxZLLw0RLzkqaNHzcgEAQG7C0y3aMbwtCzIUFZsLMNNq/1IdAdHEycQ58CwUO3jPTHmoN+tE5I7FQxNg==}
+    engines: {node: '>=18'}
     hasBin: true
 
   levn@0.4.1:
@@ -9108,9 +9108,9 @@ snapshots:
 
   cookie@0.7.2: {}
 
-  copy-anything@2.0.6:
+  copy-anything@3.0.5:
     dependencies:
-      is-what: 3.14.1
+      is-what: 4.1.16
 
   copy-webpack-plugin@12.0.2(webpack@5.105.4(webpack-cli@6.0.1(webpack@5.105.4))):
     dependencies:
@@ -10513,7 +10513,7 @@ snapshots:
       call-bound: 1.0.4
       get-intrinsic: 1.3.0
 
-  is-what@3.14.1: {}
+  is-what@4.1.16: {}
 
   is-wsl@3.1.1:
     dependencies:
@@ -10633,17 +10633,16 @@ snapshots:
       picocolors: 1.1.1
       shell-quote: 1.8.3
 
-  less-loader@12.3.1(less@4.5.1)(webpack@5.105.4(webpack-cli@6.0.1(webpack@5.105.4))):
+  less-loader@12.3.1(less@4.6.4)(webpack@5.105.4(webpack-cli@6.0.1(webpack@5.105.4))):
     dependencies:
-      less: 4.5.1
+      less: 4.6.4
     optionalDependencies:
       webpack: 5.105.4(webpack-cli@6.0.1(webpack@5.105.4))
 
-  less@4.5.1:
+  less@4.6.4:
     dependencies:
-      copy-anything: 2.0.6
+      copy-anything: 3.0.5
       parse-node-version: 1.0.1
-      tslib: 2.8.1
     optionalDependencies:
       errno: 0.1.8
       graceful-fs: 4.2.11

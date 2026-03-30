@@ -79,8 +79,6 @@ overrides:
   qs@<6.14.1: '>=6.14.1'
   sass: '-'
 
-pnpmfileChecksum: sha256-mS1QIEGtFQ28TeF9birCFL18c0lFsb9V6ngFKSiJCGo=
-
 patchedDependencies:
   '@vue-mini/core':
     hash: 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
@@ -290,8 +288,8 @@ importers:
         specifier: 'catalog:'
         version: 0.2.0
       terser:
-        specifier: ^5.46.0
-        version: 5.46.0
+        specifier: ^5.46.1
+        version: 5.46.1
       terser-webpack-plugin:
         specifier: ^5.3.17
         version: 5.3.17(webpack@5.105.4(webpack-cli@6.0.1(webpack@5.105.4)))
@@ -644,8 +642,8 @@ importers:
         specifier: 'catalog:'
         version: 4.28.1
       terser:
-        specifier: ^5.46.0
-        version: 5.46.0
+        specifier: ^5.46.1
+        version: 5.46.1
       terser-webpack-plugin:
         specifier: ^5.3.17
         version: 5.3.17(webpack@5.105.4(webpack-cli@6.0.1(webpack@5.105.4)))
@@ -6068,8 +6066,8 @@ packages:
       uglify-js:
         optional: true
 
-  terser@5.46.0:
-    resolution: {integrity: sha512-jTwoImyr/QbOWFFso3YoU3ik0jBBDJ6JTOQiy/J2YxVJdZCc+5u7skhNwiOR3FQIygFqVUPHl7qbbxtjW2K3Qg==}
+  terser@5.46.1:
+    resolution: {integrity: sha512-vzCjQO/rgUuK9sf8VJZvjqiqiHFaZLnOiimmUuOKODxWL8mm/xua7viT7aqX7dgPY60otQjUotzFMmCB4VdmqQ==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -10180,7 +10178,7 @@ snapshots:
       he: 1.2.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.46.0
+      terser: 5.46.1
 
   html-minifier-terser@7.2.0:
     dependencies:
@@ -10190,7 +10188,7 @@ snapshots:
       entities: 4.5.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.46.0
+      terser: 5.46.1
 
   html-minimizer-webpack-plugin@6.0.0(webpack@5.105.4(webpack-cli@6.0.1(webpack@5.105.4))):
     dependencies:
@@ -12710,10 +12708,10 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
-      terser: 5.46.0
+      terser: 5.46.1
       webpack: 5.105.4(webpack-cli@6.0.1(webpack@5.105.4))
 
-  terser@5.46.0:
+  terser@5.46.1:
     dependencies:
       '@jridgewell/source-map': 0.3.11
       acorn: 8.16.0

@@ -5,11 +5,11 @@ packages:
 
 catalog:
   '@babel/core': ^7.29.0
-  browserslist: ^4.28.1
+  browserslist: ^4.28.2
   chalk: ^5.6.2
   cheetor: ^0.13.0
-  core-js: ^3.48.0
-  core-js-pure: ^3.48.0
+  core-js: ^3.49.0
+  core-js-pure: ^3.49.0
   deepmerge-ts: ^7.1.5
   ext-to-regexp: ^0.1.0
   flat: ^6.0.1
@@ -18,9 +18,9 @@ catalog:
   settingz: ^0.2.0
   slash-to-regexp: ^0.2.0
   sort-keys: ^6.0.0
+  vue: ^3.5.32
   webpack: ^5.105.4
-  yaml: ^2.8.2
-  vue: ^3.5.29
+  yaml: ^2.8.3
 
 catalogs:
   react:
@@ -39,6 +39,7 @@ minimumReleaseAgeExclude:
   - '@vue/*'
   - vue
   - postcss-preset-evergreen
+  - garou
 
 overrides:
   '@into-mini/sfc-template-traverse': 0.1.2

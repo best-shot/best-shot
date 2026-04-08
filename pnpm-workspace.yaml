@@ -45,7 +45,7 @@ overrides:
   '@into-mini/sfc-template-traverse': 0.1.2
   '@into-mini/sfc-transformer': 0.6.9
   '@into-mini/vue-mini-patch': 0.4.8
-  eslint: ^9.39.3
+  eslint: ^9.39.4
   qs@<6.14.1: '>=6.14.1'
   sass: '-'
 

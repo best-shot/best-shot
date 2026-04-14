@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/core",
-  "version": "0.13.14",
+  "version": "0.13.15",
   "description": "Create 'best-shot' config chain",
   "license": "MIT",
   "author": {
@@ -33,7 +33,7 @@
     "browserslist": "catalog:",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "chalk": "catalog:",
-    "copy-webpack": "^5.0.4",
+    "copy-webpack": "^6.0.0",
     "deepmerge-ts": "catalog:",
     "ext-to-regexp": "catalog:",
     "json-minimizer-webpack-plugin": "^5.0.1",

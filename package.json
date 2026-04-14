@@ -34,7 +34,7 @@
     "version:pin": "syncpack fix-mismatches"
   },
   "dependencies": {
-    "@vue-mini/core": "^1.2.9",
+    "@vue-mini/core": "^1.2.10",
     "react": "catalog:react",
     "react-dom": "catalog:react",
     "vue": "catalog:"
@@ -43,14 +43,14 @@
     "@babel/core": "catalog:",
     "@bring-it/cli": "^0.11.1",
     "@bring-it/npm": "^0.9.3",
-    "@nice-move/all-in-web": "^0.8.0",
-    "@nice-move/syncpack-config": "^0.4.2",
+    "@nice-move/all-in-web": "^0.8.2",
+    "@nice-move/syncpack-config": "^0.5.4",
     "ava": "^7.0.0",
-    "eslint": "^9.39.3",
+    "eslint": "^9.39.4",
     "garou": "^0.9.21",
     "nodemon": "^3.1.14",
-    "prettier": "~3.8.1",
-    "stylelint": "^17.6.0",
+    "prettier": "~3.8.2",
+    "stylelint": "^17.7.0",
     "syncpack": "^13.0.4",
     "typescript": "~6.0.2",
     "webpack": "catalog:",
@@ -72,7 +72,7 @@
     "@types/react": "catalog:react",
     "best-shot": "workspace:^"
   },
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@10.33.0",
   "engines": {
     "node": ">=22.22.0"
   },

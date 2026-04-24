@@ -78,8 +78,6 @@ overrides:
   eslint: ^9.39.4
   sass: '-'
 
-pnpmfileChecksum: sha256-W190UGYax275IRrkafDWOOTNOyI3WKIMy8GRAMVTveE=
-
 patchedDependencies:
   '@vue-mini/core':
     hash: 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
@@ -361,7 +359,7 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       prettier:
-        specifier: ~3.8.1
+        specifier: ~3.8.2
         version: 3.8.2
       sort-keys:
         specifier: 'catalog:'

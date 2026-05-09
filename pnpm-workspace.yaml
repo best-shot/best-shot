@@ -20,7 +20,7 @@ catalog:
   sort-keys: ^6.0.0
   vue: ^3.5.32
   webpack: ^5.105.4
-  yaml: ^2.8.3
+  yaml: ^2.8.4
 
 catalogs:
   react:

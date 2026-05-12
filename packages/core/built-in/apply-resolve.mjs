@@ -31,11 +31,11 @@ function To(url, cwd) {
 
 export function apply({
   cwd,
-  config: { replace = [], resolve: { alias } = {} },
+  config: { replace = [], resolve= {} },
 }) {
   return async (chain) => {
-    if (notEmpty(alias)) {
-      chain.resolve.alias.merge(alias);
+    if (notEmpty(resolve)) {
+      chain.resolve.merge(resolve);
     }
 
     const watch = chain.get('watch');

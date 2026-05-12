@@ -13,14 +13,14 @@ catalog:
   deepmerge-ts: ^7.1.5
   ext-to-regexp: ^0.1.0
   flat: ^6.0.1
-  fs-extra: ^11.3.4
+  fs-extra: ^11.3.5
   ini: ^6.0.0
   settingz: ^0.2.0
   slash-to-regexp: ^0.2.0
   sort-keys: ^6.0.0
-  vue: ^3.5.32
-  webpack: ^5.105.4
-  yaml: ^2.8.3
+  vue: ^3.5.34
+  webpack: ^5.106.2
+  yaml: ^2.8.4
 
 catalogs:
   react:
@@ -32,7 +32,7 @@ catalogs:
     react-refresh: ^0.18.0
 
 configDependencies:
-  pnpm-plugin-nice-move: 0.3.3+sha512-sZBCAirkIGqRpZRR4DtPnvUF2R6kNPT/mWT34L6pt4E/WjwrMk4TcE8S0X0sv69Y8L2rFNd3o2GTbaokwtZATw==
+  pnpm-plugin-nice-move: 0.3.5+sha512-GCIOMaitJFiSwi3diByPwKitZHgssXMS0QtyMz5zdr/2MuLymwUve00OEwd1ZvyentUTBzL98v5kyLfQ4ZuXUQ==
 
 minimumReleaseAgeExclude:
   - '@into-mini/*'

@@ -20,8 +20,6 @@ export function apply() {
           [
             '@babel/react',
             {
-              useSpread: true,
-              useBuiltIns: true,
               runtime: 'automatic',
               ...(mode === 'development' ? { development: true } : undefined),
             },

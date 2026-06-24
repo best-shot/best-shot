@@ -26,10 +26,7 @@ export function apply({
       '.cjs': ['.cts', '.cjs'],
     });
 
-    const typescriptPreset = [
-      '@babel/typescript',
-      { allowDeclareFields: true },
-    ];
+    const typescriptPreset = '@babel/typescript';
 
     chain.module
       .rule('babel')

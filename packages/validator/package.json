@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/validator",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Config validator of 'best-shot'",
   "license": "MIT",
   "author": {
@@ -33,7 +33,7 @@
     "ajv-keywords": "^5.1.0"
   },
   "engines": {
-    "node": ">=22.22.0"
+    "node": "^24.0.0"
   },
   "publishConfig": {
     "access": "public",

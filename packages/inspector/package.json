@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/inspector",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Inspector of `@best-shot/cli`",
   "license": "MIT",
   "author": {
@@ -36,10 +36,10 @@
   "peerDependencies": {
     "@best-shot/cli": "workspace:^",
     "@best-shot/core": "workspace:^",
-    "prettier": "~3.8.3"
+    "prettier": "~3.8.4"
   },
   "engines": {
-    "node": ">=22.22.0"
+    "node": "^24.0.0"
   },
   "publishConfig": {
     "access": "public",

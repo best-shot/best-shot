@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-vue",
-  "version": "0.16.4",
+  "version": "0.17.0",
   "description": "A `best-shot` preset for Vue project",
   "license": "MIT",
   "author": {
@@ -37,7 +37,7 @@
     "vue": "catalog:"
   },
   "engines": {
-    "node": ">=22.22.0"
+    "node": "^24.0.0"
   },
   "publishConfig": {
     "access": "public",

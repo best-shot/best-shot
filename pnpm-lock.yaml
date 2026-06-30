@@ -78,8 +78,6 @@ overrides:
   eslint: ^9.39.4
   sass: '-'
 
-pnpmfileChecksum: sha256-3yNShp5K+NWWwtzeXlLgzRdHLO2dtmUFHj53zmdURvg=
-
 patchedDependencies:
   '@vue-mini/core':
     hash: 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
@@ -514,11 +512,11 @@ importers:
         specifier: 'catalog:'
         version: 0.1.0
       less:
-        specifier: ^4.6.6
-        version: 4.6.6
+        specifier: ^4.6.7
+        version: 4.6.7
       less-loader:
         specifier: ^13.0.0
-        version: 13.0.0(less@4.6.6)(webpack@5.107.2(cssnano@8.0.2(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.0.3))
+        version: 13.0.0(less@4.6.7)(webpack@5.107.2(cssnano@8.0.2(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.0.3))
       mini-css-extract-plugin:
         specifier: ^2.10.2
         version: 2.10.2(webpack@5.107.2(cssnano@8.0.2(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.0.3))
@@ -4281,8 +4279,8 @@ packages:
       webpack:
         optional: true
 
-  less@4.6.6:
-    resolution: {integrity: sha512-ooPSwQGQ2sVe8Dh1jVsbKKsRR2gd8lFK72BDkeSzjnD1T5aIHL65hCMfO0GVmtriKgDKrQv6xp9UrihUsWuAzA==}
+  less@4.6.7:
+    resolution: {integrity: sha512-o3UxHBPPVY1HtCXx15/z1NlknQiWyafRNbtLEv+6xFaDRI2g2xPKIH43do9dSwt8bGLTsjNSaifa48N3d6odsQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -10757,14 +10755,14 @@ snapshots:
       picocolors: 1.1.1
       shell-quote: 1.8.4
 
-  less-loader@13.0.0(less@4.6.6)(webpack@5.107.2(cssnano@8.0.2(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.0.3)):
+  less-loader@13.0.0(less@4.6.7)(webpack@5.107.2(cssnano@8.0.2(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.0.3)):
     dependencies:
       '@types/less': 3.0.8
-      less: 4.6.6
+      less: 4.6.7
     optionalDependencies:
       webpack: 5.107.2(cssnano@8.0.2(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.0.3)
 
-  less@4.6.6:
+  less@4.6.7:
     dependencies:
       copy-anything: 3.0.5
       parse-node-version: 1.0.1

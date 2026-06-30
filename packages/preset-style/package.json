@@ -38,7 +38,7 @@
     "css-minimizer-webpack-plugin": "^8.0.0",
     "cssnano": "^8.0.2",
     "ext-to-regexp": "catalog:",
-    "less": "^4.6.6",
+    "less": "^4.6.7",
     "less-loader": "^13.0.0",
     "mini-css-extract-plugin": "^2.10.2",
     "postcss": "^8.5.15",

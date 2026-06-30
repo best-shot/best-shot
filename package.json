@@ -42,7 +42,7 @@
   "devDependencies": {
     "@babel/core": "catalog:",
     "@bring-it/cli": "^0.11.1",
-    "@bring-it/npm": "^0.9.3",
+    "@bring-it/npm": "^0.9.6",
     "@nice-move/all-in-web": "^0.8.6",
     "@nice-move/syncpack-config": "^0.5.4",
     "ava": "^8.0.1",

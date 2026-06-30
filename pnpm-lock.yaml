@@ -78,8 +78,6 @@ overrides:
   eslint: ^9.39.4
   sass: '-'
 
-pnpmfileChecksum: sha256-3yNShp5K+NWWwtzeXlLgzRdHLO2dtmUFHj53zmdURvg=
-
 patchedDependencies:
   '@vue-mini/core':
     hash: 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
@@ -154,8 +152,8 @@ importers:
         specifier: ^0.11.1
         version: 0.11.1
       '@bring-it/npm':
-        specifier: ^0.9.3
-        version: 0.9.3(@bring-it/cli@0.11.1)
+        specifier: ^0.9.6
+        version: 0.9.6(@bring-it/cli@0.11.1)
       '@nice-move/all-in-web':
         specifier: ^0.8.6
         version: 0.8.6(@babel/core@8.0.1)(@typescript-eslint/utils@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@6.0.3))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))(garou@0.9.21(eslint-import-resolver-node@0.3.10)(eslint@9.39.4(jiti@2.7.0))(typescript@6.0.3))(postcss@8.5.15)(prettier@3.8.4)(stylelint@17.13.0(typescript@6.0.3))(ts-declaration-location@1.0.7(typescript@6.0.3))(typescript@6.0.3)
@@ -1291,12 +1289,12 @@ packages:
     engines: {node: '>=22.18.0'}
     hasBin: true
 
-  '@bring-it/npm@0.9.3':
-    resolution: {integrity: sha512-nNePVVsVH56dEvzInz7toTNxiK6yTs1vu2JKlXN7IwWshOOmYI8wc8MjTjk1/nN4XLAH/abv3AgnQGPQmCdm6w==}
-    engines: {node: '>=22.18.0', npm: ^10.5.0, pnpm: ^10.20.0}
+  '@bring-it/npm@0.9.6':
+    resolution: {integrity: sha512-YXum1yFAxtgjJLKRzliRh1+oM9xpS84N4S5NE9cK17Vs0vBTtinLV5dNNDeC9uAGgCazUH9h2vPDWWGfsKGohg==}
+    engines: {node: '>=22.22.2', npm: ^11.0.0, pnpm: ^10.33.0}
     hasBin: true
     peerDependencies:
-      '@bring-it/cli': ^0.11.1
+      '@bring-it/cli': ^0.11.2
 
   '@bufbuild/protobuf@2.12.0':
     resolution: {integrity: sha512-B/XlCaFIP8LOwzo+bz5uFzATYokcwCKQcghqnlfwSmM5eX/qTkvDBnDPs+gXtX/RyjxJ4DRikECcPJbyALA8FA==}
@@ -7407,7 +7405,7 @@ snapshots:
       globby: 15.0.0
       yargs: 18.0.0
 
-  '@bring-it/npm@0.9.3(@bring-it/cli@0.11.1)':
+  '@bring-it/npm@0.9.6(@bring-it/cli@0.11.1)':
     dependencies:
       '@bring-it/cli': 0.11.1
 

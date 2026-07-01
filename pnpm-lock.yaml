@@ -78,8 +78,6 @@ overrides:
   eslint: ^9.39.4
   sass: '-'
 
-pnpmfileChecksum: sha256-3yNShp5K+NWWwtzeXlLgzRdHLO2dtmUFHj53zmdURvg=
-
 patchedDependencies:
   '@vue-mini/core':
     hash: 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
@@ -160,8 +158,8 @@ importers:
         specifier: ^0.8.6
         version: 0.8.6(@babel/core@8.0.1)(@typescript-eslint/utils@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.2(eslint@9.39.4(jiti@2.7.0))(typescript@6.0.3))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))(garou@0.9.21(eslint-import-resolver-node@0.3.10)(eslint@9.39.4(jiti@2.7.0))(typescript@6.0.3))(postcss@8.5.15)(prettier@3.8.4)(stylelint@17.13.0(typescript@6.0.3))(ts-declaration-location@1.0.7(typescript@6.0.3))(typescript@6.0.3)
       '@nice-move/syncpack-config':
-        specifier: ^0.5.4
-        version: 0.5.4(syncpack@15.3.2)
+        specifier: ^0.6.0
+        version: 0.6.0(syncpack@15.3.2)
       ava:
         specifier: ^8.0.1
         version: 8.0.1(patch_hash=a429d78a9492a8d6ea2ee629d2b7c69588c7a43e17188aada1c2f581c894986c)
@@ -1760,11 +1758,11 @@ packages:
     peerDependencies:
       stylelint: ^17.9.0
 
-  '@nice-move/syncpack-config@0.5.4':
-    resolution: {integrity: sha512-hVSOUv4tslq4z1srJCFdwu0iJuiPbe03mZ6r/rz9hil8K2CJlx/Mi9lzgS0WP86poYQsRL9YNvnj3URsDHQfEQ==}
+  '@nice-move/syncpack-config@0.6.0':
+    resolution: {integrity: sha512-isU0oC4NpTnnVeekMHdqjBU5biwCV3aJIOcu/OHlGpNy7toNrf5t82Ens6oEvVxYBnYIg3l3xEcLgi040uCDRA==}
     engines: {node: '>=24.0.0 || ^22.18.0'}
     peerDependencies:
-      syncpack: '>=13.0.0'
+      syncpack: ^15.3.2
 
   '@nice-move/tsconfig@0.5.0':
     resolution: {integrity: sha512-amABZwACDeNyJq0BJ32bqU10cNRE+h1FXdXNPx4MrwLoHgE57yNM5QEg5h2vjSJdrT4CzCWq3+GOSzH3GKyAvQ==}
@@ -7989,7 +7987,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nice-move/syncpack-config@0.5.4(syncpack@15.3.2)':
+  '@nice-move/syncpack-config@0.6.0(syncpack@15.3.2)':
     dependencies:
       syncpack: 15.3.2
       yaml: 2.9.0

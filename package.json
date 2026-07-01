@@ -44,7 +44,7 @@
     "@bring-it/cli": "^0.11.1",
     "@bring-it/npm": "^0.9.3",
     "@nice-move/all-in-web": "^0.8.6",
-    "@nice-move/syncpack-config": "^0.5.4",
+    "@nice-move/syncpack-config": "^0.6.0",
     "ava": "^8.0.1",
     "eslint": "^9.39.4",
     "garou": "^0.9.21",

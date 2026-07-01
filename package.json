@@ -34,7 +34,7 @@
     "version:pin": "syncpack fix"
   },
   "dependencies": {
-    "@vue-mini/core": "^1.2.11",
+    "@vue-mini/core": "^1.2.12",
     "react": "catalog:react",
     "react-dom": "catalog:react",
     "vue": "catalog:"

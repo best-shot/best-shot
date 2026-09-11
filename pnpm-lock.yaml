@@ -31,8 +31,8 @@ catalogs:
       specifier: ^0.1.0
       version: 0.1.0
     fs-extra:
-      specifier: ^11.3.6
-      version: 11.3.6
+      specifier: ^11.4.0
+      version: 11.4.0
     ini:
       specifier: ^7.0.0
       version: 7.0.0
@@ -77,8 +77,6 @@ overrides:
   '@into-mini/vue-mini-patch': ^0.4.8
   eslint: ^9.39.4
   sass: '-'
-
-pnpmfileChecksum: sha256-3yNShp5K+NWWwtzeXlLgzRdHLO2dtmUFHj53zmdURvg=
 
 patchedDependencies:
   '@vue-mini/core':
@@ -356,7 +354,7 @@ importers:
         version: link:../core
       fs-extra:
         specifier: 'catalog:'
-        version: 11.3.6
+        version: 11.4.0
       javascript-stringify:
         specifier: ^2.1.0
         version: 2.1.0
@@ -3754,8 +3752,8 @@ packages:
     resolution: {integrity: sha512-Rx/WycZ60HOaqLKAi6cHRKKI7zxWbJ31MhntmtwMoaTeF7XFH9hhBp8vITaMidfljRQ6eYWCKkaTK+ykVJHP2A==}
     engines: {node: '>= 0.8'}
 
-  fs-extra@11.3.6:
-    resolution: {integrity: sha512-w8ZNZr2mKIc7qeNaQ9AVPT1+iFaI+Avd4xudVOvdDJ8VytREi1Ft5Ih7hd9jjehod8vAM5GMsfQ/TpPf4EyoEA==}
+  fs-extra@11.4.0:
+    resolution: {integrity: sha512-EQsFzMUJkCKGr1ePqlYADkIUmHW1s3ZXr5Yqy6wbGrfUCphpl2maM/kyOIRA2HpP3AaFQTZXD4ldjek+nccddA==}
     engines: {node: '>=14.14'}
 
   fsevents@2.3.3:
@@ -10841,7 +10839,7 @@ snapshots:
 
   fresh@2.0.0: {}
 
-  fs-extra@11.3.6:
+  fs-extra@11.4.0:
     dependencies:
       graceful-fs: 4.2.11
       jsonfile: 6.2.1
@@ -14218,7 +14216,7 @@ snapshots:
       mime-types: 3.0.2
       on-finished: 2.4.1
       range-parser: 1.3.0
-      schema-utils: 4.3.3
+      schema-utils: 4.4.0
     optionalDependencies:
       webpack: 5.110.3(postcss@8.5.28)(webpack-cli@7.2.1)
     optional: true
@@ -14276,7 +14274,7 @@ snapshots:
       launch-editor: 2.14.1
       open: 10.2.0
       p-retry: 6.2.1
-      schema-utils: 4.3.3
+      schema-utils: 4.4.0
       selfsigned: 5.5.0
       serve-index: 1.9.2
       sockjs: 0.3.24

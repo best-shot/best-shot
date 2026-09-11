@@ -1,24 +1,4 @@
-import { getEnv, getGitHash, pretty } from '@best-shot/env';
-
-function variables(object) {
-  return Object.fromEntries(
-    Object.entries(object)
-      .filter(([_, value]) => value !== undefined)
-      .map(([key, value]) => [
-        key,
-        typeof value === 'object' ? variables(value) : JSON.stringify(value),
-      ]),
-  );
-}
-
-function prefix(object) {
-  return Object.fromEntries(
-    Object.entries(object).map(([key, value]) => [
-      ['import.meta.env', key].filter(Boolean).join('.'),
-      value,
-    ]),
-  );
-}
+import { getEnv, getGitHash, pretty, prefix, variables } from '@best-shot/env';
 
 const displayName = 'define';
 

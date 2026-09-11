@@ -5,6 +5,8 @@ import chalk from 'chalk';
 
 import { findConfig, mergeParams } from './lib.mjs';
 
+export { prefix, variables } from './lib.mjs';
+
 export function pretty(data) {
   const empty = Object.keys(data).length === 0;
 

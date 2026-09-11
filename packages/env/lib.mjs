@@ -1,5 +1,25 @@
 import { readConfig } from './read.mjs';
 
+export function variables(object) {
+  return Object.fromEntries(
+    Object.entries(object)
+      .filter(([_, value]) => value !== undefined)
+      .map(([key, value]) => [
+        key,
+        typeof value === 'object' ? variables(value) : JSON.stringify(value),
+      ]),
+  );
+}
+
+export function prefix(object) {
+  return Object.fromEntries(
+    Object.entries(object).map(([key, value]) => [
+      ['import.meta.env', key].filter(Boolean).join('.'),
+      value,
+    ]),
+  );
+}
+
 function filterData(object) {
   return Object.fromEntries(
     Object.entries(object).filter(([_, value]) => value !== undefined),

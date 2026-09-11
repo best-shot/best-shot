@@ -59,6 +59,7 @@ shamefullyHoist: true
 trustPolicyExclude:
   - semver
   - memfs@4.56.2
+  - webpack-dev-middleware@7.4.6
 
 updateConfig:
   ignoreDependencies:

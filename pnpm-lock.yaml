@@ -10,7 +10,7 @@ catalogs:
       specifier: ^8.0.5
       version: 8.0.5
     browserslist:
-      specifier: ^4.28.8
+      specifier: ^4.28.9
       version: 4.28.9
     chalk:
       specifier: ^6.0.0
@@ -77,8 +77,6 @@ overrides:
   '@into-mini/vue-mini-patch': ^0.4.8
   eslint: ^9.39.5
   sass: '-'
-
-pnpmfileChecksum: sha256-Vn0ycy1VnT6yPZ/0buYVkpEOKQDYIgGQijAHbuP2Ygw=
 
 patchedDependencies:
   '@vue-mini/core':

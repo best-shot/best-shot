@@ -78,8 +78,6 @@ overrides:
   eslint: ^9.39.5
   sass: '-'
 
-pnpmfileChecksum: sha256-Vn0ycy1VnT6yPZ/0buYVkpEOKQDYIgGQijAHbuP2Ygw=
-
 patchedDependencies:
   '@vue-mini/core':
     hash: 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
@@ -388,7 +386,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(svgo@4.1.0)(webpack@5.110.3(postcss@8.5.28)(svgo@4.1.0)(webpack-cli@7.2.3))
       svgo:
-        specifier: ^4.0.2
+        specifier: ^4.1.0
         version: 4.1.0
       svgo-config:
         specifier: ^0.10.0

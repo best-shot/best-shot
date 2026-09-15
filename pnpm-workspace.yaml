@@ -7,7 +7,7 @@ catalog:
   '@babel/core': ^8.0.5
   browserslist: ^4.28.8
   chalk: ^6.0.0
-  cheetor: ^0.13.0
+  cheetor: ^0.14.2
   core-js: ^3.50.0
   core-js-pure: ^3.50.0
   deepmerge-ts: ^8.0.2

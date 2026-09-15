@@ -49,7 +49,7 @@ catalogs:
       specifier: ~3.5.42
       version: 3.5.42
     webpack:
-      specifier: ^5.108.4
+      specifier: ^5.110.3
       version: 5.110.3
     yaml:
       specifier: ^2.9.1
@@ -77,8 +77,6 @@ overrides:
   '@into-mini/vue-mini-patch': ^0.4.8
   eslint: ^9.39.5
   sass: '-'
-
-pnpmfileChecksum: sha256-Vn0ycy1VnT6yPZ/0buYVkpEOKQDYIgGQijAHbuP2Ygw=
 
 patchedDependencies:
   '@vue-mini/core':

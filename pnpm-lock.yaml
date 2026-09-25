@@ -78,8 +78,6 @@ overrides:
   eslint: ^9.39.5
   sass: '-'
 
-pnpmfileChecksum: sha256-Vn0ycy1VnT6yPZ/0buYVkpEOKQDYIgGQijAHbuP2Ygw=
-
 patchedDependencies:
   '@vue-mini/core':
     hash: 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
@@ -158,7 +156,7 @@ importers:
         version: 0.9.6(@bring-it/cli@0.11.3)
       '@nice-move/all-in-web':
         specifier: ^0.9.1
-        version: 0.9.1(@babel/core@8.0.5)(@typescript-eslint/utils@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint@9.39.5(jiti@2.7.0)))(eslint@9.39.5(jiti@2.7.0))(garou@0.9.22(eslint-import-resolver-node@0.3.10)(eslint@9.39.5(jiti@2.7.0))(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3))(postcss@8.5.28)(prettier@3.9.6)(stylelint@17.15.0(typescript@6.0.3))(ts-declaration-location@1.0.7(typescript@6.0.3))(typescript@6.0.3)
+        version: 0.9.1(@babel/core@8.0.5)(@typescript-eslint/utils@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint@9.39.5(jiti@2.7.0)))(eslint@9.39.5(jiti@2.7.0))(garou@0.9.22(eslint-import-resolver-node@0.3.10)(eslint@9.39.5(jiti@2.7.0))(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3))(postcss@8.5.28)(prettier@3.9.9)(stylelint@17.15.0(typescript@6.0.3))(ts-declaration-location@1.0.7(typescript@6.0.3))(typescript@6.0.3)
       '@nice-move/syncpack-config':
         specifier: ^0.6.2
         version: 0.6.2(syncpack@15.3.3)
@@ -175,8 +173,8 @@ importers:
         specifier: ^3.1.14
         version: 3.1.14
       prettier:
-        specifier: ~3.9.6
-        version: 3.9.6
+        specifier: ~3.9.8
+        version: 3.9.9
       stylelint:
         specifier: ^17.15.0
         version: 17.15.0(typescript@6.0.3)
@@ -361,8 +359,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       prettier:
-        specifier: ~3.9.6
-        version: 3.9.6
+        specifier: ~3.9.8
+        version: 3.9.9
       sort-keys:
         specifier: 'catalog:'
         version: 6.0.1
@@ -5532,6 +5530,11 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  prettier@3.9.9:
+    resolution: {integrity: sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   pretty-error@4.0.0:
     resolution: {integrity: sha512-AoJ5YMAcXKYxKhuJGdcvse+Voc6v1RgnsR3nWcYU7q4t6z0Q6T86sv5Zq8VIRbOWWFpvdGE83LtdSMNd+6Y0xw==}
 
@@ -8029,15 +8032,15 @@ snapshots:
       '@tybys/wasm-util': 0.10.4
     optional: true
 
-  '@nice-move/all-in-web@0.9.1(@babel/core@8.0.5)(@typescript-eslint/utils@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint@9.39.5(jiti@2.7.0)))(eslint@9.39.5(jiti@2.7.0))(garou@0.9.22(eslint-import-resolver-node@0.3.10)(eslint@9.39.5(jiti@2.7.0))(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3))(postcss@8.5.28)(prettier@3.9.6)(stylelint@17.15.0(typescript@6.0.3))(ts-declaration-location@1.0.7(typescript@6.0.3))(typescript@6.0.3)':
+  '@nice-move/all-in-web@0.9.1(@babel/core@8.0.5)(@typescript-eslint/utils@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint@9.39.5(jiti@2.7.0)))(eslint@9.39.5(jiti@2.7.0))(garou@0.9.22(eslint-import-resolver-node@0.3.10)(eslint@9.39.5(jiti@2.7.0))(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3))(postcss@8.5.28)(prettier@3.9.9)(stylelint@17.15.0(typescript@6.0.3))(ts-declaration-location@1.0.7(typescript@6.0.3))(typescript@6.0.3)':
     dependencies:
       '@nice-move/cli': 0.11.33
       '@nice-move/eslint-config-base': 0.16.0(@typescript-eslint/utils@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint-import-resolver-node@0.3.10)(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@6.0.3))(eslint@9.39.5(jiti@2.7.0)))(eslint@9.39.5(jiti@2.7.0))(ts-declaration-location@1.0.7(typescript@6.0.3))(typescript@6.0.3)
-      '@nice-move/prettier-config': 0.15.10(@babel/core@8.0.5)(postcss@8.5.28)(prettier@3.9.6)
+      '@nice-move/prettier-config': 0.15.10(@babel/core@8.0.5)(postcss@8.5.28)(prettier@3.9.9)
       '@nice-move/stylelint-config': 0.11.0(stylelint@17.15.0(typescript@6.0.3))
       '@nice-move/tsconfig': 0.5.0(typescript@6.0.3)
       eslint: 9.39.5(jiti@2.7.0)
-      prettier: 3.9.6
+      prettier: 3.9.9
       stylelint: 17.15.0(typescript@6.0.3)
     optionalDependencies:
       garou: 0.9.22(eslint-import-resolver-node@0.3.10)(eslint@9.39.5(jiti@2.7.0))(stylelint@17.15.0(typescript@6.0.3))(typescript@6.0.3)
@@ -8088,24 +8091,24 @@ snapshots:
       globals: 15.15.0
       node-html-parser: 7.1.0
 
-  '@nice-move/prettier-config@0.15.10(@babel/core@8.0.5)(postcss@8.5.28)(prettier@3.9.6)':
+  '@nice-move/prettier-config@0.15.10(@babel/core@8.0.5)(postcss@8.5.28)(prettier@3.9.9)':
     dependencies:
       '@babel/plugin-syntax-import-attributes': 7.29.7(@babel/core@8.0.5)
       '@babel/plugin-syntax-jsx': 7.29.7(@babel/core@8.0.5)
       '@babel/plugin-syntax-typescript': 7.29.7(@babel/core@8.0.5)
-      '@nice-move/prettier-plugin-package-json': 0.9.5(prettier@3.9.6)
-      '@prettier/plugin-xml': 3.4.2(prettier@3.9.6)
-      prettier: 3.9.6
-      prettier-plugin-css-order: 2.2.0(postcss@8.5.28)(prettier@3.9.6)
+      '@nice-move/prettier-plugin-package-json': 0.9.5(prettier@3.9.9)
+      '@prettier/plugin-xml': 3.4.2(prettier@3.9.9)
+      prettier: 3.9.9
+      prettier-plugin-css-order: 2.2.0(postcss@8.5.28)(prettier@3.9.9)
       prettier-plugin-ini: 1.3.0
       settingz: 0.2.0
     transitivePeerDependencies:
       - '@babel/core'
       - postcss
 
-  '@nice-move/prettier-plugin-package-json@0.9.5(prettier@3.9.6)':
+  '@nice-move/prettier-plugin-package-json@0.9.5(prettier@3.9.9)':
     dependencies:
-      prettier: 3.9.6
+      prettier: 3.9.9
 
   '@nice-move/stylelint-config@0.11.0(stylelint@17.15.0(typescript@6.0.3))':
     dependencies:
@@ -8262,10 +8265,10 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@prettier/plugin-xml@3.4.2(prettier@3.9.6)':
+  '@prettier/plugin-xml@3.4.2(prettier@3.9.9)':
     dependencies:
       '@xml-tools/parser': 1.0.11
-      prettier: 3.9.6
+      prettier: 3.9.9
 
   '@rollup/pluginutils@5.4.0':
     dependencies:
@@ -12314,20 +12317,22 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-css-order@2.2.0(postcss@8.5.28)(prettier@3.9.6):
+  prettier-plugin-css-order@2.2.0(postcss@8.5.28)(prettier@3.9.9):
     dependencies:
       css-declaration-sorter: 7.4.0(postcss@8.5.28)
       postcss-less: 6.0.0(postcss@8.5.28)
       postcss-scss: 4.0.9(postcss@8.5.28)
-      prettier: 3.9.6
+      prettier: 3.9.9
     transitivePeerDependencies:
       - postcss
 
   prettier-plugin-ini@1.3.0:
     dependencies:
-      prettier: 3.9.6
+      prettier: 3.9.9
 
   prettier@3.9.6: {}
+
+  prettier@3.9.9: {}
 
   pretty-error@4.0.0:
     dependencies:

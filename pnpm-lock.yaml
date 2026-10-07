@@ -10,8 +10,8 @@ catalogs:
       specifier: ^8.0.5
       version: 8.0.5
     browserslist:
-      specifier: ^4.28.8
-      version: 4.28.9
+      specifier: ^4.29.3
+      version: 4.29.3
     chalk:
       specifier: ^6.0.0
       version: 6.0.0
@@ -77,8 +77,6 @@ overrides:
   '@into-mini/vue-mini-patch': ^0.4.8
   eslint: ^9.39.5
   sass: '-'
-
-pnpmfileChecksum: sha256-Vn0ycy1VnT6yPZ/0buYVkpEOKQDYIgGQijAHbuP2Ygw=
 
 patchedDependencies:
   '@vue-mini/core':
@@ -263,7 +261,7 @@ importers:
         version: 8.1.15
       browserslist:
         specifier: 'catalog:'
-        version: 4.28.9
+        version: 4.29.3
       case-sensitive-paths-webpack-plugin:
         specifier: ^2.4.0
         version: 2.4.0
@@ -413,7 +411,7 @@ importers:
         version: 0.12.0(@babel/core@8.0.5)
       browserslist:
         specifier: 'catalog:'
-        version: 4.28.9
+        version: 4.29.3
       core-js:
         specifier: 'catalog:'
         version: 3.50.0
@@ -641,7 +639,7 @@ importers:
         version: link:../no-cache-loader
       browserslist:
         specifier: 'catalog:'
-        version: 4.28.9
+        version: 4.29.3
       terser:
         specifier: ^5.51.2
         version: 5.51.2
@@ -2550,6 +2548,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  baseline-browser-mapping@2.11.27:
+    resolution: {integrity: sha512-ElY12DaROGuan+lMmZ8Cvo/ZUbXPe7Enc/9VU/b1T3Kp4dwytRcNdR8DoSJN5SNJT/CuvcCA0DHDVmMOCePdRQ==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   batch@0.6.1:
     resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
 
@@ -2596,6 +2599,11 @@ packages:
 
   browserslist@4.28.9:
     resolution: {integrity: sha512-EWazOblFYUvlGZcfGhPUPmYh3nikUxBVb+y9MJun5f3hBi812X+8MSQTujLBtgK3cf51fJWbWfOjyeO954d+Eg==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+
+  browserslist@4.29.3:
+    resolution: {integrity: sha512-1R4kiYKXGViqEN0CnoDrXc1StD9niAwu+j2dukWzrD4bJgsD4lDmEp0CRbc6E/vYJIfTHwPmwyaKtVSudICdPA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
@@ -2652,6 +2660,9 @@ packages:
 
   caniuse-lite@1.0.30001810:
     resolution: {integrity: sha512-TITQPUkaz+aVk5GL6NhOdwk1aEaNTSDPsGFWrTuhKGtjTF70jL/Oht2W4c6rXUe5fu7Ie19VIahAXHIIiWWNeg==}
+
+  caniuse-lite@1.0.30001814:
+    resolution: {integrity: sha512-/Uaf1lAzr59XcMpW0o96WoEfr+VXK2OX4U9AgFoiSHsVJ4HppnIFUjtYzsyDH2+tgANaQb2/oxYGwCPapN1FpA==}
 
   case-sensitive-paths-webpack-plugin@2.4.0:
     resolution: {integrity: sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==}
@@ -3178,6 +3189,9 @@ packages:
 
   electron-to-chromium@1.5.420:
     resolution: {integrity: sha512-2yD6XreGusOfNV+dUcvipJEXc3n/n7fgr7996aszTG+YY5E4mqM4tOq/3uhP129cazL9YHbVWSpc79ePotWtPA==}
+
+  electron-to-chromium@1.5.447:
+    resolution: {integrity: sha512-vhYiRwTPq7tvwplP6fOFVRJxfZifavlr6tK8FD1EO5RxRuvZ9qdQM0lr1mvNBeDe1s2XrfL3n5BBwvigXJ7KuA==}
 
   emittery@2.0.0:
     resolution: {integrity: sha512-FLtgn/CGBXiX3ZtPAm5q4LWWepHChOt55J9u01WFu3dyap2U7IwptlrqoE1COR/kxwdy/DOxIBALSxIW449I1g==}
@@ -4794,6 +4808,10 @@ packages:
 
   node-releases@2.0.54:
     resolution: {integrity: sha512-YHs7BmmcsdAI5Ozuf8JZo6PT0mv2GIWC9vMfvUC3dp65M8hn7Ux8CPL+2oBI7juNuj9d0ndhTcznq2ODBps9cQ==}
+    engines: {node: '>=18'}
+
+  node-releases@2.0.57:
+    resolution: {integrity: sha512-kQK9LGGFiHtrWiNhZtA7Qbw17AQz+dmsEKODRIVTXA9+e5MS/2gZEBhYJt13GrAz5/IOZKddH/0Z3TP/Zgo+yw==}
     engines: {node: '>=18'}
 
   nodemon@3.1.14:
@@ -6533,6 +6551,12 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
+  update-browserslist-db@1.3.3:
+    resolution: {integrity: sha512-pJ2sYawQS0R/WI928Gj5GlPhTGzbMelq0+4INtSYNDV9ErKJcX6xjGWkoG/VnB3dpUm00zALaqkrUD77pO5TDQ==}
+    hasBin: true
+    peerDependencies:
+      browserslist: '>= 4.21.0'
+
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
@@ -6864,7 +6888,7 @@ snapshots:
     dependencies:
       '@babel/compat-data': 8.0.5
       '@babel/helper-validator-option': 8.0.0
-      browserslist: 4.28.9
+      browserslist: 4.29.3
       lru-cache: 11.5.2
       verkit: 0.3.2
 
@@ -9025,6 +9049,8 @@ snapshots:
 
   baseline-browser-mapping@2.11.20: {}
 
+  baseline-browser-mapping@2.11.27: {}
+
   batch@0.6.1: {}
 
   big.js@5.2.2: {}
@@ -9100,6 +9126,14 @@ snapshots:
       node-releases: 2.0.54
       update-browserslist-db: 1.3.2(browserslist@4.28.9)
 
+  browserslist@4.29.3:
+    dependencies:
+      baseline-browser-mapping: 2.11.27
+      caniuse-lite: 1.0.30001814
+      electron-to-chromium: 1.5.447
+      node-releases: 2.0.57
+      update-browserslist-db: 1.3.3(browserslist@4.29.3)
+
   buffer-from@1.1.2: {}
 
   builtin-modules@5.3.0: {}
@@ -9159,6 +9193,8 @@ snapshots:
       caniuse-lite: 1.0.30001810
 
   caniuse-lite@1.0.30001810: {}
+
+  caniuse-lite@1.0.30001814: {}
 
   case-sensitive-paths-webpack-plugin@2.4.0: {}
 
@@ -9358,7 +9394,7 @@ snapshots:
 
   core-js-compat@3.50.0:
     dependencies:
-      browserslist: 4.28.9
+      browserslist: 4.29.3
 
   core-js-pure@3.50.0: {}
 
@@ -9708,6 +9744,8 @@ snapshots:
       jake: 10.9.4
 
   electron-to-chromium@1.5.420: {}
+
+  electron-to-chromium@1.5.447: {}
 
   emittery@2.0.0: {}
 
@@ -11599,6 +11637,8 @@ snapshots:
 
   node-releases@2.0.54: {}
 
+  node-releases@2.0.57: {}
+
   nodemon@3.1.14:
     dependencies:
       chokidar: 3.6.0
@@ -13387,6 +13427,12 @@ snapshots:
   update-browserslist-db@1.3.2(browserslist@4.28.9):
     dependencies:
       browserslist: 4.28.9
+      escalade: 3.2.0
+      picocolors: 1.1.1
+
+  update-browserslist-db@1.3.3(browserslist@4.29.3):
+    dependencies:
+      browserslist: 4.29.3
       escalade: 3.2.0
       picocolors: 1.1.1
 

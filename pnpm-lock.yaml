@@ -16,8 +16,8 @@ catalogs:
       specifier: ^6.0.0
       version: 6.0.0
     cheetor:
-      specifier: ^0.13.0
-      version: 0.13.0
+      specifier: ^0.15.0
+      version: 0.15.0
     core-js:
       specifier: ^3.50.0
       version: 3.50.0
@@ -77,8 +77,6 @@ overrides:
   '@into-mini/vue-mini-patch': ^0.4.8
   eslint: ^9.39.5
   sass: '-'
-
-pnpmfileChecksum: sha256-Vn0ycy1VnT6yPZ/0buYVkpEOKQDYIgGQijAHbuP2Ygw=
 
 patchedDependencies:
   '@vue-mini/core':
@@ -221,7 +219,7 @@ importers:
         version: 6.0.0
       cheetor:
         specifier: 'catalog:'
-        version: 0.13.0
+        version: 0.15.0
       webpack:
         specifier: 'catalog:'
         version: 5.110.3(postcss@8.5.28)(webpack-cli@7.2.3)
@@ -2695,6 +2693,10 @@ packages:
     resolution: {integrity: sha512-1QADgHQtO2oZksh/y6MK8yth40dpeWtlg0qSKMkvdpsWT2UHCT5uAw/yCDgi4vCFChMsmhgOlUsZ+O3kjKhDgg==}
     engines: {node: ^14.17.0 || >=16.13.0}
 
+  cheetor@0.15.0:
+    resolution: {integrity: sha512-g/1QyDv39ruRc4s2DSKRI0DqEnLBr3UFfaGSbmGzfFHq7BTNufmtfL/MqsB1YZr3FazOYAWLNnb8sfP/ngq/Bw==}
+    engines: {node: '>=24.0.0', pnpm: ^10.34.5}
+
   chevrotain@7.1.1:
     resolution: {integrity: sha512-wy3mC1x4ye+O+QkEinVJkPf5u2vsrDIYW9G7ZuwFl6v/Yu0LwUuT2POsb+NUWApebyxfkQq6+yDfRExbnI5rcw==}
 
@@ -2772,6 +2774,10 @@ packages:
   commander@14.0.3:
     resolution: {integrity: sha512-H+y0Jo/T1RZ9qPP4Eh1pkcQcLRglraJaSLoyOtHxu6AapkjWVCy2Sit1QQ4x3Dng8qDlSsZEet7g5Pq06MvTgw==}
     engines: {node: '>=20'}
+
+  commander@15.0.0:
+    resolution: {integrity: sha512-z67u4ZhzCL/Tydu1lJARtEZYWbWaN7oYLHbsuzocr6y4N6WZAagG3RQ4FW61V1/0+jImpj293XfrcYnd1qxtPg==}
+    engines: {node: '>=22.12.0'}
 
   commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
@@ -9191,6 +9197,10 @@ snapshots:
     dependencies:
       yargs: 17.7.3
 
+  cheetor@0.15.0:
+    dependencies:
+      commander: 15.0.0
+
   chevrotain@7.1.1:
     dependencies:
       regexp-to-ast: 0.5.0
@@ -9267,6 +9277,8 @@ snapshots:
   commander@11.1.0: {}
 
   commander@14.0.3: {}
+
+  commander@15.0.0: {}
 
   commander@2.20.3: {}
 

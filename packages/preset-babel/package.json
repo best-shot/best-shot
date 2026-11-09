@@ -1,6 +1,6 @@
 {
   "name": "@best-shot/preset-babel",
-  "version": "0.19.1",
+  "version": "0.19.2",
   "description": "A `best-shot` preset for babel compiler",
   "license": "MIT",
   "author": {
@@ -34,9 +34,9 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "@babel/preset-typescript": "^8.0.1",
+    "@babel/preset-typescript": "^8.0.7",
     "babel-loader": "^10.1.1",
-    "babel-preset-evergreen": "^0.12.0",
+    "babel-preset-evergreen": "^0.12.1",
     "browserslist": "catalog:",
     "core-js": "catalog:",
     "core-js-pure": "catalog:",

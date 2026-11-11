@@ -18,6 +18,11 @@ This preset offer the following features:
 - Use [react-refresh](https://github.com/pmmmwh/react-refresh-webpack-plugin) to support hot module reload.
 - Remove react/airbnb propTypes in `production` mode.
 - JSX syntax in typescript: `*.tsx`
+- Optional [React Compiler](https://react.dev/learn/react-compiler) support.
+
+## Requirements
+
+Support both React `18.3` and `19`. The [automatic JSX runtime](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) is used by default.
 
 ## Installation
 
@@ -34,15 +39,35 @@ export const config = {
 };
 ```
 
+## React Compiler
+
+Opt-in via config:
+
+```mjs
+// example: .best-shot/config.mjs
+export const config = {
+  presets: ['babel', 'react'],
+  react: {
+    compiler: true,
+  },
+};
+```
+
+The compile target is selected automatically,
+React `18` project should also install [react-compiler-runtime](https://www.npmjs.com/package/react-compiler-runtime).
+
 ## Tips
 
-This preset contains some optimization transform.
-It is not 100% safe, you can enable them manually.
+`@babel/transform-react-constant-elements` is applied by default.
+
+`@babel/transform-react-inline-elements` is applied only for React `18`,
+it produces invalid React elements under React `19`.
+It is not 100% safe, you can enable it manually in React `18` project.
 
 ```jsonc
 // example: babel.config.json
 {
-  "plugins": ["@babel/transform-react-constant-elements"]
+  "plugins": ["@babel/transform-react-inline-elements"]
 }
 ```
 

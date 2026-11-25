@@ -2,10 +2,13 @@ import { fileURLToPath } from 'node:url';
 
 import extToRegexp from 'ext-to-regexp';
 
-export function apply({
-  config: { vue: { compilerOptions = {}, importMap = false, ...other } = {} },
-}) {
+export function apply({ config }) {
   return async (chain) => {
+    const {
+      compilerOptions = {},
+      importMap = false,
+      ...other
+    } = config.vue || {};
     if (chain.module.rules.has('babel')) {
       chain.module
         .rule('babel')
@@ -22,15 +25,21 @@ export function apply({
         }));
     }
 
+    chain.resolveLoader.alias.set(
+      '@best-shot/vue-loader$',
+      fileURLToPath(import.meta.resolve('@best-shot/vue-loader')),
+    );
+
     chain.module
       .rule('vue')
       .after('esm')
       .test(extToRegexp({ extname: ['vue'] }))
       .use('vue-loader')
-      .loader(fileURLToPath(import.meta.resolve('@best-shot/vue-loader')))
+      .loader('@best-shot/vue-loader')
       .options({
         ...other,
-        hotReload: Boolean(chain.devServer.get('hot')) || false,
+        experimentalInlineMatchResource: true,
+        hotReload: Boolean(chain.devServer.get('hot')),
         compilerOptions: {
           whitespace: 'condense',
           ...compilerOptions,
@@ -41,14 +50,26 @@ export function apply({
       });
 
     if (importMap) {
-      const { parse } = await import('./compiler.mjs');
-
+      // Only treat the SFC's custom-block sub-request as raw config. Matching
+      // every `?blockType=config` request would also turn the component itself
+      // (`Foo.vue?blockType=config`) into a source string instead of a module.
       chain.module
-        .rule('vue')
-        .after('esm')
-        .use('vue-loader')
-        .tap((options) => ({ ...options, parse }));
+        .rule('vue-config-block')
+        .after('yaml')
+        .resourceQuery(/type=custom.*blockType=config/)
+        .type('asset/source');
     }
+
+    // webpack's `css/auto` only detects CSS modules via `.module.` in the file
+    // name. Vue's `<style module>` uses a `module=true` query on a virtual
+    // request, so force `css/module` for those blocks. The regex matches both
+    // the original `.vue.css` path and the cloned `.vue.css.css` resource that
+    // VueLoaderPlugin produces via inline matchResource.
+    chain.module
+      .rule('vue-style-module')
+      .test(/\.vue\.(?:css|less|sass|scss)+(?:\.\w+)?$/i)
+      .resourceQuery(/module=true/)
+      .type('css/module');
 
     const { default: VueLoaderPlugin } =
       await import('@best-shot/vue-loader/dist/pluginWebpack5.js');

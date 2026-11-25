@@ -26,14 +26,13 @@
   "main": "index.mjs",
   "type": "module",
   "dependencies": {
-    "@best-shot/vue-loader": "17.4.9",
-    "css-loader": "^7.1.5",
+    "@best-shot/vue-loader": "17.4.10",
     "ext-to-regexp": "catalog:"
   },
   "peerDependencies": {
     "@best-shot/core": "workspace:^",
     "@best-shot/preset-style": "workspace:^",
-    "@vue/compiler-sfc": "~3.5.17",
+    "@vue/compiler-sfc": "~3.5.46",
     "vue": "catalog:"
   },
   "engines": {

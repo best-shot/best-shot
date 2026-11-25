@@ -1,54 +1,32 @@
-import { slashToRegexp } from 'slash-to-regexp';
 import { applyScssLess } from './lib/apply-scss-less.mjs';
 import { applyStylesheet } from './lib/apply-stylesheet.mjs';
 
-export function apply({ config: { css: { extract } = {} } }) {
+export function apply({ config }) {
   return async (chain) => {
+    const { extract } = config.css || {};
+
     const hot = chain.devServer.get('hot');
 
-    const needExtract = extract ? true : !hot;
+    const isNeedExtract = extract ? true : !hot;
 
-    const { default: MiniCssExtractPlugin } =
-      await import('mini-css-extract-plugin');
-
-    await applyStylesheet({ needExtract, MiniCssExtractPlugin })(chain);
+    await applyStylesheet({ needExtract: isNeedExtract })(chain);
 
     applyScssLess()(chain);
 
-    if (needExtract) {
-      chain.plugin('extract-css').use(MiniCssExtractPlugin, [
-        {
-          ignoreOrder: true,
-          experimentalUseImportModule: true,
+    if (!chain.optimization.get('minimize')) return;
+
+    const { default: MinimizerPlugin } =
+      await import('minimizer-webpack-plugin');
+
+    chain.optimization.minimizer('css').use(MinimizerPlugin, [
+      {
+        test: /\.css$/i,
+        minify: MinimizerPlugin.cssnanoMinify,
+        minimizerOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
         },
-      ]);
-    }
-
-    if (chain.module.rules.has('babel')) {
-      chain.module
-        .rule('babel')
-        .exclude.add(slashToRegexp('/node_modules/css-loader/'));
-
-      if (needExtract) {
-        chain.module
-          .rule('babel')
-          .exclude.add(slashToRegexp('/node_modules/mini-css-extract-plugin/'));
-      }
-    }
-
-    const minimize = chain.optimization.get('minimize');
-
-    if (minimize) {
-      const { default: CssMinimizerPlugin } =
-        await import('css-minimizer-webpack-plugin');
-      chain.optimization.minimizer('css-minimizer').use(CssMinimizerPlugin, [
-        {
-          minimizerOptions: {
-            preset: ['default', { discardComments: { removeAll: true } }],
-          },
-        },
-      ]);
-    }
+      },
+    ]);
   };
 }
 

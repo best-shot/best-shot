@@ -3,12 +3,10 @@ import { fileURLToPath } from 'node:url';
 import extToRegexp from 'ext-to-regexp';
 import { haveDevDependencies, haveLocalDependencies } from 'settingz';
 
-const auto = (resourcePath, resourceQuery) =>
-  /\.module\.\w+$/i.test(resourcePath) ||
-  new URLSearchParams(resourceQuery).get('module');
-
-export function applyStylesheet({ needExtract, MiniCssExtractPlugin }) {
+export function applyStylesheet({ needExtract }) {
   return async (chain) => {
+    chain.experiments.set('css', true);
+
     const rule = chain.module
       .rule('style')
       .after('esm')
@@ -23,36 +21,33 @@ export function applyStylesheet({ needExtract, MiniCssExtractPlugin }) {
       .oneOf('url')
       .before('not-url')
       .dependency('url')
-      .generator.filename(assetModuleFilename.replace('[ext]', cssFilename));
+      .generator.filename(
+        assetModuleFilename.replace('[ext]', () => cssFilename),
+      );
 
     const mode = chain.get('mode');
 
     const parent = rule.rule('all').oneOf('not-url').dependency({ not: 'url' });
 
-    if (needExtract) {
-      parent.use('extract-css').loader(MiniCssExtractPlugin.loader).options({
-        defaultExport: true,
-      });
-    } else {
-      parent
-        .use('style-loader')
-        .loader(fileURLToPath(import.meta.resolve('style-loader')));
-    }
+    parent.type('css/auto');
 
-    parent
-      .use('css-loader')
-      .loader(fileURLToPath(import.meta.resolve('css-loader')))
-      .options({
-        importLoaders: 3,
-        modules: {
-          auto,
-          exportLocalsConvention: 'camel-case-only',
-          localIdentName: {
-            development: '[name]_[local]-[hash]',
-            production: '[local]-[hash]',
-          }[mode],
-        },
-      });
+    if (!needExtract) parent.parser({ exportType: 'style' });
+
+    const generatorOptions = {
+      exportsConvention: 'camel-case-only',
+      // Keep the 8-character hex hash used by the previous css-loader pipeline.
+      localIdentHashDigest: 'hex',
+      localIdentHashDigestLength: 8,
+      localIdentName: {
+        development: '[name]_[local]-[hash]',
+        production: '[local]-[hash]',
+      }[mode],
+    };
+
+    chain.module.generator.set('css/auto', generatorOptions);
+    // Vue `<style module>` blocks are forced to `css/module` by preset-vue
+    // (webpack's css/auto only detects `.module.` in file names, not queries).
+    chain.module.generator.set('css/module', generatorOptions);
 
     rule
       .rule('postcss')

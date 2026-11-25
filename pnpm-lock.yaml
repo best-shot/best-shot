@@ -243,8 +243,6 @@ overrides:
   '@into-mini/vue-mini-patch': ^0.4.8
   eslint: ^10.14.0
 
-pnpmfileChecksum: sha256-SLcNPKCc/uxkkGN9gRhySgpUAuULJIsqVEbSTbagx4M=
-
 patchedDependencies:
   '@vue-mini/core': 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
 
@@ -536,8 +534,8 @@ importers:
         specifier: workspace:^
         version: link:../core
       '@sindresorhus/transliterate':
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.1.0
+        version: 3.1.0
       '@volue/wasm-codecs-gifsicle':
         specifier: ^1.0.0
         version: 1.0.0
@@ -2122,8 +2120,8 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
-  '@sindresorhus/transliterate@3.0.0':
-    resolution: {integrity: sha512-mqOUtMxpY419WtwwYw1EX865Oh+QWpa37yhGLXNmVc6d91wsBYLG51TgSePqrdnCSnTJn2AygX+35StK86tNOA==}
+  '@sindresorhus/transliterate@3.1.0':
+    resolution: {integrity: sha512-xSMZIoi9tqXNXNdcJWdvVSiNmFiHnE8PjlV9Yb0I33zX2UrbNooiVpOdAvEjdrYYLLUEnvvqCnm+wTyU12wDng==}
     engines: {node: '>=22'}
 
   '@stylistic/eslint-plugin@5.10.0':
@@ -7915,7 +7913,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@sindresorhus/transliterate@3.0.0': {}
+  '@sindresorhus/transliterate@3.1.0': {}
 
   '@stylistic/eslint-plugin@5.10.0(eslint@10.14.0(jiti@2.7.0)(supports-color@5.5.0))':
     dependencies:

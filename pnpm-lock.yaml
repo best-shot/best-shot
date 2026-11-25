@@ -243,8 +243,6 @@ overrides:
   '@into-mini/vue-mini-patch': ^0.4.8
   eslint: ^10.14.0
 
-pnpmfileChecksum: sha256-SLcNPKCc/uxkkGN9gRhySgpUAuULJIsqVEbSTbagx4M=
-
 patchedDependencies:
   '@vue-mini/core': 032a24f74df5059a43e54a1272ff942942072321af0a81ce209b758253ef987e
 
@@ -548,7 +546,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(svgo@4.1.0)(webpack@5.113.0)
       svgo:
-        specifier: ^4.0.2
+        specifier: ^4.1.0
         version: 4.1.0
       svgo-config:
         specifier: ^0.10.0

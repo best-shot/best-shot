@@ -84,3 +84,51 @@ test('React compiler opt-in', async (t) => {
     ),
   );
 });
+
+test('Web defaults: resource hints and performance hints enabled', async (t) => {
+  const chain = await new BestShot().setup({ presets: ['web'] });
+  const config = chain.toConfig();
+
+  // Webpack's own default is kept so ESM entries emit preload/modulepreload.
+  t.false(Object.hasOwn(config.output, 'resourceHints'));
+  t.is(config.performance.hints, 'stats');
+});
+
+test('importMeta uses the non-deprecated object form', async (t) => {
+  const web = await new BestShot().setup();
+  t.deepEqual(web.toConfig().module.parser.javascript.importMeta, {
+    webpackContext: true,
+  });
+
+  const node = await new BestShot().setup({
+    config: { target: 'node' },
+  });
+  t.is(node.toConfig().module.parser.javascript.importMeta, false);
+  t.false(
+    Object.hasOwn(node.toConfig().module.parser.javascript, 'importMetaContext'),
+  );
+});
+
+test('output.html options pass through and merge with integrity', async (t) => {
+  const html = {
+    title: 'My App',
+    csp: true,
+    inline: 'script',
+    manifest: { name: 'My App' },
+    meta: { description: 'demo' },
+    favicon: 'favicon.ico',
+  };
+
+  const dev = await new BestShot().setup({
+    presets: ['web'],
+    config: { output: { html } },
+  });
+  t.deepEqual(dev.toConfig().output.html, html);
+
+  const prod = await new BestShot().setup({
+    presets: ['web'],
+    mode: 'production',
+    config: { output: { html } },
+  });
+  t.deepEqual(prod.toConfig().output.html, { ...html, integrity: true });
+});

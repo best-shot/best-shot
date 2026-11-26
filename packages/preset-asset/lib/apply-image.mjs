@@ -60,6 +60,18 @@ export async function applyImage(chain) {
         convertShapes: true,
         cleanupIds: true,
         sortAttributes: true,
+        // 5.113 svgo-style XML options. Most mirror plugins from the old
+        // svgo `preset-default` (convertTransform, mergePaths,
+        // removeUnknownsAndDefaults, convertStyleToAttrs). `loose` matches
+        // svgo's makeArcs fit instead of webpack's stricter default.
+        convertTransforms: true,
+        applyTransforms: true,
+        convertCurvesToArcs: 'loose',
+        mergeDisjointPaths: true,
+        mergePaths: true,
+        removeOffCanvasPaths: true,
+        removeUnknownElements: true,
+        inlineStyles: true,
       },
     });
 

@@ -35,9 +35,11 @@ export function apply({ cwd, config }) {
     }
 
     // webpack-chain stores `performance` outside the chain map, so `get`
-    // cannot read it. Apply the project's size thresholds together with any
-    // user options in one call.
+    // cannot read it. Apply the project's defaults together with any user
+    // options in one call. 5.110 added `hints: "stats"`, which reports the
+    // size/hint diagnostics in stats instead of emitting build warnings.
     chain.performance({
+      hints: 'stats',
       maxEntrypointSize: 1024 ** 2,
       maxAssetSize: 1024 ** 2,
       ...performance,
@@ -138,12 +140,16 @@ export function apply({ cwd, config }) {
       ),
     );
 
+    // 5.109 deprecated `importMetaContext` in favour of the object form of
+    // `importMeta`. Omitted fields stay enabled, so the object below keeps
+    // every `import.meta` field (including webpackContext) on the web side;
+    // `false` keeps them all off for node — matching the old semantics where
+    // `importMeta: false` short-circuited webpackContext too.
     chain.module.parser.javascript({
       amd: false,
       requireJs: false,
       system: false,
-      importMeta: !isNode,
-      importMetaContext: true,
+      importMeta: isNode ? false : { webpackContext: true },
     });
 
     chain.module.parser.json({

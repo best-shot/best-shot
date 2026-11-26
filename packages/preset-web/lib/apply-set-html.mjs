@@ -53,8 +53,8 @@ export async function setHtml(chain) {
   // Native HTML is stable since webpack 5.109. `true` also disables the
   // fallback to a user loader when both could handle .html resources.
   chain.experiments.set('html', true);
-  // html-webpack-plugin never emitted modulepreload hints or its polyfill.
-  chain.output.set('resourceHints', false);
+  // Leave `output.resourceHints` at webpack's default: for ESM output it
+  // emits preload/modulepreload hints so dynamic imports don't waterfall.
   // `[name]` resolves to the basename of the HTML source file.
   chain.output.set('htmlFilename', '[name].html');
 

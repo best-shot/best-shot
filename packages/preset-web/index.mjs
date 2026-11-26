@@ -70,4 +70,25 @@ export const schema = {
       },
     },
   },
+  output: {
+    type: 'object',
+    properties: {
+      // webpack's built-in HTML head generation. Passed straight through to
+      // output.html; SRI integrity is merged in by setHtml for production.
+      html: {
+        type: 'object',
+        additionalProperties: true,
+        properties: {
+          integrity: { type: 'boolean' },
+          csp: {},
+          manifest: {},
+          inline: {},
+          title: { type: 'string' },
+          meta: { type: 'object' },
+          base: {},
+          favicon: {},
+        },
+      },
+    },
+  },
 };

@@ -49,6 +49,33 @@ export const config = {
 };
 ```
 
+### HTML head
+
+Options under `output.html` are passed through to webpack's built-in HTML
+pipeline, so you can generate head tags without a template plugin:
+
+```mjs
+// .best-shot/config.mjs
+export const config = {
+  presets: ['web'],
+  entry: './src/index.html',
+  output: {
+    html: {
+      title: 'My App',
+      csp: true,
+      inline: 'script',
+      manifest: { name: 'My App' },
+      meta: { description: '...' },
+      favicon: './src/favicon.ico'
+    }
+  }
+};
+```
+
+`title`, `meta`, `base`, `favicon`, `manifest`, `csp`, `inline` and `integrity`
+are supported; any other webpack `output.html` option is passed through as
+well. Subresource integrity is enabled automatically in production.
+
 ## Tips
 
 ### Polyfill

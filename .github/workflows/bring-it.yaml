@@ -26,9 +26,6 @@ jobs:
         uses: airkro/bring-it@actions-oidc
         with:
           node-version: ${{ matrix.node }}
-          custom-command-after: |
-            mkdir -p packages/best-shot/dist
-            touch $_/cli.mjs
 
   publish:
     needs: [test]
@@ -38,7 +35,3 @@ jobs:
     steps:
       - name: Run
         uses: airkro/bring-it@actions-oidc
-        with:
-          custom-command-after: |
-            mkdir -p packages/best-shot/dist
-            touch $_/cli.mjs

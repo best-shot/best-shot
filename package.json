@@ -69,8 +69,7 @@
     "@best-shot/preset-style": "workspace:^",
     "@best-shot/preset-vue": "workspace:^",
     "@best-shot/preset-web": "workspace:^",
-    "@types/react": "catalog:react",
-    "best-shot": "workspace:^"
+    "@types/react": "catalog:react"
   },
   "packageManager": "pnpm@12.23.0",
   "engines": {

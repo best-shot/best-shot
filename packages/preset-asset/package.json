@@ -16,8 +16,8 @@
     "jpeg",
     "jpg",
     "mozjpeg",
-    "oxipng",
     "napi-rs",
+    "oxipng",
     "png",
     "svg",
     "svgo",
@@ -37,10 +37,10 @@
   "type": "module",
   "dependencies": {
     "@napi-rs/image": "^1.16.0",
-    "@sindresorhus/transliterate": "^3.0.0",
+    "@sindresorhus/transliterate": "^3.1.0",
     "@volue/wasm-codecs-gifsicle": "^1.0.0",
     "ext-to-regexp": "catalog:",
-    "minimizer-webpack-plugin": "^5.14.0"
+    "minimizer-webpack-plugin": "^5.14.1"
   },
   "peerDependencies": {
     "@best-shot/core": "workspace:^"

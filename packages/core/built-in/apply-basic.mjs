@@ -1,8 +1,11 @@
 import { resolve } from 'node:path';
 
 import extToRegexp from 'ext-to-regexp';
+import webpack from 'webpack';
 
 import { targetIsNode } from '../lib/utils.mjs';
+
+const { SourceMapDevToolPlugin } = webpack;
 
 export function apply({ cwd, config }) {
   const outputConfig = config.output ?? {};
@@ -12,6 +15,12 @@ export function apply({ cwd, config }) {
   const { buildHttp } = experiments;
   const { minimize } = optimization;
   const { target, dependencies, externalsPresets, performance } = config;
+  const {
+    strictModeViolations = 'warn',
+    javascript: { fetchPriority, ...javascriptParser } = {},
+    css: cssParser = {},
+  } = config.parser ?? {};
+  const { ignoreList, extractSourceMap = false } = config.devtool ?? {};
   const contextInput = config.context;
 
   return (chain) => {
@@ -73,6 +82,40 @@ export function apply({ cwd, config }) {
         minimizers.push('...');
       }
     });
+
+    if (ignoreList && Array.isArray(ignoreList) && ignoreList.length > 0) {
+      // `ignoreList` is a SourceMapDevToolPlugin option; the top-level
+      // `devtool` string cannot carry it. Replace the auto-created plugin with
+      // an equivalent explicit one at toConfig time, after every preset has
+      // decided the final devtool value. This mirrors webpack's own expansion
+      // of `devtool: "source-map"` (WebpackOptionsApply) with ignoreList added.
+      chain.get('x').addHooks((io) => {
+        if (io.devtool !== 'source-map') return;
+
+        const { output } = io;
+
+        // eslint-disable-next-line no-param-reassign
+        io.devtool = false;
+        io.plugins.push(
+          new SourceMapDevToolPlugin({
+            // eslint-disable-next-line prefer-regex-literals
+            test: new RegExp(String.raw`\.((c|m)?js|css)($|\?)`, 'i'),
+            // webpack defaults output.sourceMapFilename during compiler setup;
+            // at toConfig time it is still undefined, so supply the same
+            // default the built-in devtool expansion would use.
+            filename: output.sourceMapFilename ?? '[file].map[query]',
+            moduleFilenameTemplate: output.devtoolModuleFilenameTemplate,
+            fallbackModuleFilenameTemplate:
+              output.devtoolFallbackModuleFilenameTemplate,
+            module: true,
+            columns: true,
+            noSources: false,
+            namespace: output.devtoolNamespace,
+            ignoreList,
+          }),
+        );
+      });
+    }
 
     if (watch) {
       chain.watchOptions.ignored(/node_modules/);
@@ -154,16 +197,42 @@ export function apply({ cwd, config }) {
       requireJs: false,
       system: false,
       importMeta: isNode ? false : { webpackContext: true },
+      // 5.109: report constructs that break at runtime in strict mode when
+      // emitted as ESM. webpack already defaults to "warn"; expose it as a
+      // configurable option so projects can escalate or disable it.
+      strictModeViolations,
+      // 5.109 fine-grained resource hints: per-URL defaults (urlHints),
+      // priority of dynamically imported chunks (fetchPriority) and preloading
+      // of the CSS belonging to a dynamic chunk (dynamicImportCssPreload).
+      ...javascriptParser,
+      // `fetchPriority` is best-shot's name for webpack's
+      // `dynamicImportFetchPriority` (the global priority for import() chunks).
+      ...(fetchPriority !== undefined && {
+        dynamicImportFetchPriority: fetchPriority,
+      }),
     });
+
+    // 5.109: preload the primary font of each @font-face reachable from an
+    // HTML entry's initial CSS. Off by default; opt in via parser.css.
+    if (Object.keys(cssParser).length > 0) {
+      chain.module.parser.set('css', cssParser);
+    }
 
     chain.module.parser.json({
       namedExports: true,
     });
 
-    chain.module
+    const esmRule = chain.module
       .rule('esm')
-      .test(extToRegexp({ extname: ['js', 'mjs'] }))
-      .resolve.fullySpecified(false);
+      .test(extToRegexp({ extname: ['js', 'mjs'] }));
+
+    esmRule.resolve.fullySpecified(false);
+
+    // 5.102: load the source map referenced by a `sourceMappingURL` comment
+    // so dependencies that ship inline comments get proper stack traces.
+    if (extractSourceMap) {
+      esmRule.set('extractSourceMap', true);
+    }
   };
 }
 
@@ -201,6 +270,57 @@ export const schema = {
     default: {},
     properties: {
       minimize: {},
+    },
+  },
+  devtool: {
+    type: 'object',
+    default: {},
+    additionalProperties: false,
+    properties: {
+      // SourceMapDevToolPlugin ignoreList: RegExp / string / glob rules that
+      // mark matching sources as ignored in DevTools (e.g. /node_modules/).
+      ignoreList: {
+        anyOf: [
+          { instanceof: 'RegExp' },
+          { type: 'string', minLength: 1 },
+          { type: 'array', minItems: 1 },
+        ],
+      },
+      extractSourceMap: { type: 'boolean', default: false },
+    },
+  },
+  parser: {
+    type: 'object',
+    default: {},
+    additionalProperties: false,
+    properties: {
+      strictModeViolations: {
+        enum: ['error', 'warn', false],
+        default: 'warn',
+      },
+      javascript: {
+        type: 'object',
+        default: {},
+        additionalProperties: true,
+        properties: {
+          // Array of default-hint rules; each rule supports preload/prefetch/
+          // as/type/media/fetchPriority plus test/include/exclude matchers.
+          urlHints: { type: 'array' },
+          fetchPriority: { enum: ['low', 'high', 'auto', false] },
+          dynamicImportCssPreload: {
+            anyOf: [{ type: 'boolean' }, { type: 'number' }],
+          },
+        },
+      },
+      css: {
+        type: 'object',
+        default: {},
+        additionalProperties: true,
+        properties: {
+          fontPreload: { type: 'boolean' },
+          urlHints: { type: 'array' },
+        },
+      },
     },
   },
 };

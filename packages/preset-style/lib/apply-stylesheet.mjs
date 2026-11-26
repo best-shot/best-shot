@@ -24,7 +24,10 @@ export function applyStylesheet({ needExtract }) {
 
     const generatorOptions = {
       exportsConvention: 'camel-case-only',
-      // Keep the 8-character hex hash used by the previous css-loader pipeline.
+      // webpack 5.106 added localIdentHashFunction; xxhash64 is faster and
+      // has a lower collision rate than the old md4 default. Keep the
+      // 8-character hex digest so class names look the same as before.
+      localIdentHashFunction: 'xxhash64',
       localIdentHashDigest: 'hex',
       localIdentHashDigestLength: 8,
       localIdentName: {

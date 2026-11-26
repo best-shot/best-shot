@@ -89,3 +89,71 @@ test('Duplicated import.meta.env flags removed', async (t) => {
   t.true(Object.hasOwn(definitions, 'import.meta.env.GIT_HASH'));
   t.true(Object.hasOwn(definitions, 'import.meta.env.WATCHING'));
 });
+
+test('webpack 5.80+ parser and devtool options', async (t) => {
+  const config = {
+    parser: {
+      strictModeViolations: 'error',
+      javascript: {
+        fetchPriority: 'low',
+        dynamicImportCssPreload: true,
+        urlHints: [{ preload: true, fetchPriority: 'high' }],
+      },
+      css: { fontPreload: true },
+    },
+    devtool: { ignoreList: [/node_modules/], extractSourceMap: true },
+  };
+  const chain = await new BestShot().setup({
+    presets: ['web'],
+    mode: 'development',
+    config,
+  });
+  const cfg = chain.toConfig();
+
+  // strictModeViolations + fine-grained resource hints on JS parser.
+  t.is(cfg.module.parser.javascript.strictModeViolations, 'error');
+  t.is(cfg.module.parser.javascript.dynamicImportFetchPriority, 'low');
+  t.true(cfg.module.parser.javascript.dynamicImportCssPreload);
+  t.is(cfg.module.parser.javascript.urlHints.length, 1);
+  // CSS parser fontPreload.
+  t.true(cfg.module.parser.css.fontPreload);
+  // extractSourceMap on the esm rule.
+  const esm = cfg.module.rules.find(
+    (rule) => rule.resolve && rule.resolve.fullySpecified === false,
+  );
+  t.true(esm.extractSourceMap);
+  // ignoreList replaces the devtool string with an explicit plugin.
+  t.false(cfg.devtool);
+  const sm = cfg.plugins.find(
+    (plugin) => plugin?.constructor?.name === 'SourceMapDevToolPlugin',
+  );
+  t.truthy(sm);
+  t.deepEqual(
+    sm.options.ignoreList.map(String),
+    ['/node_modules/'],
+  );
+});
+
+test('webpack 5.80+ options keep defaults when unset', async (t) => {
+  const chain = await new BestShot().setup({
+    presets: ['web'],
+    mode: 'development',
+  });
+  const cfg = chain.toConfig();
+
+  // strictModeViolations stays at webpack's default "warn".
+  t.is(cfg.module.parser.javascript.strictModeViolations, 'warn');
+  // No opt-in resource hints or source map extraction by default.
+  t.falsy(cfg.module.parser.css);
+  const esm = cfg.module.rules.find(
+    (rule) => rule.resolve && rule.resolve.fullySpecified === false,
+  );
+  t.falsy(esm.extractSourceMap);
+  // devtool string is kept as-is when no ignoreList is configured.
+  t.is(cfg.devtool, 'source-map');
+  t.falsy(
+    cfg.plugins.find(
+      (plugin) => plugin?.constructor?.name === 'SourceMapDevToolPlugin',
+    ),
+  );
+});

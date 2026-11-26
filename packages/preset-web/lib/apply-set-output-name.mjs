@@ -2,12 +2,16 @@ export function setOutputName({ script, style }) {
   return (chain) => {
     chain.output.filename(script(chain.output.get('filename')));
 
-    chain.output.cssFilename(style(chain.output.get('cssFilename')));
+    const cssFilename = style(chain.output.get('cssFilename'));
 
-    const io = chain.module.rule('style').rule('all').oneOf('url');
+    chain.output.cssFilename(cssFilename);
 
-    if (io.generator.get('filename')) {
-      io.generator.filename(style(io.generator.get('filename')));
-    }
+    // Assets pulled in via CSS url() (e.g. url('./other.css')) share the
+    // stylesheet naming so they get the same min/hash treatment.
+    chain.module
+      .rule('style')
+      .rule('all')
+      .oneOf('url')
+      .generator.filename(cssFilename);
   };
 }

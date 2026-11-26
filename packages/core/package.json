@@ -36,7 +36,6 @@
     "copy-webpack": "^6.0.0",
     "deepmerge-ts": "catalog:",
     "ext-to-regexp": "catalog:",
-    "json-minimizer-webpack-plugin": "^5.0.1",
     "slash": "^5.1.0",
     "slash-to-regexp": "catalog:",
     "terser": "^5.51.2",

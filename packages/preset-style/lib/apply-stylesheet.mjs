@@ -12,18 +12,7 @@ export function applyStylesheet({ needExtract }) {
       .after('esm')
       .test(extToRegexp({ extname: ['css'] }));
 
-    const assetModuleFilename = chain.output.get('assetModuleFilename');
-
-    const cssFilename = chain.output.get('cssFilename');
-
-    rule
-      .rule('all')
-      .oneOf('url')
-      .before('not-url')
-      .dependency('url')
-      .generator.filename(
-        assetModuleFilename.replace('[ext]', () => cssFilename),
-      );
+    rule.rule('all').oneOf('url').before('not-url').dependency('url');
 
     const mode = chain.get('mode');
 

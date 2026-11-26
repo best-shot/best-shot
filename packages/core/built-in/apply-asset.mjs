@@ -71,13 +71,6 @@ async function applyAsset(chain) {
       },
     );
   }
-
-  if (!chain.optimization.get('minimize')) return;
-
-  const { default: JsonMinimizerPlugin } =
-    await import('json-minimizer-webpack-plugin');
-
-  chain.optimization.minimizer('json').use(JsonMinimizerPlugin);
 }
 
 export function apply() {

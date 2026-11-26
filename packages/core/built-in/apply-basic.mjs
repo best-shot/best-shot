@@ -4,18 +4,16 @@ import extToRegexp from 'ext-to-regexp';
 
 import { targetIsNode } from '../lib/utils.mjs';
 
-export function apply({
-  cwd,
-  config: {
-    output: { publicPath, path, module: useModule } = {},
-    output = {},
-    target,
-    context: contextInput,
-    dependencies,
-    experiments: { buildHttp } = {},
-    optimization: { minimize } = {},
-  },
-}) {
+export function apply({ cwd, config }) {
+  const outputConfig = config.output ?? {};
+  const experiments = config.experiments ?? {};
+  const optimization = config.optimization ?? {};
+  const { publicPath, path, module: useModule } = outputConfig;
+  const { buildHttp } = experiments;
+  const { minimize } = optimization;
+  const { target, dependencies } = config;
+  const contextInput = config.context;
+
   return (chain) => {
     if (contextInput) {
       chain.context(resolve(cwd, contextInput));
@@ -38,6 +36,26 @@ export function apply({
       .minimize(minimize ?? mode === 'production')
       .removeEmptyChunks(true)
       .removeAvailableModules(true);
+
+    // Keep webpack's built-in asset minimizer for CSS/HTML/JSON, but leave JS
+    // to the terser preset so its custom options (drop_console, ascii_only,
+    // extractComments) stay in force. The built-in plugin is injected through
+    // the "..." placeholder once a user minimizer (terser) is registered.
+    chain.optimization.set('minimizeOptions', {
+      javascript: false,
+      json: true,
+    });
+    chain.get('x').addHooks((io) => {
+      const minimizers = io.optimization?.minimizer;
+
+      if (
+        Array.isArray(minimizers) &&
+        minimizers.length > 0 &&
+        !minimizers.includes('...')
+      ) {
+        minimizers.push('...');
+      }
+    });
 
     if (watch) {
       chain.watchOptions.ignored(/node_modules/);
@@ -91,12 +109,14 @@ export function apply({
 
     chain.output.assetModuleFilename('[path][name][ext]');
 
-    chain.output.merge(output);
+    chain.output.merge(outputConfig);
 
     chain.output.path(
       resolve(
         cwd,
-        path.replaceAll('[config-name]', name).replaceAll('[mode]', mode),
+        path
+          .replaceAll('[config-name]', () => name)
+          .replaceAll('[mode]', () => mode),
       ),
     );
 

@@ -12,13 +12,7 @@ A `best-shot` preset for web project.
 [github-badge]: https://img.shields.io/npm/l/@best-shot/preset-web.svg?style=flat-square&colorB=blue&logo=github
 [node-badge]: https://img.shields.io/node/v/@best-shot/preset-web.svg?style=flat-square&colorB=green&logo=node.js
 
-This preset includes the following packages:
-
-- micro-tpl-loader
-- html-webpack-plugin
-- html-add-asset-webpack-plugin
-- html-minimizer-webpack-plugin
-- webpack-subresource-integrity
+This preset uses webpack's built-in HTML module support. Point your entries at real HTML files; webpack resolves their `<script>` and `<link>` tags into chunks and assets.
 
 ## Installation
 
@@ -32,9 +26,7 @@ npm install @best-shot/preset-web --save-dev
 // example: .best-shot/config.mjs
 export const config = {
   presets: ['web'],
-  html: {
-    // See: https://github.com/jantimon/html-webpack-plugin#options
-  }
+  entry: './src/index.html'
 };
 ```
 
@@ -48,16 +40,12 @@ export const config = {
     // Split Chunks
     common: ['lodash', 'axios']
   },
-  html: [
-    // Multiple Page Application
-    {
-      filename: './src/index.html',
-      title: 'Hello world!'
-    },
-    {
-      filename: './src/intro.html'
-    }
-  ]
+  entry: {
+    // Multiple Page Application: one HTML file per entry.
+    // Output files keep the HTML basename: index.html, page.html, ...
+    index: './src/index.html',
+    page: './src/page.html'
+  }
 };
 ```
 

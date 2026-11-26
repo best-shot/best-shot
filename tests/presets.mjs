@@ -30,13 +30,40 @@ test('More presets', async (t) => {
   t.is(rules.has('style'), true);
   t.is(rules.has('vue'), true);
   t.is(rules.has('image'), true);
-  t.is(rules.has('micro-tpl'), true);
+  t.is(chain.toConfig().experiments.html, true);
+  t.is(chain.plugins.has('html-pages'), true);
 });
 
 function getPlugins(chain) {
   return chain.module.rule('babel').uses.get('babel-loader').get('options')
     .plugins;
 }
+
+test('HTML entries are passed through untouched', async (t) => {
+  const chain = await new BestShot().setup({
+    presets: ['web'],
+    config: { entry: { main: './src/index.html' } },
+  });
+
+  t.deepEqual(chain.entryPoints.get('main').values(), ['./src/index.html']);
+});
+
+test('Dev server progress style is injected only when serving', async (t) => {
+  const served = await new BestShot().setup({
+    presets: ['web'],
+    watch: true,
+    serve: true,
+    config: { devServer: { port: 3000 } },
+  });
+  const built = await new BestShot().setup({ presets: ['web'] });
+
+  t.deepEqual(served.plugins.get('html-pages').get('args'), [
+    { devServerProgress: true },
+  ]);
+  t.deepEqual(built.plugins.get('html-pages').get('args'), [
+    { devServerProgress: false },
+  ]);
+});
 
 test('React compiler opt-in', async (t) => {
   const chain1 = await new BestShot().setup({
@@ -51,5 +78,9 @@ test('React compiler opt-in', async (t) => {
 
   const chain2 = await new BestShot().setup({ presets: ['babel', 'react'] });
 
-  t.false(getPlugins(chain2).some((plugin) => String(plugin).includes('babel-plugin-react-compiler')));
+  t.false(
+    getPlugins(chain2).some((plugin) =>
+      String(plugin).includes('babel-plugin-react-compiler'),
+    ),
+  );
 });

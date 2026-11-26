@@ -1,133 +1,94 @@
 import { createRequire } from 'node:module';
-import { fileURLToPath } from 'node:url';
 
-import extToRegexp from 'ext-to-regexp';
-import slash from 'slash';
-import { slashToRegexp } from 'slash-to-regexp';
-
-function css([string]) {
-  return string.trim().replaceAll(/\n\s+/g, '');
+function css([input]) {
+  return input;
 }
 
-const darkTag = {
-  tagName: 'style',
-  prepend: false,
-  innerHTML: css`
-    @media (prefers-color-scheme: dark) {
-      html {
-        background-color: var(--dark-bg, black);
-      }
-    }
-  `,
-};
+// Older dev servers rendered a <wds-progress> element; webpack-dev-server 6
+// hosts its rebuild indicator in a shadow root on this element instead. Keep
+// both translucent and click-through so the badge never blocks the page.
+const DEV_SERVER_PROGRESS_STYLE = css`
+  wds-progress {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  #webpack-dev-middleware-building-indicator {
+    opacity: 0.5;
+  }
+`;
 
-const wdsTag = {
-  tagName: 'style',
-  prepend: false,
-  innerHTML: css`
-    wds-progress {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-  `,
-};
+function injectStyle(html, style) {
+  const tag = `<style>${style}</style>`;
+  const closing = /<\/head>|<\/body>/i.exec(html)?.[0];
+  return closing
+    ? html.replace(closing, () => `${tag}\n${closing}`)
+    : `${tag}\n${html}`;
+}
 
-export function setHtml({ html = {} }) {
-  return async (chain) => {
-    const mode = chain.get('mode');
-    const watch = chain.get('watch');
-    const serve = chain.devServer.entries() !== undefined;
+class HtmlPagePlugin {
+  constructor({ devServerProgress = false } = {}) {
+    this.devServerProgress = devServerProgress;
+  }
 
-    const { default: HtmlWebpackPlugin } = await import('html-webpack-plugin');
+  apply(compiler) {
+    // Use the compiler's own webpack instance: pnpm may install multiple
+    // webpack copies, and hooks are instance-scoped WeakMaps.
+    const { HtmlModulesPlugin } = compiler.webpack.html;
 
-    const defaultTemplate = slash(
-      fileURLToPath(import.meta.resolve('./template.html')),
-    );
+    compiler.hooks.compilation.tap('HtmlPagePlugin', (compilation) => {
+      const hooks = HtmlModulesPlugin.getCompilationHooks(compilation);
 
-    const isModule = chain.output.get('module');
-
-    const page = (Array.isArray(html) ? html : [html]).map(
-      ({
-        title = 'BEST-SHOT APP',
-        template = defaultTemplate,
-        tags = [],
-        darkMode = true,
-        ...options
-      }) => ({
-        cache: watch,
-        minify: false,
-        xhtml: true,
-        title,
-        template,
-        tags: [
-          darkMode ? darkTag : undefined,
-          serve ? wdsTag : undefined,
-          ...tags,
-        ].filter(Boolean),
-        ...(isModule ? { scriptLoading: 'module' } : undefined),
-        templateParameters: {
-          title,
-          ...options.templateParameters,
-        },
-        ...options,
-      }),
-    );
-
-    page.forEach((options, index) => {
-      chain.plugin(`html-page-${index}`).use(HtmlWebpackPlugin, [options]);
-    });
-
-    if (page.some(({ tags = [] }) => tags.length > 0)) {
-      const { HtmlAddAssetWebpackPlugin } =
-        await import('html-add-asset-webpack-plugin');
-
-      chain.plugin('html-add-asset').use(HtmlAddAssetWebpackPlugin);
-    }
-
-    const minimize = chain.optimization.get('minimize');
-
-    if (minimize) {
-      const { default: HtmlMinimizerPlugin } =
-        await import('html-minimizer-webpack-plugin');
-
-      chain.optimization.minimizer('html').use(HtmlMinimizerPlugin, [
-        {
-          test: extToRegexp({ extname: ['html', 'htm'] }),
-          minimizerOptions: {
-            collapseWhitespace: true,
-            minifyCSS: true,
-            minifyJS: true,
-            removeComments: true,
-            removeEmptyAttributes: true,
-            removeRedundantAttributes: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            useShortDoctype: true,
-          },
-        },
-      ]);
-    }
-
-    if (mode === 'production') {
-      chain.output.crossOriginLoading('anonymous');
-
-      const { SubresourceIntegrityPlugin } = createRequire(import.meta.url)(
-        'webpack-subresource-integrity',
+      hooks.transformHtml.tapPromise('HtmlPagePlugin', async (html) =>
+        this.devServerProgress
+          ? injectStyle(html, DEV_SERVER_PROGRESS_STYLE)
+          : html,
       );
+    });
+  }
+}
 
-      chain.plugin('subresource-integrity').use(SubresourceIntegrityPlugin);
-    }
+export async function setHtml(chain) {
+  const mode = chain.get('mode');
 
-    chain.module
-      .rule('micro-tpl')
-      .test(extToRegexp({ extname: ['html', 'htm'] }))
-      .use('micro-tpl-loader')
-      .loader(fileURLToPath(import.meta.resolve('micro-tpl-loader')));
+  // Native HTML is stable since webpack 5.109. `true` also disables the
+  // fallback to a user loader when both could handle .html resources.
+  chain.experiments.set('html', true);
+  // html-webpack-plugin never emitted modulepreload hints or its polyfill.
+  chain.output.set('resourceHints', false);
+  // `[name]` resolves to the basename of the HTML source file.
+  chain.output.set('htmlFilename', '[name].html');
 
-    if (!watch && chain.module.rules.has('babel')) {
-      chain.module
-        .rule('babel')
-        .exclude.add(slashToRegexp('/node_modules/micromustache/'));
-    }
-  };
+  // Dev server renders a rebuild progress badge over the page. Inject its
+  // styling into every HTML page so it stays translucent and click-through.
+  const isServed = chain.devServer.entries() !== undefined;
+  chain
+    .plugin('html-pages')
+    .use(HtmlPagePlugin, [{ devServerProgress: isServed }]);
+
+  if (mode !== 'production') return;
+
+  // webpack's built-in minimizer handles HTML via `htmlMinify`; configure it
+  // through minimizeOptions instead of registering a separate minimizer.
+  chain.optimization.set('minimizeOptions', {
+    ...chain.optimization.get('minimizeOptions'),
+    html: {
+      collapseWhitespace: true,
+      comments: false,
+      removeEmptyAttributes: true,
+      removeRedundantAttributes: true,
+    },
+  });
+
+  chain.output.crossOriginLoading('anonymous');
+  // Native HTML integrity only covers static tags. The plugin adds runtime
+  // SRI hashes for chunks loaded on demand via dynamic import().
+  const require = createRequire(import.meta.url);
+  const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
+  chain.plugin('subresource-integrity').use(SubresourceIntegrityPlugin);
+
+  const currentHtml = chain.output.get('html');
+  chain.output.set('html', {
+    ...(typeof currentHtml === 'object' && currentHtml),
+    integrity: true,
+  });
 }

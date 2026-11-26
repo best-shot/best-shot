@@ -20,12 +20,11 @@ This preset offer the following features:
 - [PostCSS] support
 - Use [tailwindcss] when it installed
 - Use [postcss-preset-evergreen] by default(including [Autoprefixer])
-- Use [cssnano] in production mode
+- Minify CSS with webpack's built-in minifier in production mode
 
 [tailwindcss]: https://tailwindcss.com/
 [interoperable css]: https://github.com/css-modules/icss
 [css modules]: https://github.com/css-modules/css-modules
-[cssnano]: https://cssnano.co/
 [sass]: https://sass-lang.com/
 [less]: http://lesscss.org/
 [autoprefixer]: https://github.com/postcss/autoprefixer

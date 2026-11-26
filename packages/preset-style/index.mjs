@@ -12,21 +12,6 @@ export function apply({ config }) {
     await applyStylesheet({ needExtract: isNeedExtract })(chain);
 
     applyScssLess()(chain);
-
-    if (!chain.optimization.get('minimize')) return;
-
-    const { default: MinimizerPlugin } =
-      await import('minimizer-webpack-plugin');
-
-    chain.optimization.minimizer('css').use(MinimizerPlugin, [
-      {
-        test: /\.css$/i,
-        minify: MinimizerPlugin.cssnanoMinify,
-        minimizerOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        },
-      },
-    ]);
   };
 }
 

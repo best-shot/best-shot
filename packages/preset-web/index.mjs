@@ -13,68 +13,51 @@ function addMin(filename) {
   return suffix(filename, '.min');
 }
 
-export function apply({ config: { html } }) {
-  return async (chain) => {
-    const mode = chain.get('mode');
+async function applyWeb(chain) {
+  const mode = chain.get('mode');
 
-    chain.output.assetModuleFilename(
-      mode === 'development' ? '[path][name][ext]' : '[contenthash][ext]',
+  chain.output.assetModuleFilename(
+    mode === 'development' ? '[path][name][ext]' : '[contenthash][ext]',
+  );
+
+  const minimize = chain.optimization.get('minimize');
+  const isServed = chain.devServer.entries() !== undefined;
+  const hot = (isServed && chain.devServer.get('hot')) || false;
+
+  chain.devtool(mode === 'production' ? false : 'source-map');
+
+  chain
+    .when(minimize, setOutputName({ style: addMin, script: addMin }))
+    .when(!hot, setOutputName({ style: addHash, script: addHash }))
+    .batch(
+      setOutputName({
+        script: (filename) => `script/${filename}`,
+        style: (filename) => `style/${filename}`,
+      }),
     );
 
-    const minimize = chain.optimization.get('minimize');
-    const serve = chain.devServer.entries() !== undefined;
-    const hot = (serve && chain.devServer.get('hot')) || false;
+  await setHtml(chain);
 
-    chain.devtool(mode === 'production' ? false : 'source-map');
+  if (mode !== 'production') return;
 
-    chain
-      .when(minimize, setOutputName({ style: addMin, script: addMin }))
-      .when(!hot, setOutputName({ style: addHash, script: addHash }))
-      .batch(
-        setOutputName({
-          script: (filename) => `script/${filename}`,
-          style: (filename) => `style/${filename}`,
-        }),
-      );
+  const webpack = await import('webpack');
+  const { MinChunkSizePlugin } = webpack.default.optimize;
+  chain
+    .plugin('min-chunk-size')
+    .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
 
-    await setHtml({ html })(chain);
+  const { cachePath } = chain.get('x');
 
-    if (mode === 'production') {
-      const {
-        default: {
-          optimize: { MinChunkSizePlugin },
-        },
-      } = await import('webpack');
-      chain
-        .plugin('min-chunk-size')
-        .use(MinChunkSizePlugin, [{ minChunkSize: 1024 * 8 }]);
+  chain.recordsPath(cachePath('records.json'));
+}
 
-      const { cachePath } = chain.get('x');
-
-      chain.recordsPath(cachePath('records.json'));
-    }
-  };
+export function apply() {
+  return applyWeb;
 }
 
 export const name = 'preset-web';
 
-const items = {
-  type: 'object',
-};
-
 export const schema = {
-  html: {
-    oneOf: [
-      items,
-      {
-        items,
-        minItems: 1,
-        type: 'array',
-        uniqueItems: true,
-        title: 'Options group of HtmlWebpackPlugin',
-      },
-    ],
-  },
   optimization: {
     type: 'object',
     default: {},

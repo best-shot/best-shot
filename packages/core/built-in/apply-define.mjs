@@ -23,11 +23,11 @@ export function apply({ cwd: root, config: { define = {}, mini } }) {
       {
         ...variables(define),
         'import.meta.env': variables(envs),
+        // webpack 5.109+ injects import.meta.env.PROD/DEV/MODE/SSR/BASE_URL
+        // itself (from optimization.nodeEnv / mode / publicPath), so only the
+        // best-shot-specific fields are defined here.
         ...variables(
           prefix({
-            PROD: mode === 'production',
-            DEV: mode === 'development',
-            MODE: mode,
             WATCHING: watch,
             CONFIG_NAME: name,
             MINI_APP: mini !== undefined,

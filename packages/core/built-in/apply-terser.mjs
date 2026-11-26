@@ -1,5 +1,4 @@
 import { deepmerge as deepMerge } from 'deepmerge-ts';
-import os from 'node:os';
 
 import { targetIsNode } from '../lib/utils.mjs';
 
@@ -7,7 +6,11 @@ const displayName = 'terser';
 
 export function apply({
   cwd,
-  config: { output: { module: useModule = false } = {}, terser = {} },
+  config: {
+    output: { module: useModule = false } = {},
+    terser = {},
+    mini,
+  },
 }) {
   return async (chain) => {
     const { default: browserslist } = await import('browserslist');
@@ -31,34 +34,47 @@ export function apply({
     if (minimize) {
       const target = chain.get('target');
 
-      const { default: TerserPlugin } = await import('terser-webpack-plugin');
-
       const notNode = !targetIsNode(target);
 
-      // Keep the manual plugin (rather than `minimizeOptions.javascript`) so
-      // presets can still set `exclude` — preset-mini relies on excluding
-      // miniprogram_npm, which the built-in minimizer cannot express.
-      chain.optimization.minimizer('terser').use(TerserPlugin, [
+      const terserOptions = deepMerge(
         {
-          extractComments: false,
-          parallel: os.cpus().length - 1,
-          terserOptions: deepMerge(
-            {
-              safari10: notNode && haveSafari10(cwd),
-              compress: {
-                drop_console: notNode,
-                passes: 2,
-              },
-              format: {
-                comments: false,
-                ascii_only: true,
-              },
-            },
-            terser,
-            { module: useModule },
-          ),
+          safari10: notNode && haveSafari10(cwd),
+          compress: {
+            drop_console: notNode,
+            passes: 2,
+          },
+          format: {
+            comments: false,
+            ascii_only: true,
+          },
         },
-      ]);
+        terser,
+        { module: useModule },
+      );
+
+      // webpack 5.113's built-in minimizer already uses TerserPlugin's
+      // `terserMinify` for JS, so no manual minimizer is needed by default.
+      // Feed terser-compatible options through `minimizeOptions.javascript`
+      // and let the built-in pool handle JS together with CSS/HTML/JSON.
+      let javascript = terserOptions;
+
+      if (mini !== undefined) {
+        // Mini builds need to exclude `miniprogram_npm`, which the built-in
+        // minimizer cannot express. Register a terser plugin so preset-mini can
+        // tap it with that exclude, and disable the built-in JS minimizer to
+        // avoid minifying code twice.
+        const { default: TerserPlugin } = await import('terser-webpack-plugin');
+
+        javascript = false;
+        chain.optimization.minimizer('terser').use(TerserPlugin, [
+          { terserOptions },
+        ]);
+      }
+
+      chain.optimization.set('minimizeOptions', {
+        ...chain.optimization.get('minimizeOptions'),
+        javascript,
+      });
     }
   };
 }

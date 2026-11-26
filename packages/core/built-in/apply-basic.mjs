@@ -55,13 +55,11 @@ export function apply({ cwd, config }) {
       .removeEmptyChunks(true)
       .removeAvailableModules(true);
 
-    // Keep webpack's built-in asset minimizer for CSS/HTML/JSON, but leave JS
-    // to the terser preset so its custom options (drop_console, ascii_only,
-    // extractComments) and per-preset `exclude` (preset-mini) stay in force.
-    // The built-in plugin is injected through the "..." placeholder once a
-    // user minimizer (terser) is registered.
+    // webpack's built-in minimizer handles CSS/HTML/JSON; JS options are
+    // filled in by the terser built-in (terser-compatible options fed through
+    // `minimizeOptions.javascript`). The "..." placeholder below keeps the
+    // built-in minimizer active when a preset registers its own (e.g. image).
     chain.optimization.set('minimizeOptions', {
-      javascript: false,
       json: true,
     });
     chain.get('x').addHooks((io) => {
@@ -108,6 +106,12 @@ export function apply({ cwd, config }) {
     }
 
     const { cachePath } = chain.get('x');
+
+    // Enable webpack's built-in TypeScript parsing alongside babel-loader.
+    // With `true` (rather than the `"auto"` default) the parser also handles
+    // TS files that bypass a loader — e.g. dependencies in node_modules —
+    // while babel still owns polyfills, evergreen downleveling and TSX.
+    chain.experiments.set('typescript', true);
 
     chain.experiments.buildHttp({
       allowedUris: [],

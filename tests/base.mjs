@@ -51,3 +51,41 @@ test('entryPoints', async (t) => {
   t.deepEqual(stringEntry, arrayEntry);
   t.deepEqual(stringEntry, objectEntry);
 });
+
+test('Built-in TypeScript parsing enabled', async (t) => {
+  const chain = await new BestShot().setup();
+  t.is(chain.toConfig().experiments.typescript, true);
+});
+
+test('JS minimizer uses built-in path, mini keeps terser', async (t) => {
+  const web = await new BestShot().setup({ mode: 'production' });
+  const webConfig = web.toConfig();
+  // No manual terser minimizer; options fed to the built-in minimizer.
+  t.is(webConfig.optimization.minimizer, undefined);
+  t.truthy(webConfig.optimization.minimizeOptions.javascript);
+  t.true(webConfig.optimization.minimizeOptions.javascript.compress.passes === 2);
+
+  const mini = await new BestShot().setup({
+    presets: ['mini'],
+    mode: 'production',
+  });
+  const miniConfig = mini.toConfig();
+  t.is(miniConfig.optimization.minimizeOptions.javascript, false);
+  t.true(
+    miniConfig.optimization.minimizer.some(
+      (item) => item?.constructor?.name === 'TerserPlugin',
+    ),
+  );
+});
+
+test('Duplicated import.meta.env flags removed', async (t) => {
+  const chain = await new BestShot().setup({ mode: 'production' });
+  const definitions = chain.plugins.get('define').get('args')[0];
+
+  t.false(Object.hasOwn(definitions, 'import.meta.env.PROD'));
+  t.false(Object.hasOwn(definitions, 'import.meta.env.DEV'));
+  t.false(Object.hasOwn(definitions, 'import.meta.env.MODE'));
+  // best-shot-specific fields remain.
+  t.true(Object.hasOwn(definitions, 'import.meta.env.GIT_HASH'));
+  t.true(Object.hasOwn(definitions, 'import.meta.env.WATCHING'));
+});

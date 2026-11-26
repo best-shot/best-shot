@@ -1,11 +1,6 @@
 import extToRegexp from 'ext-to-regexp';
-import svgoConfig from 'svgo-config/lib/config.mjs';
 
 import { nonAscii, removeRoot } from './utils.mjs';
-
-const notDataUrlText = (_, sourcePath) => {
-  return sourcePath ? !sourcePath.startsWith('data:') : true;
-};
 
 export async function applyImage(chain) {
   const minimize = chain.optimization.get('minimize');
@@ -51,21 +46,25 @@ export async function applyImage(chain) {
     });
 
   if (minimize) {
+    // webpack's built-in XML minimizer handles SVGs with an svgo-compatible
+    // option set, so the separate svgo minimizer is no longer needed.
+    chain.optimization.set('minimizeOptions', {
+      ...chain.optimization.get('minimizeOptions'),
+      xml: {
+        comments: false,
+        removeTitles: true,
+        removeMetadata: true,
+        removeEditorData: true,
+        removeDescriptions: true,
+        removeAttributes: ['data-*', 'data.*', 'id'],
+        convertShapes: true,
+        cleanupIds: true,
+        sortAttributes: true,
+      },
+    });
+
     const { default: ImageMinimizerPlugin } =
       await import('image-minimizer-webpack-plugin');
-
-    chain.optimization.minimizer('svg').use(ImageMinimizerPlugin, [
-      {
-        test: extToRegexp({ extname: ['svg'] }),
-        minimizer: {
-          implementation: ImageMinimizerPlugin.svgoMinify,
-          options: {
-            encodeOptions: svgoConfig,
-          },
-          filter: notDataUrlText,
-        },
-      },
-    ]);
 
     const { baseMinify } = await import('./minify.mjs');
 

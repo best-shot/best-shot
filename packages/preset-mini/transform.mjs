@@ -1,6 +1,6 @@
-import babel from '@babel/core';
+import * as babel from '@babel/core';
 
-export function applyCopy(chain, { copy }) {
+export function applyCopy(chain) {
   const { targets } = chain.module
     .rule('babel')
     .use('babel-loader')
@@ -35,13 +35,11 @@ export function applyCopy(chain, { copy }) {
     );
   };
 
-  chain
-    .plugin('copy')
-    .tap(([options]) => [
-      Array.isArray(copy)
-        ? options.map((item) => ({ transform, ...item }))
-        : typeof copy === 'object'
-          ? { transform, ...options }
-          : options,
-    ]);
+  // `output.copy` stores an array of patterns. Inject the same transform into
+  // each one so copied .js files get the mini-target Babel pass.
+  const patterns = chain.output.get('copy');
+  chain.output.set(
+    'copy',
+    patterns.map((pattern) => ({ transform, ...pattern })),
+  );
 }

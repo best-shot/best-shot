@@ -430,9 +430,6 @@ importers:
       chalk:
         specifier: 'catalog:'
         version: 6.0.1
-      copy-webpack:
-        specifier: ^6.0.0
-        version: 6.0.0(webpack@5.113.0)
       deepmerge-ts:
         specifier: 'catalog:'
         version: 8.0.2
@@ -445,9 +442,6 @@ importers:
       slash-to-regexp:
         specifier: 'catalog:'
         version: 0.2.0
-      terser:
-        specifier: ^5.51.2
-        version: 5.51.2
       terser-webpack-plugin:
         specifier: ^5.6.1
         version: 5.6.1(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.32))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.32)(webpack@5.113.0)
@@ -544,12 +538,6 @@ importers:
       image-minimizer-webpack-plugin:
         specifier: ^5.0.0
         version: 5.0.0(svgo@4.1.0)(webpack@5.113.0)
-      svgo:
-        specifier: ^4.0.2
-        version: 4.1.0
-      svgo-config:
-        specifier: ^0.10.0
-        version: 0.10.0(svgo@4.1.0)
 
   packages/preset-babel:
     dependencies:
@@ -2968,18 +2956,6 @@ packages:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
 
-  copy-webpack-plugin@14.0.0:
-    resolution: {integrity: sha512-3JLW90aBGeaTLpM7mYQKpnVdgsUZRExY55giiZgLuX/xTQRUs1dOCwbBnWnvY6Q6rfZoXMNwzOQJCSZPppfqXA==}
-    engines: {node: '>= 20.9.0'}
-    peerDependencies:
-      webpack: ^5.1.0
-
-  copy-webpack@6.0.0:
-    resolution: {integrity: sha512-2Mu3grFSTaVM1TmaZDJX8Ie4kdjKihAJ+gxN9+qVkBo0DB+yCgLt/unlwzYSBQ6cu7BXez4t59i/CR6KpfZhZQ==}
-    engines: {node: '>=24.0.0', pnpm: ^10.33.0}
-    peerDependencies:
-      webpack: ^5.105.0
-
   core-js-compat@3.51.0:
     resolution: {integrity: sha512-52r6fkXgxv4GLMjmFcMWRx7X9bw071xTTdrDcdyPGRqU2oE+9pCG0bAOMifSBdLw0JRBZKEF0q3B55qPlLuE8g==}
     engines: {node: '>=6.4.0'}
@@ -3117,10 +3093,6 @@ packages:
 
   deepmerge@1.5.2:
     resolution: {integrity: sha512-95k0GDqvBjZavkuvzx/YqVLv/6YYa17fz6ILMSf7neqQITCPbnfEnQvEgMPNjH4kgobe7+WIL0yJEHku+H3qtQ==}
-    engines: {node: '>=0.10.0'}
-
-  deepmerge@4.3.1:
-    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
 
   default-browser-id@5.0.1:
@@ -5652,12 +5624,6 @@ packages:
 
   svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
-
-  svgo-config@0.10.0:
-    resolution: {integrity: sha512-vrqMPcLHIUvAT7tglHQcbTZwu/eDGgRuEx5fdu6AWGIHzX2vEqZ3dAKmyzkfgTCv9JshHUrThrPo0zF4QpcdZQ==}
-    engines: {node: '>=22.11.0'}
-    peerDependencies:
-      svgo: ^4.0.0
 
   svgo@4.1.0:
     resolution: {integrity: sha512-bkxnTg1kSU0guhIBmibA6UUhrQmPVA1XsQLN+ylCd+UWzbnLkySOcXpyk1mrl05f+pcaCx2eHb+sp6BgMZWX+Q==}
@@ -8684,7 +8650,8 @@ snapshots:
   commander@10.0.1:
     optional: true
 
-  commander@11.1.0: {}
+  commander@11.1.0:
+    optional: true
 
   commander@14.0.3: {}
 
@@ -8762,23 +8729,6 @@ snapshots:
     dependencies:
       is-what: 4.1.16
 
-  copy-webpack-plugin@14.0.0(webpack@5.113.0):
-    dependencies:
-      glob-parent: 6.0.2
-      normalize-path: 3.0.0
-      schema-utils: 4.8.3(webpack@5.113.0)
-      serialize-javascript: 7.0.7
-      tinyglobby: 0.2.17
-      webpack: 5.113.0(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.32))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.32)(svgo@4.1.0)(webpack-cli@7.3.1)
-
-  copy-webpack@6.0.0(webpack@5.113.0):
-    dependencies:
-      copy-webpack-plugin: 14.0.0(webpack@5.113.0)
-      deepmerge: 4.3.1
-      schema-utils: 4.8.3(webpack@5.113.0)
-      tinyglobby: 0.2.17
-      webpack: 5.113.0(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.32))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.32)(svgo@4.1.0)(webpack-cli@7.3.1)
-
   core-js-compat@3.51.0:
     dependencies:
       browserslist: 4.29.5
@@ -8823,11 +8773,13 @@ snapshots:
       domhandler: 5.0.3
       domutils: 3.2.2
       nth-check: 2.1.1
+    optional: true
 
   css-tree@2.2.1:
     dependencies:
       mdn-data: 2.0.28
-      source-map-js: 1.2.2
+      source-map-js: 1.2.4
+    optional: true
 
   css-tree@3.2.1:
     dependencies:
@@ -8836,7 +8788,8 @@ snapshots:
 
   css-what@6.2.2: {}
 
-  css-what@7.0.0: {}
+  css-what@7.0.0:
+    optional: true
 
   cssesc@3.0.0: {}
 
@@ -8863,6 +8816,7 @@ snapshots:
   csso@5.0.5:
     dependencies:
       css-tree: 2.2.1
+    optional: true
 
   csstype@3.2.3: {}
 
@@ -8943,8 +8897,6 @@ snapshots:
   deepmerge-ts@8.0.2: {}
 
   deepmerge@1.5.2: {}
-
-  deepmerge@4.3.1: {}
 
   default-browser-id@5.0.1: {}
 
@@ -10355,7 +10307,8 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
 
-  mdn-data@2.0.28: {}
+  mdn-data@2.0.28:
+    optional: true
 
   mdn-data@2.27.1: {}
 
@@ -11466,7 +11419,8 @@ snapshots:
       '@parcel/watcher': 2.6.0
     optional: true
 
-  sax@1.6.1: {}
+  sax@1.6.1:
+    optional: true
 
   scheduler@0.23.2:
     dependencies:
@@ -11877,10 +11831,6 @@ snapshots:
 
   svg-tags@1.0.0: {}
 
-  svgo-config@0.10.0(svgo@4.1.0):
-    dependencies:
-      svgo: 4.1.0
-
   svgo@4.1.0:
     dependencies:
       commander: 11.1.0
@@ -11890,6 +11840,7 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.1.1
       sax: 1.6.1
+    optional: true
 
   sync-child-process@1.0.2:
     dependencies:

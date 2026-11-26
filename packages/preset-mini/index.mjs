@@ -3,11 +3,11 @@ import { applyCopy } from './transform.mjs';
 import { applyLoaders } from './loader.mjs';
 
 export function apply({
-  config: { copy, mini: { type, tagMatcher, preserveTap } = {} },
+  config: { mini: { type, tagMatcher, preserveTap } = {} },
 }) {
   return async (chain) => {
-    if (chain.plugins.has('copy')) {
-      applyCopy(chain, { copy });
+    if (chain.output.get('copy')) {
+      applyCopy(chain);
     }
 
     chain.output
@@ -68,8 +68,8 @@ export function apply({
       ]);
     }
 
-    chain.experiments.layers(true);
-
+    // `experiments.layers` became stable in webpack 5.102; layers are enabled
+    // by default and the flag was removed from the schema.
     applyLoaders(chain, { tagMatcher, preserveTap });
 
     const { SfcSplitPlugin } = await import('@into-mini/sfc-split-plugin');

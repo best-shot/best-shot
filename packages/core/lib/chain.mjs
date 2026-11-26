@@ -7,12 +7,7 @@ export class BaseChain extends WebpackChain {
     super();
     this.amd(false);
 
-    this.experiments
-      .asyncWebAssembly(true)
-      .syncWebAssembly(true)
-      .topLevelAwait(true);
-
-    this.performance.maxEntrypointSize(1024 ** 2).maxAssetSize(1024 ** 2);
+    this.experiments.asyncWebAssembly(true).syncWebAssembly(true);
 
     this.output.hashDigestLength(8);
 

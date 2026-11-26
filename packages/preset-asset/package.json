@@ -40,9 +40,7 @@
     "@sindresorhus/transliterate": "^3.0.0",
     "@volue/wasm-codecs-gifsicle": "^1.0.0",
     "ext-to-regexp": "catalog:",
-    "image-minimizer-webpack-plugin": "^5.0.0",
-    "svgo": "^4.0.2",
-    "svgo-config": "^0.10.0"
+    "image-minimizer-webpack-plugin": "^5.0.0"
   },
   "peerDependencies": {
     "@best-shot/core": "workspace:^"

@@ -16,9 +16,10 @@ This tool includes the following packages:
 
 - case-sensitive-paths-webpack-plugin
 - clean-webpack-plugin
-- copy-webpack
 - terser-webpack-plugin
 - webpack-chain
+
+Static file copying uses webpack's built-in `output.copy`.
 
 ## Installation
 

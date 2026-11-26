@@ -35,6 +35,9 @@ export function apply({
 
       const notNode = !targetIsNode(target);
 
+      // Keep the manual plugin (rather than `minimizeOptions.javascript`) so
+      // presets can still set `exclude` — preset-mini relies on excluding
+      // miniprogram_npm, which the built-in minimizer cannot express.
       chain.optimization.minimizer('terser').use(TerserPlugin, [
         {
           extractComments: false,

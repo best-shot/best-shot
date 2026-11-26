@@ -1,5 +1,4 @@
-import { schema as copySchema } from 'copy-webpack/lib/schema.mjs';
-
+import { copyPatterns } from '../lib/copy-patterns.mjs';
 import { notEmpty } from '../lib/utils.mjs';
 
 function objectSize(object) {
@@ -7,6 +6,7 @@ function objectSize(object) {
 }
 
 export function apply({
+  cwd,
   serve,
   config: {
     copy,
@@ -15,14 +15,13 @@ export function apply({
     externalsType,
     devServer,
     experiments: { lazyCompilation } = {},
-    cache: { maxAge = 1000 * 60 * 60 * 24 * 3 } = {},
+    cache: { maxAge = 1000 * 60 * 60 * 24 * 3, compression } = {},
     stats = {},
   },
 }) {
   return async (chain) => {
-    if (copy.length > 0 || copy) {
-      const { CopyWebpack } = await import('copy-webpack');
-      chain.plugin('copy').use(CopyWebpack, [copy]);
+    if (copy && (!Array.isArray(copy) || copy.length > 0)) {
+      chain.output.set('copy', copyPatterns(copy, cwd));
     }
 
     if (externals) {
@@ -72,6 +71,9 @@ export function apply({
         type: 'filesystem',
         cacheDirectory: cachePath('webpack'),
         maxAge,
+        // webpack 5.109+ supports zstd, which compresses the filesystem cache
+        // faster and denser than gzip on Node.js with native zstd support.
+        ...(compression && { compression }),
         name: [name, serve && devServer ? 'serve' : watch ? 'watch' : mode]
           .filter(Boolean)
           .join('-'),
@@ -86,7 +88,36 @@ export const schema = {
   copy: {
     title: 'Paths to place static file without compile',
     default: false,
-    oneOf: [...copySchema.oneOf, { const: false }],
+    oneOf: [
+      { type: 'string', minLength: 1 },
+      {
+        type: 'object',
+        required: ['from'],
+        properties: {
+          from: { type: 'string', minLength: 1 },
+          hashbang: { type: 'boolean' },
+        },
+      },
+      {
+        type: 'array',
+        items: {
+          anyOf: [
+            { type: 'string', minLength: 1 },
+            {
+              type: 'object',
+              required: ['from'],
+              properties: {
+                from: { type: 'string', minLength: 1 },
+                hashbang: { type: 'boolean' },
+              },
+            },
+          ],
+        },
+        uniqueItems: true,
+        minItems: 1,
+      },
+      { const: false },
+    ],
   },
   provide: {
     type: 'object',

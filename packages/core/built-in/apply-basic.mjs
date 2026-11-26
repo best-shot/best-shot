@@ -11,7 +11,7 @@ export function apply({ cwd, config }) {
   const { publicPath, path, module: useModule } = outputConfig;
   const { buildHttp } = experiments;
   const { minimize } = optimization;
-  const { target, dependencies } = config;
+  const { target, dependencies, externalsPresets, performance } = config;
   const contextInput = config.context;
 
   return (chain) => {
@@ -27,6 +27,22 @@ export function apply({ cwd, config }) {
       chain.dependencies(dependencies);
     }
 
+    // webpack 5.110 exposes nodeModules as an externals preset, replacing
+    // webpack-node-externals. Merge so the built-in target presets (node,
+    // electron, …) that webpack applies itself are not disturbed.
+    if (externalsPresets) {
+      chain.externalsPresets(externalsPresets);
+    }
+
+    // webpack-chain stores `performance` outside the chain map, so `get`
+    // cannot read it. Apply the project's size thresholds together with any
+    // user options in one call.
+    chain.performance({
+      maxEntrypointSize: 1024 ** 2,
+      maxAssetSize: 1024 ** 2,
+      ...performance,
+    });
+
     const mode = chain.get('mode');
     const watch = chain.get('watch');
 
@@ -39,8 +55,9 @@ export function apply({ cwd, config }) {
 
     // Keep webpack's built-in asset minimizer for CSS/HTML/JSON, but leave JS
     // to the terser preset so its custom options (drop_console, ascii_only,
-    // extractComments) stay in force. The built-in plugin is injected through
-    // the "..." placeholder once a user minimizer (terser) is registered.
+    // extractComments) and per-preset `exclude` (preset-mini) stay in force.
+    // The built-in plugin is injected through the "..." placeholder once a
+    // user minimizer (terser) is registered.
     chain.optimization.set('minimizeOptions', {
       javascript: false,
       json: true,
@@ -100,7 +117,8 @@ export function apply({ cwd, config }) {
     });
 
     if (useModule) {
-      chain.experiments.outputModule(true);
+      // ESM output is controlled by `output.module` (set via outputConfig
+      // above); `experiments.outputModule` was removed in webpack 5.111.
       chain.output.chunkFormat('module').chunkLoading('import');
       // chain.output.library.type('module');
     } else if (isNode) {
@@ -144,6 +162,16 @@ export const name = 'basic';
 export const schema = {
   context: {
     type: 'string',
+  },
+  externalsPresets: {
+    type: 'object',
+    default: {},
+    additionalProperties: true,
+  },
+  performance: {
+    type: 'object',
+    default: {},
+    additionalProperties: true,
   },
   output: {
     type: 'object',

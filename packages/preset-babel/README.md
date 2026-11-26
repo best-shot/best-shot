@@ -59,16 +59,6 @@ References: <https://github.com/babel/babel/issues/10008>
 
 When 'always', `babel-preset-evergreen` will enabled in watch mode
 
-### babel.typescript
-
-- enum: [ 'babel', 'builtin' ]
-- default: 'babel'
-
-`'builtin'` uses webpack's native TypeScript stripping (5.107+) and skips `babel-loader`
-for `.ts`/`.mts`/`.cts` files. Only erasable syntax is supported — no `enum`, `namespace`,
-parameter properties, TSX, or decorator metadata. Keep `'babel'` for React/Vue projects
-or when syntax downleveling and polyfills are required.
-
 ## Tips
 
 You might need to pin `core-js@3` when your project dependency tree has `core-js@2`:

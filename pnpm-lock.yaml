@@ -535,9 +535,9 @@ importers:
       ext-to-regexp:
         specifier: 'catalog:'
         version: 0.1.0
-      image-minimizer-webpack-plugin:
-        specifier: ^5.0.0
-        version: 5.0.0(svgo@4.1.0)(webpack@5.113.0)
+      minimizer-webpack-plugin:
+        specifier: ^5.14.0
+        version: 5.14.0(@napi-rs/image@1.16.0)(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.33))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.33)(svgo@4.1.0)(webpack@5.113.0)
 
   packages/preset-babel:
     dependencies:
@@ -3896,25 +3896,6 @@ packages:
     resolution: {integrity: sha512-wCBiZ77u1tuWde6G/nfOtLaCTYcFDU5yCzARzK10y+rLhzYoL7a7yEemcopcc2Mzow7gZOIjnV2ym1NYmdiJOQ==}
     engines: {node: '>= 4'}
 
-  image-minimizer-webpack-plugin@5.0.0:
-    resolution: {integrity: sha512-TSeES2mTBY1smDnQRIaTGR9EdS1xGvWsaMu+XJRlh6z7VAWHmyYR6P5AynvVHMcmK4NdvmSlRJTNWgvpeNSPuA==}
-    engines: {node: '>= 20.9.0'}
-    peerDependencies:
-      '@squoosh/lib': '*'
-      imagemin: '*'
-      sharp: '*'
-      svgo: '*'
-      webpack: ^5.1.0
-    peerDependenciesMeta:
-      '@squoosh/lib':
-        optional: true
-      imagemin:
-        optional: true
-      sharp:
-        optional: true
-      svgo:
-        optional: true
-
   immutable@5.1.9:
     resolution: {integrity: sha512-m8nVez3rwrgmWxtLMt1ZYXB2Lv7OKYn/disyxAlSDYAlKSlFoPPfIAmAM/M5xqL4m4C/wAPw7S2/CNaUii1Hxg==}
 
@@ -5441,10 +5422,6 @@ packages:
   serialize-error@7.0.1:
     resolution: {integrity: sha512-8I8TjW5KMOKsZQTvoxjuSIa7foAwPWGOts+6o7sgjz41/qMD9VQHEDxi6PBvK2l0MXUmqZyNpUK+T2tQaaElvw==}
     engines: {node: '>=10'}
-
-  serialize-javascript@7.0.7:
-    resolution: {integrity: sha512-YAy8Od6KV+uuwUuU50np8fGB/Aues6Y0nAhA9y/hId74PlKUcme4pXcBD46NWKr1Q4osN/iseZ17YqO1XfmI8g==}
-    engines: {node: '>=20.0.0'}
 
   serve-index@1.9.2:
     resolution: {integrity: sha512-KDj11HScOaLmrPxl70KYNW1PksP4Nb/CLL2yvC+Qd2kHMPEEpfc4Re2e4FOay+bC/+XQl/7zAcWON3JVo5v3KQ==}
@@ -9934,14 +9911,6 @@ snapshots:
 
   ignore@7.0.14: {}
 
-  image-minimizer-webpack-plugin@5.0.0(svgo@4.1.0)(webpack@5.113.0):
-    dependencies:
-      schema-utils: 4.8.3(webpack@5.113.0)
-      serialize-javascript: 7.0.7
-      webpack: 5.113.0(@napi-rs/image@1.16.0)(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.33))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.33)(svgo@4.1.0)(webpack-cli@7.3.1)
-    optionalDependencies:
-      svgo: 4.1.0
-
   immutable@5.1.9: {}
 
   import-fresh@3.3.1:
@@ -11614,8 +11583,6 @@ snapshots:
   serialize-error@7.0.1:
     dependencies:
       type-fest: 0.13.1
-
-  serialize-javascript@7.0.7: {}
 
   serve-index@1.9.2(supports-color@10.2.2):
     dependencies:

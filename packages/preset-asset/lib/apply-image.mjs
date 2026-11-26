@@ -63,17 +63,17 @@ export async function applyImage(chain) {
       },
     });
 
-    const { default: ImageMinimizerPlugin } =
-      await import('image-minimizer-webpack-plugin');
+    const { default: MinimizerPlugin } =
+      await import('minimizer-webpack-plugin');
 
-    const { baseMinify } = await import('./minify.mjs');
+    const { gifMinify } = await import('./minify.mjs');
 
-    chain.optimization.minimizer('image').use(ImageMinimizerPlugin, [
+    chain.optimization.minimizer('image').use(MinimizerPlugin, [
       {
-        test: extToRegexp({ extname: ['jpg', 'jpeg', 'png', 'gif'] }),
-        minimizer: {
-          implementation: baseMinify,
-        },
+        test: extToRegexp({
+          extname: ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif'],
+        }),
+        minify: [MinimizerPlugin.napiRsImageMinify, gifMinify],
       },
     ]);
   }
